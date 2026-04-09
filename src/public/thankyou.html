@@ -14,7 +14,25 @@
     <p>Check your inbox for your Soul Mirror results. If you don’t see it in a few minutes, peek in spam or promotions.
     </p>
     <p><a href="/">← Back to the reading</a></p>
+    <p class="redirect-countdown" id="redirectCountdown" aria-live="polite">Redirecting in 15 seconds…</p>
   </div>
+  <script>
+    (function () {
+      var seconds = 15;
+      var el = document.getElementById('redirectCountdown');
+      var target = '/sales-page.html';
+      function tick() {
+        if (seconds <= 0) {
+          window.location.href = target;
+          return;
+        }
+        el.textContent = 'Redirecting in ' + seconds + ' second' + (seconds === 1 ? '' : 's') + '…';
+        seconds -= 1;
+        setTimeout(tick, 1000);
+      }
+      tick();
+    })();
+  </script>
 </body>
 
 </html>

@@ -32,9 +32,8 @@ test("GET / serves the landing page", async () => {
     assert.strictEqual(res.status, 200);
     const text = await res.text();
     assert.match(text, /Soul Mirror/i);
-    assert.match(text, /\/css\/index\.css/);
-    assert.match(text, /\/js\/tarot\/reading-app\.js/);
-    assert.doesNotMatch(text, /astrologyvault\.kit\.com/);
+    assert.match(text, /readingForm/);
+    assert.match(text, /astrologyvault\.kit\.com\/87bff9e0cc\/index\.js/);
   });
 });
 

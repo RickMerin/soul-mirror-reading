@@ -1072,6 +1072,19 @@
       text-align: center;
     }
 
+    /* Kit embed injects .formkit-form — keep off-screen (not display:none). */
+    .kit-embed-host {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+      white-space: nowrap;
+    }
+
     .error-msg {
       display: none;
       color: #c0392b;
@@ -1304,6 +1317,11 @@
   <div class="modal-overlay" id="formModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-box">
 
+      <!-- Kit injects form after script runs; we copy readingForm → Kit fields + submit off-screen. -->
+      <div class="kit-embed-host" aria-hidden="true">
+        <script async data-uid="87bff9e0cc" src="https://astrologyvault.kit.com/87bff9e0cc/index.js"></script>
+      </div>
+
       <h2 id="modalTitle">Your Reading Is Ready.</h2>
       <p class="form-sub">The mirror has seen what others have missed.<br>Enter your details now and we'll send your
         full reading directly to you.</p>
@@ -1428,6 +1446,43 @@
 
     const SLOT_LABELS = ['Your Love', 'Your Life', 'Your Wealth'];
     const FLOAT_CLASSES = ['float-0', 'float-1', 'float-2'];
+
+    const KIT_FORM_UID = '87bff9e0cc';
+
+    /**
+     * Waits for Kit’s injected form, copies first name / email / gender / DOB, then submits Kit’s button.
+     */
+    function syncKitEmbedAndSubmit({ firstName, email, gender, dateOfBirth }, onDone) {
+      const maxAttempts = 60;
+      let attempt = 0;
+      const tryRun = () => {
+        const form = document.querySelector(
+          `form.formkit-form[data-uid="${KIT_FORM_UID}"], form.seva-form[data-uid="${KIT_FORM_UID}"]`,
+        );
+        const first = form && form.querySelector('input[name="fields[first_name]"]');
+        if (form && first) {
+          const setByName = (name, val) => {
+            const el = form.elements.namedItem(name);
+            const input = el && !el.length ? el : el && el.length ? el[0] : null;
+            if (input) input.value = val == null ? '' : String(val);
+          };
+          setByName('fields[first_name]', firstName);
+          setByName('email_address', email);
+          setByName('fields[gender]', gender);
+          setByName('fields[date_of_birth]', dateOfBirth);
+          const submitBtn = form.querySelector('button[data-element="submit"], button.formkit-submit');
+          if (submitBtn) submitBtn.click();
+          onDone(true);
+          return;
+        }
+        if (++attempt >= maxAttempts) {
+          onDone(false);
+          return;
+        }
+        setTimeout(tryRun, 100);
+      };
+      tryRun();
+    }
 
     // ── State ───────────────────────────────────────────────────────────────────
     let chosen = 0;
@@ -1719,8 +1774,15 @@
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Server error');
 
-        closeModal();
-        window.location.href = '/thankyou.html';
+        syncKitEmbedAndSubmit(
+          { firstName: name, email, gender, dateOfBirth: dob },
+          () => {
+            setTimeout(() => {
+              closeModal();
+              window.location.href = '/thankyou.html';
+            }, 300);
+          },
+        );
 
       } catch (error) {
         btn.disabled = false;
