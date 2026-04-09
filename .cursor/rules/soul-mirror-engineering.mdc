@@ -1,0 +1,40 @@
+---
+description: Modern, scalable, secure defaults — patterns, DRY, tests
+alwaysApply: false
+---
+
+# Soul Mirror — engineering defaults
+
+## Goals
+
+Ship **less duplicated code** with **clear boundaries**, **security first**, and **automated tests** for every meaningful change.
+
+## Architecture
+
+- **Separate concerns**: HTTP/routes → validation → domain logic → external APIs (AstrologyAPI, Kit). Extract pure functions and small modules instead of growing monolith files.
+- **Single responsibility**: One obvious place per behavior (e.g. one module for Kit API, one for tarot/sun-sign helpers).
+- **Configuration**: All secrets and environment-specific values from `process.env` / `.env` — never hardcode API keys or tokens in source or HTML.
+
+## Security
+
+- **Validate and constrain inputs** on the server (types, ranges, string length, email shape). Reject bad data with `4xx`, not `5xx`.
+- **Do not log PII or secrets** (full emails, API keys, raw tokens). Prefer opaque ids or redaction.
+- **Outbound HTTP**: time-bound `fetch` where practical; handle non-OK responses without leaking upstream bodies to clients.
+- **Static + API**: keep JSON APIs free of reflected unsanitized user input in error messages shown to end users.
+
+## Patterns (maintainability)
+
+- Prefer **composition** over copy-paste; use shared helpers for repeated request/response shapes.
+- Use **early returns** and small functions to avoid deep nesting.
+- When adding features, **extend existing structure** rather than parallel one-off paths.
+
+## Testing (required habit)
+
+- **New or changed behavior** gets **automated tests** (`node:test` / `node --test`) — unit tests for pure logic, integration tests for routes or HTTP clients when feasible.
+- Run **`npm test`** before considering work done; fix failures before shipping.
+- Prefer testing **public behavior** (inputs → outputs, status codes) over implementation details.
+
+## Frontend (HTML/JS)
+
+- Keep client scripts **minimal**; business rules and secrets stay on the server.
+- Avoid inline secrets; use relative `/api/...` calls to same origin.

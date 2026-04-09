@@ -1,0 +1,12 @@
+---
+description: Express API — validation, errors, env (server entry only)
+globs: server.js
+alwaysApply: false
+---
+
+# `server.js` — API and security
+
+- **Route handlers**: parse body safely (`express.json` limits if you add a cap); validate required fields and types before calling external APIs.
+- **Errors**: map expected failures to `400`/`502` with safe, generic client messages; log details server-side only.
+- **Env**: `ASTRO_*`, `KIT_*`, `PORT` must come from environment — no fallback API keys in committed code.
+- **Refactors**: when splitting the file, keep **thin routes** and move Kit/Astrology helpers to dedicated modules with tests.

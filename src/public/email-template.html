@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Soul Mirror Reading</title>
+  <style>
+    @media only screen and (max-width: 600px) {
+      .email-container { width: 100% !important; }
+      .card-row td { display: block !important; width: 100% !important; text-align: center !important; }
+      .card-img { margin: 0 auto 16px auto !important; display: block !important; }
+      .divider-cell { display: none !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f0ec;font-family:Georgia,'Times New Roman',serif;">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f0ec;">
+  <tr>
+    <td align="center" style="padding:40px 20px;">
+
+      <!-- Container -->
+      <table class="email-container" width="600" cellpadding="0" cellspacing="0" border="0"
+             style="max-width:600px;background-color:#0d0b1e;border-radius:12px;overflow:hidden;">
+
+        <!-- Header -->
+        <tr>
+          <td align="center"
+              style="background:linear-gradient(160deg,#1a0d3f 0%,#0d0b1e 100%);padding:48px 40px 36px;border-bottom:1px solid rgba(201,168,76,0.2);">
+            <p style="margin:0 0 10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,76,0.7);">
+              Soul Mirror Reading
+            </p>
+            <h1 style="margin:0;font-size:28px;color:#f0d080;letter-spacing:0.08em;font-weight:normal;line-height:1.3;">
+              Your Cards Have Been Drawn
+            </h1>
+            <p style="margin:14px 0 0;font-size:15px;color:rgba(232,224,245,0.65);font-style:italic;line-height:1.6;">
+              A message from Luna Ross
+            </p>
+          </td>
+        </tr>
+
+        <!-- Intro -->
+        <tr>
+          <td style="padding:36px 44px 28px;color:#e8e0f5;font-size:15px;line-height:1.8;">
+            <p style="margin:0 0 16px;">
+              {{ subscriber.first_name }},
+            </p>
+            <p style="margin:0 0 16px;">
+              Your cards are here.
+            </p>
+            <p style="margin:0;">
+              Before you read further — take a breath. Whatever is happening in your life right now,
+              these three cards found you at exactly the right time. Trust what lands for you.
+              Trust what stirs something. That is where the truth lives.
+            </p>
+          </td>
+        </tr>
+
+        <!-- Divider -->
+        <tr>
+          <td align="center" style="padding:0 44px 32px;">
+            <p style="margin:0;color:rgba(201,168,76,0.35);letter-spacing:0.6em;font-size:13px;">· · ·</p>
+          </td>
+        </tr>
+
+        <!-- ── CARD 1: YOUR LOVE ── -->
+        <tr>
+          <td style="padding:0 44px 36px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <!-- Label -->
+              <tr>
+                <td style="padding:0 0 16px;">
+                  <p style="margin:0;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,76,0.6);">
+                    Your Love
+                  </p>
+                </td>
+              </tr>
+              <!-- Card row -->
+              <tr class="card-row">
+                <td class="card-img" width="110" valign="top"
+                    style="padding-right:20px;">
+                  <img src="{{ subscriber.love_card_image }}"
+                       alt="{{ subscriber.love_card }}"
+                       width="100"
+                       style="display:block;border-radius:6px;border:1px solid rgba(201,168,76,0.4);box-shadow:0 4px 20px rgba(0,0,0,0.5);">
+                </td>
+                <td valign="top">
+                  <h2 style="margin:0 0 12px;font-size:18px;color:#f0d080;font-weight:normal;letter-spacing:0.05em;">
+                    {{ subscriber.love_card }}
+                  </h2>
+                  <p style="margin:0;font-size:14px;color:rgba(232,224,245,0.8);line-height:1.8;">
+                    {{ subscriber.love_reading }}
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Section divider -->
+        <tr>
+          <td style="padding:0 44px 36px;">
+            <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.2),transparent);"></div>
+          </td>
+        </tr>
+
+        <!-- ── CARD 2: YOUR LIFE ── -->
+        <tr>
+          <td style="padding:0 44px 36px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding:0 0 16px;">
+                  <p style="margin:0;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,76,0.6);">
+                    Your Life
+                  </p>
+                </td>
+              </tr>
+              <tr class="card-row">
+                <td class="card-img" width="110" valign="top"
+                    style="padding-right:20px;">
+                  <img src="{{ subscriber.life_card_image }}"
+                       alt="{{ subscriber.life_card }}"
+                       width="100"
+                       style="display:block;border-radius:6px;border:1px solid rgba(201,168,76,0.4);box-shadow:0 4px 20px rgba(0,0,0,0.5);">
+                </td>
+                <td valign="top">
+                  <h2 style="margin:0 0 12px;font-size:18px;color:#f0d080;font-weight:normal;letter-spacing:0.05em;">
+                    {{ subscriber.life_card }}
+                  </h2>
+                  <p style="margin:0;font-size:14px;color:rgba(232,224,245,0.8);line-height:1.8;">
+                    {{ subscriber.life_reading }}
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Section divider -->
+        <tr>
+          <td style="padding:0 44px 36px;">
+            <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.2),transparent);"></div>
+          </td>
+        </tr>
+
+        <!-- ── CARD 3: YOUR WEALTH ── -->
+        <tr>
+          <td style="padding:0 44px 36px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding:0 0 16px;">
+                  <p style="margin:0;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,76,0.6);">
+                    Your Wealth
+                  </p>
+                </td>
+              </tr>
+              <tr class="card-row">
+                <td class="card-img" width="110" valign="top"
+                    style="padding-right:20px;">
+                  <img src="{{ subscriber.wealth_card_image }}"
+                       alt="{{ subscriber.wealth_card }}"
+                       width="100"
+                       style="display:block;border-radius:6px;border:1px solid rgba(201,168,76,0.4);box-shadow:0 4px 20px rgba(0,0,0,0.5);">
+                </td>
+                <td valign="top">
+                  <h2 style="margin:0 0 12px;font-size:18px;color:#f0d080;font-weight:normal;letter-spacing:0.05em;">
+                    {{ subscriber.wealth_card }}
+                  </h2>
+                  <p style="margin:0;font-size:14px;color:rgba(232,224,245,0.8);line-height:1.8;">
+                    {{ subscriber.wealth_reading }}
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Closing divider -->
+        <tr>
+          <td align="center" style="padding:0 44px 32px;">
+            <p style="margin:0;color:rgba(201,168,76,0.35);letter-spacing:0.6em;font-size:13px;">· · ·</p>
+          </td>
+        </tr>
+
+        <!-- Closing message -->
+        <tr>
+          <td style="padding:0 44px 44px;color:rgba(232,224,245,0.75);font-size:14px;line-height:1.8;">
+            <p style="margin:0 0 16px;">
+              Sit with what came through today.
+            </p>
+            <p style="margin:0 0 28px;">
+              Your cards do not make decisions for you — they hold up a mirror.
+              What you see in that reflection is already yours.
+            </p>
+            <p style="margin:0 0 4px;color:#e8e0f5;">With love,</p>
+            <p style="margin:0;font-size:17px;color:#f0d080;letter-spacing:0.05em;">Luna Ross</p>
+            <p style="margin:4px 0 0;font-size:12px;color:rgba(201,168,76,0.5);letter-spacing:0.1em;text-transform:uppercase;">
+              Soul Mirror Reading
+            </p>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td align="center"
+              style="padding:20px 44px;border-top:1px solid rgba(201,168,76,0.1);background:rgba(0,0,0,0.2);">
+            <p style="margin:0;font-size:11px;color:rgba(153,136,187,0.5);line-height:1.6;">
+              You received this because you requested a free 3-card tarot reading.<br>
+              <a href="{{ unsubscribe_url }}" style="color:rgba(201,168,76,0.4);text-decoration:none;">Unsubscribe</a>
+            </p>
+          </td>
+        </tr>
+
+      </table>
+      <!-- /Container -->
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

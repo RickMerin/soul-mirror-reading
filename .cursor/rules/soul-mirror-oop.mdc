@@ -1,0 +1,32 @@
+---
+description: OOP boundaries — services, clients, UI controllers (Soul Mirror)
+globs: src/**/*.js,src/public/js/**/*.js
+alwaysApply: false
+---
+
+# Soul Mirror — object-oriented structure
+
+Use **classes** for clear boundaries; keep **routes and HTML** thin.
+
+## Server (`src/`)
+
+- **HTTP clients**: one class per external API (e.g. `AstrologyApiClient` in `services/astrologyApi.js`) — holds auth/base URL, exposes named methods only.
+- **Integrations**: `KitService` encapsulates Kit API; inject config via constructor.
+- **Use cases**: `ReadingApplicationService` orchestrates validation → Astrology → Kit; returns `{ ok, status?, error? }` or `{ ok: true }` instead of mixing Express `res` inside the service.
+- **Routes** (`routes/*.js`): parse `req`, call one service method, map result to `res.status().json()`. No raw `fetch` to third parties in route files.
+
+## Browser (`src/public/js/`)
+
+- **Page controllers**: one class per page (e.g. `TarotReadingApp`, `SalesPageUi`) with `init()`; state lives on `this`, not module-level globals.
+- **Data-only modules** stay plain exports (e.g. `cards-data.js`).
+- **Legacy inline handlers**: if HTML uses `onclick="foo(this)"`, expose `window.foo` from the controller’s `init()` (see `SalesPageUi`).
+
+## When not to force OOP
+
+- Pure helpers (`lib/sunSign.js`, small sync functions) stay functions.
+- Tests should target **public behavior** (HTTP, inputs/outputs), not private class fields.
+
+## New features
+
+1. Decide which **existing service** owns the behavior, or add a **new `*Service` / `*Client` class** in `src/services/` or `src/lib/`.
+2. Add or extend **tests** in `test/` for changed HTTP or pure logic.
