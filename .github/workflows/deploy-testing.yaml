@@ -3,10 +3,30 @@ name: Deploy Soul Mirror Reading (FTP testing)
 on:
   push:
     branches:
-      - production
+      - testing
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: curl, mbstring
+          coverage: none
+
+      - name: Install Composer dependencies (with dev for PHPUnit)
+        run: composer install --no-interaction
+
+      - name: Run PHPUnit
+        run: composer test
+
   ftp-deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
