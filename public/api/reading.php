@@ -61,7 +61,7 @@ if (!is_array($body)) {
 }
 
 $config = AppConfig::load($projectRoot);
-$http = new Client(['timeout' => 45.0, 'http_errors' => false]);
+$http = new Client($config->guzzleClientConfig());
 $pipelineLog = new PipelineLogger($config);
 $orchestrator = new ReadingOrchestrator(
     $config,

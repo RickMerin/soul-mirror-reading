@@ -41,6 +41,9 @@ final class PipelineLogger
         }
 
         $line = date('Y-m-d H:i:s') . ' ' . $message . PHP_EOL;
-        @file_put_contents($this->config->pipelineLogPath, $line, FILE_APPEND | LOCK_EX);
+        $ok = @file_put_contents($this->config->pipelineLogPath, $line, FILE_APPEND | LOCK_EX);
+        if ($ok === false) {
+            error_log('PipelineLogger: cannot write to ' . $this->config->pipelineLogPath);
+        }
     }
 }

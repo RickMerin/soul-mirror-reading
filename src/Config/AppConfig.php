@@ -23,7 +23,30 @@ final class AppConfig
         public readonly bool $pipelineFileLog,
         /** Absolute path to the pipeline log file. */
         public readonly string $pipelineLogPath,
+        /**
+         * Path to a CA bundle for TLS verification (Guzzle `verify`).
+         * Empty string = Guzzle default (often fails on Windows without php.ini `curl.cainfo`).
+         */
+        public readonly string $sslCaBundlePath,
     ) {}
+
+    /**
+     * Default Guzzle options for outbound API calls (AstrologyAPI, Kit).
+     *
+     * @return array<string, mixed>
+     */
+    public function guzzleClientConfig(): array
+    {
+        $c = [
+            'timeout' => 45.0,
+            'http_errors' => false,
+        ];
+        if ($this->sslCaBundlePath !== '') {
+            $c['verify'] = $this->sslCaBundlePath;
+        }
+
+        return $c;
+    }
 
     /**
      * Loads `.env` when present (safe, non-destructive) and builds config from `$_ENV` / `getenv`.
@@ -46,6 +69,8 @@ final class AppConfig
             ? $logPathOverride
             : $projectRoot . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'pipeline.log';
 
+        $sslCaBundlePath = self::resolveSslCaBundlePath($projectRoot, $get);
+
         return new self(
             astroUserId: $get('ASTRO_USER_ID'),
             astroApiKey: $get('ASTRO_API_KEY'),
@@ -53,6 +78,30 @@ final class AppConfig
             kitTagName: $get('KIT_TAG_NAME') !== '' ? $get('KIT_TAG_NAME') : 'soul-mirror-leads',
             pipelineFileLog: $pipelineFileLog,
             pipelineLogPath: $pipelineLogPath,
+            sslCaBundlePath: $sslCaBundlePath,
         );
+    }
+
+    /**
+     * @param callable(string): string $get
+     */
+    private static function resolveSslCaBundlePath(string $projectRoot, callable $get): string
+    {
+        $fromEnv = $get('SSL_CAFILE');
+        if ($fromEnv !== '') {
+            $rp = realpath($fromEnv);
+            if ($rp !== false && is_readable($rp)) {
+                return $rp;
+            }
+        }
+
+        $local = $projectRoot . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'cacert.pem';
+        if (is_readable($local)) {
+            $rp = realpath($local);
+
+            return $rp !== false ? $rp : '';
+        }
+
+        return '';
     }
 }

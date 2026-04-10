@@ -6,6 +6,7 @@ namespace App\Application;
 
 use App\Config\AppConfig;
 use App\Domain\CardImageUrlBuilder;
+use App\Domain\FormSubmission;
 use App\Domain\SunSignResolver;
 use App\Logging\PipelineLogger;
 use App\Services\AstrologyApiClient;
@@ -36,22 +37,23 @@ final class ReadingOrchestrator
     {
         $this->pipelineLog->envSummary();
 
-        $name = $this->string($body, 'name');
-        $email = $this->string($body, 'email');
-        $dob = $this->string($body, 'dob');
-        $gender = $this->string($body, 'gender');
-        $card1 = $body['card1'] ?? null;
-        $card2 = $body['card2'] ?? null;
-        $card3 = $body['card3'] ?? null;
-        $card1Name = $this->string($body, 'card1Name');
-        $card2Name = $this->string($body, 'card2Name');
-        $card3Name = $this->string($body, 'card3Name');
-
-        if ($name === '' || $email === '' || $card1 === null || $card2 === null || $card3 === null) {
+        $form = FormSubmission::tryCreate($body);
+        if ($form === null) {
             $this->pipelineLog->line('validation: fail (missing required fields)');
 
             return new ReadingResult(400, ['error' => 'Missing required fields.']);
         }
+
+        $name = $form->name;
+        $email = $form->email;
+        $dob = $form->dob;
+        $gender = $form->gender;
+        $card1Name = $form->card1Name;
+        $card2Name = $form->card2Name;
+        $card3Name = $form->card3Name;
+        $c1 = $form->card1;
+        $c2 = $form->card2;
+        $c3 = $form->card3;
 
         if ($this->config->astroUserId === '' || $this->config->astroApiKey === '') {
             error_log('ReadingOrchestrator: AstrologyAPI credentials missing');
@@ -66,10 +68,6 @@ final class ReadingOrchestrator
 
             return new ReadingResult(500, ['error' => 'Internal server error.']);
         }
-
-        $c1 = (int) $card1;
-        $c2 = (int) $card2;
-        $c3 = (int) $card3;
 
         try {
             $reading = $this->astrology->fetchTarotPredictions($c1, $c2, $c3);
@@ -111,9 +109,9 @@ final class ReadingOrchestrator
             'loveReading' => $loveText,
             'lifeReading' => $lifeText,
             'wealthReading' => $wealthText,
-            'loveCardImage' => $this->cardImages->buildUrl($card1),
-            'lifeCardImage' => $this->cardImages->buildUrl($card2),
-            'wealthCardImage' => $this->cardImages->buildUrl($card3),
+            'loveCardImage' => $this->cardImages->buildUrl($c1),
+            'lifeCardImage' => $this->cardImages->buildUrl($c2),
+            'wealthCardImage' => $this->cardImages->buildUrl($c3),
             'sunSign' => $sunSign ?? '',
             'sunPersonalLife' => $sunPrediction['personal_life'] ?? '',
             'sunProfession' => $sunPrediction['profession'] ?? '',
@@ -141,22 +139,6 @@ final class ReadingOrchestrator
         $this->pipelineLog->line('pipeline: complete HTTP 200');
 
         return new ReadingResult(200, ['success' => true]);
-    }
-
-    /**
-     * @param array<string, mixed> $body
-     */
-    private function string(array $body, string $key): string
-    {
-        $v = $body[$key] ?? '';
-        if (is_string($v)) {
-            return trim($v);
-        }
-        if (is_numeric($v)) {
-            return trim((string) $v);
-        }
-
-        return '';
     }
 
     private function shortSafeMessage(Throwable $e): string
