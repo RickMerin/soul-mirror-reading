@@ -7,6 +7,7 @@ namespace App\Application;
 use App\Config\AppConfig;
 use App\Domain\CardImageUrlBuilder;
 use App\Domain\SunSignResolver;
+use App\Logging\PipelineLogger;
 use App\Services\AstrologyApiClient;
 use App\Services\AstrologyApiException;
 use App\Services\KitService;
@@ -25,6 +26,7 @@ final class ReadingOrchestrator
         private readonly KitService $kit,
         private readonly SunSignResolver $sunSignResolver,
         private readonly CardImageUrlBuilder $cardImages,
+        private readonly PipelineLogger $pipelineLog,
     ) {}
 
     /**
@@ -32,6 +34,8 @@ final class ReadingOrchestrator
      */
     public function run(array $body): ReadingResult
     {
+        $this->pipelineLog->envSummary();
+
         $name = $this->string($body, 'name');
         $email = $this->string($body, 'email');
         $dob = $this->string($body, 'dob');
@@ -44,17 +48,21 @@ final class ReadingOrchestrator
         $card3Name = $this->string($body, 'card3Name');
 
         if ($name === '' || $email === '' || $card1 === null || $card2 === null || $card3 === null) {
+            $this->pipelineLog->line('validation: fail (missing required fields)');
+
             return new ReadingResult(400, ['error' => 'Missing required fields.']);
         }
 
         if ($this->config->astroUserId === '' || $this->config->astroApiKey === '') {
             error_log('ReadingOrchestrator: AstrologyAPI credentials missing');
+            $this->pipelineLog->line('abort: AstrologyAPI credentials missing');
 
             return new ReadingResult(500, ['error' => 'Internal server error.']);
         }
 
         if ($this->config->kitApiKey === '') {
             error_log('ReadingOrchestrator: KIT_API_KEY missing');
+            $this->pipelineLog->line('abort: KIT_API_KEY missing');
 
             return new ReadingResult(500, ['error' => 'Internal server error.']);
         }
@@ -65,10 +73,14 @@ final class ReadingOrchestrator
 
         try {
             $reading = $this->astrology->fetchTarotPredictions($c1, $c2, $c3);
+            $this->pipelineLog->line('tarot_predictions: ok');
         } catch (AstrologyApiException $e) {
+            $this->pipelineLog->line('tarot_predictions: fail (' . $e->getMessage() . ')');
+
             return new ReadingResult(502, ['error' => $e->getMessage()]);
         } catch (Throwable $e) {
             error_log('ReadingOrchestrator tarot: ' . $e->getMessage());
+            $this->pipelineLog->line('tarot_predictions: error ' . $e::class . ' ' . $this->shortSafeMessage($e));
 
             return new ReadingResult(500, ['error' => 'Internal server error.']);
         }
@@ -82,6 +94,10 @@ final class ReadingOrchestrator
         if ($sunSign !== null) {
             $sunPrediction = $this->astrology->fetchSunPrediction($sunSign);
             error_log('Sun sign resolved for reading request: ' . $sunSign);
+            $nonEmpty = array_filter($sunPrediction, static fn (string $v): bool => $v !== '');
+            $this->pipelineLog->line('sun_sign_prediction: sign=' . $sunSign . ' fields_filled=' . (string) count($nonEmpty));
+        } else {
+            $this->pipelineLog->line('sun_sign_prediction: skipped (no sign from DOB)');
         }
 
         $subscriber = [
@@ -109,15 +125,20 @@ final class ReadingOrchestrator
 
         try {
             $this->kit->ensureCustomFields();
+            $this->pipelineLog->line('kit: custom_fields ensured');
             $this->kit->upsertSubscriber($subscriber);
+            $this->pipelineLog->line('kit: subscriber upsert ok');
             $this->kit->tagSubscriber($email, $this->config->kitTagName);
+            $this->pipelineLog->line('kit: tag applied tag=' . $this->config->kitTagName);
         } catch (Throwable $e) {
             error_log('ReadingOrchestrator Kit: ' . $e->getMessage());
+            $this->pipelineLog->line('kit: fail ' . $e::class . ' ' . $this->shortSafeMessage($e));
 
             return new ReadingResult(500, ['error' => 'Internal server error.']);
         }
 
         error_log('Reading pipeline completed (subscriber upsert + tag).');
+        $this->pipelineLog->line('pipeline: complete HTTP 200');
 
         return new ReadingResult(200, ['success' => true]);
     }
@@ -136,5 +157,10 @@ final class ReadingOrchestrator
         }
 
         return '';
+    }
+
+    private function shortSafeMessage(Throwable $e): string
+    {
+        return substr($e->getMessage(), 0, 200);
     }
 }

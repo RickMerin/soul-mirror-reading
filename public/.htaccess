@@ -1,11 +1,17 @@
 # Document root should point to this `public/` directory.
 # Routes `/api/reading` to the PHP handler (same URL the SPA uses).
+# Do not place secrets, .env, or Composer metadata in this tree.
+
+Options -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
+
+    # Block env files and editor/DB backup artifacts if ever deployed here by mistake
+    # (Do not use a blanket "dotfile" rule: /.well-known is used for TLS and other verification.)
+    RewriteRule ^\.env - [F,L]
+    RewriteRule \.(bak|old|swp|sql)$ - [F,L]
+
     RewriteRule ^api/reading$ api/reading.php [L]
 </IfModule>
-
-# Optional: block direct listing
-Options -Indexes

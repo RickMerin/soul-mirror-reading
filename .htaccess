@@ -1,8 +1,30 @@
 # Use when the Apache document root is the repository root (not `public/`).
 # Prefer pointing the vhost or subdomain document root to `public/` in production.
+#
+# Without the rules below, Apache would serve real files at this directory (e.g.
+# composer.json, .env.example) before the rewrite to public/ runs.
+
+Options -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    #If the request is '/' redirect to '/public/index.html'
+    RewriteRule ^$ public/index.html [L]
+
+    # --- Block sensitive paths and files (403; must run before static file delivery) ---
+    # (No mandatory /public/ -> / redirect here: absolute redirects break subdirectory installs.
+    # Prefer vhost docroot = public/ or link without the /public/ segment.)
+    RewriteRule ^\.env - [F,L]
+    RewriteRule ^composer\.(json|lock)$ - [F,L]
+    RewriteRule ^phpunit\.xml$ - [F,L]
+    RewriteRule ^package(-lock)?\.json$ - [F,L]
+    RewriteRule ^\.phpunit\.cache(/|$) - [F,L]
+    RewriteRule ^(src|tests|vendor|docs|\.git|\.github|\.cursor)(/|$) - [F,L]
+    RewriteRule ^\.git - [F,L]
+    RewriteRule ^(\.gitignore|\.gitattributes)$ - [F,L]
+    RewriteRule ^README\.md$ - [F,L]
+
     RewriteRule ^api/reading$ public/api/reading.php [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

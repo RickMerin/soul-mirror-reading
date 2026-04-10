@@ -12,6 +12,7 @@ use App\Application\ReadingOrchestrator;
 use App\Config\AppConfig;
 use App\Domain\CardImageUrlBuilder;
 use App\Domain\SunSignResolver;
+use App\Logging\PipelineLogger;
 use App\Services\AstrologyApiClient;
 use App\Services\KitService;
 use GuzzleHttp\Client;
@@ -61,12 +62,14 @@ if (!is_array($body)) {
 
 $config = AppConfig::load($projectRoot);
 $http = new Client(['timeout' => 45.0, 'http_errors' => false]);
+$pipelineLog = new PipelineLogger($config);
 $orchestrator = new ReadingOrchestrator(
     $config,
     new AstrologyApiClient($config, $http),
     new KitService($config, $http),
     new SunSignResolver(),
     new CardImageUrlBuilder(),
+    $pipelineLog,
 );
 
 $result = $orchestrator->run($body);

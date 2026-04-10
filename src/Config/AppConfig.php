@@ -19,6 +19,10 @@ final class AppConfig
         public readonly string $astroApiKey,
         public readonly string $kitApiKey,
         public readonly string $kitTagName,
+        /** When true, append pipeline diagnostics to {@see self::$pipelineLogPath} (no secrets or PII). */
+        public readonly bool $pipelineFileLog,
+        /** Absolute path to the pipeline log file. */
+        public readonly string $pipelineLogPath,
     ) {}
 
     /**
@@ -36,11 +40,19 @@ final class AppConfig
             return is_string($v) ? $v : '';
         };
 
+        $pipelineFileLog = $get('SOUL_MIRROR_PIPELINE_LOG') === '1';
+        $logPathOverride = $get('SOUL_MIRROR_LOG_PATH');
+        $pipelineLogPath = $logPathOverride !== ''
+            ? $logPathOverride
+            : $projectRoot . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'pipeline.log';
+
         return new self(
             astroUserId: $get('ASTRO_USER_ID'),
             astroApiKey: $get('ASTRO_API_KEY'),
             kitApiKey: $get('KIT_API_KEY'),
             kitTagName: $get('KIT_TAG_NAME') !== '' ? $get('KIT_TAG_NAME') : 'soul-mirror-leads',
+            pipelineFileLog: $pipelineFileLog,
+            pipelineLogPath: $pipelineLogPath,
         );
     }
 }

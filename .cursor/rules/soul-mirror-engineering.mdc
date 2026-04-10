@@ -17,6 +17,7 @@ Ship **less duplicated code** with **clear boundaries**, **security first**, and
 
 ## Security
 
+- **Web root**: Prefer Apache/nginx **document root = `public/`** so `src/`, `vendor/`, `composer.json`, `.env*`, and tooling never sit under the URL space. If the repo root must be docroot, keep the root **`.htaccess`** deny rules in sync with anything new that must not be HTTP-accessible.
 - **Validate and constrain inputs** on the server (types, ranges, string length, email shape). Reject bad data with `4xx`, not `5xx`.
 - **Do not log PII or secrets** (full emails, API keys, raw tokens). Prefer opaque ids or redaction.
 - **Outbound HTTP**: Guzzle with timeouts; handle non-OK responses without leaking upstream bodies to clients.
