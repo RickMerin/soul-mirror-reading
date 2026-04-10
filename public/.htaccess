@@ -1,0 +1,11 @@
+# Document root should point to this `public/` directory.
+# Routes `/api/reading` to the PHP handler (same URL the SPA uses).
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^api/reading$ api/reading.php [L]
+</IfModule>
+
+# Optional: block direct listing
+Options -Indexes

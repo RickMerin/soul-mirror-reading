@@ -1,16 +1,17 @@
 ---
 description: When setup or API flow changes, keep README.md accurate for other devs
-globs: ["package.json", "server.js", ".env.example"]
+globs: ["composer.json", ".env.example", "public/api/*.php"]
 alwaysApply: false
 ---
 
 # README and onboarding docs
 
-When you change **how the project is run**, **dependencies/scripts**, **environment variables**, **HTTP routes**, **external integrations** (AstrologyAPI, Kit), or **user-visible flow** (which HTML page owns the funnel):
+When you change **how the project is run**, **Composer dependencies**, **environment variables**, **HTTP routes**, **external integrations** (AstrologyAPI, Kit), or **user-visible flow** (which HTML page owns the funnel):
 
 1. **Update `README.md` in the same change** (or immediately after in the same task), so other developers can still set up and understand the system without spelunking.
 2. Keep these sections truthful and current: **Prerequisites**, **Setup**, **Environment variables** (table), **Scripts**, **Project layout**, **Business flow**, **API** (paths, required body fields, status codes).
 3. If you add or rename env vars, update **`.env.example`** alongside **`README.md`**.
-4. Do not duplicate long policy text from `.cursor/rules/` into README; a short pointer to “see `.cursor/rules/` for security/engineering defaults” is enough.
+4. If architecture shifts (new services, routes), update **`docs/ARCHITECTURE.md`** briefly.
+5. Do not duplicate long policy text from `.cursor/rules/` into README; a short pointer to “see `.cursor/rules/` for security/engineering defaults” is enough.
 
 If the change is internal-only (typos, comments) with no behavioral or setup impact, README updates are optional.

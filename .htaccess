@@ -1,0 +1,10 @@
+# Use when the Apache document root is the repository root (not `public/`).
+# Prefer pointing the vhost or subdomain document root to `public/` in production.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^api/reading$ public/api/reading.php [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

@@ -1,0 +1,13 @@
+---
+description: PHP API — validation, JSON, env, logging (public/api and orchestration)
+globs: public/api/**/*.php,src/**/*.php
+alwaysApply: false
+---
+
+# PHP API — security and errors
+
+- **Entrypoints** (`public/api/*.php`): allow only expected HTTP methods; reject oversized `php://input` where practical; `json_decode` with `JSON_THROW_ON_ERROR` and return **400** for invalid JSON.
+- **Validation**: enforce required fields and sensible types/ranges before calling external APIs; return **4xx** for bad client data, **5xx** only for unexpected failures.
+- **Secrets**: `ASTRO_*`, `KIT_*`, and similar must come only from environment / `.env` — never commit API keys or fallbacks in source, HTML, or rules.
+- **Errors**: map upstream failures to stable client messages (e.g. **502** for AstrologyAPI tarot failure); log details server-side without logging full emails, DOB, or API keys.
+- **Outbound HTTP**: use bounded timeouts (Guzzle); do not reflect raw upstream error bodies to end users.

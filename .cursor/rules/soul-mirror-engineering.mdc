@@ -1,5 +1,5 @@
 ---
-description: Modern, scalable, secure defaults — patterns, DRY, tests
+description: Modern, scalable, secure defaults — PHP patterns, DRY, tests
 alwaysApply: false
 ---
 
@@ -11,30 +11,30 @@ Ship **less duplicated code** with **clear boundaries**, **security first**, and
 
 ## Architecture
 
-- **Separate concerns**: HTTP/routes → validation → domain logic → external APIs (AstrologyAPI, Kit). Extract pure functions and small modules instead of growing monolith files.
-- **Single responsibility**: One obvious place per behavior (e.g. one module for Kit API, one for tarot/sun-sign helpers).
-- **Configuration**: All secrets and environment-specific values from `process.env` / `.env` — never hardcode API keys or tokens in source or HTML.
+- **Separate concerns**: `public/api/*.php` (thin) → `App\Application\*` (use cases) → `App\Services\*` (HTTP clients) → `App\Domain\*` (pure helpers). Avoid growing monolith entrypoints.
+- **Single responsibility**: One obvious place per behavior (e.g. `AstrologyApiClient`, `KitService`, `ReadingOrchestrator`).
+- **Configuration**: Secrets and environment-specific values from `.env` / server environment — never hardcode API keys or tokens in source or HTML.
 
 ## Security
 
 - **Validate and constrain inputs** on the server (types, ranges, string length, email shape). Reject bad data with `4xx`, not `5xx`.
 - **Do not log PII or secrets** (full emails, API keys, raw tokens). Prefer opaque ids or redaction.
-- **Outbound HTTP**: time-bound `fetch` where practical; handle non-OK responses without leaking upstream bodies to clients.
-- **Static + API**: keep JSON APIs free of reflected unsanitized user input in error messages shown to end users.
+- **Outbound HTTP**: Guzzle with timeouts; handle non-OK responses without leaking upstream bodies to clients.
+- **Static + API**: JSON APIs must not expose unsanitized upstream text as error messages to browsers.
 
 ## Patterns (maintainability)
 
-- Prefer **composition** over copy-paste; use shared helpers for repeated request/response shapes.
-- Use **early returns** and small functions to avoid deep nesting.
-- When adding features, **extend existing structure** rather than parallel one-off paths.
+- Prefer **composition** over copy-paste; small classes with constructor injection for HTTP clients and config.
+- Use **early returns** and small methods to avoid deep nesting.
+- When adding features, **extend existing structure** (`src/Services`, `src/Application`) rather than parallel ad-hoc scripts.
 
 ## Testing (required habit)
 
-- **New or changed behavior** gets **automated tests** (`node:test` / `node --test`) — unit tests for pure logic, integration tests for routes or HTTP clients when feasible.
-- Run **`npm test`** before considering work done; fix failures before shipping.
-- Prefer testing **public behavior** (inputs → outputs, status codes) over implementation details.
+- **New or changed behavior** gets **automated tests** (PHPUnit) — unit tests for pure domain logic; integration tests for HTTP when feasible.
+- Run **`composer test`** before considering work done; fix failures before shipping.
+- Prefer testing **public behavior** (inputs → outputs, status codes) over private implementation details.
 
 ## Frontend (HTML/JS)
 
 - Keep client scripts **minimal**; business rules and secrets stay on the server.
-- Avoid inline secrets; use relative `/api/...` calls to same origin.
+- Avoid inline secrets; use same-origin `/api/...` paths relative to the deployed site root.

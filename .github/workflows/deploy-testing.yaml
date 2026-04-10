@@ -1,0 +1,42 @@
+name: Deploy Soul Mirror Reading (FTP testing)
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: curl, mbstring
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+
+      - name: FTP deploy to cPanel (testing subdomain)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /test.soulmirrorreading.com/
+          local-dir: ./
+          protocol: ftps
+          exclude: |
+            **/.git*
+            **/.github*
+            **/.cursor/**
+            **/.env
+            **/node_modules/**
+            **/tests/**
+            **/phpunit.xml
+            **/.phpunit.cache/**

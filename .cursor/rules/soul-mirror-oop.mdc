@@ -1,32 +1,31 @@
 ---
-description: OOP boundaries — services, clients, UI controllers (Soul Mirror)
-globs: src/**/*.js,src/public/js/**/*.js
+description: OOP boundaries — services, clients, thin PHP entrypoints (Soul Mirror)
+globs: src/**/*.php,public/api/**/*.php
 alwaysApply: false
 ---
 
-# Soul Mirror — object-oriented structure
+# Soul Mirror — object-oriented structure (PHP)
 
-Use **classes** for clear boundaries; keep **routes and HTML** thin.
+Use **classes** for clear boundaries; keep **`public/api/*.php`** and HTML **thin**.
 
 ## Server (`src/`)
 
-- **HTTP clients**: one class per external API (e.g. `AstrologyApiClient` in `services/astrologyApi.js`) — holds auth/base URL, exposes named methods only.
-- **Integrations**: `KitService` encapsulates Kit API; inject config via constructor.
-- **Use cases**: `ReadingApplicationService` orchestrates validation → Astrology → Kit; returns `{ ok, status?, error? }` or `{ ok: true }` instead of mixing Express `res` inside the service.
-- **Routes** (`routes/*.js`): parse `req`, call one service method, map result to `res.status().json()`. No raw `fetch` to third parties in route files.
+- **HTTP clients**: one class per external API (e.g. `AstrologyApiClient`, `KitService`) — holds auth/config, exposes named methods only; use `GuzzleHttp\ClientInterface` for testability.
+- **Use cases**: `ReadingOrchestrator` orchestrates validation → Astrology → Kit; returns `ReadingResult` (status + JSON payload) instead of writing headers inside low-level services.
+- **Domain**: pure helpers (`SunSignResolver`, `CardImageUrlBuilder`) — no I/O, easy to unit test.
 
-## Browser (`src/public/js/`)
+## Browser (`public/`)
 
-- **Page controllers**: one class per page (e.g. `TarotReadingApp`, `SalesPageUi`) with `init()`; state lives on `this`, not module-level globals.
-- **Data-only modules** stay plain exports (e.g. `cards-data.js`).
-- **Legacy inline handlers**: if HTML uses `onclick="foo(this)"`, expose `window.foo` from the controller’s `init()` (see `SalesPageUi`).
+- **Pages**: static HTML/CSS/JS; optional future page controllers can be added as external `.js` modules if the project grows beyond inline scripts.
+- **Data-only** shared constants may stay in small standalone files when shared across scripts.
 
 ## When not to force OOP
 
-- Pure helpers (`lib/sunSign.js`, small sync functions) stay functions.
-- Tests should target **public behavior** (HTTP, inputs/outputs), not private class fields.
+- One-off bootstrap in `public/api/*.php` may stay procedural (require autoload, wire dependencies, emit JSON).
+- Tests target **public behavior** (HTTP contract, pure functions), not private properties.
 
 ## New features
 
-1. Decide which **existing service** owns the behavior, or add a **new `*Service` / `*Client` class** in `src/services/` or `src/lib/`.
-2. Add or extend **tests** in `test/` for changed HTTP or pure logic.
+1. Decide which **existing service** owns the behavior, or add a **new class** under `src/Services/` or `src/Domain/`.
+2. Extend **`ReadingOrchestrator`** or add a new orchestrator + `public/api/*.php` route.
+3. Add or extend **tests** in `tests/` for changed logic.
