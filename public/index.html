@@ -339,7 +339,7 @@
       align-items: center;
       gap: 10px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.42em;
       text-transform: uppercase;
       color: #e8c97a;
@@ -424,7 +424,7 @@
 
     .header-divider span {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--text);
@@ -441,7 +441,7 @@
 
     .prompt-ornament {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 0.32em;
       text-transform: uppercase;
       color: rgba(154, 114, 48, 0.5);
@@ -550,7 +550,7 @@
 
     .cs-label-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 9px;
+      font-size: 12px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: rgba(30, 22, 14, 0.3);
@@ -1033,7 +1033,7 @@
       align-items: center;
       gap: 8px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: rgba(30, 22, 14, 0.45);
@@ -1110,7 +1110,7 @@
       background: linear-gradient(170deg, #c9c0e0 0%, #dfd9eb 40%, #eee9f4 100%);
       border: 1px solid rgba(196, 160, 82, 0.3);
       border-radius: 16px;
-      padding: 44px 40px 40px;
+      padding: 30px 30px 30px;
       text-align: center;
       animation: modalIn 0.38s cubic-bezier(0.22, 1, 0.36, 1);
       box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18), 0 2px 12px rgba(0, 0, 0, 0.08);
@@ -1155,9 +1155,9 @@
     .chosen-recap {
       display: flex;
       justify-content: center;
-      gap: 14px;
+      gap: 16px;
       margin-bottom: 26px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
 
     .recap-card {
@@ -1168,15 +1168,16 @@
       background: linear-gradient(160deg, #2a1252 0%, #3b1f6e 100%);
       border: 1px solid rgba(196, 160, 82, 0.55);
       border-radius: 12px;
-      padding: 14px 16px 12px;
-      min-width: 112px;
+      padding: 16px 16px 12px;
+      min-width: 130px;
       box-shadow: 0 4px 16px rgba(59, 31, 110, 0.3);
     }
 
     .recap-card img {
-      width: 48px;
-      height: 78px;
-      object-fit: cover;
+      width: auto;
+      height: 222px;
+      max-width: 171px;
+      object-fit: contain;
       border-radius: 5px;
       border: 1px solid rgba(196, 160, 82, 0.5);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -1188,7 +1189,7 @@
 
     .recap-label {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 9px;
+      font-size: 12px;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: rgba(196, 160, 82, 0.85);
@@ -1216,7 +1217,7 @@
     .form-group label {
       display: block;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: #000;
@@ -1251,7 +1252,6 @@
 
     .form-group select option {
       background: #faf7f2;
-      color: var(--text);
     }
 
     .form-group input,
@@ -1296,7 +1296,6 @@
       border-radius: 0 !important;
       box-shadow: none !important;
       background: transparent;
-      color: var(--text);
       padding: 14px 12px;
       font-size: 1rem;
     }
@@ -1344,8 +1343,15 @@
       transform: none;
     }
 
+    .submit-btn.is-invalid:disabled {
+      background: linear-gradient(135deg, #6f1f2d 0%, #a63f55 50%, #6f1f2d 100%);
+      color: #f6d2d8;
+      box-shadow: 0 4px 22px rgba(111, 31, 45, 0.45), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+      opacity: 0.78;
+    }
+
     .form-privacy {
-      font-size: 11px;
+      font-size: 12px;
       color: #000;
       margin-top: 12px;
       letter-spacing: 0.06em;
@@ -1354,14 +1360,31 @@
 
     .error-msg {
       display: none;
-      color: #c0392b;
+      color: #6f1f2d;
       font-size: 13px;
       margin-top: 10px;
       text-align: center;
+      letter-spacing: 0.03em;
+      background: rgba(111, 31, 45, 0.08);
+      border: 1px solid rgba(111, 31, 45, 0.25);
+      border-radius: 8px;
+      padding: 10px 12px;
     }
 
     .error-msg.visible {
       display: block;
+    }
+
+    .form-group.field-error input,
+    .form-group.field-error select,
+    .dob-row.field-error {
+      border-color: rgba(111, 31, 45, 0.7) !important;
+      box-shadow: 0 0 0 3px rgba(111, 31, 45, 0.14) !important;
+      background: rgba(255, 242, 245, 0.95);
+    }
+
+    .form-group.field-error label {
+      color: #6f1f2d;
     }
 
     /* ─────────────────────────────────────────
@@ -1422,14 +1445,14 @@
       background: linear-gradient(160deg, #2a1252 0%, #1e0d40 100%);
       color: rgba(245, 240, 250, 0.5);
       font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
+      font-size: 14px;
       text-align: center;
-      line-height: 1.9;
+      line-height: 1.7;
       padding: 28px 24px;
       position: relative;
       z-index: 1;
       border-top: 1px solid rgba(196, 160, 82, 0.22);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       margin-top: auto;
     }
 
@@ -1509,7 +1532,7 @@
       }
 
       .shuffle-prompt-text {
-        font-size: 11px;
+        font-size: 12px;
         padding: 11px 22px;
         white-space: nowrap;
       }
@@ -1537,17 +1560,18 @@
       }
 
       .chosen-recap {
-        gap: 12px;
+        gap: 10px;
       }
 
       .recap-card {
-        min-width: 102px;
-        padding: 12px 12px 10px;
+        min-width: 96px;
+        padding: 12px 10px 10px;
       }
 
       .recap-card img {
-        width: 42px;
-        height: 68px;
+        width: auto;
+        height: 88px;
+        max-width: 60px;
       }
 
       .recap-name {
@@ -1556,7 +1580,7 @@
 
       /* Form */
       .form-group label {
-        font-size: 10px;
+        font-size: 12px;
       }
 
       .form-group input,
@@ -1576,7 +1600,12 @@
       }
 
       .form-privacy {
-        font-size: 11px;
+        font-size: 12px;
+      }
+
+      .site-footer {
+        font-size: 13px;
+        line-height: 1.65;
       }
     }
   </style>
@@ -1648,8 +1677,8 @@
       </div>
 
       <!-- Divider -->
-      <div class="header-divider picker-divider" id="pickerDivider" style="margin: 24px 0 28px;"><span>Choose your cards
-          below</span></div>
+      <div class="header-divider picker-divider" id="pickerDivider" style="margin: 24px 0 28px;"><span
+          id="cardsRemainingText">Choose your cards below · 3 more</span></div>
 
       <!-- Deck -->
       <p class="deck-instruction" id="deckInstruction">Press the button below to reveal your cards</p>
@@ -1728,11 +1757,11 @@
               <option value="Male">Male</option>
             </select>
           </div>
-          <button type="submit" class="submit-btn" id="submitBtn">
+          <button type="submit" class="submit-btn is-invalid" id="submitBtn" disabled>
             Unlock My Reading &nbsp;→
           </button>
           <p class="form-privacy">Your reading arrives within minutes. Your information is never shared.</p>
-          <div class="error-msg" id="errorMsg"></div>
+          <div class="error-msg" id="errorMsg" role="alert" aria-live="assertive"></div>
         </form>
       </div>
     </div>
@@ -1822,6 +1851,15 @@
     let animating = false;
     let remaining = [];
     let drawnCards = [];
+    const TOTAL_CARDS_TO_CHOOSE = 3;
+    function updateCardsRemainingText() {
+      const label = document.getElementById('cardsRemainingText');
+      if (!label) return;
+      const left = Math.max(TOTAL_CARDS_TO_CHOOSE - chosen, 0);
+      const unit = left === 1 ? 'more' : 'more';
+      label.textContent = `Choose your cards below · ${left} ${unit}`;
+    }
+
 
     // ── Shuffle ─────────────────────────────────────────────────────────────────
     function shuffle(arr) {
@@ -1876,12 +1914,12 @@
           <div class="ms"></div>
           <div class="mv"></div>
           <div class="msh"></div>
-          <div class="mg"><span>☽</span><span style="font-size:10px;opacity:0.6">✦</span></div>
+          <div class="mg"><span>☽</span><span style="font-size:12px;opacity:0.6">✦</span></div>
         </div>
       </div>`;
 
         slot.addEventListener('click', () => {
-          if (!deckSpread || animating || chosen >= 3 || slot.classList.contains('done') || slot.classList.contains('spent')) return;
+          if (!deckSpread || animating || chosen >= TOTAL_CARDS_TO_CHOOSE || slot.classList.contains('done') || slot.classList.contains('spent')) return;
           animating = true;
           const idx = Math.floor(Math.random() * remaining.length);
           const card = remaining.splice(idx, 1)[0];
@@ -1986,7 +2024,7 @@
         chosen++;
 
 
-        if (chosen === 3) {
+        if (chosen === TOTAL_CARDS_TO_CHOOSE) {
           document.querySelectorAll('.card-slot:not(.done)').forEach(s => s.classList.add('spent'));
         }
 
@@ -1997,7 +2035,9 @@
           prompt.style.opacity = '1';
         }, 280);
 
-        if (chosen === 3) {
+        updateCardsRemainingText();
+
+        if (chosen === TOTAL_CARDS_TO_CHOOSE) {
           setTimeout(showForm, 1000);
         }
 
@@ -2069,25 +2109,107 @@
       greet.textContent = this.value.trim() ? this.value.trim() + '?' : '';
     });
 
+    const readingForm = document.getElementById('readingForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const errorMsg = document.getElementById('errorMsg');
+    const formControls = {
+      name: document.getElementById('inputName'),
+      email: document.getElementById('inputEmail'),
+      month: document.getElementById('inputDobMonth'),
+      day: document.getElementById('inputDobDay'),
+      year: document.getElementById('inputDobYear'),
+      gender: document.getElementById('inputGender'),
+    };
+    const dobRow = document.querySelector('.dob-row');
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function toggleFieldError(element, hasError) {
+      if (!element) return;
+      const group = element.closest('.form-group');
+      if (group) group.classList.toggle('field-error', hasError);
+      element.setAttribute('aria-invalid', hasError ? 'true' : 'false');
+    }
+
+    function toggleDobError(hasError) {
+      const dobGroup = formControls.month.closest('.form-group');
+      if (dobGroup) dobGroup.classList.toggle('field-error', hasError);
+      if (dobRow) dobRow.classList.toggle('field-error', hasError);
+      [formControls.month, formControls.day, formControls.year].forEach((field) => {
+        field.setAttribute('aria-invalid', hasError ? 'true' : 'false');
+      });
+    }
+
+    function validateForm(showErrors = false) {
+      const name = formControls.name.value.trim();
+      const email = formControls.email.value.trim();
+      const dobMonth = formControls.month.value;
+      const dobDay = formControls.day.value;
+      const dobYear = formControls.year.value;
+      const gender = formControls.gender.value.trim();
+
+      const invalidName = name.length < 2 || name.length > 120;
+      const invalidEmail = !EMAIL_RE.test(email) || email.length > 254;
+      const invalidDob = !(dobMonth && dobDay && dobYear);
+      const invalidGender = !(gender === 'Female' || gender === 'Male');
+      const hasErrors = invalidName || invalidEmail || invalidDob || invalidGender;
+
+      if (showErrors) {
+        toggleFieldError(formControls.name, invalidName);
+        toggleFieldError(formControls.email, invalidEmail);
+        toggleDobError(invalidDob);
+        toggleFieldError(formControls.gender, invalidGender);
+      } else {
+        toggleFieldError(formControls.name, false);
+        toggleFieldError(formControls.email, false);
+        toggleDobError(false);
+        toggleFieldError(formControls.gender, false);
+      }
+
+      submitBtn.disabled = hasErrors;
+      submitBtn.classList.toggle('is-invalid', hasErrors);
+
+      if (showErrors && hasErrors) {
+        errorMsg.textContent = 'Please complete all required fields with valid details before unlocking your reading.';
+        errorMsg.classList.add('visible');
+      } else if (!hasErrors) {
+        errorMsg.textContent = '';
+        errorMsg.classList.remove('visible');
+      }
+
+      return {
+        isValid: !hasErrors,
+        payload: {
+          name,
+          email,
+          dob: `${dobMonth}/${dobDay}/${dobYear}`,
+          gender,
+        },
+      };
+    }
+
+    [formControls.name, formControls.email, formControls.month, formControls.day, formControls.year, formControls.gender]
+      .forEach((field) => {
+        field.addEventListener('input', () => validateForm(false));
+        field.addEventListener('change', () => validateForm(false));
+      });
+
+    validateForm(false);
+
     // ── Form submit ──────────────────────────────────────────────────────────────
-    document.getElementById('readingForm').addEventListener('submit', async (e) => {
+    readingForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('inputName').value.trim();
-      const email = document.getElementById('inputEmail').value.trim();
-      const dobMonth = document.getElementById('inputDobMonth').value;
-      const dobDay = document.getElementById('inputDobDay').value;
-      const dobYear = document.getElementById('inputDobYear').value;
-      const dob = dobMonth && dobDay && dobYear ? `${dobMonth}/${dobDay}/${dobYear}` : '';
-      const gender = document.getElementById('inputGender').value.trim();
-      const btn = document.getElementById('submitBtn');
-      const err = document.getElementById('errorMsg');
+      const validation = validateForm(true);
+      if (!validation.isValid) {
+        return;
+      }
 
-      if (!name || !email || !dob || !gender) return;
+      const { name, email, dob, gender } = validation.payload;
 
-      btn.disabled = true;
-      btn.textContent = 'Reading the cards…';
-      err.classList.remove('visible');
+      submitBtn.disabled = true;
+      submitBtn.classList.remove('is-invalid');
+      submitBtn.textContent = 'Reading the cards…';
+      errorMsg.classList.remove('visible');
 
       // Resolve against this page so `/api/reading` works when docroot is `public/`
       // and `api/reading` works when the app lives under a subdirectory (e.g. WAMP).
@@ -2116,10 +2238,10 @@
         window.location.href = thankYouUrl;
 
       } catch (error) {
-        btn.disabled = false;
-        btn.textContent = 'Unlock My Reading →';
-        err.textContent = 'Something went wrong. Please try again.';
-        err.classList.add('visible');
+        validateForm(false);
+        submitBtn.textContent = 'Unlock My Reading →';
+        errorMsg.textContent = 'Something went wrong. Please try again.';
+        errorMsg.classList.add('visible');
       }
     });
 
@@ -2182,6 +2304,7 @@
     })();
 
     buildDeck();
+    updateCardsRemainingText();
   </script>
 </body>
 

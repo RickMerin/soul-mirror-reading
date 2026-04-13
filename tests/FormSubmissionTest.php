@@ -18,7 +18,7 @@ final class FormSubmissionTest extends TestCase
             'name' => '  Jane  ',
             'email' => 'jane@example.com',
             'dob' => '03/25/1990',
-            'gender' => 'f',
+            'gender' => 'Female',
             'card1' => 1,
             'card2' => 2,
             'card3' => 3,
@@ -35,7 +35,7 @@ final class FormSubmissionTest extends TestCase
         $this->assertSame('Jane', $form->name);
         $this->assertSame('jane@example.com', $form->email);
         $this->assertSame('03/25/1990', $form->dob);
-        $this->assertSame('f', $form->gender);
+        $this->assertSame('Female', $form->gender);
         $this->assertSame(1, $form->card1);
         $this->assertSame(2, $form->card2);
         $this->assertSame(3, $form->card3);
@@ -58,14 +58,12 @@ final class FormSubmissionTest extends TestCase
         $this->assertSame(30, $form->card3);
     }
 
-    public function testTryCreateTrimsNumericNameFields(): void
+    public function testTryCreateRejectsNumericName(): void
     {
         $body = $this->validBody();
         $body['name'] = 42;
 
-        $form = FormSubmission::tryCreate($body);
-        $this->assertNotNull($form);
-        $this->assertSame('42', $form->name);
+        $this->assertNull(FormSubmission::tryCreate($body));
     }
 
     public function testTryCreateReturnsNullWhenNameMissing(): void
@@ -92,6 +90,22 @@ final class FormSubmissionTest extends TestCase
         $this->assertNull(FormSubmission::tryCreate($body));
     }
 
+    public function testTryCreateReturnsNullWhenEmailInvalid(): void
+    {
+        $body = $this->validBody();
+        $body['email'] = 'not-an-email';
+
+        $this->assertNull(FormSubmission::tryCreate($body));
+    }
+
+    public function testTryCreateReturnsNullWhenNameTooLong(): void
+    {
+        $body = $this->validBody();
+        $body['name'] = str_repeat('a', 121);
+
+        $this->assertNull(FormSubmission::tryCreate($body));
+    }
+
     public function testTryCreateReturnsNullWhenAnyCardMissing(): void
     {
         $base = $this->validBody();
@@ -109,18 +123,35 @@ final class FormSubmissionTest extends TestCase
         $this->assertNull(FormSubmission::tryCreate($missingCard3));
     }
 
-    public function testTryCreateAllowsEmptyOptionalStrings(): void
+    public function testTryCreateReturnsNullWhenDobInvalid(): void
     {
         $body = $this->validBody();
-        $body['dob'] = '';
-        $body['gender'] = '';
-        $body['card1Name'] = '';
-        $body['card2Name'] = '';
-        $body['card3Name'] = '';
+        $body['dob'] = '13/25/1990';
 
-        $form = FormSubmission::tryCreate($body);
-        $this->assertNotNull($form);
-        $this->assertSame('', $form->dob);
-        $this->assertSame('', $form->gender);
+        $this->assertNull(FormSubmission::tryCreate($body));
+    }
+
+    public function testTryCreateReturnsNullWhenGenderUnsupported(): void
+    {
+        $body = $this->validBody();
+        $body['gender'] = 'Other';
+
+        $this->assertNull(FormSubmission::tryCreate($body));
+    }
+
+    public function testTryCreateReturnsNullWhenCardOutOfRange(): void
+    {
+        $body = $this->validBody();
+        $body['card1'] = 0;
+
+        $this->assertNull(FormSubmission::tryCreate($body));
+    }
+
+    public function testTryCreateReturnsNullWhenCardNotNumeric(): void
+    {
+        $body = $this->validBody();
+        $body['card2'] = 'abc';
+
+        $this->assertNull(FormSubmission::tryCreate($body));
     }
 }
