@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thank You — Soul Mirror Reading</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap"
@@ -290,71 +291,193 @@
     .wrap {
       position: relative;
       z-index: 1;
-      max-width: 520px;
+      width: min(100%, 680px);
+    }
+
+    .thankyou-card {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(150deg, rgba(247, 244, 255, 0.82) 0%, rgba(237, 232, 250, 0.75) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 26px;
+      box-shadow:
+        0 24px 65px rgba(29, 17, 57, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.56);
+      padding: clamp(26px, 4.8vw, 44px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .thankyou-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 8% 10%, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0) 42%),
+        radial-gradient(circle at 90% 85%, rgba(150, 117, 255, 0.13) 0%, rgba(150, 117, 255, 0) 48%);
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      letter-spacing: 0.42em;
+      font-size: 0.72rem;
+      letter-spacing: 0.38em;
       text-transform: uppercase;
-      color: #e8c97a;
-      margin-bottom: 24px;
-      padding: 8px 22px;
-      border: 1px solid rgba(196, 160, 82, 0.6);
-      border-radius: 30px;
-      background: linear-gradient(135deg, #3b1f6e 0%, #5a3090 100%);
-      box-shadow: 0 2px 12px rgba(59, 31, 110, 0.35);
+      color: #f4d992;
+      margin-bottom: 20px;
+      padding: 8px 20px;
+      border: 1px solid rgba(196, 160, 82, 0.58);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(54, 28, 95, 0.96) 0%, rgba(94, 52, 148, 0.9) 100%);
+      box-shadow: 0 8px 20px rgba(54, 28, 95, 0.35);
     }
 
     h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.75rem, 4vw, 2.4rem);
-      font-weight: 700;
+      font-size: clamp(2rem, 4.4vw, 3rem);
+      font-weight: 600;
       color: #120f1d;
-      letter-spacing: 0.04em;
-      line-height: 1.2;
-      margin-bottom: 16px;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      text-wrap: balance;
     }
 
     h1 em {
       font-style: italic;
-      color: #b8872f;
-      text-shadow: 0 1px 0 rgba(20, 14, 30, 0.2);
+      color: #9a7230;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
     }
 
-    p {
-      font-size: 1.15rem;
-      line-height: 1.65;
-      color: #171323;
-      opacity: 0.92;
-      margin-bottom: 28px;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.34);
+    .lead {
+      font-size: clamp(1.02rem, 2vw, 1.2rem);
+      line-height: 1.72;
+      color: #1c1626;
+      margin: 0 auto 24px;
+      max-width: 560px;
     }
 
-    a {
-      display: inline-block;
+    .countdown-shell {
+      margin: 8px auto 24px;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+    }
+
+    .countdown-ring {
+      width: clamp(116px, 20vw, 148px);
+      height: clamp(116px, 20vw, 148px);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.34);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.42), 0 12px 26px rgba(36, 20, 68, 0.2);
+      position: relative;
+    }
+
+    .countdown-ring svg {
+      position: absolute;
+      inset: 0;
+      transform: rotate(-90deg);
+    }
+
+    .ring-track {
+      fill: none;
+      stroke: rgba(44, 26, 77, 0.16);
+      stroke-width: 7;
+    }
+
+    .ring-progress {
+      fill: none;
+      stroke: #b58a39;
+      stroke-width: 7;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.9s linear;
+      filter: drop-shadow(0 0 5px rgba(181, 138, 57, 0.4));
+    }
+
+    .countdown-value {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-decoration: none;
-      border-bottom: 1px solid var(--gold-light);
-      padding-bottom: 2px;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      line-height: 1;
+      color: #1b1429;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
-    a:hover {
-      opacity: 0.85;
+    .countdown-unit {
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      margin-left: 3px;
+      font-weight: 400;
+      text-transform: lowercase;
     }
 
     .redirect-note {
-      font-size: 0.98rem;
-      opacity: 0.8;
-      margin-bottom: 18px;
+      margin: 0;
+      font-size: 0.95rem;
+      color: #2f2544;
+      letter-spacing: 0.03em;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #6c4f1f;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(154, 114, 48, 0.45);
+      background: rgba(255, 251, 237, 0.66);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .back-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 14px rgba(108, 79, 31, 0.14);
+      background: rgba(255, 251, 237, 0.9);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 20px 14px;
+      }
+
+      .thankyou-card {
+        border-radius: 22px;
+      }
+
+      .lead {
+        max-width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      body::before,
+      body::after,
+      .milky-way,
+      .dream-orb,
+      .dream-sparkles,
+      .dream-shooting,
+      .sparkle,
+      .shooting-star {
+        animation: none !important;
+      }
+
+      .ring-progress {
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -369,13 +492,27 @@
   </div>
 
   <div class="wrap">
-    <div class="eyebrow">Soul Mirror</div>
-    <h1>Your reading is <em>on its way</em></h1>
-    <p>Check your inbox for your personalized Soul Mirror Reading. If you do not see it within a few minutes, peek in
-      your promotions or spam folder.</p>
-    <p class="redirect-note">You will be redirected to the next page in <span id="redirectCountdown">10</span> seconds.
-    </p>
-    <p><a href="index.html">Back to the reading</a></p>
+    <section class="thankyou-card" aria-labelledby="thankyouHeading">
+      <div class="eyebrow">Soul Mirror</div>
+      <h1 id="thankyouHeading">Your reading is <em>on its way</em></h1>
+      <p class="lead">Check your inbox for your personalized Soul Mirror Reading. If you do not see it within a few
+        minutes, peek in your promotions or spam folder.</p>
+
+      <div class="countdown-shell">
+        <div class="countdown-ring" role="img" aria-label="Redirect countdown timer">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-track" cx="60" cy="60" r="48"></circle>
+            <circle class="ring-progress" id="countdownRingProgress" cx="60" cy="60" r="48"></circle>
+          </svg>
+          <div class="countdown-value" aria-live="polite">
+            <span id="redirectCountdown">10</span><span class="countdown-unit">s</span>
+          </div>
+        </div>
+        <p class="redirect-note" id="redirectCopy">Redirecting to your next step in 10 seconds.</p>
+      </div>
+
+      <a href="index.html" class="back-link">Back to the reading</a>
+    </section>
   </div>
 
   <script>
@@ -429,13 +566,35 @@
 
     const salesPageUrl = new URL('sales-page.html', window.location.href).href;
     const countdownEl = document.getElementById('redirectCountdown');
+    const countdownCopyEl = document.getElementById('redirectCopy');
+    const ringProgressEl = document.getElementById('countdownRingProgress');
     let secondsLeft = 10;
+    const totalSeconds = 10;
+    const ringRadius = 48;
+    const ringCircumference = 2 * Math.PI * ringRadius;
+
+    if (ringProgressEl) {
+      ringProgressEl.style.strokeDasharray = String(ringCircumference);
+      ringProgressEl.style.strokeDashoffset = '0';
+    }
+
+    function updateCountdownVisual(seconds) {
+      if (countdownEl) countdownEl.textContent = String(seconds);
+      if (countdownCopyEl) {
+        countdownCopyEl.textContent = `Redirecting to your next step in ${seconds} second${seconds === 1 ? '' : 's'}.`;
+      }
+      if (ringProgressEl) {
+        const elapsed = totalSeconds - seconds;
+        const progress = Math.min(Math.max(elapsed / totalSeconds, 0), 1);
+        ringProgressEl.style.strokeDashoffset = String(progress * ringCircumference);
+      }
+    }
+
+    updateCountdownVisual(secondsLeft);
 
     const countdownTimer = setInterval(() => {
       secondsLeft -= 1;
-      if (countdownEl && secondsLeft >= 0) {
-        countdownEl.textContent = String(secondsLeft);
-      }
+      if (secondsLeft >= 0) updateCountdownVisual(secondsLeft);
       if (secondsLeft <= 0) {
         clearInterval(countdownTimer);
       }
