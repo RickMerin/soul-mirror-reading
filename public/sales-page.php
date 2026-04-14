@@ -171,10 +171,13 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
               <source type="image/webp" srcset="cards/mirror-love.webp">
               <img src="cards/mirror-love.png" width="865" height="1080" alt="Love Mirror" decoding="async" loading="lazy">
             </picture></div>
-          <h3>The Love Mirror</h3>
+          <div>
+            <h3>The Love Mirror</h3>
+            <p>Where you pull back right before connection becomes real. The pattern that keeps love feeling just slightly
+              out of reach.
+            </p>
+          </div>
         </div>
-        <p>Where you pull back right before connection becomes real. The pattern that keeps love feeling just slightly
-          out of reach.</p>
       </div>
 
       <div class="path-card">
@@ -183,11 +186,15 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
           <div class="path-icon"><picture>
               <source type="image/webp" srcset="cards/mirror-life.webp">
               <img src="cards/mirror-life.png" width="763" height="1080" alt="Life Mirror" decoding="async" loading="lazy">
-            </picture></div>
-          <h3>The Life Mirror</h3>
+            </picture>
+          </div>
+          <div>
+            <h3>The Life Mirror</h3>
+            <p>Where your energy leaks and your choices keep looping. The place you feel most stuck, showing you the exact
+             map you have been following.
+            </p>
+          </div>
         </div>
-        <p>Where your energy leaks and your choices keep looping. The place you feel most stuck, showing you the exact
-          map you have been following.</p>
       </div>
 
       <div class="path-card">
@@ -197,10 +204,13 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
               <source type="image/webp" srcset="cards/mirror-wealth.webp">
               <img src="cards/mirror-wealth.png" width="942" height="1080" alt="Wealth Mirror" decoding="async" loading="lazy">
             </picture></div>
-          <h3>The Wealth Mirror</h3>
+          <div>
+            <h3>The Wealth Mirror</h3>
+            <p>What you believe you are allowed to have. The inherited story about deserving that has been setting your
+              ceiling without your knowledge.
+            </p>
+          </div>
         </div>
-        <p>What you believe you are allowed to have. The inherited story about deserving that has been setting your
-          ceiling without your knowledge.</p>
       </div>
 
       <div class="mirror-card">
@@ -209,11 +219,15 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
           <div class="path-icon"><picture>
               <source type="image/webp" srcset="cards/mirror-block.webp">
               <img src="cards/mirror-block.png" width="826" height="1080" alt="Mirror Block" decoding="async" loading="lazy">
-            </picture></div>
-          <h3>The One Belief Running All Three</h3>
+            </picture>
+          </div>
+          <div>
+            <h3>The One Belief Running All Three</h3>
+            <p>This is where most readings stop. They name the patterns. They describe the cards. And then they leave you
+              with the insight and no way through.
+            </p>
+          </div>
         </div>
-        <p>This is where most readings stop. They name the patterns. They describe the cards. And then they leave you
-          with the insight and no way through.</p>
         <p>What they miss is this: your three cards are not three separate problems. They are three reflections of
           <strong>one core belief</strong>, formed early, embedded deep, and invisible to you precisely because it has
           been there so long.
@@ -234,7 +248,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
         <h2>Inside Your Soul Mirror Reading</h2>
         <picture>
           <source type="image/webp" srcset="cards/product-mockup.webp">
-          <img src="cards/product-mockup.png" width="auto" height="200" alt="Soul Mirror Reading" class="vip-mockup"
+          <img src="cards/product-mockup.png" width="auto" height="300" alt="Soul Mirror Reading" class="vip-mockup"
             decoding="async" loading="lazy">
         </picture>
         <div
@@ -275,7 +289,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
           </div>
           <div class="bonus-img"><picture>
               <source type="image/webp" srcset="cards/bonus-companion.webp">
-              <img src="cards/bonus-companion.png" width="734" height="1080" alt="Mirror Block Companion Guide" decoding="async"
+              <img src="cards/bonus-companion.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
@@ -291,7 +305,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
           </div>
           <div class="bonus-img"><picture>
               <source type="image/webp" srcset="cards/bonus-tracker.webp">
-              <img src="cards/bonus-tracker.png" width="779" height="1080" alt="21-Day Shift Tracker" decoding="async"
+                <img src="cards/bonus-tracker.png" width="250" height="333" alt="21-Day Shift Tracker" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
@@ -309,7 +323,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
           </div>
           <div class="bonus-img"><picture>
               <source type="image/webp" srcset="cards/bonus-rootcause.webp">
-              <img src="cards/bonus-rootcause.png" width="815" height="1080" alt="Root Cause Reading Guide" decoding="async"
+              <img src="cards/bonus-rootcause.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
@@ -325,7 +339,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
           </div>
           <div class="bonus-img"><picture>
               <source type="image/webp" srcset="cards/bonus-meditation.webp">
-              <img src="cards/bonus-meditation.png" width="783" height="1080" alt="Mirror Clarity Meditation" decoding="async"
+              <img src="cards/bonus-meditation.png" width="250" height="333" alt="Mirror Clarity Meditation" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
