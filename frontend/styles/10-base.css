@@ -1,0 +1,67 @@
+body {
+  background:
+    radial-gradient(circle at 12% 15%, rgba(120, 102, 214, 0.42) 0%, rgba(120, 102, 214, 0) 40%),
+    radial-gradient(circle at 85% 10%, rgba(85, 68, 176, 0.34) 0%, rgba(85, 68, 176, 0) 42%),
+    linear-gradient(180deg, #6a66a6 0%, #9c95c8 46%, #dad4ee 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: 'Crimson Pro', Georgia, serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Dream background layers */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 110% 70% at 50% -8%, rgba(7, 11, 34, 0.72) 0%, rgba(7, 11, 34, 0) 68%),
+    radial-gradient(ellipse 85% 55% at 15% 20%, rgba(88, 73, 167, 0.28) 0%, transparent 62%),
+    radial-gradient(ellipse 70% 45% at 85% 15%, rgba(69, 52, 142, 0.26) 0%, transparent 66%);
+  animation: auroraFloat 18s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.65) 1px, transparent 2px),
+    radial-gradient(circle at 78% 24%, rgba(232, 201, 122, 0.55) 1px, transparent 2px),
+    radial-gradient(circle at 35% 62%, rgba(255, 255, 255, 0.5) 1px, transparent 2px),
+    radial-gradient(circle at 88% 72%, rgba(232, 201, 122, 0.45) 1px, transparent 2px),
+    radial-gradient(circle at 58% 36%, rgba(255, 255, 255, 0.4) 1px, transparent 2px),
+    radial-gradient(circle at 24% 84%, rgba(232, 201, 122, 0.35) 1px, transparent 2px);
+  background-size: 220px 220px, 260px 260px, 190px 190px, 240px 240px, 280px 280px, 320px 320px;
+  opacity: 0.55;
+  animation: dreamTwinkle 7s ease-in-out infinite;
+}
+
+@keyframes auroraFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(0, -24px, 0) scale(1.05);
+  }
+}
+
+@keyframes dreamTwinkle {
+
+  0%,
+  100% {
+    opacity: 0.42;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+}

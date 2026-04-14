@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #e8e3ef;
+  --bg2: #dfd9eb;
+  --surface: #ffffff;
+  --text: #f2ebff;
+  --text-muted: rgba(232, 221, 255, 0.88);
+  --gold: #9a7230;
+  --gold-light: #c4a052;
+  --gold-dim: rgba(154, 114, 48, 0.18);
+  --gold-soft: rgba(154, 114, 48, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}

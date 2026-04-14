@@ -42,6 +42,15 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader --no-interaction
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Build frontend assets
+        run: npm ci && npm run build
+
       - name: FTP deploy to cPanel (testing subdomain)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:

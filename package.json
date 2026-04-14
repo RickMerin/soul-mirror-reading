@@ -1,0 +1,14 @@
+{
+  "name": "soul-mirror-reading-assets",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-css.mjs && node scripts/build-js.mjs",
+    "watch": "node scripts/watch-css.mjs"
+  },
+  "devDependencies": {
+    "chokidar": "^4.0.3",
+    "esbuild": "^0.25.0",
+    "lightningcss": "^1.29.3"
+  }
+}
