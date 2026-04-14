@@ -47,18 +47,10 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(
-      circle at 12% 15%,
-      rgba(120, 102, 214, 0.42) 0%,
-      rgba(120, 102, 214, 0) 40%
-    ),
-    radial-gradient(
-      circle at 85% 10%,
-      rgba(85, 68, 176, 0.34) 0%,
-      rgba(85, 68, 176, 0) 42%
-    ),
-    linear-gradient(180deg, #6a66a6 0%, #8f87bc 44%, #b2aacf 100%);
+  background-image:
+    radial-gradient(circle at 12% 15%, #4c3db8c2 0%, #4c3db800 40%),
+    radial-gradient(circle at 85% 10%, #2f257ec0 0%, #2f257e00 42%),
+    linear-gradient(#2a275c 0%, #3f3b7a 44%, #5a55a3 100%);
   background-attachment: fixed;
   color: var(--text);
   font-family: var(--body);
@@ -707,7 +699,7 @@ strong {
 
 .badge {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: rgba(255, 250, 255, 0.96);
   display: flex;
@@ -1003,7 +995,7 @@ strong {
 }
 
 .bonuses-intro {
-  font-size: 15px;
+  font-size: clamp(1.08rem, 2vw, 18px);
   color: var(--text-muted);
   margin-bottom: 32px;
   text-align: center;
@@ -1424,7 +1416,7 @@ strong {
 .value-line {
   text-align: center;
   font-family: var(--serif);
-  font-size: 15px;
+  font-size: clamp(1.08rem, 2vw, 18px);
   color: var(--text-muted);
   margin-bottom: 28px;
   text-shadow: var(--shadow-dream-sm);
@@ -1467,7 +1459,7 @@ strong {
 
 .cta-note {
   font-family: var(--serif);
-  font-size: 15px;
+  font-size: clamp(1.08rem, 2vw, 18px);
   letter-spacing: 0.04em;
   color: var(--text-muted);
   margin-top: 16px;
@@ -1587,6 +1579,12 @@ strong {
   padding: 36px 0 40px;
   position: relative;
   z-index: 1;
+  background: linear-gradient(
+    160deg,
+    var(--purple-deep) 0%,
+    var(--purple-dark) 60%,
+    #1e0d40b4 100%
+  );
 }
 
 .steps-section h2 {
@@ -1699,7 +1697,7 @@ details[open] .faq-q::after {
 }
 
 .faq-a {
-  font-size: 16px;
+  font-size: clamp(1.08rem, 2vw, 18px);
   color: var(--text-muted);
   line-height: 1.8;
   padding-top: 14px;
@@ -1857,12 +1855,13 @@ details[open] .faq-q::after {
 
 /* ══ VSL STORY SECTION ══ */
 .story-section {
-  background: linear-gradient(
-    180deg,
-    rgba(7, 11, 34, 0.2) 0%,
-    transparent 100%
-  );
   border-top: 1px solid var(--gold-dim);
+  background: linear-gradient(
+    160deg,
+    var(--purple-deep) 0%,
+    var(--purple-dark) 60%,
+    #1e0d40b4 100%
+  );
 }
 
 .story-video-wrap {
@@ -1946,7 +1945,6 @@ details[open] .faq-q::after {
   line-height: 1.9;
   color: rgba(255, 252, 255, 0.97);
   margin-bottom: 1em;
-  text-shadow: var(--shadow-dream-sm);
 }
 
 .story-pull {
