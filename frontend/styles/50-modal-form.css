@@ -382,3 +382,155 @@
 .form-group.field-error label {
   color: #6f1f2d;
 }
+
+/* ── Full-page unlock (opt-in) — mobile-first, no overlay scroll trap ── */
+.unlock-page {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: max(24px, env(safe-area-inset-top, 0px) + 12px)
+    max(20px, env(safe-area-inset-right, 0px) + 12px)
+    max(28px, env(safe-area-inset-bottom, 0px) + 16px)
+    max(20px, env(safe-area-inset-left, 0px) + 12px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  -webkit-overflow-scrolling: touch;
+}
+
+.unlock-panel {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  background: linear-gradient(170deg, #c9c0e0 0%, #dfd9eb 40%, #eee9f4 100%);
+  border: 1px solid rgba(196, 160, 82, 0.3);
+  border-radius: 16px;
+  padding: 30px 30px 24px;
+  text-align: center;
+  animation: modalIn 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.18),
+    0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.unlock-panel h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.unlock-panel .form-sub {
+  font-size: 1.08rem;
+  color: #000;
+  font-style: italic;
+  margin-bottom: 26px;
+  line-height: 1.7;
+}
+
+.unlock-change-cards {
+  margin-top: 22px;
+  margin-bottom: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+}
+
+.unlock-change-cards a {
+  color: rgba(59, 31, 110, 0.95);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.unlock-change-cards a:hover {
+  color: #2a1252;
+}
+
+.unlock-blocked-inner {
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+  padding: 36px 28px 40px;
+  text-align: center;
+  background: linear-gradient(
+    165deg,
+    rgba(42, 18, 82, 0.92) 0%,
+    rgba(59, 31, 110, 0.88) 100%
+  );
+  border: 1px solid rgba(196, 160, 82, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+}
+
+.unlock-eyebrow {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(232, 201, 122, 0.85);
+  margin: 0 0 14px;
+}
+
+.unlock-blocked h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.65rem, 4.5vw, 2.1rem);
+  font-weight: 600;
+  color: #f5f0ff;
+  margin: 0 0 14px;
+  line-height: 1.25;
+}
+
+.unlock-blocked-copy {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 1.05rem;
+  color: rgba(245, 240, 255, 0.88);
+  line-height: 1.65;
+  margin: 0 0 26px;
+}
+
+.unlock-back-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 40px;
+  background: linear-gradient(135deg, #e8c97a 0%, #f0dfa0 50%, #e8c97a 100%);
+  color: #2a1252;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.unlock-back-btn:hover {
+  filter: brightness(1.06);
+}
+
+.unlock-main {
+  display: none;
+}
+
+.unlock-blocked {
+  display: flex;
+}
+
+html.unlock-ok .unlock-main {
+  display: flex;
+}
+
+html.unlock-ok .unlock-blocked {
+  display: none !important;
+}
+
+html.unlock-bad .unlock-main {
+  display: none !important;
+}
+
+html.unlock-bad .unlock-blocked {
+  display: flex;
+}
