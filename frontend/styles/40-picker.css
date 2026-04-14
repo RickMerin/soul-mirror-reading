@@ -408,6 +408,7 @@
 .deck-instruction.hidden {
   opacity: 0;
   pointer-events: none;
+  display: none;
 }
 
 /* Prompt sits cleanly below the arc */

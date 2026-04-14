@@ -86,7 +86,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       </div>
 
       <!-- Divider -->
-      <div class="header-divider picker-divider" id="pickerDivider" style="margin: 24px 0 28px;"><span
+      <div class="header-divider picker-divider" id="pickerDivider"><span
           id="cardsRemainingText">Choose your cards below · 3 more</span></div>
 
       <!-- Deck -->
