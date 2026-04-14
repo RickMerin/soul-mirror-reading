@@ -1,5 +1,7 @@
 # Document root should point to this `public/` directory.
+
 # Routes `/api/reading` to the PHP handler (same URL the SPA uses).
+
 # Do not place secrets, .env, or Composer metadata in this tree.
 
 DirectoryIndex index.php index.html
@@ -9,6 +11,13 @@ Options -Indexes
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
+
+    # HTTP → HTTPS (skip plain HTTP on local dev; honor reverse-proxy TLS via X-Forwarded-Proto)
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+    RewriteCond %{HTTP_HOST} !^localhost(:\d+)?$ [NC]
+    RewriteCond %{HTTP_HOST} !^127\.0\.0\.1(:\d+)?$ [NC]
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # Block env files and editor/DB backup artifacts if ever deployed here by mistake
     # (Do not use a blanket "dotfile" rule: /.well-known is used for TLS and other verification.)
@@ -20,4 +29,14 @@ Options -Indexes
     RewriteRule ^sales-page\.html$ sales-page.php [L,R=301]
 
     RewriteRule ^api/reading$ api/reading.php [L]
+
+</IfModule>
+
+<IfModule mod_headers.c>
+    # HSTS only applies on HTTPS responses (env=HTTPS set by mod_ssl)
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" env=HTTPS
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Cross-Origin-Opener-Policy "same-origin"
+    # Monitor without blocking; tighten after reviewing browser reports (inline styles require 'unsafe-inline')
+    Header set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'"
 </IfModule>

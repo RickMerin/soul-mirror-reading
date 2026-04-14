@@ -16,10 +16,15 @@
   --text-mid: rgba(252, 246, 255, 0.97);
   --text-soft: rgba(248, 240, 255, 0.92);
   --dream-shade: rgba(8, 6, 22, 0.92);
-  --shadow-dream-sm: 0 1px 2px var(--dream-shade), 0 2px 14px rgba(8, 6, 22, 0.5);
-  --shadow-dream-md: 0 1px 3px rgba(8, 6, 24, 0.96), 0 3px 22px rgba(8, 6, 24, 0.55);
-  --shadow-dream-lg: 0 2px 4px rgba(8, 6, 24, 0.92), 0 5px 32px rgba(8, 6, 24, 0.62), 0 0 1px rgba(8, 6, 24, 0.85);
-  --shadow-dream-gold: 0 1px 2px rgba(8, 6, 22, 0.98), 0 2px 18px rgba(8, 6, 22, 0.55);
+  --shadow-dream-sm:
+    0 1px 2px var(--dream-shade), 0 2px 14px rgba(8, 6, 22, 0.5);
+  --shadow-dream-md:
+    0 1px 3px rgba(8, 6, 24, 0.96), 0 3px 22px rgba(8, 6, 24, 0.55);
+  --shadow-dream-lg:
+    0 2px 4px rgba(8, 6, 24, 0.92), 0 5px 32px rgba(8, 6, 24, 0.62),
+    0 0 1px rgba(8, 6, 24, 0.85);
+  --shadow-dream-gold:
+    0 1px 2px rgba(8, 6, 22, 0.98), 0 2px 18px rgba(8, 6, 22, 0.55);
   --panel-text: #1e160e;
   --panel-text-mid: #3a2a1a;
   --panel-text-soft: #5a4a3a;
@@ -33,8 +38,8 @@
   --purple-dark: #3b1f6e;
   --purple-mid: #5a3090;
   --purple-deep: #2a1252;
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --body: 'Crimson Pro', Georgia, serif;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --body: "Crimson Pro", Georgia, serif;
 }
 
 html {
@@ -43,13 +48,22 @@ html {
 
 body {
   background:
-    radial-gradient(circle at 12% 15%, rgba(120, 102, 214, 0.42) 0%, rgba(120, 102, 214, 0) 40%),
-    radial-gradient(circle at 85% 10%, rgba(85, 68, 176, 0.34) 0%, rgba(85, 68, 176, 0) 42%),
-    linear-gradient(180deg, #6a66a6 0%, #9c95c8 46%, #dad4ee 100%);
+    radial-gradient(
+      circle at 12% 15%,
+      rgba(120, 102, 214, 0.42) 0%,
+      rgba(120, 102, 214, 0) 40%
+    ),
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(85, 68, 176, 0.34) 0%,
+      rgba(85, 68, 176, 0) 42%
+    ),
+    linear-gradient(180deg, #6a66a6 0%, #8f87bc 44%, #b2aacf 100%);
   background-attachment: fixed;
   color: var(--text);
   font-family: var(--body);
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: 400;
   line-height: 1.82;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
@@ -59,32 +73,74 @@ body {
 }
 
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(ellipse 110% 70% at 50% -8%, rgba(7, 11, 34, 0.72) 0%, rgba(7, 11, 34, 0) 68%),
-    radial-gradient(ellipse 85% 55% at 15% 20%, rgba(88, 73, 167, 0.28) 0%, transparent 62%),
-    radial-gradient(ellipse 70% 45% at 85% 15%, rgba(69, 52, 142, 0.26) 0%, transparent 66%);
+    radial-gradient(
+      ellipse 110% 70% at 50% -8%,
+      rgba(7, 11, 34, 0.72) 0%,
+      rgba(7, 11, 34, 0) 68%
+    ),
+    radial-gradient(
+      ellipse 85% 55% at 15% 20%,
+      rgba(88, 73, 167, 0.28) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 70% 45% at 85% 15%,
+      rgba(69, 52, 142, 0.26) 0%,
+      transparent 66%
+    );
   animation: auroraFloat 18s ease-in-out infinite alternate;
 }
 
 body::after {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.65) 1px, transparent 2px),
-    radial-gradient(circle at 78% 24%, rgba(232, 201, 122, 0.55) 1px, transparent 2px),
-    radial-gradient(circle at 35% 62%, rgba(255, 255, 255, 0.5) 1px, transparent 2px),
-    radial-gradient(circle at 88% 72%, rgba(232, 201, 122, 0.45) 1px, transparent 2px),
-    radial-gradient(circle at 58% 36%, rgba(255, 255, 255, 0.4) 1px, transparent 2px),
-    radial-gradient(circle at 24% 84%, rgba(232, 201, 122, 0.35) 1px, transparent 2px);
-  background-size: 220px 220px, 260px 260px, 190px 190px, 240px 240px, 280px 280px, 320px 320px;
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(255, 255, 255, 0.65) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 78% 24%,
+      rgba(232, 201, 122, 0.55) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 35% 62%,
+      rgba(255, 255, 255, 0.5) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 88% 72%,
+      rgba(232, 201, 122, 0.45) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 58% 36%,
+      rgba(255, 255, 255, 0.4) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 24% 84%,
+      rgba(232, 201, 122, 0.35) 1px,
+      transparent 2px
+    );
+  background-size:
+    220px 220px,
+    260px 260px,
+    190px 190px,
+    240px 240px,
+    280px 280px,
+    320px 320px;
   opacity: 0.55;
   animation: dreamTwinkle 7s ease-in-out infinite;
 }
@@ -100,7 +156,6 @@ body::after {
 }
 
 @keyframes dreamTwinkle {
-
   0%,
   100% {
     opacity: 0.42;
@@ -123,9 +178,21 @@ body::after {
   position: absolute;
   inset: -8%;
   background:
-    radial-gradient(50% 35% at 50% 80%, rgba(255, 255, 255, 0.2), transparent 100%),
-    radial-gradient(45% 38% at 20% 35%, rgba(229, 205, 255, 0.28), transparent 100%),
-    radial-gradient(42% 32% at 78% 30%, rgba(195, 160, 255, 0.2), transparent 100%);
+    radial-gradient(
+      50% 35% at 50% 80%,
+      rgba(255, 255, 255, 0.2),
+      transparent 100%
+    ),
+    radial-gradient(
+      45% 38% at 20% 35%,
+      rgba(229, 205, 255, 0.28),
+      transparent 100%
+    ),
+    radial-gradient(
+      42% 32% at 78% 30%,
+      rgba(195, 160, 255, 0.2),
+      transparent 100%
+    );
   filter: blur(2px);
   animation: veilPulse 12s ease-in-out infinite;
 }
@@ -134,8 +201,18 @@ body::after {
   position: absolute;
   inset: -18%;
   background:
-    radial-gradient(ellipse 40% 18% at 52% 45%, rgba(245, 244, 255, 0.3) 0%, rgba(245, 244, 255, 0.08) 42%, rgba(245, 244, 255, 0) 72%),
-    radial-gradient(ellipse 48% 22% at 48% 50%, rgba(194, 184, 255, 0.2) 0%, rgba(194, 184, 255, 0.06) 50%, rgba(194, 184, 255, 0) 74%);
+    radial-gradient(
+      ellipse 40% 18% at 52% 45%,
+      rgba(245, 244, 255, 0.3) 0%,
+      rgba(245, 244, 255, 0.08) 42%,
+      rgba(245, 244, 255, 0) 72%
+    ),
+    radial-gradient(
+      ellipse 48% 22% at 48% 50%,
+      rgba(194, 184, 255, 0.2) 0%,
+      rgba(194, 184, 255, 0.06) 50%,
+      rgba(194, 184, 255, 0) 74%
+    );
   transform: rotate(-24deg);
   filter: blur(2px);
   opacity: 0.8;
@@ -157,13 +234,21 @@ body::after {
 }
 
 .dream-orb.one {
-  background: radial-gradient(circle, rgba(138, 89, 255, 0.75) 0%, rgba(138, 89, 255, 0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(138, 89, 255, 0.75) 0%,
+    rgba(138, 89, 255, 0) 70%
+  );
   top: -12vmax;
   left: -8vmax;
 }
 
 .dream-orb.two {
-  background: radial-gradient(circle, rgba(92, 54, 206, 0.68) 0%, rgba(92, 54, 206, 0) 72%);
+  background: radial-gradient(
+    circle,
+    rgba(92, 54, 206, 0.68) 0%,
+    rgba(92, 54, 206, 0) 72%
+  );
   top: 22vh;
   right: -10vmax;
   animation-duration: 18s;
@@ -171,7 +256,11 @@ body::after {
 }
 
 .dream-orb.three {
-  background: radial-gradient(circle, rgba(236, 202, 129, 0.44) 0%, rgba(236, 202, 129, 0) 72%);
+  background: radial-gradient(
+    circle,
+    rgba(236, 202, 129, 0.44) 0%,
+    rgba(236, 202, 129, 0) 72%
+  );
   bottom: -12vmax;
   left: 20vw;
   animation-duration: 16s;
@@ -199,7 +288,13 @@ body::after {
   position: absolute;
   width: var(--len, 180px);
   height: 1.2px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 35%, rgba(255, 255, 255, 0.78) 86%, rgba(255, 255, 255, 0.95) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.12) 35%,
+    rgba(255, 255, 255, 0.78) 86%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
   filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.85));
   transform: rotate(var(--angle, 33deg));
   transform-origin: left center;
@@ -209,7 +304,7 @@ body::after {
 }
 
 .shooting-star::after {
-  content: '';
+  content: "";
   position: absolute;
   right: -2px;
   top: 50%;
@@ -235,11 +330,12 @@ body::after {
 
 .sparkle.glint {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.75);
-  animation: starTwinkle var(--dur, 4.8s) ease-in-out infinite, starPulse 9s ease-in-out infinite;
+  animation:
+    starTwinkle var(--dur, 4.8s) ease-in-out infinite,
+    starPulse 9s ease-in-out infinite;
 }
 
 @keyframes veilPulse {
-
   0%,
   100% {
     opacity: 0.65;
@@ -251,19 +347,22 @@ body::after {
 }
 
 @keyframes orbFloat {
-
   0%,
   100% {
     transform: translate3d(var(--mx, 0), var(--my, 0), 0) scale(1);
   }
 
   50% {
-    transform: translate3d(calc(var(--mx, 0) * 1.2), calc(var(--my, 0) * 1.2 - 18px), 0) scale(1.08);
+    transform: translate3d(
+        calc(var(--mx, 0) * 1.2),
+        calc(var(--my, 0) * 1.2 - 18px),
+        0
+      )
+      scale(1.08);
   }
 }
 
 @keyframes starTwinkle {
-
   0%,
   100% {
     opacity: 0.28;
@@ -277,7 +376,6 @@ body::after {
 }
 
 @keyframes starPulse {
-
   0%,
   100% {
     filter: brightness(0.9);
@@ -324,12 +422,14 @@ body::after {
 
   42% {
     opacity: 0;
-    transform: translate3d(var(--dx, 220px), var(--dy, 145px), 0) rotate(var(--angle, 33deg)) scaleX(1);
+    transform: translate3d(var(--dx, 220px), var(--dy, 145px), 0)
+      rotate(var(--angle, 33deg)) scaleX(1);
   }
 
   100% {
     opacity: 0;
-    transform: translate3d(var(--dx, 220px), var(--dy, 145px), 0) rotate(var(--angle, 33deg)) scaleX(1);
+    transform: translate3d(var(--dx, 220px), var(--dy, 145px), 0)
+      rotate(var(--angle, 33deg)) scaleX(1);
   }
 }
 
@@ -419,7 +519,7 @@ strong {
   background: linear-gradient(90deg, #9b1c1c 0%, #c0392b 50%, #9b1c1c 100%);
   color: #fff;
   font-family: var(--serif);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-align: center;
@@ -444,7 +544,7 @@ strong {
   background: var(--purple-deep);
   color: rgba(232, 201, 122, 0.7);
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.26em;
   text-align: center;
   padding: 10px 20px;
@@ -461,7 +561,7 @@ strong {
 
 .eyebrow {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.34em;
   text-transform: uppercase;
   color: #f5e6b8;
@@ -473,7 +573,7 @@ strong {
 
 .vsl-headline {
   font-family: var(--serif);
-  font-size: clamp(32px, 5vw, 56px);
+  /* font-size: clamp(29px, 5vw, 50px); */
   font-weight: 700;
   color: #fff;
   max-width: 760px;
@@ -490,7 +590,7 @@ strong {
 
 .vsl-sub {
   font-family: var(--body);
-  font-size: clamp(18px, 2.2vw, 22px);
+  /* font-size: clamp(16px, 2.2vw, 20px); */
   color: rgba(255, 252, 255, 0.97);
   max-width: 540px;
   margin: 0 auto 44px;
@@ -535,10 +635,12 @@ strong {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 25px;
   color: rgba(232, 201, 122, 0.8);
   cursor: pointer;
-  transition: background .25s, border-color .25s;
+  transition:
+    background 0.25s,
+    border-color 0.25s;
 }
 
 .play-ring:hover {
@@ -548,7 +650,7 @@ strong {
 
 .video-label {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(232, 201, 122, 0.5);
@@ -591,7 +693,7 @@ strong {
 
 .video-bar-time {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(255, 255, 255, 0.25);
 }
 
@@ -605,7 +707,7 @@ strong {
 
 .badge {
   font-family: var(--serif);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: rgba(255, 250, 255, 0.96);
   display: flex;
@@ -616,7 +718,12 @@ strong {
 
 /* ══ PRODUCT REVEAL BANNER ══ */
 .reveal-banner {
-  background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple-dark) 60%, #1a0b38 100%);
+  background: linear-gradient(
+    160deg,
+    var(--purple-deep) 0%,
+    var(--purple-dark) 60%,
+    #1a0b38 100%
+  );
   padding: 72px 24px 80px;
   text-align: center;
   position: relative;
@@ -629,7 +736,7 @@ strong {
   border: 1px solid rgba(232, 201, 122, 0.28);
   color: var(--gold-warm);
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   font-weight: 700;
@@ -640,23 +747,27 @@ strong {
 
 .reveal-banner h2 {
   font-family: var(--serif);
-  font-size: clamp(30px, 5vw, 52px);
+  /* font-size: clamp(27px, 5vw, 47px); */
   color: #fff;
   max-width: 700px;
   margin: 0 auto 20px;
   line-height: 1.2;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.65);
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.45),
+    0 1px 3px rgba(0, 0, 0, 0.65);
 }
 
 .reveal-banner h2 em {
   color: #ffe7a8;
   font-style: italic;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5), var(--shadow-dream-gold);
+  text-shadow:
+    0 2px 14px rgba(0, 0, 0, 0.5),
+    var(--shadow-dream-gold);
 }
 
 .reveal-banner p {
   font-family: var(--body);
-  font-size: 18px;
+  font-size: 16px;
   color: rgba(255, 250, 255, 0.88);
   max-width: 520px;
   margin: 0 auto;
@@ -671,8 +782,8 @@ strong {
   z-index: 1;
 }
 
-.reading-section>.wrap>h2 {
-  font-size: clamp(28px, 4.5vw, 44px);
+.reading-section > .wrap > h2 {
+  /* font-size: clamp(25px, 4.5vw, 40px); */
   margin-bottom: 14px;
   text-align: center;
   color: #fff;
@@ -680,7 +791,7 @@ strong {
 }
 
 .reading-intro {
-  font-size: 20px;
+  font-size: 18px;
   color: var(--text-muted);
   line-height: 1.8;
   margin-bottom: 48px;
@@ -720,7 +831,7 @@ strong {
 
 .path-label {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--purple-mid);
@@ -731,13 +842,13 @@ strong {
 }
 
 .path-card h3 {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 0;
   color: var(--purple-dark);
 }
 
 .path-card p {
-  font-size: 17px;
+  font-size: 15px;
   color: #1a1a1a;
   line-height: 1.72;
   margin-bottom: 0;
@@ -768,13 +879,13 @@ strong {
 }
 
 .mirror-card h3 {
-  font-size: 20px;
+  font-size: 18px;
   color: var(--purple-dark);
   margin-bottom: 0;
 }
 
 .mirror-card p {
-  font-size: 17px;
+  font-size: 15px;
   color: #1a1a1a;
   line-height: 1.72;
   margin-bottom: 0.8em;
@@ -805,7 +916,7 @@ strong {
 }
 
 .vip-box h2 {
-  font-size: clamp(26px, 4vw, 40px);
+  /* font-size: clamp(23px, 4vw, 36px); */
   margin-bottom: 8px;
   text-align: center;
   color: var(--purple-dark);
@@ -820,7 +931,7 @@ strong {
 }
 
 .vip-box .sub {
-  font-size: 19px;
+  font-size: 17px;
   color: var(--panel-text-mid);
   margin-bottom: 36px;
   line-height: 1.8;
@@ -855,13 +966,13 @@ strong {
 }
 
 .vip-item h4 {
-  font-size: 21px;
+  font-size: 19px;
   margin-bottom: 5px;
   color: var(--purple-dark);
 }
 
 .vip-item p {
-  font-size: 17px;
+  font-size: 15px;
   color: var(--panel-text-soft);
   line-height: 1.7;
   margin: 0;
@@ -869,7 +980,7 @@ strong {
 
 .vip-val {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   color: var(--gold);
   font-style: italic;
   margin-top: 4px;
@@ -883,8 +994,8 @@ strong {
   z-index: 1;
 }
 
-.bonuses-section>h2 {
-  font-size: clamp(28px, 4.5vw, 42px);
+.bonuses-section > h2 {
+  /* font-size: clamp(25px, 4.5vw, 38px); */
   margin-bottom: 10px;
   text-align: center;
   color: #fff;
@@ -892,7 +1003,7 @@ strong {
 }
 
 .bonuses-intro {
-  font-size: 17px;
+  font-size: 15px;
   color: var(--text-muted);
   margin-bottom: 32px;
   text-align: center;
@@ -925,13 +1036,21 @@ strong {
 }
 
 .bonus-tile::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 16px;
   border: 1px solid transparent;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(0, 0, 0, 0.1) 100%) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.05) 40%,
+      rgba(0, 0, 0, 0.1) 100%
+    )
+    border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
   pointer-events: none;
@@ -972,7 +1091,7 @@ strong {
 }
 
 .bonus-header h4 {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 4px;
   line-height: 1.35;
   color: #2a0f5e;
@@ -980,7 +1099,7 @@ strong {
 
 .bonus-header .bonus-value {
   font-family: var(--serif);
-  font-size: 15px;
+  font-size: 14px;
   color: var(--purple-mid);
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -988,14 +1107,14 @@ strong {
 }
 
 .bonus-tile h4 {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 7px;
   line-height: 1.35;
   color: #2a0f5e;
 }
 
 .bonus-tile p {
-  font-size: 16px;
+  font-size: 14px;
   color: #1a1a1a;
   line-height: 1.6;
   margin-bottom: 12px;
@@ -1004,7 +1123,7 @@ strong {
 
 .bonus-tag {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #fff;
@@ -1014,7 +1133,9 @@ strong {
   padding: 8px 20px;
   text-align: center;
   display: block;
-  box-shadow: 0 0 14px rgba(34, 184, 74, 0.6), 0 0 28px rgba(34, 184, 74, 0.3);
+  box-shadow:
+    0 0 14px rgba(34, 184, 74, 0.6),
+    0 0 28px rgba(34, 184, 74, 0.3);
   margin-top: auto;
 }
 
@@ -1023,7 +1144,7 @@ strong {
   text-decoration: line-through;
   text-decoration-color: rgba(90, 48, 144, 0.5);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.05em;
   text-shadow: none;
 }
@@ -1050,13 +1171,21 @@ strong {
 }
 
 .bonus-total-row::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 16px;
   border: 1px solid transparent;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.04) 40%, rgba(0, 0, 0, 0.1) 100%) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.04) 40%,
+      rgba(0, 0, 0, 0.1) 100%
+    )
+    border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
   pointer-events: none;
@@ -1064,7 +1193,7 @@ strong {
 
 .btl {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -1074,11 +1203,13 @@ strong {
 
 .btv {
   font-family: var(--serif);
-  font-size: 52px;
+  font-size: 47px;
   font-weight: 700;
   color: var(--gold-warm);
   line-height: 1;
-  text-shadow: 0 0 24px rgba(232, 201, 122, 0.6), 0 0 48px rgba(232, 201, 122, 0.25);
+  text-shadow:
+    0 0 24px rgba(232, 201, 122, 0.6),
+    0 0 48px rgba(232, 201, 122, 0.25);
 }
 
 /* ══ PRICING ══ */
@@ -1089,7 +1220,7 @@ strong {
 }
 
 .pricing-section h2 {
-  font-size: clamp(28px, 4.5vw, 42px);
+  /* font-size: clamp(25px, 4.5vw, 38px); */
   text-align: center;
   margin-bottom: 36px;
   color: #fff;
@@ -1125,7 +1256,7 @@ strong {
   background: linear-gradient(135deg, var(--purple-dark), var(--purple-mid));
   color: var(--gold-warm);
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 700;
@@ -1146,14 +1277,14 @@ strong {
 }
 
 .price-card-header h3 {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 0;
   color: var(--panel-text);
 }
 
 .price-card-label {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1163,7 +1294,7 @@ strong {
 }
 
 .price-card-header p {
-  font-size: 17px;
+  font-size: 15px;
   color: #1a1a1a;
   margin: 0;
 }
@@ -1174,7 +1305,7 @@ strong {
 }
 
 .price-was {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
   text-decoration: line-through;
   color: #1a1a1a;
@@ -1184,7 +1315,7 @@ strong {
 
 .price-amount {
   font-family: var(--serif);
-  font-size: 54px;
+  font-size: 49px;
   font-weight: 700;
   color: var(--panel-text);
   line-height: 1;
@@ -1193,7 +1324,7 @@ strong {
 }
 
 .price-amount sup {
-  font-size: 22px;
+  font-size: 20px;
   vertical-align: super;
   line-height: 0;
 }
@@ -1204,7 +1335,7 @@ strong {
 
 .price-term {
   font-family: var(--serif);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1225,16 +1356,16 @@ strong {
 .price-includes li {
   display: flex;
   gap: 10px;
-  font-size: 17px;
+  font-size: 15px;
   color: #1a1a1a;
   line-height: 1.5;
 }
 
 .price-includes li::before {
-  content: '✔';
+  content: "✔";
   color: var(--purple-mid);
   flex-shrink: 0;
-  font-size: 13px;
+  font-size: 12px;
   margin-top: 3px;
 }
 
@@ -1254,14 +1385,16 @@ strong {
   margin-top: 22px;
   padding: 14px 20px;
   font-family: var(--serif);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-align: center;
   border-radius: 30px;
   text-decoration: none;
   cursor: pointer;
-  transition: opacity .2s, transform .2s;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
   box-sizing: border-box;
 }
 
@@ -1278,7 +1411,11 @@ strong {
 }
 
 .price-card-cta.vip {
-  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-mid) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--purple-dark) 0%,
+    var(--purple-mid) 100%
+  );
   border: 2px solid transparent;
   color: var(--gold-warm);
   box-shadow: 0 4px 18px rgba(59, 31, 110, 0.35);
@@ -1287,7 +1424,7 @@ strong {
 .value-line {
   text-align: center;
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 15px;
   color: var(--text-muted);
   margin-bottom: 28px;
   text-shadow: var(--shadow-dream-sm);
@@ -1301,10 +1438,15 @@ strong {
 .cta-btn {
   display: inline-block;
   padding: 22px 52px;
-  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-mid) 50%, var(--purple-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--purple-dark) 0%,
+    var(--purple-mid) 50%,
+    var(--purple-dark) 100%
+  );
   color: var(--gold-warm);
   font-family: var(--serif);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.04em;
   border-radius: 40px;
@@ -1312,7 +1454,9 @@ strong {
   border: none;
   cursor: pointer;
   box-shadow: 0 6px 28px rgba(59, 31, 110, 0.4);
-  transition: opacity .25s, transform .2s;
+  transition:
+    opacity 0.25s,
+    transform 0.2s;
   line-height: 1.3;
 }
 
@@ -1323,7 +1467,7 @@ strong {
 
 .cta-note {
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 15px;
   letter-spacing: 0.04em;
   color: var(--text-muted);
   margin-top: 16px;
@@ -1334,7 +1478,7 @@ strong {
 .stars {
   color: #f0d695;
   letter-spacing: 3px;
-  font-size: 13px;
+  font-size: 12px;
   text-shadow: var(--shadow-dream-gold);
 }
 
@@ -1346,7 +1490,7 @@ strong {
 }
 
 .testimonials-section h2 {
-  font-size: clamp(28px, 4.5vw, 42px);
+  /* font-size: clamp(25px, 4.5vw, 38px); */
   text-align: center;
   margin-bottom: 44px;
   color: #fff;
@@ -1369,14 +1513,14 @@ strong {
 
 .testi-stars {
   color: var(--gold);
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 3px;
   margin-bottom: 14px;
 }
 
 .testi-quote {
   font-family: var(--serif);
-  font-size: 18px;
+  font-size: 16px;
   font-style: italic;
   color: var(--panel-text-mid);
   line-height: 1.72;
@@ -1385,13 +1529,13 @@ strong {
 
 .testi-name {
   font-family: var(--serif);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--panel-text);
 }
 
 .testi-meta {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--panel-text-soft);
   margin-top: 2px;
 }
@@ -1426,13 +1570,13 @@ strong {
 }
 
 .guarantee-box h3 {
-  font-size: 30px;
+  font-size: 27px;
   margin-bottom: 12px;
   color: var(--purple-dark);
 }
 
 .guarantee-box p {
-  font-size: 19px;
+  font-size: 17px;
   color: var(--panel-text-mid);
   line-height: 1.8;
   text-align: center;
@@ -1446,7 +1590,7 @@ strong {
 }
 
 .steps-section h2 {
-  font-size: clamp(28px, 4.5vw, 42px);
+  /* font-size: clamp(25px, 4.5vw, 38px); */
   margin-bottom: 40px;
   text-align: center;
   color: #fff;
@@ -1473,7 +1617,7 @@ strong {
   background: linear-gradient(135deg, var(--purple-dark), var(--purple-mid));
   color: var(--gold-warm);
   font-family: var(--serif);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -1483,14 +1627,14 @@ strong {
 }
 
 .step-row h4 {
-  font-size: 21px;
+  font-size: 19px;
   margin-bottom: 5px;
   color: #fff;
   text-shadow: var(--shadow-dream-md);
 }
 
 .step-row p {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.75;
   margin: 0;
@@ -1505,7 +1649,7 @@ strong {
 }
 
 .faq-section h2 {
-  font-size: clamp(28px, 4.5vw, 40px);
+  /* font-size: clamp(25px, 4.5vw, 36px); */
   margin-bottom: 38px;
   text-align: center;
   color: #fff;
@@ -1523,7 +1667,7 @@ strong {
 
 .faq-q {
   font-family: var(--serif);
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 700;
   color: #fff;
   cursor: pointer;
@@ -1540,13 +1684,13 @@ strong {
 }
 
 .faq-q::after {
-  content: '+';
+  content: "+";
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 300;
   color: #f5e6b8;
   flex-shrink: 0;
-  transition: transform .2s;
+  transition: transform 0.2s;
   text-shadow: var(--shadow-dream-gold);
 }
 
@@ -1555,7 +1699,7 @@ details[open] .faq-q::after {
 }
 
 .faq-a {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.8;
   padding-top: 14px;
@@ -1565,7 +1709,12 @@ details[open] .faq-q::after {
 
 /* ══ FINAL CTA SECTION ══ */
 .final-cta-section {
-  background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple-dark) 60%, #1e0d40 100%);
+  background: linear-gradient(
+    160deg,
+    var(--purple-deep) 0%,
+    var(--purple-dark) 60%,
+    #1e0d40 100%
+  );
   padding: 96px 24px;
   text-align: center;
   position: relative;
@@ -1575,25 +1724,31 @@ details[open] .faq-q::after {
 .final-cta-section .eyebrow {
   color: #f5e6b8;
   opacity: 1;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), var(--shadow-dream-gold);
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.4),
+    var(--shadow-dream-gold);
 }
 
 .final-cta-section h2 {
-  font-size: clamp(30px, 5vw, 52px);
+  /* font-size: clamp(27px, 5vw, 47px); */
   color: #fff;
   max-width: 720px;
   margin: 0 auto 20px;
   line-height: 1.2;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.6);
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.45),
+    0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .final-cta-section h2 em {
   color: #ffe7a8;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5), var(--shadow-dream-gold);
+  text-shadow:
+    0 2px 14px rgba(0, 0, 0, 0.5),
+    var(--shadow-dream-gold);
 }
 
 .final-cta-section p {
-  font-size: 18px;
+  font-size: 16px;
   color: rgba(255, 250, 255, 0.88);
   max-width: 520px;
   margin: 0 auto 40px;
@@ -1622,7 +1777,7 @@ details[open] .faq-q::after {
   padding: 13px 24px;
   border-bottom: 1px solid rgba(232, 201, 122, 0.1);
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   color: rgba(255, 252, 255, 0.96);
   -webkit-text-stroke: 0.3px currentColor;
@@ -1632,7 +1787,9 @@ details[open] .faq-q::after {
 .vstack-val {
   color: #ffe7a8;
   font-weight: 700;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35), var(--shadow-dream-gold);
+  text-shadow:
+    0 1px 10px rgba(0, 0, 0, 0.35),
+    var(--shadow-dream-gold);
 }
 
 .vstack-total {
@@ -1642,7 +1799,7 @@ details[open] .faq-q::after {
   padding: 16px 24px;
   background: rgba(232, 201, 122, 0.08);
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 700;
 }
 
@@ -1659,7 +1816,7 @@ details[open] .faq-q::after {
   background: var(--purple-deep);
   color: var(--text-muted);
   font-family: var(--serif);
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   text-align: center;
   padding: 28px 24px;
@@ -1681,7 +1838,7 @@ details[open] .faq-q::after {
   max-width: 860px;
   margin: 0 auto;
   letter-spacing: 0.02em;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.75;
   color: var(--text-muted);
 }
@@ -1700,7 +1857,11 @@ details[open] .faq-q::after {
 
 /* ══ VSL STORY SECTION ══ */
 .story-section {
-  background: linear-gradient(180deg, rgba(7, 11, 34, 0.2) 0%, transparent 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(7, 11, 34, 0.2) 0%,
+    transparent 100%
+  );
   border-top: 1px solid var(--gold-dim);
 }
 
@@ -1711,7 +1872,7 @@ details[open] .faq-q::after {
 
 .story-video-label {
   font-family: var(--serif);
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   color: #f5e6b8;
   text-align: center;
@@ -1734,7 +1895,7 @@ details[open] .faq-q::after {
 }
 
 .story-play {
-  font-size: 40px;
+  font-size: 36px;
   color: var(--gold-warm);
   opacity: 0.85;
 }
@@ -1755,7 +1916,7 @@ details[open] .faq-q::after {
 
 .story-divider-text {
   font-family: var(--serif);
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   color: #f5e6b8;
   white-space: nowrap;
@@ -1765,7 +1926,7 @@ details[open] .faq-q::after {
 
 .story-ts {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   color: #f0d695;
   opacity: 0.95;
@@ -1781,7 +1942,7 @@ details[open] .faq-q::after {
 }
 
 .story-section p {
-  font-size: 19px;
+  font-size: 17px;
   line-height: 1.9;
   color: rgba(255, 252, 255, 0.97);
   margin-bottom: 1em;
@@ -1790,7 +1951,7 @@ details[open] .faq-q::after {
 
 .story-pull {
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.55;
   color: #fff;
   font-style: italic;
@@ -1807,7 +1968,7 @@ details[open] .faq-q::after {
 .story-end {
   text-align: center;
   font-family: var(--serif);
-  font-size: 20px;
+  font-size: 18px;
   font-style: italic;
   color: #fff;
   margin-top: 44px;
@@ -1818,7 +1979,12 @@ details[open] .faq-q::after {
 
 /* ══ TRANSITION BANNER ══ */
 .transition-banner {
-  background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple-dark) 60%, #1e0d40 100%);
+  background: linear-gradient(
+    160deg,
+    var(--purple-deep) 0%,
+    var(--purple-dark) 60%,
+    #1e0d40 100%
+  );
   padding: 72px 24px;
   text-align: center;
   position: relative;
@@ -1832,35 +1998,68 @@ details[open] .faq-q::after {
 
 .tb-tag {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.24em;
   color: #f5e6b8;
   opacity: 1;
   text-transform: uppercase;
   margin-bottom: 20px;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45), var(--shadow-dream-gold);
+  text-shadow:
+    0 1px 10px rgba(0, 0, 0, 0.45),
+    var(--shadow-dream-gold);
 }
 
 .tb-headline {
   font-family: var(--serif);
-  font-size: clamp(28px, 4.5vw, 44px);
+  /* font-size: clamp(25px, 4.5vw, 40px); */
   font-weight: 700;
   color: #fff;
   line-height: 1.2;
   margin-bottom: 18px;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.75);
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.5),
+    0 1px 3px rgba(0, 0, 0, 0.75);
 }
 
 .tb-sub {
   font-family: var(--body);
-  font-size: 18px;
+  font-size: 16px;
   color: rgba(255, 250, 255, 0.88);
   line-height: 1.75;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 
 .wavy {
-  clip-path: shape(from 0 100%, vline to 14.5px, curve to 6% 9px with 4% 9px, curve to 10% 5px with 8% 9px, curve to 14% 11.5px with 12% 1px, curve to 18% 25.5px with 16% 22px, curve to 22% 16px with 20% 29px, curve to 26% 12px with 24% 3px, curve to 30% 13.5px with 28% 21px, curve to 34% 6px with 32% 6px, curve to 38% 3px with 36% 6px, curve to 42% 5.5px with 40% 0px, curve to 46% 7px with 44% 11px, curve to 50% 11.5px with 48% 3px, curve to 54% 13px with 52% 20px, curve to 58% 16px with 56% 6px, curve to 62% 14px with 60% 26px, curve to 66% 14.5px with 64% 2px, curve to 70% 25.5px with 68% 27px, curve to 74% 18px with 72% 24px, curve to 78% 15.5px with 76% 12px, curve to 82% 13.5px with 80% 19px, curve to 86% 8px with 84% 8px, curve to 90% 15.5px with 88% 8px, curve to 94% 24px with 92% 23px, curve to 100% 14.5px with 96% 25px, vline to 100%, hline to 0);
+  clip-path: shape(
+    from 0 100%,
+    vline to 14.5px,
+    curve to 6% 9px with 4% 9px,
+    curve to 10% 5px with 8% 9px,
+    curve to 14% 11.5px with 12% 1px,
+    curve to 18% 25.5px with 16% 22px,
+    curve to 22% 16px with 20% 29px,
+    curve to 26% 12px with 24% 3px,
+    curve to 30% 13.5px with 28% 21px,
+    curve to 34% 6px with 32% 6px,
+    curve to 38% 3px with 36% 6px,
+    curve to 42% 5.5px with 40% 0px,
+    curve to 46% 7px with 44% 11px,
+    curve to 50% 11.5px with 48% 3px,
+    curve to 54% 13px with 52% 20px,
+    curve to 58% 16px with 56% 6px,
+    curve to 62% 14px with 60% 26px,
+    curve to 66% 14.5px with 64% 2px,
+    curve to 70% 25.5px with 68% 27px,
+    curve to 74% 18px with 72% 24px,
+    curve to 78% 15.5px with 76% 12px,
+    curve to 82% 13.5px with 80% 19px,
+    curve to 86% 8px with 84% 8px,
+    curve to 90% 15.5px with 88% 8px,
+    curve to 94% 24px with 92% 23px,
+    curve to 100% 14.5px with 96% 25px,
+    vline to 100%,
+    hline to 0
+  );
 }
 
 /* ══ VIP LIST ══ */
@@ -1875,7 +2074,7 @@ details[open] .faq-q::after {
 
 .vip-list li {
   font-family: var(--body);
-  font-size: 17px;
+  font-size: 15px;
   color: #1a1a1a;
   line-height: 1.6;
   padding: 13px 0;
@@ -1890,9 +2089,9 @@ details[open] .faq-q::after {
 }
 
 .vip-list li::before {
-  content: '✓';
+  content: "✓";
   color: var(--purple-mid);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -1904,11 +2103,16 @@ details[open] .faq-q::after {
 
 /* ══ READ TOGGLE ══ */
 .read-toggle {
-  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-mid) 50%, var(--purple-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--purple-dark) 0%,
+    var(--purple-mid) 50%,
+    var(--purple-dark) 100%
+  );
   border: 1px solid rgba(232, 201, 122, 0.3);
   color: var(--gold-warm);
   font-family: var(--serif);
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 0.14em;
   padding: 13px 32px;
   border-radius: 40px;
@@ -1925,7 +2129,7 @@ details[open] .faq-q::after {
   border: 1px solid rgba(232, 201, 122, 0.45);
   color: #f5e6b8;
   font-family: var(--serif);
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.14em;
   padding: 10px 28px;
   border-radius: 40px;
@@ -1944,7 +2148,12 @@ details[open] .faq-q::after {
 .section-divider {
   max-width: 80px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(154, 114, 48, 0.4), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(154, 114, 48, 0.4),
+    transparent
+  );
   margin: 0 auto 40px;
 }
 
@@ -1992,12 +2201,12 @@ details[open] .faq-q::after {
   }
 
   .site-footer {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.65;
   }
 
   .footer-legal-copy {
-    font-size: 12px;
+    font-size: 11px;
     line-height: 1.7;
   }
 }

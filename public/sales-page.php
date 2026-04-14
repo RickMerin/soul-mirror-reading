@@ -11,12 +11,10 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="See the one core belief—your Mirror Block—behind your Love, Life, and Wealth cards. Deep card work, clearing practice, and 90-day prompts delivered with your Soul Mirror Reading.">
   <title>Your Soul Mirror Reading — What the Cards Are Really Saying</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
-    rel="stylesheet">
   <link rel="stylesheet" href="assets/sales-bundle.min.css?v=<?= htmlspecialchars((string) $cssVer, ENT_QUOTES) ?>">
 </head>
 
@@ -37,6 +35,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     Way.<span class="notice-dot">·</span><strong>While You Wait, Read This Carefully.</strong>
   </div>
 
+  <main id="main-content">
 
   <!-- ══ VSL SECTION ══ -->
   <section class="vsl-section">
@@ -69,7 +68,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       </div>
 
       <div style="margin-top:28px;">
-        <button class="read-toggle" onclick="toggleReadVersion(this)" aria-expanded="false">
+        <button type="button" class="read-toggle" aria-expanded="false">
           ☽ &nbsp; Prefer to read instead? &nbsp; ☾
         </button>
       </div>
@@ -142,7 +141,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     </section>
 
     <div style="text-align:center; padding-bottom:48px;">
-      <button class="read-toggle-collapse" onclick="toggleReadVersion(document.querySelector('.read-toggle'))">
+      <button type="button" class="read-toggle-collapse">
         ☽ &nbsp; Collapse this section &nbsp; ☾
       </button>
     </div>
@@ -168,7 +167,10 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       <div class="path-card">
         <span class="path-label">Mirror One &nbsp;·&nbsp; Love</span>
         <div class="path-title-row">
-          <div class="path-icon"><img src="cards/mirror-love.png" alt="Love Mirror"></div>
+          <div class="path-icon"><picture>
+              <source type="image/webp" srcset="cards/mirror-love.webp">
+              <img src="cards/mirror-love.png" width="865" height="1080" alt="Love Mirror" decoding="async" loading="lazy">
+            </picture></div>
           <h3>The Love Mirror</h3>
         </div>
         <p>Where you pull back right before connection becomes real. The pattern that keeps love feeling just slightly
@@ -178,7 +180,10 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       <div class="path-card">
         <span class="path-label">Mirror Two &nbsp;·&nbsp; Life</span>
         <div class="path-title-row">
-          <div class="path-icon"><img src="cards/mirror-life.png" alt="Life Mirror"></div>
+          <div class="path-icon"><picture>
+              <source type="image/webp" srcset="cards/mirror-life.webp">
+              <img src="cards/mirror-life.png" width="763" height="1080" alt="Life Mirror" decoding="async" loading="lazy">
+            </picture></div>
           <h3>The Life Mirror</h3>
         </div>
         <p>Where your energy leaks and your choices keep looping. The place you feel most stuck, showing you the exact
@@ -188,7 +193,10 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       <div class="path-card">
         <span class="path-label">Mirror Three &nbsp;·&nbsp; Wealth</span>
         <div class="path-title-row">
-          <div class="path-icon"><img src="cards/mirror-wealth.png" alt="Wealth Mirror"></div>
+          <div class="path-icon"><picture>
+              <source type="image/webp" srcset="cards/mirror-wealth.webp">
+              <img src="cards/mirror-wealth.png" width="942" height="1080" alt="Wealth Mirror" decoding="async" loading="lazy">
+            </picture></div>
           <h3>The Wealth Mirror</h3>
         </div>
         <p>What you believe you are allowed to have. The inherited story about deserving that has been setting your
@@ -198,7 +206,10 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       <div class="mirror-card">
         <span class="path-label">The Hidden Layer &nbsp;·&nbsp; Mirror Block</span>
         <div class="path-title-row">
-          <div class="path-icon"><img src="cards/mirror-block.png" alt="Mirror Block"></div>
+          <div class="path-icon"><picture>
+              <source type="image/webp" srcset="cards/mirror-block.webp">
+              <img src="cards/mirror-block.png" width="826" height="1080" alt="Mirror Block" decoding="async" loading="lazy">
+            </picture></div>
           <h3>The One Belief Running All Three</h3>
         </div>
         <p>This is where most readings stop. They name the patterns. They describe the cards. And then they leave you
@@ -221,7 +232,11 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     <div class="wrap">
       <div class="vip-box">
         <h2>Inside Your Soul Mirror Reading</h2>
-        <img src="cards/product-mockup.png" alt="Soul Mirror Reading" class="vip-mockup">
+        <picture>
+          <source type="image/webp" srcset="cards/product-mockup.webp">
+          <img src="cards/product-mockup.png" width="auto" height="200" alt="Soul Mirror Reading" class="vip-mockup"
+            decoding="async" loading="lazy">
+        </picture>
         <div
           style="text-align:center;margin:-8px 0 20px;font-family:var(--serif);font-size:17px;color:#1a1a1a;letter-spacing:0.06em;">
           Valued at <span style="color:var(--purple-mid);font-weight:700;font-size:20px;">$197</span></div>
@@ -258,7 +273,11 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
             <h4>Mirror Block Companion Guide</h4>
             <div class="bonus-value">Valued at $67</div>
           </div>
-          <div class="bonus-img"><img src="cards/bonus-companion.png" alt="Mirror Block Companion Guide"></div>
+          <div class="bonus-img"><picture>
+              <source type="image/webp" srcset="cards/bonus-companion.webp">
+              <img src="cards/bonus-companion.png" width="734" height="1080" alt="Mirror Block Companion Guide" decoding="async"
+                loading="lazy">
+            </picture></div>
           <div class="bonus-body">
             <p>A deep-dive reference covering all four Mirror Block types: their root causes, language patterns, hidden
               costs, and the signs a real shift is beginning.</p>
@@ -270,7 +289,11 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
             <h4>21-Day Shift Tracker</h4>
             <div class="bonus-value">Valued at $47</div>
           </div>
-          <div class="bonus-img"><img src="cards/bonus-tracker.png" alt="21-Day Shift Tracker"></div>
+          <div class="bonus-img"><picture>
+              <source type="image/webp" srcset="cards/bonus-tracker.webp">
+              <img src="cards/bonus-tracker.png" width="779" height="1080" alt="21-Day Shift Tracker" decoding="async"
+                loading="lazy">
+            </picture></div>
           <div class="bonus-body">
             <p>A guided workbook with daily prompts across three themed weeks: Observation, Recognition, and Evidence,
               to help you track and anchor your pattern shifts in real time.</p>
@@ -284,7 +307,11 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
             <h4>Root Cause Reading Guide</h4>
             <div class="bonus-value">Valued at $47</div>
           </div>
-          <div class="bonus-img"><img src="cards/bonus-rootcause.png" alt="Root Cause Reading Guide"></div>
+          <div class="bonus-img"><picture>
+              <source type="image/webp" srcset="cards/bonus-rootcause.webp">
+              <img src="cards/bonus-rootcause.png" width="815" height="1080" alt="Root Cause Reading Guide" decoding="async"
+                loading="lazy">
+            </picture></div>
           <div class="bonus-body">
             <p>Story-based vignettes for each Mirror Block type that show exactly how the pattern formed, helping you
               see the origin clearly and stop mistaking the symptom for the source.</p>
@@ -296,7 +323,11 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
             <h4>Mirror Clarity Meditation</h4>
             <div class="bonus-value">Valued at $37</div>
           </div>
-          <div class="bonus-img"><img src="cards/bonus-meditation.png" alt="Mirror Clarity Meditation"></div>
+          <div class="bonus-img"><picture>
+              <source type="image/webp" srcset="cards/bonus-meditation.webp">
+              <img src="cards/bonus-meditation.png" width="783" height="1080" alt="Mirror Clarity Meditation" decoding="async"
+                loading="lazy">
+            </picture></div>
           <div class="bonus-body">
             <p>A 10-minute guided audio meditation voiced by Luna that takes you through a somatic mirror visualization
               to feel, briefly, what life looks like on the other side of the pattern.</p>
@@ -413,8 +444,11 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <section class="guarantee-section section js-reveal">
     <div class="wrap">
       <div class="guarantee-box">
-        <div class="guarantee-shield"><img src="cards/guarantee-badge.png" alt="90-Day Mirror Guarantee"
-            style="width:100%;height:100%;object-fit:contain;"></div>
+        <div class="guarantee-shield"><picture>
+            <source type="image/webp" srcset="cards/guarantee-badge.webp">
+            <img src="cards/guarantee-badge.png" width="1024" height="1024" alt="90-Day Mirror Guarantee"
+              style="width:100%;height:100%;object-fit:contain;" decoding="async" loading="lazy">
+          </picture></div>
         <div>
           <h3>90-Day Mirror Guarantee</h3>
           <p>If your Soul Mirror Reading doesn't give you a clearer picture of the pattern running your love, life, and
@@ -554,14 +588,15 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     </div>
 
     <div class="cta-block">
-      <a href="#pricing" class="cta-btn"
-        onclick="document.querySelector('.pricing-section').scrollIntoView({behavior:'smooth'}); return false;">Claim
+      <a href="#pricing" class="cta-btn">Claim
         Your Soul Mirror Reading →</a>
       <div class="cta-note">
         Instant access &nbsp;·&nbsp; 90-day guarantee &nbsp;·&nbsp; Secure checkout
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ══ FOOTER ══ -->
   <footer class="site-footer js-reveal">
@@ -583,8 +618,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script defer src="assets/sales.min.js?v=<?= htmlspecialchars((string) $jsVer, ENT_QUOTES) ?>"></script>
 
 </body>

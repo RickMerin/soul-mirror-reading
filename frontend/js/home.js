@@ -213,15 +213,28 @@ let deckSpread = false;
 /**
  * Matches `70-responsive.css` @media (max-width: 720px) — card-slot 62px vs 86px.
  * Mobile uses a compact arc (radius + angle span tuned per card count) so rotated cards stay inside the viewport; `10-base.css` sets `overflow-x: hidden` on html/body.
+ * Wider angle + slightly larger radius on small screens so taps are not cramped.
  */
 function getDeckArcLayout() {
   const mobile =
     typeof window.matchMedia === "function" &&
     window.matchMedia("(max-width: 720px)").matches;
   if (mobile) {
-    return { N: 14, radius: 124, halfCard: 31, angleSpan: 64 };
+    return {
+      N: 14,
+      radius: 138,
+      halfCard: 31,
+      angleSpan: 78,
+      stackSpread: 1.68,
+    };
   }
-  return { N: 15, radius: 280, halfCard: 43, angleSpan: 88 };
+  return {
+    N: 15,
+    radius: 280,
+    halfCard: 43,
+    angleSpan: 88,
+    stackSpread: 1.8,
+  };
 }
 
 function buildDeck() {
@@ -235,7 +248,7 @@ function buildDeck() {
   );
 
   const arc = document.getElementById("deckArc");
-  const { N, radius, halfCard, angleSpan } = getDeckArcLayout();
+  const { N, radius, halfCard, angleSpan, stackSpread } = getDeckArcLayout();
   const halfArc = angleSpan / 2;
   const angles = Array.from(
     { length: N },
@@ -252,7 +265,6 @@ function buildDeck() {
     slot.className = "card-slot";
     slot.dataset.i = String(i);
 
-    const stackSpread = N < 15 ? 1.42 : 1.8;
     const stackRot = (i - (N - 1) / 2) * stackSpread;
     slot.style.cssText = `
       left: calc(50% - ${halfCard}px);
