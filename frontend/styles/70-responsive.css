@@ -28,13 +28,13 @@
 
   /* Card slots */
   .cs {
-    width: 82px;
-    height: 138px;
+    width: 99px;
+    height: 174px;
     margin: 0 4px;
   }
 
   .chosen-zone.visible {
-    min-height: 170px;
+    min-height: 206px;
   }
 
   .cs-slot-label {
