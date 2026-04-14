@@ -1,11 +1,11 @@
 body {
-  background:
-    radial-gradient(circle at 12% 15%, rgba(120, 102, 214, 0.42) 0%, rgba(120, 102, 214, 0) 40%),
-    radial-gradient(circle at 85% 10%, rgba(85, 68, 176, 0.34) 0%, rgba(85, 68, 176, 0) 42%),
-    linear-gradient(180deg, #6a66a6 0%, #9c95c8 46%, #dad4ee 100%);
+  background-image:
+    radial-gradient(circle at 12% 15%, #3a2fa0cc 0%, #3a2fa000 40%),
+    radial-gradient(circle at 85% 10%, #221a66cc 0%, #221a6600 42%),
+    linear-gradient(#161433 0%, #24205a 44%, #35307a 100%);
   background-attachment: fixed;
   color: var(--text);
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: "Crimson Pro", Georgia, serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,32 +14,74 @@ body {
 
 /* Dream background layers */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(ellipse 110% 70% at 50% -8%, rgba(7, 11, 34, 0.72) 0%, rgba(7, 11, 34, 0) 68%),
-    radial-gradient(ellipse 85% 55% at 15% 20%, rgba(88, 73, 167, 0.28) 0%, transparent 62%),
-    radial-gradient(ellipse 70% 45% at 85% 15%, rgba(69, 52, 142, 0.26) 0%, transparent 66%);
+    radial-gradient(
+      ellipse 110% 70% at 50% -8%,
+      rgba(7, 11, 34, 0.72) 0%,
+      rgba(7, 11, 34, 0) 68%
+    ),
+    radial-gradient(
+      ellipse 85% 55% at 15% 20%,
+      rgba(88, 73, 167, 0.28) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 70% 45% at 85% 15%,
+      rgba(69, 52, 142, 0.26) 0%,
+      transparent 66%
+    );
   animation: auroraFloat 18s ease-in-out infinite alternate;
 }
 
 body::after {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.65) 1px, transparent 2px),
-    radial-gradient(circle at 78% 24%, rgba(232, 201, 122, 0.55) 1px, transparent 2px),
-    radial-gradient(circle at 35% 62%, rgba(255, 255, 255, 0.5) 1px, transparent 2px),
-    radial-gradient(circle at 88% 72%, rgba(232, 201, 122, 0.45) 1px, transparent 2px),
-    radial-gradient(circle at 58% 36%, rgba(255, 255, 255, 0.4) 1px, transparent 2px),
-    radial-gradient(circle at 24% 84%, rgba(232, 201, 122, 0.35) 1px, transparent 2px);
-  background-size: 220px 220px, 260px 260px, 190px 190px, 240px 240px, 280px 280px, 320px 320px;
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(255, 255, 255, 0.65) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 78% 24%,
+      rgba(232, 201, 122, 0.55) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 35% 62%,
+      rgba(255, 255, 255, 0.5) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 88% 72%,
+      rgba(232, 201, 122, 0.45) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 58% 36%,
+      rgba(255, 255, 255, 0.4) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 24% 84%,
+      rgba(232, 201, 122, 0.35) 1px,
+      transparent 2px
+    );
+  background-size:
+    220px 220px,
+    260px 260px,
+    190px 190px,
+    240px 240px,
+    280px 280px,
+    320px 320px;
   opacity: 0.55;
   animation: dreamTwinkle 7s ease-in-out infinite;
 }
@@ -55,7 +97,6 @@ body::after {
 }
 
 @keyframes dreamTwinkle {
-
   0%,
   100% {
     opacity: 0.42;
