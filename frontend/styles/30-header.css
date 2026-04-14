@@ -12,7 +12,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-size: 12px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
@@ -28,7 +28,7 @@
 }
 
 .site-header h1 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-size: clamp(1.9rem, 4.5vw, 2.8rem);
   font-weight: 700;
   color: #f7f1ff;
@@ -52,8 +52,8 @@
 }
 
 .header-sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
   font-weight: 400;
   color: #eee5ff;
   max-width: 620px;
@@ -69,7 +69,9 @@
   opacity: 0;
   max-height: 0;
   overflow: hidden;
-  transition: opacity 0.6s ease, max-height 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    max-height 0.6s ease;
 }
 
 .picker-divider.visible {
@@ -87,7 +89,7 @@
 
 .header-divider::before,
 .header-divider::after {
-  content: '';
+  content: "";
   width: 52px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold-dim));
@@ -98,7 +100,7 @@
 }
 
 .header-divider span {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-size: clamp(0.9rem, 2vw, 1rem);
   letter-spacing: 0.3em;
   text-transform: uppercase;

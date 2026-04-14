@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build-css.mjs && node scripts/build-js.mjs",
-    "watch": "node scripts/watch-css.mjs"
+    "watch": "node scripts/watch-css.mjs",
+    "dev": "npm run watch"
   },
   "devDependencies": {
     "@fontsource/cormorant-garamond": "^5.2.11",

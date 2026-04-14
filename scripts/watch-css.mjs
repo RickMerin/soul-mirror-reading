@@ -28,14 +28,19 @@ function runBuild() {
   });
 }
 
-const watchGlobs = [
-  path.join(root, "frontend", "styles", "**", "*.css"),
-  path.join(root, "frontend", "email", "**", "*.html"),
-  path.join(root, "frontend", "js", "**", "*.js"),
+// Forward-slash globs + cwd are reliable on Windows; absolute backslash paths can miss CSS events.
+const watchPatterns = [
+  "frontend/styles/**/*.css",
+  "frontend/email/**/*.html",
+  "frontend/js/**/*.js",
 ];
 
 runBuild();
-chokidar.watch(watchGlobs, { ignoreInitial: true }).on("all", () => {
-  runBuild();
-});
-console.log(`[assets] watching ${watchGlobs.join(", ")}`);
+chokidar
+  .watch(watchPatterns, { cwd: root, ignoreInitial: true })
+  .on("all", () => {
+    runBuild();
+  });
+console.log(
+  `[assets] dev: watching CSS, JS, email (${watchPatterns.join(", ")})`,
+);
