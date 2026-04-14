@@ -1,0 +1,54 @@
+import { initDreamBackground } from "./lib/dream-background.js";
+
+document.querySelectorAll(".cta-btn").forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+  });
+});
+
+window.toggleReadVersion = function toggleReadVersion(btn) {
+  const panel = document.getElementById("read-version");
+  const open = panel.style.display === "block";
+  panel.style.display = open ? "none" : "block";
+  btn.setAttribute("aria-expanded", !open);
+  btn.textContent = open
+    ? "☽  Prefer to read instead?  ☾"
+    : "☽  Hide reading  ☾";
+  if (!open) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
+initDreamBackground({
+  sparkleMobile: 48,
+  sparkleDesktop: 78,
+  shootingMobile: 4,
+  shootingDesktop: 8,
+  glintChance: 0.16,
+  sizeRange: 2.4,
+  travelBase: 180,
+  travelRange: 170,
+  lenBase: 120,
+  lenRange: 130,
+  pointerParallax: true,
+});
+
+(function initScrollReveals() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined")
+    return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray(".js-reveal").forEach(function (el) {
+    gsap.from(el, {
+      y: 28,
+      autoAlpha: 0,
+      duration: 0.85,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 88%",
+        once: true,
+      },
+    });
+  });
+})();

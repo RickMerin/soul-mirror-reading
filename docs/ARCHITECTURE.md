@@ -2,7 +2,7 @@
 
 ## Goals
 
-- **cPanel/WAMP friendly**: no Node.js; Composer + plain PHP with a single obvious HTTP entrypoint for the API.
+- **cPanel/WAMP friendly**: production serving is Composer + plain PHP with a single obvious HTTP entrypoint for the API. CSS and the email HTML shell are built with Node in dev/CI (`npm run build`); the deployed site does not require Node at runtime.
 - **Safe web root**: PHP classes and `vendor/` stay **outside** `public/` so they are not served as static files.
 - **Testable core**: sun sign and card URL logic are pure classes with PHPUnit coverage.
 
@@ -53,6 +53,14 @@ sequenceDiagram
 | ---------------- | ----------------------------------------------------------------------------------------------------------- |
 | **AstrologyAPI** | `POST /v1/tarot_predictions`, `POST /v1/sun_sign_prediction/daily/{sign}`                                   |
 | **Kit**          | `GET/POST /v4/custom_fields`, `POST /v4/subscribers`, `GET/POST /v4/tags`, `POST /v4/tags/{id}/subscribers` |
+
+## Email HTML template (build artifact)
+
+Kit sends automation email; no PHP code loads an HTML template from disk. For a reusable ESP snippet with inlined CSS:
+
+- **Source:** `frontend/email/email-template.src.html` (must include `@@SOUL_MIRROR_EMAIL_CSS@@`).
+- **Build:** `npm run build` runs `scripts/build-css.mjs`, which bundles `frontend/styles/email/main.css` and writes `public/email-template.html` with the CSS inlined.
+- **Consume:** Use the generated `public/email-template.html` (or copy its HTML) in Kit or another ESP. `scripts/watch-css.mjs` watches `frontend/email/**/*.html` and rebuilds on change.
 
 ## Debugging
 

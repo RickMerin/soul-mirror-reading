@@ -9,8 +9,11 @@ Options -Indexes
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    #If the request is '/' redirect to '/public/index.html'
-    RewriteRule ^$ public/index.html [L]
+    # If the request is '/' serve the main reading page (PHP provides CSS cache-bust).
+    RewriteRule ^$ public/index.php [L]
+
+    RewriteRule ^thankyou\.html$ public/thankyou.php [L,R=301]
+    RewriteRule ^sales-page\.html$ public/sales-page.php [L,R=301]
 
     # --- Block sensitive paths and files (403; must run before static file delivery) ---
     # (No mandatory /public/ -> / redirect here: absolute redirects break subdirectory installs.

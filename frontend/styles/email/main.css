@@ -1,0 +1,6 @@
+@media only screen and (max-width: 600px) {
+  .email-container { width: 100% !important; }
+  .card-row td { display: block !important; width: 100% !important; text-align: center !important; }
+  .card-img { margin: 0 auto 16px auto !important; display: block !important; }
+  .divider-cell { display: none !important; }
+}

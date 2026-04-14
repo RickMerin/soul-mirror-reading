@@ -1,0 +1,88 @@
+/* ─────────────────────────────────────────
+   SUCCESS
+───────────────────────────────────────── */
+.success-section {
+  display: none;
+  z-index: 1;
+  position: relative;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.success-section.visible {
+  display: block;
+  animation: fadeUp 0.7s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-icon {
+  font-size: 32px;
+  color: var(--gold);
+  opacity: 0.6;
+  margin-bottom: 20px;
+}
+
+.success-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 300;
+  color: var(--text);
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+}
+
+.success-section p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+.site-footer {
+  background: linear-gradient(160deg, #2a1252 0%, #1e0d40 100%);
+  color: rgba(245, 240, 250, 0.5);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.7;
+  padding: 49px 24px;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(196, 160, 82, 0.22);
+  letter-spacing: 0.03em;
+  margin-top: auto;
+}
+
+.site-footer a {
+  color: rgba(232, 201, 122, 0.75);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: rgba(232, 201, 122, 0.95);
+}
+
+.site-footer-links {
+  margin-bottom: 6px;
+}
+
+.site-footer.wavy {
+  border-top: none;
+}
+
+.wavy {
+  clip-path: shape(from 0 100%, vline to 14.5px, curve to 6% 9px with 4% 9px, curve to 10% 5px with 8% 9px, curve to 14% 11.5px with 12% 1px, curve to 18% 25.5px with 16% 22px, curve to 22% 16px with 20% 29px, curve to 26% 12px with 24% 3px, curve to 30% 13.5px with 28% 21px, curve to 34% 6px with 32% 6px, curve to 38% 3px with 36% 6px, curve to 42% 5.5px with 40% 0px, curve to 46% 7px with 44% 11px, curve to 50% 11.5px with 48% 3px, curve to 54% 13px with 52% 20px, curve to 58% 16px with 56% 6px, curve to 62% 14px with 60% 26px, curve to 66% 14.5px with 64% 2px, curve to 70% 25.5px with 68% 27px, curve to 74% 18px with 72% 24px, curve to 78% 15.5px with 76% 12px, curve to 82% 13.5px with 80% 19px, curve to 86% 8px with 84% 8px, curve to 90% 15.5px with 88% 8px, curve to 94% 24px with 92% 23px, curve to 100% 14.5px with 96% 25px, vline to 100%, hline to 0);

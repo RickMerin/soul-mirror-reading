@@ -1,0 +1,384 @@
+/* ─────────────────────────────────────────
+   MODAL
+───────────────────────────────────────── */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(20, 14, 8, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-overlay.open {
+  display: flex;
+  animation: fadeOverlay 0.3s ease;
+}
+
+@keyframes fadeOverlay {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-box {
+  position: relative;
+  max-width: 560px;
+  background: linear-gradient(170deg, #c9c0e0 0%, #dfd9eb 40%, #eee9f4 100%);
+  border: 1px solid rgba(196, 160, 82, 0.3);
+  border-radius: 16px;
+  padding: 30px 30px 30px;
+  text-align: center;
+  animation: modalIn 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.18),
+    0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: rgba(154, 114, 48, 0.35);
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--gold);
+}
+
+.modal-box h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.modal-box .form-sub {
+  font-size: 1.08rem;
+  color: #000;
+  font-style: italic;
+  margin-bottom: 26px;
+  line-height: 1.7;
+}
+
+/* ── Recap cards ── */
+.chosen-recap {
+  display: flex;
+  justify-content: center;
+  gap: 1px;
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+}
+
+.recap-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(160deg, #2a1252 0%, #3b1f6e 100%);
+  border: 1px solid rgba(196, 160, 82, 0.55);
+  border-radius: 12px;
+  padding: 16px 16px 12px;
+  min-width: 130px;
+  box-shadow: 0 4px 16px rgba(59, 31, 110, 0.3);
+}
+
+.recap-card img {
+  width: auto;
+  height: 222px;
+  max-width: 171px;
+  object-fit: contain;
+  border-radius: 5px;
+  border: 1px solid rgba(196, 160, 82, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.recap-card-info {
+  text-align: center;
+}
+
+.recap-label {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(196, 160, 82, 0.85);
+  margin-bottom: 3px;
+}
+
+.recap-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ── Form ── */
+.form-box {
+  max-width: 100%;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(26, 18, 10, 0.88);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  min-height: 50px;
+  padding: 14px 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(246, 240, 231, 0.92) 100%
+  );
+  border: 1px solid rgba(154, 114, 48, 0.3);
+  border-radius: 10px;
+  color: #1d160f;
+  font-size: 1.07rem;
+  font-family: "Crimson Pro", Georgia, serif;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.75) inset,
+    0 10px 24px rgba(58, 40, 21, 0.08);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--gold);
+  box-shadow:
+    0 0 0 3px rgba(154, 114, 48, 0.18),
+    0 14px 30px rgba(69, 46, 24, 0.16);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(249, 244, 236, 0.95) 100%
+  );
+}
+
+.form-group input::placeholder {
+  color: rgba(43, 31, 19, 0.52);
+}
+
+.form-group select {
+  padding-right: 44px;
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(246, 240, 231, 0.92) 100%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239a7230' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat, no-repeat;
+  background-position:
+    0 0,
+    right 14px center;
+  background-size: auto, 14px;
+  cursor: pointer;
+}
+
+.form-group select option {
+  background: #fbf8f2;
+  color: #1e160e;
+}
+
+.dob-row select option {
+  color: #1e160e;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.form-row .form-group {
+  margin-bottom: 0;
+}
+
+.dob-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(246, 240, 231, 0.92) 100%
+  );
+  border: 1px solid rgba(154, 114, 48, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.75) inset,
+    0 10px 24px rgba(58, 40, 21, 0.08);
+}
+
+.dob-row:focus-within {
+  border-color: var(--gold);
+  box-shadow:
+    0 0 0 3px rgba(154, 114, 48, 0.18),
+    0 14px 30px rgba(69, 46, 24, 0.16);
+}
+
+.dob-row select {
+  width: 100%;
+  border: none !important;
+  border-right: 1px solid rgba(154, 114, 48, 0.2) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent;
+  padding: 14px 36px 14px 12px;
+  font-size: 1rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239a7230' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  color: #1e160e;
+}
+
+.dob-row select:last-child {
+  border-right: none !important;
+}
+
+.dob-row select:focus {
+  outline: none;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #3b1f6e 0%, #6b3fa0 50%, #3b1f6e 100%);
+  border: none;
+  border-radius: 40px;
+  color: #e8c97a;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 6px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+  box-shadow:
+    0 4px 22px rgba(59, 31, 110, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.14) inset;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 30px rgba(59, 31, 110, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.18) inset;
+  filter: brightness(1.1);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-btn.is-invalid:disabled {
+  background: linear-gradient(135deg, #6f1f2d 0%, #a63f55 50%, #6f1f2d 100%);
+  color: #f6d2d8;
+  box-shadow:
+    0 4px 22px rgba(111, 31, 45, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.1) inset;
+  opacity: 0.78;
+}
+
+.form-privacy {
+  font-size: 12px;
+  color: #000;
+  margin-top: 12px;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.error-msg {
+  display: none;
+  color: #6f1f2d;
+  font-size: 13px;
+  margin-top: 10px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  background: rgba(111, 31, 45, 0.08);
+  border: 1px solid rgba(111, 31, 45, 0.25);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.error-msg.visible {
+  display: block;
+}
+
+.form-group.field-error input,
+.form-group.field-error select,
+.dob-row.field-error {
+  border-color: rgba(111, 31, 45, 0.7) !important;
+  box-shadow: 0 0 0 3px rgba(111, 31, 45, 0.14) !important;
+  background: rgba(255, 242, 245, 0.95);
+}
+
+.form-group.field-error label {
+  color: #6f1f2d;
+}
