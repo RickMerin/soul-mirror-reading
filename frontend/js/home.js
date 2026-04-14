@@ -1,4 +1,5 @@
 import { initDreamBackground } from "./lib/dream-background.js";
+import { READING_PICK_KEY, READING_PICK_VERSION } from "./lib/reading-pick.js";
 
 // ── Card data — 78 cards ────────────────────────────────────────────────────
 const CARD_SLUGS = [
@@ -180,7 +181,6 @@ const PROMPTS = [
   "Your three cards have been drawn.<br><em>Your reading is being prepared…</em>",
 ];
 
-const SLOT_LABELS = ["Your Love", "Your Life", "Your Wealth"];
 const FLOAT_CLASSES = ["float-0", "float-1", "float-2"];
 
 // ── State ───────────────────────────────────────────────────────────────────
@@ -210,6 +210,20 @@ function shuffle(arr) {
 // ── Build deck ───────────────────────────────────────────────────────────────
 let deckSpread = false;
 
+/**
+ * Matches `70-responsive.css` @media (max-width: 720px) — card-slot 62px vs 86px.
+ * Mobile uses a compact arc (radius + angle span tuned per card count) so rotated cards stay inside the viewport; `10-base.css` sets `overflow-x: hidden` on html/body.
+ */
+function getDeckArcLayout() {
+  const mobile =
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(max-width: 720px)").matches;
+  if (mobile) {
+    return { N: 14, radius: 124, halfCard: 31, angleSpan: 64 };
+  }
+  return { N: 15, radius: 280, halfCard: 43, angleSpan: 88 };
+}
+
 function buildDeck() {
   remaining = shuffle(
     CARD_SLUGS.map((s, i) => ({
@@ -221,9 +235,12 @@ function buildDeck() {
   );
 
   const arc = document.getElementById("deckArc");
-  const N = 15;
-  const angles = Array.from({ length: N }, (_, i) => -44 + (88 / (N - 1)) * i);
-  const radius = 280;
+  const { N, radius, halfCard, angleSpan } = getDeckArcLayout();
+  const halfArc = angleSpan / 2;
+  const angles = Array.from(
+    { length: N },
+    (_, i) => -halfArc + (angleSpan / (N - 1)) * i,
+  );
   const slots = [];
 
   angles.forEach((angle, i) => {
@@ -235,16 +252,17 @@ function buildDeck() {
     slot.className = "card-slot";
     slot.dataset.i = String(i);
 
-    const stackRot = (i - (N - 1) / 2) * 1.8;
+    const stackSpread = N < 15 ? 1.42 : 1.8;
+    const stackRot = (i - (N - 1) / 2) * stackSpread;
     slot.style.cssText = `
-      left: calc(50% - 43px);
+      left: calc(50% - ${halfCard}px);
       bottom: 10px;
       transform: rotate(${stackRot}deg);
       transform-origin: bottom center;
       transition: none;
     `;
 
-    slot.dataset.finalLeft = `calc(50% + ${cx - 43}px)`;
+    slot.dataset.finalLeft = `calc(50% + ${cx - halfCard}px)`;
     slot.dataset.finalBottom = `${-cy + 10}px`;
     slot.dataset.finalAngle = String(angle);
 
@@ -390,7 +408,7 @@ function flyCard(slot, card, angle, destIdx) {
     updateCardsRemainingText();
 
     if (chosen === TOTAL_CARDS_TO_CHOOSE) {
-      setTimeout(showForm, 1000);
+      setTimeout(goToUnlockPage, 1000);
     }
 
     animating = false;
@@ -412,201 +430,19 @@ function landCard(slot, card, idx) {
   slot.querySelector(".cs-inner").style.display = "none";
 }
 
-// ── Show modal ───────────────────────────────────────────────────────────────
-function showForm() {
-  const recap = document.getElementById("chosenRecap");
-  recap.innerHTML = drawnCards
-    .map(
-      (card, i) => `
-    <div class="recap-card">
-      <img src="${IMG_BASE}${card.slug}.png" alt="${card.name}" />
-      <div class="recap-card-info">
-        <div class="recap-label">${SLOT_LABELS[i]}</div>
-        <div class="recap-name">${card.name}</div>
-      </div>
-    </div>`,
-    )
-    .join("");
-
-  const modal = document.getElementById("formModal");
-  modal.classList.add("open");
-  document.body.style.overflow = "hidden";
-  setTimeout(() => document.getElementById("inputName").focus(), 100);
-}
-
-// ── Close modal ──────────────────────────────────────────────────────────────
-function closeModal() {
-  document.getElementById("formModal").classList.remove("open");
-  document.body.style.overflow = "";
-}
-
-// ── Name greeting ────────────────────────────────────────────────────────────
-// ── Populate DOB dropdowns ────────────────────────────────────────────────────
-(function () {
-  const daySelect = document.getElementById("inputDobDay");
-  const yearSelect = document.getElementById("inputDobYear");
-  for (let d = 1; d <= 31; d++) {
-    const o = document.createElement("option");
-    o.value = String(d).padStart(2, "0");
-    o.textContent = String(d);
-    daySelect.appendChild(o);
-  }
-  const currentYear = new Date().getFullYear();
-  for (let y = currentYear; y >= currentYear - 100; y--) {
-    const o = document.createElement("option");
-    o.value = String(y);
-    o.textContent = String(y);
-    yearSelect.appendChild(o);
-  }
-})();
-
-document.getElementById("inputName").addEventListener("input", function () {
-  const greet = document.getElementById("nameGreet");
-  greet.textContent = this.value.trim() ? this.value.trim() + "?" : "";
-});
-
-const readingForm = document.getElementById("readingForm");
-const submitBtn = document.getElementById("submitBtn");
-const errorMsg = document.getElementById("errorMsg");
-const formControls = {
-  name: document.getElementById("inputName"),
-  email: document.getElementById("inputEmail"),
-  month: document.getElementById("inputDobMonth"),
-  day: document.getElementById("inputDobDay"),
-  year: document.getElementById("inputDobYear"),
-  gender: document.getElementById("inputGender"),
-};
-const dobRow = document.querySelector(".dob-row");
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function toggleFieldError(element, hasError) {
-  if (!element) return;
-  const group = element.closest(".form-group");
-  if (group) group.classList.toggle("field-error", hasError);
-  element.setAttribute("aria-invalid", hasError ? "true" : "false");
-}
-
-function toggleDobError(hasError) {
-  const dobGroup = formControls.month.closest(".form-group");
-  if (dobGroup) dobGroup.classList.toggle("field-error", hasError);
-  if (dobRow) dobRow.classList.toggle("field-error", hasError);
-  [formControls.month, formControls.day, formControls.year].forEach((field) => {
-    field.setAttribute("aria-invalid", hasError ? "true" : "false");
-  });
-}
-
-function validateForm(showErrors = false) {
-  const name = formControls.name.value.trim();
-  const email = formControls.email.value.trim();
-  const dobMonth = formControls.month.value;
-  const dobDay = formControls.day.value;
-  const dobYear = formControls.year.value;
-  const gender = formControls.gender.value.trim();
-
-  const invalidName = name.length < 2 || name.length > 120;
-  const invalidEmail = !EMAIL_RE.test(email) || email.length > 254;
-  const invalidDob = !(dobMonth && dobDay && dobYear);
-  const invalidGender = !(gender === "Female" || gender === "Male");
-  const hasErrors = invalidName || invalidEmail || invalidDob || invalidGender;
-
-  if (showErrors) {
-    toggleFieldError(formControls.name, invalidName);
-    toggleFieldError(formControls.email, invalidEmail);
-    toggleDobError(invalidDob);
-    toggleFieldError(formControls.gender, invalidGender);
-  } else {
-    toggleFieldError(formControls.name, false);
-    toggleFieldError(formControls.email, false);
-    toggleDobError(false);
-    toggleFieldError(formControls.gender, false);
-  }
-
-  submitBtn.disabled = hasErrors;
-  submitBtn.classList.toggle("is-invalid", hasErrors);
-
-  if (showErrors && hasErrors) {
-    errorMsg.textContent =
-      "Please complete all required fields with valid details before unlocking your reading.";
-    errorMsg.classList.add("visible");
-  } else if (!hasErrors) {
-    errorMsg.textContent = "";
-    errorMsg.classList.remove("visible");
-  }
-
-  return {
-    isValid: !hasErrors,
-    payload: {
-      name,
-      email,
-      dob: `${dobMonth}/${dobDay}/${dobYear}`,
-      gender,
-    },
-  };
-}
-
-[
-  formControls.name,
-  formControls.email,
-  formControls.month,
-  formControls.day,
-  formControls.year,
-  formControls.gender,
-].forEach((field) => {
-  field.addEventListener("input", () => validateForm(false));
-  field.addEventListener("change", () => validateForm(false));
-});
-
-validateForm(false);
-
-// ── Form submit ──────────────────────────────────────────────────────────────
-readingForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const validation = validateForm(true);
-  if (!validation.isValid) {
+function goToUnlockPage() {
+  try {
+    sessionStorage.setItem(
+      READING_PICK_KEY,
+      JSON.stringify({ v: READING_PICK_VERSION, cards: drawnCards }),
+    );
+  } catch {
     return;
   }
-
-  const { name, email, dob, gender } = validation.payload;
-
-  submitBtn.disabled = true;
-  submitBtn.classList.remove("is-invalid");
-  submitBtn.textContent = "Reading the cards…";
-  errorMsg.classList.remove("visible");
-
-  const readingApiUrl = new URL("api/reading", window.location.href).href;
-  const thankYouUrl = new URL("thankyou.php", window.location.href).href;
-
-  try {
-    const res = await fetch(readingApiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-        dob,
-        gender,
-        card1: drawnCards[0].id,
-        card2: drawnCards[1].id,
-        card3: drawnCards[2].id,
-        card1Name: drawnCards[0].name,
-        card2Name: drawnCards[1].name,
-        card3Name: drawnCards[2].name,
-      }),
-    });
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "Server error");
-
-    closeModal();
-    window.location.href = thankYouUrl;
-  } catch {
-    validateForm(false);
-    submitBtn.textContent = "Unlock My Reading →";
-    errorMsg.textContent = "Something went wrong. Please try again.";
-    errorMsg.classList.add("visible");
-  }
-});
+  window.location.assign(
+    new URL("unlock-reading.php", window.location.href).href,
+  );
+}
 
 initDreamBackground({
   sparkleMobile: 48,
