@@ -1,21 +1,37 @@
 import { initDreamBackground } from "./lib/dream-background.js";
 
-document.querySelectorAll(".cta-btn").forEach((btn) => {
-  btn.addEventListener("click", function (e) {
-    e.preventDefault();
-  });
-});
-
-window.toggleReadVersion = function toggleReadVersion(btn) {
+function toggleReadVersion(btn) {
   const panel = document.getElementById("read-version");
+  if (!panel) return;
   const open = panel.style.display === "block";
   panel.style.display = open ? "none" : "block";
-  btn.setAttribute("aria-expanded", !open);
+  btn.setAttribute("aria-expanded", open ? "false" : "true");
   btn.textContent = open
     ? "☽  Prefer to read instead?  ☾"
     : "☽  Hide reading  ☾";
   if (!open) panel.scrollIntoView({ behavior: "smooth", block: "start" });
-};
+}
+
+document.querySelector(".read-toggle")?.addEventListener("click", function () {
+  toggleReadVersion(this);
+});
+
+document
+  .querySelector(".read-toggle-collapse")
+  ?.addEventListener("click", function () {
+    const btn = document.querySelector(".read-toggle");
+    if (btn) toggleReadVersion(btn);
+  });
+
+document.querySelectorAll(".cta-btn").forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const href = btn.getAttribute("href");
+    if (href?.startsWith("#")) {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
 
 initDreamBackground({
   sparkleMobile: 48,

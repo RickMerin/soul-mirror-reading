@@ -11,7 +11,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You — Soul Mirror Reading</title>
+  <title>Thank You — Personalized 3 Card Tarot Reading</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
@@ -31,7 +31,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 
   <div class="wrap">
     <section class="thankyou-card" aria-labelledby="thankyouHeading">
-      <div class="eyebrow">Soul Mirror</div>
+      <div class="eyebrow">3 Card Tarot Reading</div>
       <h1 id="thankyouHeading">Your reading is <em>on its way</em></h1>
       <p class="lead">Check your inbox for your personalized 3 Card Soul Reading. If you do not see it within a few
         minutes, peek in your promotions or spam folder.</p>
@@ -48,8 +48,6 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
         </div>
         <p class="redirect-note" id="redirectCopy">Redirecting to your next step in 10 seconds.</p>
       </div>
-
-      <a href="/" class="back-link">Back to the reading</a>
     </section>
   </div>
 
