@@ -35,6 +35,7 @@ Tarot funnel: visitors pick three cards, submit a form, and the server fetches A
 | ------------------ | --------------------------------------------------------------------------------- |
 | `composer install` | Install PHP dependencies (run after clone or when `composer.json` changes)        |
 | `composer test`    | Run PHPUnit (`tests/`)                                                            |
+| `composer migrate` | Apply pending SQL migrations from `database/migrations/*.sql`                     |
 | `npm ci`           | Install Node dependencies for CSS/email builds (see `package.json`)               |
 | `npm run build`    | Bundle CSS to `public/assets/*.min.css` and generate `public/email-template.html` |
 

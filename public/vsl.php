@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Soul Mirror Reading — What the Cards Are Really Saying</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #e8e3ef;
+  --bg2:         #dfd9eb;
+  --bg3:         #d5cddf;
+  --surface:     rgba(255,255,255,0.55);
+  --text:        #1e160e;
+  --text-mid:    #3a2a1a;
+  --text-soft:   #5a4a3a;
+  --gold:        #9a7230;
+  --gold-light:  #c4a052;
+  --gold-warm:   #e8c97a;
+  --gold-line:   rgba(154,114,48,0.22);
+  --gold-bg:     rgba(154,114,48,0.07);
+  --purple-dark: #3b1f6e;
+  --purple-mid:  #5a3090;
+  --purple-deep: #2a1252;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --body:  'Crimson Pro', Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(170deg, #c9c0e0 0%, #dfd9eb 40%, #eee9f4 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 20px;
+  line-height: 1.82;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(59,31,110,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(59,31,110,0.04) 0%, transparent 60%);
+}
+
+h1,h2,h3,h4 { font-family: var(--serif); font-weight: 700; line-height: 1.2; color: var(--text); }
+p { margin-bottom: 1.3em; }
+p:last-child { margin-bottom: 0; }
+em { color: var(--gold); font-style: italic; }
+strong { font-weight: 700; }
+
+.wrap        { max-width: 700px;  margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.wrap-narrow { max-width: 560px;  margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.wrap-wide   { max-width: 900px;  margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.section     { padding: 80px 0; position: relative; z-index: 1; }
+
+/* ══ RED TOP NOTICE BAR ══ */
+.topnotice {
+  background: linear-gradient(90deg, #9b1c1c 0%, #c0392b 50%, #9b1c1c 100%);
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-align: center;
+  padding: 16px 24px;
+  line-height: 1.65;
+  position: relative;
+  z-index: 10;
+}
+.topnotice strong { color: #fff; font-weight: 700; }
+.topnotice .notice-dot { color: rgba(255,255,255,0.5); margin: 0 8px; }
+
+/* ══ STICKY BRAND BAR ══ */
+.topbar {
+  background: var(--purple-deep);
+  color: rgba(232,201,122,0.7);
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-align: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ══ VSL SECTION ══ */
+.vsl-section {
+  padding: 72px 24px 80px;
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 24px;
+}
+
+.vsl-headline {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  color: var(--text);
+  max-width: 760px;
+  margin: 0 auto 20px;
+  line-height: 1.16;
+}
+.vsl-headline em { color: var(--purple-mid); }
+
+.vsl-sub {
+  font-family: var(--body);
+  font-size: clamp(18px, 2.2vw, 22px);
+  color: var(--text-mid);
+  max-width: 540px;
+  margin: 0 auto 44px;
+  line-height: 1.78;
+}
+
+/* Video frame — real video, ready for MP4/iframe embed */
+.video-frame {
+  max-width: 880px;
+  margin: 0 auto 28px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(59,31,110,0.25), 0 0 0 1px rgba(212,175,55,0.25);
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #1a0d40;
+}
+.video-frame video,
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+/* Placeholder mode — visible until real video source is added */
+.video-frame .video-placeholder-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.video-overlay-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: linear-gradient(180deg, rgba(26,13,54,0.25) 0%, rgba(26,13,54,0.65) 100%);
+  pointer-events: none;
+}
+.play-ring-new {
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  border: 2px solid rgba(232,201,122,0.55);
+  background: rgba(26,13,54,0.55);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  color: rgba(232,201,122,0.92);
+  padding-left: 6px;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.3);
+}
+.play-ring-label {
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(232,201,122,0.85);
+  text-align: center;
+  padding: 0 20px;
+}
+.play-ring-label small {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: rgba(232,201,122,0.55);
+  font-style: italic;
+  text-transform: none;
+}
+
+.badges {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.badge {
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--text-soft);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ══ PRODUCT REVEAL BANNER ══ */
+.reveal-banner {
+  background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple-dark) 60%, #1a0b38 100%);
+  padding: 72px 24px 80px;
+  text-align: center;
+  position: relative; z-index: 1;
+}
+.reveal-tag {
+  display: inline-block;
+  background: rgba(232,201,122,0.12);
+  border: 1px solid rgba(232,201,122,0.28);
+  color: var(--gold-warm);
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 7px 20px;
+  border-radius: 30px;
+  margin-bottom: 28px;
+}
+.reveal-banner h2 {
+  font-family: var(--serif);
+  font-size: clamp(30px, 5vw, 52px);
+  color: #f5f0fa;
+  max-width: 700px;
+  margin: 0 auto 20px;
+  line-height: 1.2;
+}
+.reveal-banner h2 em { color: var(--gold-warm); font-style: italic; }
+.reveal-banner p {
+  font-family: var(--body);
+  font-size: 18px;
+  color: rgba(245,240,250,0.68);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.78;
+}
+
+/* ══ READING BREAKDOWN ══ */
+.reading-section {
+  padding: 88px 0 40px;
+  position: relative; z-index: 1;
+}
+.reading-section > .wrap > h2 {
+  font-size: clamp(28px, 4.5vw, 44px);
+  margin-bottom: 14px;
+  text-align: center;
+  color: var(--purple-dark);
+}
+.reading-intro {
+  font-size: 20px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+
+.path-card {
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(90,48,144,0.15);
+  border-left: 4px solid var(--purple-mid);
+  border-radius: 10px;
+  padding: 26px 28px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 12px rgba(59,31,110,0.08);
+}
+.path-icon {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.path-icon img {
+  width: 52px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(90,48,144,0.25));
+}
+.path-title-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.path-label {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--purple-mid);
+  font-weight: 700;
+  -webkit-text-stroke: 0.4px currentColor;
+  display: block;
+  margin-bottom: 5px;
+}
+.path-card h3 { font-size: 20px; margin-bottom: 0; color: var(--purple-dark); }
+.path-card p { font-size: 17px; color: #1a1a1a; line-height: 1.72; margin-bottom: 0; margin-top: 10px; }
+
+.mirror-card {
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(90,48,144,0.2);
+  border-left: 4px solid #e8c97a;
+  border-radius: 10px;
+  padding: 28px 28px;
+  margin-top: 14px;
+  box-shadow: 0 2px 16px rgba(59,31,110,0.1);
+}
+.mirror-card .path-icon { background: none; border: none; }
+.mirror-card .path-icon img { filter: drop-shadow(0 2px 8px rgba(90,48,144,0.3)); }
+.mirror-card .path-label { color: var(--gold); }
+.mirror-card h3 { font-size: 20px; color: var(--purple-dark); margin-bottom: 0; }
+.mirror-card p { font-size: 17px; color: #1a1a1a; line-height: 1.72; margin-bottom: 0.8em; }
+.mirror-card p:last-child { margin-bottom: 0; }
+.mirror-card strong { color: var(--text); }
+
+/* ══ VIP SECTION ══ */
+.vip-section { padding: 40px 0 0; position: relative; z-index: 1; }
+.vip-box {
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(90,48,144,0.18);
+  border-top: 4px solid var(--purple-mid);
+  border-radius: 12px;
+  padding: 48px 44px;
+  box-shadow: 0 4px 24px rgba(59,31,110,0.1);
+}
+.vip-box h2 {
+  font-size: clamp(26px, 4vw, 40px);
+  margin-bottom: 8px;
+  text-align: center;
+  color: var(--purple-dark);
+}
+.vip-mockup {
+  display: block;
+  margin: 16px auto 28px;
+  max-width: 200px;
+  width: 50%;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,0.2));
+}
+.vip-box .sub { font-size: 19px; color: var(--text-mid); margin-bottom: 36px; line-height: 1.8; }
+.vip-items { display: flex; flex-direction: column; gap: 24px; }
+.vip-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(59,31,110,0.1);
+}
+.vip-item:last-child { border-bottom: none; padding-bottom: 0; }
+.vip-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple-mid));
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+.vip-item h4 { font-size: 21px; margin-bottom: 5px; }
+.vip-item p { font-size: 17px; color: var(--text-soft); line-height: 1.7; margin: 0; }
+.vip-val {
+  font-family: var(--serif);
+  font-size: 12px;
+  color: var(--gold);
+  font-style: italic;
+  margin-top: 4px;
+  display: block;
+}
+
+/* ══ BONUSES ══ */
+.bonuses-section { padding: 48px 0 40px; position: relative; z-index: 1; }
+.bonuses-section h2 { font-size: clamp(28px, 4.5vw, 42px); margin-bottom: 10px; text-align: center; }
+.bonuses-intro { font-size: 17px; color: #1a1a1a; margin-bottom: 32px; text-align: center; }
+
+.bonus-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.bonus-tile {
+  background: #ffffff;
+  border: 1px solid rgba(232,201,122,0.35);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.25) inset,
+    0 -1px 0 rgba(0,0,0,0.3) inset,
+    1px 0 0 rgba(255,255,255,0.12) inset,
+    -1px 0 0 rgba(0,0,0,0.2) inset,
+    0 8px 32px rgba(90,30,160,0.35),
+    0 2px 6px rgba(0,0,0,0.4),
+    0 20px 60px rgba(60,10,120,0.2);
+  position: relative;
+}
+.bonus-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 40%, rgba(0,0,0,0.1) 100%) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.bonus-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bonus-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.bonus-body { padding: 14px 22px 22px; flex: 1; display: flex; flex-direction: column; background: transparent; }
+.bonus-icon { display: none; }
+.bonus-header { padding: 18px 22px 0; text-align: center; }
+.bonus-header h4 { font-size: 18px; margin-bottom: 4px; line-height: 1.35; color: #2a0f5e; }
+.bonus-header .bonus-value { font-family: var(--serif); font-size: 15px; color: var(--purple-mid); font-weight: 700; letter-spacing: 0.04em; margin-bottom: 0; }
+.bonus-tile h4 { font-size: 18px; margin-bottom: 7px; line-height: 1.35; color: #2a0f5e; }
+.bonus-tile p { font-size: 16px; color: #1a1a1a; line-height: 1.6; margin-bottom: 12px; flex: 1; }
+.bonus-tag {
+  font-family: var(--serif);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1a8a3a 0%, #22b84a 100%);
+  border-radius: 20px;
+  padding: 8px 20px;
+  text-align: center;
+  display: block;
+  box-shadow: 0 0 14px rgba(34,184,74,0.6), 0 0 28px rgba(34,184,74,0.3);
+  margin-top: auto;
+}
+.bonus-tag span {
+  color: #1a1a1a;
+  text-decoration: line-through;
+  text-decoration-color: rgba(90,48,144,0.5);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-shadow: none;
+}
+
+.bonus-total-row {
+  background: linear-gradient(135deg, #2a1252 0%, #3b1f6e 100%);
+  border: 1px solid rgba(232,201,122,0.35);
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  position: relative;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.2) inset,
+    0 -1px 0 rgba(0,0,0,0.3) inset,
+    1px 0 0 rgba(255,255,255,0.1) inset,
+    -1px 0 0 rgba(0,0,0,0.2) inset,
+    0 8px 32px rgba(90,30,160,0.4),
+    0 2px 6px rgba(0,0,0,0.5),
+    0 20px 60px rgba(60,10,120,0.25);
+}
+.bonus-total-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.04) 40%, rgba(0,0,0,0.1) 100%) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.btl {
+  font-family: var(--serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-warm);
+  opacity: 0.85;
+}
+.btv {
+  font-family: var(--serif);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--gold-warm);
+  line-height: 1;
+  text-shadow: 0 0 24px rgba(232,201,122,0.6), 0 0 48px rgba(232,201,122,0.25);
+}
+
+/* ══ PRICING ══ */
+.pricing-section { padding: 40px 0 30px; position: relative; z-index: 1; }
+.pricing-section h2 { font-size: clamp(28px, 4.5vw, 42px); text-align: center; margin-bottom: 36px; }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 680px;
+  margin: 0 auto 36px;
+}
+.pricing-grid--single {
+  grid-template-columns: 1fr;
+  max-width: 560px;
+}
+.pricing-grid--single .price-card-header { text-align: center; }
+.pricing-grid--single .price-amount { justify-content: center; display: flex; align-items: baseline; gap: 8px; }
+}
+.price-card {
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(59,31,110,0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(4px);
+}
+.price-card.featured {
+  border-color: var(--purple-mid);
+  border-width: 2px;
+}
+.price-card-badge {
+  position: absolute;
+  top: -1px; right: -1px;
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple-mid));
+  color: var(--gold-warm);
+  font-family: var(--serif);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-bottom-left-radius: 8px;
+}
+.price-card-header {
+  background: rgba(59,31,110,0.08);
+  padding: 20px 26px;
+  border-bottom: 1px solid rgba(59,31,110,0.12);
+  text-align: center;
+}
+.price-card.featured .price-card-header {
+  background: linear-gradient(160deg, #e8e0f5 0%, #d4c4ee 60%, #c2aee8 100%);
+  border-bottom: 1px solid rgba(59,31,110,0.18);
+}
+.price-card-header h3 { font-size: 20px; margin-bottom: 0; }
+.price-card-label { font-family: var(--serif); font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--purple-mid); display: block; margin-bottom: 3px; }
+.price-card-header p { font-size: 17px; color: #1a1a1a; margin: 0; }
+.price-card-body { padding: 24px 26px; text-align: center; }
+.price-was { font-size: 24px; font-weight: 400; text-decoration: line-through; color: #1a1a1a; vertical-align: baseline; margin-right: 6px; }
+.price-amount {
+  font-family: var(--serif);
+  font-size: 54px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 6px;
+  display: block;
+}
+.price-amount sup { font-size: 22px; vertical-align: super; line-height: 0; }
+.price-card.featured .price-amount { color: #cc2200; }
+.price-term { font-family: var(--serif); font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #1a1a1a; margin-bottom: 20px; display: block; -webkit-text-stroke: 0.3px currentColor; }
+.price-includes { list-style: none; display: flex; flex-direction: column; gap: 10px; text-align: left; }
+.price-includes li {
+  display: flex;
+  gap: 10px;
+  font-size: 17px;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+.price-includes li::before { content: '✔'; color: var(--purple-mid); flex-shrink: 0; font-size: 13px; margin-top: 3px; }
+.price-includes li.missing { opacity: 0.38; text-decoration: line-through; text-decoration-color: rgba(90,48,144,0.4); }
+.price-includes li.missing::before { content: none; }
+.price-card-cta {
+  display: block;
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px 20px;
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: center;
+  border-radius: 30px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity .2s, transform .2s;
+  box-sizing: border-box;
+}
+.price-card-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+.price-card-cta.lite {
+  background: transparent;
+  border: 2px solid var(--purple-mid);
+  color: var(--purple-mid);
+  box-shadow: none;
+}
+.price-card-cta.vip {
+  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-mid) 100%);
+  border: 2px solid transparent;
+  color: var(--gold-warm);
+  box-shadow: 0 4px 18px rgba(59,31,110,0.35);
+}
+
+.value-line {
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 17px;
+  color: #1a1a1a;
+  margin-bottom: 28px;
+}
+
+/* CTA */
+.cta-block { text-align: center; }
+.cta-btn {
+  display: inline-block;
+  padding: 22px 52px;
+  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-mid) 50%, var(--purple-dark) 100%);
+  color: var(--gold-warm);
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: 40px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 28px rgba(59,31,110,0.4);
+  transition: opacity .25s, transform .2s;
+  line-height: 1.3;
+}
+.cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.cta-note {
+  font-family: var(--serif);
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  color: #1a1a1a;
+  margin-top: 16px;
+  line-height: 1.9;
+}
+.stars { color: var(--gold); letter-spacing: 3px; font-size: 13px; }
+
+/* ══ HERO IMAGE + SECTION IMAGES ══ */
+.hero-image-wrap {
+  max-width: 920px;
+  margin: 0 auto 28px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(59,31,110,0.25), 0 0 0 1px rgba(212,175,55,0.25);
+  position: relative;
+}
+.hero-image-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.hero-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(26,13,54,0.55) 100%);
+  pointer-events: none;
+}
+.section-image {
+  max-width: 820px;
+  margin: 48px auto 32px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(59,31,110,0.18), 0 0 0 1px rgba(212,175,55,0.2);
+}
+.section-image img { width: 100%; height: auto; display: block; }
+.section-image-caption {
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-soft);
+  margin-top: 10px;
+  letter-spacing: 0.04em;
+}
+
+/* ══ PRICE BRIDGE ══ */
+.price-bridge {
+  max-width: 640px;
+  margin: 0 auto 36px;
+  text-align: center;
+  padding: 28px 32px;
+  background: rgba(255,255,255,0.55);
+  border: 1px dashed rgba(212,175,55,0.45);
+  border-radius: 12px;
+}
+.price-bridge__eyebrow {
+  font-family: var(--display);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--purple-mid);
+  margin-bottom: 10px;
+  display: block;
+}
+.price-bridge__body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+.price-bridge__body strong { color: var(--purple-dark); font-style: normal; }
+
+/* ══ TESTIMONIALS ══ */
+.testimonials-section { padding: 40px 0 88px; position: relative; z-index: 1; }
+.testimonials-section h2 { font-size: clamp(28px, 4.5vw, 42px); text-align: center; margin-bottom: 44px; }
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.testi-card {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(59,31,110,0.14);
+  border-radius: 12px;
+  padding: 28px 26px;
+  backdrop-filter: blur(4px);
+}
+.testi-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.testi-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(212,175,55,0.45);
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(59,31,110,0.14);
+}
+.testi-avatar-meta { min-width: 0; flex: 1; }
+.testi-avatar-meta .testi-name { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.2; }
+.testi-avatar-meta .testi-meta { font-size: 12px; color: var(--text-soft); margin-top: 3px; }
+.testi-stars { color: var(--gold); font-size: 13px; letter-spacing: 3px; margin-bottom: 14px; }
+.testi-quote {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-mid);
+  line-height: 1.72;
+  margin-bottom: 18px;
+}
+.testi-name { font-family: var(--serif); font-size: 14px; font-weight: 700; color: var(--text); }
+.testi-meta { font-size: 13px; color: var(--text-soft); margin-top: 2px; }
+
+/* ══ GUARANTEE ══ */
+.guarantee-section { padding: 80px 0 36px; position: relative; z-index: 1; }
+.guarantee-box {
+  background: rgba(255,255,255,0.62);
+  border: 1px solid rgba(59,31,110,0.15);
+  border-radius: 14px;
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  backdrop-filter: blur(6px);
+}
+.guarantee-shield {
+  width: 140px; height: 140px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.guarantee-box h3 { font-size: 30px; margin-bottom: 12px; }
+.guarantee-box p { font-size: 19px; color: var(--text-mid); line-height: 1.8; text-align: center; }
+
+/* ══ STEPS ══ */
+.steps-section { padding: 36px 0 40px; position: relative; z-index: 1; }
+.steps-section h2 { font-size: clamp(28px, 4.5vw, 42px); margin-bottom: 40px; text-align: center; }
+.steps-list { display: flex; flex-direction: column; gap: 20px; }
+.step-row {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.step-num {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple-mid));
+  color: var(--gold-warm);
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(59,31,110,0.3);
+}
+.step-row h4 { font-size: 21px; margin-bottom: 5px; }
+.step-row p { font-size: 18px; color: var(--text-mid); line-height: 1.75; margin: 0; }
+
+/* ══ FAQ ══ */
+.faq-section { padding: 36px 0 80px; position: relative; z-index: 1; }
+.faq-section h2 { font-size: clamp(28px, 4.5vw, 40px); margin-bottom: 38px; text-align: center; }
+.faq-item {
+  border-bottom: 1px solid rgba(59,31,110,0.12);
+  padding: 20px 0;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after {
+  content: '+';
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform .2s;
+}
+details[open] .faq-q::after { transform: rotate(45deg); }
+.faq-a {
+  font-size: 18px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  padding-top: 14px;
+  padding-right: 32px;
+}
+
+/* ══ FINAL CTA SECTION ══ */
+.final-cta-section {
+  background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple-dark) 60%, #1e0d40 100%);
+  padding: 96px 24px;
+  text-align: center;
+  position: relative; z-index: 1;
+}
+.final-cta-section .eyebrow { color: var(--gold-warm); opacity: 0.8; }
+.final-cta-section h2 {
+  font-size: clamp(30px, 5vw, 52px);
+  color: #f5f0fa;
+  max-width: 720px;
+  margin: 0 auto 20px;
+  line-height: 1.2;
+}
+.final-cta-section h2 em { color: var(--gold-warm); }
+.final-cta-section p {
+  font-size: 18px;
+  color: rgba(245,240,250,0.7);
+  max-width: 520px;
+  margin: 0 auto 40px;
+  line-height: 1.78;
+}
+.final-cta-section .cta-note { color: rgba(245,240,250,0.45); }
+
+/* ══ VALUE STACK ══ */
+.vstack {
+  max-width: 480px;
+  margin: 0 auto 40px;
+  border: 1px solid rgba(232,201,122,0.2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.vstack-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 24px;
+  border-bottom: 1px solid rgba(232,201,122,0.1);
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: rgba(245,240,250,0.92);
+  -webkit-text-stroke: 0.3px currentColor;
+}
+.vstack-val {
+  color: rgba(232,201,122,0.8);
+  font-weight: 700;
+}
+.vstack-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: rgba(232,201,122,0.08);
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+}
+.vstack-total-label { color: #f5f0fa; }
+.vstack-total-val { color: var(--gold-warm); }
+
+/* ══ FOOTER ══ */
+.site-footer {
+  background: var(--purple-deep);
+  color: rgba(245,240,250,0.35);
+  font-family: var(--serif);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: 28px 24px;
+  line-height: 1.9;
+  position: relative; z-index: 1;
+}
+.site-footer a { color: rgba(232,201,122,0.5); text-decoration: none; }
+.site-footer a:hover { color: rgba(232,201,122,0.85); }
+
+/* ══ VSL STORY SECTION ══ */
+.story-section {
+  background: linear-gradient(180deg, rgba(42,18,82,0.04) 0%, rgba(255,255,255,0.0) 100%);
+  border-top: 1px solid rgba(154,114,48,0.14);
+}
+.story-video-wrap {
+  max-width: 620px;
+  margin: 0 auto 48px;
+}
+.story-video-label {
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.story-video-frame {
+  background: linear-gradient(160deg, var(--purple-deep) 0%, #0e0820 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 12px 48px rgba(42,18,82,0.28);
+  border: 1px solid rgba(232,201,122,0.15);
+}
+.story-play { font-size: 40px; color: var(--gold-warm); opacity: 0.85; }
+.story-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto 48px;
+  max-width: 380px;
+}
+.story-divider-line { flex: 1; height: 1px; background: rgba(154,114,48,0.2); }
+.story-divider-text {
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.story-ts {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  opacity: 0.6;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 36px;
+}
+.story-ts:first-child { margin-top: 0; }
+.story-heading {
+  font-family: var(--display);
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 20px;
+  line-height: 1.35;
+}
+.story-subheading {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--gold);
+  margin-top: 40px;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.story-section p {
+  font-size: 19px;
+  line-height: 1.9;
+  color: var(--text-mid);
+  margin-bottom: 1em;
+}
+.story-pull {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--text);
+  font-style: italic;
+  font-weight: 700;
+  border-left: 3px solid var(--gold);
+  padding: 16px 24px;
+  margin: 36px 0;
+  background: rgba(154,114,48,0.05);
+  border-radius: 0 8px 8px 0;
+}
+.story-end {
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text);
+  margin-top: 44px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(154,114,48,0.15);
+}
+
+/* ══ TRANSITION BANNER ══ */
+.transition-banner {
+  background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple-dark) 60%, #1e0d40 100%);
+  padding: 72px 24px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.transition-banner-inner { max-width: 640px; margin: 0 auto; }
+.tb-tag {
+  font-family: var(--serif);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  color: var(--gold-warm);
+  opacity: 0.75;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.tb-headline {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4.5vw, 44px);
+  font-weight: 700;
+  color: #f5f0fa;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+.tb-sub {
+  font-family: var(--body);
+  font-size: 18px;
+  color: rgba(245,240,250,0.65);
+  line-height: 1.75;
+}
+
+/* ══ VIP LIST ══ */
+.vip-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.vip-list li {
+  font-family: var(--body);
+  font-size: 17px;
+  color: #1a1a1a;
+  line-height: 1.6;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(90,48,144,0.1);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.vip-list li:last-child { border-bottom: none; }
+.vip-list li::before {
+  content: '✓';
+  color: var(--purple-mid);
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.vip-list li strong { color: var(--purple-dark); font-weight: 700; }
+
+/* ══ READ TOGGLE ══ */
+.read-toggle {
+  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-mid) 50%, var(--purple-dark) 100%);
+  border: 1px solid rgba(232,201,122,0.3);
+  color: var(--gold-warm);
+  font-family: var(--serif);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  padding: 13px 32px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.read-toggle:hover {
+  opacity: 0.88;
+}
+.read-toggle-collapse {
+  background: none;
+  border: 1px solid rgba(154,114,48,0.3);
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  padding: 10px 28px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: block;
+  margin: 40px auto 0;
+}
+.read-toggle-collapse:hover {
+  background: rgba(154,114,48,0.06);
+}
+
+/* ══ DIVIDER ══ */
+.section-divider {
+  max-width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(154,114,48,0.4), transparent);
+  margin: 0 auto 40px;
+}
+
+/* ══ MOBILE ══ */
+@media (max-width: 640px) {
+  .testi-grid { grid-template-columns: 1fr; }
+  .bonus-row { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .guarantee-box { padding: 32px 24px; }
+  .guarantee-shield { width: 100px; height: 100px; }
+  .path-icon img { width: 44px; }
+  .vip-box { padding: 32px 24px; }
+  .vip-list { grid-template-columns: 1fr; }
+  .section { padding: 60px 0; }
+  .video-inner { height: 240px; }
+}
+@media (max-width: 520px) {
+  .step-row { grid-template-columns: 1fr; }
+  .step-num { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ RED TOP NOTICE BAR ══ -->
+<div class="topnotice">
+  <strong>Check Your Inbox:</strong><span class="notice-dot">·</span>Your 3-Card Personal Tarot Reading Is On Its Way.<span class="notice-dot">·</span><strong>While You Wait, Read This Carefully.</strong>
+</div>
+
+
+<!-- ══ HERO VSL SECTION ══ -->
+<section class="vsl-section">
+  <div class="wrap">
+    <h1 class="vsl-headline">One Card Fell Out Before<br><em>The Reading Even Began</em></h1>
+    <p class="vsl-sub">Face-up. Uninvited. It revealed the one belief that has been silently deciding what you are allowed to receive — across money, love, and purpose — for years. Luna calls it your <strong>Mirror Block.</strong> And your three cards just pointed straight to it.</p>
+    <p class="vsl-sub" style="margin-top:-8px;"><em>The message came through. Watch Luna's message below — or scroll to read instead.</em></p>
+
+    <!-- ════════════════════════════════════════════════════════════
+         VIDEO FRAME — Drop your Luna VSL in here when ready
+         ═══════════════════════════════════════════════════════════
+         OPTION A — Direct MP4 file:
+            <video id="luna-vsl" controls preload="metadata"
+                   poster="HERO_IMAGE_URL" playsinline>
+              <source src="YOUR_LUNA_VSL.mp4" type="video/mp4">
+            </video>
+
+         OPTION B — YouTube / Vimeo / Wistia iframe:
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+                    allowfullscreen></iframe>
+
+         To activate: delete the <img> + <div class="video-overlay-play">
+         blocks below, then paste one of the embeds above in their place.
+    ════════════════════════════════════════════════════════════════ -->
+    <div class="video-frame" id="luna-vsl-frame">
+      <img class="video-placeholder-img"
+           src="../frontend/images/frontend/hero-cards-on-velvet.png"
+           alt="Luna's message — three tarot cards on violet velvet">
+      <div class="video-overlay-play">
+        <div class="play-ring-new">▶</div>
+        <div class="play-ring-label">
+          Luna's Personal Message
+          <small>Video in final production &nbsp;·&nbsp; Read below while you wait</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="badges">
+      <span class="badge">🔒 &nbsp; Secure &amp; Private</span>
+      <span class="badge">⭐ &nbsp; 4,800+ Readings</span>
+      <span class="badge">🌙 &nbsp; 90-Day Guarantee</span>
+    </div>
+
+    <div style="margin-top:18px;text-align:center;">
+      <button class="read-toggle" onclick="toggleReadVersion(this)" aria-expanded="false">
+        ☽ &nbsp; Prefer to read instead? &nbsp; ☾
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="read-version" style="display:none;">
+
+<!-- ══ LUNA'S STORY ══ -->
+<section class="story-section section">
+  <div class="wrap-narrow">
+    <h2 class="story-heading">You Already Know Something Is Running Beneath the Surface</h2>
+
+    <p>You can feel it. Not all the time — but in the quiet moments. When the bank balance dips again for no clear reason. When a relationship that started with promise fades into the same tired distance. When you sit down to do the work that is supposed to matter and your body fills with fog instead of fire.</p>
+
+    <p>Three different areas of your life. Three different kinds of pain. And yet they all have the same texture. The same heaviness. The same strange timing.</p>
+
+    <p>Something keeps pulling you back to the same place.</p>
+
+    <div class="story-pull">"It is not that you are doing the wrong things. It is that something beneath the surface keeps rearranging the results."</div>
+
+    <p>You have tried to fix this. Of course you have. You are not someone who sits and waits. You have done the inner work — the therapy, the journaling, the intention-setting, the energy clearing. Maybe a course. Maybe several. Maybe an entire bookshelf of spiritual development sitting behind you right now.</p>
+
+    <p>And some of it helped. For a while.</p>
+
+    <p>The money came in — and then bled out just as fast. The relationship softened — and then hardened in exactly the same spot. The clarity arrived — and dissolved within weeks, replaced by the same confusion wearing a different outfit.</p>
+
+    <p>You started to wonder if the problem was you. If some people are just built to struggle in certain areas. If maybe you missed the window. If this is simply what your life looks like.</p>
+
+    <p>I need you to hear this: that thought is the pattern talking. Not the truth.</p>
+
+    <h3 class="story-subheading">What 4,800 Readings Taught Me That No Textbook Could</h3>
+
+    <p>My name is Luna Ross. I have been reading for 11 years. I have sat with more than 4,800 people across six countries, and I have heard some version of what I just described from nearly every single one of them.</p>
+
+    <p>Not the same words. But the same feeling. The same quiet bewilderment. "I have done everything I was supposed to do. Why does nothing hold?"</p>
+
+    <p>For the first several years, I treated each problem as its own thread. Love readings for love. Career readings for purpose. Abundance work for money. That is how I was trained. That is what every reading system teaches.</p>
+
+    <p>And my clients would leave those sessions relieved. Hopeful. Sometimes they cried from the recognition alone. They would send me messages a few weeks later saying things had shifted — a new opportunity appeared, a conversation they had been avoiding finally happened, the weight lifted.</p>
+
+    <p>Then, quietly, it would come back.</p>
+
+    <p>Not the same problem. A different version of the same problem. As if the pattern had simply moved to a new address.</p>
+
+    <div class="story-pull">"The relationship improved. Then the money collapsed. The career took off. Then the health unravelled. As if something was regulating how much good they were allowed to hold at once."</div>
+
+    <p>I saw this hundreds of times. Thousands. A person would break through in one area and watch another area fall apart in the same week. It was too consistent to be coincidence. Too patterned to be bad luck.</p>
+
+    <h3 class="story-subheading">The Question That Changed Everything</h3>
+
+    <p>So I stopped looking at the three areas separately. I started asking a different question.</p>
+
+    <div class="story-pull">"What if it is not three problems? What if it is one belief wearing three different masks?"</div>
+
+    <p>What if it is not three problems?</p>
+
+    <p>What if money, love, and purpose are all being shaped by the same thing — one single pattern, running beneath conscious awareness, silently deciding what you are allowed to receive and what gets pulled away?</p>
+
+    <p>That question changed every reading I have done since.</p>
+
+    <div class="section-image">
+      <img src="../frontend/images/frontend/mid-story-reading-hands.png" alt="Hands holding three tarot cards at a reading table, candlelight">
+    </div>
+    <p class="section-image-caption">&mdash; one pattern, three cards, read as a single reflection</p>
+
+    <h3 class="story-subheading">The Mirror Block</h3>
+
+    <p>I call it a Mirror Block. Not because it reflects who you are — but because it reflects who you were taught you had to be, long before you could question it.</p>
+
+    <p>A Mirror Block is a core belief — usually formed in childhood, often before language — that installed itself as a survival mechanism. It was useful once. It protected you from something real. But it never updated. And now it runs beneath every decision, every relationship, every financial pattern, every moment you reach for something bigger and feel an invisible hand pull you back.</p>
+
+    <p>It is not a flaw. It is not a failing. It is a programme that was never meant to last this long.</p>
+
+    <p>After years of mapping these patterns across thousands of readings, I identified four distinct types. Every person I have ever read for carries one. Most carry it their entire life without ever knowing it has a name.</p>
+
+    <div class="story-pull">"There are four types of Mirror Block. Each one shapes your life differently. Each one requires a completely different approach to clear."</div>
+
+    <div class="section-image">
+      <img src="../frontend/images/frontend/mid-story-four-mirrors.png" alt="Four antique silver mirrors arranged in a diamond, each catching different candlelight">
+    </div>
+    <p class="section-image-caption">&mdash; four distinct Mirror Blocks &middot; four different kinds of light</p>
+
+    <p><strong>The Not Yet Ready Block.</strong> You live in permanent preparation. Success is always coming — next month, next year, after one more course, one more healing, one more sign. You wait. The waiting feels responsible. But nothing arrives because the block has convinced you that you are not ready to receive it. You have been ready for years.</p>
+
+    <p><strong>The Waiting for the Good Thing to End Block.</strong> When something good happens, your first instinct is not joy — it is anxiety. How long until this falls apart? You monitor every relationship for cracks. You spend the raise before it hits your account. You sabotage quietly, unconsciously, because losing something on your own terms feels safer than having it taken from you.</p>
+
+    <p><strong>The Too Much Block.</strong> You are overwhelmed not by failure but by possibility. Every door opens and you freeze. Every opportunity brings paralysis. You cannot choose because choosing means losing the others, and somewhere inside you learned that wanting too much was dangerous. So you receive nothing fully.</p>
+
+    <p><strong>The Not Enough Block.</strong> Underneath everything, a voice says you do not deserve this. Not the money. Not the love. Not the recognition. You work harder than anyone around you and still feel like you are getting away with something. Receiving feels fraudulent. So you keep yourself just below the line of what you actually want.</p>
+
+    <p>One of these has been running your life. Quietly. For years. Across every area at once.</p>
+
+    <p>And the reason nothing you have tried has worked permanently is simple: you have been treating the symptoms in isolation. The money work. The relationship work. The purpose work. All separate. All surface-level. None of them touched the root.</p>
+
+    <h3 class="story-subheading">What Happens When Someone Finally Sees Theirs</h3>
+
+    <p>The shift is not dramatic. That is the first thing people tell me.</p>
+
+    <p>There is no lightning bolt. No overnight transformation. What happens is quieter and far more permanent.</p>
+
+    <p>Someone who spent three years stuck in the same income range — give or take a few hundred — sees their Not Enough Block clearly for the first time. Within weeks, they stop unconsciously turning down the work that pays more. They stop apologising for their rates. The change is not forced. It just stops being blocked.</p>
+
+    <div class="story-pull">"The changes were not loud. They were structural. Like removing a dam nobody knew was there and watching the water finally move."</div>
+
+    <p>A person carrying the Waiting for the Good Thing to End Block reads their Soul Mirror Reading on a Tuesday evening and sits with it for three days without telling anyone. On the fourth day, they stop scanning their partner's face for signs of leaving. They do not decide to stop. They simply notice they have stopped. The vigilance that has drained them for a decade loosens its grip — not because they fought it, but because they finally saw where it was anchored.</p>
+
+    <p>This is what I mean when I say the reading does not describe your life. It shows you what has been shaping it.</p>
+
+    <h3 class="story-subheading">Your 3 Cards. One Root. Everything After.</h3>
+
+    <p>The Soul Mirror Reading uses 3 cards — not to predict your future, but to reveal the single belief pattern that has been organising your past.</p>
+
+    <p>Card one reflects love and connection. Card two reflects life path and purpose. Card three reflects abundance and material flow. But I do not read them separately. I read the space between them — the place where one pattern shows up wearing three different masks.</p>
+
+    <p>That pattern is your Mirror Block. And once I name it for you — once you see it clearly, in your own life, in your own words — something fundamental shifts in the way you relate to all three areas.</p>
+
+    <p>Not because I tell you what to do. Because the pattern can no longer operate in the dark.</p>
+
+    <p>This is the reading that shows you the root. One root. Running love, money, and purpose at the same time. Once you see it, you cannot unsee it. And the patterns that have recycled for years begin to lose their hold.</p>
+
+    <div class="story-pull">"You have spent years working on three separate problems. There was only ever one."</div>
+
+    <p>The cards you chose minutes ago are still charged with the energy of that moment. That is not a metaphor — the combination you selected is specific to where you are right now, and it will not carry the same precision a week from now. This is why I ask people to move forward the same day they pick their cards.</p>
+
+    <p>Your reading takes me 12 to 24 hours to complete. Every word is written by hand, specific to your card combination and your Mirror Block type. It is not a template. It is not generated. It is the reading I would give you if you were sitting across from me.</p>
+
+    <p>One reading. One root belief. And the clarity to finally stop treating symptoms and start dissolving the source.</p>
+
+    <p>Your Soul Mirror Reading begins the moment you claim it. I will be the one writing it. By hand, for you, specific to the combination you chose today.</p>
+
+    <p>If something in what I just said felt familiar, that is not coincidence. That is the pattern recognising itself. And that is exactly where the work begins.</p>
+
+    <div class="story-pull">Scroll down. I will meet you on the other side.</div>
+
+  </div>
+</section>
+
+<div style="text-align:center; padding-bottom:48px;">
+  <button class="read-toggle-collapse" onclick="toggleReadVersion(document.querySelector('.read-toggle'))">
+    ☽ &nbsp; Collapse this section &nbsp; ☾
+  </button>
+</div>
+
+</div><!-- /#read-version -->
+
+<!-- ══ TRANSITION BANNER ══ -->
+<div class="transition-banner">
+  <div class="transition-banner-inner">
+    <div class="tb-tag">☽ &nbsp; Your Soul Mirror Reading &nbsp; ☾</div>
+    <h2 class="tb-headline">The Complete Picture Behind All 3 Cards</h2>
+    <p class="tb-sub">Three cards. Three mirrors. One hidden belief running all of them.<br>This is what your reading has been pointing to.</p>
+  </div>
+</div>
+
+<!-- ══ READING BREAKDOWN ══ -->
+<section class="reading-section section">
+  <div class="wrap">
+    <h2>What Each Card Is <em>Actually</em> Showing You</h2>
+    <div class="section-divider"></div>
+
+    <div class="path-card">
+      <span class="path-label">Mirror One &nbsp;·&nbsp; Love</span>
+      <div class="path-title-row">
+        <div class="path-icon"><img src="cards/mirror-love.png" alt="Love Mirror"></div>
+        <h3>The Love Mirror</h3>
+      </div>
+      <p>Where you pull back right before connection becomes real. The pattern that keeps love feeling just slightly out of reach.</p>
+    </div>
+
+    <div class="path-card">
+      <span class="path-label">Mirror Two &nbsp;·&nbsp; Life</span>
+      <div class="path-title-row">
+        <div class="path-icon"><img src="cards/mirror-life.png" alt="Life Mirror"></div>
+        <h3>The Life Mirror</h3>
+      </div>
+      <p>Where your energy leaks and your choices keep looping. The place you feel most stuck, showing you the exact map you have been following.</p>
+    </div>
+
+    <div class="path-card">
+      <span class="path-label">Mirror Three &nbsp;·&nbsp; Wealth</span>
+      <div class="path-title-row">
+        <div class="path-icon"><img src="cards/mirror-wealth.png" alt="Wealth Mirror"></div>
+        <h3>The Wealth Mirror</h3>
+      </div>
+      <p>What you believe you are allowed to have. The inherited story about deserving that has been setting your ceiling without your knowledge.</p>
+    </div>
+
+    <div class="mirror-card">
+      <span class="path-label">The Hidden Layer &nbsp;·&nbsp; Mirror Block</span>
+      <div class="path-title-row">
+        <div class="path-icon"><img src="cards/mirror-block.png" alt="Mirror Block"></div>
+        <h3>The One Belief Running All Three</h3>
+      </div>
+      <p>This is where most readings stop. They name the patterns. They describe the cards. And then they leave you with the insight and no way through.</p>
+      <p>What they miss is this: your three cards are not three separate problems. They are three reflections of <strong>one core belief</strong>, formed early, embedded deep, and invisible to you precisely because it has been there so long.</p>
+      <p>It shapes who you let close. What you reach for. What you decide you deserve. And until it is seen clearly, every reading you ever get will point to the same wall you cannot quite get past.</p>
+      <p>We call it your <strong>Mirror Block</strong>. And right now, while the cards you drew are still fresh, is the clearest window you will have to see it.</p>
+      <p><strong>Your Soul Mirror Reading names it exactly. Not a general theme. Yours.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VIP SECTION ══ -->
+<section class="vip-section section">
+  <div class="wrap">
+    <div class="vip-box">
+      <h2>Inside Your Soul Mirror Reading</h2>
+      <img src="cards/product-mockup.png" alt="Soul Mirror Reading" class="vip-mockup">
+      <div style="text-align:center;margin:-8px 0 20px;font-family:var(--serif);font-size:17px;color:#1a1a1a;letter-spacing:0.06em;">Valued at <span style="color:var(--purple-mid);font-weight:700;font-size:20px;">$197</span></div>
+      <ul class="vip-list">
+        <li><span><strong>Your Mirror Block Identified</strong> &nbsp;the one core belief running Love, Life, and Wealth at the same time</span></li>
+        <li><span><strong>Love Mirror Deep-Dive</strong> &nbsp;what your Love card means in context of all three cards, not in isolation</span></li>
+        <li><span><strong>Life Mirror Deep-Dive</strong> &nbsp;where your energy is leaking and what it would take to shift it</span></li>
+        <li><span><strong>Wealth Mirror Deep-Dive</strong> &nbsp;the inherited story about deserving that has been setting your ceiling</span></li>
+        <li><span><strong>Mirror Block Clearing Practice</strong> &nbsp;seven questions, ten minutes, designed to begin the release</span></li>
+        <li><span><strong>Reversed Card Companion</strong> &nbsp;nuanced interpretation if any of your cards appeared reversed</span></li>
+        <li><span><strong>90-Day Mirror Check-In Prompts</strong> &nbsp;twelve weekly questions to keep the clarity alive and working</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ BONUSES ══ -->
+<section class="bonuses-section section">
+  <div class="wrap">
+    <h2>Free Bonuses Included Today</h2>
+    <p class="bonuses-intro">Available only on this page, when you claim your Soul Mirror Reading now.</p>
+
+    <div class="bonus-row">
+      <div class="bonus-tile">
+        <div class="bonus-header">
+          <h4>Mirror Block Companion Guide</h4>
+          <div class="bonus-value">Valued at $67</div>
+        </div>
+        <div class="bonus-img"><img src="cards/bonus-companion.png" alt="Mirror Block Companion Guide"></div>
+        <div class="bonus-body">
+          <p>A deep-dive reference covering all four Mirror Block types: their root causes, language patterns, hidden costs, and the signs a real shift is beginning.</p>
+          <div class="bonus-tag">Free Bonus</div>
+        </div>
+      </div>
+      <div class="bonus-tile">
+        <div class="bonus-header">
+          <h4>21-Day Shift Tracker</h4>
+          <div class="bonus-value">Valued at $47</div>
+        </div>
+        <div class="bonus-img"><img src="cards/bonus-tracker.png" alt="21-Day Shift Tracker"></div>
+        <div class="bonus-body">
+          <p>A guided workbook with daily prompts across three themed weeks: Observation, Recognition, and Evidence, to help you track and anchor your pattern shifts in real time.</p>
+          <div class="bonus-tag">Free Bonus</div>
+        </div>
+      </div>
+    </div>
+    <div class="bonus-row">
+      <div class="bonus-tile">
+        <div class="bonus-header">
+          <h4>Root Cause Reading Guide</h4>
+          <div class="bonus-value">Valued at $47</div>
+        </div>
+        <div class="bonus-img"><img src="cards/bonus-rootcause.png" alt="Root Cause Reading Guide"></div>
+        <div class="bonus-body">
+          <p>Story-based vignettes for each Mirror Block type that show exactly how the pattern formed, helping you see the origin clearly and stop mistaking the symptom for the source.</p>
+          <div class="bonus-tag">Free Bonus</div>
+        </div>
+      </div>
+      <div class="bonus-tile">
+        <div class="bonus-header">
+          <h4>Mirror Clarity Meditation</h4>
+          <div class="bonus-value">Valued at $37</div>
+        </div>
+        <div class="bonus-img"><img src="cards/bonus-meditation.png" alt="Mirror Clarity Meditation"></div>
+        <div class="bonus-body">
+          <p>A 10-minute guided audio meditation voiced by Luna that takes you through a somatic mirror visualization to feel, briefly, what life looks like on the other side of the pattern.</p>
+          <div class="bonus-tag">Free Bonus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bonus-total-row">
+      <div>
+        <div class="btl">Total Value</div>
+        <div style="font-size:16px;color:rgba(245,240,250,0.85);font-style:italic;">Bonuses Included Free With Your Soul Mirror Reading Today</div>
+      </div>
+      <div class="btv">$395</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING ══ -->
+<section class="pricing-section section" id="pricing">
+  <div class="wrap-wide">
+    <h2>The Cards You Chose <em>Are Still Fresh.</em><br>Read Them While They Are.</h2>
+
+    <!-- Price justification bridge -->
+    <div class="price-bridge">
+      <span class="price-bridge__eyebrow">☽ &nbsp; Why this price &nbsp; ☾</span>
+      <p class="price-bridge__body">
+        Luna's one-on-one readings were priced at <strong>$197</strong>. The four bonus materials were built over eleven years of client work. <strong>This is not a discount.</strong> It is a different price for a different moment — available only to people who drew their cards today.
+      </p>
+    </div>
+
+    <div class="pricing-grid pricing-grid--single">
+      <div class="price-card featured">
+        <div class="price-card-badge">Complete Package</div>
+        <div class="price-card-header">
+          <span class="price-card-label">Soul Mirror Reading</span>
+          <h3>Everything, One Price</h3>
+        </div>
+        <div class="price-card-body">
+          <span class="price-amount"><span class="price-was">$395</span> <sup>$</sup>37</span>
+          <span class="price-term">One-time payment &nbsp;·&nbsp; Delivered within 12&ndash;24 hours</span>
+          <ul class="price-includes">
+            <li>Your personalised Soul Mirror Reading &mdash; <em>$197 value</em></li>
+            <li>Mirror Block identification &amp; all 3 card deep-dives</li>
+            <li>Mirror Block clearing practice + 90-day check-in prompts</li>
+            <li><strong>Bonus 1</strong> &mdash; Mirror Block Companion Guide ($67)</li>
+            <li><strong>Bonus 2</strong> &mdash; 21-Day Shift Tracker ($47)</li>
+            <li><strong>Bonus 3</strong> &mdash; Root Cause Reading Guide ($47)</li>
+            <li><strong>Bonus 4</strong> &mdash; Mirror Clarity Meditation audio ($37)</li>
+          </ul>
+          <a href="upsell-us1.php" class="price-card-cta vip">Claim My Soul Mirror Reading &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="value-line">Total value: <strong>$395</strong>. Yours today for <strong>$37</strong>.</p>
+
+    <div class="cta-block">
+      <div class="cta-note">
+        Instant access &nbsp;·&nbsp; Secure checkout &nbsp;·&nbsp; 90-day money-back guarantee<br>
+        <span class="stars">★★★★★</span> &nbsp; 4,800+ Soul Mirror Readings delivered
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials-section section">
+  <div class="wrap-wide">
+    <h2>What Others Are Saying</h2>
+    <div class="section-divider"></div>
+
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-avatar-row">
+          <img class="testi-avatar" src="../frontend/images/frontend/testimonial-diane-r.png" alt="Diane R.">
+          <div class="testi-avatar-meta">
+            <div class="testi-name">Diane R.</div>
+            <div class="testi-meta">Age 54 &nbsp;·&nbsp; Retired teacher</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"I've had tarot readings before and always felt something was missing. This report gave me the missing piece. I could actually see the one thread running through all three areas of my life. I cried reading it, in the best possible way."</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-avatar-row">
+          <img class="testi-avatar" src="../frontend/images/frontend/testimonial-james-h.png" alt="James H.">
+          <div class="testi-avatar-meta">
+            <div class="testi-name">James H.</div>
+            <div class="testi-meta">Age 48 &nbsp;·&nbsp; Business owner</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"I was skeptical. I'm a practical person. I just wanted to see what the cards said. But the Mirror Block explanation stopped me cold. It described something I've never been able to name. Whatever this is, it works."</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-avatar-row">
+          <img class="testi-avatar" src="../frontend/images/frontend/testimonial-carolyn-m.png" alt="Carolyn M.">
+          <div class="testi-avatar-meta">
+            <div class="testi-name">Carolyn M.</div>
+            <div class="testi-meta">Age 61 &nbsp;·&nbsp; Holistic practitioner</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Three cards. One pattern. I've spent years in therapy trying to understand why the same things kept happening in love, at work, with money. This report showed me in 20 minutes. The clearing practice alone is worth ten times what I paid."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GUARANTEE ══ -->
+<section class="guarantee-section section">
+  <div class="wrap">
+    <div class="guarantee-box">
+      <div class="guarantee-shield"><img src="cards/guarantee-badge.png" alt="90-Day Mirror Guarantee" style="width:100%;height:100%;object-fit:contain;"></div>
+      <div>
+        <h3>90-Day Mirror Guarantee</h3>
+        <p>If your Soul Mirror Reading doesn't give you a clearer picture of the pattern running your love, life, and wealth than anything you've seen before, just send us a message within 90 days and we'll refund every penny. No questions, no forms, no waiting.</p>
+        <p>We stand behind this reading completely. If the mirror doesn't show you something real, you owe us nothing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="steps-section section">
+  <div class="wrap">
+    <h2>How Your Report Works</h2>
+    <div class="section-divider"></div>
+    <div class="steps-list">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Your cards are already drawn</h4>
+          <p>The three cards you selected hold the pattern. The reading you're about to receive in your inbox is calibrated to those three specific cards and their combination. Not a generic result.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Claim your Soul Mirror Reading</h4>
+          <p>Your report takes your three cards deeper, identifying the Mirror Block connecting all three and giving you the written interpretation, clearing practice, and 90-day prompts to work with it.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Read it when your email arrives</h4>
+          <p>Your 3-card email is on its way. When it lands, have your Soul Mirror Reading open beside it. The two work together. The email shows you what the cards say, the report shows you what they mean beneath the surface.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div>
+          <h4>Do the clearing practice once</h4>
+          <p>Set aside ten minutes. The Mirror Block clearing practice in your report is the only thing between where you are now and where the cards are pointing. Seven questions. Done in one sitting. The shift begins there.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq-section section">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <div class="section-divider"></div>
+
+    <details class="faq-item">
+      <summary class="faq-q">Is this based on my specific cards or is it generic?</summary>
+      <p class="faq-a">Your Soul Mirror Reading is built around the specific three-card combination you drew, not a template. The Mirror Block identification and all three deep-dives are calibrated to how your cards interact with each other, not just what each card means individually. That's what makes this reading different from anything you've likely received before.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Do I need to know anything about tarot to understand this?</summary>
+      <p class="faq-a">No prior knowledge needed. The report is written in plain language designed for real people, not tarot scholars. The Root Cause Reading Guide bonus is also included precisely because we want you to understand the origin of your pattern clearly, not just its surface symptoms.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">What is a Mirror Block exactly?</summary>
+      <p class="faq-a">A Mirror Block is a core belief, usually formed early in life and often inherited from someone else, that shows up identically across your love life, your daily experience, and your relationship with money and abundance. It's not a flaw and it's not permanent. But it is specific, and once you can see it clearly, it loses most of its power. That's what the report is designed to do.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">How is this different from the reading I'll receive in my email?</summary>
+      <p class="faq-a">The email reading you're receiving shows you what each card says. The Soul Mirror Reading shows you what your three cards mean together: the pattern underneath them, the belief connecting them, and what to do with that information. Think of the email as the mirror and the report as the light source that lets you actually see.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">How long does the reading take to arrive?</summary>
+      <p class="faq-a">Your Soul Mirror Reading is delivered within 12 to 24 hours of your order. Luna writes every reading by hand, calibrated to the exact three-card combination you drew. It is not automated and it is not templated. The cards you chose today carry a specific energetic combination, which is why we ask people to move forward the same day they pick them.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">What if I already know what my block is?</summary>
+      <p class="faq-a">Many people who order this reading feel they already understand their pattern. What most of them tell us afterward is that the reading named something one layer beneath what they thought it was — the place where the pattern was first installed, not where it currently shows up. Knowing your block is not the same as seeing its root. The reading reaches the root.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Can I share the reading with my partner or therapist?</summary>
+      <p class="faq-a">Absolutely. Many people read it alongside a partner, therapist, or close friend — and find it becomes a conversation they have needed for a long time. The reading belongs to you, it lives on your device, and you can share it with whomever you trust.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">What if I'm not satisfied?</summary>
+      <p class="faq-a">You're covered by our 90-day guarantee. If the report doesn't give you something genuinely useful, a clearer picture of the pattern in your life than you've had before, email us and we'll refund you completely. We'd rather you keep the money than feel like the mirror didn't show you anything real.</p>
+    </details>
+
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ══ -->
+<section class="final-cta-section">
+  <span class="eyebrow">☽ &nbsp; The Mirror Is Ready &nbsp; ☾</span>
+  <h2>See the One Belief That Has Been Running<br><em>Love, Life, and Wealth From the Shadows</em></h2>
+  <p>Your cards have already been drawn. The pattern is already there. The only question is whether you're ready to see it clearly.</p>
+
+  <!-- Value Stack -->
+  <div class="vstack">
+    <div class="vstack-row">
+      <span class="vstack-label">Soul Mirror Reading</span>
+      <span class="vstack-val">Worth $197</span>
+    </div>
+    <div class="vstack-row">
+      <span class="vstack-label">Mirror Block Companion Guide</span>
+      <span class="vstack-val">Worth $67</span>
+    </div>
+    <div class="vstack-row">
+      <span class="vstack-label">21-Day Shift Tracker</span>
+      <span class="vstack-val">Worth $47</span>
+    </div>
+    <div class="vstack-row">
+      <span class="vstack-label">Root Cause Reading Guide</span>
+      <span class="vstack-val">Worth $47</span>
+    </div>
+    <div class="vstack-row">
+      <span class="vstack-label">Mirror Clarity Meditation</span>
+      <span class="vstack-val">Worth $37</span>
+    </div>
+    <div class="vstack-total">
+      <span class="vstack-total-label">Total Value</span>
+      <span class="vstack-total-val"><s style="opacity:0.45;font-weight:400;">$395</s> &nbsp; $37</span>
+    </div>
+  </div>
+
+  <div class="cta-block">
+    <a href="upsell-us1.php" class="cta-btn">Continue to Next Step →</a>
+    <div class="cta-note">
+      Instant access &nbsp;·&nbsp; 90-day guarantee &nbsp;·&nbsp; Secure checkout
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div>© Soul Mirror Reading &nbsp;·&nbsp; All rights reserved</div>
+  <div style="margin-top:6px;">
+    <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a> &nbsp;·&nbsp; <a href="#">Contact</a>
+  </div>
+  <div style="margin-top:8px;">This site is not affiliated with or endorsed by any tarot organization. Results may vary. The Soul Mirror Reading is intended for personal reflection and entertainment purposes.</div>
+</footer>
+
+<script>
+// FAQ accordion — handled by native <details> element, no JS needed
+// CTA buttons are now linked directly in markup.
+</script>
+
+<script>
+function toggleReadVersion(btn) {
+  const panel = document.getElementById('read-version');
+  const open = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  btn.setAttribute('aria-expanded', !open);
+  btn.textContent = open ? '☽  Prefer to read instead?  ☾' : '☽  Hide reading  ☾';
+  if (!open) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+
+</body>
+</html>
