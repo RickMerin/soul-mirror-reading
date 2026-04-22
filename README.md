@@ -53,6 +53,18 @@ Tarot funnel: visitors pick three cards, submit a form, and the server fetches A
 | `npm ci`           | Install Node dependencies for CSS/email builds (see `package.json`)               |
 | `npm run build`    | Bundle CSS to `public/assets/*.min.css` and generate `public/email-template.html` |
 
+## GitHub Actions deploy secrets
+
+To run migrations during deploy (without cPanel terminal access), add these repository or environment secrets:
+
+- `DB_HOST`
+- `DB_PORT`
+- `DB_NAME`
+- `DB_USER`
+- `DB_PASS`
+
+If testing and production use different databases, define environment-specific secrets and scope each workflow/job to the correct environment.
+
 ## Email template (build)
 
 The funnel sends mail through **Kit** automation; PHP does **not** read these files at runtime. They exist so you can paste or sync a single HTML file with inlined styles into your ESP.
