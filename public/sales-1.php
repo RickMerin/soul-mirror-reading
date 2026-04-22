@@ -1201,16 +1201,7 @@ details[open] .faq-q::after { transform: rotate(45deg); }
          blocks below, then paste one of the embeds above in their place.
     ════════════════════════════════════════════════════════════════ -->
     <div class="video-frame" id="luna-vsl-frame">
-      <img class="video-placeholder-img"
-           src="../frontend/images/frontend/hero-cards-on-velvet.png"
-           alt="Luna's message — three tarot cards on violet velvet">
-      <div class="video-overlay-play">
-        <div class="play-ring-new">▶</div>
-        <div class="play-ring-label">
-          Luna's Personal Message
-          <small>Video in final production &nbsp;·&nbsp; Read below while you wait</small>
-        </div>
-      </div>
+     <vturb-smartplayer id="vid-69e22380ed35062270c75e01" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69e22380ed35062270c75e01/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
     </div>
 
     <div class="badges">
@@ -1542,7 +1533,7 @@ details[open] .faq-q::after { transform: rotate(45deg); }
             <li><strong>Bonus 3</strong> &mdash; Root Cause Reading Guide ($47)</li>
             <li><strong>Bonus 4</strong> &mdash; Mirror Clarity Meditation audio ($37)</li>
           </ul>
-          <a href="upsell-us1.php" class="price-card-cta vip">Claim My Soul Mirror Reading &rarr;</a>
+          <a href="#" class="price-card-cta vip">Claim Your Soul Mirror Reading &rarr;</a>
         </div>
       </div>
     </div>
@@ -1738,7 +1729,7 @@ details[open] .faq-q::after { transform: rotate(45deg); }
   </div>
 
   <div class="cta-block">
-    <a href="upsell-us1.php" class="cta-btn">Continue to Next Step →</a>
+   <a href="#pricing" class="cta-btn" onclick="document.querySelector('.pricing-section').scrollIntoView({behavior:'smooth'}); return false;">Claim Your Soul Mirror Reading →</a>
     <div class="cta-note">
       Instant access &nbsp;·&nbsp; 90-day guarantee &nbsp;·&nbsp; Secure checkout
     </div>

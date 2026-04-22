@@ -19,15 +19,31 @@ Tarot funnel: visitors pick three cards, submit a form, and the server fetches A
 
 3. Copy `.env.example` to `.env` and fill in:
 
-   | Variable        | Purpose                                                |
-   | --------------- | ------------------------------------------------------ |
-   | `ASTRO_USER_ID` | AstrologyAPI user id (Basic auth)                      |
-   | `ASTRO_API_KEY` | AstrologyAPI key                                       |
-   | `KIT_API_KEY`   | Kit API v4 key (`X-Kit-Api-Key`)                       |
-   | `KIT_TAG_NAME`  | Tag applied after upsert (default `soul-mirror-leads`) |
+   | Variable                       | Purpose                                                               |
+   | ------------------------------ | --------------------------------------------------------------------- |
+   | `ASTRO_USER_ID`                | AstrologyAPI user id (Basic auth)                                     |
+   | `ASTRO_API_KEY`                | AstrologyAPI key                                                      |
+   | `KIT_API_KEY`                  | Kit API v4 key (`X-Kit-Api-Key`)                                      |
+   | `KIT_TAG_NAME`                 | Tag applied after upsert (default `soul-mirror-leads`)                |
+   | `DB_HOST`, `DB_PORT`           | MySQL host/port for lead and member data                              |
+   | `DB_NAME`, `DB_USER`, `DB_PASS`| Database credentials for lead capture, purchases, and member login    |
+   | `APP_BASE_URL`                 | Absolute public base URL used for magic links (include subdirectory)  |
+   | `MEMBER_MAGIC_LINK_TTL_MINUTES`| Magic-link expiry time in minutes                                     |
 
 4. Point the **web server document root** at the `public/` directory (recommended).  
    If you cannot change the document root (some local WAMP setups), an extra `.htaccess` in the **repository root** rewrites requests into `public/`.
+
+5. For WAMP subdirectory installs (`http://localhost/soul-mirror-reading`), set:
+
+   ```env
+   APP_BASE_URL=http://localhost/soul-mirror-reading
+   ```
+
+## Member portal URLs (local WAMP)
+
+- `http://localhost/soul-mirror-reading/member`
+- `http://localhost/soul-mirror-reading/member/login.php`
+- `http://localhost/soul-mirror-reading/member/verify.php?token=...`
 
 ## Scripts
 

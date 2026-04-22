@@ -14,7 +14,7 @@ initDreamBackground({
   pointerParallax: false,
 });
 
-const salesPageUrl = new URL("vsl.php", window.location.href).href;
+const salesPageUrl = new URL("sales.php", window.location.href).href;
 const countdownEl = document.getElementById("redirectCountdown");
 const countdownCopyEl = document.getElementById("redirectCopy");
 const ringProgressEl = document.getElementById("countdownRingProgress");

@@ -17,16 +17,14 @@ final class MemberAuthService
 
     public function issueMagicLink(int $leadId): ?string
     {
-        if ($this->config->appBaseUrl === '') {
-            return null;
-        }
-
         $rawToken = bin2hex(random_bytes(32));
         $tokenHash = hash('sha256', $rawToken);
         $expiresAt = new DateTimeImmutable('+' . max(1, $this->config->magicLinkTtlMinutes) . ' minutes');
         $this->magicLinks->createToken($leadId, $tokenHash, $expiresAt);
 
-        return $this->config->appBaseUrl . '/member/verify.php?token=' . rawurlencode($rawToken);
+        return MemberUrlBuilder::absoluteMemberUrl($this->config, 'verify.php', [
+            'token' => $rawToken,
+        ]);
     }
 
     public function verifyMagicToken(string $rawToken): ?int

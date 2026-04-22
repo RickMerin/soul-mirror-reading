@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
 
+use App\Services\MemberUrlBuilder;
+
+$projectRoot = dirname(__DIR__, 2);
+require $projectRoot . '/vendor/autoload.php';
+
 session_start();
 $_SESSION = [];
 if (ini_get('session.use_cookies')) {
@@ -9,5 +14,5 @@ if (ini_get('session.use_cookies')) {
 }
 session_destroy();
 
-header('Location: /member/login.php');
+header('Location: ' . MemberUrlBuilder::loginPath());
 exit;

@@ -48,17 +48,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
           never get told.</em></p>
 
       <div class="video-frame">
-        <div class="video-inner">
-          <div class="play-ring">▶</div>
-          <div class="video-label">Watch This Now &nbsp;·&nbsp; 7 Minutes</div>
-          <div class="video-bar">
-            <div class="video-bar-dot"></div>
-            <div class="video-bar-line">
-              <div class="video-bar-fill"></div>
-            </div>
-            <div class="video-bar-time">0:00 / 7:14</div>
-          </div>
-        </div>
+       <vturb-smartplayer id="vid-69e22380ed35062270c75e01" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69e22380ed35062270c75e01/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
       </div>
 
       <div class="badges">
@@ -364,51 +354,42 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <!-- ══ PRICING ══ -->
   <section class="pricing-section section js-reveal" id="pricing">
     <div class="wrap-wide">
-      <h2>Choose Your Soul Mirror Reading</h2>
+      <h2>The Cards You Chose <em>Are Still Fresh.</em><br>Read Them While They Are.</h2>
 
-      <div class="pricing-grid">
-        <div class="price-card">
-          <div class="price-card-header">
-            <span class="price-card-label">Lite</span>
-            <h3>Soul Mirror Reading</h3>
-          </div>
-          <div class="price-card-body">
-            <span class="price-amount"><span class="price-was">$197</span> <sup>$</sup>27</span>
-            <span class="price-term">One-time &nbsp;·&nbsp; Delivered within 36 hours</span>
-            <ul class="price-includes">
-              <li>Mirror Block identification</li>
-              <li>All 3 card deep-dives</li>
-              <li>Mirror Block clearing practice</li>
-              <li>90-day check-in prompts</li>
-              <li class="missing">All 4 bonus materials</li>
-              <li class="missing">Priority delivery</li>
-            </ul>
-            <a href="#" class="price-card-cta lite">Get the Lite Reading →</a>
-          </div>
-        </div>
+      <div class="price-bridge">
+        <span class="price-bridge__eyebrow">☽ &nbsp; Why this price &nbsp; ☾</span>
+        <p class="price-bridge__body">
+          Luna's one-on-one readings were priced at <strong>$197</strong>. The four bonus materials were built over eleven
+          years of client work. <strong>This is not a discount.</strong> It is a different price for a different moment
+          — available only to people who drew their cards today.
+        </p>
+      </div>
+
+      <div class="pricing-grid pricing-grid--single">
         <div class="price-card featured">
-          <div class="price-card-badge">Most Valued</div>
+          <div class="price-card-badge">Complete Package</div>
           <div class="price-card-header">
-            <span class="price-card-label">VIP</span>
-            <h3>Soul Mirror Reading</h3>
+            <span class="price-card-label">Soul Mirror Reading</span>
+            <h3>Everything, One Price</h3>
           </div>
           <div class="price-card-body">
-            <span class="price-amount"><span class="price-was">$395</span> <sup>$</sup>47</span>
-            <span class="price-term">One-time &nbsp;·&nbsp; Delivered within 12 hours</span>
+            <span class="price-amount"><span class="price-was">$395</span> <sup>$</sup>37</span>
+            <span class="price-term">One-time payment &nbsp;·&nbsp; Delivered within 12&ndash;24 hours</span>
             <ul class="price-includes">
-              <li>Mirror Block identification</li>
-              <li>All 3 card deep-dives</li>
-              <li>Mirror Block clearing practice</li>
-              <li>90-day check-in prompts</li>
-              <li>All 4 bonus materials</li>
-              <li>Priority delivery</li>
+              <li>Your personalised Soul Mirror Reading &mdash; <em>$197 value</em></li>
+              <li>Mirror Block identification &amp; all 3 card deep-dives</li>
+              <li>Mirror Block clearing practice + 90-day check-in prompts</li>
+              <li><strong>Bonus 1</strong> &mdash; Mirror Block Companion Guide ($67)</li>
+              <li><strong>Bonus 2</strong> &mdash; 21-Day Shift Tracker ($47)</li>
+              <li><strong>Bonus 3</strong> &mdash; Root Cause Reading Guide ($47)</li>
+              <li><strong>Bonus 4</strong> &mdash; Mirror Clarity Meditation audio ($37)</li>
             </ul>
-            <a href="#" class="price-card-cta vip">Get the VIP Reading →</a>
+            <a href="#" class="price-card-cta vip">Claim Your Soul Mirror Reading &rarr;</a>
           </div>
         </div>
       </div>
 
-      <p class="value-line">Complete package value: <strong>$395</strong>. Yours today for a fraction of that.</p>
+      <p class="value-line">Total value: <strong>$395</strong>. Yours today for <strong>$37</strong>.</p>
 
       <div class="cta-block">
         <div class="cta-note">
@@ -597,7 +578,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       </div>
       <div class="vstack-total">
         <span class="vstack-total-label">Total Value</span>
-        <span class="vstack-total-val"><s style="opacity:0.45;font-weight:400;">$395</s> &nbsp; $47</span>
+        <span class="vstack-total-val"><s style="opacity:0.45;font-weight:400;">$395</s> &nbsp; $37</span>
       </div>
     </div>
 

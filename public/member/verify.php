@@ -5,6 +5,7 @@ use App\Config\AppConfig;
 use App\Infrastructure\DatabaseConnection;
 use App\Repository\MagicLinkRepository;
 use App\Services\MemberAuthService;
+use App\Services\MemberUrlBuilder;
 
 $projectRoot = dirname(__DIR__, 2);
 require $projectRoot . '/vendor/autoload.php';
@@ -36,7 +37,7 @@ try {
     session_start();
     session_regenerate_id(true);
     $_SESSION['member_lead_id'] = $leadId;
-    header('Location: /member/index.php');
+    header('Location: ' . MemberUrlBuilder::indexPath());
     exit;
 } catch (Throwable) {
     http_response_code(500);
