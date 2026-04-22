@@ -27,8 +27,7 @@ Tarot funnel: visitors pick three cards, submit a form, and the server fetches A
    | `KIT_TAG_NAME`                 | Tag applied after upsert (default `soul-mirror-leads`)                |
    | `DB_HOST`, `DB_PORT`           | MySQL host/port for lead and member data                              |
    | `DB_NAME`, `DB_USER`, `DB_PASS`| Database credentials for lead capture, purchases, and member login    |
-   | `APP_BASE_URL`                 | Absolute public base URL used for magic links (include subdirectory)  |
-   | `MEMBER_MAGIC_LINK_TTL_MINUTES`| Magic-link expiry time in minutes                                     |
+| `APP_BASE_URL`                 | Absolute public base URL (include subdirectory for WAMP installs)     |
 
 4. Point the **web server document root** at the `public/` directory (recommended).  
    If you cannot change the document root (some local WAMP setups), an extra `.htaccess` in the **repository root** rewrites requests into `public/`.
@@ -43,7 +42,6 @@ Tarot funnel: visitors pick three cards, submit a form, and the server fetches A
 
 - `http://localhost/soul-mirror-reading/member`
 - `http://localhost/soul-mirror-reading/member/login.php`
-- `http://localhost/soul-mirror-reading/member/verify.php?token=...`
 
 ## Scripts
 

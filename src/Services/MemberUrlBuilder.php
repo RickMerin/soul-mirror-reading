@@ -29,11 +29,6 @@ final class MemberUrlBuilder
         return self::memberPath(self::serverScriptName($scriptName)) . '/logout.php';
     }
 
-    public static function verifyPath(string $scriptName = ''): string
-    {
-        return self::memberPath(self::serverScriptName($scriptName)) . '/verify.php';
-    }
-
     /**
      * @param array<string, scalar|null> $query
      */

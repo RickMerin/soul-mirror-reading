@@ -34,7 +34,6 @@ final class AppConfig
         public readonly string $dbUser,
         public readonly string $dbPass,
         public readonly string $appBaseUrl,
-        public readonly int $magicLinkTtlMinutes,
     ) {}
 
     /**
@@ -92,7 +91,6 @@ final class AppConfig
             dbUser: $get('DB_USER'),
             dbPass: $get('DB_PASS'),
             appBaseUrl: rtrim($get('APP_BASE_URL'), '/'),
-            magicLinkTtlMinutes: self::toIntOrDefault($get('MEMBER_MAGIC_LINK_TTL_MINUTES'), 30),
         );
     }
 

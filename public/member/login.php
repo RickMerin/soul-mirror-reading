@@ -4,48 +4,63 @@ declare(strict_types=1);
 use App\Config\AppConfig;
 use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
-use App\Repository\MagicLinkRepository;
 use App\Repository\PurchaseRepository;
-use App\Services\MemberAuthService;
+use App\Services\MemberAutoLoginService;
+use App\Services\MemberUrlBuilder;
 
 $projectRoot = dirname(__DIR__, 2);
 require $projectRoot . '/vendor/autoload.php';
 
+/**
+ * @return int|null
+ */
+function resolveAuthorizedLeadId(AppConfig $config, string $email): ?int
+{
+    if (!$config->hasDatabaseConfig()) {
+        return null;
+    }
+
+    $pdo = DatabaseConnection::fromConfig($config);
+    $service = new MemberAutoLoginService(
+        new LeadRepository($pdo),
+        new PurchaseRepository($pdo),
+    );
+
+    return $service->resolveAuthorizedLeadId($email);
+}
+
+function loginMember(int $leadId): void
+{
+    session_set_cookie_params([
+        'httponly' => true,
+        'secure' => !in_array($_SERVER['HTTP_HOST'] ?? '', ['localhost', '127.0.0.1'], true),
+        'samesite' => 'Lax',
+    ]);
+    session_start();
+    session_regenerate_id(true);
+    $_SESSION['member_lead_id'] = $leadId;
+    header('Location: ' . MemberUrlBuilder::indexPath());
+    exit;
+}
+
 $config = AppConfig::load($projectRoot);
-$error = '';
-$sent = false;
+$error = 'Access denied. Please use your purchase link to enter the member portal.';
+$cemail = trim((string) ($_GET['cemail'] ?? ''));
+$postedEmail = trim((string) ($_POST['email'] ?? ''));
+$requestMethod = (string) ($_SERVER['REQUEST_METHOD'] ?? 'GET');
 
-if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
-    $email = trim((string) ($_POST['email'] ?? ''));
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = 'Please enter a valid email address.';
-    } elseif (!$config->hasDatabaseConfig()) {
-        $error = 'Member login is not configured yet.';
-    } else {
-        try {
-            $pdo = DatabaseConnection::fromConfig($config);
-            $leads = new LeadRepository($pdo);
-            $purchases = new PurchaseRepository($pdo);
-            $leadId = $leads->findIdByEmail($email);
-
-            if ($leadId === null || !$purchases->buyerHasAnyPurchase($leadId)) {
-                $error = 'No buyer record found for this email yet.';
-            } else {
-                $auth = new MemberAuthService($config, new MagicLinkRepository($pdo));
-                $magicLink = $auth->issueMagicLink($leadId);
-                if ($magicLink === null) {
-                    $error = 'Unable to create a secure login link right now.';
-                } else {
-                    $subject = 'Your Soul Mirror member login link';
-                    $message = "Use this secure login link:\n\n" . $magicLink . "\n\nThis link expires soon.";
-                    $headers = "From: no-reply@divinegracegift.com\r\n";
-                    @mail($email, $subject, $message, $headers);
-                    $sent = true;
-                }
-            }
-        } catch (Throwable) {
-            $error = 'Unable to process login right now.';
+if (!$config->hasDatabaseConfig()) {
+    $error = 'Member login is not configured yet.';
+} elseif ($cemail !== '' || ($requestMethod === 'POST' && $postedEmail !== '')) {
+    $email = $cemail !== '' ? $cemail : $postedEmail;
+    try {
+        $leadId = resolveAuthorizedLeadId($config, $email);
+        if ($leadId !== null) {
+            loginMember($leadId);
         }
+        $error = 'Access denied. No qualifying purchase was found for that email.';
+    } catch (Throwable) {
+        $error = 'Unable to process login right now.';
     }
 }
 ?>
@@ -68,19 +83,12 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 </head>
 <body>
   <h1>Member Portal Login</h1>
-  <p>Enter the email you used to buy. We will send a secure one-time login link.</p>
-
+  <p>Use your ClickBank purchase link, or log in manually with your buyer email.</p>
   <form method="post" action="">
     <label for="email">Buyer Email</label>
-    <input id="email" name="email" type="email" required autocomplete="email">
-    <button type="submit">Send Secure Login Link</button>
+    <input id="email" name="email" type="email" required autocomplete="email" value="<?= htmlspecialchars($postedEmail, ENT_QUOTES) ?>">
+    <button type="submit">Log In</button>
   </form>
-
-  <?php if ($error !== ''): ?>
-    <p class="error"><?= htmlspecialchars($error, ENT_QUOTES) ?></p>
-  <?php endif; ?>
-  <?php if ($sent): ?>
-    <p class="ok">If this email has a buyer record, your login link is on its way.</p>
-  <?php endif; ?>
+  <p class="error"><?= htmlspecialchars($error, ENT_QUOTES) ?></p>
 </body>
 </html>
