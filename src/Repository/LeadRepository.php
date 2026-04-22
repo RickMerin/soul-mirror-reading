@@ -62,6 +62,37 @@ final class LeadRepository
         return is_numeric($id) ? (int) $id : null;
     }
 
+    public function findOrCreateMinimalByEmail(string $email, string $name = 'ClickBank Buyer'): int
+    {
+        $existingId = $this->findIdByEmail($email);
+        if ($existingId !== null) {
+            return $existingId;
+        }
+
+        $uuid = $this->uuidV4();
+        $stmt = $this->pdo->prepare(
+            'INSERT INTO leads (uuid, email, name, dob, gender, cards_json, reading_payload_json, funnel_step)
+             VALUES (:uuid, :email, :name, :dob, :gender, :cards_json, :reading_payload_json, :funnel_step)'
+        );
+        $stmt->execute([
+            ':uuid' => $uuid,
+            ':email' => $email,
+            ':name' => $name !== '' ? $name : 'ClickBank Buyer',
+            ':dob' => '1900-01-01',
+            ':gender' => 'unknown',
+            ':cards_json' => json_encode(new \stdClass(), JSON_THROW_ON_ERROR),
+            ':reading_payload_json' => null,
+            ':funnel_step' => 'unlock-reading',
+        ]);
+
+        $newId = $this->findIdByEmail($email);
+        if ($newId === null) {
+            throw new RuntimeException('Unable to create lead for ClickBank INS payload.');
+        }
+
+        return $newId;
+    }
+
     /**
      * @return array<string,mixed>|null
      */
