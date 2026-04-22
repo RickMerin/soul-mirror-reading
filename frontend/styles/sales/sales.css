@@ -1211,8 +1211,8 @@ strong {
   /* font-size: clamp(25px, 4.5vw, 38px); */
   text-align: center;
   margin-bottom: 36px;
-  color: #fff;
-  text-shadow: var(--shadow-dream-lg);
+  color: #ffffff;
+  text-shadow: none;
 }
 
 .pricing-grid {
@@ -1221,6 +1221,22 @@ strong {
   gap: 20px;
   max-width: 680px;
   margin: 0 auto 36px;
+}
+
+.pricing-grid--single {
+  grid-template-columns: 1fr;
+  max-width: 560px;
+}
+
+.pricing-grid--single .price-card-header {
+  text-align: center;
+}
+
+.pricing-grid--single .price-amount {
+  justify-content: center;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
 }
 
 .price-card {
@@ -1254,7 +1270,7 @@ strong {
 
 .price-card-header {
   background: rgba(59, 31, 110, 0.08);
-  padding: 20px 26px;
+  padding: 30px 26px;
   border-bottom: 1px solid rgba(59, 31, 110, 0.12);
   text-align: center;
 }
@@ -1413,9 +1429,43 @@ strong {
   text-align: center;
   font-family: var(--serif);
   font-size: clamp(1.08rem, 2vw, 18px);
-  color: var(--text-muted);
+  color: #ffffff;
   margin-bottom: 28px;
-  text-shadow: var(--shadow-dream-sm);
+  text-shadow: none;
+}
+
+/* ══ PRICE BRIDGE ══ */
+.price-bridge {
+  max-width: 640px;
+  margin: 0 auto 36px;
+  text-align: center;
+  padding: 28px 32px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px dashed rgba(212, 175, 55, 0.45);
+  border-radius: 12px;
+}
+
+.price-bridge__eyebrow {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--purple-mid);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.price-bridge__body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: #1a1a1a;
+  line-height: 1.65;
+}
+
+.price-bridge__body strong {
+  color: var(--purple-dark);
+  font-style: normal;
 }
 
 /* CTA */
@@ -1457,10 +1507,10 @@ strong {
   font-family: var(--serif);
   font-size: clamp(1.08rem, 2vw, 18px);
   letter-spacing: 0.04em;
-  color: var(--text-muted);
+  color: #ffffff;
   margin-top: 16px;
   line-height: 1.9;
-  text-shadow: var(--shadow-dream-sm);
+  text-shadow: none;
 }
 
 .stars {

@@ -9,6 +9,7 @@ use App\Domain\CardImageUrlBuilder;
 use App\Domain\FormSubmission;
 use App\Domain\SunSignResolver;
 use App\Logging\PipelineLogger;
+use App\Repository\LeadRepository;
 use App\Services\AstrologyApiClient;
 use App\Services\AstrologyApiException;
 use App\Services\KitService;
@@ -28,6 +29,7 @@ final class ReadingOrchestrator
         private readonly SunSignResolver $sunSignResolver,
         private readonly CardImageUrlBuilder $cardImages,
         private readonly PipelineLogger $pipelineLog,
+        private readonly ?LeadRepository $leadRepository = null,
     ) {}
 
     /**
@@ -67,6 +69,29 @@ final class ReadingOrchestrator
             $this->pipelineLog->line('abort: KIT_API_KEY missing');
 
             return new ReadingResult(500, ['error' => 'Internal server error.']);
+        }
+
+        $cards = [
+            ['id' => $c1, 'name' => $card1Name],
+            ['id' => $c2, 'name' => $card2Name],
+            ['id' => $c3, 'name' => $card3Name],
+        ];
+        $leadUuid = null;
+        if ($this->leadRepository !== null) {
+            try {
+                $leadUuid = $this->leadRepository->upsertLead(
+                    email: $email,
+                    name: $name,
+                    dob: $dob,
+                    gender: $gender,
+                    cards: $cards,
+                );
+                $this->pipelineLog->line('lead: upsert ok');
+            } catch (Throwable $e) {
+                $this->pipelineLog->line('lead: fail ' . $e::class . ' ' . $this->shortSafeMessage($e));
+
+                return new ReadingResult(500, ['error' => 'Internal server error.']);
+            }
         }
 
         try {
@@ -138,7 +163,27 @@ final class ReadingOrchestrator
         error_log('Reading pipeline completed (subscriber upsert + tag).');
         $this->pipelineLog->line('pipeline: complete HTTP 200');
 
-        return new ReadingResult(200, ['success' => true]);
+        if ($this->leadRepository !== null) {
+            try {
+                $this->leadRepository->upsertLead(
+                    email: $email,
+                    name: $name,
+                    dob: $dob,
+                    gender: $gender,
+                    cards: $cards,
+                    readingPayload: [
+                        'love' => $loveText,
+                        'life' => $lifeText,
+                        'wealth' => $wealthText,
+                        'sun_sign' => $sunSign,
+                    ],
+                );
+            } catch (Throwable) {
+                // Non-fatal here; lead row already exists from the initial capture.
+            }
+        }
+
+        return new ReadingResult(200, ['success' => true, 'leadUuid' => $leadUuid]);
     }
 
     private function shortSafeMessage(Throwable $e): string

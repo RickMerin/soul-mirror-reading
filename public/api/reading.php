@@ -12,7 +12,9 @@ use App\Application\ReadingOrchestrator;
 use App\Config\AppConfig;
 use App\Domain\CardImageUrlBuilder;
 use App\Domain\SunSignResolver;
+use App\Infrastructure\DatabaseConnection;
 use App\Logging\PipelineLogger;
+use App\Repository\LeadRepository;
 use App\Services\AstrologyApiClient;
 use App\Services\KitService;
 use GuzzleHttp\Client;
@@ -63,6 +65,15 @@ if (!is_array($body)) {
 $config = AppConfig::load($projectRoot);
 $http = new Client($config->guzzleClientConfig());
 $pipelineLog = new PipelineLogger($config);
+$leadRepository = null;
+if ($config->hasDatabaseConfig()) {
+    try {
+        $pdo = DatabaseConnection::fromConfig($config);
+        $leadRepository = new LeadRepository($pdo);
+    } catch (Throwable $e) {
+        error_log('reading.php database init failed: ' . $e->getMessage());
+    }
+}
 $orchestrator = new ReadingOrchestrator(
     $config,
     new AstrologyApiClient($config, $http),
@@ -70,6 +81,7 @@ $orchestrator = new ReadingOrchestrator(
     new SunSignResolver(),
     new CardImageUrlBuilder(),
     $pipelineLog,
+    $leadRepository,
 );
 
 $result = $orchestrator->run($body);

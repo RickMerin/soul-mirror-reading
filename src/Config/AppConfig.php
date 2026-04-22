@@ -28,6 +28,12 @@ final class AppConfig
          * Empty string = Guzzle default (often fails on Windows without php.ini `curl.cainfo`).
          */
         public readonly string $sslCaBundlePath,
+        public readonly string $dbHost,
+        public readonly int $dbPort,
+        public readonly string $dbName,
+        public readonly string $dbUser,
+        public readonly string $dbPass,
+        public readonly string $appBaseUrl,
     ) {}
 
     /**
@@ -79,6 +85,12 @@ final class AppConfig
             pipelineFileLog: $pipelineFileLog,
             pipelineLogPath: $pipelineLogPath,
             sslCaBundlePath: $sslCaBundlePath,
+            dbHost: $get('DB_HOST') !== '' ? $get('DB_HOST') : '127.0.0.1',
+            dbPort: self::toIntOrDefault($get('DB_PORT'), 3306),
+            dbName: $get('DB_NAME'),
+            dbUser: $get('DB_USER'),
+            dbPass: $get('DB_PASS'),
+            appBaseUrl: rtrim($get('APP_BASE_URL'), '/'),
         );
     }
 
@@ -103,5 +115,17 @@ final class AppConfig
         }
 
         return '';
+    }
+
+    public function hasDatabaseConfig(): bool
+    {
+        return $this->dbName !== '' && $this->dbUser !== '';
+    }
+
+    private static function toIntOrDefault(string $value, int $default): int
+    {
+        $filtered = filter_var($value, FILTER_VALIDATE_INT);
+
+        return is_int($filtered) ? $filtered : $default;
     }
 }
