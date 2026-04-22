@@ -44,13 +44,15 @@ function loginMember(int $leadId): void
 }
 
 $config = AppConfig::load($projectRoot);
-$error = 'Access denied. Please use your purchase link to enter the member portal.';
+$statusMessage = 'Use your ClickBank purchase link, or log in manually with your buyer email.';
+$statusClass = 'notice';
 $cemail = trim((string) ($_GET['cemail'] ?? ''));
 $postedEmail = trim((string) ($_POST['email'] ?? ''));
 $requestMethod = (string) ($_SERVER['REQUEST_METHOD'] ?? 'GET');
 
 if (!$config->hasDatabaseConfig()) {
-    $error = 'Member login is not configured yet.';
+    $statusMessage = 'Member login is not configured yet.';
+    $statusClass = 'error';
 } elseif ($cemail !== '' || ($requestMethod === 'POST' && $postedEmail !== '')) {
     $email = $cemail !== '' ? $cemail : $postedEmail;
     try {
@@ -58,9 +60,11 @@ if (!$config->hasDatabaseConfig()) {
         if ($leadId !== null) {
             loginMember($leadId);
         }
-        $error = 'Access denied. No qualifying purchase was found for that email.';
+        $statusMessage = 'Access denied. No qualifying purchase was found for that email.';
+        $statusClass = 'error';
     } catch (Throwable) {
-        $error = 'Unable to process login right now.';
+        $statusMessage = 'Unable to process login right now.';
+        $statusClass = 'error';
     }
 }
 ?>
@@ -70,25 +74,199 @@ if (!$config->hasDatabaseConfig()) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Member Login - Soul Mirror</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <style>
-    body { font-family: Arial, sans-serif; max-width: 560px; margin: 48px auto; padding: 0 16px; color: #261544; }
-    h1 { margin-bottom: 8px; }
-    p { line-height: 1.5; }
-    label { display: block; margin: 20px 0 8px; }
-    input { width: 100%; padding: 10px; font-size: 16px; }
-    button { margin-top: 16px; background: #4a2f8f; color: #fff; border: none; padding: 12px 16px; cursor: pointer; }
-    .error { color: #a12929; margin-top: 12px; }
-    .ok { color: #15633a; margin-top: 12px; }
+    :root {
+      --bg-dark: #130a26;
+      --bg-mid: #241144;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text: #20113f;
+      --text-soft: #5b4a82;
+      --brand: #4a2f8f;
+      --brand-hover: #3c2473;
+      --accent: #d4af37;
+      --border: rgba(74, 47, 143, 0.2);
+      --error-bg: #fee8e8;
+      --error-text: #7f1f1f;
+      --notice-bg: #f3ecff;
+      --notice-text: #3e2a77;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 15%, rgba(122, 88, 200, 0.28), transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.16), transparent 35%),
+        linear-gradient(150deg, var(--bg-dark), var(--bg-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-shell {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .login-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px 28px;
+      box-shadow: 0 18px 45px rgba(18, 9, 37, 0.35);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 4vw, 34px);
+      line-height: 1.15;
+      color: #1d0f38;
+    }
+
+    .intro {
+      margin: 0 0 22px;
+      color: var(--text-soft);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    label {
+      display: block;
+      margin: 0 0 8px;
+      font-weight: 600;
+      color: #2d1760;
+      font-size: 14px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 13px;
+      font-size: 16px;
+      color: var(--text);
+      background: #fff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input[type="email"]:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(74, 47, 143, 0.16);
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 14px;
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--brand);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .submit-btn:hover,
+    .submit-btn:focus-visible {
+      background: var(--brand-hover);
+    }
+
+    .submit-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .status {
+      margin-top: 16px;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+      line-height: 1.45;
+      border: 1px solid transparent;
+    }
+
+    .status.notice {
+      background: var(--notice-bg);
+      color: var(--notice-text);
+      border-color: rgba(74, 47, 143, 0.2);
+    }
+
+    .status.error {
+      background: var(--error-bg);
+      color: var(--error-text);
+      border-color: rgba(161, 41, 41, 0.35);
+    }
+
+    .support {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .support a {
+      color: #352067;
+      font-weight: 600;
+    }
+
+    .shield {
+      display: block;
+      margin: 16px auto 0;
+      text-align: center;
+      font-size: 12px;
+      color: #43306c;
+    }
+
+    @media (max-width: 540px) {
+      body {
+        padding: 16px;
+      }
+
+      .login-card {
+        padding: 24px 18px;
+        border-radius: 14px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Member Portal Login</h1>
-  <p>Use your ClickBank purchase link, or log in manually with your buyer email.</p>
-  <form method="post" action="">
-    <label for="email">Buyer Email</label>
-    <input id="email" name="email" type="email" required autocomplete="email" value="<?= htmlspecialchars($postedEmail, ENT_QUOTES) ?>">
-    <button type="submit">Log In</button>
-  </form>
-  <p class="error"><?= htmlspecialchars($error, ENT_QUOTES) ?></p>
+  <main class="login-shell">
+    <section class="login-card" aria-labelledby="member-login-title">
+      <p class="eyebrow">Soul Mirror Member Area</p>
+      <h1 id="member-login-title">Member Portal Login</h1>
+      <p class="intro">Enter the email used for your purchase to continue into your member dashboard.</p>
+      <form method="post" action="">
+        <label for="email">Buyer Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email" value="<?= htmlspecialchars($postedEmail, ENT_QUOTES) ?>">
+        <button class="submit-btn" type="submit">Log In</button>
+      </form>
+      <?php if ($statusMessage !== ''): ?>
+        <p class="status <?= htmlspecialchars($statusClass, ENT_QUOTES) ?>" role="status" aria-live="polite"><?= htmlspecialchars($statusMessage, ENT_QUOTES) ?></p>
+      <?php endif; ?>
+      <p class="shield">Secure member access powered by your purchase record.</p>
+      <p class="support">Need help with access? <a href="mailto:support@soulmirrorreading.com">Contact support</a>.</p>
+    </section>
+  </main>
 </body>
 </html>
