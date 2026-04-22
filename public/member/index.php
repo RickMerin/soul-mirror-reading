@@ -59,6 +59,9 @@ try {
     $rendered = strtr($html, $replacements);
     $logoutPath = MemberUrlBuilder::logoutPath();
     $rendered = str_replace('</body>', '<p style="text-align:center;padding:20px"><a href="' . htmlspecialchars($logoutPath, ENT_QUOTES) . '">Logout</a></p></body>', $rendered);
+    if (stripos($rendered, 'rel="icon"') === false) {
+        $rendered = str_replace('</head>', '  <link rel="icon" type="image/svg+xml" href="/favicon.svg">' . PHP_EOL . '</head>', $rendered);
+    }
 
     header('Content-Type: text/html; charset=utf-8');
     echo $rendered;
