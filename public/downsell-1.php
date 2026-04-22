@@ -80,9 +80,12 @@
       position: relative;
     }
     .hero__image {
-      max-width: 720px; width: 100%; margin: 0 auto;
+      max-width: 760px; width: 100%; margin: 0 auto;
       display: block; border-radius: 10px 10px 0 0;
       position: relative;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: center;
       box-shadow: 0 -10px 40px rgba(212,175,55,0.18);
     }
 
@@ -191,16 +194,17 @@
     .testimonials__headline em { color: var(--gold); font-style: italic; font-family: 'Cormorant Garamond', serif; }
     .testimonial-grid { display: flex; flex-direction: column; gap: 18px; }
     .testimonial {
-      display: flex; gap: 20px; align-items: flex-start;
+      display: flex; gap: 22px; align-items: center;
       background: var(--white); border-radius: 10px;
       border: 1px solid rgba(212,175,55,0.22);
-      padding: 26px;
+      padding: 28px;
       box-shadow: 0 4px 16px rgba(45,27,105,0.05);
     }
     .testimonial__avatar {
-      width: 72px; height: 72px;
+      width: 78px; height: 78px;
       border-radius: 50%;
       object-fit: cover;
+      object-position: center;
       border: 2px solid rgba(212,175,55,0.4);
       flex-shrink: 0;
       box-shadow: 0 4px 12px rgba(45,27,105,0.1);
@@ -401,6 +405,7 @@
     @media (max-width: 600px) {
       .part-row { grid-template-columns: 1fr; }
       .part-arrow { transform: rotate(90deg); padding: 6px 0; }
+      .hero__image { aspect-ratio: 4 / 3; }
       .testimonial { flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 22px 18px; }
       .value-stack { padding: 24px 18px; }
       .guarantee__inner { padding: 32px 20px; }
@@ -425,7 +430,7 @@
         $97 was not right for you today. Fine. I would rather meet you where you are than watch you walk away from work you will need.
       </p>
     </div>
-    <img class="hero__image" src="../frontend/images/downsell/hero-journal-candle-mirror.png" alt="Open journal, lit candle, antique mirror on writing desk" />
+    <img class="hero__image" src="frontend/images/downsell/hero-journal-candle-mirror.png" alt="Open journal, lit candle, antique mirror on writing desk" />
   </section>
 
   <!-- ═══ PART 1 / PART 2 FRAME ═══ -->
@@ -497,7 +502,7 @@
       <div class="testimonial-grid">
 
         <div class="testimonial">
-          <img class="testimonial__avatar" src="../frontend/images/downsell/testimonial-jennifer-l.png" alt="Jennifer L." />
+          <img class="testimonial__avatar" src="frontend/images/downsell/testimonial-jennifer-l.png" alt="Jennifer L." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             <p class="testimonial__quote">"I almost said no at $97. When I saw the price drop I almost said no again — I thought it must be a lesser version. It is not. It is the same practice. I finished it over a weekend. My husband noticed the change before I told him I had done anything."</p>
@@ -506,7 +511,7 @@
         </div>
 
         <div class="testimonial">
-          <img class="testimonial__avatar" src="../frontend/images/downsell/testimonial-marcus-t.png" alt="Marcus T." />
+          <img class="testimonial__avatar" src="frontend/images/downsell/testimonial-marcus-t.png" alt="Marcus T." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             <p class="testimonial__quote">"Full disclosure: I was the definition of sceptical. I clicked 'no thanks' on the first offer. Something made me reconsider when I saw this page. Three weeks later I accepted a role I would have walked away from. I do not know how to explain it. I just know it worked."</p>
@@ -515,7 +520,7 @@
         </div>
 
         <div class="testimonial">
-          <img class="testimonial__avatar" src="../frontend/images/downsell/testimonial-elena-m.png" alt="Elena M." />
+          <img class="testimonial__avatar" src="frontend/images/downsell/testimonial-elena-m.png" alt="Elena M." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             <p class="testimonial__quote">"I nearly did not take it. I already have too many courses sitting unfinished. This is the only one I finished in a single weekend — because it was not a course, it was a practice. Reading it felt like being seen. I keep Report Three on my desk now."</p>

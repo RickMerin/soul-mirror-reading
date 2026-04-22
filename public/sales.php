@@ -16,6 +16,69 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <title>Your Soul Mirror Reading — What the Cards Are Really Saying</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/sales-bundle.min.css?v=<?= htmlspecialchars((string) $cssVer, ENT_QUOTES) ?>">
+  <style>
+    .testimonials-section {
+      padding: 40px 0 88px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonials-section h2 {
+      font-size: clamp(28px, 4.5vw, 42px);
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .testi-card {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(59, 31, 110, 0.14);
+      border-radius: 12px;
+      padding: 28px 26px;
+      backdrop-filter: blur(4px);
+    }
+
+    .testi-avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .testi-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 100%;
+      object-fit: cover;
+      border: 2px solid rgba(212, 175, 55, 0.45);
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(59, 31, 110, 0.14);
+    }
+
+    .testi-avatar-meta {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .testi-avatar-meta .testi-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .testi-avatar-meta .testi-meta {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 3px;
+    }
+  </style>
 </head>
 
 <body>
@@ -408,28 +471,43 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 
       <div class="testi-grid">
         <div class="testi-card">
+          <div class="testi-avatar-row">
+            <img class="testi-avatar" src="frontend/images/frontend/testimonial-diane-r.png" alt="Diane R.">
+            <div class="testi-avatar-meta">
+              <div class="testi-name">Diane R.</div>
+              <div class="testi-meta">Age 54 &nbsp;·&nbsp; Retired teacher</div>
+            </div>
+          </div>
           <div class="testi-stars">★★★★★</div>
           <p class="testi-quote">"I've had tarot readings before and always felt something was missing. This report gave
             me the missing piece. I could actually see the one thread running through all three areas of my life. I
             cried reading it, in the best possible way."</p>
-          <div class="testi-name">Diane R.</div>
-          <div class="testi-meta">Age 54 &nbsp;·&nbsp; Retired teacher</div>
         </div>
         <div class="testi-card">
+          <div class="testi-avatar-row">
+            <img class="testi-avatar" src="frontend/images/frontend/testimonial-james-h.png" alt="James H.">
+            <div class="testi-avatar-meta">
+              <div class="testi-name">James H.</div>
+              <div class="testi-meta">Age 48 &nbsp;·&nbsp; Business owner</div>
+            </div>
+          </div>
           <div class="testi-stars">★★★★★</div>
           <p class="testi-quote">"I was skeptical. I'm a practical person. I just wanted to see what the cards said. But
             the Mirror Block explanation stopped me cold. It described something I've never been able to name. Whatever
             this is, it works."</p>
-          <div class="testi-name">Marcus T.</div>
-          <div class="testi-meta">Age 47 &nbsp;·&nbsp; Business owner</div>
         </div>
         <div class="testi-card">
+          <div class="testi-avatar-row">
+            <img class="testi-avatar" src="frontend/images/frontend/testimonial-carolyn-m.png" alt="Carolyn M.">
+            <div class="testi-avatar-meta">
+              <div class="testi-name">Carolyn M.</div>
+              <div class="testi-meta">Age 61 &nbsp;·&nbsp; Holistic practitioner</div>
+            </div>
+          </div>
           <div class="testi-stars">★★★★★</div>
           <p class="testi-quote">"Three cards. One pattern. I've spent years in therapy trying to understand why the
             same things kept happening in love, at work, with money. This report showed me in 20 minutes. The clearing
             practice alone is worth ten times what I paid."</p>
-          <div class="testi-name">Carolyn M.</div>
-          <div class="testi-meta">Age 61 &nbsp;·&nbsp; Holistic practitioner</div>
         </div>
       </div>
     </div>

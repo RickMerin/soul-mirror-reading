@@ -90,6 +90,9 @@
     .hero__image {
       max-width: 760px; width: 100%; margin: 0 auto;
       display: block; border-radius: 10px 10px 0 0;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: center;
       box-shadow: 0 -10px 40px rgba(212,175,55,0.18);
       position: relative;
     }
@@ -363,7 +366,7 @@
     .testimonials__headline em { color: var(--gold); font-style: italic; font-family: 'Cormorant Garamond', serif; }
     .testimonial-grid { display: flex; flex-direction: column; gap: 22px; }
     .testimonial {
-      display: flex; gap: 22px; align-items: flex-start;
+      display: flex; gap: 22px; align-items: center;
       background: var(--white); border-radius: 10px;
       border: 1px solid rgba(212,175,55,0.22);
       padding: 28px;
@@ -373,6 +376,7 @@
       width: 78px; height: 78px;
       border-radius: 50%;
       object-fit: cover;
+      object-position: center;
       border: 2px solid rgba(212,175,55,0.4);
       flex-shrink: 0;
       box-shadow: 0 4px 12px rgba(45,27,105,0.12);
@@ -606,6 +610,7 @@
       .part-arrow { transform: rotate(90deg); padding: 8px 0; }
       .report-card { flex-direction: column; gap: 12px; padding: 24px; }
       .include-item { flex-direction: column; gap: 12px; padding: 24px 20px; }
+      .hero__image { aspect-ratio: 4 / 3; }
       .testimonial { flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 24px 20px; }
       .value-stack { padding: 24px 18px; }
       .guarantee__inner { padding: 32px 22px; }
@@ -632,7 +637,7 @@
         Your Soul Mirror Reading reveals the pattern. The Soul Ritual Practice is how Luna walks you through clearing it — one written protocol at a time, designed specifically for your block type.
       </p>
     </div>
-    <img class="hero__image" src="../frontend/images/upsell/hero-tarot-mirror-candle.png" alt="Three tarot cards, mirror, and lit candle on a writing desk" />
+    <img class="hero__image" src="frontend/images/upsell/hero-tarot-mirror-candle.png" alt="Three tarot cards, mirror, and lit candle on a writing desk" />
   </section>
 
   <!-- ═══ PART 1 / PART 2 JOURNEY FRAME ═══ -->
@@ -851,7 +856,7 @@
       <div class="testimonial-grid">
 
         <div class="testimonial">
-          <img class="testimonial__avatar" src="../frontend/images/upsell/testimonial-margaret-v.png" alt="Margaret V." />
+          <img class="testimonial__avatar" src="frontend/images/upsell/testimonial-margaret-v.png" alt="Margaret V." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             <p class="testimonial__quote">"I almost closed this page. I told myself I had done enough inner work already. Something made me stay. Four months in, and the pattern that ran my life for thirty years is finally quiet. I have never written a review for anything. I am writing this one."</p>
@@ -860,7 +865,7 @@
         </div>
 
         <div class="testimonial">
-          <img class="testimonial__avatar" src="../frontend/images/upsell/testimonial-david-r.png" alt="David R." />
+          <img class="testimonial__avatar" src="frontend/images/upsell/testimonial-david-r.png" alt="David R." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             <p class="testimonial__quote">"I hovered over 'no thanks' for a long time. I am not usually an add-on person. But the way Luna described the gap — between knowing and clearing — landed too precisely to ignore. Best $97 I have spent this year. I am on my second read-through of Report One."</p>
@@ -869,7 +874,7 @@
         </div>
 
         <div class="testimonial">
-          <img class="testimonial__avatar" src="../frontend/images/upsell/testimonial-sophia-k.png" alt="Sophia K." />
+          <img class="testimonial__avatar" src="frontend/images/upsell/testimonial-sophia-k.png" alt="Sophia K." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             <p class="testimonial__quote">"I actually did click away. Then I came back through the follow-up email the next day and bought it. The section on how my block was formed made me cry — not from pain, from relief. I have been in therapy for six years. This reached somewhere therapy did not."</p>
