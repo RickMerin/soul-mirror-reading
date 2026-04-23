@@ -584,7 +584,7 @@
         Yes, I Want To Upgrade My Soul Mirror Journey
       </a>
 
-      <button class="cta-btn--secondary" onclick="window.location.href='member/login.php'">
+      <button class="cta-btn--secondary" onclick="window.location.href='login.php'">
         No thank you &mdash; proceed to my reading only
       </button>
 
@@ -612,7 +612,7 @@
     <div class="container">
       <p style="font-size:16px;color:var(--text-muted);max-width:500px;margin:0 auto;line-height:1.7;">
         Your Soul Mirror Reading will be delivered within 12&ndash;24 hours regardless.<br />
-        <a href="member/login.php" style="color:var(--violet-deep);font-size:15px;text-underline-offset:3px;">
+        <a href="login.php" style="color:var(--violet-deep);font-size:15px;text-underline-offset:3px;">
           No thank you — proceed to my reading only
         </a>
       </p>

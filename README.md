@@ -41,7 +41,7 @@ Tarot funnel: visitors pick three cards, submit a form, and the server fetches A
 ## Member portal URLs (local WAMP)
 
 - `http://localhost/soul-mirror-reading/member`
-- `http://localhost/soul-mirror-reading/member/login.php`
+- `http://localhost/soul-mirror-reading/login.php`
 
 ## Scripts
 
