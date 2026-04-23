@@ -11,7 +11,7 @@ declare(strict_types=1);
  *   2. php scripts/migrate.php
  *   3. php scripts/seed-dev-purchase.php
  *
- * Log in at member/login.php with DEV_SEED_BUYER_EMAIL (default dev-buyer@example.com).
+ * Log in at login.php with DEV_SEED_BUYER_EMAIL (default dev-buyer@example.com).
  */
 
 use App\Config\AppConfig;
