@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use JsonException;
 use PDO;
 
 final class PurchaseRepository
@@ -21,6 +22,56 @@ final class PurchaseRepository
         $stmt->execute([':lead_id' => $leadId]);
 
         return $stmt->fetchColumn() !== false;
+    }
+
+    /**
+     * True when any non-refunded purchase row for this lead includes the given item id
+     * (ClickBank line item keys: sku, item, itemNo, etc.).
+     */
+    public function leadHasApprovedPurchaseWithItemSku(int $leadId, string $sku): bool
+    {
+        $needle = strtolower(trim($sku));
+        if ($needle === '') {
+            return false;
+        }
+
+        $stmt = $this->pdo->prepare(
+            "SELECT items_json FROM purchases
+             WHERE lead_id = :lead_id
+               AND status IN ('approved', 'complete', 'completed', 'active')"
+        );
+        $stmt->execute([':lead_id' => $leadId]);
+
+        while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
+            $raw = $row['items_json'] ?? '';
+            if (!is_string($raw) || $raw === '') {
+                continue;
+            }
+            try {
+                $decoded = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+            } catch (JsonException) {
+                continue;
+            }
+            if (!is_array($decoded)) {
+                continue;
+            }
+            foreach ($decoded as $item) {
+                if (!is_array($item)) {
+                    continue;
+                }
+                foreach (['sku', 'item', 'itemNo', 'productSku'] as $key) {
+                    if (!array_key_exists($key, $item)) {
+                        continue;
+                    }
+                    $val = $item[$key];
+                    if (is_string($val) && strtolower(trim($val)) === $needle) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     /**

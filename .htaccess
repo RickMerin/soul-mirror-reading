@@ -22,6 +22,17 @@ Options -Indexes
     RewriteRule ^thankyou\.html$ public/thankyou.php [L,R=301]
     RewriteRule ^sales-page\.html$ public/sales-page.php [L,R=301]
 
+    # --- Clean URLs for member: no .php, no index in URL ---
+    # Map /member or /member/ to public/member/index.php
+    RewriteRule ^member/?$ public/member/index.php [L]
+
+    # Redirect direct access to index.php to clean URL.
+    # Capture the URL-space prefix from REQUEST_URI so the 301 target is a real URL path.
+    # A bare relative target like `member` would make Apache resolve against the filesystem
+    # directory on Windows/WAMP and produce `http://host/C:/wamp64/www/.../member`.
+    RewriteCond %{REQUEST_URI} ^(.*)/member/index\.php$
+    RewriteRule ^member/index\.php$ %1/member [R=301,L]
+
     # --- Block sensitive paths and files (403; must run before static file delivery) ---
     # (No mandatory /public/ -> / redirect here: absolute redirects break subdirectory installs.
     # Prefer vhost docroot = public/ or link without the /public/ segment.)
@@ -36,6 +47,8 @@ Options -Indexes
     RewriteRule ^README\.md$ - [F,L]
 
     RewriteRule ^api/reading$ public/api/reading.php [L]
+
+    # Rewrite all other requests that aren't actual files or directories to the public folder
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ public/$1 [L]
