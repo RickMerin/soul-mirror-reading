@@ -4,6 +4,7 @@ $cssPath = __DIR__ . '/assets/sales-bundle.min.css';
 $cssVer = is_file($cssPath) ? filemtime($cssPath) : time();
 $jsPath = __DIR__ . '/assets/sales.min.js';
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
+$checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -447,7 +448,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
               <li><strong>Bonus 3</strong> &mdash; Root Cause Reading Guide ($47)</li>
               <li><strong>Bonus 4</strong> &mdash; Mirror Clarity Meditation audio ($37)</li>
             </ul>
-            <a href="#" class="price-card-cta vip">Claim Your Soul Mirror Reading &rarr;</a>
+            <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="price-card-cta vip">Claim Your Soul Mirror Reading &rarr;</a>
           </div>
         </div>
       </div>
@@ -661,8 +662,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     </div>
 
     <div class="cta-block">
-      <a href="#pricing" class="cta-btn">Claim
-        Your Soul Mirror Reading →</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta-btn">
+        Claim Your Soul Mirror Reading →</a>
       <div class="cta-note">
         Instant access &nbsp;·&nbsp; 90-day guarantee &nbsp;·&nbsp; Secure checkout
       </div>
