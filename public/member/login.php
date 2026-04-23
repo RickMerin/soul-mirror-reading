@@ -6,7 +6,6 @@ use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
 use App\Services\MemberAutoLoginService;
-use App\Services\MemberUrlBuilder;
 
 $projectRoot = dirname(__DIR__, 2);
 require $projectRoot . '/vendor/autoload.php';
@@ -39,7 +38,9 @@ function loginMember(int $leadId): void
     session_start();
     session_regenerate_id(true);
     $_SESSION['member_lead_id'] = $leadId;
-    header('Location: ' . MemberUrlBuilder::indexPath());
+    // Same-directory redirect: works for subdirectory installs (e.g. /soul-mirror-reading/member/) without
+    // relying on APP_BASE_URL path; production at domain root still resolves to /member/index.php.
+    header('Location: index.php');
     exit;
 }
 
