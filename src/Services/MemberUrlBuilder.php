@@ -10,18 +10,14 @@ final class MemberUrlBuilder
 {
     public static function memberPath(string $scriptName): string
     {
-        $fromEnv = self::appBaseUrlPathPrefix();
-        if ($fromEnv !== null) {
-            return ($fromEnv === '' ? '' : $fromEnv) . '/member';
-        }
-
-        $basePath = self::sanitizeUrlBasePath(self::requestBasePath($scriptName));
-        return ($basePath === '' ? '' : $basePath) . '/member';
+        $base = self::siteBasePath($scriptName);
+        return ($base === '' ? '' : $base) . '/member';
     }
 
     public static function loginPath(string $scriptName = ''): string
     {
-        return self::memberPath(self::serverScriptName($scriptName)) . '/login.php';
+        $base = self::siteBasePath(self::serverScriptName($scriptName));
+        return ($base === '' ? '' : $base) . '/login.php';
     }
 
     public static function indexPath(string $scriptName = ''): string
@@ -61,7 +57,22 @@ final class MemberUrlBuilder
 
     public static function logoutPath(string $scriptName = ''): string
     {
-        return self::memberPath(self::serverScriptName($scriptName)) . '/logout.php';
+        $base = self::siteBasePath(self::serverScriptName($scriptName));
+        return ($base === '' ? '' : $base) . '/logout.php';
+    }
+
+    /**
+     * Site URL path prefix (no trailing slash), e.g. '' at domain root or '/soul-mirror-reading'.
+     */
+    private static function siteBasePath(string $scriptName): string
+    {
+        $fromEnv = self::appBaseUrlPathPrefix();
+        if ($fromEnv !== null) {
+            return $fromEnv === '' ? '' : $fromEnv;
+        }
+
+        $basePath = self::sanitizeUrlBasePath(self::requestBasePath($scriptName));
+        return $basePath === '' ? '' : $basePath;
     }
 
     /**
