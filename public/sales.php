@@ -342,8 +342,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <div class="bonus-value">Valued at $67</div>
           </div>
           <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="cards/bonus-companion.webp">
-              <img src="cards/bonus-companion.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
+              <source type="image/webp" srcset="frontend/images/sales/soul-mirror-reading.webp">
+              <img src="frontend/images/sales/soul-mirror-reading.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
@@ -358,8 +358,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <div class="bonus-value">Valued at $47</div>
           </div>
           <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="cards/bonus-tracker.webp">
-                <img src="cards/bonus-tracker.png" width="250" height="333" alt="21-Day Shift Tracker" decoding="async"
+              <source type="image/webp" srcset="frontend/images/sales/21-days-shift-tracker.webp">
+                <img src="frontend/images/sales/21-days-shift-tracker.png" width="250" height="333" alt="21-Day Shift Tracker" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
@@ -369,6 +369,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
           </div>
         </div>
       </div>
+
+      <!-- 21-Day Shift Tracker -->
       <div class="bonus-row">
         <div class="bonus-tile">
           <div class="bonus-header">
@@ -376,8 +378,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <div class="bonus-value">Valued at $47</div>
           </div>
           <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="cards/bonus-rootcause.webp">
-              <img src="cards/bonus-rootcause.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
+              <source type="image/webp" srcset="frontend/images/sales/root-cause-reading-guide.webp">
+              <img src="frontend/images/sales/root-cause-reading-guide.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
@@ -392,8 +394,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <div class="bonus-value">Valued at $37</div>
           </div>
           <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="cards/bonus-meditation.webp">
-              <img src="cards/bonus-meditation.png" width="250" height="333" alt="Mirror Clarity Meditation" decoding="async"
+              <source type="image/webp" srcset="frontend/images/sales/mirror-block-companion-guide.webp">
+              <img src="frontend/images/sales/mirror-block-companion-guide.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
