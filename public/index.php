@@ -120,10 +120,10 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     <p class="site-footer-links">
       <a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp;
       <a href="/terms-conditions">Terms &amp; Conditions</a> &nbsp;·&nbsp;
-      <a href="mailto:support@divinegracegift.com">Contact Us</a> &nbsp;·&nbsp;
+      <a href="mailto:support@soulmirrorreading.com">Contact Us</a> &nbsp;·&nbsp;
       <a href="/refund-return-policy">Refund &amp; Return Policy</a>
     </p>
-    <p>Copyright © 2026 Divine Grace Gift. All Right Reserved.</p>
+    <p>Copyright © 2026 Soul Mirror Reading. All Right Reserved.</p>
   </footer>
 
   <script defer src="assets/home.min.js?v=<?= htmlspecialchars((string) $jsVer, ENT_QUOTES) ?>"></script>

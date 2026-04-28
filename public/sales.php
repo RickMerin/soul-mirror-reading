@@ -342,8 +342,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <div class="bonus-value">Valued at $67</div>
           </div>
           <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="cards/bonus-companion.webp">
-              <img src="cards/bonus-companion.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
+              <source type="image/webp" srcset="frontend/images/sales/soul-mirror-reading.webp">
+              <img src="frontend/images/sales/soul-mirror-reading.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
@@ -358,8 +358,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <div class="bonus-value">Valued at $47</div>
           </div>
           <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="cards/bonus-tracker.webp">
-                <img src="cards/bonus-tracker.png" width="250" height="333" alt="21-Day Shift Tracker" decoding="async"
+              <source type="image/webp" srcset="frontend/images/sales/21-days-shift-tracker.webp">
+                <img src="frontend/images/sales/21-days-shift-tracker.png" width="250" height="333" alt="21-Day Shift Tracker" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
@@ -369,6 +369,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
           </div>
         </div>
       </div>
+
+      <!-- 21-Day Shift Tracker -->
       <div class="bonus-row">
         <div class="bonus-tile">
           <div class="bonus-header">
@@ -376,8 +378,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <div class="bonus-value">Valued at $47</div>
           </div>
           <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="cards/bonus-rootcause.webp">
-              <img src="cards/bonus-rootcause.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
+              <source type="image/webp" srcset="frontend/images/sales/root-cause-reading-guide.webp">
+              <img src="frontend/images/sales/root-cause-reading-guide.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
@@ -392,8 +394,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <div class="bonus-value">Valued at $37</div>
           </div>
           <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="cards/bonus-meditation.webp">
-              <img src="cards/bonus-meditation.png" width="250" height="333" alt="Mirror Clarity Meditation" decoding="async"
+              <source type="image/webp" srcset="frontend/images/sales/mirror-block-companion-guide.webp">
+              <img src="frontend/images/sales/mirror-block-companion-guide.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
                 loading="lazy">
             </picture></div>
           <div class="bonus-body">
@@ -679,16 +681,16 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
         a Delaware corporation located at 1444 S. Entertainment Ave., Suite 410 Boise, ID 83709, USA and used by
         permission. ClickBank's role as retailer does not constitute an endorsement, approval or review of these
         products or any claim, statement or opinion used in promotion of these products.</p>
-      <p>For Product Support, please contact the vendor: <a href="mailto:support@divinegracegift.com">HERE</a></p>
+      <p>For Product Support, please contact the vendor: <a href="mailto:support@soulmirrorreading.com">HERE</a></p>
       <p>For Order Support, please contact ClickBank: <a href="https://www.clkbank.com/" target="_blank"
           rel="noopener">HERE</a> or 1-800-390-6035</p>
       <p class="footer-links">
         <a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp;
         <a href="/terms-conditions">Terms &amp; Conditions</a> &nbsp;·&nbsp;
-        <a href="mailto:support@divinegracegift.com">Contact Us</a> &nbsp;·&nbsp;
+        <a href="mailto:support@soulmirrorreading.com">Contact Us</a> &nbsp;·&nbsp;
         <a href="/refund-return-policy">Refund &amp; Return Policy</a>
       </p>
-      <p>Copyright © 2026 Divine Grace Gift. All Right Reserved.</p>
+      <p>Copyright © 2026 Soul Mirror Reading. All Right Reserved.</p>
     </div>
   </footer>
 
