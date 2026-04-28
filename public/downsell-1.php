@@ -581,7 +581,7 @@ $declineToReadingUrl = 'thankyou.php';
         $97 was not right for you today. Fine. I would rather meet you where you are than watch you walk away from work you will need.
       </p>
     </div>
-    <img class="hero__image" src="../frontend/images/ups-downs/photo-1e164490d9.png" alt="Open journal, lit candle, antique mirror on writing desk" />
+    <img class="hero__image" src="frontend/images/downsell/hero-journal-candle-mirror.png" alt="Open journal, lit candle, antique mirror on writing desk" />
   </section>
 
   <!-- ═══ PART 1 / PART 2 FRAME ═══ -->
@@ -653,7 +653,7 @@ $declineToReadingUrl = 'thankyou.php';
       <div class="testimonial-grid">
 
         <div class="testimonial">
-          <img class="testimonial__avatar" src="../frontend/images/ups-downs/photo-6a62224db0.png" alt="Jennifer L." />
+          <img class="testimonial__avatar" src="frontend/images/downsell/testimonial-jennifer-l.png" alt="Jennifer L." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             <p class="testimonial__quote">"I almost said no at $97. When I saw the price drop I almost said no again — I thought it must be a lesser version. It is not. It is the same practice. I finished it over a weekend. My husband noticed the change before I told him I had done anything."</p>
@@ -662,7 +662,7 @@ $declineToReadingUrl = 'thankyou.php';
         </div>
 
         <div class="testimonial">
-          <img class="testimonial__avatar" src="../frontend/images/ups-downs/photo-1274524320.png" alt="Marcus T." />
+          <img class="testimonial__avatar" src="frontend/images/downsell/testimonial-marcus-t.png" alt="Marcus T." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             <p class="testimonial__quote">"Full disclosure: I was the definition of sceptical. I clicked 'no thanks' on the first offer. Something made me reconsider when I saw this page. Three weeks later I accepted a role I would have walked away from. I do not know how to explain it. I just know it worked."</p>
@@ -671,7 +671,7 @@ $declineToReadingUrl = 'thankyou.php';
         </div>
 
         <div class="testimonial">
-          <img class="testimonial__avatar" src="../frontend/images/ups-downs/photo-cdc049d2c2.png" alt="Elena M." />
+          <img class="testimonial__avatar" src="frontend/images/downsell/testimonial-elena-m.png" alt="Elena M." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             <p class="testimonial__quote">"I nearly did not take it. I already have too many courses sitting unfinished. This is the only one I finished in a single weekend — because it was not a course, it was a practice. Reading it felt like being seen. I keep Ritual Three on my desk now."</p>
@@ -689,7 +689,7 @@ $declineToReadingUrl = 'thankyou.php';
       <span class="product-lineup__eyebrow">✦ Everything You Receive ✦</span>
       <h2 class="product-lineup__headline">The Complete <em>Soul Ritual Practice</em></h2>
       <div class="product-lineup__image">
-          <img src="../frontend/images/ups-downs/upsell1-package.png" alt="The complete Soul Ritual Practice bundle — Clearing Rituals, Workbook, and 3 bonuses" />
+          <img src="frontend/images/ups-downs/upsell1-package.png" alt="The complete Soul Ritual Practice bundle — Clearing Rituals, Workbook, and 3 bonuses" />
         </div>
     </div>
   </section>
@@ -751,7 +751,7 @@ $declineToReadingUrl = 'thankyou.php';
 
       <a class="cta-btn--secondary" href="<?= htmlspecialchars($declineToReadingUrl, ENT_QUOTES, 'UTF-8') ?>">
         No thank you &mdash; proceed to my reading only
-      </button>
+      </a>
 
       <p class="cta-subtext">
         Secure checkout via ClickBank &mdash; Everything delivered immediately
@@ -763,7 +763,7 @@ $declineToReadingUrl = 'thankyou.php';
   <section class="guarantee">
     <div class="container">
       <div class="guarantee__inner">
-        <img class="guarantee__badge" src="../frontend/images/ups-downs/guarantee-badge.png" alt="90 Day Mirror Guarantee" />
+        <img class="guarantee__badge" src="frontend/images/ups-downs/guarantee-badge.png" alt="90 Day Mirror Guarantee" />
         <h2 class="guarantee__headline">90-Day Full Refund Guarantee</h2>
         <p class="guarantee__body">
           Work through the practice. If you do not feel a genuine shift within 90 days — email us for a full refund of your $67. No questions, no explanation. The risk is entirely mine.
