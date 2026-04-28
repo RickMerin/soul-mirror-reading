@@ -27,6 +27,7 @@ Options -Indexes
     # Old static URLs → PHP pages (cache-busted CSS)
     RewriteRule ^thankyou\.html$ thankyou.php [L,R=301]
     RewriteRule ^sales-page\.html$ sales-page.php [L,R=301]
+    RewriteRule ^downsell-ds1\.php$ downsell-1.php [L,R=301]
 
     RewriteRule ^api/reading$ api/reading.php [L]
     RewriteRule ^api/clickbank-ins$ api/clickbank-ins.php [L]

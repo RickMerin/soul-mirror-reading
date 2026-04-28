@@ -681,16 +681,16 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
         a Delaware corporation located at 1444 S. Entertainment Ave., Suite 410 Boise, ID 83709, USA and used by
         permission. ClickBank's role as retailer does not constitute an endorsement, approval or review of these
         products or any claim, statement or opinion used in promotion of these products.</p>
-      <p>For Product Support, please contact the vendor: <a href="mailto:support@divinegracegift.com">HERE</a></p>
+      <p>For Product Support, please contact the vendor: <a href="mailto:support@soulmirrorreading.com">HERE</a></p>
       <p>For Order Support, please contact ClickBank: <a href="https://www.clkbank.com/" target="_blank"
           rel="noopener">HERE</a> or 1-800-390-6035</p>
       <p class="footer-links">
         <a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp;
         <a href="/terms-conditions">Terms &amp; Conditions</a> &nbsp;·&nbsp;
-        <a href="mailto:support@divinegracegift.com">Contact Us</a> &nbsp;·&nbsp;
+        <a href="mailto:support@soulmirrorreading.com">Contact Us</a> &nbsp;·&nbsp;
         <a href="/refund-return-policy">Refund &amp; Return Policy</a>
       </p>
-      <p>Copyright © 2026 Divine Grace Gift. All Right Reserved.</p>
+      <p>Copyright © 2026 Soul Mirror Reading. All Right Reserved.</p>
     </div>
   </footer>
 
