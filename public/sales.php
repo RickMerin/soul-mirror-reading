@@ -381,8 +381,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
           </div>
           <div class="bonus-img">
             <picture>
-              <source type="image/webp" srcset="/frontend/images/sales/root-cause-reading-guide.webp">
-              <img src="/frontend/images/sales/root-cause-reading-guide.png" width="250" height="333" alt="Image 3" decoding="async"
+              <source type="image/webp" srcset="frontend/images/sales/Root-Cause-Reading-Guide.webp">
+              <img src="frontend/images/sales/Root-Cause-Reading-Guide.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
                 loading="lazy">
             </picture>
           </div>
@@ -397,11 +397,13 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <h4>Mirror Clarity Meditation</h4>
             <div class="bonus-value">Valued at $37</div>
           </div>
-          <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="frontend/images/sales/mirror-block-companion-guide.webp">
-              <img src="frontend/images/sales/mirror-block-companion-guide.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
+          <div class="bonus-img">
+            <picture>
+              <source type="image/webp" srcset="frontend/images/sales/mirror-clarity-meditation.webp">
+              <img src="frontend/images/sales/mirror-clarity-meditation.png" width="250" height="333" alt="Mirror Clarity Meditation" decoding="async"
                 loading="lazy">
-            </picture></div>
+            </picture>
+          </div>
           <div class="bonus-body">
             <p>A 10-minute guided audio meditation voiced by Luna that takes you through a somatic mirror visualization
               to feel, briefly, what life looks like on the other side of the pattern.</p>
