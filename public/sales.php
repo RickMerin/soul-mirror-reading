@@ -392,8 +392,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
           </div>
           <div class="bonus-img">
             <picture>
-              <source type="image/webp" srcset="frontend/images/sales/Root-Cause-Reading-Guide.webp">
-              <img src="frontend/images/sales/Root-Cause-Reading-Guide.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
+              <source type="image/webp" srcset="frontend/images/sales/root-cause-reading-guide.webp">
+              <img src="frontend/images/sales/root-cause-reading-guide.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
                 loading="lazy">
             </picture>
           </div>
