@@ -6,12 +6,9 @@ require $projectRoot . '/vendor/autoload.php';
 
 \App\Config\AppConfig::load($projectRoot);
 
-$oto = $_ENV['UPSELL_OTO_CHECKOUT_URL'] ?? getenv('UPSELL_OTO_CHECKOUT_URL');
-if (!is_string($oto) || trim($oto) === '') {
-    $oto = $_ENV['MEMBER_OTO_CHECKOUT_URL'] ?? getenv('MEMBER_OTO_CHECKOUT_URL');
-}
-$otoCheckoutUrl = is_string($oto) && trim($oto) !== '' ? trim($oto) : '#';
-$downsellPageUrl = 'downsell-1.php';
+
+$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=a';
+$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -1067,7 +1064,9 @@ $downsellPageUrl = 'downsell-1.php';
 
   <!-- ═══ NOTICE BAR ═══ -->
   <div class="notice-bar">
-    <p>Soul Mirror Member Exclusive &mdash; Seen Only After Your Reading</p>
+    <p style="color: #ec1229; font-weight: 700;">
+      Soul Mirror Member Exclusive &mdash; Seen Only After Your Reading
+    </p>
   </div>
 
   <!-- ═══ HERO ═══ -->

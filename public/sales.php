@@ -35,9 +35,20 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
+    @media (max-width: 900px) {
+      .testi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .testi-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
 
     .testi-card {
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.829);
       border: 1px solid rgba(59, 31, 110, 0.14);
       border-radius: 12px;
       padding: 28px 26px;
@@ -70,13 +81,13 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
       font-family: var(--serif);
       font-size: 15px;
       font-weight: 700;
-      color: var(--text);
+      color: var(--panel-text);
       line-height: 1.2;
     }
 
     .testi-avatar-meta .testi-meta {
       font-size: 12px;
-      color: var(--text-soft);
+      color: var(--panel-text-soft);
       margin-top: 3px;
     }
   </style>
@@ -112,7 +123,7 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
           never get told.</em></p>
 
       <div class="video-frame">
-       <vturb-smartplayer id="vid-69e22380ed35062270c75e01" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69e22380ed35062270c75e01/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+       <vturb-smartplayer id="vid-69e22380ed35062270c75e01" autoplay="false" data-autoplay="false" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69e22380ed35062270c75e01/v4/player.js?autoplay=false&smart_autoplay=false", s.async=!0,document.head.appendChild(s); </script>
       </div>
 
       <div class="badges">
@@ -341,11 +352,13 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <h4>Mirror Block Companion Guide</h4>
             <div class="bonus-value">Valued at $67</div>
           </div>
-          <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="frontend/images/sales/soul-mirror-reading.webp">
-              <img src="frontend/images/sales/soul-mirror-reading.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
+          <div class="bonus-img">
+            <picture>
+              <source type="image/webp" srcset="frontend/images/sales/mirror-block-companion-guide.webp">
+              <img src="frontend/images/sales/mirror-block-companion-guide.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
                 loading="lazy">
-            </picture></div>
+            </picture>
+          </div>
           <div class="bonus-body">
             <p>A deep-dive reference covering all four Mirror Block types: their root causes, language patterns, hidden
               costs, and the signs a real shift is beginning.</p>
@@ -377,11 +390,13 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <h4>Root Cause Reading Guide</h4>
             <div class="bonus-value">Valued at $47</div>
           </div>
-          <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="frontend/images/sales/root-cause-reading-guide.webp">
-              <img src="frontend/images/sales/root-cause-reading-guide.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
+          <div class="bonus-img">
+            <picture>
+              <source type="image/webp" srcset="frontend/images/sales/Root-Cause-Reading-Guide.webp">
+              <img src="frontend/images/sales/Root-Cause-Reading-Guide.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
                 loading="lazy">
-            </picture></div>
+            </picture>
+          </div>
           <div class="bonus-body">
             <p>Story-based vignettes for each Mirror Block type that show exactly how the pattern formed, helping you
               see the origin clearly and stop mistaking the symptom for the source.</p>
@@ -393,11 +408,13 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <h4>Mirror Clarity Meditation</h4>
             <div class="bonus-value">Valued at $37</div>
           </div>
-          <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="frontend/images/sales/mirror-block-companion-guide.webp">
-              <img src="frontend/images/sales/mirror-block-companion-guide.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
+          <div class="bonus-img">
+            <picture>
+              <source type="image/webp" srcset="frontend/images/sales/mirror-clarity-meditation.webp">
+              <img src="frontend/images/sales/mirror-clarity-meditation.png" width="250" height="333" alt="Mirror Clarity Meditation" decoding="async"
                 loading="lazy">
-            </picture></div>
+            </picture>
+          </div>
           <div class="bonus-body">
             <p>A 10-minute guided audio meditation voiced by Luna that takes you through a somatic mirror visualization
               to feel, briefly, what life looks like on the other side of the pattern.</p>
@@ -634,6 +651,22 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
     <h2>See the One Belief That Has Been Running<br><em>Love, Life, and Wealth From the Shadows</em></h2>
     <p>Your cards have already been drawn. The pattern is already there. The only question is whether you're ready to
       see it clearly.</p>
+
+    <!-- Bundle Product Image -->
+    <div class="bundle-product-image">
+      <picture>
+        <source type="image/webp" srcset="frontend/images/sales/bundle-product-image.webp">
+        <img 
+          src="frontend/images/sales/bundle-product-image.png"
+          style="min-width:300px;max-width:50%;height:auto;object-fit:contain;display:block;margin:0 auto;"
+          alt="Bundle Product Image"
+          decoding="async"
+          loading="lazy"
+        >
+      </picture>
+    </div>
+
+    <br>
 
     <!-- Value Stack -->
     <div class="vstack">
