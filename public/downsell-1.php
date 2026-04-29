@@ -6,9 +6,8 @@ require $projectRoot . '/vendor/autoload.php';
 
 \App\Config\AppConfig::load($projectRoot);
 
-$downsellCheckoutUrl = $_ENV['DOWNSELL_CHECKOUT_URL'] ?? getenv('DOWNSELL_CHECKOUT_URL');
-$downsellCheckoutUrl = is_string($downsellCheckoutUrl) && trim($downsellCheckoutUrl) !== '' ? trim($downsellCheckoutUrl) : '#';
-$declineToReadingUrl = 'thankyou.php';
+$downsellCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&cbur=a';
+$declineToReadingUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&cbur=d';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -567,7 +566,7 @@ $declineToReadingUrl = 'thankyou.php';
 
   <!-- ═══ NOTICE BAR ═══ -->
   <div class="notice-bar">
-    <p>Wait &mdash; Before You Go &mdash; A One-Time Offer</p>
+    <p style="color: #ec1229; font-weight: 700;">Wait &mdash; Before You Go &mdash; A One-Time Offer</p>
   </div>
 
   <!-- ═══ HERO ═══ -->

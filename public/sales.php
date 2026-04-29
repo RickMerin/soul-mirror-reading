@@ -341,11 +341,13 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <h4>Mirror Block Companion Guide</h4>
             <div class="bonus-value">Valued at $67</div>
           </div>
-          <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="frontend/images/sales/soul-mirror-reading.webp">
-              <img src="frontend/images/sales/soul-mirror-reading.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
+          <div class="bonus-img">
+            <picture>
+              <source type="image/webp" srcset="frontend/images/sales/mirror-block-companion-guide.webp">
+              <img src="frontend/images/sales/mirror-block-companion-guide.png" width="250" height="333" alt="Mirror Block Companion Guide" decoding="async"
                 loading="lazy">
-            </picture></div>
+            </picture>
+          </div>
           <div class="bonus-body">
             <p>A deep-dive reference covering all four Mirror Block types: their root causes, language patterns, hidden
               costs, and the signs a real shift is beginning.</p>
@@ -377,11 +379,13 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
             <h4>Root Cause Reading Guide</h4>
             <div class="bonus-value">Valued at $47</div>
           </div>
-          <div class="bonus-img"><picture>
-              <source type="image/webp" srcset="frontend/images/sales/root-cause-reading-guide.webp">
-              <img src="frontend/images/sales/root-cause-reading-guide.png" width="250" height="333" alt="Root Cause Reading Guide" decoding="async"
+          <div class="bonus-img">
+            <picture>
+              <source type="image/webp" srcset="/frontend/images/sales/root-cause-reading-guide.webp">
+              <img src="/frontend/images/sales/root-cause-reading-guide.png" width="250" height="333" alt="Image 3" decoding="async"
                 loading="lazy">
-            </picture></div>
+            </picture>
+          </div>
           <div class="bonus-body">
             <p>Story-based vignettes for each Mirror Block type that show exactly how the pattern formed, helping you
               see the origin clearly and stop mistaking the symptom for the source.</p>
