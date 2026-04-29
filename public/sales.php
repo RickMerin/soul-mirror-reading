@@ -35,9 +35,20 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
+    @media (max-width: 900px) {
+      .testi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .testi-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
 
     .testi-card {
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.829);
       border: 1px solid rgba(59, 31, 110, 0.14);
       border-radius: 12px;
       padding: 28px 26px;
@@ -70,13 +81,13 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
       font-family: var(--serif);
       font-size: 15px;
       font-weight: 700;
-      color: var(--text);
+      color: var(--panel-text);
       line-height: 1.2;
     }
 
     .testi-avatar-meta .testi-meta {
       font-size: 12px;
-      color: var(--text-soft);
+      color: var(--panel-text-soft);
       margin-top: 3px;
     }
   </style>
@@ -112,7 +123,7 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
           never get told.</em></p>
 
       <div class="video-frame">
-       <vturb-smartplayer id="vid-69e22380ed35062270c75e01" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69e22380ed35062270c75e01/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+       <vturb-smartplayer id="vid-69e22380ed35062270c75e01" autoplay="false" data-autoplay="false" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69e22380ed35062270c75e01/v4/player.js?autoplay=false&smart_autoplay=false", s.async=!0,document.head.appendChild(s); </script>
       </div>
 
       <div class="badges">
@@ -640,6 +651,22 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1';
     <h2>See the One Belief That Has Been Running<br><em>Love, Life, and Wealth From the Shadows</em></h2>
     <p>Your cards have already been drawn. The pattern is already there. The only question is whether you're ready to
       see it clearly.</p>
+
+    <!-- Bundle Product Image -->
+    <div class="bundle-product-image">
+      <picture>
+        <source type="image/webp" srcset="frontend/images/sales/bundle-product-image.webp">
+        <img 
+          src="frontend/images/sales/bundle-product-image.png"
+          style="min-width:300px;max-width:50%;height:auto;object-fit:contain;display:block;margin:0 auto;"
+          alt="Bundle Product Image"
+          decoding="async"
+          loading="lazy"
+        >
+      </picture>
+    </div>
+
+    <br>
 
     <!-- Value Stack -->
     <div class="vstack">

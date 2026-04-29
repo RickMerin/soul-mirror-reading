@@ -1440,7 +1440,7 @@ strong {
   margin: 0 auto 36px;
   text-align: center;
   padding: 28px 32px;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.86);
   border: 1px dashed rgba(212, 175, 55, 0.45);
   border-radius: 12px;
 }
@@ -1542,7 +1542,7 @@ strong {
 }
 
 .testi-card {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.829);
   border: 1px solid rgba(59, 31, 110, 0.14);
   border-radius: 12px;
   padding: 28px 26px;
