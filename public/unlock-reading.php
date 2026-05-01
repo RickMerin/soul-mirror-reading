@@ -81,7 +81,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       <div class="form-box">
         <form id="readingForm" novalidate>
           <div class="form-group">
-            <label for="inputName">Your Name</label>
+            <label for="inputName">First Name</label>
             <input type="text" id="inputName" placeholder="Enter Your First Name..." required
               autocomplete="given-name" />
           </div>
