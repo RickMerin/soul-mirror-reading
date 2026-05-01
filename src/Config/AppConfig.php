@@ -36,6 +36,8 @@ final class AppConfig
         public readonly string $dbUser,
         public readonly string $dbPass,
         public readonly string $appBaseUrl,
+        /** Slack Incoming Webhook URL for ClickBank INS logs; empty = disabled. */
+        public readonly string $clickbankInsSlackWebhookUrl,
     ) {}
 
     /**
@@ -97,6 +99,7 @@ final class AppConfig
             dbUser: $get('DB_USER'),
             dbPass: $get('DB_PASS'),
             appBaseUrl: rtrim($get('APP_BASE_URL'), '/'),
+            clickbankInsSlackWebhookUrl: $get('CLICKBANK_INS_SLACK_WEBHOOK_URL'),
         );
     }
 

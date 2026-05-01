@@ -6,6 +6,7 @@ use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
 use App\Services\KitService;
+use App\Services\SlackClickBankInsLogger;
 use GuzzleHttp\Client;
 
 $projectRoot = dirname(__DIR__, 2);
@@ -102,6 +103,7 @@ if ($receipt === null) {
 
 $items = extractItems($payload);
 $status = normalizeStatus($payload);
+$txnType = extractTxnType($payload);
 
 try {
     $pdo = DatabaseConnection::fromConfig($config);
@@ -112,7 +114,7 @@ try {
     $purchases->upsertByReceipt(
         $leadId,
         $receipt,
-        extractTxnType($payload),
+        $txnType,
         $status,
         extractCurrency($payload),
         extractAmount($payload),
@@ -124,6 +126,15 @@ try {
     http_response_code(500);
     echo json_encode(['error' => 'Unable to persist notification.'], JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+if ($config->clickbankInsSlackWebhookUrl !== '') {
+    try {
+        $slackHttp = new Client($config->guzzleClientConfig());
+        (new SlackClickBankInsLogger($config, $slackHttp))->notify($payload, $txnType, $receipt);
+    } catch (Throwable $e) {
+        error_log('clickbank-ins.php Slack notify failed: ' . $e->getMessage());
+    }
 }
 
 if (clickbankPurchaseShouldTagBuyerInKit($status) && $config->kitApiKey !== '') {
