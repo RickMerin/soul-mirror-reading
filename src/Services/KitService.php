@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Config\AppConfig;
+use App\Domain\ClickBankSkuTags;
 use GuzzleHttp\ClientInterface;
 
 /**
@@ -119,24 +120,93 @@ final class KitService
         if ($email === '') {
             return;
         }
-        $tagsRes = $this->request('GET', 'tags');
-        $tag = null;
-        foreach ($tagsRes['tags'] ?? [] as $t) {
-            if (is_array($t) && ($t['name'] ?? null) === $tagName) {
-                $tag = $t;
-                break;
-            }
-        }
-        if ($tag === null) {
-            $created = $this->request('POST', 'tags', ['name' => $tagName]);
-            $tag = $created['tag'] ?? null;
-            error_log('Created KIT tag: ' . $tagName);
-        }
-        if (!is_array($tag) || !isset($tag['id'])) {
+        $name = strtolower(trim($tagName));
+        if ($name === '') {
             return;
         }
-        $tagId = $tag['id'];
-        $this->request('POST', 'tags/' . $tagId . '/subscribers', ['email_address' => $email]);
+        $this->tagEmailWithTagNames($email, [$name]);
+    }
+
+    /**
+     * Subscribes the buyer email to Kit tags derived from ClickBank INS line items (lowercase SKUs).
+     * List missing tags, create via API, then add the subscriber — same flow as legacy ConvertKit v3 helpers.
+     * When line items omit SKUs, uses {@see AppConfig::kitTagNameBuyer} (from `KIT_TAG_NAME_BUYER`, else `KIT_TAG_NAME`).
+     *
+     * @param array<int, array<string, mixed>> $lineItems
+     */
+    public function subscribeClickBankBuyer(string $email, array $lineItems): void
+    {
+        if ($this->config->kitApiKey === '') {
+            return;
+        }
+        if ($email === '') {
+            return;
+        }
+        $skus = ClickBankSkuTags::distinctSkuTagNames($lineItems);
+        if ($skus === []) {
+            $fallback = strtolower(trim($this->config->kitTagNameBuyer));
+            if ($fallback === '') {
+                return;
+            }
+            $this->tagEmailWithTagNames($email, [$fallback]);
+
+            return;
+        }
+        $this->tagEmailWithTagNames($email, $skus);
+    }
+
+    /**
+     * @param list<string> $tagNames Deduped or not; trimmed and matched case-insensitively against Kit.
+     */
+    private function tagEmailWithTagNames(string $email, array $tagNames): void
+    {
+        $normalized = [];
+        foreach ($tagNames as $tagName) {
+            $lower = strtolower(trim($tagName));
+            if ($lower !== '') {
+                $normalized[$lower] = true;
+            }
+        }
+        $unique = array_keys($normalized);
+        if ($unique === []) {
+            return;
+        }
+
+        $tagsRes = $this->request('GET', 'tags');
+        $byLower = [];
+        foreach ($tagsRes['tags'] ?? [] as $t) {
+            if (!is_array($t)) {
+                continue;
+            }
+            $nm = isset($t['name']) ? strtolower(trim((string) $t['name'])) : '';
+            if ($nm !== '') {
+                $byLower[$nm] = $t;
+            }
+        }
+
+        foreach ($unique as $tagLower) {
+            $tag = $byLower[$tagLower] ?? null;
+            if ($tag === null) {
+                $created = $this->request('POST', 'tags', ['name' => $tagLower]);
+                $tag = $created['tag'] ?? null;
+                if (is_array($tag) && isset($tag['id'])) {
+                    $nm = isset($tag['name']) ? strtolower(trim((string) $tag['name'])) : '';
+                    if ($nm !== '') {
+                        $byLower[$nm] = $tag;
+                    }
+                    error_log('Created KIT tag: ' . $tagLower);
+                }
+            }
+            if (!is_array($tag) || !isset($tag['id'])) {
+                continue;
+            }
+            $tagId = $tag['id'];
+            $this->request(
+                'POST',
+                'tags/' . rawurlencode((string) $tagId) . '/subscribers',
+                ['email_address' => $email]
+            );
+        }
     }
 
     /**

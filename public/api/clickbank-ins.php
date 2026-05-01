@@ -5,6 +5,8 @@ use App\Config\AppConfig;
 use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
+use App\Services\KitService;
+use GuzzleHttp\Client;
 
 $projectRoot = dirname(__DIR__, 2);
 require $projectRoot . '/vendor/autoload.php';
@@ -98,6 +100,9 @@ if ($receipt === null) {
     exit;
 }
 
+$items = extractItems($payload);
+$status = normalizeStatus($payload);
+
 try {
     $pdo = DatabaseConnection::fromConfig($config);
     $leads = new LeadRepository($pdo);
@@ -108,10 +113,10 @@ try {
         $leadId,
         $receipt,
         extractTxnType($payload),
-        normalizeStatus($payload),
+        $status,
         extractCurrency($payload),
         extractAmount($payload),
-        extractItems($payload),
+        $items,
         $payload
     );
 } catch (Throwable $e) {
@@ -119,6 +124,15 @@ try {
     http_response_code(500);
     echo json_encode(['error' => 'Unable to persist notification.'], JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+if (clickbankPurchaseShouldTagBuyerInKit($status) && $config->kitApiKey !== '') {
+    try {
+        $http = new Client($config->guzzleClientConfig());
+        (new KitService($config, $http))->subscribeClickBankBuyer($email, $items);
+    } catch (Throwable $e) {
+        error_log('clickbank-ins.php Kit subscribe failed: ' . $e->getMessage());
+    }
 }
 
 http_response_code(200);
@@ -254,6 +268,11 @@ function extractAmount(array $payload): ?float
     }
 
     return null;
+}
+
+function clickbankPurchaseShouldTagBuyerInKit(string $status): bool
+{
+    return in_array(strtolower(trim($status)), ['approved', 'complete', 'completed', 'active'], true);
 }
 
 /**

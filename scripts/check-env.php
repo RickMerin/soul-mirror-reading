@@ -30,6 +30,7 @@ $line('ASTRO_USER_ID', $config->astroUserId !== '');
 $line('ASTRO_API_KEY', $config->astroApiKey !== '');
 $line('KIT_API_KEY', $config->kitApiKey !== '');
 echo 'KIT_TAG_NAME (resolved): ' . $config->kitTagName . PHP_EOL;
+echo 'KIT_TAG_NAME_BUYER (resolved): ' . $config->kitTagNameBuyer . PHP_EOL;
 echo 'SOUL_MIRROR_PIPELINE_LOG: ' . ($config->pipelineFileLog ? '1 (file log enabled)' : 'off') . PHP_EOL;
 echo 'Pipeline log file: ' . $config->pipelineLogPath . PHP_EOL;
 echo 'SSL CA bundle (Guzzle verify): ' . ($config->sslCaBundlePath !== '' ? $config->sslCaBundlePath : 'not set (fix cURL 60: put cacert.pem in storage/ or SSL_CAFILE=...)') . PHP_EOL;
