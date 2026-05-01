@@ -19,6 +19,8 @@ final class AppConfig
         public readonly string $astroApiKey,
         public readonly string $kitApiKey,
         public readonly string $kitTagName,
+        /** Tag when ClickBank INS has no line-item SKUs; empty env falls back to {@see $kitTagName}. */
+        public readonly string $kitTagNameBuyer,
         /** When true, append pipeline diagnostics to {@see self::$pipelineLogPath} (no secrets or PII). */
         public readonly bool $pipelineFileLog,
         /** Absolute path to the pipeline log file. */
@@ -34,6 +36,8 @@ final class AppConfig
         public readonly string $dbUser,
         public readonly string $dbPass,
         public readonly string $appBaseUrl,
+        /** Slack Incoming Webhook URL for ClickBank INS logs; empty = disabled. */
+        public readonly string $clickbankInsSlackWebhookUrl,
     ) {}
 
     /**
@@ -77,11 +81,15 @@ final class AppConfig
 
         $sslCaBundlePath = self::resolveSslCaBundlePath($projectRoot, $get);
 
+        $kitTagName = $get('KIT_TAG_NAME') !== '' ? $get('KIT_TAG_NAME') : 'soul-mirror-leads';
+        $kitTagNameBuyer = $get('KIT_TAG_NAME_BUYER') !== '' ? $get('KIT_TAG_NAME_BUYER') : $kitTagName;
+
         return new self(
             astroUserId: $get('ASTRO_USER_ID'),
             astroApiKey: $get('ASTRO_API_KEY'),
             kitApiKey: $get('KIT_API_KEY'),
-            kitTagName: $get('KIT_TAG_NAME') !== '' ? $get('KIT_TAG_NAME') : 'soul-mirror-leads',
+            kitTagName: $kitTagName,
+            kitTagNameBuyer: $kitTagNameBuyer,
             pipelineFileLog: $pipelineFileLog,
             pipelineLogPath: $pipelineLogPath,
             sslCaBundlePath: $sslCaBundlePath,
@@ -91,6 +99,7 @@ final class AppConfig
             dbUser: $get('DB_USER'),
             dbPass: $get('DB_PASS'),
             appBaseUrl: rtrim($get('APP_BASE_URL'), '/'),
+            clickbankInsSlackWebhookUrl: $get('CLICKBANK_INS_SLACK_WEBHOOK_URL'),
         );
     }
 

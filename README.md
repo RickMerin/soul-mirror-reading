@@ -25,6 +25,7 @@ Tarot funnel: visitors pick three cards, submit a form, and the server fetches A
    | `ASTRO_API_KEY`                | AstrologyAPI key                                                      |
    | `KIT_API_KEY`                  | Kit API v4 key (`X-Kit-Api-Key`)                                      |
    | `KIT_TAG_NAME`                 | Tag applied after upsert (default `soul-mirror-leads`)                |
+   | `KIT_TAG_NAME_BUYER`           | Tag for ClickBank buyer when INS has no SKU (defaults to `KIT_TAG_NAME`) |
    | `DB_HOST`, `DB_PORT`           | MySQL host/port for lead and member data                              |
    | `DB_NAME`, `DB_USER`, `DB_PASS`| Database credentials for lead capture, purchases, and member login    |
 | `APP_BASE_URL`                 | Absolute public base URL (include subdirectory for WAMP installs)     |
