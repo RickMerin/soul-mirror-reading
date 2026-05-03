@@ -9,72 +9,295 @@ use PHPUnit\Framework\TestCase;
 
 final class ClickBankInsSlackTableTest extends TestCase
 {
-    public function testBuildBlocksProducesTableWithHeadersTxnAndPayload(): void
+    /**
+     * @return array<string, mixed>
+     */
+    private static function v7OriginalPayload(): array
     {
-        $payload = [
-            'transactionType' => 'SALE',
-            'receipt' => 'ABC-123',
-            'customer' => ['billing' => ['email' => 'buyer@example.com']],
+        return [
+            'transactionType' => 'TEST_SALE',
+            'currency' => 'PHP',
+            'paymentMethod' => 'TEST',
+            'receipt' => 'HTY7MF4E',
+            'totalOrderAmount' => 39.49,
+            'totalAccountAmount' => 33.22,
+            'customer' => [
+                'shipping' => [
+                    'email' => 'buyer@example.com',
+                    'firstName' => 'Test',
+                    'lastName' => 'Name',
+                    'fullName' => 'Test Name',
+                    'address' => [
+                        'country' => 'PH',
+                        'postalCode' => '3467',
+                    ],
+                ],
+                'billing' => [
+                    'email' => 'buyer@example.com',
+                    'fullName' => 'Test Name',
+                    'address' => [],
+                ],
+            ],
+            'lineItems' => [
+                [
+                    'itemNo' => 'smr-1',
+                    'lineItemType' => 'ORIGINAL',
+                    'productTitle' => 'Soul Mirror Reading',
+                    'quantity' => 1,
+                    'productPrice' => 39.49,
+                ],
+            ],
+            'upsell' => [
+                'upsellFlowId' => 63301,
+                'upsellFlowName' => '1 Upsell 1 Downsell',
+                'upsellOriginalReceipt' => 'HTY7MF4E',
+                'upsellSession' => 'EADh7_RL57MZHEQB',
+            ],
         ];
-        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'SALE', 10_000);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    /**
+     * @return array<string, mixed>
+     */
+    private static function v7DownsellPayload(): array
+    {
+        return [
+            'transactionType' => 'TEST_SALE',
+            'currency' => 'PHP',
+            'paymentMethod' => 'TEST',
+            'receipt' => 'HTY7MZ4E',
+            'totalOrderAmount' => 67.0,
+            'totalAccountAmount' => 57.0,
+            'customer' => [
+                'shipping' => [
+                    'email' => 'buyer@example.com',
+                    'fullName' => 'Test Name',
+                    'address' => [
+                        'country' => 'PH',
+                        'postalCode' => '3467',
+                    ],
+                ],
+                'billing' => [
+                    'email' => 'buyer@example.com',
+                    'fullName' => 'Test Name',
+                ],
+            ],
+            'lineItems' => [
+                [
+                    'itemNo' => 'srp-1-ds',
+                    'lineItemType' => 'DOWNSELL',
+                    'productTitle' => 'Soul Ritual Practice (Downsell)',
+                    'quantity' => 1,
+                    'productPrice' => 67.0,
+                ],
+            ],
+            'upsell' => [
+                'upsellFlowName' => '1 Upsell 1 Downsell',
+                'upsellOriginalReceipt' => 'HTY7MF4E',
+                'upsellPath' => 'ad',
+                'upsellSession' => 'EADh7_RL57MZHEQB',
+            ],
+            'downsell' => [
+                'downsellFlowName' => '1 Upsell 1 Downsell',
+                'downsellOriginalReceipt' => 'HTY7MF4E',
+                'downsellPath' => 'd',
+                'downsellSession' => 'EADh7_RL57MZHEQB',
+            ],
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function v7UpsellPayload(): array
+    {
+        return [
+            'transactionType' => 'TEST_SALE',
+            'currency' => 'PHP',
+            'paymentMethod' => 'TEST',
+            'receipt' => 'HTY7MQ4E',
+            'totalOrderAmount' => 103.52,
+            'totalAccountAmount' => 88.72,
+            'customer' => [
+                'shipping' => [
+                    'email' => 'buyer@example.com',
+                    'fullName' => 'Test Name',
+                    'address' => [
+                        'country' => 'PH',
+                        'postalCode' => '3467',
+                    ],
+                ],
+                'billing' => [
+                    'email' => 'buyer@example.com',
+                    'fullName' => 'Test Name',
+                ],
+            ],
+            'lineItems' => [
+                [
+                    'itemNo' => 'srp-1',
+                    'lineItemType' => 'UPSELL',
+                    'productTitle' => 'Soul Ritual Practice',
+                    'quantity' => 1,
+                    'productPrice' => 103.52,
+                ],
+            ],
+            'upsell' => [
+                'upsellFlowName' => '1 Upsell 1 Downsell',
+                'upsellOriginalReceipt' => 'HTY7MF4E',
+                'upsellPath' => 'a',
+                'upsellSession' => 'EADh7_RL57MZHEQB',
+            ],
+        ];
+    }
+
+    private static function fieldLabelText(array $richTextCell): string
+    {
+        self::assertSame('rich_text', $richTextCell['type']);
+
+        return $richTextCell['elements'][0]['elements'][0]['text'];
+    }
+
+    private static function valueText(array $rawCell): string
+    {
+        self::assertSame('raw_text', $rawCell['type']);
+
+        return $rawCell['text'];
+    }
+
+    public function testBuildBlocksSummaryForOriginalSale(): void
+    {
+        $payload = self::v7OriginalPayload();
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'TEST_SALE', 'HTY7MF4E');
 
         self::assertCount(1, $blocks);
         self::assertSame('table', $blocks[0]['type']);
-        self::assertArrayHasKey('column_settings', $blocks[0]);
-        self::assertSame(
-            [['is_wrapped' => true], ['is_wrapped' => true]],
-            $blocks[0]['column_settings']
-        );
-
         $rows = $blocks[0]['rows'];
         self::assertIsArray($rows);
-        self::assertGreaterThanOrEqual(3, count($rows));
 
-        $h0 = $rows[0][0];
-        self::assertSame('rich_text', $h0['type']);
-        self::assertSame('Field', $h0['elements'][0]['elements'][0]['text']);
-        self::assertTrue($h0['elements'][0]['elements'][0]['style']['bold']);
+        self::assertSame('Field', self::fieldLabelText($rows[0][0]));
+        self::assertSame('Value', self::fieldLabelText($rows[0][1]));
 
-        self::assertSame('raw_text', $rows[1][0]['type']);
-        self::assertSame('transaction_type', $rows[1][0]['text']);
-        self::assertSame('raw_text', $rows[1][1]['type']);
-        self::assertSame('SALE', $rows[1][1]['text']);
+        self::assertStringContainsString('Reference', self::fieldLabelText($rows[1][0]));
+        self::assertSame('HTY7MF4E', self::valueText($rows[1][1]));
 
-        self::assertSame('payload_json', $rows[2][0]['text']);
-        $decoded = json_decode($rows[2][1]['text'], true);
-        self::assertIsArray($decoded);
-        self::assertSame('SALE', $decoded['transactionType']);
+        self::assertStringContainsString('Transaction', self::fieldLabelText($rows[2][0]));
+        self::assertSame('TEST_SALE', self::valueText($rows[2][1]));
 
-        $truncRows = array_values(array_filter($rows, static fn (array $r): bool => isset($r[0]['text']) && $r[0]['text'] === 'payload_truncated'));
-        self::assertCount(0, $truncRows);
+        $customer = self::valueText($rows[3][1]);
+        self::assertStringContainsString('Test Name', $customer);
+        self::assertStringContainsString('buyer@example.com', $customer);
+        self::assertStringContainsString('PH', $customer);
+        self::assertStringContainsString('3467', $customer);
+
+        self::assertSame('TEST', self::valueText($rows[4][1]));
+
+        $totals = self::valueText($rows[5][1]);
+        self::assertStringContainsString('39.49', $totals);
+        self::assertStringContainsString('PHP', $totals);
+        self::assertStringContainsString('33.22', $totals);
+        self::assertStringContainsString('Vendor', $totals);
+
+        $product = self::valueText($rows[6][1]);
+        self::assertStringContainsString('Soul Mirror Reading', $product);
+        self::assertStringContainsString('smr-1', $product);
+        self::assertStringContainsString('ORIGINAL', $product);
+
+        self::assertStringContainsString('Upsell', self::fieldLabelText($rows[7][0]));
+        $upsell = self::valueText($rows[7][1]);
+        self::assertStringContainsString('1 Upsell 1 Downsell', $upsell);
+        self::assertStringContainsString('original=HTY7MF4E', $upsell);
     }
 
-    public function testBuildBlocksAddsTruncationRowWhenJsonExceedsLimit(): void
+    public function testBuildBlocksUpsellLineItemTypeAndReceipt(): void
     {
-        $payload = ['x' => str_repeat('a', 500)];
-        $blocks = ClickBankInsSlackTable::buildBlocks($payload, null, 80);
+        $payload = self::v7UpsellPayload();
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'TEST_SALE', 'HTY7MQ4E');
         $rows = $blocks[0]['rows'];
 
-        self::assertSame('transaction_type', $rows[1][0]['text']);
-        self::assertSame('(missing)', $rows[1][1]['text']);
+        self::assertSame('HTY7MQ4E', self::valueText($rows[1][1]));
 
-        $last = $rows[count($rows) - 1];
-        self::assertSame('payload_truncated', $last[0]['text']);
-        self::assertStringStartsWith('yes; original_length=', $last[1]['text']);
-        self::assertStringContainsString('…[truncated]', $rows[2][1]['text']);
+        $product = self::valueText($rows[6][1]);
+        self::assertStringContainsString('Soul Ritual Practice', $product);
+        self::assertStringContainsString('srp-1', $product);
+        self::assertStringContainsString('UPSELL', $product);
+
+        $upsell = self::valueText($rows[7][1]);
+        self::assertStringContainsString('path=a', $upsell);
+        self::assertStringContainsString('original=HTY7MF4E', $upsell);
     }
 
-    public function testFallbackTextIncludesTxnAndReceipt(): void
+    public function testBuildBlocksIncludesDownsellRowAfterUpsell(): void
     {
-        $text = ClickBankInsSlackTable::fallbackText([], 'RFND', 'R-1');
-        self::assertStringContainsString('txn_type=RFND', $text);
-        self::assertStringContainsString('receipt=R-1', $text);
+        $payload = self::v7DownsellPayload();
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'TEST_SALE', 'HTY7MZ4E');
+        $rows = $blocks[0]['rows'];
+
+        self::assertStringContainsString('Upsell', self::fieldLabelText($rows[7][0]));
+        $upsell = self::valueText($rows[7][1]);
+        self::assertStringContainsString('1 Upsell 1 Downsell', $upsell);
+
+        self::assertStringContainsString('Downsell', self::fieldLabelText($rows[8][0]));
+        $downsell = self::valueText($rows[8][1]);
+        self::assertStringContainsString('1 Upsell 1 Downsell', $downsell);
+        self::assertStringContainsString('path=d', $downsell);
+        self::assertStringContainsString('original=HTY7MF4E', $downsell);
+    }
+
+    public function testBuildBlocksUsesPayloadReceiptWhenArgumentEmpty(): void
+    {
+        $payload = [
+            'receipt' => 'FROM-PAYLOAD',
+            'transactionType' => 'SALE',
+            'lineItems' => [],
+        ];
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'SALE', '');
+        self::assertSame('FROM-PAYLOAD', self::valueText($blocks[0]['rows'][1][1]));
+    }
+
+    public function testBuildBlocksMissingTxnTypeFallsBackToPayload(): void
+    {
+        $payload = ['transactionType' => 'RFND', 'receipt' => 'R1', 'lineItems' => []];
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, null, 'R1');
+        self::assertSame('RFND', self::valueText($blocks[0]['rows'][2][1]));
+    }
+
+    public function testBuildBlocksOmitsUpsellRowWhenAbsent(): void
+    {
+        $payload = [
+            'receipt' => 'X1',
+            'transactionType' => 'SALE',
+            'lineItems' => [
+                ['productTitle' => 'A', 'itemNo' => 'a-1', 'lineItemType' => 'ORIGINAL', 'quantity' => 1, 'productPrice' => 10.0],
+            ],
+            'currency' => 'USD',
+            'totalOrderAmount' => 10.0,
+        ];
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'SALE', 'X1');
+        $rows = $blocks[0]['rows'];
+        $lastField = self::fieldLabelText($rows[count($rows) - 1][0]);
+        self::assertStringContainsString('Product', $lastField);
+        self::assertStringNotContainsString('Upsell', $lastField);
+        self::assertStringNotContainsString('Downsell', $lastField);
+    }
+
+    public function testFallbackTextIncludesReceiptTxnEmailProductTotal(): void
+    {
+        $payload = self::v7OriginalPayload();
+        $text = ClickBankInsSlackTable::fallbackText($payload, 'TEST_SALE', 'HTY7MF4E');
+        self::assertStringContainsString('receipt=HTY7MF4E', $text);
+        self::assertStringContainsString('txn=TEST_SALE', $text);
+        self::assertStringContainsString('buyer@example.com', $text);
+        self::assertStringContainsString('Soul Mirror Reading', $text);
+        self::assertStringContainsString('39.49', $text);
     }
 
     public function testFallbackTextUsesNullAndMissingPlaceholders(): void
     {
         $text = ClickBankInsSlackTable::fallbackText([], null, '');
-        self::assertStringContainsString('txn_type=null', $text);
         self::assertStringContainsString('receipt=(missing)', $text);
+        self::assertStringContainsString('txn=(missing)', $text);
     }
 }

@@ -30,7 +30,7 @@ final class SlackClickBankInsLogger
         try {
             $body = [
                 'text' => ClickBankInsSlackTable::fallbackText($payload, $txnType, $receipt),
-                'blocks' => ClickBankInsSlackTable::buildBlocks($payload, $txnType),
+                'blocks' => ClickBankInsSlackTable::buildBlocks($payload, $txnType, $receipt),
             ];
             $json = json_encode($body, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
         } catch (JsonException $e) {
