@@ -39,6 +39,8 @@ if ($config->pipelineFileLog) {
     $pipelineLog = new PipelineLogger($config);
     $pipelineLog->line('check-env: pipeline log reachable (file created if it did not exist)');
     echo PHP_EOL . 'Appended a test line to the pipeline log. Open that file in your editor to confirm.' . PHP_EOL;
+    echo 'After submitting the unlock form, run: php scripts/verify-reading-pipeline-log.php' . PHP_EOL;
 } else {
     echo PHP_EOL . 'No pipeline.log yet: add SOUL_MIRROR_PIPELINE_LOG=1 to .env, then run this script again.' . PHP_EOL;
+    echo 'Then submit a reading and run: php scripts/verify-reading-pipeline-log.php' . PHP_EOL;
 }
