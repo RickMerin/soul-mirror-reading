@@ -25,11 +25,12 @@ document
 
 document.querySelectorAll(".cta-btn").forEach((btn) => {
   btn.addEventListener("click", function (e) {
-    e.preventDefault();
-    const href = btn.getAttribute("href");
-    if (href?.startsWith("#")) {
+    const href = btn.getAttribute("href") ?? "";
+    if (href.startsWith("#")) {
+      e.preventDefault();
       document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
     }
+    // http(s) URLs and mailto:/tel: leave default navigation intact
   });
 });
 

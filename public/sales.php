@@ -312,8 +312,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
       <div class="vip-box">
         <h2>Inside Your Soul Mirror Reading</h2>
         <picture>
-          <source type="image/webp" srcset="cards/product-mockup.webp">
-          <img src="cards/product-mockup.png" width="auto" height="300" alt="Soul Mirror Reading" class="vip-mockup"
+          <source type="image/webp" srcset="frontend/images/sales/soul-mirror-reading.webp">
+          <img src="frontend/images/sales/soul-mirror-reading.png" width="auto" height="300" alt="Soul Mirror Reading" class="vip-mockup"
             decoding="async" loading="lazy">
         </picture>
         <div
@@ -462,12 +462,12 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
               <li>Your personalised Soul Mirror Reading &mdash; <em>$197 value</em></li>
               <li>Mirror Block identification &amp; all 3 card deep-dives</li>
               <li>Mirror Block clearing practice + 90-day check-in prompts</li>
-              <li><strong>Bonus 1</strong> &mdash; Mirror Block Companion Guide ($67)</li>
-              <li><strong>Bonus 2</strong> &mdash; 21-Day Shift Tracker ($47)</li>
-              <li><strong>Bonus 3</strong> &mdash; Root Cause Reading Guide ($47)</li>
-              <li><strong>Bonus 4</strong> &mdash; Mirror Clarity Meditation audio ($37)</li>
+              <li><strong style="white-space: nowrap;">Bonus 1</strong> &mdash; Mirror Block Companion Guide ($67)</li>
+              <li><strong style="white-space: nowrap;">Bonus 2</strong> &mdash; 21-Day Shift Tracker ($47)</li>
+              <li><strong style="white-space: nowrap;">Bonus 3</strong> &mdash; Root Cause Reading Guide ($47)</li>
+              <li><strong style="white-space: nowrap;">Bonus 4</strong> &mdash; Mirror Clarity Meditation audio ($37)</li>
             </ul>
-            <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="price-card-cta vip">Claim Your Soul Mirror Reading &rarr;</a>
+            <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="price-card-cta vip">Claim Your Soul Mirror Reading</a>
           </div>
         </div>
       </div>
@@ -697,8 +697,10 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
     </div>
 
     <div class="cta-block">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta-btn">
-        Claim Your Soul Mirror Reading →</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES | ENT_HTML5, 'UTF-8') ?>" class="cta-btn">
+        Claim Your Soul Mirror Reading
+      </a>
+ 
       <div class="cta-note">
         Instant access &nbsp;·&nbsp; 90-day guarantee &nbsp;·&nbsp; Secure checkout
       </div>
