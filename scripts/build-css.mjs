@@ -104,13 +104,14 @@ const emailSrc = path.join(
 );
 const emailOut = path.join(root, "public", "email-template.html");
 const emailTpl = fs.readFileSync(emailSrc, "utf8");
-if (!emailTpl.includes("@@SOUL_MIRROR_EMAIL_CSS@@")) {
+const emailCssPlaceholder = "/*__SOUL_MIRROR_EMAIL_CSS__*/";
+if (!emailTpl.includes(emailCssPlaceholder)) {
   throw new Error(
-    "email-template.src.html missing @@SOUL_MIRROR_EMAIL_CSS@@ placeholder",
+    `email-template.src.html missing ${emailCssPlaceholder} placeholder`,
   );
 }
 const emailCssText = Buffer.from(emailCss).toString("utf8");
 fs.writeFileSync(
   emailOut,
-  emailTpl.replace("@@SOUL_MIRROR_EMAIL_CSS@@", emailCssText),
+  emailTpl.replace(emailCssPlaceholder, emailCssText),
 );
