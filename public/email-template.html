@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+      ESP (Kit): merge tags must match Kit's editor. This template uses Liquid-style names aligned with
+      Kit custom field keys from KitService (API): love_card, life_card, wealth_card, love_reading,
+      life_reading, wealth_reading, love_card_image, life_card_image, wealth_card_image, date_of_birth,
+      gender, sun_sign, sun_personal_life, sun_profession, sun_health, sun_emotions, sun_travel, sun_luck.
+      Build: npm run build, then paste public/email-template.html into Kit; use Kit preview to fix any mismatched placeholders.
+    -->
   <title>Your Soul Mirror Reading</title>
-  <style>@media only screen and (width<=600px){.email-container{width:100%!important}.card-row td{text-align:center!important;width:100%!important;display:block!important}.card-img{margin:0 auto 16px!important;display:block!important}.divider-cell{display:none!important}}</style>
+  <style>
+    @media only screen and (width<=600px){.email-container{width:100%!important}.card-row td{text-align:center!important;width:100%!important;display:block!important}.card-img{margin:0 auto 16px!important;display:block!important}.divider-cell{display:none!important}}
+  </style>
 </head>
 <body style="margin:0;padding:0;background-color:#f4f0ec;font-family:Georgia,'Times New Roman',serif;">
 

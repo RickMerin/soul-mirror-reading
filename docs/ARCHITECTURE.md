@@ -64,9 +64,18 @@ Kit sends automation email; no PHP code loads an HTML template from disk. For a 
 
 ## Debugging
 
+### Kit: 3-card email not arriving
+
+The PHP app does not send that email; Kit automations do. After a successful `/api/reading` response:
+
+1. In **Kit**, confirm the subscriber exists, custom fields are populated (cards, readings, image URLs), and tag `KIT_TAG_NAME` (default `soul-mirror-leads`) is applied.
+2. Confirm a **published** automation (or visual automation) fires on that tag—or that your entry rule matches how subscribers are created from the API.
+3. If the list uses **double opt-in**, the automation may run only after the address is **confirmed**.
+4. Set **`SOUL_MIRROR_PIPELINE_LOG=1`** in `.env` and check `storage/logs/pipeline.log` for `kit: subscriber upsert ok` and `kit: tag applied`. If you see `kit: fail` instead, Kit rejected the request (see server `error_log` for the exception message).
+
 - **Logs**: use PHP `error_log()` — the app avoids logging full email addresses or API keys. When diagnosing Kit issues, prefer Kit’s dashboard and redacted logs.
 - **502 on tarot**: AstrologyAPI returned non-2xx or credentials are wrong/expired.
-- **500 on Kit**: network, invalid API key, or unexpected response shape — check `error_log` on the host.
+- **500 on Kit**: non-2xx from Kit API (invalid key, validation, etc.) throws `KitApiException` — logged via `error_log`; client still gets a generic JSON error. Check `error_log` and optional `pipeline.log` (`SOUL_MIRROR_PIPELINE_LOG=1`).
 - **404 on `/api/reading`**: `mod_rewrite` off or document root wrong — confirm `.htaccess` in `public/` is allowed (`AllowOverride`).
 
 ## Subdirectory deployments

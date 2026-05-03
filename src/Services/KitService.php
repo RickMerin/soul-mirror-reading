@@ -227,12 +227,60 @@ final class KitService
             $options['json'] = $json;
         }
         $response = $this->http->request($method, self::BASE . $endpoint, $options);
+        $status = $response->getStatusCode();
         $raw = $response->getBody()->getContents();
+        if ($status < 200 || $status >= 300) {
+            throw new KitApiException($status, self::formatErrorSummary($status, $raw));
+        }
         if ($raw === '') {
             return [];
         }
         $decoded = json_decode($raw, true);
 
         return is_array($decoded) ? $decoded : [];
+    }
+
+    private static function formatErrorSummary(int $status, string $raw): string
+    {
+        $prefix = 'Kit API HTTP ' . (string) $status;
+        if ($raw === '') {
+            return $prefix;
+        }
+        try {
+            /** @var mixed $data */
+            $data = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException) {
+            $normalized = preg_replace('/\s+/', ' ', $raw);
+            $snippet = substr(is_string($normalized) ? $normalized : $raw, 0, 200);
+
+            return $prefix . ': ' . $snippet;
+        }
+        if (!is_array($data)) {
+            return $prefix;
+        }
+        if (isset($data['errors'])) {
+            $e = $data['errors'];
+            if (is_string($e) && $e !== '') {
+                return $prefix . ': ' . $e;
+            }
+            if (is_array($e)) {
+                $parts = [];
+                foreach ($e as $item) {
+                    if (is_string($item)) {
+                        $parts[] = $item;
+                    } elseif (is_array($item) && isset($item['message']) && is_string($item['message'])) {
+                        $parts[] = $item['message'];
+                    }
+                }
+                if ($parts !== []) {
+                    return $prefix . ': ' . implode('; ', $parts);
+                }
+            }
+        }
+        if (isset($data['message']) && is_string($data['message']) && $data['message'] !== '') {
+            return $prefix . ': ' . $data['message'];
+        }
+
+        return $prefix;
     }
 }
