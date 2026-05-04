@@ -6,6 +6,23 @@
 
 Options -Indexes
 
+# ------------------------
+# Basic HTTP Authentication for TEST ENV ONLY
+# Enable basic auth on https://test.soulmirrorreading.com/ by uncommenting below.
+#
+# Step 1: Create your password file (if you haven't already):
+#   htpasswd -c /absolute/path/to/.htpasswd youruser
+#
+# Step 2: Uncomment the block below and set the correct AuthUserFile absolute path.
+#
+<If "%{HTTP_HOST} == 'test.soulmirrorreading.com'">
+    AuthType Basic
+    AuthName "Restricted Access — Soul Mirror Reading TEST"
+    AuthUserFile /home/soulmirrorreadin/.htpasswd
+    Require valid-user
+</If>
+# ------------------------
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
