@@ -68,7 +68,8 @@ try {
     $firstName = explode(' ', trim($fullName))[0] ?? $fullName;
     $mirrorBlockLabel = 'The Not Yet Ready Block';
 
-    $ritualSku = memberEnvString('MEMBER_RITUAL_SKU');
+    // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.
+    $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
     $ritualUnlocked = $ritualSku !== '' && $purchases->leadHasApprovedPurchaseWithItemSku($leadId, $ritualSku);
 
     $h = static function (string $s): string {
@@ -94,7 +95,7 @@ try {
         '{{MEMBER_URL_RITUAL_REPORT3}}' => $h(memberEnvString('MEMBER_URL_RITUAL_REPORT3', '#')),
         '{{MEMBER_URL_RITUAL_WORKBOOK}}' => $h(memberEnvString('MEMBER_URL_RITUAL_WORKBOOK', '#')),
         '{{MEMBER_OTO_CHECKOUT_URL}}' => $h($otoUrl),
-        '__SMR_RITUAL_UNLOCKED__' => $ritualUnlocked ? '1' : '0',
+        '{{RITUAL_UNLOCKED_JS}}' => $ritualUnlocked ? 'true' : 'false',
     ];
     $rendered = strtr($html, $replacements);
 
