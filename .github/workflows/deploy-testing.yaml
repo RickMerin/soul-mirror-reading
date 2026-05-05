@@ -39,7 +39,7 @@ jobs:
           extensions: curl, mbstring
           coverage: none
 
-      - name: Install Composer dependencies
+      - name: Install Composer dependencies (production)
         run: composer install --no-dev --optimize-autoloader --no-interaction
 
       - name: Set up Node.js
@@ -51,6 +51,17 @@ jobs:
       - name: Build frontend assets
         run: npm ci && npm run build
 
+      - name: Prepare deploy directory
+        run: |
+          mkdir -p deploy
+          rsync -a public/ deploy/public/
+          rsync -a src/ deploy/src/
+          rsync -a vendor/ deploy/vendor/
+          rsync -a member/ deploy/member/
+          [ -f composer.json ] && cp composer.json deploy/
+          [ -f composer.lock ] && cp composer.lock deploy/
+          [ -f index.php ] && cp index.php deploy/
+
       - name: FTP deploy to cPanel (testing subdomain)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -58,7 +69,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /test.soulmirrorreading.com/
-          local-dir: ./
+          local-dir: ./deploy/
           protocol: ftps
           exclude: |
             **/.git/**
@@ -71,5 +82,3 @@ jobs:
             **/.phpunit.cache/**
             **/*.md
             **/README*
-            **/.editorconfig
-            **/.gitattributes
