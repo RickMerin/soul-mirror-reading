@@ -61,11 +61,15 @@ jobs:
           local-dir: ./
           protocol: ftps
           exclude: |
-            **/.git*
-            **/.github*
+            **/.git/**
+            **/.github/**
             **/.cursor/**
             **/.env
             **/node_modules/**
             **/tests/**
             **/phpunit.xml
             **/.phpunit.cache/**
+            **/*.md
+            **/README*
+            **/.editorconfig
+            **/.gitattributes
