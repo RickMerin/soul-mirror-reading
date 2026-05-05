@@ -61,9 +61,9 @@ jobs:
           cp -a vendor deploy/
           cp -a member deploy/
 
-          [ -f composer.json ] && cp composer.json deploy/
-          [ -f composer.lock ] && cp composer.lock deploy/
-          [ -f index.php ] && cp index.php deploy/
+          if [ -f composer.json ]; then cp composer.json deploy/; fi
+          if [ -f composer.lock ]; then cp composer.lock deploy/; fi
+          if [ -f index.php ]; then cp index.php deploy/; fi
 
       - name: FTP deploy to cPanel (testing subdomain)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
