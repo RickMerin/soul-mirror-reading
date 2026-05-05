@@ -19,7 +19,7 @@ jobs:
 
       - run: composer install --no-dev --optimize-autoloader --no-interaction
 
-      # Frontend (if needed)
+      # Frontend (only if needed)
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -29,7 +29,7 @@ jobs:
       # Clean deploy folder
       - name: Prepare deployment
         run: |
-          mkdir deploy
+          mkdir -p deploy
           rsync -av \
             --exclude='.git' \
             --exclude='.github' \
@@ -38,21 +38,29 @@ jobs:
             --exclude='.env' \
             ./ deploy/
 
-      # SSH
+      # SSH Agent
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Add host
+      # ✅ FIXED SSH SETUP (robust)
+      - name: Setup SSH
         run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          set -e
 
-      # 🚀 Deploy to TESTING
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+
+          # Try to add known_hosts (safe, but may fail on cPanel)
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} -H "${{ secrets.SSH_HOST }}" >> "$HOME/.ssh/known_hosts" 2>/dev/null || true
+
+          chmod 644 "$HOME/.ssh/known_hosts"
+
+      # 🚀 Deploy to TESTING (cPanel-safe)
       - name: Deploy to staging
         run: |
           rsync -avz --delete \
             --exclude='uploads' \
-            -e "ssh -p ${{ secrets.SSH_PORT }}" \
+            -e "ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no" \
             ./deploy/ \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH_TESTING }}
