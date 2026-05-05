@@ -57,10 +57,21 @@ $itemsSmr1 = [
     ],
 ];
 
+// Funnel + OTO (upsell-1.php uses cbitems=srp-1); unlocks Soul Ritual when MEMBER_RITUAL_SKU=srp-1.
+$itemsBuyerWithRitual = array_merge($itemsSmr1, [
+    [
+        'sku' => 'srp-1',
+        'item' => 'srp-1',
+        'productTitle' => 'Soul Ritual Practice',
+        'quantity' => 1,
+        'itemNo' => 'srp-1',
+    ],
+]);
+
 $rawInsApproved = [
     'receipt' => $receiptSmr1,
     'transactionType' => 'SALE',
-    'lineItems' => $itemsSmr1,
+    'lineItems' => $itemsBuyerWithRitual,
 ];
 
 $rawInsRefunded = [
@@ -86,7 +97,7 @@ try {
         'approved',
         'USD',
         37.00,
-        $itemsSmr1,
+        $itemsBuyerWithRitual,
         $rawInsApproved,
     );
 
@@ -125,7 +136,7 @@ try {
 }
 
 echo 'Dev purchase seed completed.' . PHP_EOL;
-echo '  Member access (smr-1 in items_json, status approved): ' . $buyerEmail . PHP_EOL;
+echo '  Member access (smr-1 + srp-1 in items_json, status approved): ' . $buyerEmail . PHP_EOL;
 echo '  No purchase (login should deny): ' . $noPurchaseEmail . PHP_EOL;
 echo '  Refunded purchase (login should deny): ' . $refundedEmail . PHP_EOL;
 
