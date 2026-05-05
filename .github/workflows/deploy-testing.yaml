@@ -50,21 +50,6 @@ jobs:
 
       - name: Build frontend assets
         run: npm ci && npm run build
-
-      - name: Prepare deploy directory
-        run: |
-          rm -rf deploy
-          mkdir -p deploy
-
-          cp -a public deploy/
-          cp -a src deploy/
-          cp -a vendor deploy/
-          cp -a member deploy/
-
-          if [ -f composer.json ]; then cp composer.json deploy/; fi
-          if [ -f composer.lock ]; then cp composer.lock deploy/; fi
-          if [ -f index.php ]; then cp index.php deploy/; fi
-
       - name: FTP deploy to cPanel (testing subdomain)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -72,7 +57,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /test.soulmirrorreading.com/
-          local-dir: ./deploy/
+          local-dir: ./
           protocol: ftps
           timeout: 120000
           log-level: verbose
