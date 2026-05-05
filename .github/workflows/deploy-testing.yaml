@@ -53,11 +53,14 @@ jobs:
 
       - name: Prepare deploy directory
         run: |
+          rm -rf deploy
           mkdir -p deploy
-          rsync -a public/ deploy/public/
-          rsync -a src/ deploy/src/
-          rsync -a vendor/ deploy/vendor/
-          rsync -a member/ deploy/member/
+
+          cp -a public deploy/
+          cp -a src deploy/
+          cp -a vendor deploy/
+          cp -a member deploy/
+
           [ -f composer.json ] && cp composer.json deploy/
           [ -f composer.lock ] && cp composer.lock deploy/
           [ -f index.php ] && cp index.php deploy/
