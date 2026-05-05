@@ -39,7 +39,7 @@ jobs:
           extensions: curl, mbstring
           coverage: none
 
-      - name: Install Composer dependencies (production)
+      - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader --no-interaction
 
       - name: Set up Node.js
@@ -51,68 +51,21 @@ jobs:
       - name: Build frontend assets
         run: npm ci && npm run build
 
-      - name: Prepare deploy directory
-        run: |
-          rm -rf deploy
-          mkdir -p deploy
-
-          cp -a public deploy/
-          cp -a src deploy/
-          cp -a vendor deploy/
-          cp -a member deploy/
-
-          if [ -f composer.json ]; then cp composer.json deploy/; fi
-          if [ -f composer.lock ]; then cp composer.lock deploy/; fi
-          if [ -f index.php ]; then cp index.php deploy/; fi
-
-      - name: FTP deploy to cPanel (attempt 1)
-        id: ftp_deploy_1
+      - name: FTP deploy to cPanel (testing subdomain)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /test.soulmirrorreading.com/
-          local-dir: ./deploy/
+          local-dir: ./
           protocol: ftps
-          timeout: 300000
-          log-level: verbose
           exclude: |
-            **/.git/**
-            **/.github/**
+            **/.git*
+            **/.github*
             **/.cursor/**
             **/.env
             **/node_modules/**
             **/tests/**
             **/phpunit.xml
             **/.phpunit.cache/**
-            **/*.md
-            **/README*
-
-      - name: Wait before retry
-        if: failure()
-        run: sleep 20
-
-      - name: FTP deploy to cPanel (attempt 2)
-        if: failure()
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /test.soulmirrorreading.com/
-          local-dir: ./deploy/
-          protocol: ftps
-          timeout: 300000
-          log-level: verbose
-          exclude: |
-            **/.git/**
-            **/.github/**
-            **/.cursor/**
-            **/.env
-            **/node_modules/**
-            **/tests/**
-            **/phpunit.xml
-            **/.phpunit.cache/**
-            **/*.md
-            **/README*
