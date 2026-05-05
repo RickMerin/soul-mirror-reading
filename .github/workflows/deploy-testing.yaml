@@ -65,29 +65,54 @@ jobs:
           if [ -f composer.lock ]; then cp composer.lock deploy/; fi
           if [ -f index.php ]; then cp index.php deploy/; fi
 
-      - name: FTP deploy to cPanel (testing subdomain) with retry
-        uses: nick-fields/retry@v3
+      - name: FTP deploy to cPanel (attempt 1)
+        id: ftp_deploy_1
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          timeout_minutes: 20
-          max_attempts: 3
-          retry_wait_seconds: 20
-          command: |
-            npx -y ftp-deploy@4.3.6 \
-              --server="${{ secrets.FTP_SERVER }}" \
-              --username="${{ secrets.FTP_USERNAME }}" \
-              --password="${{ secrets.FTP_PASSWORD }}" \
-              --server-dir="/test.soulmirrorreading.com/" \
-              --local-dir="./deploy/" \
-              --protocol="ftps" \
-              --timeout=300000 \
-              --log-level="verbose" \
-              --exclude="**/.git/**" \
-              --exclude="**/.github/**" \
-              --exclude="**/.cursor/**" \
-              --exclude="**/.env" \
-              --exclude="**/node_modules/**" \
-              --exclude="**/tests/**" \
-              --exclude="**/phpunit.xml" \
-              --exclude="**/.phpunit.cache/**" \
-              --exclude="**/*.md" \
-              --exclude="**/README*"
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /test.soulmirrorreading.com/
+          local-dir: ./deploy/
+          protocol: ftps
+          timeout: 300000
+          log-level: verbose
+          exclude: |
+            **/.git/**
+            **/.github/**
+            **/.cursor/**
+            **/.env
+            **/node_modules/**
+            **/tests/**
+            **/phpunit.xml
+            **/.phpunit.cache/**
+            **/*.md
+            **/README*
+
+      - name: Wait before retry
+        if: failure()
+        run: sleep 20
+
+      - name: FTP deploy to cPanel (attempt 2)
+        if: failure()
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /test.soulmirrorreading.com/
+          local-dir: ./deploy/
+          protocol: ftps
+          timeout: 300000
+          log-level: verbose
+          exclude: |
+            **/.git/**
+            **/.github/**
+            **/.cursor/**
+            **/.env
+            **/node_modules/**
+            **/tests/**
+            **/phpunit.xml
+            **/.phpunit.cache/**
+            **/*.md
+            **/README*
