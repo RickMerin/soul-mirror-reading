@@ -1,4 +1,4 @@
-name: Deploy Soul Mirror Reading (FTP testing)
+name: Deploy (Testing)
 
 on:
   push:
@@ -6,56 +6,28 @@ on:
       - testing
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.3"
-          extensions: curl, mbstring
-          coverage: none
-
-      - name: Install Composer dependencies
-        run: composer install --no-interaction
-
-      - name: Run PHPUnit
-        run: composer test
-
-
   deploy:
-    needs: test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+      # PHP
+      - uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3"
-          extensions: curl, mbstring
-          coverage: none
 
-      - name: Install production dependencies
-        run: composer install --no-dev --optimize-autoloader --no-interaction
+      - run: composer install --no-dev --optimize-autoloader --no-interaction
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      # Frontend (if needed)
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
 
-      - name: Build frontend assets
-        run: npm ci && npm run build
+      - run: npm ci && npm run build
 
-      # 🧼 CRITICAL FIX: create clean deploy snapshot
-      - name: Prepare deployment folder
+      # Clean deploy folder
+      - name: Prepare deployment
         run: |
           mkdir deploy
           rsync -av \
@@ -64,17 +36,23 @@ jobs:
             --exclude='node_modules' \
             --exclude='tests' \
             --exclude='.env' \
-            --exclude='phpunit.xml' \
-            --exclude='.phpunit.cache' \
             ./ deploy/
 
-      - name: FTP deploy to cPanel (testing subdomain)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      # SSH
+      - uses: webfactory/ssh-agent@v0.9.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /test.soulmirrorreading.com/
-          local-dir: ./deploy/
-          protocol: ftps
-          timeout: 60000
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add host
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      # 🚀 Deploy to TESTING
+      - name: Deploy to staging
+        run: |
+          rsync -avz --delete \
+            --exclude='uploads' \
+            -e "ssh -p ${{ secrets.SSH_PORT }}" \
+            ./deploy/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH_TESTING }}
