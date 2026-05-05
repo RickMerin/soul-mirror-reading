@@ -1,4 +1,4 @@
-name: Deploy (Testing)
+name: Deploy Soul Mirror Reading (FTP testing)
 
 on:
   push:
@@ -6,61 +6,66 @@ on:
       - testing
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # PHP
-      - uses: shivammathur/setup-php@v2
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3"
+          extensions: curl, mbstring
+          coverage: none
 
-      - run: composer install --no-dev --optimize-autoloader --no-interaction
+      - name: Install Composer dependencies (with dev for PHPUnit)
+        run: composer install --no-interaction
 
-      # Frontend (only if needed)
-      - uses: actions/setup-node@v4
+      - name: Run PHPUnit
+        run: composer test
+
+  ftp-deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: curl, mbstring
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: npm
 
-      - run: npm ci && npm run build
+      - name: Build frontend assets
+        run: npm ci && npm run build
 
-      # Clean deploy folder
-      - name: Prepare deployment
-        run: |
-          mkdir -p deploy
-          rsync -av \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='node_modules' \
-            --exclude='tests' \
-            --exclude='.env' \
-            ./ deploy/
-
-      # SSH Agent
-      - uses: webfactory/ssh-agent@v0.9.0
+      - name: FTP deploy to cPanel (testing subdomain)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      # ✅ FIXED SSH SETUP (robust)
-      - name: Setup SSH
-        run: |
-          set -e
-
-          mkdir -p "$HOME/.ssh"
-          chmod 700 "$HOME/.ssh"
-
-          # Try to add known_hosts (safe, but may fail on cPanel)
-          ssh-keyscan -p ${{ secrets.SSH_PORT }} -H "${{ secrets.SSH_HOST }}" >> "$HOME/.ssh/known_hosts" 2>/dev/null || true
-
-          chmod 644 "$HOME/.ssh/known_hosts"
-
-      # 🚀 Deploy to TESTING (cPanel-safe)
-      - name: Deploy to staging
-        run: |
-          rsync -avz --delete \
-            --exclude='uploads' \
-            -e "ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no" \
-            ./deploy/ \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH_TESTING }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /test.soulmirrorreading.com/
+          local-dir: ./
+          protocol: ftps
+          exclude: |
+            **/.git*
+            **/.github*
+            **/.cursor/**
+            **/.env
+            **/node_modules/**
+            **/tests/**
+            **/phpunit.xml
+            **/.phpunit.cache/**

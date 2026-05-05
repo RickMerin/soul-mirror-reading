@@ -66,7 +66,7 @@ try {
     }
 
     $firstName = explode(' ', trim($fullName))[0] ?? $fullName;
-    $mirrorBlockLabel = 'The Not Yet Ready Block';
+    $mirrorBlockLabel = 'The Threshold Block';
 
     // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.
     $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
