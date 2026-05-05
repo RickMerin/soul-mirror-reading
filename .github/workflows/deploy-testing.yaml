@@ -50,25 +50,44 @@ jobs:
 
       - name: Build frontend assets
         run: npm ci && npm run build
-      - name: FTP deploy to cPanel (testing subdomain)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+
+      - name: Prepare deploy directory
+        run: |
+          rm -rf deploy
+          mkdir -p deploy
+
+          cp -a public deploy/
+          cp -a src deploy/
+          cp -a vendor deploy/
+          cp -a member deploy/
+
+          if [ -f composer.json ]; then cp composer.json deploy/; fi
+          if [ -f composer.lock ]; then cp composer.lock deploy/; fi
+          if [ -f index.php ]; then cp index.php deploy/; fi
+
+      - name: FTP deploy to cPanel (testing subdomain) with retry
+        uses: nick-fields/retry@v3
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /test.soulmirrorreading.com/
-          local-dir: ./
-          protocol: ftps
-          timeout: 120000
-          log-level: verbose
-          exclude: |
-            **/.git/**
-            **/.github/**
-            **/.cursor/**
-            **/.env
-            **/node_modules/**
-            **/tests/**
-            **/phpunit.xml
-            **/.phpunit.cache/**
-            **/*.md
-            **/README*
+          timeout_minutes: 20
+          max_attempts: 3
+          retry_wait_seconds: 20
+          command: |
+            npx -y ftp-deploy@4.3.6 \
+              --server="${{ secrets.FTP_SERVER }}" \
+              --username="${{ secrets.FTP_USERNAME }}" \
+              --password="${{ secrets.FTP_PASSWORD }}" \
+              --server-dir="/test.soulmirrorreading.com/" \
+              --local-dir="./deploy/" \
+              --protocol="ftps" \
+              --timeout=300000 \
+              --log-level="verbose" \
+              --exclude="**/.git/**" \
+              --exclude="**/.github/**" \
+              --exclude="**/.cursor/**" \
+              --exclude="**/.env" \
+              --exclude="**/node_modules/**" \
+              --exclude="**/tests/**" \
+              --exclude="**/phpunit.xml" \
+              --exclude="**/.phpunit.cache/**" \
+              --exclude="**/*.md" \
+              --exclude="**/README*"
