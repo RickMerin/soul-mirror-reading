@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Crimson+Pro:ital,wght@0,400;0,500;0,600&display=swap"
     rel="stylesheet">
 
   <style>
@@ -38,25 +38,27 @@
     }
 
     :root {
-      --bg: #FEFCF8;
-      --bg-card: #FFFFFF;
-      --bg-card2: #F9F4E8;
-      --bg-raised: #EFE7D8;
-      --sidebar: #0e0820;
-      --gold: #9A7230;
-      --gold-lt: #D4AF37;
-      --gold-warm: #E8C97A;
-      --gold-dim: #7A5820;
-      --purple: #2D1B69;
-      --purple-mid: #4A2F8F;
-      --purple-soft: #6B4BA8;
-      --text: #5C4B76;
-      --text-dark: #1a0d36;
-      --text-mid: #3a2858;
-      --muted: #9A8FB0;
-      --border: rgba(154, 114, 48, 0.18);
-      --border-glow: rgba(154, 114, 48, 0.4);
+      /* Warm paper tones — higher contrast for readability */
+      --bg: #E8E1D6;
+      --bg-card: #FAF6EF;
+      --bg-card2: #F2EBE0;
+      --bg-raised: #E5DDD2;
+      --sidebar: #141018;
+      --gold: #8B6914;
+      --gold-lt: #C9A227;
+      --gold-warm: #E4D4A8;
+      --gold-dim: #6B4E12;
+      --purple: #35285C;
+      --purple-mid: #4A3D6E;
+      --purple-soft: #5E527E;
+      --text: #2E2833;
+      --text-dark: #161018;
+      --text-mid: #3D3642;
+      --muted: #5C5462;
+      --border: rgba(107, 78, 18, 0.22);
+      --border-glow: rgba(139, 105, 20, 0.38);
       --sidebar-w: 260px;
+      --layout-cutoff: 48rem;
     }
 
     html {
@@ -68,7 +70,8 @@
       color: var(--text);
       font-family: 'Crimson Pro', serif;
       font-weight: 400;
-      line-height: 1.7;
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.125rem);
+      line-height: 1.65;
       min-height: 100vh;
       display: flex;
     }
@@ -90,6 +93,12 @@
       overflow-y: auto;
       scrollbar-width: thin;
       scrollbar-color: var(--gold-dim) transparent;
+      /* Narrow viewports: off-canvas; wide: docked — fluid breakpoint, no @media */
+      transform: translateX(max(calc(-1 * var(--sidebar-w)), min(0px, (100vw - var(--layout-cutoff)) * 1000)));
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
     }
 
     .sidebar-logo {
@@ -100,18 +109,18 @@
 
     .sidebar-logo-text {
       font-family: 'Cinzel', serif;
-      font-size: 13px;
+      font-size: clamp(0.8125rem, 0.75rem + 0.35vw, 0.9375rem);
       color: var(--gold-warm);
-      letter-spacing: 3px;
+      letter-spacing: clamp(2px, 0.1vw + 1.5px, 3px);
       line-height: 1.5;
       font-weight: 500;
     }
 
     .sidebar-logo-sub {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      color: rgba(232, 201, 122, 0.55);
-      letter-spacing: 2px;
+      font-size: clamp(0.75rem, 0.7rem + 0.3vw, 0.875rem);
+      color: rgba(232, 201, 122, 0.72);
+      letter-spacing: clamp(1px, 0.08vw + 1px, 2px);
       margin-top: 4px;
       font-style: italic;
     }
@@ -125,18 +134,19 @@
     }
 
     .sidebar-avatar {
-      width: 40px;
-      height: 40px;
+      width: clamp(40px, 7vw, 44px);
+      height: clamp(40px, 7vw, 44px);
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-dim), var(--gold-warm));
+      background: var(--gold-lt);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cinzel', serif;
-      font-size: 14px;
-      color: #1a0d36;
+      font-size: clamp(0.8125rem, 0.75rem + 0.25vw, 0.9375rem);
+      color: #1c1410;
       font-weight: 600;
       flex-shrink: 0;
+      border: 1px solid rgba(28, 20, 16, 0.15);
     }
 
     .sidebar-user-info {
@@ -145,8 +155,8 @@
 
     .sidebar-user-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      color: #F5EDD8;
+      font-size: clamp(0.9375rem, 0.875rem + 0.35vw, 1.0625rem);
+      color: #F8F2E6;
       font-weight: 500;
       white-space: nowrap;
       overflow: hidden;
@@ -155,11 +165,11 @@
 
     .sidebar-user-label {
       font-family: 'Cinzel', serif;
-      font-size: 8px;
-      letter-spacing: 2px;
+      font-size: clamp(0.625rem, 0.55rem + 0.35vw, 0.75rem);
+      letter-spacing: clamp(1px, 0.06vw + 1px, 2px);
       color: var(--gold-warm);
       text-transform: uppercase;
-      opacity: 0.7;
+      opacity: 0.88;
       margin-top: 2px;
     }
 
@@ -170,9 +180,9 @@
 
     .nav-section-label {
       font-family: 'Cinzel', serif;
-      font-size: 8px;
-      letter-spacing: 3px;
-      color: rgba(232, 201, 122, 0.55);
+      font-size: clamp(0.625rem, 0.55rem + 0.35vw, 0.75rem);
+      letter-spacing: clamp(2px, 0.12vw + 1px, 3px);
+      color: rgba(232, 201, 122, 0.68);
       padding: 14px 20px 6px;
       text-transform: uppercase;
     }
@@ -186,9 +196,9 @@
       transition: background 0.2s, color 0.2s;
       border-left: 2px solid transparent;
       text-decoration: none;
-      color: rgba(245, 237, 216, 0.72);
+      color: rgba(248, 242, 230, 0.88);
       font-family: 'Crimson Pro', serif;
-      font-size: 14px;
+      font-size: clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem);
       position: relative;
     }
 
@@ -204,17 +214,17 @@
     }
 
     .nav-icon {
-      font-size: 15px;
-      width: 20px;
+      font-size: clamp(0.9375rem, 0.85rem + 0.35vw, 1.0625rem);
+      width: 1.35rem;
       text-align: center;
       flex-shrink: 0;
     }
 
     .nav-lock {
       margin-left: auto;
-      font-size: 11px;
-      color: rgba(232, 201, 122, 0.5);
-      opacity: 0.7;
+      font-size: clamp(0.75rem, 0.68rem + 0.28vw, 0.875rem);
+      color: rgba(232, 201, 122, 0.62);
+      opacity: 0.88;
     }
 
     .sidebar-footer {
@@ -224,20 +234,23 @@
 
     /* ─── MAIN CONTENT ─── */
     .main {
-      margin-left: var(--sidebar-w);
+      margin-left: max(0px, min(var(--sidebar-w), (100vw - var(--layout-cutoff)) * 1000));
       flex: 1;
       min-height: 100vh;
       padding: 0;
+      min-width: 0;
     }
 
     /* ─── TOP BAR ─── */
     .topbar {
       background: var(--bg-card);
       border-bottom: 1px solid var(--border);
-      padding: 14px 32px;
+      padding: clamp(0.75rem, 0.5rem + 1vw, 0.875rem) clamp(1rem, 0.45rem + 2.5vw, 2rem);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: clamp(0.5rem, 0.25rem + 1vw, 0.75rem);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -245,38 +258,60 @@
 
     .topbar-title {
       font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: var(--gold);
+      font-size: clamp(0.6875rem, 0.62rem + 0.35vw, 0.8125rem);
+      letter-spacing: clamp(2px, 0.12vw + 1px, 3px);
+      color: var(--gold-dim);
       text-transform: uppercase;
+      flex: 1 1 min(100%, 16rem);
+      min-width: min(100%, 12rem);
+      line-height: 1.45;
     }
 
     .topbar-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: clamp(0.75rem, 0.5rem + 1vw, 1rem);
+      flex: 0 1 auto;
+      min-width: 0;
     }
 
     .ckbank-notice {
       font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      color: var(--muted);
-      background: rgba(45, 27, 105, 0.04);
-      border: 1px solid rgba(45, 27, 105, 0.08);
+      font-size: clamp(0.6875rem, 0.62rem + 0.3vw, 0.8125rem);
+      letter-spacing: clamp(0.5px, 0.04vw + 0.5px, 1.5px);
+      color: var(--text-mid);
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 5px 12px;
+      padding: clamp(0.35rem, 0.25rem + 0.4vw, 0.45rem) clamp(0.65rem, 0.5rem + 0.5vw, 0.85rem);
+      max-width: min(100%, 42rem);
     }
 
     .hamburger {
-      display: none;
-      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      background: var(--bg-raised);
       border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 6px 10px;
+      border-radius: 6px;
+      padding: 0;
       cursor: pointer;
       color: var(--text-dark);
-      font-size: 16px;
+      font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+      line-height: 1;
+      /* Visible only when layout is narrow (same cutoff as sidebar) */
+      width: clamp(0px, calc((var(--layout-cutoff) - 100vw) * 1000), 44px);
+      height: clamp(0px, calc((var(--layout-cutoff) - 100vw) * 1000), 44px);
+      overflow: hidden;
+      opacity: clamp(0, calc((var(--layout-cutoff) - 100vw) * 1000 + 1px), 1);
+      margin-right: clamp(0px, calc((var(--layout-cutoff) - 100vw) * 1000), 10px);
+    }
+
+    .hamburger:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
     }
 
     /* ─── SECTIONS ─── */
@@ -289,48 +324,49 @@
     }
 
     .content-wrap {
-      max-width: 900px;
+      max-width: min(900px, 100%);
       margin: 0 auto;
-      padding: 36px 32px 60px;
+      padding: clamp(1.75rem, 1.2rem + 2vw, 2.35rem) clamp(1rem, 0.5rem + 2.5vw, 2rem) clamp(2.75rem, 2rem + 3vw, 3.85rem);
     }
 
     /* ─── PAGE HERO ─── */
     .page-hero {
-      background: linear-gradient(135deg, rgba(45, 27, 105, 0.08) 0%, rgba(212, 175, 55, 0.06) 100%), var(--bg-card2);
+      background: var(--bg-card2);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 38px 40px;
-      margin-bottom: 32px;
+      border-radius: clamp(8px, 0.5vw + 6px, 12px);
+      padding: clamp(1.65rem, 1.2rem + 1.8vw, 2.45rem) clamp(1.35rem, 1rem + 1.5vw, 2.55rem);
+      margin-bottom: clamp(1.5rem, 1rem + 1.5vw, 2rem);
       position: relative;
       overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
     }
 
     .page-hero::before {
-      content: '✦';
+      content: '';
       position: absolute;
-      top: -24px;
-      right: -10px;
-      font-size: 140px;
-      color: rgba(154, 114, 48, 0.08);
-      line-height: 1;
+      top: 0;
+      right: 0;
+      width: clamp(80px, 15vw, 140px);
+      height: clamp(80px, 15vw, 140px);
+      background: radial-gradient(circle at top right, rgba(139, 105, 20, 0.07), transparent 68%);
       pointer-events: none;
     }
 
     .page-hero-eyebrow {
       font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 4px;
-      color: var(--gold);
+      font-size: clamp(0.6875rem, 0.62rem + 0.35vw, 0.8125rem);
+      letter-spacing: clamp(3px, 0.15vw + 2px, 4px);
+      color: var(--gold-dim);
       text-transform: uppercase;
       margin-bottom: 10px;
     }
 
     .page-hero h1 {
       font-family: 'Cinzel', serif;
-      font-size: clamp(24px, 3vw, 34px);
+      font-size: clamp(1.5rem, 1.25rem + 1.4vw, 2.125rem);
       font-weight: 500;
       color: var(--text-dark);
-      line-height: 1.25;
+      line-height: 1.22;
       margin-bottom: 12px;
     }
 
@@ -343,47 +379,48 @@
 
     .page-hero p {
       color: var(--text-mid);
-      font-size: 16px;
-      max-width: 560px;
+      font-size: clamp(1rem, 0.92rem + 0.35vw, 1.125rem);
+      max-width: 38rem;
       margin: 0;
-      line-height: 1.6;
+      line-height: 1.62;
     }
 
     /* ─── DAILY RITUAL BOX ─── */
     .daily-ritual {
-      background: linear-gradient(135deg, rgba(45, 27, 105, 0.06), rgba(212, 175, 55, 0.05));
-      border: 1px solid var(--border-glow);
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 20px 24px;
-      margin-bottom: 24px;
+      padding: clamp(1.1rem, 0.85rem + 1vw, 1.5rem) clamp(1.1rem, 0.9rem + 0.8vw, 1.5rem);
+      margin-bottom: clamp(1.25rem, 0.9rem + 1vw, 1.5rem);
       display: flex;
-      align-items: center;
-      gap: 16px;
+      align-items: flex-start;
+      gap: clamp(0.85rem, 0.5rem + 1.2vw, 1.1rem);
     }
 
     .daily-ritual-icon {
-      font-size: 32px;
+      font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.1rem);
       flex-shrink: 0;
+      line-height: 1;
     }
 
     .daily-ritual-label {
       font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: var(--gold);
+      font-size: clamp(0.65rem, 0.58rem + 0.3vw, 0.75rem);
+      letter-spacing: clamp(2px, 0.1vw + 1.5px, 3px);
+      color: var(--gold-dim);
       margin-bottom: 4px;
       text-transform: uppercase;
     }
 
     .daily-ritual h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
+      font-size: clamp(1.15rem, 1.02rem + 0.45vw, 1.25rem);
       color: var(--text-dark);
       font-weight: 600;
     }
 
     .daily-ritual p {
-      font-size: 13px;
+      font-size: clamp(0.9375rem, 0.88rem + 0.3vw, 1.0625rem);
       color: var(--text);
       margin-top: 3px;
     }
@@ -391,51 +428,51 @@
     /* ─── STEPS ─── */
     .steps-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+      gap: clamp(0.85rem, 0.5rem + 1vw, 1.1rem);
+      margin-bottom: clamp(1.75rem, 1.2rem + 1.4vw, 2.1rem);
     }
 
     .step-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 22px 18px;
+      padding: clamp(1.1rem, 0.85rem + 0.8vw, 1.4rem) clamp(0.95rem, 0.8rem + 0.5vw, 1.15rem);
       text-align: center;
       cursor: pointer;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .step-card:hover {
       border-color: var(--gold);
-      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(22, 16, 24, 0.06);
     }
 
     .step-num {
       font-family: 'Cinzel', serif;
-      font-size: 26px;
-      color: rgba(154, 114, 48, 0.35);
+      font-size: clamp(1.45rem, 1.2rem + 0.8vw, 1.7rem);
+      color: rgba(107, 78, 18, 0.32);
       line-height: 1;
       margin-bottom: 8px;
     }
 
     .step-icon {
-      font-size: 22px;
+      font-size: clamp(1.3rem, 1.1rem + 0.6vw, 1.45rem);
       margin-bottom: 8px;
     }
 
     .step-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
+      font-size: clamp(0.98rem, 0.9rem + 0.35vw, 1.1rem);
       font-weight: 600;
       color: var(--text-dark);
       margin-bottom: 4px;
     }
 
     .step-desc {
-      font-size: 13px;
-      color: var(--text);
-      line-height: 1.4;
+      font-size: clamp(0.875rem, 0.82rem + 0.28vw, 1rem);
+      color: var(--text-mid);
+      line-height: 1.45;
     }
 
     /* ─── CARD ─── */
@@ -448,35 +485,38 @@
     }
 
     .card-header {
-      padding: 18px 24px;
+      padding: clamp(0.95rem, 0.75rem + 0.6vw, 1.2rem) clamp(1.1rem, 0.85rem + 0.8vw, 1.5rem);
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      gap: 12px;
+      flex-wrap: wrap;
+      gap: clamp(0.5rem, 0.35rem + 0.5vw, 0.75rem);
     }
 
     .card-header-icon {
-      font-size: 18px;
+      font-size: clamp(1.05rem, 0.95rem + 0.35vw, 1.2rem);
     }
 
     .card-header h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 19px;
+      font-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.25rem);
       font-weight: 600;
       color: var(--text-dark);
+      flex: 1 1 min(100%, 14rem);
+      min-width: 0;
     }
 
     .card-header .card-label {
       margin-left: auto;
       font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 2px;
-      color: var(--gold);
+      font-size: clamp(0.65rem, 0.58rem + 0.3vw, 0.75rem);
+      letter-spacing: clamp(1px, 0.08vw + 0.5px, 2px);
+      color: var(--gold-dim);
       text-transform: uppercase;
     }
 
     .card-body {
-      padding: 24px;
+      padding: clamp(1.1rem, 0.9rem + 0.7vw, 1.5rem);
     }
 
     /* ─── VIDEO CONTAINER ─── */
@@ -484,12 +524,12 @@
       position: relative;
       border-radius: 8px;
       overflow: hidden;
-      background: #0e0820;
+      background: #141018;
       aspect-ratio: 16/9;
-      max-width: 640px;
+      max-width: min(640px, 100%);
       margin: 0 auto;
-      border: 1px solid var(--border-glow);
-      box-shadow: 0 8px 32px rgba(45, 27, 105, 0.15);
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 24px rgba(22, 16, 24, 0.12);
     }
 
     .video-container video,
@@ -502,58 +542,58 @@
     /* ─── WIREFRAME OVERLAY (for assets not yet built) ─── */
     .wireframe-box {
       background: repeating-linear-gradient(45deg,
-          rgba(154, 114, 48, 0.05),
-          rgba(154, 114, 48, 0.05) 12px,
-          rgba(154, 114, 48, 0.08) 12px,
-          rgba(154, 114, 48, 0.08) 24px);
-      border: 2px dashed rgba(154, 114, 48, 0.4);
+          rgba(107, 78, 18, 0.06),
+          rgba(107, 78, 18, 0.06) 12px,
+          rgba(107, 78, 18, 0.09) 12px,
+          rgba(107, 78, 18, 0.09) 24px);
+      border: 2px dashed rgba(139, 105, 20, 0.42);
       border-radius: 8px;
-      padding: 48px 24px;
+      padding: clamp(2rem, 1.5rem + 2vw, 3rem) clamp(1.25rem, 0.85rem + 1.5vw, 1.55rem);
       text-align: center;
-      color: var(--gold);
+      color: var(--gold-dim);
     }
 
     .wireframe-box .wf-icon {
-      font-size: 36px;
+      font-size: clamp(2rem, 1.65rem + 1.2vw, 2.35rem);
       margin-bottom: 12px;
-      opacity: 0.6;
+      opacity: 0.78;
     }
 
     .wireframe-box .wf-label {
       font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 3px;
-      color: var(--gold);
+      font-size: clamp(0.6875rem, 0.62rem + 0.28vw, 0.8125rem);
+      letter-spacing: clamp(2px, 0.1vw + 1.5px, 3px);
+      color: var(--gold-dim);
       text-transform: uppercase;
       margin-bottom: 6px;
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     .wireframe-box .wf-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
+      font-size: clamp(1rem, 0.92rem + 0.35vw, 1.125rem);
       color: var(--text-dark);
       font-weight: 600;
       margin-bottom: 6px;
     }
 
     .wireframe-box .wf-note {
-      font-size: 12px;
-      color: var(--muted);
+      font-size: clamp(0.875rem, 0.82rem + 0.25vw, 0.9375rem);
+      color: var(--text-mid);
       font-style: italic;
-      max-width: 380px;
+      max-width: 28rem;
       margin: 0 auto;
     }
 
     .wireframe-tag {
       display: inline-block;
       font-family: 'Cinzel', serif;
-      font-size: 8px;
-      letter-spacing: 2px;
-      color: var(--gold);
-      background: rgba(154, 114, 48, 0.08);
-      border: 1px dashed rgba(154, 114, 48, 0.35);
-      padding: 3px 8px;
+      font-size: clamp(0.625rem, 0.55rem + 0.3vw, 0.75rem);
+      letter-spacing: clamp(1px, 0.06vw + 0.5px, 2px);
+      color: var(--gold-dim);
+      background: rgba(139, 105, 20, 0.1);
+      border: 1px dashed rgba(139, 105, 20, 0.38);
+      padding: 0.2rem 0.55rem;
       border-radius: 10px;
       text-transform: uppercase;
       margin-left: 8px;
@@ -571,22 +611,24 @@
 
     .pdf-pages {
       display: flex;
-      gap: 14px;
+      flex-wrap: wrap;
+      gap: clamp(0.65rem, 0.4rem + 0.8vw, 0.9rem);
       justify-content: center;
-      padding: 24px 16px;
-      background: linear-gradient(180deg, #0e0820, #2D1B69);
-      min-height: 360px;
+      align-content: center;
+      padding: clamp(1.1rem, 0.75rem + 1.2vw, 1.5rem) clamp(0.85rem, 0.5rem + 1vw, 1.1rem);
+      background: #1a1520;
+      min-height: clamp(240px, 38vw, 360px);
       align-items: center;
     }
 
     .pdf-page {
-      height: 320px;
-      width: 220px;
+      height: clamp(220px, 42vw, 320px);
+      width: clamp(150px, 42vw, 220px);
       background: var(--bg-card);
       border-radius: 4px;
-      border: 1px solid rgba(154, 114, 48, 0.3);
-      padding: 24px 20px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(139, 105, 20, 0.35);
+      padding: clamp(0.85rem, 0.65rem + 0.7vw, 1.5rem) clamp(0.75rem, 0.55rem + 0.6vw, 1.25rem);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
       display: flex;
       flex-direction: column;
       position: relative;
@@ -595,9 +637,9 @@
 
     .pdf-page-header {
       font-family: 'Cinzel', serif;
-      font-size: 7px;
-      letter-spacing: 2px;
-      color: var(--gold);
+      font-size: clamp(0.5625rem, 0.5rem + 0.25vw, 0.6875rem);
+      letter-spacing: clamp(1px, 0.06vw + 0.5px, 2px);
+      color: var(--gold-dim);
       text-transform: uppercase;
       text-align: center;
       padding-bottom: 8px;
@@ -607,7 +649,7 @@
 
     .pdf-page-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
+      font-size: clamp(0.8125rem, 0.75rem + 0.3vw, 0.9375rem);
       font-weight: 600;
       color: var(--text-dark);
       margin-bottom: 8px;
@@ -637,9 +679,9 @@
 
     .pdf-page-footer {
       font-family: 'Cinzel', serif;
-      font-size: 7px;
-      letter-spacing: 2px;
-      color: rgba(154, 114, 48, 0.4);
+      font-size: clamp(0.5625rem, 0.5rem + 0.22vw, 0.625rem);
+      letter-spacing: clamp(1px, 0.06vw + 0.5px, 2px);
+      color: rgba(107, 78, 18, 0.55);
       text-align: center;
       margin-top: 10px;
     }
@@ -648,7 +690,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 20px;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding: clamp(0.75rem, 0.55rem + 0.7vw, 0.95rem) clamp(0.85rem, 0.55rem + 1vw, 1.25rem);
       border-top: 1px solid rgba(232, 201, 122, 0.15);
       background: var(--bg-card2);
     }
@@ -660,13 +704,13 @@
     }
 
     .btn-icon {
-      width: 36px;
-      height: 36px;
+      width: clamp(40px, 6vw, 44px);
+      height: clamp(40px, 6vw, 44px);
       border-radius: 50%;
-      background: rgba(154, 114, 48, 0.08);
+      background: rgba(139, 105, 20, 0.1);
       border: 1px solid var(--border);
-      color: var(--gold);
-      font-size: 13px;
+      color: var(--gold-dim);
+      font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -680,9 +724,9 @@
 
     .pdf-page-info {
       font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--gold);
+      font-size: clamp(0.6875rem, 0.62rem + 0.28vw, 0.8125rem);
+      letter-spacing: clamp(1px, 0.08vw + 0.5px, 2px);
+      color: var(--gold-dim);
     }
 
     /* ─── DOWNLOAD BUTTON ─── */
@@ -690,26 +734,25 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
-      color: #1a0d36;
+      background: var(--gold);
+      color: #1c1410;
       font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 2px;
+      font-size: clamp(0.6875rem, 0.62rem + 0.3vw, 0.8125rem);
+      letter-spacing: clamp(1px, 0.08vw + 0.5px, 2px);
       font-weight: 600;
-      padding: 12px 26px;
+      padding: clamp(0.65rem, 0.55rem + 0.4vw, 0.85rem) clamp(1.1rem, 0.85rem + 0.9vw, 1.65rem);
       border-radius: 4px;
       text-decoration: none;
-      border: none;
+      border: 1px solid rgba(28, 20, 16, 0.12);
       cursor: pointer;
       text-transform: uppercase;
-      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 3px 12px rgba(212, 175, 55, 0.25);
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 0 rgba(28, 20, 16, 0.12);
     }
 
     .btn-download:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-      box-shadow: 0 5px 18px rgba(212, 175, 55, 0.35);
+      background: var(--gold-lt);
+      box-shadow: 0 3px 10px rgba(22, 16, 24, 0.1);
     }
 
     /* ─── UNLOCK / UPSELL BUTTON ─── */
@@ -717,26 +760,25 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: linear-gradient(135deg, var(--purple), var(--purple-mid));
-      color: #fff;
+      background: var(--purple);
+      color: #faf7f2;
       font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 2px;
+      font-size: clamp(0.6875rem, 0.62rem + 0.3vw, 0.8125rem);
+      letter-spacing: clamp(1px, 0.08vw + 0.5px, 2px);
       font-weight: 600;
-      padding: 14px 32px;
+      padding: clamp(0.75rem, 0.6rem + 0.45vw, 0.9rem) clamp(1.25rem, 1rem + 1vw, 2rem);
       border-radius: 4px;
       text-decoration: none;
-      border: 1px solid rgba(232, 201, 122, 0.25);
+      border: 1px solid rgba(232, 201, 122, 0.22);
       cursor: pointer;
       text-transform: uppercase;
-      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(45, 27, 105, 0.3);
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 0 rgba(20, 16, 28, 0.35);
     }
 
     .btn-unlock:hover {
-      opacity: 0.95;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 26px rgba(45, 27, 105, 0.4);
+      background: var(--purple-mid);
+      box-shadow: 0 4px 16px rgba(22, 16, 24, 0.14);
     }
 
     /* ─── DIVIDER ─── */
@@ -754,16 +796,16 @@
 
     .section-heading .eyebrow {
       font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 4px;
-      color: var(--gold);
+      font-size: clamp(0.6875rem, 0.62rem + 0.3vw, 0.8125rem);
+      letter-spacing: clamp(3px, 0.15vw + 2px, 4px);
+      color: var(--gold-dim);
       text-transform: uppercase;
       margin-bottom: 8px;
     }
 
     .section-heading h2 {
       font-family: 'Cinzel', serif;
-      font-size: clamp(22px, 2.5vw, 30px);
+      font-size: clamp(1.35rem, 1.1rem + 1.1vw, 1.9rem);
       font-weight: 500;
       color: var(--text-dark);
       line-height: 1.25;
@@ -778,8 +820,9 @@
     .section-heading p {
       margin-top: 10px;
       color: var(--text-mid);
-      font-size: 15px;
-      max-width: 580px;
+      font-size: clamp(0.98rem, 0.9rem + 0.35vw, 1.1rem);
+      max-width: 38rem;
+      line-height: 1.62;
     }
 
     /* ─── ACCORDION (BONUSES) ─── */
@@ -804,11 +847,12 @@
       width: 100%;
       background: none;
       border: none;
-      padding: 18px 20px;
+      padding: clamp(1rem, 0.85rem + 0.55vw, 1.2rem) clamp(1rem, 0.75rem + 0.9vw, 1.35rem);
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 16px;
+      flex-wrap: wrap;
+      gap: clamp(0.75rem, 0.5rem + 0.8vw, 1.05rem);
       text-align: left;
       color: var(--text-dark);
       transition: background 0.2s;
@@ -819,42 +863,43 @@
     }
 
     .accordion-thumb {
-      width: 56px;
-      height: 56px;
+      width: clamp(48px, 8vw, 56px);
+      height: clamp(48px, 8vw, 56px);
       border-radius: 6px;
-      background: linear-gradient(135deg, var(--purple), var(--purple-mid));
+      background: var(--sidebar);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.4rem);
       color: var(--gold-warm);
       border: 1px solid var(--border);
       flex-shrink: 0;
     }
 
     .accordion-title-wrap {
-      flex: 1;
+      flex: 1 1 14rem;
+      min-width: 0;
     }
 
     .accordion-label {
       font-family: 'Cinzel', serif;
-      font-size: 8px;
-      letter-spacing: 3px;
-      color: var(--gold);
+      font-size: clamp(0.65rem, 0.58rem + 0.3vw, 0.75rem);
+      letter-spacing: clamp(2px, 0.1vw + 1.5px, 3px);
+      color: var(--gold-dim);
       text-transform: uppercase;
       margin-bottom: 3px;
     }
 
     .accordion-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
+      font-size: clamp(1rem, 0.92rem + 0.35vw, 1.15rem);
       font-weight: 600;
       color: var(--text-dark);
     }
 
     .accordion-chevron {
-      color: var(--gold);
-      font-size: 20px;
+      color: var(--gold-dim);
+      font-size: clamp(1.15rem, 1rem + 0.45vw, 1.35rem);
       flex-shrink: 0;
       transition: transform 0.3s;
     }
@@ -874,16 +919,16 @@
     }
 
     .accordion-inner {
-      padding: 0 20px 22px;
+      padding: 0 clamp(1rem, 0.65rem + 1.2vw, 1.35rem) clamp(1.1rem, 0.85rem + 0.9vw, 1.45rem);
       display: grid;
-      grid-template-columns: 1fr 180px;
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+      gap: clamp(1rem, 0.75rem + 1vw, 1.55rem);
       align-items: start;
     }
 
     .accordion-inner-cover {
       aspect-ratio: 3/4;
-      background: linear-gradient(160deg, var(--purple), var(--purple-mid));
+      background: var(--sidebar);
       border-radius: 8px;
       border: 1px solid var(--border);
       display: flex;
@@ -892,24 +937,24 @@
       flex-direction: column;
       gap: 8px;
       color: var(--gold-warm);
-      padding: 20px;
+      padding: clamp(1rem, 0.75rem + 1vw, 1.35rem);
       text-align: center;
-      box-shadow: 0 8px 24px rgba(45, 27, 105, 0.2);
+      box-shadow: 0 6px 18px rgba(22, 16, 24, 0.12);
     }
 
     .accordion-inner-cover-icon {
-      font-size: 34px;
+      font-size: clamp(1.85rem, 1.55rem + 1vw, 2.2rem);
     }
 
     .accordion-inner-cover-title {
       font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 2px;
+      font-size: clamp(0.6875rem, 0.62rem + 0.28vw, 0.8125rem);
+      letter-spacing: clamp(1px, 0.06vw + 0.5px, 2px);
       color: var(--gold-warm);
     }
 
     .accordion-desc {
-      font-size: 14px;
+      font-size: clamp(0.95rem, 0.88rem + 0.3vw, 1.0625rem);
       color: var(--text);
       line-height: 1.7;
       margin-bottom: 16px;
@@ -920,22 +965,22 @@
       background: var(--bg-raised);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 22px 24px;
+      padding: clamp(1.15rem, 0.95rem + 0.7vw, 1.45rem) clamp(1.15rem, 0.95rem + 0.8vw, 1.55rem);
       margin-bottom: 16px;
     }
 
     .audio-card-label {
       font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: var(--gold);
+      font-size: clamp(0.65rem, 0.58rem + 0.3vw, 0.75rem);
+      letter-spacing: clamp(2px, 0.1vw + 1.5px, 3px);
+      color: var(--gold-dim);
       text-transform: uppercase;
       margin-bottom: 6px;
     }
 
     .audio-card h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
+      font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.2rem);
       font-weight: 600;
       color: var(--text-dark);
       margin-bottom: 14px;
@@ -948,7 +993,7 @@
 
     /* ─── UPGRADE / LOCKED CARDS (upsell locked preview) ─── */
     .upgrade-card {
-      background: linear-gradient(135deg, var(--bg-card2), var(--bg-raised));
+      background: var(--bg-card2);
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
@@ -957,26 +1002,26 @@
     }
 
     .upgrade-card::before {
-      content: '🔒 UPGRADE TO UNLOCK';
+      content: 'Upgrade to unlock';
       position: absolute;
       top: 14px;
       right: 14px;
-      background: rgba(45, 27, 105, 0.12);
-      border: 1px solid rgba(45, 27, 105, 0.35);
-      color: var(--purple);
+      background: rgba(26, 21, 32, 0.92);
+      border: 1px solid var(--border);
+      color: #faf7f2;
       font-family: 'Cinzel', serif;
-      font-size: 8px;
-      letter-spacing: 2px;
+      font-size: clamp(0.65rem, 0.58rem + 0.28vw, 0.75rem);
+      letter-spacing: clamp(1px, 0.06vw + 0.5px, 2px);
       padding: 4px 10px;
       border-radius: 20px;
       z-index: 2;
+      text-transform: uppercase;
     }
 
     .upgrade-img-wrap {
-      aspect-ratio: 16/9;
       overflow: hidden;
       position: relative;
-      background: linear-gradient(160deg, var(--purple), #0e0820);
+      background: #1a1520;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -993,41 +1038,41 @@
     .upgrade-img-inner {
       position: relative;
       z-index: 1;
-      color: rgba(232, 201, 122, 0.5);
-      font-size: 64px;
+      color: rgba(232, 201, 122, 0.58);
+      font-size: clamp(2.5rem, 2rem + 4vw, 4rem);
     }
 
     .upgrade-body {
-      padding: 26px 28px;
+      padding: clamp(1.35rem, 1.1rem + 0.9vw, 1.75rem) clamp(1.25rem, 1rem + 0.9vw, 1.75rem);
     }
 
     .upgrade-label {
       font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: var(--gold);
+      font-size: clamp(0.65rem, 0.58rem + 0.3vw, 0.75rem);
+      letter-spacing: clamp(2px, 0.1vw + 1.5px, 3px);
+      color: var(--gold-dim);
       text-transform: uppercase;
       margin-bottom: 8px;
     }
 
     .upgrade-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
+      font-size: clamp(1.2rem, 1.05rem + 0.55vw, 1.45rem);
       font-weight: 600;
       color: var(--text-dark);
       margin-bottom: 12px;
     }
 
     .upgrade-desc {
-      font-size: 14px;
+      font-size: clamp(0.95rem, 0.88rem + 0.28vw, 1.0625rem);
       color: var(--text);
       margin-bottom: 22px;
       line-height: 1.65;
     }
 
     .upgrade-guarantee {
-      font-size: 11px;
-      color: var(--muted);
+      font-size: clamp(0.8125rem, 0.75rem + 0.28vw, 0.9375rem);
+      color: var(--text-mid);
       margin-top: 12px;
       display: flex;
       align-items: center;
@@ -1040,7 +1085,7 @@
     }
 
     .upgrade-list li {
-      font-size: 13px;
+      font-size: clamp(0.9rem, 0.84rem + 0.25vw, 1rem);
       color: var(--text-mid);
       padding: 4px 0 4px 18px;
       position: relative;
@@ -1050,35 +1095,36 @@
       content: '◆';
       position: absolute;
       left: 0;
-      color: var(--gold);
-      font-size: 8px;
-      top: 9px;
+      color: var(--gold-dim);
+      font-size: clamp(0.55rem, 0.5rem + 0.2vw, 0.65rem);
+      top: 0.55em;
     }
 
     /* ─── PERSONAL BLOCK CARD ─── */
     .block-reveal {
-      background: linear-gradient(135deg, var(--purple), #0e0820);
-      border: 1px solid var(--border-glow);
+      background: #1e1828;
+      border: 1px solid rgba(232, 201, 122, 0.22);
       border-radius: 12px;
-      padding: 32px 36px;
-      margin-bottom: 28px;
-      color: #F5EDD8;
+      padding: clamp(1.65rem, 1.25rem + 1.2vw, 2.15rem) clamp(1.35rem, 1rem + 1.2vw, 2.35rem);
+      margin-bottom: clamp(1.35rem, 1rem + 1vw, 1.85rem);
+      color: #F8F2E6;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 8px 28px rgba(22, 16, 24, 0.14);
     }
 
     .block-reveal::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at top right, rgba(212, 175, 55, 0.18) 0%, transparent 60%);
+      background: radial-gradient(ellipse at top right, rgba(212, 175, 55, 0.1) 0%, transparent 55%);
       pointer-events: none;
     }
 
     .block-reveal-label {
       font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 4px;
+      font-size: clamp(0.6875rem, 0.62rem + 0.3vw, 0.8125rem);
+      letter-spacing: clamp(3px, 0.15vw + 2px, 4px);
       color: var(--gold-warm);
       text-transform: uppercase;
       margin-bottom: 8px;
@@ -1087,8 +1133,8 @@
 
     .block-reveal-title {
       font-family: 'Cinzel', serif;
-      font-size: 26px;
-      color: #F5EDD8;
+      font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.75rem);
+      color: #FAF6EF;
       font-weight: 500;
       line-height: 1.25;
       margin-bottom: 10px;
@@ -1102,37 +1148,38 @@
     }
 
     .block-reveal-desc {
-      font-size: 15px;
-      color: rgba(245, 237, 216, 0.8);
+      font-size: clamp(1rem, 0.92rem + 0.32vw, 1.125rem);
+      color: rgba(248, 242, 230, 0.92);
       line-height: 1.65;
-      max-width: 560px;
+      max-width: 38rem;
       position: relative;
     }
 
     /* ─── FOOTER ─── */
     .page-footer {
       border-top: 1px solid var(--border);
-      padding: 24px 32px;
+      padding: clamp(1.25rem, 1rem + 0.9vw, 1.55rem) clamp(1rem, 0.5rem + 2.5vw, 2rem);
       text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      max-width: 900px;
+      font-size: clamp(0.875rem, 0.82rem + 0.25vw, 1rem);
+      color: var(--text-mid);
+      max-width: min(900px, 100%);
       margin: 0 auto;
     }
 
     .footer-links {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: clamp(0.85rem, 0.5rem + 1vw, 1.35rem);
       margin-top: 8px;
     }
 
     .footer-links a {
-      color: var(--muted);
+      color: var(--text-mid);
       text-decoration: none;
       font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 2px;
+      font-size: clamp(0.65rem, 0.58rem + 0.28vw, 0.75rem);
+      letter-spacing: clamp(1px, 0.08vw + 0.5px, 2px);
       transition: color 0.2s;
     }
 
@@ -1162,8 +1209,8 @@
     }
 
     .ornament span {
-      color: var(--gold);
-      font-size: 12px;
+      color: var(--gold-dim);
+      font-size: clamp(0.8125rem, 0.75rem + 0.25vw, 0.9375rem);
     }
 
     /* ─── SIDEBAR OVERLAY ─── */
@@ -1179,53 +1226,77 @@
       display: block;
     }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      .sidebar {
-        transform: translateX(-100%);
-      }
+    /* ─── INLINE CONTENT HELPERS (readable captions, no tiny fixed px) ─── */
+    .caption-muted {
+      font-size: clamp(0.875rem, 0.82rem + 0.22vw, 0.98rem);
+      color: var(--text-mid);
+    }
 
-      .sidebar.open {
-        transform: translateX(0);
-      }
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 16, 24, 0.82);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1rem, 0.5rem + 2vw, 1.5rem);
+    }
 
-      .main {
-        margin-left: 0;
-      }
+    .modal-panel {
+      background: var(--bg-card2);
+      border: 1px solid var(--border-glow);
+      border-radius: 12px;
+      padding: clamp(1.75rem, 1.35rem + 1.2vw, 2.35rem);
+      max-width: 22.5rem;
+      width: 100%;
+      text-align: center;
+    }
 
-      .hamburger {
-        display: flex;
-      }
+    .modal-panel h3 {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      font-size: clamp(1.25rem, 1.1rem + 0.45vw, 1.45rem);
+    }
 
-      .steps-row {
-        grid-template-columns: 1fr;
-      }
+    .modal-panel p {
+      font-size: clamp(0.95rem, 0.88rem + 0.28vw, 1.0625rem);
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+    }
 
-      .accordion-inner {
-        grid-template-columns: 1fr;
-      }
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-      .content-wrap {
-        padding: 24px 16px 48px;
-      }
+    .btn-modal {
+      padding: clamp(0.55rem, 0.45rem + 0.35vw, 0.7rem) clamp(1rem, 0.85rem + 0.6vw, 1.55rem);
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.6875rem, 0.62rem + 0.28vw, 0.8125rem);
+      letter-spacing: clamp(1px, 0.06vw + 0.5px, 2px);
+      text-transform: uppercase;
+    }
 
-      .topbar {
-        padding: 14px 16px;
-      }
+    .btn-modal-secondary {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
 
-      .pdf-page {
-        height: 220px;
-        width: 150px;
-        padding: 16px 12px;
-      }
-
-      .page-hero {
-        padding: 28px 22px;
-      }
-
-      .block-reveal {
-        padding: 24px 22px;
-      }
+    .btn-modal-danger {
+      background: rgba(185, 28, 28, 0.14);
+      border: 1px solid rgba(185, 28, 28, 0.45);
+      color: #9b1c1c;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
 </head>
@@ -1277,7 +1348,7 @@
     </nav>
 
     <div class="sidebar-footer">
-      <div class="nav-item" style="color: var(--muted);"
+      <div class="nav-item" style="color: rgba(248,242,230,0.72);"
         onclick="document.getElementById('logout-modal').style.display='flex'">
         <span class="nav-icon">🚪</span> Logout
       </div>
@@ -1285,20 +1356,16 @@
   </aside>
 
   <!-- ═══════════════════════ LOGOUT MODAL ═══════════════════════ -->
-  <div id="logout-modal"
-    style="display:none;position:fixed;inset:0;background:rgba(14,8,32,0.75);z-index:500;align-items:center;justify-content:center;">
-    <div
-      style="background:var(--bg-card2);border:1px solid var(--border-glow);border-radius:12px;padding:36px;max-width:360px;width:90%;text-align:center;">
-      <div style="font-size:36px;margin-bottom:12px;">🚪</div>
-      <h3 style="font-family:'Cormorant Garamond',serif;color:var(--text-dark);margin-bottom:8px;font-size:22px;">
-        Confirm Logout</h3>
-      <p style="font-size:14px;color:var(--text);margin-bottom:24px;">Are you sure you want to leave your member portal?
-      </p>
-      <div style="display:flex;gap:12px;justify-content:center;">
-        <button onclick="document.getElementById('logout-modal').style.display='none'"
-          style="padding:10px 24px;background:var(--bg-raised);border:1px solid var(--border);border-radius:4px;color:var(--text);cursor:pointer;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;">CANCEL</button>
-        <a href="{{LOGOUT_URL}}"
-          style="padding:10px 24px;background:rgba(185,28,28,0.12);border:1px solid rgba(185,28,28,0.4);border-radius:4px;color:#B91C1C;text-decoration:none;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;">LOGOUT</a>
+  <div id="logout-modal" class="modal-backdrop">
+    <div class="modal-panel">
+      <div style="font-size:clamp(2rem, 1.75rem + 0.8vw, 2.35rem);margin-bottom:12px;line-height:1;" aria-hidden="true">
+        🚪</div>
+      <h3>Confirm Logout</h3>
+      <p>Are you sure you want to leave your member portal?</p>
+      <div class="modal-actions">
+        <button type="button" class="btn-modal btn-modal-secondary"
+          onclick="document.getElementById('logout-modal').style.display='none'">Cancel</button>
+        <a href="{{LOGOUT_URL}}" class="btn-modal btn-modal-danger">Logout</a>
       </div>
     </div>
   </div>
@@ -1379,16 +1446,16 @@
             <!-- WIREFRAME: Luna personal video not yet produced -->
             <div class="video-container" id="luna-video-wrap">
               <div class="wireframe-box"
-                style="border:none;border-radius:0;height:100%;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#0e0820,#2D1B69);color:var(--gold-warm);">
-                <div class="wf-icon" style="color:var(--gold-warm);opacity:0.7;">🎬</div>
-                <div class="wf-label" style="color:var(--gold-warm);">Wireframe &nbsp;·&nbsp; Asset Not Yet Built</div>
-                <div class="wf-title" style="color:#F5EDD8;">Luna's Personal Welcome Video</div>
-                <div class="wf-note" style="color:rgba(245,237,216,0.65);">A short intro video from Luna welcoming the
+                style="border:none;border-radius:0;height:100%;display:flex;flex-direction:column;justify-content:center;background:#1a1520;color:var(--gold-warm);">
+                <div class="wf-icon" style="color:var(--gold-warm);opacity:0.85;">🎬</div>
+                <div class="wf-label" style="color:var(--gold-warm);">Wireframe · Asset not yet built</div>
+                <div class="wf-title" style="color:#FAF6EF;">Luna's Personal Welcome Video</div>
+                <div class="wf-note" style="color:rgba(248,242,230,0.85);">A short intro video from Luna welcoming the
                   buyer and introducing the Mirror Block concept. To be produced with Higgsfield once face reference is
                   locked.</div>
               </div>
             </div>
-            <p style="margin-top:16px;font-size:13px;color:var(--muted);">🔊 Turn up your volume — watch this personal
+            <p class="caption-muted" style="margin-top:16px;">🔊 Turn up your volume — watch this personal
               message from Luna before reading below.</p>
           </div>
         </div>
@@ -1401,7 +1468,9 @@
             <span class="card-label" id="card-reading-label">{{MIRROR_BLOCK}} · 18–24 Pages</span>
           </div>
           <div class="card-body">
-            <p style="font-size:14px;color:var(--text-mid);margin-bottom:20px;">This is your personal reading, crafted
+            <p
+              style="font-size:clamp(0.95rem,0.88rem + 0.28vw,1.0625rem);color:var(--text-mid);margin-bottom:20px;line-height:1.62;">
+              This is your personal reading, crafted
               by hand from the three cards you chose. Every word is specific to your card combination and your Mirror
               Block type — revealing exactly how this one pattern has shaped love, money, and purpose at the same time.
             </p>
@@ -1451,7 +1520,7 @@
               </div>
             </div>
 
-            <p style="font-size:12px;color:var(--muted);margin-top:14px;font-style:italic;text-align:center;">
+            <p class="caption-muted" style="margin-top:14px;font-style:italic;text-align:center;">
               <span class="wireframe-tag">Wireframe</span> The flipbook preview is placeholder text. The real PDF is
               delivered via the download button above.
             </p>
@@ -1475,7 +1544,13 @@
         <!-- Bonus 1 -->
         <div class="accordion-item open" id="acc-1">
           <button class="accordion-trigger" onclick="toggleAccordion('acc-1')">
-            <div class="accordion-thumb">📘</div>
+            <picture style="display:block;max-width:clamp(50px, 10vw, 80px);margin:0 auto;">
+              <source srcset="../frontend/images/sales/mirror-block-companion-guide.webp"
+                style="width:100%;height:auto;max-width:80px;" type="image/webp" loading="lazy">
+              <img src="../frontend/images/sales/mirror-block-companion-guide.png"
+                style="width:100%;height:auto;max-width:80px;display:block;margin:0 auto;" alt="Companion Guide Icon"
+                loading="lazy">
+            </picture>
             <div class="accordion-title-wrap">
               <div class="accordion-label">Bonus 1 &nbsp;·&nbsp; $67 Value</div>
               <div class="accordion-title">Mirror Block Companion Guide</div>
@@ -1491,10 +1566,13 @@
                 <a href="{{MEMBER_URL_BONUS_COMPANION}}" class="btn-download" id="bonus1-btn" target="_blank"
                   rel="noopener noreferrer">⬇ Download PDF</a>
               </div>
-              <div class="accordion-inner-cover">
-                <div class="accordion-inner-cover-icon">📘</div>
-                <div class="accordion-inner-cover-title">Companion<br>Guide</div>
-              </div>
+              <picture style="display:block;max-width:clamp(150px, 30vw, 180px);margin:0 auto;">
+                <source srcset="../frontend/images/sales/mirror-block-companion-guide.webp"
+                  style="width:100%;height:auto;max-width:180px;" type="image/webp" loading="lazy">
+                <img src="../frontend/images/sales/mirror-block-companion-guide.png"
+                  style="width:100%;height:auto;max-width:180px;display:block;margin:0 auto;" alt="Companion Guide Icon"
+                  loading="lazy">
+              </picture>
             </div>
           </div>
         </div>
@@ -1502,7 +1580,13 @@
         <!-- Bonus 2 -->
         <div class="accordion-item" id="acc-2">
           <button class="accordion-trigger" onclick="toggleAccordion('acc-2')">
-            <div class="accordion-thumb">📅</div>
+            <picture style="display:block;max-width:clamp(50px, 10vw, 80px);margin:0 auto;">
+              <source srcset="../frontend/images/sales/21-days-shift-tracker.webp"
+                style="width:100%;height:auto;max-width:80px;" type="image/webp" loading="lazy">
+              <img src="../frontend/images/sales/21-days-shift-tracker.png"
+                style="width:100%;height:auto;max-width:80px;display:block;margin:0 auto;"
+                alt="21-Day Shift Tracker Icon" loading="lazy">
+            </picture>
             <div class="accordion-title-wrap">
               <div class="accordion-label">Bonus 2 &nbsp;·&nbsp; $47 Value</div>
               <div class="accordion-title">21-Day Shift Tracker</div>
@@ -1518,10 +1602,13 @@
                 <a href="{{MEMBER_URL_BONUS_SHIFT_TRACKER}}" class="btn-download" id="bonus2-btn" target="_blank"
                   rel="noopener noreferrer">⬇ Download PDF</a>
               </div>
-              <div class="accordion-inner-cover">
-                <div class="accordion-inner-cover-icon">📅</div>
-                <div class="accordion-inner-cover-title">21-Day<br>Tracker</div>
-              </div>
+              <picture style="display:block;max-width:clamp(150px, 30vw, 180px);margin:0 auto;">
+                <source srcset="../frontend/images/sales/21-days-shift-tracker.webp"
+                  style="width:100%;height:auto;max-width:180px;" type="image/webp" loading="lazy">
+                <img src="../frontend/images/sales/21-days-shift-tracker.png"
+                  style="width:100%;height:auto;max-width:180px;display:block;margin:0 auto;"
+                  alt="21-Day Shift Tracker Icon" loading="lazy">
+              </picture>
             </div>
           </div>
         </div>
@@ -1529,7 +1616,13 @@
         <!-- Bonus 3 -->
         <div class="accordion-item" id="acc-3">
           <button class="accordion-trigger" onclick="toggleAccordion('acc-3')">
-            <div class="accordion-thumb">🌱</div>
+            <picture style="display:block;max-width:clamp(50px, 10vw, 80px);margin:0 auto;">
+              <source srcset="../frontend/images/sales/root-cause-reading-guide.webp"
+                style="width:100%;height:auto;max-width:80px;" type="image/webp" loading="lazy">
+              <img src="../frontend/images/sales/root-cause-reading-guide.png"
+                style="width:100%;height:auto;max-width:80px;display:block;margin:0 auto;"
+                alt="Root Cause Reading Guide Icon" loading="lazy">
+            </picture>
             <div class="accordion-title-wrap">
               <div class="accordion-label">Bonus 3 &nbsp;·&nbsp; $47 Value</div>
               <div class="accordion-title">Root Cause Reading Guide</div>
@@ -1545,10 +1638,13 @@
                 <a href="{{MEMBER_URL_BONUS_ROOT_CAUSE}}" class="btn-download" id="bonus3-btn" target="_blank"
                   rel="noopener noreferrer">⬇ Download PDF</a>
               </div>
-              <div class="accordion-inner-cover">
-                <div class="accordion-inner-cover-icon">🌱</div>
-                <div class="accordion-inner-cover-title">Root Cause<br>Guide</div>
-              </div>
+              <picture style="display:block;max-width:clamp(180px, 30vw, 300px);margin:0 auto;">
+                <source srcset="../frontend/images/sales/root-cause-reading-guide.webp"
+                  style="width:100%;height:auto;max-width:300px;" type="image/webp" loading="lazy">
+                <img src="../frontend/images/sales/root-cause-reading-guide.png"
+                  style="width:100%;height:auto;max-width:300px;display:block;margin:0 auto;"
+                  alt="Root Cause Reading Guide Icon" loading="lazy">
+              </picture>
             </div>
           </div>
         </div>
@@ -1556,7 +1652,13 @@
         <!-- Bonus 4 -->
         <div class="accordion-item" id="acc-4">
           <button class="accordion-trigger" onclick="toggleAccordion('acc-4')">
-            <div class="accordion-thumb">🎧</div>
+            <picture style="display:block;max-width:clamp(80px, 10vw, 120px);margin:0 auto;">
+              <source srcset="../frontend/images/sales/mirror-clarity-meditation.webp"
+                style="width:100%;height:auto;max-width:120px;" type="image/webp" loading="lazy">
+              <img src="../frontend/images/sales/mirror-clarity-meditation.png"
+                style="width:100%;height:auto;max-width:120px;display:block;margin:0 auto;"
+                alt="Mirror Clarity Meditation Icon" loading="lazy">
+            </picture>
             <div class="accordion-title-wrap">
               <div class="accordion-label">Bonus 4 &nbsp;·&nbsp; $37 Value</div>
               <div class="accordion-title">Mirror Clarity Meditation</div>
@@ -1577,7 +1679,7 @@
                   <audio class="audio-player" controls id="bonus4-audio" src="{{MEMBER_URL_BONUS_MEDITATION_AUDIO}}">
                     Your browser does not support audio.
                   </audio>
-                  <p style="font-size:11px;color:var(--muted);font-style:italic;">
+                  <p class="caption-muted" style="font-style:italic;">
                     <span class="wireframe-tag">Wireframe</span> Audio file to be recorded and uploaded to S3.
                   </p>
                 </div>
@@ -1585,10 +1687,13 @@
                 <a href="{{MEMBER_URL_BONUS_MEDITATION_AUDIO}}" class="btn-download" id="bonus4-btn" target="_blank"
                   rel="noopener noreferrer">⬇ Download Audio</a>
               </div>
-              <div class="accordion-inner-cover">
-                <div class="accordion-inner-cover-icon">🎧</div>
-                <div class="accordion-inner-cover-title">Clarity<br>Meditation</div>
-              </div>
+              <picture style="display:block;max-width:clamp(180px, 30vw, 300px);margin:0 auto;">
+                <source srcset="../frontend/images/sales/mirror-clarity-meditation.webp"
+                  style="width:100%;height:auto;max-width:300px;" type="image/webp" loading="lazy">
+                <img src="../frontend/images/sales/mirror-clarity-meditation.png"
+                  style="width:100%;height:auto;max-width:300px;display:block;margin:0 auto;"
+                  alt="Mirror Clarity Meditation Icon" loading="lazy">
+              </picture>
             </div>
           </div>
         </div>
@@ -1600,30 +1705,52 @@
     <div class="section" id="section-ritual">
       <div class="content-wrap">
 
-        <!-- ─── Full-access view (buyers of OTO1) ─── -->
-        <div id="ritual-full" style="display:none;">
-
-          <div class="section-heading">
+        <!--
+          Single VSL mount: must NOT sit inside #ritual-full (hidden when upsell not purchased) or the
+          ConverteAI player binds to the wrong duplicate id and the locked preview never renders.
+        -->
+        <div id="ritual-vsl-shared">
+          <div id="ritual-section-heading-full" class="section-heading" style="display:none;">
             <p class="eyebrow">✦ Your Soul Ritual Practice</p>
             <h2>The <em>Soul Ritual Practice</em> Library</h2>
             <p>The companion practice to your reading. Begin with Luna's welcome video, then move through each report in
               order. The workbook deepens with repetition.</p>
           </div>
+          <div id="ritual-section-heading-locked" class="section-heading">
+            <p class="eyebrow">✦ Deepen The Work</p>
+            <h2>The <em>Soul Ritual Practice</em> Library</h2>
+            <p>Your reading shows you the Mirror Block. The Soul Ritual Practice gives you the structured tools to clear
+              it — where most buyers say the reading finally lands.</p>
+          </div>
 
-          <!-- Ritual Welcome Video -->
-          <div class="card">
-            <div class="card-header">
-              <span class="card-header-icon">🎥</span>
-              <h2>Welcome Video from Luna</h2>
-              <span class="card-label">Begin Here</span>
-            </div>
-            <div class="card-body" style="text-align:center;">
+          <div class="upgrade-card">
+            <div class="upgrade-img-wrap">
               <vturb-smartplayer id="vid-69f8b30bfe543f779059745a"
-                style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
-              <script
-                type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69f8b30bfe543f779059745a/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
+                style="display: block; margin: 0 auto; width: 100%; max-width: 400px;">
+              </vturb-smartplayer>
+              <script type="text/javascript">
+                var s = document.createElement("script");
+                s.src = "https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69f8b30bfe543f779059745a/v4/player.js",
+                  s.async = !0, document.head.appendChild(s);
+              </script>
+            </div>
+            <div id="ritual-vsl-aside-full" class="upgrade-body" style="display:none;">
+              <div class="upgrade-label">Begin Here</div>
+              <div class="upgrade-title">Welcome Video from Luna</div>
+              <p class="upgrade-desc">Your companion practice library — begin here, then move through each report in
+                order. The workbook deepens with repetition.</p>
+            </div>
+            <div id="ritual-vsl-aside-locked" class="upgrade-body">
+              <div class="upgrade-label">Included In Soul Ritual Practice</div>
+              <div class="upgrade-title">Welcome Video from Luna</div>
+              <p class="upgrade-desc">Luna's personal introduction to the practice library — walking you through how to
+                sequence the 3 reports and workbook for the deepest integration.</p>
             </div>
           </div>
+        </div>
+
+        <!-- ─── Full-access view (buyers of OTO1) ─── -->
+        <div id="ritual-full" style="display:none;">
 
           <!-- Report 1 -->
           <div class="card">
@@ -1690,29 +1817,6 @@
 
         <!-- ─── Locked view (basic buyers — shown by default) ─── -->
         <div id="ritual-locked">
-
-          <div class="section-heading">
-            <p class="eyebrow">✦ Deepen The Work</p>
-            <h2>The <em>Soul Ritual Practice</em> Library</h2>
-            <p>Your reading shows you the Mirror Block. The Soul Ritual Practice gives you the structured tools to clear
-              it — where most buyers say the reading finally lands.</p>
-          </div>
-
-          <!-- Locked preview (welcome video) -->
-          <div class="upgrade-card">
-            <div class="upgrade-img-wrap">
-              <vturb-smartplayer id="vid-69f8b30bfe543f779059745a"
-                style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
-              <script
-                type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69f8b30bfe543f779059745a/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
-            </div>
-            <div class="upgrade-body">
-              <div class="upgrade-label">Included In Soul Ritual Practice</div>
-              <div class="upgrade-title">Welcome Video from Luna</div>
-              <p class="upgrade-desc">Luna's personal introduction to the practice library — walking you through how to
-                sequence the 3 reports and workbook for the deepest integration.</p>
-            </div>
-          </div>
 
           <!-- Locked preview (3 reports + workbook) -->
           <div class="upgrade-card">
@@ -1818,6 +1922,14 @@
       if (cfg.ritualUnlocked === true) {
         document.getElementById('ritual-full').style.display = 'block';
         document.getElementById('ritual-locked').style.display = 'none';
+        const hFull = document.getElementById('ritual-section-heading-full');
+        const hLocked = document.getElementById('ritual-section-heading-locked');
+        const asideFull = document.getElementById('ritual-vsl-aside-full');
+        const asideLocked = document.getElementById('ritual-vsl-aside-locked');
+        if (hFull) hFull.style.display = 'block';
+        if (hLocked) hLocked.style.display = 'none';
+        if (asideFull) asideFull.style.display = 'block';
+        if (asideLocked) asideLocked.style.display = 'none';
         const lockIcon = document.getElementById('ritual-lock');
         if (lockIcon) {
           lockIcon.style.display = 'none';
