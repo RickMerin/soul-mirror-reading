@@ -621,69 +621,50 @@
       align-items: center;
     }
 
-    .pdf-page {
-      height: clamp(220px, 42vw, 320px);
-      width: clamp(150px, 42vw, 220px);
+    .pdf-flipbook-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(0.65rem, 0.4rem + 0.8vw, 0.9rem);
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .pdf-canvas-wrap {
+      flex: 1 1 clamp(140px, 38vw, 260px);
+      max-width: clamp(150px, 42vw, 280px);
       background: var(--bg-card);
       border-radius: 4px;
       border: 1px solid rgba(139, 105, 20, 0.35);
-      padding: clamp(0.85rem, 0.65rem + 0.7vw, 1.5rem) clamp(0.75rem, 0.55rem + 0.6vw, 1.25rem);
+      padding: clamp(0.5rem, 0.35rem + 0.5vw, 0.75rem);
       box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
       display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
+      justify-content: center;
+      align-items: center;
+      min-height: clamp(200px, 36vw, 300px);
     }
 
-    .pdf-page-header {
+    .pdf-canvas-wrap[hidden] {
+      display: none;
+    }
+
+    .pdf-canvas-wrap canvas {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .pdf-flipbook-status {
+      width: 100%;
+      text-align: center;
       font-family: 'Cinzel', serif;
-      font-size: clamp(0.5625rem, 0.5rem + 0.25vw, 0.6875rem);
-      letter-spacing: clamp(1px, 0.06vw + 0.5px, 2px);
+      font-size: clamp(0.6875rem, 0.62rem + 0.25vw, 0.75rem);
       color: var(--gold-dim);
-      text-transform: uppercase;
-      text-align: center;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 12px;
+      margin-top: 0.5rem;
     }
 
-    .pdf-page-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(0.8125rem, 0.75rem + 0.3vw, 0.9375rem);
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-
-    .pdf-page-lines {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .pdf-page-line {
-      height: 4px;
-      background: rgba(45, 27, 105, 0.1);
-      border-radius: 2px;
-    }
-
-    .pdf-page-line.short {
-      width: 60%;
-    }
-
-    .pdf-page-line.med {
-      width: 80%;
-    }
-
-    .pdf-page-footer {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(0.5625rem, 0.5rem + 0.22vw, 0.625rem);
-      letter-spacing: clamp(1px, 0.06vw + 0.5px, 2px);
-      color: rgba(107, 78, 18, 0.55);
-      text-align: center;
-      margin-top: 10px;
+    .pdf-flipbook-status.is-error {
+      color: #8b2942;
     }
 
     .pdf-controls {
@@ -720,6 +701,11 @@
 
     .btn-icon:hover {
       background: rgba(154, 114, 48, 0.18);
+    }
+
+    .btn-icon:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
     }
 
     .pdf-page-info {
@@ -1475,45 +1461,26 @@
               Block type — revealing exactly how this one pattern has shaped love, money, and purpose at the same time.
             </p>
 
-            <!-- PDF flipbook preview (WIREFRAME pages) -->
-            <div class="pdf-flipbook">
+            <!-- PDF flipbook: renders {{MEMBER_URL_READING_PDF}} via PDF.js (requires CORS on the PDF host) -->
+            <div class="pdf-flipbook" id="member-reading-flipbook" data-reading-pdf="{{MEMBER_URL_READING_PDF}}">
               <div class="pdf-pages" id="pdf-pages">
-                <!-- Wireframe page 1 -->
-                <div class="pdf-page">
-                  <div class="pdf-page-header">Soul Mirror Reading</div>
-                  <div class="pdf-page-title" id="pdf-title-1">Your Mirror Block Named</div>
-                  <div class="pdf-page-lines">
-                    <div class="pdf-page-line"></div>
-                    <div class="pdf-page-line"></div>
-                    <div class="pdf-page-line med"></div>
-                    <div class="pdf-page-line"></div>
-                    <div class="pdf-page-line short"></div>
-                    <div class="pdf-page-line"></div>
-                    <div class="pdf-page-line med"></div>
+                <div class="pdf-flipbook-inner" id="pdf-flipbook-inner">
+                  <div class="pdf-canvas-wrap" id="pdf-wrap-left">
+                    <canvas id="pdf-canvas-left" role="img" aria-label="Reading PDF left page"></canvas>
                   </div>
-                  <div class="pdf-page-footer">Page 1</div>
-                </div>
-                <!-- Wireframe page 2 -->
-                <div class="pdf-page">
-                  <div class="pdf-page-header">For <span id="pdf-page-name">{{FIRST_NAME}}</span></div>
-                  <div class="pdf-page-title">How It Shows Up In Love</div>
-                  <div class="pdf-page-lines">
-                    <div class="pdf-page-line"></div>
-                    <div class="pdf-page-line med"></div>
-                    <div class="pdf-page-line"></div>
-                    <div class="pdf-page-line short"></div>
-                    <div class="pdf-page-line"></div>
-                    <div class="pdf-page-line"></div>
-                    <div class="pdf-page-line med"></div>
+                  <div class="pdf-canvas-wrap" id="pdf-wrap-right">
+                    <canvas id="pdf-canvas-right" role="img" aria-label="Reading PDF right page"></canvas>
                   </div>
-                  <div class="pdf-page-footer">Page 2</div>
                 </div>
+                <p class="pdf-flipbook-status" id="pdf-flipbook-status" aria-live="polite">Loading preview…</p>
               </div>
               <div class="pdf-controls">
                 <div class="pdf-nav">
-                  <button class="btn-icon" onclick="changePage(-1)">◀</button>
-                  <span class="pdf-page-info" id="page-info">Preview &nbsp;·&nbsp; Pages 1–2</span>
-                  <button class="btn-icon" onclick="changePage(1)">▶</button>
+                  <button type="button" class="btn-icon" id="pdf-btn-prev" onclick="changePage(-1)"
+                    aria-label="Previous pages">◀</button>
+                  <span class="pdf-page-info" id="page-info">Preview &nbsp;·&nbsp; Pages —</span>
+                  <button type="button" class="btn-icon" id="pdf-btn-next" onclick="changePage(1)"
+                    aria-label="Next pages">▶</button>
                 </div>
                 <a href="{{MEMBER_URL_READING_PDF}}" class="btn-download" id="reading-btn" target="_blank"
                   rel="noopener noreferrer">⬇ Download Full Reading</a>
@@ -1854,6 +1821,7 @@
 
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
   <script>
     // ─── SECTION NAVIGATION ───
     function showSection(id, navEl) {
@@ -1884,14 +1852,143 @@
       if (!isOpen) item.classList.add('open');
     }
 
-    // ─── PDF PAGE NAVIGATION (wireframe) ───
-    let currentPage = 1;
-    const totalPages = 24;
-    function changePage(dir) {
-      currentPage = Math.max(1, Math.min(totalPages - 1, currentPage + dir * 2));
-      const info = document.getElementById('page-info');
-      if (info) info.textContent = 'Preview · Pages ' + currentPage + '–' + (currentPage + 1);
-    }
+    // ─── PDF flipbook (PDF.js + {{MEMBER_URL_READING_PDF}}) ───
+    (function setupPdfFlipbook() {
+      window.changePage = function () { };
+      const root = document.getElementById('member-reading-flipbook');
+      const statusEl = document.getElementById('pdf-flipbook-status');
+      const infoEl = document.getElementById('page-info');
+      const wrapLeft = document.getElementById('pdf-wrap-left');
+      const wrapRight = document.getElementById('pdf-wrap-right');
+      const canvasLeft = document.getElementById('pdf-canvas-left');
+      const canvasRight = document.getElementById('pdf-canvas-right');
+      const btnPrev = document.getElementById('pdf-btn-prev');
+      const btnNext = document.getElementById('pdf-btn-next');
+
+      const pdfUrl = root && root.dataset.readingPdf ? String(root.dataset.readingPdf).trim() : '';
+      if (!root || !pdfUrl || pdfUrl === '#') {
+        if (statusEl) {
+          statusEl.textContent = 'Preview unavailable. Use Download to open your reading.';
+          statusEl.classList.add('is-error');
+        }
+        if (infoEl) infoEl.textContent = 'Preview · —';
+        return;
+      }
+
+      if (typeof pdfjsLib === 'undefined') {
+        if (statusEl) {
+          statusEl.textContent = 'Could not load PDF viewer. Use Download to open your reading.';
+          statusEl.classList.add('is-error');
+        }
+        return;
+      }
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+      let pdfDoc = null;
+      /** 1-based index of the left page in the spread */
+      let spreadStart = 1;
+
+      function maxSpreadStart(numPages) {
+        return numPages % 2 === 1 ? numPages : numPages - 1;
+      }
+
+      function setNavDisabled() {
+        const n = pdfDoc ? pdfDoc.numPages : 0;
+        const maxS = n ? maxSpreadStart(n) : 0;
+        if (btnPrev) btnPrev.disabled = !n || spreadStart <= 1;
+        if (btnNext) btnNext.disabled = !n || spreadStart >= maxS;
+      }
+
+      function updatePageInfo(numPages) {
+        if (!infoEl) return;
+        const rightNum = spreadStart + 1;
+        if (spreadStart > numPages) {
+          infoEl.textContent = 'Preview · —';
+          return;
+        }
+        if (rightNum <= numPages) {
+          infoEl.textContent = 'Preview · Pages ' + spreadStart + '–' + rightNum;
+        } else {
+          infoEl.textContent = 'Preview · Page ' + spreadStart;
+        }
+      }
+
+      /**
+       * @param {number} pageNum
+       * @param {HTMLCanvasElement} canvas
+       * @param {HTMLElement} wrap
+       */
+      async function renderPageToCanvas(pageNum, canvas, wrap) {
+        if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
+          wrap.hidden = true;
+          return;
+        }
+        wrap.hidden = false;
+        const page = await pdfDoc.getPage(pageNum);
+        const base = page.getViewport({ scale: 1 });
+        const rawW = wrap.clientWidth || wrap.offsetWidth || 280;
+        const maxW = Math.max(rawW - 8, 120);
+        const scale = Math.min(maxW / base.width, 2.25);
+        const viewport = page.getViewport({ scale });
+        const ctx = canvas.getContext('2d');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        await page.render({ canvasContext: ctx, viewport }).promise;
+      }
+
+      async function renderPdfSpread() {
+        if (!pdfDoc || !canvasLeft || !canvasRight || !wrapLeft || !wrapRight) return;
+        const n = pdfDoc.numPages;
+        try {
+          await renderPageToCanvas(spreadStart, canvasLeft, wrapLeft);
+          if (spreadStart + 1 <= n) {
+            await renderPageToCanvas(spreadStart + 1, canvasRight, wrapRight);
+          } else {
+            wrapRight.hidden = true;
+          }
+        } catch (e) {
+          if (statusEl) {
+            statusEl.textContent = 'Could not render preview. Use Download to open your reading.';
+            statusEl.classList.add('is-error');
+          }
+        }
+        updatePageInfo(n);
+        setNavDisabled();
+      }
+
+      window.changePage = function (dir) {
+        if (!pdfDoc) return;
+        const n = pdfDoc.numPages;
+        const maxS = maxSpreadStart(n);
+        const next = spreadStart + dir * 2;
+        spreadStart = Math.max(1, Math.min(maxS, next));
+        void renderPdfSpread();
+      };
+
+      const loadingTask = pdfjsLib.getDocument({
+        url: pdfUrl,
+        withCredentials: false,
+      });
+      loadingTask.promise
+        .then(function (pdf) {
+          pdfDoc = pdf;
+          if (statusEl) statusEl.textContent = '';
+          spreadStart = 1;
+          return renderPdfSpread();
+        })
+        .catch(function () {
+          if (statusEl) {
+            statusEl.textContent =
+              'Preview blocked (network or CORS). Open the PDF with Download below.';
+            statusEl.classList.add('is-error');
+          }
+          if (infoEl) infoEl.textContent = 'Preview · —';
+          if (btnPrev) btnPrev.disabled = true;
+          if (btnNext) btnNext.disabled = true;
+        });
+    })();
 
     // ─── Optional URL overrides (dev); ritual access from server only (__SMR_MEMBER__) ───
     (function () {
@@ -1905,7 +2002,8 @@
         document.getElementById('user-name').textContent = name;
         document.getElementById('hero-name').textContent = first;
         document.getElementById('card-header-name').textContent = first;
-        document.getElementById('pdf-page-name').textContent = first;
+        const pdfPageName = document.getElementById('pdf-page-name');
+        if (pdfPageName) pdfPageName.textContent = first;
         let ini = (first.charAt(0) + (name.split(' ')[1] ? name.split(' ')[1].charAt(0) : '')).toUpperCase();
         if (ini.length < 2) {
           ini = first.substring(0, 2).toUpperCase();
