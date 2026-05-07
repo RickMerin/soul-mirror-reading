@@ -987,6 +987,16 @@
       margin-bottom: 20px;
     }
 
+    .upgrade-card.is-ritual-unlocked::before {
+      display: none;
+      content: none;
+    }
+
+    .upgrade-card.is-ritual-unlocked .upgrade-img-wrap::after {
+      display: none;
+      content: none;
+    }
+
     .upgrade-card::before {
       content: 'Upgrade to unlock';
       position: absolute;
@@ -1480,11 +1490,6 @@
                   rel="noopener noreferrer">⬇ Download Full Reading</a>
               </div>
             </div>
-
-            <p class="caption-muted" style="margin-top:14px;font-style:italic;text-align:center;">
-              <span class="wireframe-tag">Wireframe</span> The flipbook preview is placeholder text. The real PDF is
-              delivered via the download button above.
-            </p>
           </div>
         </div>
 
@@ -1640,9 +1645,6 @@
                   <audio class="audio-player" controls id="bonus4-audio" src="{{MEMBER_URL_BONUS_MEDITATION_AUDIO}}">
                     Your browser does not support audio.
                   </audio>
-                  <p class="caption-muted" style="font-style:italic;">
-                    <span class="wireframe-tag">Wireframe</span> Audio file to be recorded and uploaded to S3.
-                  </p>
                 </div>
 
                 <a href="{{MEMBER_URL_BONUS_MEDITATION_AUDIO}}" class="btn-download" id="bonus4-btn" target="_blank"
@@ -1684,16 +1686,11 @@
               it — where most buyers say the reading finally lands.</p>
           </div>
 
-          <div class="upgrade-card">
+          <div class="upgrade-card{{RITUAL_WELCOME_CARD_MOD}}">
             <div class="upgrade-img-wrap">
               <vturb-smartplayer id="vid-69f8b30bfe543f779059745a" autoplay="false" data-autoplay="false"
                 style="display: block; margin: 0 auto; width: 100%; max-width: 400px;">
               </vturb-smartplayer>
-              <script type="text/javascript">
-                var s = document.createElement("script");
-                s.src = "https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69f8b30bfe543f779059745a/v4/player.js",
-                  s.async = !0, document.head.appendChild(s);
-              </script>
             </div>
             <div id="ritual-vsl-aside-full" class="upgrade-body" style="display:none;">
               <div class="upgrade-label">Begin Here</div>
@@ -1982,6 +1979,17 @@
           if (btnPrev) btnPrev.disabled = true;
           if (btnNext) btnNext.disabled = true;
         });
+    })();
+
+    /** ConverteAI / vturb: inject once after parse so the smartplayer mounts; unlock state only affects CSS (pill + blur). */
+    (function loadRitualVslConverteAi() {
+      if (document.querySelector('script[data-smr-converteai-ritual-vsl]')) return;
+      const s = document.createElement('script');
+      s.async = true;
+      s.dataset.smrConverteaiRitualVsl = '1';
+      s.src =
+        'https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69f8b30bfe543f779059745a/v4/player.js';
+      document.head.appendChild(s);
     })();
 
     // ─── Optional URL overrides (dev); ritual access from server only (__SMR_MEMBER__) ───
