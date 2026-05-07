@@ -617,22 +617,21 @@
       align-content: center;
       padding: clamp(1.1rem, 0.75rem + 1.2vw, 1.5rem) clamp(0.85rem, 0.5rem + 1vw, 1.1rem);
       background: #1a1520;
-      min-height: clamp(240px, 38vw, 360px);
+      min-height: clamp(350px, 38vw, 500px);
       align-items: center;
     }
 
     .pdf-flipbook-inner {
       display: flex;
-      flex-wrap: wrap;
-      gap: clamp(0.65rem, 0.4rem + 0.8vw, 0.9rem);
       justify-content: center;
       align-items: flex-start;
       width: 100%;
     }
 
     .pdf-canvas-wrap {
-      flex: 1 1 clamp(140px, 38vw, 260px);
-      max-width: clamp(150px, 42vw, 280px);
+      flex: 1 1 auto;
+      width: 100%;
+      max-width: min(100%, 560px);
       background: var(--bg-card);
       border-radius: 4px;
       border: 1px solid rgba(139, 105, 20, 0.35);
@@ -641,11 +640,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: clamp(200px, 36vw, 300px);
-    }
-
-    .pdf-canvas-wrap[hidden] {
-      display: none;
+      min-height: clamp(200px, 36vw, 320px);
     }
 
     .pdf-canvas-wrap canvas {
@@ -1469,11 +1464,8 @@
             <div class="pdf-flipbook" id="member-reading-flipbook" data-reading-pdf="{{MEMBER_URL_READING_PDF}}">
               <div class="pdf-pages" id="pdf-pages">
                 <div class="pdf-flipbook-inner" id="pdf-flipbook-inner">
-                  <div class="pdf-canvas-wrap" id="pdf-wrap-left">
-                    <canvas id="pdf-canvas-left" role="img" aria-label="Reading PDF left page"></canvas>
-                  </div>
-                  <div class="pdf-canvas-wrap" id="pdf-wrap-right">
-                    <canvas id="pdf-canvas-right" role="img" aria-label="Reading PDF right page"></canvas>
+                  <div class="pdf-canvas-wrap" id="pdf-wrap">
+                    <canvas id="pdf-canvas" role="img" aria-label="Reading PDF page preview"></canvas>
                   </div>
                 </div>
                 <p class="pdf-flipbook-status" id="pdf-flipbook-status" aria-live="polite">Loading preview…</p>
@@ -1481,10 +1473,10 @@
               <div class="pdf-controls">
                 <div class="pdf-nav">
                   <button type="button" class="btn-icon" id="pdf-btn-prev" onclick="changePage(-1)"
-                    aria-label="Previous pages">◀</button>
-                  <span class="pdf-page-info" id="page-info">Preview &nbsp;·&nbsp; Pages —</span>
+                    aria-label="Previous page">◀</button>
+                  <span class="pdf-page-info" id="page-info">Preview &nbsp;·&nbsp; Page —</span>
                   <button type="button" class="btn-icon" id="pdf-btn-next" onclick="changePage(1)"
-                    aria-label="Next pages">▶</button>
+                    aria-label="Next page">▶</button>
                 </div>
                 <a href="{{MEMBER_URL_READING_PDF}}" class="btn-download" id="reading-btn" target="_blank"
                   rel="noopener noreferrer">⬇ Download Full Reading</a>
@@ -1849,10 +1841,8 @@
       const root = document.getElementById('member-reading-flipbook');
       const statusEl = document.getElementById('pdf-flipbook-status');
       const infoEl = document.getElementById('page-info');
-      const wrapLeft = document.getElementById('pdf-wrap-left');
-      const wrapRight = document.getElementById('pdf-wrap-right');
-      const canvasLeft = document.getElementById('pdf-canvas-left');
-      const canvasRight = document.getElementById('pdf-canvas-right');
+      const wrap = document.getElementById('pdf-wrap');
+      const canvas = document.getElementById('pdf-canvas');
       const btnPrev = document.getElementById('pdf-btn-prev');
       const btnNext = document.getElementById('pdf-btn-next');
 
@@ -1878,45 +1868,31 @@
         'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
       let pdfDoc = null;
-      /** 1-based index of the left page in the spread */
-      let spreadStart = 1;
-
-      function maxSpreadStart(numPages) {
-        return numPages % 2 === 1 ? numPages : numPages - 1;
-      }
+      /** Current 1-based page index */
+      let currentPage = 1;
 
       function setNavDisabled() {
         const n = pdfDoc ? pdfDoc.numPages : 0;
-        const maxS = n ? maxSpreadStart(n) : 0;
-        if (btnPrev) btnPrev.disabled = !n || spreadStart <= 1;
-        if (btnNext) btnNext.disabled = !n || spreadStart >= maxS;
+        if (btnPrev) btnPrev.disabled = !n || currentPage <= 1;
+        if (btnNext) btnNext.disabled = !n || currentPage >= n;
       }
 
       function updatePageInfo(numPages) {
         if (!infoEl) return;
-        const rightNum = spreadStart + 1;
-        if (spreadStart > numPages) {
+        if (currentPage < 1 || currentPage > numPages) {
           infoEl.textContent = 'Preview · —';
           return;
         }
-        if (rightNum <= numPages) {
-          infoEl.textContent = 'Preview · Pages ' + spreadStart + '–' + rightNum;
-        } else {
-          infoEl.textContent = 'Preview · Page ' + spreadStart;
-        }
+        infoEl.textContent = 'Preview · Page ' + currentPage + ' of ' + numPages;
       }
 
       /**
        * @param {number} pageNum
-       * @param {HTMLCanvasElement} canvas
-       * @param {HTMLElement} wrap
        */
-      async function renderPageToCanvas(pageNum, canvas, wrap) {
-        if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
-          wrap.hidden = true;
+      async function renderPageToCanvas(pageNum) {
+        if (!pdfDoc || !canvas || !wrap || pageNum < 1 || pageNum > pdfDoc.numPages) {
           return;
         }
-        wrap.hidden = false;
         const page = await pdfDoc.getPage(pageNum);
         const base = page.getViewport({ scale: 1 });
         const rawW = wrap.clientWidth || wrap.offsetWidth || 280;
@@ -1929,16 +1905,11 @@
         await page.render({ canvasContext: ctx, viewport }).promise;
       }
 
-      async function renderPdfSpread() {
-        if (!pdfDoc || !canvasLeft || !canvasRight || !wrapLeft || !wrapRight) return;
+      async function renderPdfPage() {
+        if (!pdfDoc || !canvas || !wrap) return;
         const n = pdfDoc.numPages;
         try {
-          await renderPageToCanvas(spreadStart, canvasLeft, wrapLeft);
-          if (spreadStart + 1 <= n) {
-            await renderPageToCanvas(spreadStart + 1, canvasRight, wrapRight);
-          } else {
-            wrapRight.hidden = true;
-          }
+          await renderPageToCanvas(currentPage);
         } catch (e) {
           if (statusEl) {
             statusEl.textContent = 'Could not render preview. Use Download to open your reading.';
@@ -1952,10 +1923,9 @@
       window.changePage = function (dir) {
         if (!pdfDoc) return;
         const n = pdfDoc.numPages;
-        const maxS = maxSpreadStart(n);
-        const next = spreadStart + dir * 2;
-        spreadStart = Math.max(1, Math.min(maxS, next));
-        void renderPdfSpread();
+        const next = currentPage + dir;
+        currentPage = Math.max(1, Math.min(n, next));
+        void renderPdfPage();
       };
 
       const loadingTask = pdfjsLib.getDocument({
@@ -1966,8 +1936,8 @@
         .then(function (pdf) {
           pdfDoc = pdf;
           if (statusEl) statusEl.textContent = '';
-          spreadStart = 1;
-          return renderPdfSpread();
+          currentPage = 1;
+          return renderPdfPage();
         })
         .catch(function () {
           if (statusEl) {
