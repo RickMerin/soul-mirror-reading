@@ -79,6 +79,7 @@ try {
     $otoUrl = memberEnvString('MEMBER_OTO_CHECKOUT_URL', '#');
 
     $replacements = [
+        '{{RITUAL_WELCOME_CARD_MOD}}' => $ritualUnlocked ? ' is-ritual-unlocked' : '',
         '{{NAME}}' => $h($fullName),
         '{{FIRST_NAME}}' => $h($firstName),
         '{{INITIALS}}' => $h($initials),
