@@ -160,6 +160,9 @@ final class KitService
      */
     private function tagEmailWithTagNames(string $email, array $tagNames): void
     {
+        // Ensure email exists as a Kit subscriber before applying any tags.
+        $this->request('POST', 'subscribers', ['email_address' => $email]);
+
         $normalized = [];
         foreach ($tagNames as $tagName) {
             $lower = strtolower(trim($tagName));

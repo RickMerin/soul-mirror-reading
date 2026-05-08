@@ -149,6 +149,14 @@ if (clickbankPurchaseShouldTagBuyerInKit($status) && $config->kitApiKey !== '') 
 http_response_code(200);
 echo json_encode(['ok' => true], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
 
+/**
+ * Decrypts the ClickBank notification using AES-256-CBC.
+ *
+ * @param string $encrypted The base64 encoded ciphertext.
+ * @param string $iv The base64 encoded initialization vector.
+ * @param string $secretKey The secret key used for decryption.
+ * @return string|null Returns the decrypted string, or null on failure.
+ */
 function decryptNotification(string $encrypted, string $iv, string $secretKey): ?string
 {
     $ciphertext = base64_decode($encrypted, true);
@@ -171,6 +179,12 @@ function decryptNotification(string $encrypted, string $iv, string $secretKey): 
     return trim($decrypted, "\0..\32");
 }
 
+/**
+ * Extracts the buyer's email from various possible locations in the payload.
+ *
+ * @param array $payload The notification payload.
+ * @return string|null The buyer email in lowercase, or null if missing/invalid.
+ */
 function extractBuyerEmail(array $payload): ?string
 {
     $email = payloadValue($payload, [
@@ -190,6 +204,12 @@ function extractBuyerEmail(array $payload): ?string
     return strtolower($email);
 }
 
+/**
+ * Tries to extract a buyer's name from the payload, falling back to ClickBank Buyer if not found.
+ *
+ * @param array $payload The notification payload.
+ * @return string The buyer's full name or a default string.
+ */
 function extractBuyerName(array $payload): string
 {
     $fullName = payloadValue($payload, ['customer.fullName', 'billing.fullName', 'fullName']);
@@ -208,6 +228,12 @@ function extractBuyerName(array $payload): string
     return 'ClickBank Buyer';
 }
 
+/**
+ * Extracts the receipt value from various possible locations in the payload.
+ *
+ * @param array $payload The notification payload.
+ * @return string|null The (possibly truncated) receipt, or null.
+ */
 function extractReceipt(array $payload): ?string
 {
     $receipt = payloadValue($payload, [
@@ -225,6 +251,12 @@ function extractReceipt(array $payload): ?string
     return $receipt !== '' ? substr($receipt, 0, 120) : null;
 }
 
+/**
+ * Extracts transaction type from the payload and normalizes it to uppercase.
+ *
+ * @param array $payload The notification payload.
+ * @return string|null The transaction type, or null if not found.
+ */
 function extractTxnType(array $payload): ?string
 {
     $txnType = payloadValue($payload, ['transactionType', 'txnType', 'transType', 'eventType']);
@@ -235,6 +267,12 @@ function extractTxnType(array $payload): ?string
     return strtoupper(trim($txnType));
 }
 
+/**
+ * Determines a normalized purchase status from the payload or transaction type.
+ *
+ * @param array $payload The notification payload.
+ * @return string The status (approved, refunded, etc.).
+ */
 function normalizeStatus(array $payload): string
 {
     $status = payloadValue($payload, ['status', 'order.orderStatus']);
@@ -252,6 +290,12 @@ function normalizeStatus(array $payload): string
     };
 }
 
+/**
+ * Extracts the purchase currency code (e.g., USD) from payload.
+ *
+ * @param array $payload The notification payload.
+ * @return string|null The ISO currency code or null.
+ */
 function extractCurrency(array $payload): ?string
 {
     $currency = payloadValue($payload, ['currency', 'order.currency']);
@@ -266,6 +310,12 @@ function extractCurrency(array $payload): ?string
     return $currency;
 }
 
+/**
+ * Extracts the order amount from payload and normalizes to float.
+ *
+ * @param array $payload The notification payload.
+ * @return float|null The order amount or null.
+ */
 function extractAmount(array $payload): ?float
 {
     $amount = payloadValue($payload, [
@@ -281,13 +331,22 @@ function extractAmount(array $payload): ?float
     return null;
 }
 
+/**
+ * Determines if the ClickBank purchase status should cause buyer to be tagged/added in Kit.
+ *
+ * @param string $status The purchase status.
+ * @return bool True if buyer should be tagged in Kit, false otherwise.
+ */
 function clickbankPurchaseShouldTagBuyerInKit(string $status): bool
 {
     return in_array(strtolower(trim($status)), ['approved', 'complete', 'completed', 'active'], true);
 }
 
 /**
- * @return array<int,array<string,mixed>>
+ * Extracts array of line items/products from various possible locations in the payload.
+ *
+ * @param array $payload The notification payload.
+ * @return array<int,array<string,mixed>> The items array.
  */
 function extractItems(array $payload): array
 {
@@ -299,6 +358,13 @@ function extractItems(array $payload): array
     return array_values(array_filter($items, static fn ($item): bool => is_array($item)));
 }
 
+/**
+ * Attempts to extract value from payload by searching multiple dotted paths.
+ *
+ * @param array $payload The notification payload.
+ * @param array $paths List of dot-separated paths to search.
+ * @return mixed|null The first found value, or null.
+ */
 function payloadValue(array $payload, array $paths): mixed
 {
     foreach ($paths as $path) {
@@ -311,6 +377,13 @@ function payloadValue(array $payload, array $paths): mixed
     return null;
 }
 
+/**
+ * Follows a single dot-separated path to extract value from a nested array.
+ *
+ * @param array $payload The notification payload.
+ * @param string $path Dot-separated key path (e.g. "order.lineItems").
+ * @return mixed|null The found value or null.
+ */
 function payloadValueByPath(array $payload, string $path): mixed
 {
     $current = $payload;

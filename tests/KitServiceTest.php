@@ -38,7 +38,7 @@ final class KitServiceTest extends TestCase
             astroApiKey: '',
             kitApiKey: 'test-kit-api-key',
             kitTagName: 'soul-mirror-leads',
-            kitTagNameBuyer: 'soul-mirror-leads',
+            kitTagNameBuyer: 'soul-mirror-buyers',
             pipelineFileLog: false,
             pipelineLogPath: '',
             sslCaBundlePath: '',
@@ -132,6 +132,7 @@ final class KitServiceTest extends TestCase
     public function testTagSubscriberThrowsWhenAddToTagReturns422(): void
     {
         $mock = new MockHandler([
+            new Response(200, [], json_encode(['subscriber' => ['id' => 7]], JSON_THROW_ON_ERROR)),
             new Response(200, [], json_encode([
                 'tags' => [['id' => 42, 'name' => 'soul-mirror-leads']],
             ], JSON_THROW_ON_ERROR)),
