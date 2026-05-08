@@ -115,7 +115,7 @@ final class KitService
         $this->request('POST', 'subscribers', $body);
     }
 
-    public function tagSubscriber(string $email, string $tagName): void
+    public function tagSubscriber(string $email, string $tagName, bool $ensureSubscriberExists = true): void
     {
         if ($email === '') {
             return;
@@ -124,7 +124,7 @@ final class KitService
         if ($name === '') {
             return;
         }
-        $this->tagEmailWithTagNames($email, [$name]);
+        $this->tagEmailWithTagNames($email, [$name], $ensureSubscriberExists);
     }
 
     /**
@@ -148,16 +148,18 @@ final class KitService
         if ($tagsToApply === []) {
             return;
         }
-        $this->tagEmailWithTagNames($email, $tagsToApply);
+        $this->tagEmailWithTagNames($email, $tagsToApply, true);
     }
 
     /**
      * @param list<string> $tagNames Deduped or not; trimmed and matched case-insensitively against Kit.
      */
-    private function tagEmailWithTagNames(string $email, array $tagNames): void
+    private function tagEmailWithTagNames(string $email, array $tagNames, bool $ensureSubscriberExists): void
     {
-        // Ensure email exists as a Kit subscriber before applying any tags.
-        $this->request('POST', 'subscribers', ['email_address' => $email]);
+        if ($ensureSubscriberExists) {
+            // Ensure email exists as a Kit subscriber before applying any tags.
+            $this->request('POST', 'subscribers', ['email_address' => $email]);
+        }
 
         $normalized = [];
         foreach ($tagNames as $tagName) {
