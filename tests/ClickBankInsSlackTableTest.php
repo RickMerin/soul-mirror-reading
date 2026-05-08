@@ -200,13 +200,19 @@ final class ClickBankInsSlackTableTest extends TestCase
         self::assertStringContainsString('33.22', $totals);
         self::assertStringContainsString('Vendor', $totals);
 
-        $product = self::valueText($rows[6][1]);
+        $bought = self::valueText($rows[6][1]);
+        self::assertStringContainsString('Soul Mirror Reading ×1', $bought);
+
+        $portal = self::valueText($rows[7][1]);
+        self::assertStringContainsString('/login.php?cemail=buyer%40example.com', $portal);
+
+        $product = self::valueText($rows[8][1]);
         self::assertStringContainsString('Soul Mirror Reading', $product);
         self::assertStringContainsString('smr-1', $product);
         self::assertStringContainsString('ORIGINAL', $product);
 
-        self::assertStringContainsString('Upsell', self::fieldLabelText($rows[7][0]));
-        $upsell = self::valueText($rows[7][1]);
+        self::assertStringContainsString('Upsell', self::fieldLabelText($rows[9][0]));
+        $upsell = self::valueText($rows[9][1]);
         self::assertStringContainsString('1 Upsell 1 Downsell', $upsell);
         self::assertStringContainsString('original=HTY7MF4E', $upsell);
     }
@@ -219,12 +225,12 @@ final class ClickBankInsSlackTableTest extends TestCase
 
         self::assertSame('HTY7MQ4E', self::valueText($rows[1][1]));
 
-        $product = self::valueText($rows[6][1]);
+        $product = self::valueText($rows[8][1]);
         self::assertStringContainsString('Soul Ritual Practice', $product);
         self::assertStringContainsString('srp-1', $product);
         self::assertStringContainsString('UPSELL', $product);
 
-        $upsell = self::valueText($rows[7][1]);
+        $upsell = self::valueText($rows[9][1]);
         self::assertStringContainsString('path=a', $upsell);
         self::assertStringContainsString('original=HTY7MF4E', $upsell);
     }
@@ -235,12 +241,12 @@ final class ClickBankInsSlackTableTest extends TestCase
         $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'TEST_SALE', 'HTY7MZ4E');
         $rows = $blocks[0]['rows'];
 
-        self::assertStringContainsString('Upsell', self::fieldLabelText($rows[7][0]));
-        $upsell = self::valueText($rows[7][1]);
+        self::assertStringContainsString('Upsell', self::fieldLabelText($rows[9][0]));
+        $upsell = self::valueText($rows[9][1]);
         self::assertStringContainsString('1 Upsell 1 Downsell', $upsell);
 
-        self::assertStringContainsString('Downsell', self::fieldLabelText($rows[8][0]));
-        $downsell = self::valueText($rows[8][1]);
+        self::assertStringContainsString('Downsell', self::fieldLabelText($rows[10][0]));
+        $downsell = self::valueText($rows[10][1]);
         self::assertStringContainsString('1 Upsell 1 Downsell', $downsell);
         self::assertStringContainsString('path=d', $downsell);
         self::assertStringContainsString('original=HTY7MF4E', $downsell);
@@ -281,6 +287,17 @@ final class ClickBankInsSlackTableTest extends TestCase
         self::assertStringContainsString('Product', $lastField);
         self::assertStringNotContainsString('Upsell', $lastField);
         self::assertStringNotContainsString('Downsell', $lastField);
+    }
+
+    public function testBuildBlocksPortalRowFallsBackToEmDashWithoutBuyerEmail(): void
+    {
+        $payload = [
+            'receipt' => 'X1',
+            'transactionType' => 'SALE',
+            'lineItems' => [],
+        ];
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'SALE', 'X1');
+        self::assertSame('—', self::valueText($blocks[0]['rows'][7][1]));
     }
 
     public function testFallbackTextIncludesReceiptTxnEmailProductTotal(): void
