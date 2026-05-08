@@ -129,8 +129,8 @@ final class KitService
 
     /**
      * Subscribes the buyer email to Kit tags derived from ClickBank INS line items (lowercase SKUs).
+     * Always includes the configured buyer tag ({@see AppConfig::kitTagNameBuyer}, from `KIT_TAG_NAME_BUYER`).
      * List missing tags, create via API, then add the subscriber — same flow as legacy ConvertKit v3 helpers.
-     * When line items omit SKUs, uses {@see AppConfig::kitTagNameBuyer} (from `KIT_TAG_NAME_BUYER`, else `KIT_TAG_NAME`).
      *
      * @param array<int, array<string, mixed>> $lineItems
      */
@@ -142,17 +142,13 @@ final class KitService
         if ($email === '') {
             return;
         }
+        $buyerTag = strtolower(trim($this->config->kitTagNameBuyer));
         $skus = ClickBankSkuTags::distinctSkuTagNames($lineItems);
-        if ($skus === []) {
-            $fallback = strtolower(trim($this->config->kitTagNameBuyer));
-            if ($fallback === '') {
-                return;
-            }
-            $this->tagEmailWithTagNames($email, [$fallback]);
-
+        $tagsToApply = $buyerTag === '' ? $skus : array_merge([$buyerTag], $skus);
+        if ($tagsToApply === []) {
             return;
         }
-        $this->tagEmailWithTagNames($email, $skus);
+        $this->tagEmailWithTagNames($email, $tagsToApply);
     }
 
     /**
@@ -160,6 +156,9 @@ final class KitService
      */
     private function tagEmailWithTagNames(string $email, array $tagNames): void
     {
+        // Ensure email exists as a Kit subscriber before applying any tags.
+        $this->request('POST', 'subscribers', ['email_address' => $email]);
+
         $normalized = [];
         foreach ($tagNames as $tagName) {
             $lower = strtolower(trim($tagName));

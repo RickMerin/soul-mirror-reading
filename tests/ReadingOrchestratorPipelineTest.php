@@ -26,7 +26,7 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             astroApiKey: 'astro-secret',
             kitApiKey: 'kit-secret',
             kitTagName: 'soul-mirror-leads',
-            kitTagNameBuyer: 'soul-mirror-leads',
+            kitTagNameBuyer: 'soul-mirror-buyers',
             pipelineFileLog: true,
             pipelineLogPath: $logPath,
             sslCaBundlePath: '',

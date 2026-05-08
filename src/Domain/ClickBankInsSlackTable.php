@@ -27,6 +27,8 @@ final class ClickBankInsSlackTable
         $payment = self::stringOrEmDash(self::scalarString(self::payloadValue($payload, ['paymentMethod'])));
         $totals = self::formatTotals($payload);
         $lineItemRows = self::buildLineItemRows($payload);
+        $boughtSummary = self::formatBoughtSummary($payload);
+        $portalLink = self::formatPortalLink($payload);
         $upsell = self::formatUpsellSummary($payload);
         $downsell = self::formatDownsellSummary($payload);
 
@@ -54,6 +56,14 @@ final class ClickBankInsSlackTable
             [
                 self::richTextBoldCell('💰 Totals'),
                 self::rawTextCell($totals),
+            ],
+            [
+                self::richTextBoldCell('🧾 Bought'),
+                self::rawTextCell($boughtSummary),
+            ],
+            [
+                self::richTextBoldCell('🔐 Portal'),
+                self::rawTextCell($portalLink),
             ],
         ];
 
@@ -256,6 +266,30 @@ final class ClickBankInsSlackTable
         return self::formatMoney($order, $currency);
     }
 
+    private static function formatBoughtSummary(array $payload): string
+    {
+        $items = self::payloadValue($payload, ['lineItems', 'order.lineItems', 'items']);
+        if (!is_array($items)) {
+            return '—';
+        }
+
+        $list = array_values(array_filter($items, static fn ($item): bool => is_array($item)));
+        if ($list === []) {
+            return '—';
+        }
+
+        $summary = [];
+        foreach ($list as $item) {
+            /** @var array<string, mixed> $item */
+            $title = self::scalarString($item['productTitle'] ?? null) ?? '(no title)';
+            $qty = self::numericAmount($item['quantity'] ?? null);
+            $qtyStr = $qty !== null ? (string) (int) $qty : '1';
+            $summary[] = $title . ' ×' . $qtyStr;
+        }
+
+        return implode("\n", $summary);
+    }
+
     /**
      * @return list<string>
      */
@@ -372,6 +406,48 @@ final class ClickBankInsSlackTable
         $first = $indexed[0] ?? null;
 
         return is_array($first) ? self::scalarString($first['productTitle'] ?? null) : null;
+    }
+
+    private static function formatPortalLink(array $payload): string
+    {
+        $email = self::scalarString(self::payloadValue($payload, [
+            'customer.billing.email',
+            'customer.shipping.email',
+            'customer.email',
+            'billing.email',
+            'email',
+        ]));
+        if ($email === null) {
+            return '—';
+        }
+
+        $base = self::appBaseUrl();
+        $path = '/login.php?cemail=' . rawurlencode($email);
+
+        return $base !== '' ? $base . $path : $path;
+    }
+
+    private static function appBaseUrl(): string
+    {
+        $raw = $_ENV['APP_BASE_URL'] ?? getenv('APP_BASE_URL');
+        if (!is_string($raw)) {
+            return '';
+        }
+
+        $url = rtrim(trim($raw), '/');
+        if ($url === '') {
+            return '';
+        }
+
+        $parts = parse_url($url);
+        if ($parts === false || !isset($parts['scheme'], $parts['host'])) {
+            return '';
+        }
+        if (!in_array($parts['scheme'], ['http', 'https'], true)) {
+            return '';
+        }
+
+        return $url;
     }
 
     private static function formatMoney(float $amount, string $currency): string
