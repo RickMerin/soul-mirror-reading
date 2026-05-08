@@ -151,7 +151,7 @@ final class ReadingOrchestrator
             $this->pipelineLog->line('kit: custom_fields ensured');
             $this->kit->upsertSubscriber($subscriber);
             $this->pipelineLog->line('kit: subscriber upsert ok');
-            $this->kit->tagSubscriber($email, $this->config->kitTagName);
+            $this->kit->tagSubscriber($email, $this->config->kitTagName, false);
             $this->pipelineLog->line('kit: tag applied tag=' . $this->config->kitTagName);
         } catch (Throwable $e) {
             error_log('ReadingOrchestrator Kit: ' . $e->getMessage());
