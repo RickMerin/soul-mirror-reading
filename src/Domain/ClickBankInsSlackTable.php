@@ -63,7 +63,7 @@ final class ClickBankInsSlackTable
             ],
             [
                 self::richTextBoldCell('🔐 Portal'),
-                self::rawTextCell($portalLink),
+                self::portalLinkCell($portalLink),
             ],
         ];
 
@@ -541,6 +541,32 @@ final class ClickBankInsSlackTable
         return [
             'type' => 'raw_text',
             'text' => $text,
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function portalLinkCell(string $portalLink): array
+    {
+        if ($portalLink === '—') {
+            return self::rawTextCell($portalLink);
+        }
+
+        return [
+            'type' => 'rich_text',
+            'elements' => [
+                [
+                    'type' => 'rich_text_section',
+                    'elements' => [
+                        [
+                            'type' => 'link',
+                            'url' => $portalLink,
+                            'text' => 'Open portal',
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 }
