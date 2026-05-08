@@ -6,6 +6,7 @@ use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
 use App\Services\MemberAutoLoginService;
+use App\Domain\LoginAutoSessionGuard;
 use App\Services\MemberUrlBuilder;
 
 $projectRoot = dirname(__DIR__);
@@ -31,16 +32,25 @@ function resolveAuthorizedLeadId(AppConfig $config, string $email): ?int
 
 function loginMember(int $leadId): void
 {
+    startMemberSession();
+    session_regenerate_id(true);
+    $_SESSION['member_lead_id'] = $leadId;
+    header('Location: ' . MemberUrlBuilder::indexPath());
+    exit;
+}
+
+function startMemberSession(): void
+{
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        return;
+    }
+
     session_set_cookie_params([
         'httponly' => true,
         'secure' => !in_array($_SERVER['HTTP_HOST'] ?? '', ['localhost', '127.0.0.1'], true),
         'samesite' => 'Lax',
     ]);
     session_start();
-    session_regenerate_id(true);
-    $_SESSION['member_lead_id'] = $leadId;
-    header('Location: ' . MemberUrlBuilder::indexPath());
-    exit;
 }
 
 $config = AppConfig::load($projectRoot);
@@ -54,6 +64,13 @@ if (!$config->hasDatabaseConfig()) {
     $statusMessage = 'Member login is not configured yet.';
     $statusClass = 'error';
 } elseif ($cemail !== '' || ($requestMethod === 'POST' && $postedEmail !== '')) {
+    startMemberSession();
+    $hasMemberSession = isset($_SESSION['member_lead_id']) && is_int($_SESSION['member_lead_id']);
+    if (LoginAutoSessionGuard::shouldBypassCemailAutoLogin($requestMethod, $cemail !== '', $hasMemberSession)) {
+        header('Location: ' . MemberUrlBuilder::indexPath());
+        exit;
+    }
+
     $email = $cemail !== '' ? $cemail : $postedEmail;
     try {
         $leadId = resolveAuthorizedLeadId($config, $email);
