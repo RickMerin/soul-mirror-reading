@@ -167,6 +167,14 @@ final class ClickBankInsSlackTableTest extends TestCase
         return $rawCell['text'];
     }
 
+    private static function portalUrl(array $cell): string
+    {
+        self::assertSame('rich_text', $cell['type']);
+        self::assertSame('link', $cell['elements'][0]['elements'][0]['type']);
+
+        return $cell['elements'][0]['elements'][0]['url'];
+    }
+
     public function testBuildBlocksSummaryForOriginalSale(): void
     {
         $payload = self::v7OriginalPayload();
@@ -203,7 +211,7 @@ final class ClickBankInsSlackTableTest extends TestCase
         $bought = self::valueText($rows[6][1]);
         self::assertStringContainsString('Soul Mirror Reading ×1', $bought);
 
-        $portal = self::valueText($rows[7][1]);
+        $portal = self::portalUrl($rows[7][1]);
         self::assertStringContainsString('/login.php?cemail=buyer%40example.com', $portal);
 
         $product = self::valueText($rows[8][1]);
