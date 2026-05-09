@@ -21,6 +21,8 @@ final class AppConfig
         public readonly string $kitTagName,
         /** Tag when ClickBank INS has no line-item SKUs; empty env falls back to {@see $kitTagName}. */
         public readonly string $kitTagNameBuyer,
+        /** Kit form UID used to subscribe unlock-reading leads to a form automation. */
+        public readonly string $kitFormUid,
         /** When true, append pipeline diagnostics to {@see self::$pipelineLogPath} (no secrets or PII). */
         public readonly bool $pipelineFileLog,
         /** Absolute path to the pipeline log file. */
@@ -90,6 +92,7 @@ final class AppConfig
             kitApiKey: $get('KIT_API_KEY'),
             kitTagName: $kitTagName,
             kitTagNameBuyer: $kitTagNameBuyer,
+            kitFormUid: $get('KIT_FORM_UID'),
             pipelineFileLog: $pipelineFileLog,
             pipelineLogPath: $pipelineLogPath,
             sslCaBundlePath: $sslCaBundlePath,
