@@ -128,6 +128,25 @@ final class KitService
     }
 
     /**
+     * Subscribes an email to the configured Kit form UID for unlock-reading automations.
+     */
+    public function subscribeLeadToConfiguredForm(string $email): void
+    {
+        if ($this->config->kitApiKey === '') {
+            return;
+        }
+        $formUid = trim($this->config->kitFormUid);
+        if ($formUid === '' || trim($email) === '') {
+            return;
+        }
+        $this->request(
+            'POST',
+            'forms/' . rawurlencode($formUid) . '/subscribers',
+            ['email_address' => $email]
+        );
+    }
+
+    /**
      * Subscribes the buyer email to Kit tags derived from ClickBank INS line items (lowercase SKUs).
      * Always includes the configured buyer tag ({@see AppConfig::kitTagNameBuyer}, from `KIT_TAG_NAME_BUYER`).
      * List missing tags, create via API, then add the subscriber — same flow as legacy ConvertKit v3 helpers.

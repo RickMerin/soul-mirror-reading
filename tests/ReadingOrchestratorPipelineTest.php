@@ -27,6 +27,7 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             kitApiKey: 'kit-secret',
             kitTagName: 'soul-mirror-leads',
             kitTagNameBuyer: 'soul-mirror-buyers',
+            kitFormUid: '87bff9e0cc',
             pipelineFileLog: true,
             pipelineLogPath: $logPath,
             sslCaBundlePath: '',
@@ -88,6 +89,7 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             new Response(200, [], json_encode(['prediction' => ['personal_life' => 'p']], JSON_THROW_ON_ERROR)),
             new Response(200, [], json_encode(['custom_fields' => $this->allKitCustomFieldEntries()], JSON_THROW_ON_ERROR)),
             new Response(200, [], '{"subscriber":{"id":1}}'),
+            new Response(200, [], '{"subscription":{"id":11}}'),
             new Response(200, [], json_encode(['tags' => [['id' => 7, 'name' => 'soul-mirror-leads']]], JSON_THROW_ON_ERROR)),
             new Response(200, [], '{}'),
         ]);
@@ -111,6 +113,7 @@ final class ReadingOrchestratorPipelineTest extends TestCase
         $this->assertFileExists($logPath);
         $log = (string) file_get_contents($logPath);
         $this->assertStringContainsString('kit: subscriber upsert ok', $log);
+        $this->assertStringContainsString('kit: form_subscribe ok uid=87bff9e0cc', $log);
         $this->assertStringContainsString('kit: tag applied tag=soul-mirror-leads', $log);
 
         unlink($logPath);
