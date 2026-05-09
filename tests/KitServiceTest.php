@@ -39,6 +39,7 @@ final class KitServiceTest extends TestCase
             kitApiKey: 'test-kit-api-key',
             kitTagName: 'soul-mirror-leads',
             kitTagNameBuyer: 'soul-mirror-buyers',
+            kitFormUid: '87bff9e0cc',
             pipelineFileLog: false,
             pipelineLogPath: '',
             sslCaBundlePath: '',
@@ -144,5 +145,18 @@ final class KitServiceTest extends TestCase
         $this->expectException(KitApiException::class);
         $this->expectExceptionMessage('422');
         $kit->tagSubscriber('bad@', 'soul-mirror-leads');
+    }
+
+    public function testSubscribeLeadToConfiguredFormPostsToKitFormEndpoint(): void
+    {
+        $mock = new MockHandler([
+            new Response(200, [], json_encode(['subscription' => ['id' => 99]], JSON_THROW_ON_ERROR)),
+        ]);
+        $client = new Client(['handler' => HandlerStack::create($mock)]);
+        $kit = new KitService($this->kitConfig(), $client);
+
+        $kit->subscribeLeadToConfiguredForm('lead@example.com');
+
+        $this->assertSame(0, $mock->count());
     }
 }
