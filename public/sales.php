@@ -106,8 +106,7 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
 
   <!-- ══ RED TOP NOTICE BAR ══ -->
   <div class="topnotice">
-    <strong>Check Your Inbox:</strong><span class="notice-dot">·</span>Your 3-Card Personal Tarot Reading Is On Its
-    Way.<span class="notice-dot">·</span><strong>While You Wait, Read This Carefully.</strong>
+    <strong>Your Soul Tarot Reading Is On Its Way:</strong><span class="notice-dot">·</span>There's a 4th Card You Didn't See.<span class="notice-dot">·</span><strong>Read This Before It Lands.</strong>
   </div>
 
   <main id="main-content">
@@ -115,10 +114,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
   <!-- ══ VSL SECTION ══ -->
   <section class="vsl-section">
     <div class="wrap">
-      <h1 class="vsl-headline">One Card Fell Out Before<br><em>The Reading Even Began</em></h1>
-      <p class="vsl-sub">Face-up. Uninvited. A direct message from the universe that refuses to be ignored. Yours
-        revealed the one belief running silently behind all three of your mirrors. <strong>Your Mirror Block.</strong>
-      </p>
+      <h1 class="vsl-headline">The 4th Card Your Soul Tarot Reading<br><em>Will Never Show You</em></h1>
+      <p class="vsl-sub">It's not love. Not money. Not purpose. It's the single belief running underneath all three — and the cards you drew have already pointed straight at it. <strong>Your Mirror Block.</strong></p>
       <p class="vsl-sub" style="margin-top:-8px;"><em>The message came through. Watch now. This is the part most people
           never get told.</em></p>
 

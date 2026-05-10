@@ -1181,7 +1181,7 @@ details[open] .faq-q::after { transform: rotate(45deg); }
 <!-- ══ HERO VSL SECTION ══ -->
 <section class="vsl-section">
   <div class="wrap">
-    <h1 class="vsl-headline">One Card Fell Out Before<br><em>The Reading Even Began</em></h1>
+    <h1 class="vsl-headline">The 4th Card Your Soul Tarot Reading<br><em>Will Never Show You</em></h1>
     <p class="vsl-sub">Face-up. Uninvited. It revealed the one belief that has been silently deciding what you are allowed to receive — across money, love, and purpose — for years. Luna calls it your <strong>Mirror Block.</strong> And your three cards just pointed straight to it.</p>
     <p class="vsl-sub" style="margin-top:-8px;"><em>The message came through. Watch Luna's message below — or scroll to read instead.</em></p>
 
