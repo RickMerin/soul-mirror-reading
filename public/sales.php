@@ -106,8 +106,8 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
 
   <!-- ══ RED TOP NOTICE BAR ══ -->
   <div class="topnotice">
-    <strong>Check Your Inbox:</strong><span class="notice-dot">·</span>Your 3-Card Personal Tarot Reading Is On Its
-    Way.<span class="notice-dot">·</span><strong>While You Wait, Read This Carefully.</strong>
+    <strong>Your Soul Tarot Reading is on its way</strong><span class="notice-dot">·</span>There's a 4th card you
+    didn't see<span class="notice-dot">·</span><strong>Read this before it lands</strong>
   </div>
 
   <main id="main-content">
@@ -115,12 +115,9 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
   <!-- ══ VSL SECTION ══ -->
   <section class="vsl-section">
     <div class="wrap">
-      <h1 class="vsl-headline">One Card Fell Out Before<br><em>The Reading Even Began</em></h1>
-      <p class="vsl-sub">Face-up. Uninvited. A direct message from the universe that refuses to be ignored. Yours
-        revealed the one belief running silently behind all three of your mirrors. <strong>Your Mirror Block.</strong>
-      </p>
-      <p class="vsl-sub" style="margin-top:-8px;"><em>The message came through. Watch now. This is the part most people
-          never get told.</em></p>
+      <h1 class="vsl-headline">The 4th Card Your Soul Tarot Reading<br><em>Will Never Show You</em></h1>
+      <p class="vsl-sub">It's not love. Not money. Not purpose. It's the single belief running underneath all three —
+        and the cards you drew have already pointed straight at it. <strong>Your Mirror Block.</strong></p>
 
       <div class="video-frame">
        <vturb-smartplayer id="vid-69e22380ed35062270c75e01" autoplay="false" data-autoplay="false" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/69e22380ed35062270c75e01/v4/player.js?autoplay=false&smart_autoplay=false", s.async=!0,document.head.appendChild(s); </script>
