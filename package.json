@@ -8,8 +8,6 @@
     "dev": "npm run watch"
   },
   "devDependencies": {
-    "@fontsource/cormorant-garamond": "^5.2.11",
-    "@fontsource/crimson-pro": "^5.2.8",
     "chokidar": "^4.0.3",
     "esbuild": "^0.25.0",
     "lightningcss": "^1.29.3",
