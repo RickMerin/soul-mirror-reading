@@ -151,9 +151,13 @@ final class ReadingOrchestrator
             $this->pipelineLog->line('kit: custom_fields ensured');
             $this->kit->upsertSubscriber($subscriber);
             $this->pipelineLog->line('kit: subscriber upsert ok');
-            if ($this->config->kitFormUid !== '') {
+            if ($this->config->kitFormSubscribeVia === 'api' && $this->config->kitFormUid !== '') {
                 $this->kit->subscribeLeadToConfiguredForm($email);
                 $this->pipelineLog->line('kit: form_subscribe ok uid=' . $this->config->kitFormUid);
+            } elseif ($this->config->kitFormSubscribeVia === 'embed') {
+                $this->pipelineLog->line('kit: form_subscribe skipped (strategy=embed)');
+            } elseif ($this->config->kitFormSubscribeVia === 'none') {
+                $this->pipelineLog->line('kit: form_subscribe skipped (strategy=none)');
             } else {
                 $this->pipelineLog->line('kit: form_subscribe skipped (KIT_FORM_UID empty)');
             }
