@@ -38,8 +38,8 @@
   --purple-dark: #3b1f6e;
   --purple-mid: #5a3090;
   --purple-deep: #2a1252;
-  --serif: "Cormorant Garamond", Georgia, serif;
-  --body: "Crimson Pro", Georgia, serif;
+  --serif: Georgia, "Times New Roman", serif;
+  --body: Georgia, "Times New Roman", serif;
 }
 
 html {
