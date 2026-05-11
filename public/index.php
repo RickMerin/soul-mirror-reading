@@ -154,7 +154,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 
       .shuffle-prompt { max-width: calc(100vw - 32px); }
       .shuffle-prompt-text {
-        font-size: 12px !important;
+        font-size: 16px !important;
         letter-spacing: .16em !important;
         padding: 13px 22px !important;
       }
