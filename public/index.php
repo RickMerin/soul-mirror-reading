@@ -154,7 +154,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 
       .shuffle-prompt { max-width: calc(100vw - 32px); }
       .shuffle-prompt-text {
-        font-size: 16px !important;
+        font-size: 12px !important;
         letter-spacing: .16em !important;
         padding: 13px 22px !important;
       }
@@ -172,7 +172,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       .cs-num { font-size: 20px; }
       #smPrompt.is-visible { font-size: .88rem; padding: 9px 12px; }
       .shuffle-prompt-text {
-        font-size: 11px !important;
+        font-size: 16px !important;
         letter-spacing: .12em !important;
         padding: 12px 18px !important;
       }
