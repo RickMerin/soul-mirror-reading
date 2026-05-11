@@ -23,6 +23,12 @@ final class AppConfig
         public readonly string $kitTagNameBuyer,
         /** Kit form UID used to subscribe unlock-reading leads to a form automation. */
         public readonly string $kitFormUid,
+        /** Full `src` URL from Kit’s JavaScript embed snippet (never an API secret). */
+        public readonly string $kitFormEmbedScript,
+        /** Optional `data-uid` from the same snippet; required by some Kit loaders. */
+        public readonly string $kitFormEmbedUid,
+        /** How unlock-reading attaches the lead to the Kit form: api (REST), embed (browser), or none. */
+        public readonly string $kitFormSubscribeVia,
         /** When true, append pipeline diagnostics to {@see self::$pipelineLogPath} (no secrets or PII). */
         public readonly bool $pipelineFileLog,
         /** Absolute path to the pipeline log file. */
@@ -86,6 +92,11 @@ final class AppConfig
         $kitTagName = $get('KIT_TAG_NAME') !== '' ? $get('KIT_TAG_NAME') : 'soul-mirror-leads';
         $kitTagNameBuyer = $get('KIT_TAG_NAME_BUYER') !== '' ? $get('KIT_TAG_NAME_BUYER') : $kitTagName;
 
+        $kitSubscribeRaw = strtolower(trim($get('KIT_FORM_SUBSCRIBE_VIA')));
+        $kitFormSubscribeVia = in_array($kitSubscribeRaw, ['api', 'embed', 'none'], true)
+            ? $kitSubscribeRaw
+            : 'api';
+
         return new self(
             astroUserId: $get('ASTRO_USER_ID'),
             astroApiKey: $get('ASTRO_API_KEY'),
@@ -93,6 +104,9 @@ final class AppConfig
             kitTagName: $kitTagName,
             kitTagNameBuyer: $kitTagNameBuyer,
             kitFormUid: $get('KIT_FORM_UID'),
+            kitFormEmbedScript: $get('KIT_FORM_EMBED_SCRIPT'),
+            kitFormEmbedUid: $get('KIT_FORM_EMBED_UID'),
+            kitFormSubscribeVia: $kitFormSubscribeVia,
             pipelineFileLog: $pipelineFileLog,
             pipelineLogPath: $pipelineLogPath,
             sslCaBundlePath: $sslCaBundlePath,
@@ -132,6 +146,20 @@ final class AppConfig
     public function hasDatabaseConfig(): bool
     {
         return $this->dbName !== '' && $this->dbUser !== '';
+    }
+
+    /**
+     * Public bootstrap for unlock-reading (no secrets — safe for inline JSON).
+     *
+     * @return array{embedScriptSrc: string, embedDataUid: string, formSubscribeVia: string}
+     */
+    public function unlockReadingKitBootstrap(): array
+    {
+        return [
+            'embedScriptSrc' => $this->kitFormEmbedScript,
+            'embedDataUid' => $this->kitFormEmbedUid,
+            'formSubscribeVia' => $this->kitFormSubscribeVia,
+        ];
     }
 
     private static function toIntOrDefault(string $value, int $default): int

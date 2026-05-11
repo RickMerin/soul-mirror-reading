@@ -1,5 +1,26 @@
 <?php
 declare(strict_types=1);
+
+$projectRoot = dirname(__DIR__);
+require_once $projectRoot . '/vendor/autoload.php';
+
+use App\Config\AppConfig;
+
+$unlockKitBootstrapJson = '{"embedScriptSrc":"","embedDataUid":"","formSubscribeVia":"api"}';
+try {
+    $unlockKitBootstrapJson = json_encode(
+        AppConfig::load($projectRoot)->unlockReadingKitBootstrap(),
+        JSON_THROW_ON_ERROR
+            | JSON_UNESCAPED_SLASHES
+            | JSON_HEX_TAG
+            | JSON_HEX_AMP
+            | JSON_HEX_APOS
+            | JSON_HEX_QUOT,
+    );
+} catch (Throwable) {
+    // Safe default: API path only; no embed bootstrap.
+}
+
 $cssPath = __DIR__ . '/assets/bundle.min.css';
 $cssVer = is_file($cssPath) ? filemtime($cssPath) : time();
 $jsPath = __DIR__ . '/assets/unlock-reading.min.js';
@@ -50,6 +71,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 </head>
 
 <body>
+  <script type="application/json" id="unlockKitConfig"><?= $unlockKitBootstrapJson ?></script>
   <div class="dream-bg" aria-hidden="true">
     <div class="dream-veil"></div>
     <div class="milky-way"></div>
@@ -133,6 +155,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       </div>
     </div>
   </main>
+
+  <div id="kit-form-embed-root" class="kit-form-embed-root" aria-hidden="true"></div>
 
   <footer class="site-footer wavy">
     <p class="site-footer-links">

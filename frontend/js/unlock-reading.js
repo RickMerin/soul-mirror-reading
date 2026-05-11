@@ -4,6 +4,228 @@ import { parseReadingPick, READING_PICK_KEY } from "./lib/reading-pick.js";
 const IMG_BASE = "https://www.trustedtarot.com/img/cards/";
 const SLOT_LABELS = ["Your Love", "Your Life", "Your Wealth"];
 
+/** Max wait for Kit’s injected form inside #kit-form-embed-root (same-document only). */
+const KIT_EMBED_FORM_WAIT_MS = 10_000;
+
+/**
+ * After `requestSubmit()`, Kit usually sends `subscriptions` via fetch asynchronously.
+ * Immediate `location.href` to thank-you aborts that request (Chrome shows status “unknown”).
+ */
+const KIT_EMBED_POST_SUBMIT_SETTLE_MS = 2000;
+
+/**
+ * Bootstrap from `#unlockKitConfig` (filled by unlock-reading.php; no secrets).
+ *
+ * @returns {{ embedScriptSrc: string, embedDataUid: string, formSubscribeVia: string } | null}
+ */
+function readUnlockKitConfig() {
+  const el = document.getElementById("unlockKitConfig");
+  const raw = el?.textContent?.trim();
+  if (!raw) return null;
+  try {
+    const o = JSON.parse(raw);
+    if (
+      o &&
+      typeof o.embedScriptSrc === "string" &&
+      typeof o.embedDataUid === "string" &&
+      typeof o.formSubscribeVia === "string"
+    ) {
+      return o;
+    }
+  } catch {
+    /* ignore */
+  }
+  return null;
+}
+
+/**
+ * Loads Kit’s JavaScript embed early so the widget can render before submit.
+ *
+ * @param {{ embedScriptSrc: string, embedDataUid: string, formSubscribeVia: string }} cfg
+ */
+function injectKitEmbedScript(cfg) {
+  if (cfg.formSubscribeVia !== "embed" || !cfg.embedScriptSrc) return;
+  const root = document.getElementById("kit-form-embed-root");
+  if (!root) return;
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = cfg.embedScriptSrc;
+  if (cfg.embedDataUid) s.setAttribute("data-uid", cfg.embedDataUid);
+  root.appendChild(s);
+}
+
+/**
+ * Kit inline embeds: form in the same document. Iframe-only embeds return null — cannot drive from parent JS.
+ *
+ * @param {HTMLElement} root
+ * @returns {HTMLFormElement | null}
+ */
+function formHasEmailField(form) {
+  for (const el of form.querySelectorAll("input")) {
+    if (!(el instanceof HTMLInputElement)) continue;
+    const t = el.type?.toLowerCase?.() ?? "";
+    if (t === "email") return true;
+    const n = el.name;
+    if (
+      n === "email_address" ||
+      n === "email" ||
+      n === "fields[email]" ||
+      n.endsWith("[email]")
+    )
+      return true;
+  }
+  return false;
+}
+
+function findFillableForm(root) {
+  const forms = root.querySelectorAll("form");
+  for (const form of forms) {
+    if (formHasEmailField(form)) return form;
+  }
+  return null;
+}
+
+/**
+ * @param {HTMLElement} root
+ * @param {number} timeoutMs
+ * @returns {Promise<HTMLFormElement | null>}
+ */
+function waitForFillableForm(root, timeoutMs) {
+  return new Promise((resolve) => {
+    let settled = false;
+    const tid = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      obs.disconnect();
+      resolve(findFillableForm(root));
+    }, timeoutMs);
+
+    const finish = (/** @type {HTMLFormElement | null} */ f) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(tid);
+      obs.disconnect();
+      resolve(f ?? findFillableForm(root));
+    };
+
+    const obs = new MutationObserver(() => {
+      const f = findFillableForm(root);
+      if (f) finish(f);
+    });
+    obs.observe(root, { childList: true, subtree: true });
+    const initial = findFillableForm(root);
+    if (initial) finish(initial);
+  });
+}
+
+/**
+ * @param {HTMLFormElement} form
+ * @param {{ type?: string, names?: string[], selectors?: string[] }} spec
+ * @param {string} value
+ */
+function setControlledField(form, spec, value) {
+  if (spec.names) {
+    for (const el of form.querySelectorAll("input, textarea")) {
+      if (!(el instanceof HTMLInputElement) && !(el instanceof HTMLTextAreaElement))
+        continue;
+      if (spec.names.includes(el.name)) {
+        el.value = value;
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+        return true;
+      }
+    }
+  }
+  if (spec.selectors) {
+    for (const sel of spec.selectors) {
+      const input = form.querySelector(sel);
+      if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+        input.value = value;
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+        return true;
+      }
+    }
+  }
+  if (spec.type === "email") {
+    const input = form.querySelector('input[type="email"]');
+    if (input instanceof HTMLInputElement) {
+      input.value = value;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * After a successful `/api/reading`, mirror email/name into Kit’s injected form (if any) and submit.
+ * Waits {@link KIT_EMBED_POST_SUBMIT_SETTLE_MS} after submit so Kit’s subscription fetch can finish
+ * before the caller redirects (otherwise the request is cancelled).
+ *
+ * @param {string} name
+ * @param {string} email
+ */
+async function submitKitEmbedAfterUnlock(name, email) {
+  const cfg = readUnlockKitConfig();
+  if (!cfg || cfg.formSubscribeVia !== "embed" || !cfg.embedScriptSrc) return;
+
+  const root = document.getElementById("kit-form-embed-root");
+  if (!root) {
+    console.warn("[soul-mirror] Kit embed root missing");
+    return;
+  }
+
+  /** Typical Kit field `name`s — extend after DOM inspection if your form differs. */
+  const emailNames = ["email_address", "email", "fields[email]"];
+  const firstNameNames = ["fields[first_name]", "first_name", "name"];
+
+  const form = await waitForFillableForm(root, KIT_EMBED_FORM_WAIT_MS);
+  if (!form) {
+    console.warn(
+      "[soul-mirror] Kit embed: no fillable form (timeouts, Shadow DOM, or cross-origin iframe cannot be scripted here)",
+    );
+    return;
+  }
+
+  const emailOk =
+    setControlledField(form, { names: emailNames, type: "email" }, email) ||
+    setControlledField(
+      form,
+      {
+        selectors: ['input[autocomplete="email"]'],
+      },
+      email,
+    );
+  if (!emailOk)
+    console.warn("[soul-mirror] Kit embed: could not set email field (check field names)");
+
+  const nameOk =
+    setControlledField(form, { names: firstNameNames }, name.trim()) ||
+    setControlledField(
+      form,
+      {
+        selectors: ['input[autocomplete="given-name"]'],
+      },
+      name.trim(),
+    );
+  if (!nameOk && name.trim() !== "")
+    console.warn("[soul-mirror] Kit embed: could not set first name field (optional for some forms)");
+
+  try {
+    form.requestSubmit();
+  } catch (e) {
+    try {
+      HTMLFormElement.prototype.submit.call(form);
+    } catch (e2) {
+      console.warn("[soul-mirror] Kit embed submit failed", e, e2);
+    }
+  }
+
+  await new Promise((r) => setTimeout(r, KIT_EMBED_POST_SUBMIT_SETTLE_MS));
+}
+
 function reconcileGate(data) {
   const root = document.documentElement;
   if (!data) {
@@ -37,6 +259,8 @@ if (pick) {
       .join("");
   }
   setTimeout(() => document.getElementById("inputName")?.focus(), 100);
+  const kitCfg = readUnlockKitConfig();
+  if (kitCfg) injectKitEmbedScript(kitCfg);
 }
 
 (function () {
@@ -203,6 +427,8 @@ if (readingForm && submitBtn && errorMsg && pick) {
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Server error");
+
+      await submitKitEmbedAfterUnlock(name, email);
 
       try {
         sessionStorage.removeItem(READING_PICK_KEY);
