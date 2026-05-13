@@ -117,8 +117,7 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
 
   <!-- ══ RED TOP NOTICE BAR ══ -->
   <div class="topnotice">
-    <strong>Your Soul Tarot Reading is on its way</strong><span class="notice-dot">·</span>There's a 4th card you
-    didn't see<span class="notice-dot">·</span><strong>Read this before it lands</strong>
+    <strong>Check Your Inbox:</strong><span class="notice-dot">·</span>Your 3-Card Personal Tarot Reading Is On Its Way.<span class="notice-dot">·</span><strong>While You Wait, Read This Carefully.</strong>
   </div>
 
   <main id="main-content">
@@ -127,8 +126,7 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
   <section class="vsl-section">
     <div class="wrap">
       <h1 class="vsl-headline">One Card Fell Out Before<br><em>The Reading Even Began</em></h1>
-      <p class="vsl-sub">It's not love. Not money. Not purpose. It's the single belief running underneath all three —
-        and the cards you drew have already pointed straight at it. <strong>Your Mirror Block.</strong></p>
+      <p class="vsl-sub">Face-up. Uninvited. A direct message from the universe that refuses to be ignored. Yours revealed the one belief running silently behind all three of your mirrors. <strong>Your Mirror Block.</strong></p>
 
       <div class="video-frame">
         <vturb-smartplayer id="vid-6a03e48213e119642182af7b" 
@@ -360,7 +358,7 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
   <!-- ══ BONUSES ══ -->
   <section class="bonuses-section section js-reveal">
     <div class="wrap">
-      <h2>Free Bonuses Included Today</h2>
+      <h2 style="text-align: center;">Free Bonuses Included Today</h2>
       <p class="bonuses-intro">Available only on this page, when you claim your Soul Mirror Reading now.</p>
 
       <div class="bonus-row">

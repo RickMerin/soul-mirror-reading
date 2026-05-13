@@ -1480,7 +1480,7 @@ strong {
 
 .cta-btn {
   display: inline-block;
-  padding: 22px 52px;
+  padding: clamp(14px, 2.5vw, 22px) clamp(20px, 2.5vw, 52px);
   background: linear-gradient(
     135deg,
     var(--purple-dark) 0%,
@@ -1489,7 +1489,7 @@ strong {
   );
   color: var(--gold-warm);
   font-family: var(--serif);
-  font-size: 18px;
+  font-size: clamp(14px, 2.5vw, 18px);
   font-weight: 700;
   letter-spacing: 0.04em;
   border-radius: 40px;
