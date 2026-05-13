@@ -65,7 +65,7 @@ final class ReadingOrchestrator
             return new ReadingResult(500, ['error' => 'Internal server error.']);
         }
 
-        if ($this->config->kitApiKey === '' && $this->config->kitFormSubscribeVia !== 'embed') {
+        if ($this->config->kitApiKey === '' && $this->config->kitFormSubscribeVia === 'api') {
             error_log('ReadingOrchestrator: KIT_API_KEY missing');
             $this->pipelineLog->line('abort: KIT_API_KEY missing');
 
@@ -147,7 +147,9 @@ final class ReadingOrchestrator
             'sunLuck' => $sunPrediction['luck'] ?? '',
         ];
 
-        if ($this->config->kitFormSubscribeVia === 'embed') {
+        if ($this->config->kitFormSubscribeVia === 'none') {
+            $this->pipelineLog->line('kit: skipped (strategy=none)');
+        } elseif ($this->config->kitFormSubscribeVia === 'embed') {
             $this->pipelineLog->line('kit: api_capture skipped (strategy=embed; lead via form)');
         } else {
             try {
@@ -155,11 +157,9 @@ final class ReadingOrchestrator
                 $this->pipelineLog->line('kit: custom_fields ensured');
                 $this->kit->upsertSubscriber($subscriber);
                 $this->pipelineLog->line('kit: subscriber upsert ok');
-                if ($this->config->kitFormSubscribeVia === 'api' && $this->config->kitFormUid !== '') {
+                if ($this->config->kitFormUid !== '') {
                     $this->kit->subscribeLeadToConfiguredForm($email);
                     $this->pipelineLog->line('kit: form_subscribe ok uid=' . $this->config->kitFormUid);
-                } elseif ($this->config->kitFormSubscribeVia === 'none') {
-                    $this->pipelineLog->line('kit: form_subscribe skipped (strategy=none)');
                 } else {
                     $this->pipelineLog->line('kit: form_subscribe skipped (KIT_FORM_UID empty)');
                 }

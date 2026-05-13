@@ -156,7 +156,6 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             appBaseUrl: 'https://example.test',
             clickbankInsSlackWebhookUrl: '',
         );
-        // Embed strategy captures leads via the browser form only — no Kit REST upsert/tag.
         $mock = new MockHandler([
             new Response(200, [], json_encode(['love' => 'L', 'career' => 'C', 'finance' => 'F'], JSON_THROW_ON_ERROR)),
             new Response(200, [], json_encode(['prediction' => ['personal_life' => 'p']], JSON_THROW_ON_ERROR)),

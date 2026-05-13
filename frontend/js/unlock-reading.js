@@ -166,8 +166,10 @@ function waitForFillableForm(root, timeoutMs) {
  * @param {HTMLFormElement} form
  * @param {{ type?: string, names?: string[], selectors?: string[] }} spec
  * @param {string} value
+ * @param {{ silent?: boolean }} [opts]
  */
-function setControlledField(form, spec, value) {
+function setControlledField(form, spec, value, opts = {}) {
+  const silent = opts.silent === true;
   if (spec.names) {
     for (const el of form.querySelectorAll("input, textarea, select")) {
       if (
@@ -182,8 +184,10 @@ function setControlledField(form, spec, value) {
           return applyKitDobFieldValue(form, value);
         }
         el.value = value;
-        el.dispatchEvent(new Event("input", { bubbles: true }));
-        el.dispatchEvent(new Event("change", { bubbles: true }));
+        if (!silent) {
+          el.dispatchEvent(new Event("input", { bubbles: true }));
+          el.dispatchEvent(new Event("change", { bubbles: true }));
+        }
         return true;
       }
     }
@@ -197,8 +201,10 @@ function setControlledField(form, spec, value) {
         input instanceof HTMLSelectElement
       ) {
         input.value = value;
-        input.dispatchEvent(new Event("input", { bubbles: true }));
-        input.dispatchEvent(new Event("change", { bubbles: true }));
+        if (!silent) {
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+          input.dispatchEvent(new Event("change", { bubbles: true }));
+        }
         return true;
       }
     }
@@ -207,8 +213,10 @@ function setControlledField(form, spec, value) {
     const input = form.querySelector('input[type="email"]');
     if (input instanceof HTMLInputElement) {
       input.value = value;
-      input.dispatchEvent(new Event("input", { bubbles: true }));
-      input.dispatchEvent(new Event("change", { bubbles: true }));
+      if (!silent) {
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      }
       return true;
     }
   }
@@ -239,11 +247,12 @@ function readControlledField(form, names) {
 /**
  * @param {HTMLFormElement} form
  * @param {Record<string, string>} kitEmbedFields
+ * @param {{ silent?: boolean }} [opts]
  */
-function applyKitEmbedFields(form, kitEmbedFields) {
+function applyKitEmbedFields(form, kitEmbedFields, opts = {}) {
   for (const [fieldName, value] of Object.entries(kitEmbedFields)) {
     if (!fieldName || value === "") continue;
-    setControlledField(form, { names: [fieldName] }, value);
+    setControlledField(form, { names: [fieldName] }, value, opts);
   }
 }
 
@@ -628,7 +637,7 @@ function setKitSubmitBusy(form, busy) {
  */
 async function submitKitEmbedForm(form, kitEmbedFields) {
   if (kitEmbedFields && typeof kitEmbedFields === "object") {
-    applyKitEmbedFields(form, kitEmbedFields);
+    applyKitEmbedFields(form, kitEmbedFields, { silent: true });
   }
 
   prepareKitDobFieldForNativeSubmit(form);
@@ -682,16 +691,18 @@ async function mountKitEmbedForm(cards) {
     return;
   }
 
-  applyKitEmbedFields(form, buildInitialKitFieldsFromPick(cards));
+  applyKitEmbedFields(form, buildInitialKitFieldsFromPick(cards), { silent: true });
   configureKitDobField(form);
   configureKitGenderField(form);
   customizeKitSubmitButton(form);
   wireKitSubmitValidation(form);
 
-  form.addEventListener("submit", async (event) => {
-    if (allowNativeKitSubmit) return;
-    event.preventDefault();
-    clearUnlockFormError();
+  form.addEventListener(
+    "submit",
+    async (event) => {
+      if (allowNativeKitSubmit) return;
+      event.preventDefault();
+      clearUnlockFormError();
 
     const payload = readKitReadingPayload(form);
     if (!payload) {
@@ -739,7 +750,9 @@ async function mountKitEmbedForm(cards) {
       setKitSubmitBusy(form, false);
       showUnlockFormError("Something went wrong. Please try again.");
     }
-  });
+  },
+    true,
+  );
 }
 
 function reconcileGate(data) {
