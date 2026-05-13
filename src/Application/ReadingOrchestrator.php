@@ -7,6 +7,7 @@ namespace App\Application;
 use App\Config\AppConfig;
 use App\Domain\CardImageUrlBuilder;
 use App\Domain\FormSubmission;
+use App\Domain\KitEmbedFieldMap;
 use App\Domain\SunSignResolver;
 use App\Logging\PipelineLogger;
 use App\Repository\LeadRepository;
@@ -64,7 +65,7 @@ final class ReadingOrchestrator
             return new ReadingResult(500, ['error' => 'Internal server error.']);
         }
 
-        if ($this->config->kitApiKey === '') {
+        if ($this->config->kitApiKey === '' && $this->config->kitFormSubscribeVia !== 'embed') {
             error_log('ReadingOrchestrator: KIT_API_KEY missing');
             $this->pipelineLog->line('abort: KIT_API_KEY missing');
 
@@ -146,31 +147,33 @@ final class ReadingOrchestrator
             'sunLuck' => $sunPrediction['luck'] ?? '',
         ];
 
-        try {
-            $this->kit->ensureCustomFields();
-            $this->pipelineLog->line('kit: custom_fields ensured');
-            $this->kit->upsertSubscriber($subscriber);
-            $this->pipelineLog->line('kit: subscriber upsert ok');
-            if ($this->config->kitFormSubscribeVia === 'api' && $this->config->kitFormUid !== '') {
-                $this->kit->subscribeLeadToConfiguredForm($email);
-                $this->pipelineLog->line('kit: form_subscribe ok uid=' . $this->config->kitFormUid);
-            } elseif ($this->config->kitFormSubscribeVia === 'embed') {
-                $this->pipelineLog->line('kit: form_subscribe skipped (strategy=embed)');
-            } elseif ($this->config->kitFormSubscribeVia === 'none') {
-                $this->pipelineLog->line('kit: form_subscribe skipped (strategy=none)');
-            } else {
-                $this->pipelineLog->line('kit: form_subscribe skipped (KIT_FORM_UID empty)');
-            }
-            $this->kit->tagSubscriber($email, $this->config->kitTagName, false);
-            $this->pipelineLog->line('kit: tag applied tag=' . $this->config->kitTagName);
-        } catch (Throwable $e) {
-            error_log('ReadingOrchestrator Kit: ' . $e->getMessage());
-            $this->pipelineLog->line('kit: fail ' . $e::class . ' ' . $this->shortSafeMessage($e));
+        if ($this->config->kitFormSubscribeVia === 'embed') {
+            $this->pipelineLog->line('kit: api_capture skipped (strategy=embed; lead via form)');
+        } else {
+            try {
+                $this->kit->ensureCustomFields();
+                $this->pipelineLog->line('kit: custom_fields ensured');
+                $this->kit->upsertSubscriber($subscriber);
+                $this->pipelineLog->line('kit: subscriber upsert ok');
+                if ($this->config->kitFormSubscribeVia === 'api' && $this->config->kitFormUid !== '') {
+                    $this->kit->subscribeLeadToConfiguredForm($email);
+                    $this->pipelineLog->line('kit: form_subscribe ok uid=' . $this->config->kitFormUid);
+                } elseif ($this->config->kitFormSubscribeVia === 'none') {
+                    $this->pipelineLog->line('kit: form_subscribe skipped (strategy=none)');
+                } else {
+                    $this->pipelineLog->line('kit: form_subscribe skipped (KIT_FORM_UID empty)');
+                }
+                $this->kit->tagSubscriber($email, $this->config->kitTagName, false);
+                $this->pipelineLog->line('kit: tag applied tag=' . $this->config->kitTagName);
+            } catch (Throwable $e) {
+                error_log('ReadingOrchestrator Kit: ' . $e->getMessage());
+                $this->pipelineLog->line('kit: fail ' . $e::class . ' ' . $this->shortSafeMessage($e));
 
-            return new ReadingResult(500, ['error' => 'Internal server error.']);
+                return new ReadingResult(500, ['error' => 'Internal server error.']);
+            }
         }
 
-        error_log('Reading pipeline completed (subscriber upsert + tag).');
+        error_log('Reading pipeline completed.');
         $this->pipelineLog->line('pipeline: complete HTTP 200');
 
         if ($this->leadRepository !== null) {
@@ -193,7 +196,11 @@ final class ReadingOrchestrator
             }
         }
 
-        return new ReadingResult(200, ['success' => true, 'leadUuid' => $leadUuid]);
+        return new ReadingResult(200, [
+            'success' => true,
+            'leadUuid' => $leadUuid,
+            'kitEmbedFields' => KitEmbedFieldMap::fromSubscriber($subscriber),
+        ]);
     }
 
     private function shortSafeMessage(Throwable $e): string
