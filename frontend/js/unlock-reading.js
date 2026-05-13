@@ -1,21 +1,42 @@
 import { initDreamBackground } from "./lib/dream-background.js";
+import {
+  apiDobToKitEmbed,
+  kitEmbedDobToApi,
+} from "./lib/kit-embed-dob.js";
 import { parseReadingPick, READING_PICK_KEY } from "./lib/reading-pick.js";
 
 const IMG_BASE = "https://www.trustedtarot.com/img/cards/";
 const SLOT_LABELS = ["Your Love", "Your Life", "Your Wealth"];
-
-/** Max wait for Kit’s injected form inside #kit-form-embed-root (same-document only). */
 const KIT_EMBED_FORM_WAIT_MS = 10_000;
-
-/**
- * After `requestSubmit()`, Kit usually sends `subscriptions` via fetch asynchronously.
- * Immediate `location.href` to thank-you aborts that request (Chrome shows status “unknown”).
- */
 const KIT_EMBED_POST_SUBMIT_SETTLE_MS = 2000;
 
+const EMAIL_FIELD_NAMES = ["email_address", "email", "fields[email]"];
+const FIRST_NAME_FIELD_NAMES = ["fields[first_name]", "first_name", "name"];
+const GENDER_FIELD_NAMES = ["fields[gender]", "gender"];
+const GENDER_SELECT_OPTIONS = ["Female", "Male"];
+const DOB_MONTH_OPTIONS = [
+  ["01", "January"],
+  ["02", "February"],
+  ["03", "March"],
+  ["04", "April"],
+  ["05", "May"],
+  ["06", "June"],
+  ["07", "July"],
+  ["08", "August"],
+  ["09", "September"],
+  ["10", "October"],
+  ["11", "November"],
+  ["12", "December"],
+];
+const DOB_FIELD_NAMES = ["fields[date_of_birth]", "date_of_birth", "dob"];
+const KIT_SUBMIT_LABEL = "Unlock My Reading \u00a0→";
+const KIT_SUBMIT_BUSY_LABEL = "Reading the cards\u2026";
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** @type {boolean} */
+let allowNativeKitSubmit = false;
+
 /**
- * Bootstrap from `#unlockKitConfig` (filled by unlock-reading.php; no secrets).
- *
  * @returns {{ embedScriptSrc: string, embedDataUid: string, formSubscribeVia: string } | null}
  */
 function readUnlockKitConfig() {
@@ -39,8 +60,6 @@ function readUnlockKitConfig() {
 }
 
 /**
- * Loads Kit’s JavaScript embed early so the widget can render before submit.
- *
  * @param {{ embedScriptSrc: string, embedDataUid: string, formSubscribeVia: string }} cfg
  */
 function injectKitEmbedScript(cfg) {
@@ -55,11 +74,31 @@ function injectKitEmbedScript(cfg) {
 }
 
 /**
- * Kit inline embeds: form in the same document. Iframe-only embeds return null — cannot drive from parent JS.
- *
- * @param {HTMLElement} root
- * @returns {HTMLFormElement | null}
+ * @param {string} message
  */
+function showUnlockFormError(message) {
+  const errorEl = document.getElementById("unlockFormError");
+  if (!errorEl) return;
+  errorEl.textContent = message;
+  errorEl.classList.add("visible");
+}
+
+function clearUnlockFormError() {
+  const errorEl = document.getElementById("unlockFormError");
+  if (!errorEl) return;
+  errorEl.textContent = "";
+  errorEl.classList.remove("visible");
+}
+
+/**
+ * @param {boolean} visible
+ */
+function setKitEmbedLoading(visible) {
+  const loadingEl = document.getElementById("kitEmbedLoading");
+  if (!loadingEl) return;
+  loadingEl.hidden = !visible;
+}
+
 function formHasEmailField(form) {
   for (const el of form.querySelectorAll("input")) {
     if (!(el instanceof HTMLInputElement)) continue;
@@ -71,12 +110,17 @@ function formHasEmailField(form) {
       n === "email" ||
       n === "fields[email]" ||
       n.endsWith("[email]")
-    )
+    ) {
       return true;
+    }
   }
   return false;
 }
 
+/**
+ * @param {HTMLElement} root
+ * @returns {HTMLFormElement | null}
+ */
 function findFillableForm(root) {
   const forms = root.querySelectorAll("form");
   for (const form of forms) {
@@ -122,16 +166,28 @@ function waitForFillableForm(root, timeoutMs) {
  * @param {HTMLFormElement} form
  * @param {{ type?: string, names?: string[], selectors?: string[] }} spec
  * @param {string} value
+ * @param {{ silent?: boolean }} [opts]
  */
-function setControlledField(form, spec, value) {
+function setControlledField(form, spec, value, opts = {}) {
+  const silent = opts.silent === true;
   if (spec.names) {
-    for (const el of form.querySelectorAll("input, textarea")) {
-      if (!(el instanceof HTMLInputElement) && !(el instanceof HTMLTextAreaElement))
+    for (const el of form.querySelectorAll("input, textarea, select")) {
+      if (
+        !(el instanceof HTMLInputElement) &&
+        !(el instanceof HTMLTextAreaElement) &&
+        !(el instanceof HTMLSelectElement)
+      ) {
         continue;
+      }
       if (spec.names.includes(el.name)) {
+        if (DOB_FIELD_NAMES.includes(el.name) && form.querySelector(".kit-dob-sync-input")) {
+          return applyKitDobFieldValue(form, value);
+        }
         el.value = value;
-        el.dispatchEvent(new Event("input", { bubbles: true }));
-        el.dispatchEvent(new Event("change", { bubbles: true }));
+        if (!silent) {
+          el.dispatchEvent(new Event("input", { bubbles: true }));
+          el.dispatchEvent(new Event("change", { bubbles: true }));
+        }
         return true;
       }
     }
@@ -139,10 +195,16 @@ function setControlledField(form, spec, value) {
   if (spec.selectors) {
     for (const sel of spec.selectors) {
       const input = form.querySelector(sel);
-      if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+      if (
+        input instanceof HTMLInputElement ||
+        input instanceof HTMLTextAreaElement ||
+        input instanceof HTMLSelectElement
+      ) {
         input.value = value;
-        input.dispatchEvent(new Event("input", { bubbles: true }));
-        input.dispatchEvent(new Event("change", { bubbles: true }));
+        if (!silent) {
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+          input.dispatchEvent(new Event("change", { bubbles: true }));
+        }
         return true;
       }
     }
@@ -151,8 +213,10 @@ function setControlledField(form, spec, value) {
     const input = form.querySelector('input[type="email"]');
     if (input instanceof HTMLInputElement) {
       input.value = value;
-      input.dispatchEvent(new Event("input", { bubbles: true }));
-      input.dispatchEvent(new Event("change", { bubbles: true }));
+      if (!silent) {
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      }
       return true;
     }
   }
@@ -160,70 +224,535 @@ function setControlledField(form, spec, value) {
 }
 
 /**
- * After a successful `/api/reading`, mirror email/name into Kit’s injected form (if any) and submit.
- * Waits {@link KIT_EMBED_POST_SUBMIT_SETTLE_MS} after submit so Kit’s subscription fetch can finish
- * before the caller redirects (otherwise the request is cancelled).
- *
- * @param {string} name
- * @param {string} email
+ * @param {HTMLFormElement} form
+ * @param {string[]} names
+ * @returns {string}
  */
-async function submitKitEmbedAfterUnlock(name, email) {
-  const cfg = readUnlockKitConfig();
-  if (!cfg || cfg.formSubscribeVia !== "embed" || !cfg.embedScriptSrc) return;
+function readControlledField(form, names) {
+  for (const el of form.querySelectorAll("input, textarea, select")) {
+    if (
+      !(el instanceof HTMLInputElement) &&
+      !(el instanceof HTMLTextAreaElement) &&
+      !(el instanceof HTMLSelectElement)
+    ) {
+      continue;
+    }
+    if (names.includes(el.name)) {
+      return el.value.trim();
+    }
+  }
+  return "";
+}
 
-  const root = document.getElementById("kit-form-embed-root");
-  if (!root) {
-    console.warn("[soul-mirror] Kit embed root missing");
+/**
+ * @param {HTMLFormElement} form
+ * @param {Record<string, string>} kitEmbedFields
+ * @param {{ silent?: boolean }} [opts]
+ */
+function applyKitEmbedFields(form, kitEmbedFields, opts = {}) {
+  for (const [fieldName, value] of Object.entries(kitEmbedFields)) {
+    if (!fieldName || value === "") continue;
+    setControlledField(form, { names: [fieldName] }, value, opts);
+  }
+}
+
+/**
+ * @param {import("./lib/reading-pick.js").PickedCard[]} cards
+ * @returns {Record<string, string>}
+ */
+function buildInitialKitFieldsFromPick(cards) {
+  return {
+    "fields[love_card]": cards[0].name,
+    "fields[life_card]": cards[1].name,
+    "fields[wealth_card]": cards[2].name,
+    "fields[love_card_image]": `${IMG_BASE}${cards[0].slug}.png`,
+    "fields[life_card_image]": `${IMG_BASE}${cards[1].slug}.png`,
+    "fields[wealth_card_image]": `${IMG_BASE}${cards[2].slug}.png`,
+  };
+}
+
+/**
+ * @param {HTMLFormElement} form
+ * @returns {{ name: string, email: string, dob: string, gender: string } | null}
+ */
+function readKitReadingPayload(form) {
+  const name = readControlledField(form, FIRST_NAME_FIELD_NAMES);
+  const email = readControlledField(form, EMAIL_FIELD_NAMES);
+  const gender = readControlledField(form, GENDER_FIELD_NAMES);
+  const dobRaw = readControlledField(form, DOB_FIELD_NAMES);
+  const dob = kitEmbedDobToApi(dobRaw);
+
+  if (!name || !email || !dob || !gender) return null;
+  return { name, email, dob, gender };
+}
+
+/**
+ * @param {string} apiDob
+ * @returns {{ month: string, day: string, year: string } | null}
+ */
+function splitApiDob(apiDob) {
+  const match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(apiDob);
+  if (!match) return null;
+  return { month: match[1], day: match[2], year: match[3] };
+}
+
+/**
+ * @param {HTMLElement} fieldWrap
+ */
+function syncKitDobHiddenValue(fieldWrap) {
+  const month = fieldWrap.querySelector('[data-dob-part="month"]');
+  const day = fieldWrap.querySelector('[data-dob-part="day"]');
+  const year = fieldWrap.querySelector('[data-dob-part="year"]');
+  const hidden = fieldWrap.querySelector(".kit-dob-sync-input");
+  if (
+    !(month instanceof HTMLSelectElement) ||
+    !(day instanceof HTMLSelectElement) ||
+    !(year instanceof HTMLSelectElement) ||
+    !(hidden instanceof HTMLInputElement)
+  ) {
     return;
   }
 
-  /** Typical Kit field `name`s — extend after DOM inspection if your form differs. */
-  const emailNames = ["email_address", "email", "fields[email]"];
-  const firstNameNames = ["fields[first_name]", "first_name", "name"];
+  if (!month.value || !day.value || !year.value) {
+    hidden.value = "";
+    return;
+  }
+
+  hidden.value = `${month.value}/${day.value}/${year.value}`;
+  hidden.dispatchEvent(new Event("input", { bubbles: true }));
+  hidden.dispatchEvent(new Event("change", { bubbles: true }));
+}
+
+/**
+ * @param {HTMLFormElement} form
+ * @param {string} value
+ */
+function applyKitDobFieldValue(form, value) {
+  const fieldWrap = form.querySelector(".kit-dob-field");
+  if (!fieldWrap) return false;
+
+  const month = fieldWrap.querySelector('[data-dob-part="month"]');
+  const day = fieldWrap.querySelector('[data-dob-part="day"]');
+  const year = fieldWrap.querySelector('[data-dob-part="year"]');
+  if (
+    !(month instanceof HTMLSelectElement) ||
+    !(day instanceof HTMLSelectElement) ||
+    !(year instanceof HTMLSelectElement)
+  ) {
+    return false;
+  }
+
+  const apiDob = kitEmbedDobToApi(value);
+  const parts = apiDob ? splitApiDob(apiDob) : null;
+  month.value = parts?.month ?? "";
+  day.value = parts?.day ?? "";
+  year.value = parts?.year ?? "";
+  syncKitDobHiddenValue(fieldWrap);
+  return true;
+}
+
+/**
+ * @param {string} placeholder
+ * @param {"month" | "day" | "year"} part
+ */
+function createDobPartSelect(placeholder, part) {
+  const select = document.createElement("select");
+  select.dataset.dobPart = part;
+  select.className = "formkit-input";
+  select.required = true;
+
+  const placeholderOption = document.createElement("option");
+  placeholderOption.value = "";
+  placeholderOption.disabled = true;
+  placeholderOption.selected = true;
+  placeholderOption.textContent = placeholder;
+  select.appendChild(placeholderOption);
+
+  return select;
+}
+
+/**
+ * @param {HTMLFormElement} form
+ */
+function configureKitDobField(form) {
+  const currentYear = new Date().getFullYear();
+
+  for (const el of form.querySelectorAll("input")) {
+    if (!(el instanceof HTMLInputElement)) continue;
+    if (!DOB_FIELD_NAMES.includes(el.name)) continue;
+
+    const fieldWrap = el.closest(".formkit-field, .seva-field, .form-group");
+    if (!fieldWrap || fieldWrap.dataset.dobSplit === "1") continue;
+
+    const apiDob = kitEmbedDobToApi(el.value);
+    const parts = apiDob ? splitApiDob(apiDob) : null;
+    fieldWrap.dataset.dobSplit = "1";
+    fieldWrap.classList.add("kit-dob-field");
+
+    const label = document.createElement("label");
+    label.className = "kit-dob-label";
+    label.textContent = "Date of Birth";
+    fieldWrap.insertBefore(label, el);
+
+    const row = document.createElement("div");
+    row.className = "dob-row";
+
+    const monthSelect = createDobPartSelect("Month", "month");
+    for (const [value, text] of DOB_MONTH_OPTIONS) {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = text;
+      monthSelect.appendChild(option);
+    }
+
+    const daySelect = createDobPartSelect("Day", "day");
+    for (let day = 1; day <= 31; day += 1) {
+      const option = document.createElement("option");
+      option.value = String(day).padStart(2, "0");
+      option.textContent = String(day);
+      daySelect.appendChild(option);
+    }
+
+    const yearSelect = createDobPartSelect("Year", "year");
+    for (let year = currentYear; year >= currentYear - 100; year -= 1) {
+      const option = document.createElement("option");
+      option.value = String(year);
+      option.textContent = String(year);
+      yearSelect.appendChild(option);
+    }
+
+    row.append(monthSelect, daySelect, yearSelect);
+    fieldWrap.insertBefore(row, el);
+
+    el.type = "hidden";
+    el.classList.add("kit-dob-sync-input");
+    el.removeAttribute("placeholder");
+    el.required = true;
+
+    if (parts) {
+      monthSelect.value = parts.month;
+      daySelect.value = parts.day;
+      yearSelect.value = parts.year;
+    }
+    syncKitDobHiddenValue(fieldWrap);
+
+    for (const select of row.querySelectorAll("select")) {
+      const sync = () => {
+        syncKitDobHiddenValue(fieldWrap);
+        syncKitSubmitState(form);
+      };
+      select.addEventListener("input", sync);
+      select.addEventListener("change", sync);
+    }
+  }
+}
+
+/**
+ * @param {HTMLFormElement} form
+ */
+function prepareKitDobFieldForNativeSubmit(form) {
+  const hidden = form.querySelector(".kit-dob-sync-input");
+  if (!(hidden instanceof HTMLInputElement)) return;
+
+  const apiDob = kitEmbedDobToApi(hidden.value);
+  if (!apiDob) return;
+
+  const kitDob = apiDobToKitEmbed(apiDob);
+  if (!kitDob) return;
+
+  hidden.value = kitDob;
+}
+
+/**
+ * @param {string} value
+ */
+function normalizeGenderValue(value) {
+  const trimmed = value.trim();
+  if (trimmed === "Female" || trimmed === "Male") return trimmed;
+  if (trimmed.toLowerCase() === "female") return "Female";
+  if (trimmed.toLowerCase() === "male") return "Male";
+  return "";
+}
+
+/**
+ * @param {HTMLFormElement} form
+ */
+function configureKitGenderField(form) {
+  for (const el of form.querySelectorAll("input, select")) {
+    if (el instanceof HTMLSelectElement && GENDER_FIELD_NAMES.includes(el.name)) {
+      if (el.dataset.genderSelect === "1") continue;
+      el.dataset.genderSelect = "1";
+      const current = normalizeGenderValue(el.value);
+      el.innerHTML = "";
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.disabled = true;
+      placeholder.textContent = "Select...";
+      placeholder.selected = current === "";
+      el.appendChild(placeholder);
+      for (const gender of GENDER_SELECT_OPTIONS) {
+        const option = document.createElement("option");
+        option.value = gender;
+        option.textContent = gender;
+        if (gender === current) option.selected = true;
+        el.appendChild(option);
+      }
+      continue;
+    }
+
+    if (!(el instanceof HTMLInputElement)) continue;
+    if (!GENDER_FIELD_NAMES.includes(el.name)) continue;
+
+    const select = document.createElement("select");
+    select.name = el.name;
+    select.required = el.required;
+    select.className = el.className;
+    select.dataset.genderSelect = "1";
+    const ariaLabel = el.getAttribute("aria-label");
+    if (ariaLabel) select.setAttribute("aria-label", ariaLabel);
+
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.disabled = true;
+    placeholder.textContent = "Select...";
+    select.appendChild(placeholder);
+
+    const current = normalizeGenderValue(el.value);
+    placeholder.selected = current === "";
+    for (const gender of GENDER_SELECT_OPTIONS) {
+      const option = document.createElement("option");
+      option.value = gender;
+      option.textContent = gender;
+      if (gender === current) option.selected = true;
+      select.appendChild(option);
+    }
+
+    el.replaceWith(select);
+  }
+}
+
+/**
+ * @param {HTMLFormElement} form
+ * @returns {HTMLButtonElement | HTMLInputElement | null}
+ */
+function getKitSubmitControl(form) {
+  const submit = form.querySelector(
+    '[data-element="submit"], .formkit-submit, button[type="submit"], input[type="submit"]',
+  );
+  return submit instanceof HTMLButtonElement || submit instanceof HTMLInputElement
+    ? submit
+    : null;
+}
+
+/**
+ * @param {HTMLFormElement} form
+ * @returns {HTMLButtonElement | HTMLInputElement | null}
+ */
+function customizeKitSubmitButton(form) {
+  const submit = getKitSubmitControl(form);
+  if (!submit) return null;
+
+  if (submit instanceof HTMLButtonElement) {
+    const label = submit.querySelector("span");
+    if (label) label.textContent = KIT_SUBMIT_LABEL;
+    submit.setAttribute("aria-label", "Unlock my reading");
+  } else if (submit instanceof HTMLInputElement) {
+    submit.value = KIT_SUBMIT_LABEL;
+    submit.setAttribute("aria-label", "Unlock my reading");
+  }
+
+  return submit;
+}
+
+/**
+ * @param {HTMLFormElement} form
+ */
+function isKitFormReadyForSubmit(form) {
+  const name = readControlledField(form, FIRST_NAME_FIELD_NAMES);
+  const email = readControlledField(form, EMAIL_FIELD_NAMES);
+  const gender = readControlledField(form, GENDER_FIELD_NAMES);
+  const dob = kitEmbedDobToApi(readControlledField(form, DOB_FIELD_NAMES));
+
+  if (name.length < 2 || name.length > 120) return false;
+  if (!EMAIL_RE.test(email) || email.length > 254) return false;
+  if (!dob) return false;
+  if (!(gender === "Female" || gender === "Male")) return false;
+
+  return true;
+}
+
+/**
+ * @param {HTMLFormElement} form
+ */
+function syncKitSubmitState(form) {
+  const submit = customizeKitSubmitButton(form);
+  if (!submit || submit.dataset.submitting === "1") return;
+
+  const ready = isKitFormReadyForSubmit(form);
+  submit.disabled = !ready;
+  submit.classList.toggle("is-invalid", !ready);
+}
+
+/**
+ * @param {HTMLFormElement} form
+ */
+function wireKitSubmitValidation(form) {
+  const controls = form.querySelectorAll(
+    'input[name="fields[first_name]"], input[name="email_address"], select[name="fields[gender]"], select[data-dob-part]',
+  );
+  for (const control of controls) {
+    control.addEventListener("input", () => syncKitSubmitState(form));
+    control.addEventListener("change", () => syncKitSubmitState(form));
+  }
+  syncKitSubmitState(form);
+}
+
+/**
+ * @param {HTMLFormElement} form
+ */
+function setKitSubmitBusy(form, busy) {
+  const submit = getKitSubmitControl(form);
+  if (!submit) return;
+
+  if (busy) {
+    submit.dataset.submitting = "1";
+    submit.disabled = true;
+    submit.classList.remove("is-invalid");
+    if (submit instanceof HTMLButtonElement) {
+      const label = submit.querySelector("span");
+      if (label) label.textContent = KIT_SUBMIT_BUSY_LABEL;
+    } else if (submit instanceof HTMLInputElement) {
+      submit.value = KIT_SUBMIT_BUSY_LABEL;
+    }
+    return;
+  }
+
+  delete submit.dataset.submitting;
+  syncKitSubmitState(form);
+}
+
+/**
+ * @param {HTMLFormElement} form
+ * @param {Record<string, string> | null | undefined} kitEmbedFields
+ */
+async function submitKitEmbedForm(form, kitEmbedFields) {
+  if (kitEmbedFields && typeof kitEmbedFields === "object") {
+    applyKitEmbedFields(form, kitEmbedFields, { silent: true });
+  }
+
+  prepareKitDobFieldForNativeSubmit(form);
+
+  allowNativeKitSubmit = true;
+  try {
+    form.requestSubmit();
+  } catch {
+    try {
+      HTMLFormElement.prototype.submit.call(form);
+    } catch (e2) {
+      console.warn("[soul-mirror] Kit embed submit failed", e2);
+    }
+  } finally {
+    allowNativeKitSubmit = false;
+  }
+
+  await new Promise((resolve) => setTimeout(resolve, KIT_EMBED_POST_SUBMIT_SETTLE_MS));
+}
+
+/**
+ * @param {import("./lib/reading-pick.js").PickedCard[]} cards
+ */
+async function mountKitEmbedForm(cards) {
+  const cfg = readUnlockKitConfig();
+  const root = document.getElementById("kit-form-embed-root");
+  if (!root) return;
+
+  if (!cfg || cfg.formSubscribeVia !== "embed" || !cfg.embedScriptSrc) {
+    setKitEmbedLoading(false);
+    showUnlockFormError(
+      "The reading form is not configured yet. Please try again later or contact support.",
+    );
+    return;
+  }
+
+  setKitEmbedLoading(true);
+  clearUnlockFormError();
+  injectKitEmbedScript(cfg);
 
   const form = await waitForFillableForm(root, KIT_EMBED_FORM_WAIT_MS);
+  setKitEmbedLoading(false);
+
   if (!form) {
+    showUnlockFormError(
+      "We could not load the reading form. Please refresh the page and try again.",
+    );
     console.warn(
       "[soul-mirror] Kit embed: no fillable form (timeouts, Shadow DOM, or cross-origin iframe cannot be scripted here)",
     );
     return;
   }
 
-  const emailOk =
-    setControlledField(form, { names: emailNames, type: "email" }, email) ||
-    setControlledField(
-      form,
-      {
-        selectors: ['input[autocomplete="email"]'],
-      },
-      email,
-    );
-  if (!emailOk)
-    console.warn("[soul-mirror] Kit embed: could not set email field (check field names)");
+  applyKitEmbedFields(form, buildInitialKitFieldsFromPick(cards), { silent: true });
+  configureKitDobField(form);
+  configureKitGenderField(form);
+  customizeKitSubmitButton(form);
+  wireKitSubmitValidation(form);
 
-  const nameOk =
-    setControlledField(form, { names: firstNameNames }, name.trim()) ||
-    setControlledField(
-      form,
-      {
-        selectors: ['input[autocomplete="given-name"]'],
-      },
-      name.trim(),
-    );
-  if (!nameOk && name.trim() !== "")
-    console.warn("[soul-mirror] Kit embed: could not set first name field (optional for some forms)");
+  form.addEventListener(
+    "submit",
+    async (event) => {
+      if (allowNativeKitSubmit) return;
+      event.preventDefault();
+      clearUnlockFormError();
 
-  try {
-    form.requestSubmit();
-  } catch (e) {
-    try {
-      HTMLFormElement.prototype.submit.call(form);
-    } catch (e2) {
-      console.warn("[soul-mirror] Kit embed submit failed", e, e2);
+    const payload = readKitReadingPayload(form);
+    if (!payload) {
+      showUnlockFormError(
+        "Please complete all required fields with valid details before unlocking your reading.",
+      );
+      return;
     }
-  }
 
-  await new Promise((r) => setTimeout(r, KIT_EMBED_POST_SUBMIT_SETTLE_MS));
+    setKitSubmitBusy(form, true);
+
+    const readingApiUrl = new URL("api/reading", window.location.href).href;
+    const thankYouUrl = new URL("thankyou.php", window.location.href).href;
+
+    try {
+      const res = await fetch(readingApiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: payload.name,
+          email: payload.email,
+          dob: payload.dob,
+          gender: payload.gender,
+          card1: cards[0].id,
+          card2: cards[1].id,
+          card3: cards[2].id,
+          card1Name: cards[0].name,
+          card2Name: cards[1].name,
+          card3Name: cards[2].name,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Server error");
+
+      await submitKitEmbedForm(form, data.kitEmbedFields);
+
+      try {
+        sessionStorage.removeItem(READING_PICK_KEY);
+      } catch {
+        /* ignore */
+      }
+      window.location.href = thankYouUrl;
+    } catch {
+      setKitSubmitBusy(form, false);
+      showUnlockFormError("Something went wrong. Please try again.");
+    }
+  },
+    true,
+  );
 }
 
 function reconcileGate(data) {
@@ -238,9 +767,7 @@ function reconcileGate(data) {
   return data.cards;
 }
 
-const pick = reconcileGate(
-  parseReadingPick(sessionStorage.getItem(READING_PICK_KEY)),
-);
+const pick = reconcileGate(parseReadingPick(sessionStorage.getItem(READING_PICK_KEY)));
 
 if (pick) {
   const recap = document.getElementById("chosenRecap");
@@ -258,191 +785,8 @@ if (pick) {
       )
       .join("");
   }
-  setTimeout(() => document.getElementById("inputName")?.focus(), 100);
-  const kitCfg = readUnlockKitConfig();
-  if (kitCfg) injectKitEmbedScript(kitCfg);
-}
 
-(function () {
-  const daySelect = document.getElementById("inputDobDay");
-  const yearSelect = document.getElementById("inputDobYear");
-  if (!daySelect || !yearSelect) return;
-  for (let d = 1; d <= 31; d++) {
-    const o = document.createElement("option");
-    o.value = String(d).padStart(2, "0");
-    o.textContent = String(d);
-    daySelect.appendChild(o);
-  }
-  const currentYear = new Date().getFullYear();
-  for (let y = currentYear; y >= currentYear - 100; y--) {
-    const o = document.createElement("option");
-    o.value = String(y);
-    o.textContent = String(y);
-    yearSelect.appendChild(o);
-  }
-})();
-
-const nameInput = document.getElementById("inputName");
-if (nameInput) {
-  nameInput.addEventListener("input", function () {
-    const greet = document.getElementById("nameGreet");
-    if (greet)
-      greet.textContent = this.value.trim() ? this.value.trim() + "?" : "";
-  });
-}
-
-const readingForm = document.getElementById("readingForm");
-const submitBtn = document.getElementById("submitBtn");
-const errorMsg = document.getElementById("errorMsg");
-
-if (readingForm && submitBtn && errorMsg && pick) {
-  const formControls = {
-    name: document.getElementById("inputName"),
-    email: document.getElementById("inputEmail"),
-    month: document.getElementById("inputDobMonth"),
-    day: document.getElementById("inputDobDay"),
-    year: document.getElementById("inputDobYear"),
-    gender: document.getElementById("inputGender"),
-  };
-  const dobRow = document.querySelector(".dob-row");
-  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  function toggleFieldError(element, hasError) {
-    if (!element) return;
-    const group = element.closest(".form-group");
-    if (group) group.classList.toggle("field-error", hasError);
-    element.setAttribute("aria-invalid", hasError ? "true" : "false");
-  }
-
-  function toggleDobError(hasError) {
-    const dobGroup = formControls.month?.closest(".form-group");
-    if (dobGroup) dobGroup.classList.toggle("field-error", hasError);
-    if (dobRow) dobRow.classList.toggle("field-error", hasError);
-    [formControls.month, formControls.day, formControls.year].forEach(
-      (field) => {
-        field?.setAttribute("aria-invalid", hasError ? "true" : "false");
-      },
-    );
-  }
-
-  function validateForm(showErrors = false) {
-    const name = formControls.name?.value.trim() ?? "";
-    const email = formControls.email?.value.trim() ?? "";
-    const dobMonth = formControls.month?.value ?? "";
-    const dobDay = formControls.day?.value ?? "";
-    const dobYear = formControls.year?.value ?? "";
-    const gender = formControls.gender?.value.trim() ?? "";
-
-    const invalidName = name.length < 2 || name.length > 120;
-    const invalidEmail = !EMAIL_RE.test(email) || email.length > 254;
-    const invalidDob = !(dobMonth && dobDay && dobYear);
-    const invalidGender = !(gender === "Female" || gender === "Male");
-    const hasErrors =
-      invalidName || invalidEmail || invalidDob || invalidGender;
-
-    if (showErrors) {
-      toggleFieldError(formControls.name, invalidName);
-      toggleFieldError(formControls.email, invalidEmail);
-      toggleDobError(invalidDob);
-      toggleFieldError(formControls.gender, invalidGender);
-    } else {
-      toggleFieldError(formControls.name, false);
-      toggleFieldError(formControls.email, false);
-      toggleDobError(false);
-      toggleFieldError(formControls.gender, false);
-    }
-
-    submitBtn.disabled = hasErrors;
-    submitBtn.classList.toggle("is-invalid", hasErrors);
-
-    if (showErrors && hasErrors) {
-      errorMsg.textContent =
-        "Please complete all required fields with valid details before unlocking your reading.";
-      errorMsg.classList.add("visible");
-    } else if (!hasErrors) {
-      errorMsg.textContent = "";
-      errorMsg.classList.remove("visible");
-    }
-
-    return {
-      isValid: !hasErrors,
-      payload: {
-        name,
-        email,
-        dob: `${dobMonth}/${dobDay}/${dobYear}`,
-        gender,
-      },
-    };
-  }
-
-  [
-    formControls.name,
-    formControls.email,
-    formControls.month,
-    formControls.day,
-    formControls.year,
-    formControls.gender,
-  ].forEach((field) => {
-    field?.addEventListener("input", () => validateForm(false));
-    field?.addEventListener("change", () => validateForm(false));
-  });
-
-  validateForm(false);
-
-  readingForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const validation = validateForm(true);
-    if (!validation.isValid) {
-      return;
-    }
-
-    const { name, email, dob, gender } = validation.payload;
-
-    submitBtn.disabled = true;
-    submitBtn.classList.remove("is-invalid");
-    submitBtn.textContent = "Reading the cards…";
-    errorMsg.classList.remove("visible");
-
-    const readingApiUrl = new URL("api/reading", window.location.href).href;
-    const thankYouUrl = new URL("thankyou.php", window.location.href).href;
-
-    try {
-      const res = await fetch(readingApiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          dob,
-          gender,
-          card1: pick[0].id,
-          card2: pick[1].id,
-          card3: pick[2].id,
-          card1Name: pick[0].name,
-          card2Name: pick[1].name,
-          card3Name: pick[2].name,
-        }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Server error");
-
-      await submitKitEmbedAfterUnlock(name, email);
-
-      try {
-        sessionStorage.removeItem(READING_PICK_KEY);
-      } catch {
-        /* ignore */
-      }
-      window.location.href = thankYouUrl;
-    } catch {
-      validateForm(false);
-      submitBtn.textContent = "Unlock My Reading →";
-      errorMsg.textContent = "Something went wrong. Please try again.";
-      errorMsg.classList.add("visible");
-    }
-  });
+  void mountKitEmbedForm(pick);
 }
 
 initDreamBackground({
