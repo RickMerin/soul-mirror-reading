@@ -18,6 +18,17 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="assets/thankyou-bundle.min.css?v=<?= htmlspecialchars((string) $cssVer, ENT_QUOTES) ?>">
+
+  <!-- ─────────────────────────────────────────
+    Microsoft Clarity
+  ───────────────────────────────────────── -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wq82rtc2gf");
+  </script>
 </head>
 
 <body>
