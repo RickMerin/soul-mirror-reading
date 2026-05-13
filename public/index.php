@@ -154,7 +154,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 
       .shuffle-prompt { max-width: calc(100vw - 32px); }
       .shuffle-prompt-text {
-        font-size: 16px !important;
+        font-size: 12px !important;
         letter-spacing: .16em !important;
         padding: 13px 22px !important;
       }
@@ -172,7 +172,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       .cs-num { font-size: 20px; }
       #smPrompt.is-visible { font-size: .88rem; padding: 9px 12px; }
       .shuffle-prompt-text {
-        font-size: 11px !important;
+        font-size: 16px !important;
         letter-spacing: .12em !important;
         padding: 12px 18px !important;
       }
@@ -185,6 +185,17 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       .shuffle-prompt-text { animation: none; }
     }
   </style>
+
+  <!-- ─────────────────────────────────────────
+       Microsoft Clarity
+       ───────────────────────────────────────── -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wq82rtc2gf");
+  </script>
 </head>
 
 <body>
