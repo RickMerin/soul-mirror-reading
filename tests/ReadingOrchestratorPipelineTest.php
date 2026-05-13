@@ -112,6 +112,12 @@ final class ReadingOrchestratorPipelineTest extends TestCase
 
         $this->assertSame(200, $result->httpStatus);
         $this->assertTrue($result->json['success'] ?? false);
+        $kitEmbedFields = $result->json['kitEmbedFields'] ?? null;
+        $this->assertIsArray($kitEmbedFields);
+        $this->assertSame('Jane', $kitEmbedFields['fields[first_name]']);
+        $this->assertSame('The Fool', $kitEmbedFields['fields[love_card]']);
+        $this->assertSame('L', $kitEmbedFields['fields[love_reading]']);
+        $this->assertSame('aries', $kitEmbedFields['fields[sun_sign]']);
 
         $this->assertFileExists($logPath);
         $log = (string) file_get_contents($logPath);
@@ -150,14 +156,9 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             appBaseUrl: 'https://example.test',
             clickbankInsSlackWebhookUrl: '',
         );
-        // No REST call to POST forms/{uid}/subscribers — one fewer mocked response vs api strategy.
         $mock = new MockHandler([
             new Response(200, [], json_encode(['love' => 'L', 'career' => 'C', 'finance' => 'F'], JSON_THROW_ON_ERROR)),
             new Response(200, [], json_encode(['prediction' => ['personal_life' => 'p']], JSON_THROW_ON_ERROR)),
-            new Response(200, [], json_encode(['custom_fields' => $this->allKitCustomFieldEntries()], JSON_THROW_ON_ERROR)),
-            new Response(200, [], '{"subscriber":{"id":1}}'),
-            new Response(200, [], json_encode(['tags' => [['id' => 7, 'name' => 'soul-mirror-leads']]], JSON_THROW_ON_ERROR)),
-            new Response(200, [], '{}'),
         ]);
         $client = new Client(['handler' => HandlerStack::create($mock)]);
 
@@ -174,9 +175,14 @@ final class ReadingOrchestratorPipelineTest extends TestCase
         $result = $orchestrator->run($this->validReadingBody());
 
         $this->assertSame(200, $result->httpStatus);
+        $kitEmbedFields = $result->json['kitEmbedFields'] ?? null;
+        $this->assertIsArray($kitEmbedFields);
+        $this->assertSame('The Fool', $kitEmbedFields['fields[love_card]']);
+        $this->assertSame('L', $kitEmbedFields['fields[love_reading]']);
         $log = (string) file_get_contents($logPath);
-        $this->assertStringContainsString('kit: form_subscribe skipped (strategy=embed)', $log);
-        $this->assertStringNotContainsString('kit: form_subscribe ok uid=', $log);
+        $this->assertStringContainsString('kit: api_capture skipped (strategy=embed; lead via form)', $log);
+        $this->assertStringNotContainsString('kit: subscriber upsert ok', $log);
+        $this->assertStringNotContainsString('kit: tag applied tag=', $log);
 
         unlink($logPath);
     }

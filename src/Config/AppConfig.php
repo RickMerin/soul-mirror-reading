@@ -97,13 +97,18 @@ final class AppConfig
             ? $kitSubscribeRaw
             : 'api';
 
+        $kitFormUid = trim($get('KIT_FORM_UID'));
+        if ($kitFormUid === '') {
+            $kitFormUid = trim($get('KIT_FORM_EMBED_UID'));
+        }
+
         return new self(
             astroUserId: $get('ASTRO_USER_ID'),
             astroApiKey: $get('ASTRO_API_KEY'),
             kitApiKey: $get('KIT_API_KEY'),
             kitTagName: $kitTagName,
             kitTagNameBuyer: $kitTagNameBuyer,
-            kitFormUid: $get('KIT_FORM_UID'),
+            kitFormUid: $kitFormUid,
             kitFormEmbedScript: $get('KIT_FORM_EMBED_SCRIPT'),
             kitFormEmbedUid: $get('KIT_FORM_EMBED_UID'),
             kitFormSubscribeVia: $kitFormSubscribeVia,
