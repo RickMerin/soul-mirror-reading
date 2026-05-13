@@ -160,62 +160,117 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
     <!-- ══ LUNA'S STORY ══ -->
     <section class="story-section section">
       <div class="wrap-narrow">
-        <p>Before you open your reading, take just a moment.</p>
-        <p>What I'm about to share changes how the cards land. And if you've been doing this for a while, you need to
-          hear this first.</p>
-        <p>You already know the feeling.</p>
-        <p>You pull a card and something in your chest goes still. <em>That's it.</em> That's the answer you've been
-          circling for months. You write it down. You sit with it. You feel, for the first time in a long time, like
-          things are finally going to shift.</p>
-        <p>And they do. For a day or two.</p>
-        <p>Then day three arrives. You're back in the same conversation with the same person. Making the same choice you
-          swore you wouldn't make. Feeling the exact same weight you thought the cards had just lifted off you.</p>
-        <div class="story-pull">You don't throw the cards out. You don't blame the reading. You blame yourself.</div>
-        <p>You think you're not doing the inner work hard enough. Not surrendering enough. Not trusting the process
-          enough.</p>
-        <p>So you pull another card.</p>
-        <p>I want to tell you something gently but clearly.</p>
-        <p>The readings were accurate. The insights were real. The problem was never the cards, and it was never you.
+        <p>You can feel it. Not all the time — but in the quiet moments. When the bank balance dips again for no clear
+          reason. When a relationship that started with promise fades into the same tired distance. When you sit down to
+          do the work that is supposed to matter and your body fills with fog instead of fire.</p>
+        <p>Three different areas of your life. Three different kinds of pain. And yet they all have the same texture.
+          The same heaviness. The same strange timing.</p>
+        <p>Something keeps pulling you back to the same place.</p>
+        <div class="story-pull">It is not that you are doing the wrong things. It is that something beneath the
+          surface keeps rearranging the results.</div>
+        <p>You have tried to fix this. Of course you have. You are not someone who sits and waits. You have done the
+          inner work — the therapy, the journaling, the intention-setting, the energy clearing. Maybe a course. Maybe
+          several. Maybe an entire bookshelf of spiritual development sitting behind you right now.</p>
+        <p>And some of it helped. For a while.</p>
+        <p>The money came in — and then bled out just as fast. The relationship softened — and then hardened in exactly
+          the same spot. The clarity arrived — and dissolved within weeks, replaced by the same confusion wearing a
+          different outfit.</p>
+        <p>You started to wonder if the problem was you. If some people are just built to struggle in certain areas. If
+          maybe you missed the window. If this is simply what your life looks like.</p>
+        <p>I need you to hear this: that thought is the pattern talking. Not the truth.</p>
+        <p>My name is Luna Ross. I have been reading for 11 years. I have sat with more than 4,800 people across six
+          countries, and I have heard some version of what I just described from nearly every single one of them.</p>
+        <p>Not the same words. But the same feeling. The same quiet bewilderment. <em>I have done everything I was
+            supposed to do. Why does nothing hold?</em></p>
+        <p>For the first several years, I treated each problem as its own thread. Love readings for love. Career
+          readings for purpose. Abundance work for money. That is how I was trained. That is what every reading system
+          teaches.</p>
+        <p>And my clients would leave those sessions relieved. Hopeful. Sometimes they cried from the recognition alone.
+          They would send me messages a few weeks later saying things had shifted — a new opportunity appeared, a
+          conversation they had been avoiding finally happened, the weight lifted.</p>
+        <p>Then, quietly, it would come back.</p>
+        <p>Not the same problem. A different version of the same problem. As if the pattern had simply moved to a new
+          address.</p>
+        <div class="story-pull">The relationship improved. Then the money collapsed. The career took off. Then the
+          health unravelled. As if something was regulating how much good they were allowed to hold at once.</div>
+        <p>I saw this hundreds of times. Thousands. A person would break through in one area and watch another area fall
+          apart in the same week. It was too consistent to be coincidence. Too patterned to be bad luck.</p>
+        <p>So I stopped looking at the three areas separately. I started asking a different question.</p>
+        <div class="story-pull">What if it is not three problems? What if it is one belief wearing three
+          different masks?</div>
+        <p>What if money, love, and purpose are all being shaped by the same thing — one single pattern, running
+          beneath conscious awareness, silently deciding what you are allowed to receive and what gets pulled away?</p>
+        <p>That question changed every reading I have done since.</p>
+        <p>I call it a Mirror Block. Not because it reflects who you are — but because it reflects who you were taught
+          you had to be, long before you could question it.</p>
+        <p>A Mirror Block is a core belief — usually formed in childhood, often before language — that installed itself
+          as a survival mechanism. It was useful once. It protected you from something real. But it never updated. And
+          now it runs beneath every decision, every relationship, every financial pattern, every moment you reach for
+          something bigger and feel an invisible hand pull you back.</p>
+        <p>It is not a flaw. It is not a failing. It is a programme that was never meant to last this long.</p>
+        <p>After years of mapping these patterns across thousands of readings, I identified four distinct types. Every
+          person I have ever read for carries one. Most carry it their entire life without ever knowing it has a name.
         </p>
-        <p>There's something structural missing between seeing and shifting. A step that almost no reading is designed
-          to address.</p>
-        <div class="story-pull">Most readings show you what's happening. Very few show you why it keeps happening.</div>
-        <p>That gap between seeing and actually changing is where years can disappear.</p>
-        <p>I was a reader for eleven years before I understood this.</p>
-        <p>Not someone who did readings for herself on a Tuesday afternoon. I sat with clients. Real people with real
-          pain, week after week, year after year. And I was good at it. The cards rarely lied.</p>
-        <p>But something started to trouble me.</p>
-        <p>I would watch someone have a genuine breakthrough in a session. Tears. Recognition. That unmistakable look of
-          a person who has just seen something true about themselves. And I would think: <em>this is the one. This is
-            the session that changes things for her.</em></p>
-        <p>Three weeks later, she'd be back. Same situation. Same story in a slightly different arrangement.</p>
-        <div class="story-pull">It wasn't that the reading failed. It was that something underneath the reading never
-          got touched.</div>
-        <p>I started asking a question I couldn't stop asking. <em>What is the thing beneath the things?</em></p>
-        <p>I began going deeper with clients. Not into new cards. Into patterns.</p>
-        <p>I started mapping what was showing up in love against what was showing up in work. Then against money. Then
-          against how they described their daily life.</p>
-        <p>And I kept finding the same thing.</p>
-        <p>It wasn't three problems. It was one.</p>
-        <p>One belief, specific to each person and invisible to them, quietly running every area of their life at the
-          same time. Their relationships were shaped by it. Their career decisions were shaped by it. The way they
-          handled money, spent it, avoided it. All of it traced back to this one thing.</p>
-        <div class="story-pull">I started calling it the Mirror Block. Because it sits between you and every reflection
-          you're trying to read.</div>
-        <p>When it's there, no amount of accurate cards moves the needle. When it's finally seen clearly, not just
-          understood but truly <em>seen</em>, something releases. Not dramatically. More like a window opening in a room
-          that's been closed too long.</p>
-        <p>Women I'd worked with for years stopped coming back. Not because something went wrong. Because something
-          finally went right.</p>
-        <p>One woman stopped circling the same decision about leaving her job. She just left. Another stopped explaining
-          herself to her mother. She didn't make a big announcement. She just stopped.</p>
-        <p>The changes were quiet. They were lasting. They didn't look like transformation. They looked like finally
-          being able to breathe.</p>
-        <p>The Soul Mirror Reading was built to do exactly this one thing.</p>
-        <p>It finds your Mirror Block, the single belief running love, life, and wealth simultaneously, and gives you
-          the deep card work and the practice to begin dissolving it. Not a reading that describes your life. A reading
-          that shows you what's been shaping it all along.</p>
-        <p>One reading. One root. Everything shifts from there.</p>
+        <div class="story-pull">There are four types of Mirror Block. Each one shapes your life differently. Each
+          one requires a completely different approach to clear.</div>
+        <p><strong>The Not Yet Ready Block.</strong> You live in permanent preparation. Success is always coming — next
+          month, next year, after one more course, one more healing, one more sign. You wait. The waiting feels
+          responsible. But nothing arrives because the block has convinced you that you are not ready to receive it. You
+          have been ready for years.</p>
+        <p><strong>The Waiting for the Good Thing to End Block.</strong> When something good happens, your first instinct
+          is not joy — it is anxiety. How long until this falls apart? You monitor every relationship for cracks. You
+          spend the raise before it hits your account. You sabotage quietly, unconsciously, because losing something on
+          your own terms feels safer than having it taken from you.</p>
+        <p><strong>The Too Much Block.</strong> You are overwhelmed not by failure but by possibility. Every door opens
+          and you freeze. Every opportunity brings paralysis. You cannot choose because choosing means losing the others,
+          and somewhere inside you learned that wanting too much was dangerous. So you receive nothing fully.</p>
+        <p><strong>The Not Enough Block.</strong> Underneath everything, a voice says you do not deserve this. Not the
+          money. Not the love. Not the recognition. You work harder than anyone around you and still feel like you are
+          getting away with something. Receiving feels fraudulent. So you keep yourself just below the line of what you
+          actually want.</p>
+        <p>One of these has been running your life. Quietly. For years. Across every area at once.</p>
+        <p>And the reason nothing you have tried has worked permanently is simple: you have been treating the symptoms in
+          isolation. The money work. The relationship work. The purpose work. All separate. All surface-level. None of
+          them touched the root.</p>
+        <p>The shift is not dramatic. That is the first thing people tell me.</p>
+        <p>There is no lightning bolt. No overnight transformation. What happens is quieter and far more permanent.</p>
+        <p>Someone who spent three years stuck in the same income range — give or take a few hundred — sees their Not
+          Enough Block clearly for the first time. Within weeks, they stop unconsciously turning down the work that pays
+          more. They stop apologising for their rates. The change is not forced. It just stops being blocked.</p>
+        <div class="story-pull">The changes were not loud. They were structural. Like removing a dam nobody knew
+          was there and watching the water finally move.</div>
+        <p>A person carrying the Waiting for the Good Thing to End Block reads their Soul Mirror Reading on a Tuesday
+          evening and sits with it for three days without telling anyone. On the fourth day, they stop scanning their
+          partner's face for signs of leaving. They do not decide to stop. They simply notice they have stopped. The
+          vigilance that has drained them for a decade loosens its grip — not because they fought it, but because they
+          finally saw where it was anchored.</p>
+        <p>This is what I mean when I say the reading does not describe your life. It shows you what has been shaping
+          it.</p>
+        <p>The Soul Mirror Reading uses 3 cards — not to predict your future, but to reveal the single belief pattern
+          that has been organising your past.</p>
+        <p>Card one reflects love and connection. Card two reflects life path and purpose. Card three reflects abundance
+          and material flow. But I do not read them separately. I read the space between them — the place where one
+          pattern shows up wearing three different masks.</p>
+        <p>That pattern is your Mirror Block. And once I name it for you — once you see it clearly, in your own life, in
+          your own words — something fundamental shifts in the way you relate to all three areas.</p>
+        <p>Not because I tell you what to do. Because the pattern can no longer operate in the dark.</p>
+        <p>This is the reading that shows you the root. One root. Running love, money, and purpose at the same time. Once
+          you see it, you cannot unsee it. And the patterns that have recycled for years begin to lose their hold.</p>
+        <div class="story-pull">You have spent years working on three separate problems. There was only ever one.
+        </div>
+        <p>The cards you chose minutes ago are still charged with the energy of that moment. That is not a metaphor — the
+          combination you selected is specific to where you are right now, and it will not carry the same precision a
+          week from now. This is why I ask people to move forward the same day they pick their cards.</p>
+        <p>Your reading takes me 12 to 24 hours to complete. Every word is written by hand, specific to your card
+          combination and your Mirror Block type. It is not a template. It is not generated. It is the reading I would
+          give you if you were sitting across from me.</p>
+        <p>One reading. One root belief. And the clarity to finally stop treating symptoms and start dissolving the
+          source.</p>
+        <p>Your Soul Mirror Reading begins the moment you claim it. I will be the one writing it. By hand, for you,
+          specific to the combination you chose today.</p>
+        <p>If something in what I just said felt familiar, that is not coincidence. That is the pattern recognising
+          itself. And that is exactly where the work begins.</p>
+        <div class="story-pull">Scroll down. I will meet you on the other side.</div>
 
       </div>
     </section>
@@ -317,6 +372,27 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
         <p>We call it your <strong>Mirror Block</strong>. And right now, while the cards you drew are still fresh, is
           the clearest window you will have to see it.</p>
         <p><strong>Your Soul Mirror Reading names it exactly. Not a general theme. Yours.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Rebecca Hartley -->
+  <section class="testimonials-section section js-reveal">
+    <div class="wrap-narrow">
+      <div class="testi-card">
+        <div class="testi-avatar-row">
+          <picture>
+            <source type="image/webp" srcset="frontend/images/sales/rebecca-hartley.webp">
+            <img class="testi-avatar" src="frontend/images/sales/rebecca-hartley.png" alt="Rebecca Hartley" decoding="async"
+              loading="lazy">
+          </picture>
+          <div class="testi-avatar-meta">
+            <div class="testi-name">Rebecca Hartley</div>
+            <div class="testi-meta">Age 47 &nbsp;·&nbsp; Realtor</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">&ldquo;Within two weeks of reading mine and following the ritual, three things shifted that had been stuck for years. My income jumped from $4,200 to $7,800 a month because I finally stopped flinching when clients pushed back on my rates. I ended a six-year relationship that had been quietly shrinking me. And I finished the book I had been writing for nine years. The Mirror Block Luna named in mine was the same wall I had been working around in love, in money, in my work, without ever realizing it was the same wall. Once I saw it, I could not un-see it. Everything started moving.&rdquo;</p>
       </div>
     </div>
   </section>
