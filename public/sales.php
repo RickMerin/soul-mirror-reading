@@ -147,11 +147,11 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
         <span class="badge">🌙 &nbsp; 90-Day Guarantee</span>
       </div>
 
-      <div style="margin-top:28px;">
+      <!-- <div style="margin-top:28px;">
         <button type="button" class="read-toggle" aria-expanded="false">
           ☽ &nbsp; Prefer to read instead? &nbsp; ☾
         </button>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -275,13 +275,14 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
       </div>
     </section>
 
-    <div style="text-align:center; padding-bottom:48px;">
+    <!-- <div style="text-align:center; padding-bottom:48px;">
       <button type="button" class="read-toggle-collapse">
         ☽ &nbsp; Collapse this section &nbsp; ☾
       </button>
-    </div>
+    </div> -->
 
-  </div><!-- /#read-version -->
+  </div>
+  <!-- /#read-version -->
 
   <!-- ══ TRANSITION BANNER ══ -->
   <div class="transition-banner js-reveal">
