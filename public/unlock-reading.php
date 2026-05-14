@@ -111,13 +111,62 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       <div class="chosen-recap" id="chosenRecap"></div>
 
       <div class="form-box">
-        <p class="kit-embed-loading" id="kitEmbedLoading" aria-live="polite">Loading your reading form…</p>
-        <div id="kit-form-embed-root" class="kit-form-embed-root"></div>
-        <p class="form-privacy">Your reading arrives within minutes. Your information is never shared.</p>
-        <div class="error-msg" id="unlockFormError" role="alert" aria-live="assertive"></div>
+        <form id="readingForm" novalidate>
+          <div class="form-group">
+            <label for="inputName">First Name</label>
+            <input type="text" id="inputName" placeholder="Enter Your First Name..." required
+              autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Your Email</label>
+            <input type="email" id="inputEmail" placeholder="Enter Your Email Address..." required
+              autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label>Date of Birth</label>
+            <div class="dob-row">
+              <select id="inputDobMonth" required>
+                <option value="" disabled selected>Month</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+              <select id="inputDobDay" required>
+                <option value="" disabled selected>Day</option>
+              </select>
+              <select id="inputDobYear" required>
+                <option value="" disabled selected>Year</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputGender">Gender</label>
+            <select id="inputGender" required>
+              <option value="" disabled selected>Select...</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn is-invalid" id="submitBtn" disabled>
+            Unlock My Reading &nbsp;→
+          </button>
+          <p class="form-privacy">Your reading arrives within minutes. Your information is never shared.</p>
+          <div class="error-msg" id="errorMsg" role="alert" aria-live="assertive"></div>
+        </form>
       </div>
     </div>
   </main>
+
+  <div id="kit-form-embed-root" class="kit-form-embed-root" aria-hidden="true"></div>
 
   <footer class="site-footer wavy">
     <p class="site-footer-links">
