@@ -32,6 +32,19 @@ Options -Indexes
     RewriteRule ^api/reading$ api/reading.php [L]
     RewriteRule ^api/clickbank-ins$ api/clickbank-ins.php [L]
 
+    # When docroot is the repo root, browsers may hit /public/v2/; canonical funnel URL is /v2/.
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/index\.php
+    RewriteCond %{REQUEST_URI} ^(.*)/public/v2/index\.php$
+    RewriteRule ^v2/index\.php$ %1/v2/ [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/?[\s?]
+    RewriteCond %{REQUEST_URI} ^(.*)/public/v2/?$
+    RewriteRule ^v2/?$ %1/v2/ [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/
+    RewriteCond %{REQUEST_URI} ^(.*)/public/v2/(.+)$
+    RewriteRule ^v2/.+$ %1/v2/%2 [R=301,L]
+
 </IfModule>
 
 <IfModule mod_headers.c>

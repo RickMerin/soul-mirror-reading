@@ -28,6 +28,10 @@ writeBundle(
   path.join("public", "assets", "sales-bundle.min.css"),
 );
 writeBundle(
+  path.join("frontend", "styles", "sales-v2", "main.css"),
+  path.join("public", "assets", "sales-v2-bundle.min.css"),
+);
+writeBundle(
   path.join("frontend", "styles", "thankyou", "main.css"),
   path.join("public", "assets", "thankyou-bundle.min.css"),
 );

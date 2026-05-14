@@ -1,4 +1,11 @@
 import { initDreamBackground } from "./lib/dream-background.js";
+import { funnelUrl } from "./lib/funnel-base.js";
+import {
+  buildSalesQueryString,
+  clearSalesHandoff,
+  readSalesHandoff,
+  salesHandoffToQueryParams,
+} from "./lib/sales-handoff.js";
 
 initDreamBackground({
   sparkleMobile: 40,
@@ -14,7 +21,15 @@ initDreamBackground({
   pointerParallax: false,
 });
 
-const salesPageUrl = new URL("sales.php", window.location.href).href;
+const salesPageUrl = (() => {
+  const handoff = readSalesHandoff();
+  const query = handoff
+    ? buildSalesQueryString(salesHandoffToQueryParams(handoff))
+    : "";
+  const url = funnelUrl(`sales.php${query}`);
+  if (handoff) clearSalesHandoff();
+  return url;
+})();
 const countdownEl = document.getElementById("redirectCountdown");
 const countdownCopyEl = document.getElementById("redirectCopy");
 const ringProgressEl = document.getElementById("countdownRingProgress");
