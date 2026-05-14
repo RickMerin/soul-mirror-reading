@@ -1,4 +1,5 @@
 import { initDreamBackground } from "./lib/dream-background.js";
+import { funnelUrl } from "./lib/funnel-base.js";
 import { READING_PICK_KEY, READING_PICK_VERSION } from "./lib/reading-pick.js";
 
 // ── Card data — 78 cards ────────────────────────────────────────────────────
@@ -452,7 +453,7 @@ function goToUnlockPage() {
     return;
   }
   window.location.assign(
-    new URL("unlock-reading.php", window.location.href).href,
+    funnelUrl("unlock-reading.php"),
   );
 }
 

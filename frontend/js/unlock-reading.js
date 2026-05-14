@@ -1,5 +1,7 @@
 import { initDreamBackground } from "./lib/dream-background.js";
+import { funnelUrl, siteUrl } from "./lib/funnel-base.js";
 import { parseReadingPick, READING_PICK_KEY } from "./lib/reading-pick.js";
+import { storeSalesHandoff } from "./lib/sales-handoff.js";
 
 const IMG_BASE = "https://www.trustedtarot.com/img/cards/";
 const SLOT_LABELS = ["Your Love", "Your Life", "Your Wealth"];
@@ -403,8 +405,8 @@ if (readingForm && submitBtn && errorMsg && pick) {
     submitBtn.textContent = SUBMIT_PENDING_LABEL;
     errorMsg.classList.remove("visible");
 
-    const readingApiUrl = new URL("api/reading", window.location.href).href;
-    const thankYouUrl = new URL("thankyou.php", window.location.href).href;
+    const readingApiUrl = siteUrl("api/reading");
+    const thankYouUrl = funnelUrl("thankyou.php");
 
     try {
       const res = await fetch(readingApiUrl, {
@@ -428,6 +430,14 @@ if (readingForm && submitBtn && errorMsg && pick) {
       if (!res.ok) throw new Error(data.error || "Server error");
 
       await submitKitEmbedAfterUnlock(name, email, data.kitEmbedFields);
+
+      storeSalesHandoff({
+        firstName: name,
+        cards: pick.map((card) => ({
+          name: card.name,
+          imageUrl: `${IMG_BASE}${card.slug}.png`,
+        })),
+      });
 
       try {
         sessionStorage.removeItem(READING_PICK_KEY);
