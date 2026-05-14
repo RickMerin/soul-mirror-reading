@@ -1,4 +1,18 @@
-/* Kit embed form inside unlock-reading — styled to match .form-box in 50-modal-form.css */
+/* Kit embed form inside unlock-reading — hidden mount for programmatic submit */
+.kit-form-embed-root[aria-hidden="true"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Visible Kit embed form — styled to match .form-box in 50-modal-form.css */
 .kit-form-embed-root {
   width: 100%;
 }
