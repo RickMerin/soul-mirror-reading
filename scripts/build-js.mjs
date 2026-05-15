@@ -9,7 +9,6 @@ await esbuild.build({
   entryPoints: {
     home: path.join(root, "frontend", "js", "home.js"),
     sales: path.join(root, "frontend", "js", "sales.js"),
-    "sales-v2": path.join(root, "frontend", "js", "sales-v2.js"),
     thankyou: path.join(root, "frontend", "js", "thankyou.js"),
     "unlock-reading": path.join(root, "frontend", "js", "unlock-reading.js"),
   },
