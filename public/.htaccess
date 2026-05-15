@@ -32,18 +32,48 @@ Options -Indexes
     RewriteRule ^api/reading$ api/reading.php [L]
     RewriteRule ^api/clickbank-ins$ api/clickbank-ins.php [L]
 
-    # When docroot is the repo root, browsers may hit /public/v2/; canonical funnel URL is /v2/.
+    # Legacy /v2/ funnel (removed) → root public pages
+    RewriteRule ^v2/?$ / [R=301,L]
+    RewriteRule ^v2/index\.php$ / [R=301,L]
+    RewriteRule ^v2/sales\.php$ /sales.php [R=301,L]
+    RewriteRule ^v2/thankyou\.php$ /thankyou.php [R=301,L]
+    RewriteRule ^v2/unlock-reading\.php$ /unlock-reading.php [R=301,L]
+
+    # When docroot is above public/, browsers may still hit .../public/v2/ — send to root funnel
+    RewriteCond %{REQUEST_URI} ^/public/v2/index\.php$
+    RewriteRule .* / [R=301,L]
+
+    RewriteCond %{REQUEST_URI} ^/public/v2/sales\.php$
+    RewriteRule .* /sales.php [R=301,L]
+
+    RewriteCond %{REQUEST_URI} ^/public/v2/thankyou\.php$
+    RewriteRule .* /thankyou.php [R=301,L]
+
+    RewriteCond %{REQUEST_URI} ^/public/v2/unlock-reading\.php$
+    RewriteRule .* /unlock-reading.php [R=301,L]
+
+    RewriteCond %{REQUEST_URI} ^/public/v2/?$
+    RewriteRule .* / [R=301,L]
+
     RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/index\.php
-    RewriteCond %{REQUEST_URI} ^(.*)/public/v2/index\.php$
-    RewriteRule ^v2/index\.php$ %1/v2/ [R=301,L]
+    RewriteCond %{REQUEST_URI} ^(.+)/public/v2/index\.php$
+    RewriteRule .* %1/ [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/sales\.php
+    RewriteCond %{REQUEST_URI} ^(.+)/public/v2/sales\.php$
+    RewriteRule .* %1/sales.php [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/thankyou\.php
+    RewriteCond %{REQUEST_URI} ^(.+)/public/v2/thankyou\.php$
+    RewriteRule .* %1/thankyou.php [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/unlock-reading\.php
+    RewriteCond %{REQUEST_URI} ^(.+)/public/v2/unlock-reading\.php$
+    RewriteRule .* %1/unlock-reading.php [R=301,L]
 
     RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/?[\s?]
-    RewriteCond %{REQUEST_URI} ^(.*)/public/v2/?$
-    RewriteRule ^v2/?$ %1/v2/ [R=301,L]
-
-    RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/
-    RewriteCond %{REQUEST_URI} ^(.*)/public/v2/(.+)$
-    RewriteRule ^v2/.+$ %1/v2/%2 [R=301,L]
+    RewriteCond %{REQUEST_URI} ^(.+)/public/v2/?$
+    RewriteRule .* %1/ [R=301,L]
 
 </IfModule>
 

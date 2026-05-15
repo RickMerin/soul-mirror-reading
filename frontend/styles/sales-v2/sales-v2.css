@@ -1020,6 +1020,16 @@
     /* FAQ */
     .faq summary { font-size: 16px; }
     .faq-a { font-size: 14px; }
+
+    .site-footer {
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .footer-legal-copy {
+      font-size: 14px;
+      line-height: 1.7;
+    }
   }
 
   /* Smaller phones (iPhone SE, etc.) */
@@ -1072,19 +1082,49 @@
   z-index: 1;
 }
 
-.site-footer {
-  position: relative;
-  z-index: 1;
-  padding: 40px 24px 56px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 13px;
-  line-height: 1.7;
-}
+  /* ══ FOOTER (same look as pre–v2 root public/sales.php) ══ */
+  .site-footer {
+    background: #2a1252;
+    color: var(--text-muted);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-align: center;
+    padding: 28px 24px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
 
-.site-footer a {
-  color: var(--gold-light);
-}
+  .site-footer a {
+    color: rgba(241, 214, 150, 0.78);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: #ffe7a8;
+  }
+
+  .footer-legal-copy {
+    max-width: 860px;
+    margin: 0 auto;
+    letter-spacing: 0.02em;
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--text-muted);
+  }
+
+  .footer-legal-copy p {
+    margin-bottom: 10px;
+  }
+
+  .footer-links {
+    margin-top: 14px;
+  }
+
+  .footer-links a {
+    white-space: nowrap;
+  }
 
 @keyframes auroraFloat {
   0% {
