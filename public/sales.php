@@ -4,7 +4,7 @@ $cssPath = __DIR__ . '/assets/sales-bundle.min.css';
 $cssVer = is_file($cssPath) ? filemtime($cssPath) : time();
 $jsPath = __DIR__ . '/assets/sales.min.js';
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
-$checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-2&cbfid=63301&exitoffer=exit-1';
+$checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-3&cbfid=63301&exitoffer=exit-1';
 ?>
 <!DOCTYPE html>
 <html lang="en">
