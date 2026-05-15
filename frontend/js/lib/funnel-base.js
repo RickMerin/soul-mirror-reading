@@ -1,5 +1,5 @@
 /**
- * @returns {string} Normalized funnel prefix from `data-funnel-base`, e.g. "" or "staging/"
+ * @returns {string} Normalized funnel prefix, e.g. "" or "v2/"
  */
 export function getFunnelBase() {
   const raw = document.documentElement.getAttribute("data-funnel-base") ?? "";
