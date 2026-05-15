@@ -598,6 +598,7 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
 
   </main>
 
+  <!-- ══ FOOTER ══ -->
   <footer class="site-footer js-reveal">
     <div class="footer-legal-copy">
       <p>ClickBank is the retailer of products on this site. CLICKBANK® is a registered trademark of Click Sales, Inc.,

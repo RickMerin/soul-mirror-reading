@@ -1072,18 +1072,60 @@
   z-index: 1;
 }
 
+/* Footer — matches frontend/styles/sales/sales.css (sales page) */
 .site-footer {
+  background: #2a1252;
+  color: rgba(252, 248, 255, 0.95);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: 28px 24px;
+  line-height: 1.7;
   position: relative;
   z-index: 1;
-  padding: 40px 24px 56px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 13px;
-  line-height: 1.7;
 }
 
 .site-footer a {
-  color: var(--gold-light);
+  color: rgba(241, 214, 150, 0.78);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #ffe7a8;
+}
+
+.footer-legal-copy {
+  max-width: 860px;
+  margin: 0 auto;
+  letter-spacing: 0.02em;
+  font-size: 13px;
+  line-height: 1.75;
+  color: rgba(252, 248, 255, 0.95);
+}
+
+.footer-legal-copy p {
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  margin-top: 14px;
+}
+
+.footer-links a {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  .footer-legal-copy {
+    font-size: 14px;
+    line-height: 1.7;
+  }
 }
 
 @keyframes auroraFloat {
