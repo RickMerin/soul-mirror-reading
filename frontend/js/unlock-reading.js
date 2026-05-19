@@ -165,9 +165,22 @@ function setControlledField(form, spec, value) {
  * @param {HTMLFormElement} form
  * @param {Record<string, string>} kitEmbedFields
  */
+const KIT_READING_FIELD_NAMES = new Set([
+  "fields[love_reading]",
+  "fields[life_reading]",
+  "fields[wealth_reading]",
+  "fields[love_card]",
+  "fields[life_card]",
+  "fields[wealth_card]",
+  "fields[love_card_image]",
+  "fields[life_card_image]",
+  "fields[wealth_card_image]",
+]);
+
 function applyKitEmbedFields(form, kitEmbedFields) {
   for (const [fieldName, value] of Object.entries(kitEmbedFields)) {
-    if (!fieldName || value === "") continue;
+    if (!fieldName) continue;
+    if (value === "" && !KIT_READING_FIELD_NAMES.has(fieldName)) continue;
     setControlledField(form, { names: [fieldName] }, value);
   }
 }

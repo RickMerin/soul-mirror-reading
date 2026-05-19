@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Tests;
 
 use App\Application\ReadingOrchestrator;
+use App\Application\ReadingServiceFactory;
 use App\Config\AppConfig;
 use App\Domain\CardImageUrlBuilder;
 use App\Domain\SunSignResolver;
 use App\Logging\PipelineLogger;
-use App\Services\AstrologyApiClient;
 use App\Services\KitService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -21,26 +21,11 @@ final class ReadingOrchestratorPipelineTest extends TestCase
 {
     private function pipelineAppConfig(string $logPath): AppConfig
     {
-        return new AppConfig(
-            astroUserId: 'astro-user',
-            astroApiKey: 'astro-secret',
-            kitApiKey: 'kit-secret',
-            kitTagName: 'soul-mirror-leads',
-            kitTagNameBuyer: 'soul-mirror-buyers',
-            kitFormUid: '87bff9e0cc',
-            kitFormEmbedScript: '',
-            kitFormEmbedUid: '',
-            kitFormSubscribeVia: 'api',
+        return TestAppConfig::make(
+            tarotSource: 'api',
+            sunSource: 'api',
             pipelineFileLog: true,
             pipelineLogPath: $logPath,
-            sslCaBundlePath: '',
-            dbHost: '127.0.0.1',
-            dbPort: 3306,
-            dbName: '',
-            dbUser: '',
-            dbPass: '',
-            appBaseUrl: 'https://example.test',
-            clickbankInsSlackWebhookUrl: '',
         );
     }
 
@@ -92,7 +77,8 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             new Response(200, [], json_encode(['prediction' => ['personal_life' => 'p']], JSON_THROW_ON_ERROR)),
             new Response(200, [], json_encode(['custom_fields' => $this->allKitCustomFieldEntries()], JSON_THROW_ON_ERROR)),
             new Response(200, [], '{"subscriber":{"id":1}}'),
-            new Response(200, [], '{"subscription":{"id":11}}'),
+            new Response(200, [], json_encode(['forms' => [['id' => 217, 'uid' => '87bff9e0cc']]], JSON_THROW_ON_ERROR)),
+            new Response(201, [], '{"subscriber":{"id":1}}'),
             new Response(200, [], json_encode(['tags' => [['id' => 7, 'name' => 'soul-mirror-leads']]], JSON_THROW_ON_ERROR)),
             new Response(200, [], '{}'),
         ]);
@@ -100,7 +86,8 @@ final class ReadingOrchestratorPipelineTest extends TestCase
 
         $orchestrator = new ReadingOrchestrator(
             $config,
-            new AstrologyApiClient($config, $client),
+            ReadingServiceFactory::tarotProvider($config, $client),
+            ReadingServiceFactory::sunSignProvider($config, $client),
             new KitService($config, $client),
             new SunSignResolver(),
             new CardImageUrlBuilder(),
@@ -121,7 +108,7 @@ final class ReadingOrchestratorPipelineTest extends TestCase
 
         $this->assertFileExists($logPath);
         $log = (string) file_get_contents($logPath);
-        $this->assertStringContainsString('kit: subscriber upsert ok', $log);
+        $this->assertStringContainsString('kit: subscriber upsert ok (readings on custom fields)', $log);
         $this->assertStringContainsString('kit: form_subscribe ok uid=87bff9e0cc', $log);
         $this->assertStringContainsString('kit: tag applied tag=soul-mirror-leads', $log);
 
@@ -135,36 +122,29 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             unlink($logPath);
         }
 
-        $config = new AppConfig(
-            astroUserId: 'astro-user',
-            astroApiKey: 'astro-secret',
-            kitApiKey: 'kit-secret',
-            kitTagName: 'soul-mirror-leads',
-            kitTagNameBuyer: 'soul-mirror-buyers',
-            kitFormUid: '87bff9e0cc',
-            kitFormEmbedScript: 'https://example.kit.com/87bff9e0cc/index.js',
-            kitFormEmbedUid: '87bff9e0cc',
-            kitFormSubscribeVia: 'embed',
+        $config = TestAppConfig::make(
+            tarotSource: 'api',
+            sunSource: 'api',
             pipelineFileLog: true,
             pipelineLogPath: $logPath,
-            sslCaBundlePath: '',
-            dbHost: '127.0.0.1',
-            dbPort: 3306,
-            dbName: '',
-            dbUser: '',
-            dbPass: '',
-            appBaseUrl: 'https://example.test',
-            clickbankInsSlackWebhookUrl: '',
+            kitFormSubscribeVia: 'embed',
+            kitFormEmbedScript: 'https://example.kit.com/87bff9e0cc/index.js',
+            kitFormEmbedUid: '87bff9e0cc',
         );
         $mock = new MockHandler([
             new Response(200, [], json_encode(['love' => 'L', 'career' => 'C', 'finance' => 'F'], JSON_THROW_ON_ERROR)),
             new Response(200, [], json_encode(['prediction' => ['personal_life' => 'p']], JSON_THROW_ON_ERROR)),
+            new Response(200, [], json_encode(['custom_fields' => $this->allKitCustomFieldEntries()], JSON_THROW_ON_ERROR)),
+            new Response(200, [], '{"subscriber":{"id":1}}'),
+            new Response(200, [], json_encode(['tags' => [['id' => 7, 'name' => 'soul-mirror-leads']]], JSON_THROW_ON_ERROR)),
+            new Response(200, [], '{}'),
         ]);
         $client = new Client(['handler' => HandlerStack::create($mock)]);
 
         $orchestrator = new ReadingOrchestrator(
             $config,
-            new AstrologyApiClient($config, $client),
+            ReadingServiceFactory::tarotProvider($config, $client),
+            ReadingServiceFactory::sunSignProvider($config, $client),
             new KitService($config, $client),
             new SunSignResolver(),
             new CardImageUrlBuilder(),
@@ -180,9 +160,10 @@ final class ReadingOrchestratorPipelineTest extends TestCase
         $this->assertSame('The Fool', $kitEmbedFields['fields[love_card]']);
         $this->assertSame('L', $kitEmbedFields['fields[love_reading]']);
         $log = (string) file_get_contents($logPath);
-        $this->assertStringContainsString('kit: api_capture skipped (strategy=embed; lead via form)', $log);
-        $this->assertStringNotContainsString('kit: subscriber upsert ok', $log);
-        $this->assertStringNotContainsString('kit: tag applied tag=', $log);
+        $this->assertStringContainsString('kit: subscriber upsert ok (readings on custom fields)', $log);
+        $this->assertStringContainsString('kit: embed handoff', $log);
+        $this->assertStringContainsString('kit: tag applied tag=soul-mirror-leads', $log);
+        $this->assertStringNotContainsString('kit: form_subscribe ok', $log);
 
         unlink($logPath);
     }
@@ -205,7 +186,8 @@ final class ReadingOrchestratorPipelineTest extends TestCase
 
         $orchestrator = new ReadingOrchestrator(
             $config,
-            new AstrologyApiClient($config, $client),
+            ReadingServiceFactory::tarotProvider($config, $client),
+            ReadingServiceFactory::sunSignProvider($config, $client),
             new KitService($config, $client),
             new SunSignResolver(),
             new CardImageUrlBuilder(),
@@ -220,5 +202,70 @@ final class ReadingOrchestratorPipelineTest extends TestCase
         $this->assertStringContainsString('kit: fail', $log);
 
         unlink($logPath);
+    }
+
+    public function testSuccessfulRunWithLocalTarotAndSunWithoutAstroHttp(): void
+    {
+        $configNoAstro = new AppConfig(
+            astroUserId: '',
+            astroApiKey: '',
+            tarotSource: 'local',
+            sunSource: 'local',
+            dataDir: \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data',
+            sunSignTimezone: 'UTC',
+            kitApiKey: 'kit-secret',
+            kitTagName: 'soul-mirror-leads',
+            kitTagNameBuyer: 'soul-mirror-buyers',
+            kitFormUid: '87bff9e0cc',
+            kitFormEmbedScript: '',
+            kitFormEmbedUid: '',
+            kitFormSubscribeVia: 'none',
+            pipelineFileLog: false,
+            pipelineLogPath: '',
+            sslCaBundlePath: '',
+            dbHost: '127.0.0.1',
+            dbPort: 3306,
+            dbName: '',
+            dbUser: '',
+            dbPass: '',
+            appBaseUrl: 'https://example.test',
+            clickbankInsSlackWebhookUrl: '',
+        );
+
+        $client = new Client(['handler' => HandlerStack::create(new MockHandler([]))]);
+
+        $orchestrator = new ReadingOrchestrator(
+            $configNoAstro,
+            ReadingServiceFactory::tarotProvider($configNoAstro, $client),
+            ReadingServiceFactory::sunSignProvider($configNoAstro, $client),
+            new KitService($configNoAstro, $client),
+            new SunSignResolver(),
+            new CardImageUrlBuilder(),
+            new PipelineLogger($configNoAstro),
+            null,
+        );
+
+        $fixtureSun = \dirname(__DIR__) . '/data/sun-sign/2026-05-19.json';
+        if (!is_readable($fixtureSun)) {
+            $this->markTestSkipped('Sun fixture missing for local orchestrator test.');
+        }
+        $sunDir = $configNoAstro->sunSignDataDir();
+        if (!is_dir($sunDir)) {
+            mkdir($sunDir, 0755, true);
+        }
+        $todayUtc = (new \DateTimeImmutable('now', new \DateTimeZone('UTC')))->format('Y-m-d');
+        $todayFile = $sunDir . DIRECTORY_SEPARATOR . $todayUtc . '.json';
+        if (!is_readable($todayFile)) {
+            copy($fixtureSun, $todayFile);
+        }
+
+        $result = $orchestrator->run($this->validReadingBody());
+
+        $this->assertSame(200, $result->httpStatus);
+        $kitEmbedFields = $result->json['kitEmbedFields'] ?? null;
+        $this->assertIsArray($kitEmbedFields);
+        $this->assertNotSame('', trim($kitEmbedFields['fields[love_reading]'] ?? ''));
+        $this->assertSame('aries', $kitEmbedFields['fields[sun_sign]'] ?? '');
+        $this->assertNotSame('', trim($kitEmbedFields['fields[sun_personal_life]'] ?? ''));
     }
 }
