@@ -75,6 +75,9 @@
   }
   .vsl-sub strong { color: #fff; font-weight: 600; }
   .vsl-sub em { color: var(--gold-light); font-style: italic; }
+  .vsl-sub--watch {
+    margin-top: -8px;
+  }
 
   /* VSL frame */
   .video-frame {

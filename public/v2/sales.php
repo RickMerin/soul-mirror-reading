@@ -43,7 +43,7 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
   <main id="main-content">
 <!-- TOP NOTICE BAR -->
 <div class="topnotice">
-  <strong><span class="firstname">Friend</span>, Your Soul Tarot Reading Is On Its Way:</strong><span class="notice-dot">·</span>There Is a 4th Card You Did Not See.<span class="notice-dot">·</span><strong>Read This Before It Lands.</strong>
+  <strong><span class="firstname">Friend</span>, Your Soul Tarot Reading Is On Its Way</strong><span class="notice-dot">·</span>We Decoded Your 3 Cards<span class="notice-dot">·</span><strong>Read This Before Your Reading Lands.</strong>
 </div>
 
 <!-- ═══════════════════════════════════════════════
@@ -51,9 +51,9 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
      ═══════════════════════════════════════════════ -->
 <section class="vsl-section">
   <div class="wrap">
-    <h1 class="vsl-headline"><span class="firstname">Friend</span>, One Card Fell Out Before<br><em>Your Reading Even Began</em></h1>
-    <p class="vsl-sub">Face-up. Uninvited. A direct message from the universe that refuses to be ignored. Yours revealed the one belief running silently behind all three of your mirrors. <strong>Your Mirror Block.</strong></p>
-    <p class="vsl-sub" style="margin-top:-8px;"><em>The message came through. Watch now.<br>This is the part most people never get told.</em></p>
+    <h1 class="vsl-headline"><span class="firstname">Friend</span>, We Decoded the Three Cards You Drew.<br><em>One Pattern Underneath All of Them.</em></h1>
+    <p class="vsl-sub">It is not three separate cards. It is one belief, wearing three different masks across your love, your money, and your purpose. The combination you drew has already been mapped to one specific pattern. <strong>Your Mirror Block.</strong></p>
+    <p class="vsl-sub vsl-sub--watch"><em>The mapping is done. Watch now.<br>This is the part most people never get told.</em></p>
 
     <div class="video-frame">
       <vturb-smartplayer id="vid-6a03e48213e119642182af7b"
