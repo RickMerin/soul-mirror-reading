@@ -11,21 +11,22 @@ use App\Domain\KitEmbedFieldMap;
 use App\Domain\SunSignResolver;
 use App\Logging\PipelineLogger;
 use App\Repository\LeadRepository;
-use App\Services\AstrologyApiClient;
 use App\Services\AstrologyApiException;
+use App\Services\KitApiException;
 use App\Services\KitService;
+use App\Services\SunSignPredictionProvider;
+use App\Services\TarotPredictionProvider;
 use Throwable;
 
 /**
- * Orchestrates validation → AstrologyAPI (tarot + optional sun) → Kit subscriber + tag.
- *
- * This is the single application use-case for submitting a three-card reading.
+ * Orchestrates validation → tarot + sun readings → Kit subscriber + tag.
  */
 final class ReadingOrchestrator
 {
     public function __construct(
         private readonly AppConfig $config,
-        private readonly AstrologyApiClient $astrology,
+        private readonly TarotPredictionProvider $tarot,
+        private readonly SunSignPredictionProvider $sunSign,
         private readonly KitService $kit,
         private readonly SunSignResolver $sunSignResolver,
         private readonly CardImageUrlBuilder $cardImages,
@@ -58,14 +59,15 @@ final class ReadingOrchestrator
         $c2 = $form->card2;
         $c3 = $form->card3;
 
-        if ($this->config->astroUserId === '' || $this->config->astroApiKey === '') {
+        if ($this->config->needsAstroApiCredentials()
+            && ($this->config->astroUserId === '' || $this->config->astroApiKey === '')) {
             error_log('ReadingOrchestrator: AstrologyAPI credentials missing');
             $this->pipelineLog->line('abort: AstrologyAPI credentials missing');
 
             return new ReadingResult(500, ['error' => 'Internal server error.']);
         }
 
-        if ($this->config->kitApiKey === '' && $this->config->kitFormSubscribeVia === 'api') {
+        if ($this->config->kitApiKey === '' && $this->config->kitFormSubscribeVia !== 'none') {
             error_log('ReadingOrchestrator: KIT_API_KEY missing');
             $this->pipelineLog->line('abort: KIT_API_KEY missing');
 
@@ -96,8 +98,8 @@ final class ReadingOrchestrator
         }
 
         try {
-            $reading = $this->astrology->fetchTarotPredictions($c1, $c2, $c3);
-            $this->pipelineLog->line('tarot_predictions: ok');
+            $reading = $this->tarot->predict($c1, $c2, $c3);
+            $this->pipelineLog->line('tarot_predictions: ok source=' . $this->config->tarotSource);
         } catch (AstrologyApiException $e) {
             $this->pipelineLog->line('tarot_predictions: fail (' . $e->getMessage() . ')');
 
@@ -109,17 +111,21 @@ final class ReadingOrchestrator
             return new ReadingResult(500, ['error' => 'Internal server error.']);
         }
 
-        $loveText = is_string($reading['love'] ?? null) ? $reading['love'] : '';
-        $lifeText = is_string($reading['career'] ?? null) ? $reading['career'] : '';
-        $wealthText = is_string($reading['finance'] ?? null) ? $reading['finance'] : '';
+        $loveText = $reading->love;
+        $lifeText = $reading->career;
+        $wealthText = $reading->finance;
 
         $sunSign = $this->sunSignResolver->fromDobString($dob !== '' ? $dob : null);
         $sunPrediction = [];
         if ($sunSign !== null) {
-            $sunPrediction = $this->astrology->fetchSunPrediction($sunSign);
+            $sunPrediction = $this->sunSign->forSign($sunSign);
             error_log('Sun sign resolved for reading request: ' . $sunSign);
             $nonEmpty = array_filter($sunPrediction, static fn (string $v): bool => $v !== '');
-            $this->pipelineLog->line('sun_sign_prediction: sign=' . $sunSign . ' fields_filled=' . (string) count($nonEmpty));
+            $this->pipelineLog->line(
+                'sun_sign_prediction: sign=' . $sunSign
+                . ' source=' . $this->config->sunSource
+                . ' fields_filled=' . (string) count($nonEmpty),
+            );
         } else {
             $this->pipelineLog->line('sun_sign_prediction: skipped (no sign from DOB)');
         }
@@ -149,22 +155,15 @@ final class ReadingOrchestrator
 
         if ($this->config->kitFormSubscribeVia === 'none') {
             $this->pipelineLog->line('kit: skipped (strategy=none)');
-        } elseif ($this->config->kitFormSubscribeVia === 'embed') {
-            $this->pipelineLog->line('kit: api_capture skipped (strategy=embed; lead via form)');
         } else {
+            if ($loveText === '' || $lifeText === '' || $wealthText === '') {
+                $this->pipelineLog->line('kit: warning one or more tarot reading slots are empty');
+            }
             try {
-                $this->kit->ensureCustomFields();
-                $this->pipelineLog->line('kit: custom_fields ensured');
-                $this->kit->upsertSubscriber($subscriber);
-                $this->pipelineLog->line('kit: subscriber upsert ok');
-                if ($this->config->kitFormUid !== '') {
-                    $this->kit->subscribeLeadToConfiguredForm($email);
-                    $this->pipelineLog->line('kit: form_subscribe ok uid=' . $this->config->kitFormUid);
-                } else {
-                    $this->pipelineLog->line('kit: form_subscribe skipped (KIT_FORM_UID empty)');
+                $this->syncKitSubscriberWithReadings($subscriber, $email);
+                if ($this->config->kitFormSubscribeVia === 'embed') {
+                    $this->pipelineLog->line('kit: embed handoff (browser submits form with kitEmbedFields)');
                 }
-                $this->kit->tagSubscriber($email, $this->config->kitTagName, false);
-                $this->pipelineLog->line('kit: tag applied tag=' . $this->config->kitTagName);
             } catch (Throwable $e) {
                 error_log('ReadingOrchestrator Kit: ' . $e->getMessage());
                 $this->pipelineLog->line('kit: fail ' . $e::class . ' ' . $this->shortSafeMessage($e));
@@ -201,6 +200,51 @@ final class ReadingOrchestrator
             'leadUuid' => $leadUuid,
             'kitEmbedFields' => KitEmbedFieldMap::fromSubscriber($subscriber),
         ]);
+    }
+
+    /**
+     * @param array{
+     *   name: string,
+     *   email: string,
+     *   dob: string,
+     *   gender: string,
+     *   card1Name: string,
+     *   card2Name: string,
+     *   card3Name: string,
+     *   loveReading: string,
+     *   lifeReading: string,
+     *   wealthReading: string,
+     *   loveCardImage: string,
+     *   lifeCardImage: string,
+     *   wealthCardImage: string,
+     *   sunSign: string,
+     *   sunPersonalLife: string,
+     *   sunProfession: string,
+     *   sunHealth: string,
+     *   sunEmotions: string,
+     *   sunTravel: string,
+     *   sunLuck: string,
+     * } $subscriber
+     */
+    private function syncKitSubscriberWithReadings(array $subscriber, string $email): void
+    {
+        $this->kit->ensureCustomFields();
+        $this->pipelineLog->line('kit: custom_fields ensured');
+        $this->kit->upsertSubscriber($subscriber);
+        $this->pipelineLog->line('kit: subscriber upsert ok (readings on custom fields)');
+        if ($this->config->kitFormSubscribeVia === 'api' && $this->config->kitFormUid !== '') {
+            try {
+                $this->kit->subscribeLeadToConfiguredForm($email);
+                $this->pipelineLog->line('kit: form_subscribe ok uid=' . $this->config->kitFormUid);
+            } catch (KitApiException $e) {
+                $this->pipelineLog->line('kit: form_subscribe fail (non-fatal) ' . $this->shortSafeMessage($e));
+                error_log('ReadingOrchestrator Kit form subscribe: ' . $e->getMessage());
+            }
+        } elseif ($this->config->kitFormSubscribeVia === 'api') {
+            $this->pipelineLog->line('kit: form_subscribe skipped (KIT_FORM_UID empty)');
+        }
+        $this->kit->tagSubscriber($email, $this->config->kitTagName, false);
+        $this->pipelineLog->line('kit: tag applied tag=' . $this->config->kitTagName);
     }
 
     private function shortSafeMessage(Throwable $e): string

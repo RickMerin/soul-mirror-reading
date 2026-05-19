@@ -14,6 +14,8 @@ require $projectRoot . '/vendor/autoload.php';
 
 use App\Config\AppConfig;
 use App\Logging\PipelineLogger;
+use DateTimeImmutable;
+use DateTimeZone;
 
 $config = AppConfig::load($projectRoot);
 
@@ -26,9 +28,22 @@ echo 'Project root: ' . $projectRoot . PHP_EOL;
 echo '.env file: ' . (is_readable($projectRoot . DIRECTORY_SEPARATOR . '.env') ? 'readable' : 'not found or not readable') . PHP_EOL;
 echo PHP_EOL;
 
-$line('ASTRO_USER_ID', $config->astroUserId !== '');
-$line('ASTRO_API_KEY', $config->astroApiKey !== '');
+echo 'TAROT_SOURCE: ' . $config->tarotSource . PHP_EOL;
+echo 'SUN_SOURCE: ' . $config->sunSource . PHP_EOL;
+echo 'DATA_DIR: ' . $config->dataDir . PHP_EOL;
+echo 'SUN_SIGN_TIMEZONE: ' . $config->sunSignTimezone . PHP_EOL;
+$needsAstro = $config->needsAstroApiCredentials();
+$line('ASTRO_USER_ID', !$needsAstro || $config->astroUserId !== '');
+$line('ASTRO_API_KEY', !$needsAstro || $config->astroApiKey !== '');
 $line('KIT_API_KEY', $config->kitApiKey !== '');
+$line('data/tarot-predictions.json', $config->tarotSource !== 'local' || is_readable($config->tarotPredictionsPath()));
+try {
+    $sunTz = new DateTimeZone($config->sunSignTimezone);
+} catch (Exception) {
+    $sunTz = new DateTimeZone('UTC');
+}
+$todaySun = $config->sunSignDataDir() . DIRECTORY_SEPARATOR . (new DateTimeImmutable('now', $sunTz))->format('Y-m-d') . '.json';
+$line('data/sun-sign today file', $config->sunSource !== 'local' || is_readable($todaySun));
 echo 'KIT_TAG_NAME (resolved): ' . $config->kitTagName . PHP_EOL;
 echo 'KIT_TAG_NAME_BUYER (resolved): ' . $config->kitTagNameBuyer . PHP_EOL;
 echo 'SOUL_MIRROR_PIPELINE_LOG: ' . ($config->pipelineFileLog ? '1 (file log enabled)' : 'off') . PHP_EOL;

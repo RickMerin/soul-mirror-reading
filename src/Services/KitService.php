@@ -15,6 +15,9 @@ final class KitService
 {
     private const BASE = 'https://api.kit.com/v4/';
 
+    /** @var array<string, int>|null embed uid → numeric form id */
+    private ?array $formUidToNumericId = null;
+
     /** @var list<array{label: string, key: string}> */
     private const REQUIRED_FIELDS = [
         ['label' => 'Date of Birth', 'key' => 'date_of_birth'],
@@ -139,11 +142,42 @@ final class KitService
         if ($formUid === '' || trim($email) === '') {
             return;
         }
+        $formId = $this->resolveNumericFormId($formUid);
         $this->request(
             'POST',
-            'forms/' . rawurlencode($formUid) . '/subscribers',
-            ['email_address' => $email]
+            'forms/' . rawurlencode((string) $formId) . '/subscribers',
+            ['email_address' => $email],
         );
+    }
+
+    /**
+     * Kit v4 form routes use numeric form id; embed snippet uses a string uid (e.g. 87bff9e0cc).
+     */
+    private function resolveNumericFormId(string $formUidOrNumericId): int
+    {
+        if (preg_match('/^\d+$/', $formUidOrNumericId) === 1) {
+            return (int) $formUidOrNumericId;
+        }
+
+        if ($this->formUidToNumericId === null) {
+            $this->formUidToNumericId = [];
+            $res = $this->request('GET', 'forms');
+            foreach ($res['forms'] ?? [] as $form) {
+                if (!is_array($form) || !isset($form['id'], $form['uid'])) {
+                    continue;
+                }
+                $uid = trim((string) $form['uid']);
+                if ($uid !== '') {
+                    $this->formUidToNumericId[$uid] = (int) $form['id'];
+                }
+            }
+        }
+
+        if (!isset($this->formUidToNumericId[$formUidOrNumericId])) {
+            throw new KitApiException(404, 'Kit form not found for uid ' . $formUidOrNumericId);
+        }
+
+        return $this->formUidToNumericId[$formUidOrNumericId];
     }
 
     /**
