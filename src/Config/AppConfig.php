@@ -17,6 +17,12 @@ final class AppConfig
     public function __construct(
         public readonly string $astroUserId,
         public readonly string $astroApiKey,
+        /** local = data/tarot-predictions.json; api = live AstrologyAPI */
+        public readonly string $tarotSource,
+        /** local = data/sun-sign/YYYY-MM-DD.json; api = live AstrologyAPI */
+        public readonly string $sunSource,
+        public readonly string $dataDir,
+        public readonly string $sunSignTimezone,
         public readonly string $kitApiKey,
         public readonly string $kitTagName,
         /** Tag when ClickBank INS has no line-item SKUs; empty env falls back to {@see $kitTagName}. */
@@ -102,9 +108,35 @@ final class AppConfig
             $kitFormUid = trim($get('KIT_FORM_EMBED_UID'));
         }
 
+        $dataDir = $get('DATA_DIR');
+        if ($dataDir === '') {
+            $dataDir = $projectRoot . DIRECTORY_SEPARATOR . 'data';
+        } elseif (!str_contains($dataDir, ':\\') && !str_starts_with($dataDir, '/')) {
+            $dataDir = $projectRoot . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $dataDir);
+        }
+
+        $tarotSource = strtolower(trim($get('TAROT_SOURCE')));
+        if (!in_array($tarotSource, ['local', 'api'], true)) {
+            $tarotSource = 'local';
+        }
+
+        $sunSource = strtolower(trim($get('SUN_SOURCE')));
+        if (!in_array($sunSource, ['local', 'api'], true)) {
+            $sunSource = 'local';
+        }
+
+        $sunTz = trim($get('SUN_SIGN_TIMEZONE'));
+        if ($sunTz === '') {
+            $sunTz = 'UTC';
+        }
+
         return new self(
             astroUserId: $get('ASTRO_USER_ID'),
             astroApiKey: $get('ASTRO_API_KEY'),
+            tarotSource: $tarotSource,
+            sunSource: $sunSource,
+            dataDir: $dataDir,
+            sunSignTimezone: $sunTz,
             kitApiKey: $get('KIT_API_KEY'),
             kitTagName: $kitTagName,
             kitTagNameBuyer: $kitTagNameBuyer,
@@ -151,6 +183,21 @@ final class AppConfig
     public function hasDatabaseConfig(): bool
     {
         return $this->dbName !== '' && $this->dbUser !== '';
+    }
+
+    public function needsAstroApiCredentials(): bool
+    {
+        return $this->tarotSource === 'api' || $this->sunSource === 'api';
+    }
+
+    public function tarotPredictionsPath(): string
+    {
+        return $this->dataDir . DIRECTORY_SEPARATOR . 'tarot-predictions.json';
+    }
+
+    public function sunSignDataDir(): string
+    {
+        return $this->dataDir . DIRECTORY_SEPARATOR . 'sun-sign';
     }
 
     /**

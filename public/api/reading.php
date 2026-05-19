@@ -9,13 +9,13 @@ declare(strict_types=1);
  */
 
 use App\Application\ReadingOrchestrator;
+use App\Application\ReadingServiceFactory;
 use App\Config\AppConfig;
 use App\Domain\CardImageUrlBuilder;
 use App\Domain\SunSignResolver;
 use App\Infrastructure\DatabaseConnection;
 use App\Logging\PipelineLogger;
 use App\Repository\LeadRepository;
-use App\Services\AstrologyApiClient;
 use App\Services\KitService;
 use GuzzleHttp\Client;
 
@@ -76,7 +76,8 @@ if ($config->hasDatabaseConfig()) {
 }
 $orchestrator = new ReadingOrchestrator(
     $config,
-    new AstrologyApiClient($config, $http),
+    ReadingServiceFactory::tarotProvider($config, $http),
+    ReadingServiceFactory::sunSignProvider($config, $http),
     new KitService($config, $http),
     new SunSignResolver(),
     new CardImageUrlBuilder(),

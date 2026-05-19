@@ -33,26 +33,10 @@ final class KitServiceTest extends TestCase
 
     private function kitConfig(): AppConfig
     {
-        return new AppConfig(
-            astroUserId: '',
-            astroApiKey: '',
-            kitApiKey: 'test-kit-api-key',
-            kitTagName: 'soul-mirror-leads',
-            kitTagNameBuyer: 'soul-mirror-buyers',
-            kitFormUid: '87bff9e0cc',
-            kitFormEmbedScript: '',
-            kitFormEmbedUid: '',
+        return TestAppConfig::make(
+            tarotSource: 'local',
+            sunSource: 'local',
             kitFormSubscribeVia: 'api',
-            pipelineFileLog: false,
-            pipelineLogPath: '',
-            sslCaBundlePath: '',
-            dbHost: '127.0.0.1',
-            dbPort: 3306,
-            dbName: '',
-            dbUser: '',
-            dbPass: '',
-            appBaseUrl: '',
-            clickbankInsSlackWebhookUrl: '',
         );
     }
 
@@ -153,10 +137,27 @@ final class KitServiceTest extends TestCase
     public function testSubscribeLeadToConfiguredFormPostsToKitFormEndpoint(): void
     {
         $mock = new MockHandler([
-            new Response(200, [], json_encode(['subscription' => ['id' => 99]], JSON_THROW_ON_ERROR)),
+            new Response(200, [], json_encode([
+                'forms' => [['id' => 217, 'uid' => '87bff9e0cc', 'name' => 'Unlock']],
+            ], JSON_THROW_ON_ERROR)),
+            new Response(201, [], json_encode(['subscriber' => ['id' => 99]], JSON_THROW_ON_ERROR)),
         ]);
         $client = new Client(['handler' => HandlerStack::create($mock)]);
         $kit = new KitService($this->kitConfig(), $client);
+
+        $kit->subscribeLeadToConfiguredForm('lead@example.com');
+
+        $this->assertSame(0, $mock->count());
+    }
+
+    public function testSubscribeLeadToConfiguredFormAcceptsNumericFormId(): void
+    {
+        $mock = new MockHandler([
+            new Response(201, [], json_encode(['subscriber' => ['id' => 99]], JSON_THROW_ON_ERROR)),
+        ]);
+        $config = TestAppConfig::make(kitFormUid: '217');
+        $client = new Client(['handler' => HandlerStack::create($mock)]);
+        $kit = new KitService($config, $client);
 
         $kit->subscribeLeadToConfiguredForm('lead@example.com');
 
