@@ -296,8 +296,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <!-- ── SUCCESS ─────────────────────────────── -->
   <section class="success-section" id="successSection">
     <div class="success-icon">✦</div>
-    <h2>Your Reading Is On Its Way</h2>
-    <p>Your three cards have named your Mirror Block.<br>Check your inbox. The reading explaining what it is, and how to clear it, is loading now.</p>
+    <h2>Your 3 Cards Are On Their Way</h2>
+    <p>Check your inbox in the next 2 minutes for your 3-card preview. Read it slowly.<br>It's the doorway in. Your full Soul Mirror Reading is what walks you through it.</p>
   </section>
 
   <footer class="site-footer wavy">
