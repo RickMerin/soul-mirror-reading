@@ -52,8 +52,9 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     <section class="thankyou-card" aria-labelledby="thankyouHeading">
       <div class="eyebrow">3 Card Tarot Reading</div>
       <h1 id="thankyouHeading">Your reading is <em>on its way</em></h1>
-      <p class="lead">Check your inbox for your personalized 3 Card Soul Reading. If you do not see it within a few
+      <p class="lead">Check your inbox for your personalized 3 Card Reading. If you do not see it within a few
         minutes, peek in your promotions or spam folder.</p>
+      <p class="lead">One belief showed up across all three of your cards. Your free preview points at it. Your Soul Mirror Reading is what names it by type and walks you through clearing it.</p>
 
       <div class="countdown-shell">
         <div class="countdown-ring" role="img" aria-label="Redirect countdown timer">

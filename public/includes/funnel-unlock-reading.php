@@ -109,9 +109,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 
   <main class="unlock-main unlock-page" aria-labelledby="unlockTitle">
     <div class="unlock-panel">
-      <h1 id="unlockTitle">Your Reading Is Ready.</h1>
-      <p class="form-sub">The mirror has seen what others have missed.<br>Enter your details now and we'll send your
-        full reading directly to you.</p>
+      <h1 id="unlockTitle">Your 3 Cards Are Locked In.</h1>
+      <p class="form-sub">Where should we send your free 3-card preview?<br>Your full Soul Mirror Reading comes after.<br>Add your details below. It lands within minutes.</p>
 
       <div class="chosen-recap" id="chosenRecap"></div>
 
@@ -162,9 +161,9 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
             </select>
           </div>
           <button type="submit" class="submit-btn is-invalid" id="submitBtn" disabled>
-            Unlock My Reading &nbsp;→
+            Send My Free 3 Cards &nbsp;→
           </button>
-          <p class="form-privacy">Your reading arrives within minutes. Your information is never shared.</p>
+          <p class="form-privacy">By entering your email, you're joining our mailing list and agree to receive our daily newsletter. You can unsubscribe at any time. Your information is never shared.</p>
           <div class="error-msg" id="errorMsg" role="alert" aria-live="assertive"></div>
         </form>
       </div>

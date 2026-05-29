@@ -221,8 +221,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <header class="site-header">
     <div class="header-eyebrow">☽ &nbsp; Soul Mirror Reading &nbsp; ☾</div>
     <h1>The Mirror Sees What<br><em>You've Been Too Afraid to Look At.</em></h1>
-    <p class="header-sub">Pick 3 cards and discover what's truly keeping you stuck:<br>in love, in life, in the wealth
-      you deserve.</p>
+    <p class="header-sub">Pick 3 cards. Your free reading begins to reveal the shape of the one belief<br>quietly running your love, your life, and your wealth at once.</p>
   </header>
 
   <!-- ── CARD PICKER ────────────────────────── -->
@@ -285,8 +284,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
         </div>
         <div class="prompt-wrap">
           <div class="sm-prompt" id="smPrompt">
-            Think of what feels unresolved right now.<br>
-            Hold it in your heart — and <em>choose your first card.</em>
+            While you shuffle, the deck is searching for the one belief showing up in your love, your money, and your purpose at the same time.<br>
+            Hold what feels unresolved. <em>Choose your first card.</em>
           </div>
         </div>
       </div>
@@ -297,8 +296,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <!-- ── SUCCESS ─────────────────────────────── -->
   <section class="success-section" id="successSection">
     <div class="success-icon">✦</div>
-    <h2>Your Reading Is On Its Way</h2>
-    <p>The mirror has reflected your truth.<br>Check your inbox — your Soul Mirror Reading has been sent to you.</p>
+    <h2>Your 3 Cards Are On Their Way</h2>
+    <p>Check your inbox in the next 2 minutes for your 3-card preview. Read it slowly.<br>It's the doorway in. Your full Soul Mirror Reading is what walks you through it.</p>
   </section>
 
   <footer class="site-footer wavy">
