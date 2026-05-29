@@ -45,6 +45,32 @@ Options -Indexes
     RewriteCond %{REQUEST_URI} ^(.*)/public/v2/(.+)$
     RewriteRule ^v2/.+$ %1/v2/%2 [R=301,L]
 
+    # When docroot is the repo root, browsers may hit /public/love/; canonical funnel URL is /love/.
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/love/index\.php
+    RewriteCond %{REQUEST_URI} ^(.*)/public/love/index\.php$
+    RewriteRule ^love/index\.php$ %1/love/ [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/love/?[\s?]
+    RewriteCond %{REQUEST_URI} ^(.*)/public/love/?$
+    RewriteRule ^love/?$ %1/love/ [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/love/
+    RewriteCond %{REQUEST_URI} ^(.*)/public/love/(.+)$
+    RewriteRule ^love/.+$ %1/love/%2 [R=301,L]
+
+    # When docroot is the repo root, browsers may hit /public/purpose/; canonical funnel URL is /purpose.
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/purpose/index\.php
+    RewriteCond %{REQUEST_URI} ^(.*)/public/purpose/index\.php$
+    RewriteRule ^purpose/index\.php$ %1/purpose [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/purpose/?[\s?]
+    RewriteCond %{REQUEST_URI} ^(.*)/public/purpose/?$
+    RewriteRule ^purpose/?$ %1/purpose [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/purpose/
+    RewriteCond %{REQUEST_URI} ^(.*)/public/purpose/(.+)$
+    RewriteRule ^purpose/.+$ %1/purpose/%2 [R=301,L]
+
 </IfModule>
 
 <IfModule mod_headers.c>
