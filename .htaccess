@@ -71,6 +71,31 @@ Options -Indexes
 
     RewriteRule ^api/reading$ public/api/reading.php [L]
 
+    # Canonical funnel URLs when docroot is repo root (browsers may hit /public/{funnel}/).
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/love/index\.php
+    RewriteCond %{REQUEST_URI} ^(.*)/public/love/index\.php$
+    RewriteRule ^public/love/index\.php$ %1/love/ [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/love/?[\s?]
+    RewriteCond %{REQUEST_URI} ^(.*)/public/love/?$
+    RewriteRule ^public/love/?$ %1/love/ [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/love/
+    RewriteCond %{REQUEST_URI} ^(.*)/public/love/(.+)$
+    RewriteRule ^public/love/.+$ %1/love/%2 [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/purpose/index\.php
+    RewriteCond %{REQUEST_URI} ^(.*)/public/purpose/index\.php$
+    RewriteRule ^public/purpose/index\.php$ %1/purpose [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/purpose/?[\s?]
+    RewriteCond %{REQUEST_URI} ^(.*)/public/purpose/?$
+    RewriteRule ^public/purpose/?$ %1/purpose [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s[^\s]*/public/purpose/
+    RewriteCond %{REQUEST_URI} ^(.*)/public/purpose/(.+)$
+    RewriteRule ^public/purpose/.+$ %1/purpose/%2 [R=301,L]
+
     # Rewrite all other requests that aren't actual files or directories to the public folder
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
