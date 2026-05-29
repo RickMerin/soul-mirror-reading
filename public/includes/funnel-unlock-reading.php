@@ -163,7 +163,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
           <button type="submit" class="submit-btn is-invalid" id="submitBtn" disabled>
             Unlock My Reading &nbsp;→
           </button>
-          <p class="form-privacy">Your reading arrives within minutes. Your information is never shared.</p>
+          <p class="form-privacy">By entering your email, you're joining our mailing list and agree to receive our daily newsletter. You can unsubscribe at any time. Your information is never shared.</p>
           <div class="error-msg" id="errorMsg" role="alert" aria-live="assertive"></div>
         </form>
       </div>
