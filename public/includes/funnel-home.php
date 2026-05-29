@@ -285,8 +285,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
         </div>
         <div class="prompt-wrap">
           <div class="sm-prompt" id="smPrompt">
-            Think of what feels unresolved right now.<br>
-            Hold it in your heart — and <em>choose your first card.</em>
+            While you shuffle, the deck is searching for the one belief showing up in your love, your money, and your purpose at the same time.<br>
+            Hold what feels unresolved. <em>Choose your first card.</em>
           </div>
         </div>
       </div>
