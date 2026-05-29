@@ -221,7 +221,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <header class="site-header">
     <div class="header-eyebrow">☽ &nbsp; Soul Mirror Reading &nbsp; ☾</div>
     <h1>The Mirror Sees What<br><em>You've Been Too Afraid to Look At.</em></h1>
-    <p class="header-sub">Pick 3 cards. Your Mirror Block, the one belief quietly running your love, your life, and your wealth all at once,<br>will name itself.</p>
+    <p class="header-sub">Pick 3 cards. Your free reading begins to reveal the shape of the one belief<br>quietly running your love, your life, and your wealth at once.</p>
   </header>
 
   <!-- ── CARD PICKER ────────────────────────── -->
