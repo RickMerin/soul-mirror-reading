@@ -221,8 +221,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <header class="site-header">
     <div class="header-eyebrow">☽ &nbsp; Soul Mirror Reading &nbsp; ☾</div>
     <h1>The Mirror Sees What<br><em>You've Been Too Afraid to Look At.</em></h1>
-    <p class="header-sub">Pick 3 cards and discover what's truly keeping you stuck:<br>in love, in life, in the wealth
-      you deserve.</p>
+    <p class="header-sub">Pick 3 cards. Your Mirror Block, the one belief quietly running your love, your life, and your wealth all at once,<br>will name itself.</p>
   </header>
 
   <!-- ── CARD PICKER ────────────────────────── -->
@@ -285,8 +284,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
         </div>
         <div class="prompt-wrap">
           <div class="sm-prompt" id="smPrompt">
-            Think of what feels unresolved right now.<br>
-            Hold it in your heart — and <em>choose your first card.</em>
+            While you shuffle, the deck is searching for the one belief showing up in your love, your money, and your purpose at the same time.<br>
+            Hold what feels unresolved. <em>Choose your first card.</em>
           </div>
         </div>
       </div>
@@ -298,7 +297,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <section class="success-section" id="successSection">
     <div class="success-icon">✦</div>
     <h2>Your Reading Is On Its Way</h2>
-    <p>The mirror has reflected your truth.<br>Check your inbox — your Soul Mirror Reading has been sent to you.</p>
+    <p>Your three cards have named your Mirror Block.<br>Check your inbox. The reading explaining what it is, and how to clear it, is loading now.</p>
   </section>
 
   <footer class="site-footer wavy">
