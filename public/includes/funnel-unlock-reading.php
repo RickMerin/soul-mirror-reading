@@ -109,9 +109,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 
   <main class="unlock-main unlock-page" aria-labelledby="unlockTitle">
     <div class="unlock-panel">
-      <h1 id="unlockTitle">Your Reading Is Ready.</h1>
-      <p class="form-sub">The mirror has seen what others have missed.<br>Enter your details now and we'll send your
-        full reading directly to you.</p>
+      <h1 id="unlockTitle">Your Reading Is Processing.</h1>
+      <p class="form-sub">Where should we send your Mirror Block reading?<br>Add your details below. It lands within minutes.</p>
 
       <div class="chosen-recap" id="chosenRecap"></div>
 
