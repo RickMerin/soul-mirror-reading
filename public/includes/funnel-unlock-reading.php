@@ -110,7 +110,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <main class="unlock-main unlock-page" aria-labelledby="unlockTitle">
     <div class="unlock-panel">
       <h1 id="unlockTitle">Your 3 Cards Are Locked In.</h1>
-      <p class="form-sub">Where should we send your free 3-card preview? Your full Soul Mirror Reading comes after.<br>Add your details below. It lands within minutes.</p>
+      <p class="form-sub">Where should we send your free 3-card preview?<br>Your full Soul Mirror Reading comes after.<br>Add your details below. It lands within minutes.</p>
 
       <div class="chosen-recap" id="chosenRecap"></div>
 
