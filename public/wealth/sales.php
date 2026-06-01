@@ -4,6 +4,8 @@ $cssPath = __DIR__ . "/../assets/sales-v2-bundle.min.css";
 $cssVer = is_file($cssPath) ? filemtime($cssPath) : time();
 $jsPath = __DIR__ . "/../assets/sales-v2.min.js";
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
+$guardPath = __DIR__ . '/../assets/vturb-player-guard.min.js';
+$guardVer = is_file($guardPath) ? filemtime($guardPath) : time();
 $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=order-3&cbfid=63301&exitoffer=exit-1";
 ?>
 <!DOCTYPE html>
@@ -73,46 +75,18 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
 
     <div class="video-frame">
-      <vturb-smartplayer id="vid-6a03e48213e119642182af7b" style="display: block; margin: 0 auto; width: 100%;" data-autoplay="false" autoplay="false" muted="false"></vturb-smartplayer>
+      <vturb-smartplayer id="vid-6a03e48213e119642182af7b"
+        style="display: block; margin: 0 auto; width: 100%;"
+        data-autoplay="false" autoplay="false"
+        data-muted="true" muted="true"
+        data-smr-guard="1"></vturb-smartplayer>
       <script type="text/javascript">
         var s = document.createElement("script");
         s.src = "https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/6a03e48213e119642182af7b/v4/player.js";
         s.async = !0;
         document.head.appendChild(s);
       </script>
-      <script type="text/javascript">
-        /* Hardcoded autoplay guard: VTurb's dashboard config can still try to
-           autoplay even when the element attributes say otherwise. We strip
-           the autoplay attribute on the injected <video> and pause any play
-           that fires before the visitor makes a real gesture. */
-        (function () {
-          var TARGET_ID = 'vid-6a03e48213e119642182af7b';
-          var hasUserGesture = false;
-          var markGesture = function () { hasUserGesture = true; };
-          ['pointerdown', 'click', 'touchstart', 'keydown'].forEach(function (evt) {
-            document.addEventListener(evt, markGesture, true);
-          });
-          var guardVideo = function (video) {
-            if (!video || video.__vslAutoplayGuarded) return;
-            video.__vslAutoplayGuarded = true;
-            video.autoplay = false;
-            video.removeAttribute('autoplay');
-            video.addEventListener('play', function () {
-              if (!hasUserGesture) {
-                try { video.pause(); } catch (e) {}
-              }
-            }, true);
-          };
-          var observer = new MutationObserver(function () {
-            var host = document.getElementById(TARGET_ID);
-            if (!host) return;
-            var videos = host.querySelectorAll('video');
-            for (var i = 0; i < videos.length; i++) guardVideo(videos[i]);
-          });
-          observer.observe(document.documentElement, { childList: true, subtree: true });
-          setTimeout(function () { observer.disconnect(); }, 30000);
-        })();
-      </script>
+      <script defer src="../assets/vturb-player-guard.min.js?v=<?= htmlspecialchars((string) $guardVer, ENT_QUOTES) ?>"></script>
     </div>
 
   </div>
