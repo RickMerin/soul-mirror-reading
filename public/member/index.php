@@ -78,6 +78,9 @@ try {
 
     $otoUrl = memberEnvString('MEMBER_OTO_CHECKOUT_URL', '#');
 
+    $guardPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'vturb-player-guard.min.js';
+    $guardVer = is_file($guardPath) ? (string) filemtime($guardPath) : (string) time();
+
     $replacements = [
         '{{RITUAL_WELCOME_CARD_MOD}}' => $ritualUnlocked ? ' is-ritual-unlocked' : '',
         '{{NAME}}' => $h($fullName),
@@ -97,6 +100,7 @@ try {
         '{{MEMBER_URL_RITUAL_WORKBOOK}}' => $h(memberEnvString('MEMBER_URL_RITUAL_WORKBOOK', '#')),
         '{{MEMBER_OTO_CHECKOUT_URL}}' => $h($otoUrl),
         '{{RITUAL_UNLOCKED_JS}}' => $ritualUnlocked ? 'true' : 'false',
+        '{{VTURB_GUARD_VER}}' => $guardVer,
     ];
     $rendered = strtr($html, $replacements);
 

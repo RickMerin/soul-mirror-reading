@@ -12,6 +12,13 @@ await esbuild.build({
     "sales-v2": path.join(root, "frontend", "js", "sales-v2.js"),
     thankyou: path.join(root, "frontend", "js", "thankyou.js"),
     "unlock-reading": path.join(root, "frontend", "js", "unlock-reading.js"),
+    "vturb-player-guard": path.join(
+      root,
+      "frontend",
+      "js",
+      "lib",
+      "vturb-player-guard.js"
+    ),
   },
   bundle: true,
   minify: true,
