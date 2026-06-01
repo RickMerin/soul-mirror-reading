@@ -14,7 +14,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="description" content="See the one core belief, your Mirror Block, behind your Love, Life, and Wealth cards. Deep card work, clearing practice, and 90-day prompts delivered with your Soul Mirror Reading.">
+  <meta name="description" content="See the one core belief, your Wealth Block, behind your Love, Life, and Wealth cards. Deep card work, clearing practice, and 90-day prompts delivered with your Soul Mirror Reading.">
   <title>Your Soul Mirror Reading. What the Cards Are Really Saying</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +48,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
 
 <div class="topnotice">
-  <strong><span class="firstname">Friend</span>, Your Soul Tarot Reading Is On Its Way</strong><span class="notice-dot">&middot;</span><strong>The Wealth Block Is the Root of the Other Two</strong><span class="notice-dot">&middot;</span><strong>Read This Before Your Reading Lands.</strong>
+  <strong><span class="firstname">Friend</span>, Your 3 Card Tarot Reading Is On Its Way</strong><span class="notice-dot">&middot;</span><strong>It Points to Your Wealth Block but Cannot Name It</strong><span class="notice-dot">&middot;</span><strong>Read This Before It Lands.</strong>
 </div>
 
 
@@ -60,17 +60,17 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
   <div class="wrap">
     
 
-<h1 class="vsl-headline">The Wealth Block Is the Root.<br><em>Clear It, and the Other Two Balance.</em></h1>
+<h1 class="vsl-headline">The Wealth Block Is the Root.<br><em>Clear It, and the Rest Follows.</em></h1>
 
 
     
 
-<p class="vsl-sub">The same belief stalling your money is the one quietly running your relationships and your sense of purpose. Your three cards have already named it. We call it <strong>your Mirror Block</strong>, and once it has a name, it loses most of its power.</p>
+<p class="vsl-sub">It is the one belief quietly setting your wealth ceiling, year after year. Your three cards point straight to it.</p>
 
 
     
 
-<p class="vsl-sub" style="margin-top:-8px;"><em>Watch what your cards just revealed.<br>This is the part most wealth teachers never tell you.</em></p>
+<p class="vsl-sub" style="margin-top:-8px;"><em>Your Soul Mirror Reading names exactly which Wealth Block is yours, and the practice that clears it. Tap play to find out more.</em></p>
 
 
 
@@ -97,11 +97,11 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section style="padding: 20px 24px 60px; position:relative;">
   <div class="cta-block">
-    <div class="small-headline">Ready to See Your <em>Mirror Block?</em></div>
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">See My Mirror Block</a>
+    <div class="small-headline">Ready to See Your <em>Wealth Block?</em></div>
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
     <div class="cta-trust-row">
       <span>&#128274; Secure Checkout</span>
-      <span>&#9889; Instant Access</span>
+      <span>&#9889; Delivered in 12-24 Hrs</span>
       <span>&#127769; 90-Day Guarantee</span>
     </div>
   </div>
@@ -162,8 +162,8 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
         <p>What you believe you are allowed to have. The inherited story about deserving that has been setting your ceiling without your knowledge.</p>
       </div>
       <div class="card-mirror featured">
-        <img src="https://soulmirrorreading.com/cards/mirror-block.png" alt="Mirror Block" class="mirror-img" style="max-width:140px;">
-        <h4>The Hidden Layer &middot; Mirror Block</h4>
+        <img src="https://soulmirrorreading.com/cards/mirror-block.png" alt="Wealth Block" class="mirror-img" style="max-width:140px;">
+        <h4>The Hidden Layer &middot; Wealth Block</h4>
         <p>The one belief running all three. Until it is named clearly, every reading you ever get will point to the same wall.</p>
       </div>
     </div>
@@ -172,10 +172,10 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <!-- CTA after 3-card breakdown -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">See My Mirror Block</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
-        <span>&#9889; Instant Access</span>
+        <span>&#9889; Delivered in 12-24 Hrs</span>
         <span>&#127769; 90-Day Guarantee</span>
       </div>
     </div>
@@ -195,7 +195,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
 <p style="text-align:center; max-width:600px; margin:0 auto 18px;">Your three cards point to one specific belief at the root of your wealth. The same belief quietly shapes your relationships and your sense of purpose. Name it at the wealth root. Watch all three balance back.</p>
 
-    <p style="text-align:center; max-width:600px; margin:0 auto 36px; font-size:15px; color:rgba(255,255,255,0.7);">There are <strong style="color:var(--gold-light);">22,100 possible 3-card combinations</strong>. Yours decodes to exactly one Mirror Block. Not a vibe. Not a horoscope. A specific diagnosis built from the precise cards you drew.</p>
+    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">There are <strong style="color:var(--gold-light);">22,100 possible 3-card combinations</strong>. Yours decodes to exactly one Wealth Block. Not a vibe. Not a horoscope. A specific diagnosis built from the precise cards you drew.</p>
 
 
 
@@ -239,59 +239,13 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <div style="color:var(--gold); font-size:24px; line-height:1;">&darr;</div>
     </div>
 
-    <!-- The decoded block (blurred until hover/tap) -->
-    <div class="block-reveal-wrapper" style="max-width:560px; margin:16px auto 0; position:relative; cursor:pointer;">
-      <div class="block-reveal-content" style="background: linear-gradient(180deg, rgba(45,27,105,0.6), rgba(30,13,64,0.9)); border: 1px solid var(--gold); border-radius: 14px; padding: 28px 26px; box-shadow: 0 12px 32px rgba(0,0,0,0.3); text-align: center;">
-        <div style="font-family:'Cinzel',sans-serif; font-size:10px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:10px;">Your Diagnosis</div>
-        <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:26px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">Your Wealth Is Blocked</h4>
-        <p data-mirror-block-summary style="font-size:16px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0; font-style:italic;">Money arrives. Money quietly leaves. The same income range, year after year, no matter what you try.</p>
-      </div>
-      <!-- Mirror crack SVG overlay -->
-      <svg class="mirror-crack" viewbox="0 0 400 200" preserveaspectratio="none" aria-hidden="true">
-        <g stroke="rgba(255,240,200,0.95)" stroke-width="2.2" fill="none" stroke-linecap="round">
-          <!-- Main radial cracks from center -->
-          <line x1="200" y1="100" x2="150" y2="20"></line>
-          <line x1="200" y1="100" x2="220" y2="0"></line>
-          <line x1="200" y1="100" x2="260" y2="15"></line>
-          <line x1="200" y1="100" x2="320" y2="55"></line>
-          <line x1="200" y1="100" x2="370" y2="85"></line>
-          <line x1="200" y1="100" x2="395" y2="135"></line>
-          <line x1="200" y1="100" x2="345" y2="180"></line>
-          <line x1="200" y1="100" x2="270" y2="200"></line>
-          <line x1="200" y1="100" x2="170" y2="200"></line>
-          <line x1="200" y1="100" x2="85" y2="190"></line>
-          <line x1="200" y1="100" x2="20" y2="155"></line>
-          <line x1="200" y1="100" x2="5" y2="105"></line>
-          <line x1="200" y1="100" x2="35" y2="50"></line>
-          <line x1="200" y1="100" x2="100" y2="15"></line>
-          <!-- Branch cracks -->
-          <line x1="150" y1="20" x2="125" y2="0"></line>
-          <line x1="150" y1="20" x2="180" y2="50"></line>
-          <line x1="260" y1="15" x2="285" y2="0"></line>
-          <line x1="260" y1="15" x2="240" y2="35"></line>
-          <line x1="320" y1="55" x2="365" y2="45"></line>
-          <line x1="320" y1="55" x2="300" y2="80"></line>
-          <line x1="370" y1="85" x2="395" y2="70"></line>
-          <line x1="345" y1="180" x2="360" y2="200"></line>
-          <line x1="345" y1="180" x2="315" y2="170"></line>
-          <line x1="85" y1="190" x2="65" y2="200"></line>
-          <line x1="85" y1="190" x2="115" y2="170"></line>
-          <line x1="20" y1="155" x2="0" y2="170"></line>
-          <line x1="35" y1="50" x2="15" y2="35"></line>
-          <line x1="35" y1="50" x2="60" y2="75"></line>
-          <line x1="100" y1="15" x2="80" y2="0"></line>
-          <!-- Hairline secondary cracks for density -->
-          <line x1="180" y1="50" x2="200" y2="65" stroke-width="1.2" stroke="rgba(232,201,122,0.7)"></line>
-          <line x1="240" y1="35" x2="220" y2="50" stroke-width="1.2" stroke="rgba(232,201,122,0.7)"></line>
-          <line x1="300" y1="80" x2="280" y2="95" stroke-width="1.2" stroke="rgba(232,201,122,0.7)"></line>
-          <line x1="115" y1="170" x2="135" y2="155" stroke-width="1.2" stroke="rgba(232,201,122,0.7)"></line>
-          <line x1="315" y1="170" x2="295" y2="155" stroke-width="1.2" stroke="rgba(232,201,122,0.7)"></line>
-        </g>
-      </svg>
-      <!-- Impact flash overlay -->
-      <div class="mirror-flash" aria-hidden="true"></div>
-      <div class="reveal-hint" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background: linear-gradient(135deg, rgba(212,175,55,0.25), rgba(212,175,55,0.1)); color: var(--gold-light); font-family: 'Cinzel', sans-serif; font-size: 11px; letter-spacing: 0.22em; padding: 12px 22px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.55); text-transform: uppercase; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: opacity 0.4s ease; white-space: nowrap; z-index: 4; pointer-events: none; box-shadow: 0 6px 20px rgba(212,175,55,0.2);">
-        &#10022; Tap to Break the Mirror
+    <!-- Diagnosis card (always visible, no tap gate) -->
+    <div style="max-width:560px; margin:16px auto 0;">
+      <div style="background: linear-gradient(180deg, rgba(45,27,105,0.65), rgba(30,13,64,0.92)); border: 1px solid var(--gold); border-radius: 14px; padding: 32px 28px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); text-align: center;">
+        <div style="font-family:'Cinzel',sans-serif; font-size:10px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:12px;">What Your Cards Point To</div>
+        <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">Your Wealth Is Blocked</h4>
+        <p data-mirror-block-summary style="font-size:16px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money arrives. Money quietly leaves. The same income range, year after year, no matter what you try.</p>
+        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:15px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading names <strong style="color:var(--gold-light);">exactly which</strong> Wealth Block this is, and the practice that clears it.</div>
       </div>
     </div>
 
@@ -299,10 +253,10 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <!-- CTA after diagnostic proof -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">See My Mirror Block</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
-        <span>&#9889; Instant Access</span>
+        <span>&#9889; Delivered in 12-24 Hrs</span>
         <span>&#127769; 90-Day Guarantee</span>
       </div>
     </div>
@@ -326,7 +280,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
         </div>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I almost closed the tab. After ten years of courses, therapy, and readings that all said the same thing in slightly different words, I expected this to be more of the same. It was not. The Mirror Block Luna named in mine was something I had been circling in therapy for six years without ever finding the right words for. I read it three times in two days. Two weeks later I had a conversation with my mother that I had been avoiding for nineteen years. I am not saying the reading caused that. I am saying it let me finally see the wall I had been pretending was not there."</p>
+      <p class="testi-body">"I almost closed the tab. After ten years of courses, therapy, and readings that all said the same thing in slightly different words, I expected this to be more of the same. It was not. The Wealth Block Luna named in mine was something I had been circling in therapy for six years without ever finding the right words for. I read it three times in two days. Two weeks later I had a conversation with my mother that I had been avoiding for nineteen years. I am not saying the reading caused that. I am saying it let me finally see the wall I had been pretending was not there."</p>
     </div>
   </div>
 </section>
@@ -341,7 +295,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <img src="https://soulmirrorreading.com/frontend/images/sales/soul-mirror-reading.png" alt="Soul Mirror Reading" class="vip-mockup">
       <div class="vip-valued">Valued at <span class="amount">$197</span></div>
       <ul class="vip-list">
-        <li><span><strong>Your Mirror Block Identified.</strong> The one core belief running Love, Life, and Wealth at the same time.</span></li>
+        <li><span><strong>Your Wealth Block Identified.</strong> The one core belief running Love, Life, and Wealth at the same time.</span></li>
         <li><span><strong>Love Mirror Deep-Dive.</strong> What your Love card means in context of all three cards.</span></li>
         <li><span><strong>Life Mirror Deep-Dive.</strong> Where your energy is leaking and what it would take to shift it.</span></li>
         <li><span><strong>Wealth Mirror Deep-Dive.</strong> The inherited story about deserving that has been setting your ceiling.</span></li>
@@ -352,10 +306,10 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
       <!-- CTA inside the VIP box -->
       <div style="text-align:center; margin-top:32px;">
-        <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">See My Mirror Block</a>
+        <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
         <div class="cta-trust-row" style="margin-top:14px;">
           <span>&#128274; Secure Checkout</span>
-          <span>&#9889; Instant Access</span>
+          <span>&#9889; Delivered in 12-24 Hrs</span>
           <span>&#127769; 90-Day Guarantee</span>
         </div>
       </div>
@@ -440,7 +394,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
     <p style="max-width:560px; margin:0 auto 24px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna's private readings are <strong style="color:var(--gold-light); text-decoration:line-through; text-decoration-color: rgba(212,175,55,0.5);">$395</strong>. Your complete package, with all 4 bonus materials, is just <strong style="color:var(--gold-light); font-size:18px;">$37</strong>.</p>
 
     <div style="text-align:center; margin-top:24px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">See My Mirror Block &middot; $37 &rarr;</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#127769; 90-Day Money-Back Guarantee</span>
         <span>&#9889; Delivered in 12 to 24 Hours</span>
@@ -480,7 +434,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <li><span><strong>Bonus 4.</strong> Clarity Meditation ($37)</span></li>
     </ul>
 
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">See My Mirror Block</a>
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
 
     <div class="pricing-inline-guarantee">
       <img src="https://soulmirrorreading.com/cards/guarantee-badge.png" alt="90-Day Guarantee">
@@ -489,7 +443,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <div class="trust-badge-row">
       <span>&#128274; Secure Checkout</span>
-      <span>&#9889; Instant Access</span>
+      <span>&#9889; Delivered in 12-24 Hrs</span>
       <span>&#9733;&#9733;&#9733;&#9733;&#9733; 4,800+ Readings</span>
     </div>
   </div>
@@ -513,7 +467,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
       
 
-<p class="testi-body">"I have had tarot readings for twenty years and always felt something was missing. This one gave me the piece. The Mirror Block Luna named was the same reason I had been undercharging in my last three jobs and the same reason I had stayed in a marriage I knew was over. One belief. Three rooms of my life. I cried reading it, in the best possible way. Six weeks later I raised my rates for the first time in four years."</p>
+<p class="testi-body">"I have had tarot readings for twenty years and always felt something was missing. This one gave me the piece. The Wealth Block Luna named was the same reason I had been undercharging in my last three jobs and the same reason I had stayed in a marriage I knew was over. One belief. Three rooms of my life. I cried reading it, in the best possible way. Six weeks later I raised my rates for the first time in four years."</p>
 
 
     </div>
@@ -527,7 +481,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
         </div>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I was skeptical. I'm a practical person. I just wanted to see what the cards said. But the Mirror Block explanation stopped me cold. It described something I have never been able to name. Whatever this is, it works."</p>
+      <p class="testi-body">"I was skeptical. I'm a practical person. I just wanted to see what the cards said. But the Wealth Block explanation stopped me cold. It described something I have never been able to name. Whatever this is, it works."</p>
     </div>
 
     <div class="testi-card">
@@ -544,10 +498,10 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <!-- CTA after testimonials cluster -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">See My Mirror Block</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
-        <span>&#9889; Instant Access</span>
+        <span>&#9889; Delivered in 12-24 Hrs</span>
         <span>&#127769; 90-Day Guarantee</span>
       </div>
     </div>
@@ -579,10 +533,10 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
     
 
 <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Take Path A &middot; See My Mirror Block</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Take Path A &middot; Reveal My Wealth Block</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
-        <span>&#9889; Instant Access</span>
+        <span>&#9889; Delivered in 12-24 Hrs</span>
         <span>&#127769; 90-Day Guarantee</span>
       </div>
     </div>
@@ -600,8 +554,8 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <div class="faq" style="margin-top:32px;">
       <details>
-        <summary>What is a Mirror Block exactly?</summary>
-        <p class="faq-a">A Mirror Block is a core belief, usually formed early in life and often inherited from someone else, that shows up identically across your love life, your daily experience, and your relationship with money and abundance. It is not a flaw and it is not permanent. But it is specific, and once you can see it clearly, it loses most of its power.</p>
+        <summary>What is a Wealth Block exactly?</summary>
+        <p class="faq-a">A Wealth Block is a core belief, usually formed early in life and often inherited from someone else, that shows up identically across your love life, your daily experience, and your relationship with money and abundance. It is not a flaw and it is not permanent. But it is specific, and once you can see it clearly, it loses most of its power.</p>
       </details>
       <details>
         <summary>How is this different from the reading I will receive in my email?</summary>
@@ -628,7 +582,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section style="padding: 0 24px 60px;">
   <div class="final-cta">
-    <h2><span class="firstname">Friend</span>, Your Cards Are Drawn.<br><em>Your Mirror Block Is Already Named.</em></h2>
+    <h2><span class="firstname">Friend</span>, Your Cards Are Drawn.<br><em>Your Wealth Block Is Waiting to Be Named.</em></h2>
     
 
 <p style="max-width:560px; margin:18px auto 24px; color:rgba(255,255,255,0.85);">The pattern is already there. It has been running quietly for years, draining your wealth, your love, and your sense of purpose. The only question is whether you let another year pass without seeing it clearly.</p>
@@ -644,7 +598,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <div style="font-family:'Cormorant Garamond',serif; font-size:48px; color:var(--gold-light); font-weight:600;">$37</div>
     </div>
 
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">See My Mirror Block</a>
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
     <p style="margin-top:18px; font-size:13px; color:rgba(255,255,255,0.6);">Instant access &middot; 90-day guarantee &middot; Secure checkout</p>
   </div>
 </section>
