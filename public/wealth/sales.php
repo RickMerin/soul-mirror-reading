@@ -47,8 +47,8 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 <!-- TOP NOTICE BAR -->
 
 
-<div class="topnotice">
-  <strong><span class="firstname">Friend</span>, Your 3 Card Tarot Reading Is On Its Way</strong><span class="notice-dot">&middot;</span><strong>It Points to Your Wealth Block but Cannot Name It</strong><span class="notice-dot">&middot;</span><strong>Read This Before It Lands.</strong>
+<div class="topnotice" style="background:#9b1c1c;color:#fff;border-bottom:1px solid #c0392b;">
+  <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>But I Noticed a Pattern in Your Specific Cards First</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Please Read This Before It Arrives</strong>
 </div>
 
 
@@ -60,7 +60,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
   <div class="wrap">
     
 
-<h1 class="vsl-headline">The Wealth Block Is the Root.<br><em>Clear It, and the Rest Follows.</em></h1>
+<h1 class="vsl-headline">The Wealth Block Is the Root.<br><em>Clear It, and Watch the Money Move.</em></h1>
 
 
     
@@ -168,17 +168,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       </div>
     </div>
 
-    <p style="text-align:center; margin-top:24px; font-size:18px;"><strong>Your Soul Mirror Reading names it exactly. Not a general theme. Yours.</strong></p>
-
-    <!-- CTA after 3-card breakdown -->
-    <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
-      <div class="cta-trust-row" style="margin-top:16px;">
-        <span>&#128274; Secure Checkout</span>
-        <span>&#9889; Delivered in 12-24 Hrs</span>
-        <span>&#127769; 90-Day Guarantee</span>
-      </div>
-    </div>
+    
   </div>
 </section>
 
@@ -249,7 +239,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       </div>
     </div>
 
-    <p style="text-align:center; max-width:600px; margin:32px auto 0; font-style:italic; color:rgba(255,255,255,0.75); font-size:15px;">Your reading walks you through what this pattern has been doing in your love, your money, and your purpose, and gives you the practice to begin clearing it.</p>
+    
 
     <!-- CTA after diagnostic proof -->
     <div style="text-align:center; margin-top:40px;">
@@ -280,7 +270,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
         </div>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I almost closed the tab. After ten years of courses, therapy, and readings that all said the same thing in slightly different words, I expected this to be more of the same. It was not. The Wealth Block Luna named in mine was something I had been circling in therapy for six years without ever finding the right words for. I read it three times in two days. Two weeks later I had a conversation with my mother that I had been avoiding for nineteen years. I am not saying the reading caused that. I am saying it let me finally see the wall I had been pretending was not there."</p>
+      <p class="testi-body">"I almost closed the tab. After ten years of courses and readings that all said the same thing in slightly different words, I expected more of the same. It was not. The Wealth Block Luna named was the exact reason I had spent fifteen years quoting low and apologizing for my prices. Two weeks later a client asked for a full brand kit. Normally I would have said fifteen hundred and felt guilty. I sat with what the reading showed me and sent the quote for four thousand. She replied 'that sounds fair' and paid the deposit that afternoon. I am not saying the cards did it. I am saying they finally let me see the wall I had been pricing myself behind."</p>
     </div>
   </div>
 </section>
@@ -369,35 +359,27 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section style="padding: 60px 24px 40px; text-align:center; position:relative;">
   <div class="wrap">
-    <h2 style="margin-bottom:18px;"><span class="firstname">Friend</span>, Your Soul Mirror Reading<br>Is Ready.<br><em>But We Cap Daily Readings.</em></h2>
+    <h2 style="margin-bottom:18px;"><span class="firstname">Friend</span>, Your Soul Mirror Reading<br>Is Written by Hand.<br><em>Order Today, It Lands Within 24 Hours.</em></h2>
 
-    <p style="max-width:560px; margin:0 auto 14px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna writes every reading by hand from your specific 3-card combination. To maintain quality, only a limited number of readings are completed each day.</p>
+    <p style="max-width:560px; margin:0 auto 14px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna writes every reading by hand from your specific 3-card combination. Order now and yours goes into today's writing queue, delivered straight to your inbox within 24 hours.</p>
 
-    <p style="max-width:560px; margin:0 auto 32px; color:rgba(255,255,255,0.7); font-style:italic;">After today's batch closes, the next available slot is tomorrow.</p>
+    <p style="max-width:560px; margin:0 auto 32px; color:rgba(255,255,255,0.7); font-style:italic;">The exact combination you drew today is what makes the diagnosis precise. Come back in a week and the cards, and the reading, will be different.</p>
 
-    <!-- Countdown box -->
-    <div style="display:inline-block; background: linear-gradient(180deg, rgba(45,27,105,0.7), rgba(30,13,64,0.9)); border: 1px solid rgba(212,175,55,0.4); border-radius: 16px; padding: 20px 28px; margin: 0 auto 36px; box-shadow: 0 12px 32px rgba(0,0,0,0.4);">
-      <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.25em; color:rgba(232,201,122,0.75); text-transform:uppercase; margin-bottom:14px;">Today's Batch Closes In:</div>
-      <div style="display:flex; align-items:center; justify-content:center; gap:14px;">
-        <div style="text-align:center;">
-          <div id="countdownMinutes" style="font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:600; color:var(--gold-light); line-height:1; min-width:80px; padding:8px 14px; background: rgba(255,255,255,0.04); border-radius: 10px;">25</div>
-          <div style="font-family:'Cinzel',sans-serif; font-size:9px; letter-spacing:0.22em; color:rgba(232,201,122,0.6); margin-top:6px; text-transform:uppercase;">Minutes</div>
-        </div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:32px; color:var(--gold-light); margin: 0 4px; font-weight:300;">:</div>
-        <div style="text-align:center;">
-          <div id="countdownSeconds" style="font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:600; color:var(--gold-light); line-height:1; min-width:80px; padding:8px 14px; background: rgba(255,255,255,0.04); border-radius: 10px;">00</div>
-          <div style="font-family:'Cinzel',sans-serif; font-size:9px; letter-spacing:0.22em; color:rgba(232,201,122,0.6); margin-top:6px; text-transform:uppercase;">Seconds</div>
-        </div>
-      </div>
+    <div style="display:inline-block; width:100%; max-width:520px; background: linear-gradient(180deg, rgba(45,27,105,0.7), rgba(30,13,64,0.9)); border: 1px solid rgba(212,175,55,0.4); border-radius: 16px; padding: 26px 30px; margin: 0 auto 32px; box-shadow: 0 12px 32px rgba(0,0,0,0.4); text-align:left;">
+      <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.25em; color:rgba(232,201,122,0.75); text-transform:uppercase; margin-bottom:18px; text-align:center;">What You're Getting</div>
+      <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Cormorant Garamond',serif; font-size:18px; color:#fff; margin-bottom:12px;"><span>Your Soul Mirror Reading</span><span>$197</span></div>
+      <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Cormorant Garamond',serif; font-size:18px; color:#fff; margin-bottom:16px;"><span>4 Bonus Materials</span><span>$198</span></div>
+      <div style="border-top:1px solid rgba(212,175,55,0.3); padding-top:16px; display:flex; justify-content:space-between; align-items:baseline; font-family:'Cormorant Garamond',serif; font-size:17px; color:rgba(255,255,255,0.85); margin-bottom:16px;"><span>Total Value</span><span style="text-decoration:line-through; text-decoration-color:rgba(212,175,55,0.6);">$395</span></div>
+      <div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-family:'Cinzel',sans-serif; font-size:13px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase;">Today</span><span style="font-family:'Cormorant Garamond',serif; font-size:46px; font-weight:600; color:var(--gold-light); line-height:1;">$37</span></div>
     </div>
 
-    <p style="max-width:560px; margin:0 auto 24px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna's private readings are <strong style="color:var(--gold-light); text-decoration:line-through; text-decoration-color: rgba(212,175,55,0.5);">$395</strong>. Your complete package, with all 4 bonus materials, is just <strong style="color:var(--gold-light); font-size:18px;">$37</strong>.</p>
+    <p style="max-width:560px; margin:0 auto 24px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna's private readings run <strong style="color:var(--gold-light); text-decoration:line-through; text-decoration-color: rgba(212,175,55,0.5);">$395</strong>.<br>Today, the complete package with all 4 bonuses is just <strong style="color:var(--gold-light); font-size:18px;">$37</strong>.</p>
 
     <div style="text-align:center; margin-top:24px;">
       <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#127769; 90-Day Money-Back Guarantee</span>
-        <span>&#9889; Delivered in 12 to 24 Hours</span>
+        <span>&#9889; Delivered Within 24 Hours</span>
         <span>&#128274; Secure Checkout</span>
       </div>
     </div>
@@ -434,7 +416,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <li><span><strong>Bonus 4.</strong> Clarity Meditation ($37)</span></li>
     </ul>
 
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
 
     <div class="pricing-inline-guarantee">
       <img src="https://soulmirrorreading.com/cards/guarantee-badge.png" alt="90-Day Guarantee">
@@ -467,7 +449,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
       
 
-<p class="testi-body">"I have had tarot readings for twenty years and always felt something was missing. This one gave me the piece. The Wealth Block Luna named was the same reason I had been undercharging in my last three jobs and the same reason I had stayed in a marriage I knew was over. One belief. Three rooms of my life. I cried reading it, in the best possible way. Six weeks later I raised my rates for the first time in four years."</p>
+<p class="testi-body">"I have had tarot readings for twenty years and always felt something was missing. This one gave me the piece. The Wealth Block Luna named was the same reason I had been undercharging in my last three jobs. One belief. Three rooms of my life. Six weeks later I raised my rates for the first time in four years, and the first client I sent the new number to said yes without blinking. The extra has been quietly adding up every month since."</p>
 
 
     </div>
@@ -481,7 +463,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
         </div>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I was skeptical. I'm a practical person. I just wanted to see what the cards said. But the Wealth Block explanation stopped me cold. It described something I have never been able to name. Whatever this is, it works."</p>
+      <p class="testi-body">"I was skeptical. I'm a practical person. I just wanted to see what the cards said. But the Wealth Block explanation stopped me cold. It named the exact thing I do every time money gets close, I quietly talk the number down. I held my price on the very next deal instead of discounting it like I always had. That one change paid for this many times over."</p>
     </div>
 
     <div class="testi-card">
@@ -495,10 +477,11 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
       <p class="testi-body">"Three cards. One pattern. I have spent years in therapy trying to understand why the same things kept happening in love, at work, with money. This report showed me in 20 minutes. The clearing practice alone is worth ten times what I paid."</p>
     </div>
+    <p style="text-align:center; max-width:580px; margin:22px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
 
     <!-- CTA after testimonials cluster -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -533,7 +516,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
     
 
 <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Take Path A &middot; Reveal My Wealth Block</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Take Path A &middot; Reveal My Wealth Block &middot; $37 &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -582,7 +565,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section style="padding: 0 24px 60px;">
   <div class="final-cta">
-    <h2><span class="firstname">Friend</span>, Your Cards Are Drawn.<br><em>Your Wealth Block Is Waiting to Be Named.</em></h2>
+    <h2><span class="firstname">Friend</span>, Your Cards Are Drawn.<br><em>Your Wealth Block Is Waiting to Be Cleared.</em></h2>
     
 
 <p style="max-width:560px; margin:18px auto 24px; color:rgba(255,255,255,0.85);">The pattern is already there. It has been running quietly for years, draining your wealth, your love, and your sense of purpose. The only question is whether you let another year pass without seeing it clearly.</p>
@@ -598,7 +581,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <div style="font-family:'Cormorant Garamond',serif; font-size:48px; color:var(--gold-light); font-weight:600;">$37</div>
     </div>
 
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
     <p style="margin-top:18px; font-size:13px; color:rgba(255,255,255,0.6);">Instant access &middot; 90-day guarantee &middot; Secure checkout</p>
   </div>
 </section>
