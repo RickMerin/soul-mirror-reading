@@ -4,12 +4,10 @@ $cssPath = __DIR__ . "/../assets/sales-v2-bundle.min.css";
 $cssVer = is_file($cssPath) ? filemtime($cssPath) : time();
 $jsPath = __DIR__ . "/../assets/sales-v2.min.js";
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
-$guardPath = __DIR__ . '/../assets/vturb-player-guard.min.js';
-$guardVer = is_file($guardPath) ? filemtime($guardPath) : time();
 $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=order-3&cbfid=63301&exitoffer=exit-1";
 ?>
 <!DOCTYPE html>
-<html lang="en" data-funnel-base="wealth/">
+<html lang="en" data-funnel-base="wealth-v2/">
 
 <head>
   <meta charset="UTF-8">
@@ -28,7 +26,30 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
-</head>
+<style id="tsl-style">
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+.tslwrap{max-width:600px;margin:24px auto 0;text-align:left;}
+.tsl{font-family:'Crimson Pro',Georgia,serif;font-size:18px;line-height:1.65;color:#e9e2f2;margin-bottom:15px;}
+.vsl-sub,.testi-body,.faq-a,.card-mirror p{font-size:18px !important;line-height:1.72 !important;}
+.vip-list li,.vip-list li span,.price-note{font-size:18px !important;line-height:1.6 !important;}
+.tslbold{color:#fff;font-weight:600;}
+.pcard{color:#E8C97A;font-style:italic;font-weight:600;}
+.pdate{color:#E8C97A;font-style:italic;}
+.tslpull{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#E8C97A;border-left:3px solid #C9A14A;padding:16px 22px;margin:26px 0;background:rgba(201,161,74,.08);border-radius:0 8px 8px 0;line-height:1.5;}
+.tslbridge{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cbb88a;margin:8px 0 0;}
+body{background:#0b0718 !important;}
+.dream-bg{filter:brightness(0.5) saturate(1.05) !important;}
+.luna-hero{display:block;width:62%;max-width:320px;margin:6px auto 14px;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 16px 44px rgba(0,0,0,.55);}
+.luna-cap{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:0 0 24px;}
+.vsl-headline{font-size:clamp(25px,6vw,36px) !important;line-height:1.07 !important;margin-bottom:14px !important;letter-spacing:0 !important;}
+.vsl-headline em{font-size:0.93em;}
+body,p,li,.tsl,.vsl-sub,.testi-body,.testi-name,.faq-q,.faq-a,.card-mirror p,.card-name-label,.vip-list,.vip-list li,.vip-list li span,.price-note,.luna-cap,.cta,.cta-trust-row,.cta-trust-row span,.topnotice,.topnotice strong,[style*="Cinzel"],[style*="Crimson"]{font-family:'Inter',system-ui,sans-serif !important;}
+h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Garamond',Georgia,serif !important;}
+.tsl,.vsl-sub,.testi-body,.faq-a,.vip-list li{letter-spacing:-0.003em;}
+.tslfig{margin:30px 0;}
+.tslmid{display:block;width:100%;border-radius:14px;border:1px solid rgba(212,175,55,.5);box-shadow:0 16px 44px rgba(0,0,0,.5);}
+.tslfigcap{text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:10px 0 0;}
+</style></head>
 
 <body>
 
@@ -48,7 +69,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
 
 <div class="topnotice" style="background:#9b1c1c;color:#fff;border-bottom:1px solid #c0392b;">
-  <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>But I Noticed a Pattern in Your Specific Cards First</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Please Read This Before It Arrives</strong>
+  <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>But I Noticed a Pattern in Your Specific Cards</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Please Read This Before It Arrives</strong>
 </div>
 
 
@@ -60,52 +81,61 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
   <div class="wrap">
     
 
-<h1 class="vsl-headline">The Wealth Block Is the Root.<br><em>Clear It, and Watch the Money Move.</em></h1>
+<h1 class="vsl-headline"><span class="firstname">Friend</span>, There Is One Hidden Pattern. It Sits Beneath Everything You've Struggled With.<br><em>Your three cards just brought it to the surface. Once you see it, you cannot unsee it.</em></h1>
 
 
     
 
 <p class="vsl-sub">It is the one belief quietly setting your wealth ceiling, year after year. Your three cards point straight to it.</p>
+<div class="tslwrap">
+<img class="luna-hero" src="../assets/luna-portrait.jpg" alt="Luna Ross, your reader">
+<p class="luna-cap">Luna Ross, your reader</p>
+<p class="tsl"><span class="firstname">Friend</span>, here on <span class="pdate">today</span>, I have all three of your cards in front of me.</p>
+<p class="tsl cards-line" style="display:none"><span class="pcard" data-card="wealth">your Wealth card</span> in your Wealth house. <span class="pcard" data-card="love">your Love card</span> in your Love. <span class="pcard" data-card="life">your Life card</span> in your Life.</p>
+<p class="tsl">The moment I laid them out, one pattern stepped forward.</p>
+<p class="tsl">There is a number your money keeps returning to.</p>
+<p class="tsl">No matter how hard you work, how much you learn, or how much you pray on it, you land back at the same figure.</p>
+<p class="tsl">More comes close. A windfall, an unexpected opening, a yes you can almost taste.</p>
+<p class="tsl">Then something unseen pulls it back, and the door quietly closes again.</p>
+<p class="tsl"><span class="pcard" data-card="wealth">your Wealth card</span> landing in your Wealth house is where I see it most clearly.</p>
+<p class="tsl">You have tried the things that were supposed to fix this. Therapy. Manifesting. The courses.</p>
+<p class="tsl">Each one worked for a while. Then the same ceiling came back, exactly where it always sits.</p>
+<p class="tsl">That is not a willpower problem, <span class="firstname">Friend</span>. And it was never your fault.</p>
+<p class="tsl">Those approaches all aimed at the symptom. None of them touched the root.</p>
+<p class="tsl">The root is a single belief you formed before you had words for it. Usually in childhood. About what is safe to have, and what it quietly costs you to keep it.</p>
+<p class="tsl">It runs underneath your money, your love, and your sense of purpose, all at the same time.</p>
+<p class="tsl">This is your <span class="tslbold">Wealth Block</span>. And your three cards have been pointing straight at it.</p>
+<figure class="tslfig"><img class="tslmid" src="../assets/luna-hands-cards.jpg" alt="Luna reading your three cards"><figcaption class="tslfigcap">The three cards you drew, as I read them.</figcaption></figure>
+<p class="tsl">It shows up in all three areas. But it speaks loudest in money, because money keeps the most precise record.</p>
+<p class="tsl">Every time money comes close and you quietly brace for it to leave, every time something in you whispers "not yet, not for me," you are following an instruction you did not knowingly write.</p>
+<p class="tsl">Here is what it is doing right now.</p>
+<p class="tsl">It is holding your income at the exact figure you have learned to expect. And it is patient.</p>
+<p class="tsl">It does not need a bad month to win. It only needs you to keep deciding you are not ready.</p>
+<p class="tsl">Picture six months from now. The same ceiling. The same flinch. The same quiet math where you settle for less and call it being realistic.</p>
+<p class="tsl">A year from now, the loss has compounded. In money, and in the part of you that has stopped expecting more.</p>
+<div class="tslpull">The block does not fight you. It waits you out. Left unnamed, it always wins, because you cannot clear what you cannot see.</div>
+<p class="tsl">The free preview on its way to your inbox will confirm your Wealth Block is there, <span class="firstname">Friend</span>. It can show you the shape of it.</p>
+<p class="tsl">What it cannot do is read <span class="pcard" data-card="wealth">your Wealth card</span>, <span class="pcard" data-card="love">your Love card</span>, and <span class="pcard" data-card="life">your Life card</span> together, and show you exactly how your block operates, where it took root, and how to clear it.</p>
+<p class="tsl">That is your Soul Mirror Reading.</p>
+<p class="tsl">I read your three cards by hand, <span class="firstname">Friend</span>. I show you the precise belief setting your ceiling, the exact moves it has been making behind your back, and the one practice that interrupts it where it actually lives.</p>
+<p class="tsl">Hand-written for your cards. In your inbox within 24 hours.</p>
+<p class="tsl">Your cards have already shown me what yours is doing. The reading is how you finally see it, and begin to clear it.</p>
+</div>
 
 
     
 
-<p class="vsl-sub" style="margin-top:-8px;"><em>Your Soul Mirror Reading names exactly which Wealth Block is yours, and the practice that clears it. Tap play to find out more.</em></p>
 
 
 
-    <div class="video-frame">
-      <vturb-smartplayer id="vid-6a03e48213e119642182af7b"
-        style="display: block; margin: 0 auto; width: 100%;"
-        data-autoplay="false" autoplay="false"
-        data-muted="true" muted="true"
-        data-smr-guard="1"></vturb-smartplayer>
-      <script type="text/javascript">
-        var s = document.createElement("script");
-        s.src = "https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/6a03e48213e119642182af7b/v4/player.js";
-        s.async = !0;
-        document.head.appendChild(s);
-      </script>
-      <script defer src="../assets/vturb-player-guard.min.js?v=<?= htmlspecialchars((string) $guardVer, ENT_QUOTES) ?>"></script>
+
     </div>
-
-  </div>
 </section>
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
      CTA #1, RIGHT AFTER VSL (NEW)
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
-<section style="padding: 20px 24px 60px; position:relative;">
-  <div class="cta-block">
-    <div class="small-headline">Ready to See Your <em>Wealth Block?</em></div>
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
-    <div class="cta-trust-row">
-      <span>&#128274; Secure Checkout</span>
-      <span>&#9889; Delivered in 12-24 Hrs</span>
-      <span>&#127769; 90-Day Guarantee</span>
-    </div>
-  </div>
-</section>
+
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
      3-CARD BREAKDOWN (existing, now personalized + headline updated)
@@ -163,7 +193,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       </div>
       <div class="card-mirror featured">
         <img src="https://soulmirrorreading.com/cards/mirror-block.png" alt="Wealth Block" class="mirror-img" style="max-width:140px;">
-        <h4>The Hidden Layer &middot; Wealth Block</h4>
+        <h4>The Hidden Layer.<br>This Is Your Wealth Block.</h4>
         <p>The one belief running all three. Until it is named clearly, every reading you ever get will point to the same wall.</p>
       </div>
     </div>
@@ -225,17 +255,17 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <!-- Down arrow / decoding indicator -->
     <div style="text-align:center; margin:24px auto 8px;">
-      <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.25em; color:var(--gold); text-transform:uppercase; margin-bottom:8px;">Decodes To</div>
+      <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.25em; color:var(--gold); text-transform:uppercase; margin-bottom:8px;">What Your Cards Point To</div>
       <div style="color:var(--gold); font-size:24px; line-height:1;">&darr;</div>
     </div>
 
     <!-- Diagnosis card (always visible, no tap gate) -->
     <div style="max-width:560px; margin:16px auto 0;">
       <div style="background: linear-gradient(180deg, rgba(45,27,105,0.65), rgba(30,13,64,0.92)); border: 1px solid var(--gold); border-radius: 14px; padding: 32px 28px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); text-align: center;">
-        <div style="font-family:'Cinzel',sans-serif; font-size:10px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:12px;">What Your Cards Point To</div>
+        
         <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">Your Wealth Is Blocked</h4>
-        <p data-mirror-block-summary style="font-size:16px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money arrives. Money quietly leaves. The same income range, year after year, no matter what you try.</p>
-        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:15px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading names <strong style="color:var(--gold-light);">exactly which</strong> Wealth Block this is, and the practice that clears it.</div>
+        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money arrives. Money quietly leaves. The same income range, year after year, no matter what you try.</p>
+        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block is working, and the practice that clears it.</div>
       </div>
     </div>
 
@@ -503,13 +533,13 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <div style="background: linear-gradient(180deg, rgba(45,27,105,0.6), rgba(30,13,64,0.85)); border: 1px solid rgba(212,175,55,0.45); border-radius: 14px; padding: 28px 22px; backdrop-filter: blur(4px);">
         <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:14px;">Path A</div>
         <h3 style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#fff; font-weight:600; line-height:1.3; margin-bottom:14px;">You <em style="color:var(--gold-light); font-style:italic;">See It Clearly</em></h3>
-        <p style="font-size:15px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0;">Within 24 hours, your Soul Mirror Reading lands in your inbox. You read it once on your couch. The next morning you read it again, slower. You see the single belief that has been running underneath every choice in love, money, and purpose. The work begins from there. Most people tell me it takes 21 days before they notice they have stopped doing the thing they have been doing for years.</p>
+        <p style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0;">Within 24 hours, your Soul Mirror Reading lands in your inbox. You read it once on your couch. The next morning you read it again, slower. You see the single belief that has been running underneath every choice in love, money, and purpose. The work begins from there. Most people tell me it takes 21 days before they notice they have stopped doing the thing they have been doing for years.</p>
       </div>
       <!-- Path B -->
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 28px 22px; backdrop-filter: blur(4px);">
         <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.22em; color:rgba(255,255,255,0.5); text-transform:uppercase; margin-bottom:14px;">Path B</div>
         <h3 style="font-family:'Cormorant Garamond',serif; font-size:22px; color:rgba(255,255,255,0.7); font-weight:600; line-height:1.3; margin-bottom:14px;">You <em style="color:rgba(255,255,255,0.55); font-style:italic;">Don't.</em></h3>
-        <p style="font-size:15px; color:rgba(255,255,255,0.6); line-height:1.7; margin:0;">You close this page. You finish your tea. The pattern keeps running. Six months from now, you are back here. Or somewhere else, looking at the same wall in different paint. The cards you chose minutes ago will not carry the same precision a week from now. The window narrows quietly.</p>
+        <p style="font-size:18px; color:rgba(255,255,255,0.6); line-height:1.7; margin:0;">You close this page. You finish your tea. The pattern keeps running. Six months from now, you are back here. Or somewhere else, looking at the same wall in different paint. The cards you chose minutes ago will not carry the same precision a week from now. The window narrows quietly.</p>
       </div>
     </div>
 
@@ -610,6 +640,6 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script defer src="../assets/sales-v2.min.js?v=<?= htmlspecialchars((string) $jsVer, ENT_QUOTES) ?>"></script>
-</body>
+<script>(function(){function go(){try{var d=new Date();var t=d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});var pd=document.querySelectorAll('.pdate');for(var i=0;i<pd.length;i++){pd[i].textContent=t;}}catch(e){}try{var any=false;var L=document.querySelectorAll('[data-card-name]');for(var j=0;j<L.length;j++){var k=L[j].getAttribute('data-card-name');var tx=(L[j].textContent||'').trim();if(tx){any=true;var pc=document.querySelectorAll('.pcard');for(var m=0;m<pc.length;m++){if(pc[m].getAttribute('data-card')===k){pc[m].textContent=tx;}}}}if(any){var cl=document.querySelectorAll('.cards-line');for(var n=0;n<cl.length;n++){cl[n].style.display='';}}}catch(e){}}document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);var c=0,iv=setInterval(function(){go();if(++c>10){clearInterval(iv);}},250);})();</script></body>
 
 </html>
