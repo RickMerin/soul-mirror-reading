@@ -39,7 +39,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-wtsl&template=o
 .tslbridge{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cbb88a;margin:8px 0 0;}
 body{background:#0b0718 !important;}
 .dream-bg{filter:brightness(0.5) saturate(1.05) !important;}
-.luna-hero{display:block;width:62%;max-width:320px;margin:6px auto 14px;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 16px 44px rgba(0,0,0,.55);}
+.luna-hero{display:block;width:62%;max-width:320px;margin:6px auto 14px;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 16px 44px rgba(0,0,0,.55);overflow:hidden;background:#160c34;}
 .luna-cap{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:0 0 24px;}
 .vsl-headline{font-size:clamp(25px,6vw,36px) !important;line-height:1.07 !important;margin-bottom:14px !important;letter-spacing:0 !important;}
 .vsl-headline em{font-size:0.93em;}
@@ -88,7 +88,10 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
 <p class="vsl-sub">It is the one belief quietly setting your wealth ceiling, year after year. Your three cards point straight to it.</p>
 <div class="tslwrap">
-<img class="luna-hero" src="../assets/luna-portrait.jpg" alt="Luna Ross, your reader">
+<video class="luna-hero" autoplay loop muted playsinline preload="auto" poster="../assets/luna-portrait.jpg" aria-label="Luna Ross, your reader">
+<source src="../assets/luna-motion.mp4" type="video/mp4">
+<img src="../assets/luna-portrait.jpg" alt="Luna Ross, your reader">
+</video>
 <p class="luna-cap">Luna Ross, your reader</p>
 <p class="tsl"><span class="firstname">Friend</span>, here on <span class="pdate">today</span>, I have all three of your cards in front of me.</p>
 <p class="tsl cards-line" style="display:none"><span class="pcard" data-card="wealth">your Wealth card</span> in your Wealth house. <span class="pcard" data-card="love">your Love card</span> in your Love. <span class="pcard" data-card="life">your Life card</span> in your Life.</p>
@@ -205,7 +208,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
      DIAGNOSTIC PROOF (NEW v2)
      "This Is a Diagnosis. Not a Prediction."
-     Shows the 4 possible outcomes + the 22,100 combinations math
+     Diagnosis framing: three cards read as one connected system
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section class="section" style="position:relative;">
   <div class="wrap">
@@ -215,7 +218,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
 <p style="text-align:center; max-width:600px; margin:0 auto 18px;">Your three cards point to one specific belief at the root of your wealth. The same belief quietly shapes your relationships and your sense of purpose. Name it at the wealth root. Watch all three balance back.</p>
 
-    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">There are <strong style="color:var(--gold-light);">22,100 possible 3-card combinations</strong>. Yours decodes to exactly one Wealth Block. Not a vibe. Not a horoscope. A specific diagnosis built from the precise cards you drew.</p>
+    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">This is not a vibe or a horoscope. It reads the <strong style="color:var(--gold-light);">three cards you actually drew</strong>, and the houses they landed in, as one connected system, the way a doctor reads three symptoms together instead of one at a time. That is what turns an interesting card into the exact thing you keep doing. It is built from your cards, not a script.</p>
 
 
 
@@ -450,7 +453,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <div class="pricing-inline-guarantee">
       <img src="https://soulmirrorreading.com/cards/guarantee-badge.png" alt="90-Day Guarantee">
-      <div><strong>90-Day Money Back Guarantee.</strong><br>If it does not show you something real, refund. No questions.</div>
+      <div><strong>90-Day Money-Back Guarantee.</strong><br>Read it. If the Wealth Block I name does not feel unmistakably like your life, reply and I refund every penny. You keep the reading and all four bonuses.</div>
     </div>
 
     <div class="trust-badge-row">
@@ -584,7 +587,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       </details>
       <details>
         <summary>What if I am not satisfied?</summary>
-        <p class="faq-a">You are covered by our 90-day guarantee. If the report does not give you something genuinely useful, email us and we will refund you completely. We would rather you keep the money than feel like the mirror did not show you anything real.</p>
+        <p class="faq-a">You are covered by a 90-day guarantee. Read your reading. If the Wealth Block I name does not feel unmistakably like your life, if it reads like something that could be sent to anyone, reply to the delivery email and I refund every penny. You keep the reading and all four bonuses. In nineteen years, that has almost never happened.</p>
       </details>
     </div>
   </div>
