@@ -49,6 +49,10 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 .tslfig{margin:30px 0;}
 .tslmid{display:block;width:100%;border-radius:14px;border:1px solid rgba(212,175,55,.5);box-shadow:0 16px 44px rgba(0,0,0,.5);}
 .tslfigcap{text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:10px 0 0;}
+.luna-bio{max-width:600px;margin:2px auto 26px;padding:20px 22px;border:1px solid rgba(212,175,55,.28);border-radius:12px;background:rgba(45,27,105,.20);}
+.luna-bio-eyebrow{font-family:'Inter',system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#E8C97A;margin-bottom:12px;text-align:center;}
+.luna-bio .tsl{margin-bottom:12px;}
+.luna-bio .tsl:last-child{margin-bottom:0;}
 </style></head>
 
 <body>
@@ -90,6 +94,12 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <div class="tslwrap">
 <img class="luna-hero" src="../assets/luna-portrait.jpg" alt="Luna Ross, your reader">
 <p class="luna-cap">Luna Ross, your reader</p>
+<div class="luna-bio">
+<div class="luna-bio-eyebrow">Who Is Reading Your Cards</div>
+<p class="tsl">I am Luna Ross. I have been reading cards for nineteen years, and I have laid them out for more than 4,800 people. For my first ten years I read the way most readers do: one card, one meaning, a story that helped for an afternoon and changed nothing.</p>
+<p class="tsl">Everything shifted when I stopped reading cards one at a time and began reading them in threes. The same hidden belief, the one quietly shaping a person's money, their love, and their sense of purpose, started appearing in front of me again and again. I learned to name it. Naming it is the thing that finally lets people clear it, instead of only understanding it.</p>
+<p class="tsl">I read every Soul Mirror Reading myself, by hand. I do not automate it and I do not hand it off. That is also why I can only take so many in a day.</p>
+</div>
 <p class="tsl"><span class="firstname">Friend</span>, here on <span class="pdate">today</span>, I have all three of your cards in front of me.</p>
 <p class="tsl cards-line" style="display:none"><span class="pcard" data-card="wealth">your Wealth card</span> in your Wealth house. <span class="pcard" data-card="love">your Love card</span> in your Love. <span class="pcard" data-card="life">your Life card</span> in your Life.</p>
 <p class="tsl">The moment I laid them out, one pattern stepped forward.</p>
@@ -205,7 +215,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
      DIAGNOSTIC PROOF (NEW v2)
      "This Is a Diagnosis. Not a Prediction."
-     Shows the 4 possible outcomes + the 22,100 combinations math
+     Diagnosis framing: three cards read as one connected system
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section class="section" style="position:relative;">
   <div class="wrap">
@@ -215,7 +225,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
 <p style="text-align:center; max-width:600px; margin:0 auto 18px;">Your three cards point to one specific belief at the root of your wealth. The same belief quietly shapes your relationships and your sense of purpose. Name it at the wealth root. Watch all three balance back.</p>
 
-    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">There are <strong style="color:var(--gold-light);">22,100 possible 3-card combinations</strong>. Yours decodes to exactly one Wealth Block. Not a vibe. Not a horoscope. A specific diagnosis built from the precise cards you drew.</p>
+    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">This is not a vibe or a horoscope. It reads the <strong style="color:var(--gold-light);">three cards you actually drew</strong>, and the houses they landed in, as one connected system, the way a doctor reads three symptoms together instead of one at a time. That is what turns an interesting card into the exact thing you keep doing. It is built from your cards, not a script.</p>
 
 
 
@@ -450,7 +460,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <div class="pricing-inline-guarantee">
       <img src="https://soulmirrorreading.com/cards/guarantee-badge.png" alt="90-Day Guarantee">
-      <div><strong>90-Day Money Back Guarantee.</strong><br>If it does not show you something real, refund. No questions.</div>
+      <div><strong>90-Day Money-Back Guarantee.</strong><br>Read it. If the Wealth Block I name does not feel unmistakably like your life, reply and I refund every penny. You keep the reading and all four bonuses.</div>
     </div>
 
     <div class="trust-badge-row">
@@ -584,7 +594,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       </details>
       <details>
         <summary>What if I am not satisfied?</summary>
-        <p class="faq-a">You are covered by our 90-day guarantee. If the report does not give you something genuinely useful, email us and we will refund you completely. We would rather you keep the money than feel like the mirror did not show you anything real.</p>
+        <p class="faq-a">You are covered by a 90-day guarantee. Read your reading. If the Wealth Block I name does not feel unmistakably like your life, if it reads like something that could be sent to anyone, reply to the delivery email and I refund every penny. You keep the reading and all four bonuses. In nineteen years, that has almost never happened.</p>
       </details>
     </div>
   </div>
