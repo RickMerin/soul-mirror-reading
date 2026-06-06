@@ -49,10 +49,6 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 .tslfig{margin:30px 0;}
 .tslmid{display:block;width:100%;border-radius:14px;border:1px solid rgba(212,175,55,.5);box-shadow:0 16px 44px rgba(0,0,0,.5);}
 .tslfigcap{text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:10px 0 0;}
-.luna-bio{max-width:600px;margin:2px auto 26px;padding:20px 22px;border:1px solid rgba(212,175,55,.28);border-radius:12px;background:rgba(45,27,105,.20);}
-.luna-bio-eyebrow{font-family:'Inter',system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#E8C97A;margin-bottom:12px;text-align:center;}
-.luna-bio .tsl{margin-bottom:12px;}
-.luna-bio .tsl:last-child{margin-bottom:0;}
 </style></head>
 
 <body>
@@ -94,12 +90,6 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <div class="tslwrap">
 <img class="luna-hero" src="../assets/luna-portrait.jpg" alt="Luna Ross, your reader">
 <p class="luna-cap">Luna Ross, your reader</p>
-<div class="luna-bio">
-<div class="luna-bio-eyebrow">Who Is Reading Your Cards</div>
-<p class="tsl">I am Luna Ross. I have been reading cards for nineteen years, and I have laid them out for more than 4,800 people. For my first ten years I read the way most readers do: one card, one meaning, a story that helped for an afternoon and changed nothing.</p>
-<p class="tsl">Everything shifted when I stopped reading cards one at a time and began reading them in threes. The same hidden belief, the one quietly shaping a person's money, their love, and their sense of purpose, started appearing in front of me again and again. I learned to name it. Naming it is the thing that finally lets people clear it, instead of only understanding it.</p>
-<p class="tsl">I read every Soul Mirror Reading myself, by hand. I do not automate it and I do not hand it off. That is also why I can only take so many in a day.</p>
-</div>
 <p class="tsl"><span class="firstname">Friend</span>, here on <span class="pdate">today</span>, I have all three of your cards in front of me.</p>
 <p class="tsl cards-line" style="display:none"><span class="pcard" data-card="wealth">your Wealth card</span> in your Wealth house. <span class="pcard" data-card="love">your Love card</span> in your Love. <span class="pcard" data-card="life">your Life card</span> in your Life.</p>
 <p class="tsl">The moment I laid them out, one pattern stepped forward.</p>
