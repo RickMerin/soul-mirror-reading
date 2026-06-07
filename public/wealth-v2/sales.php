@@ -89,7 +89,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <p class="vsl-sub">It is the one belief quietly setting your wealth ceiling, year after year. Your three cards point straight to it.</p>
 <div class="tslwrap">
 <video class="luna-hero" autoplay loop muted playsinline preload="auto" poster="../assets/luna-portrait.jpg" aria-label="Luna Ross, your reader">
-<source src="../assets/luna-motion.mp4" type="video/mp4">
+<source src="../assets/luna-motion.mp4?v=2" type="video/mp4">
 <img src="../assets/luna-portrait.jpg" alt="Luna Ross, your reader">
 </video>
 <p class="luna-cap">Luna Ross, your reader</p>
