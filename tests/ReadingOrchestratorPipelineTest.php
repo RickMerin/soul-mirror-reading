@@ -197,7 +197,8 @@ final class ReadingOrchestratorPipelineTest extends TestCase
 
         $result = $orchestrator->run($this->validReadingBody());
 
-        $this->assertSame(500, $result->httpStatus);
+        // Kit failures are non-fatal: the reading still returns 200 and the lead is kept.
+        $this->assertSame(200, $result->httpStatus);
         $log = (string) file_get_contents($logPath);
         $this->assertStringContainsString('kit: fail', $log);
 
