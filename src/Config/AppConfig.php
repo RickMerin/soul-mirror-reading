@@ -115,15 +115,14 @@ final class AppConfig
             $dataDir = $projectRoot . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $dataDir);
         }
 
-        $tarotSource = strtolower(trim($get('TAROT_SOURCE')));
-        if (!in_array($tarotSource, ['local', 'api'], true)) {
-            $tarotSource = 'local';
-        }
-
-        $sunSource = strtolower(trim($get('SUN_SOURCE')));
-        if (!in_array($sunSource, ['local', 'api'], true)) {
-            $sunSource = 'local';
-        }
+        // HOTFIX (2026-06): force the bundled local datasets for tarot + sun sign.
+        // The external AstrologyAPI caused 3-5s opt-in latency and intermittent
+        // "Something went wrong" failures (the synchronous /api/reading call timing out).
+        // The local dataset is complete and identical content, but instant and dependency-free.
+        // This intentionally overrides TAROT_SOURCE / SUN_SOURCE from the server .env.
+        // To revert: delete these two lines and set the values in .env instead.
+        $tarotSource = 'local';
+        $sunSource = 'local';
 
         $sunTz = trim($get('SUN_SIGN_TIMEZONE'));
         if ($sunTz === '') {
