@@ -165,10 +165,11 @@ final class ReadingOrchestrator
                     $this->pipelineLog->line('kit: embed handoff (browser submits form with kitEmbedFields)');
                 }
             } catch (Throwable $e) {
-                error_log('ReadingOrchestrator Kit: ' . $e->getMessage());
-                $this->pipelineLog->line('kit: fail ' . $e::class . ' ' . $this->shortSafeMessage($e));
-
-                return new ReadingResult(500, ['error' => 'Internal server error.']);
+                // Non-fatal: the lead is already captured, and in embed mode the browser
+                // submits to Kit directly. A Kit hiccup must not block the reading or the
+                // user's path to the next step, so log it and continue with HTTP 200.
+                error_log('ReadingOrchestrator Kit (non-fatal): ' . $e->getMessage());
+                $this->pipelineLog->line('kit: fail (non-fatal, continuing) ' . $e::class . ' ' . $this->shortSafeMessage($e));
             }
         }
 
