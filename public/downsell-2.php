@@ -177,7 +177,7 @@
       <div class="wrap">
         <h1>I Am Not Letting You Leave<br /><em>With Two Mirrors Still Clouded.</em></h1>
         <p class="subhead">$67 was not right today. Fine. Same rituals, lower price. I would rather meet you here than watch you wait months for your money work to reach love and purpose on its own.</p>
-        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-hero2.png" alt="Two antique mirrors clearing to gold light, one for love and one for purpose" />
+        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-hero2.webp" alt="Two antique mirrors clearing to gold light, one for love and one for purpose" />
       </div>
     </section>
 
@@ -236,7 +236,7 @@
         <div style="margin-top:26px;">
           <div class="testi">
             <div class="testi__row">
-              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-jennifer-l.png" alt="Jennifer L." />
+              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-jennifer-l.webp" alt="Jennifer L." />
               <div><div class="testi__name">Jennifer L.</div><div class="testi__meta">51 &middot; Denver, US</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -244,7 +244,7 @@
           </div>
           <div class="testi">
             <div class="testi__row">
-              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-marcus-t.png" alt="Marcus T." />
+              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-marcus-t.webp" alt="Marcus T." />
               <div><div class="testi__name">Marcus T.</div><div class="testi__meta">46 &middot; Austin, US</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -252,7 +252,7 @@
           </div>
           <div class="testi">
             <div class="testi__row">
-              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-elena-m.png" alt="Elena M." />
+              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-elena-m.webp" alt="Elena M." />
               <div><div class="testi__name">Elena M.</div><div class="testi__meta">43 &middot; Barcelona, ES</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -269,7 +269,7 @@
           <span class="offer-label">One-Time Offer, Disappears When You Leave</span>
           <h2 style="margin-bottom:10px;">Clear the Other Two Mirrors for $47</h2>
           <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">The same rituals that speed up love and purpose. Same three bonuses. The only thing lower is the price.</p>
-          <img class="lineup-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-package.png" alt="The complete Love Clarity Ritual bundle, the 3-movement practice and 3 bonuses" style="margin-bottom:26px;" />
+          <img class="lineup-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-package.webp" alt="The complete Love Clarity Ritual bundle, the 3-movement practice and 3 bonuses" style="margin-bottom:26px;" />
 
           <ul class="vlist">
             <li><span class="vs-name">The Love Clarity Ritual, a 3-Movement Practice</span><span class="vs-price">$147</span></li>
@@ -306,7 +306,7 @@
     <section class="section">
       <div class="wrap">
         <div class="guarantee">
-          <img src="https://soulmirrorreading.com/frontend/images/upsell2/guarantee-badge.png" alt="90 Day Mirror Guarantee" />
+          <img src="https://soulmirrorreading.com/frontend/images/upsell2/guarantee-badge.webp" alt="90 Day Mirror Guarantee" />
           <h2 style="font-size:clamp(19px,2.8vw,24px);margin-bottom:14px;">90-Day Money-Back Guarantee</h2>
           <p>Work through all three movements. If your love life and your sense of purpose feel no different within 90 days, email us for a full refund of your $47. No questions, no explanation. The risk is entirely mine.</p>
         </div>
