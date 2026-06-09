@@ -52,6 +52,13 @@ final class AppConfig
         public readonly string $appBaseUrl,
         /** Slack Incoming Webhook URL for ClickBank INS logs; empty = disabled. */
         public readonly string $clickbankInsSlackWebhookUrl,
+        public readonly string $awsAccessKeyId,
+        public readonly string $awsSecretAccessKey,
+        public readonly string $awsRegion,
+        public readonly string $awsS3Bucket,
+        /** Kit tag applied when a personalized reading PDF is ready (triggers delivery email automation). */
+        public readonly string $kitTagNameReadingDelivered,
+        public readonly string $soulMirrorCardsBaseUrl,
     ) {}
 
     /**
@@ -115,15 +122,14 @@ final class AppConfig
             $dataDir = $projectRoot . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $dataDir);
         }
 
-        $tarotSource = strtolower(trim($get('TAROT_SOURCE')));
-        if (!in_array($tarotSource, ['local', 'api'], true)) {
-            $tarotSource = 'local';
-        }
-
-        $sunSource = strtolower(trim($get('SUN_SOURCE')));
-        if (!in_array($sunSource, ['local', 'api'], true)) {
-            $sunSource = 'local';
-        }
+        // HOTFIX (2026-06): force the bundled local datasets for tarot + sun sign.
+        // The external AstrologyAPI caused 3-5s opt-in latency and intermittent
+        // "Something went wrong" failures (the synchronous /api/reading call timing out).
+        // The local dataset is complete and identical content, but instant and dependency-free.
+        // This intentionally overrides TAROT_SOURCE / SUN_SOURCE from the server .env.
+        // To revert: delete these two lines and set the values in .env instead.
+        $tarotSource = 'local';
+        $sunSource = 'local';
 
         $sunTz = trim($get('SUN_SIGN_TIMEZONE'));
         if ($sunTz === '') {
@@ -154,6 +160,16 @@ final class AppConfig
             dbPass: $get('DB_PASS'),
             appBaseUrl: rtrim($get('APP_BASE_URL'), '/'),
             clickbankInsSlackWebhookUrl: $get('CLICKBANK_INS_SLACK_WEBHOOK_URL'),
+            awsAccessKeyId: $get('AWS_ACCESS_KEY_ID'),
+            awsSecretAccessKey: $get('AWS_SECRET_ACCESS_KEY'),
+            awsRegion: $get('AWS_REGION') !== '' ? $get('AWS_REGION') : 'us-east-1',
+            awsS3Bucket: $get('AWS_S3_BUCKET'),
+            kitTagNameReadingDelivered: $get('KIT_TAG_NAME_READING_DELIVERED') !== ''
+                ? $get('KIT_TAG_NAME_READING_DELIVERED')
+                : 'reading-delivered',
+            soulMirrorCardsBaseUrl: $get('SOUL_MIRROR_CARDS_BASE_URL') !== ''
+                ? rtrim($get('SOUL_MIRROR_CARDS_BASE_URL'), '/')
+                : 'https://soulmirrorreading.com/cards',
         );
     }
 

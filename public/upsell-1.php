@@ -17,7 +17,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Refresh v8 v6 -->
-  <title>Complete Your Soul Mirror Reading — The Clearing Practice From Luna Ross</title>
+  <title>Complete Your Soul Mirror Reading, The Clearing Practice From Luna Ross</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -982,9 +982,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
     @media (max-width: 420px) {
       .container { padding: 0 14px; }
       .hero__headline { font-size: 22px; }
-      .pain__headline, .mechanism__headline, .includes__headline,
-      .bonuses__headline, .offer__headline, .final-cta__headline,
-      .testimonials__headline { font-size: 20px; }
+      .pain__headline, .mechanism__headline, .includes__headline, .bonuses__headline, .offer__headline, .final-cta__headline, .testimonials__headline { font-size: 20px; }
       .price-reveal__now { font-size: 40px; }
       .coupon { max-width: 100%; padding: 12px 16px; }
       .cta-btn { padding: 18px 12px; font-size: 12px; letter-spacing: 0.06em; }
@@ -1018,8 +1016,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
       user-select: none;
       outline: none;
     }
-    .faq-item__q::-webkit-details-marker,
-    .faq-item__q::marker {
+    .faq-item__q::-webkit-details-marker, .faq-item__q::marker {
       display: none; content: '';
     }
     .faq-item__q:hover { background: rgba(212,175,55,0.06); }
@@ -1070,66 +1067,75 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style id="match-salespage-fonts">
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif !important;font-size:18px !important;line-height:1.72 !important;}
+.part-col__status,.pain__item p,.cta-btn--secondary{font-family:'Inter',system-ui,sans-serif !important;}
+.hero__headline,.agitation__headline,.pain__headline,.mechanism__headline,.luna-section__headline,
+.includes__headline,.bonuses__headline,.testimonials__headline,.urgency__headline,.offer__headline,
+.guarantee__headline,.faq__headline,.final-cta__headline,.include-item__headline,
+.journey__body strong{font-family:'Cormorant Garamond',Georgia,serif !important;font-weight:600 !important;}
+.price-reveal__now{font-family:'Cormorant Garamond',Georgia,serif !important;font-weight:600 !important;}
+.section-label,.notice-bar p,.hero__eyebrow,.journey__label,.part-col__num,.part-arrow,
+.mechanism__eyebrow,.report-card__num,.includes__eyebrow,.include-item__value,.bonuses__eyebrow,
+.bonus-item__badge,.bonus-item__value,.testimonials__eyebrow,.testimonial__name,.offer__eyebrow,
+.value-stack__title,.value-line__price,.coupon__label,.coupon__amount,.coupon__code,
+.price-reveal__label,.cta-btn,.guarantee__badge-text{font-family:'Inter',system-ui,-apple-system,sans-serif !important;}
+@keyframes foundingBlink{0%,100%{opacity:1}50%{opacity:.3}}
+.founding-blink{animation:foundingBlink 1.05s ease-in-out infinite;color:#E8C97A !important;font-weight:600;}
+</style>
 </head>
 <body>
 
   <!-- ═══ NOTICE BAR ═══ -->
-  <div class="notice-bar">
-    <p style="color: #ec1229; font-weight: 700;">
-      Soul Mirror Member Exclusive &mdash; Seen Only After Your Reading
-    </p>
+  <div class="notice-bar" style="background:#9b1c1c;border-bottom:1px solid #c0392b;text-align:center;text-transform:uppercase;letter-spacing:0.13em;font-weight:700;padding:14px 18px;font-size:13px;line-height:1.5;font-family:'Inter',system-ui,sans-serif;color:#f0dca8;">
+    <strong>Hold On, This Is Just for You</strong><span style="color:#f3b0a0;margin:0 9px;">&middot;</span><strong>A Members-Only Upgrade Just Unlocked, $100 Off</strong><span style="color:#f3b0a0;margin:0 9px;">&middot;</span><strong>Before Your Reading Lands</strong>
   </div>
 
   <!-- ═══ HERO ═══ -->
   <section class="hero">
     <div class="container">
-      <span class="hero__eyebrow">Your Reading Is Being Prepared</span>
       <h1 class="hero__headline">
-        You Just Took Part One.<br />
-        <em>This Is How You Complete It.</em>
+        The Reading Named the Pattern Capping Your Money.<br />
+        <em>This Is How You Clear It.</em>
       </h1>
       <p class="hero__subhead">
-        Your Soul Mirror Reading reveals the pattern. The Soul Ritual Practice is how Luna walks you through clearing it — one written protocol at a time, designed specifically for your block type.
+        The Soul Ritual Practice is the fast track to clearing it: the exact rituals, in the right order, for the precise Wealth Block your three cards revealed.<br />You are seconds from holding both halves of the work.
       </p>
     </div>
-    <img class="hero__image" src="frontend/images/upsell/hero-tarot-mirror-candle.png" alt="Three tarot cards, mirror, and lit candle on a writing desk" />
+    <video class="hero__image" autoplay loop muted playsinline preload="auto" poster="frontend/images/upsell/upsell-hero.jpg">
+      <source src="frontend/images/upsell/upsell-hero-motion.mp4?v=1" type="video/mp4" />
+      <img class="hero__image" src="frontend/images/upsell/upsell-hero.jpg" alt="Hands performing a clearing ritual over a gold filigree mirror with rising smoke, deep violet and gold" />
+    </video>
   </section>
 
-  <!-- ═══ PART 1 / PART 2 JOURNEY FRAME ═══ -->
-  <section class="journey">
-    <div class="journey__inner">
-      <span class="journey__label">✦ &nbsp; The Two Halves of the Work &nbsp; ✦</span>
-      <p class="journey__body">
-        The reading you just paid for is <strong>Part One</strong>.<br />
-        This page is <strong>Part Two</strong> — the piece that makes the first one hold.
-      </p>
-
-      <div class="part-row">
-        <div class="part-col part-col--done">
-          <span class="part-col__num">Part One</span>
-          <p class="part-col__title">The Soul Mirror Reading</p>
-          <p class="part-col__status part-col__status--done">✓ You just claimed this</p>
+  <!-- ═══ EARLY OFFER BLOCK ═══ -->
+  <section style="padding:30px 18px; background:linear-gradient(180deg, rgba(45,27,105,0.30), rgba(20,12,52,0.55));">
+    <div style="max-width:600px; margin:0 auto;">
+      <div style="border:1px solid rgba(212,175,55,0.45); border-radius:16px; background:rgba(20,12,52,0.65); padding:26px 22px; box-shadow:0 16px 44px rgba(0,0,0,0.4);">
+        <div style="text-align:center; font-family:'Inter',system-ui,sans-serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#E8C97A; margin-bottom:12px;">The Fast Track to Clear Your Wealth Block</div>
+        <h2 style="text-align:center; font-family:'Cormorant Garamond',serif; color:#fff; font-size:30px; font-weight:600; line-height:1.2; margin:0 0 12px;">Add The Soul Ritual Practice</h2>
+        <p style="text-align:center; color:#e9e2f2; font-size:17px; line-height:1.6; margin:0 0 18px;">One payment. Instant download. Yours to keep for life. The reading lands in your inbox within 24 hours; this is ready the moment you confirm.</p>
+        <ul style="list-style:none; padding:0; margin:0 0 18px; color:#e9e2f2; font-size:16px; line-height:1.6;">
+          <li style="padding:7px 0; border-bottom:1px solid rgba(212,175,55,0.15);">&#10022; The Mirror Block Clearing Rituals, a 3-part protocol. All four block-type versions are inside, so whichever one your reading reveals is ready the moment it lands.</li>
+          <li style="padding:7px 0; border-bottom:1px solid rgba(212,175,55,0.15);">&#10022; The Mirror Block Workbook, 45 pages to deepen and hold the work</li>
+          <li style="padding:7px 0; border-bottom:1px solid rgba(212,175,55,0.15);">&#10022; 3 free bonuses: the Audio Companion, the Wealth Alert Protocol, the Love Harmony Audio</li>
+          <li style="padding:7px 0;">&#10022; Yours to keep for life. Instant download.</li>
+        </ul>
+        <div style="text-align:center; margin-bottom:6px;">
+          <span style="color:rgba(255,255,255,0.55); font-size:14px; display:block; margin-bottom:2px;">$449 value &middot; <span class="founding-blink">$100 founding discount applied</span></span>
+          <span style="color:rgba(255,255,255,0.55); text-decoration:line-through; font-size:18px;">$197</span>
+          <span style="color:#E8C97A; font-size:44px; font-weight:600; font-family:'Cormorant Garamond',serif; margin-left:10px; line-height:1;">$97</span>
         </div>
-        <div class="part-arrow">→</div>
-        <div class="part-col">
-          <span class="part-col__num">Part Two</span>
-          <p class="part-col__title">The Soul Ritual Practice</p>
-          <p class="part-col__status">The clearing work</p>
+        <p style="text-align:center; color:#cdb98c; font-size:14px; margin:0 0 18px;">Founding member rate, this page only. Public price after launch is $197. One payment, no subscription.</p>
+        <div style="text-align:center;">
+          <a href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>" class="cta-btn" style="display:inline-block; text-decoration:none;">Yes, Add The Soul Ritual Practice &middot; $97</a>
+          <p style="color:rgba(255,255,255,0.72); font-size:13px; margin:12px 0 0;">This adds to the order you just placed. No card to re-enter. One tap and it is yours.</p>
+          <p style="color:#cdb98c; font-size:13px; margin:7px 0 0; font-style:italic;">Backed by a 90-day money-back guarantee. Keep everything.</p>
+          <a class="cta-btn--secondary" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>" style="display:inline-block; margin-top:14px;">No thank you, continue to my reading &rarr;</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ═══ BRIDGE / LUNA MESSAGE ═══ -->
-  <section class="bridge">
-    <div class="container">
-      <span class="section-label" style="text-align:center;">A personal note from Luna Ross</span>
-      <div class="bridge__body">
-        <p>Before your reading even reaches you, I want you to know something most readers will never tell you.</p>
-        <p>Knowing the name of your block is not the same as clearing it. I have sat with people who understood their pattern perfectly — who could trace it, describe it, explain it in flawless detail — <strong>and still watched it run their life for another decade.</strong></p>
-        <p>Understanding lives in the mind. Your Mirror Block does not. <strong>The clearing is a different kind of work entirely</strong> — and if you have come this far, you deserve the tools to finish what the reading started.</p>
-      </div>
-      <p class="bridge__sig"><strong>Luna Ross</strong> &mdash; 11 years, 4,800+ readings</p>
     </div>
   </section>
 
@@ -1137,48 +1143,19 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
   <section class="agitation">
     <div class="container">
       <h2 class="agitation__headline">
-        You Have Been Here Before.<br />
-        <em>You Knew. And Nothing Changed.</em>
+        You Have Named This Pattern Before.<br />
+        <em>It Still Decides What You Earn.</em>
       </h2>
       <div class="agitation__body">
-        <p>Think about it honestly for a moment.</p>
-        <p>You have read the books. Done the journaling. Sat through the therapy. You have, at some point, identified the exact pattern you are caught in and said to yourself: <strong>"I see it. Now I can change it."</strong></p>
-        <p>And then — slowly, quietly — the pattern came back. Same shape, different situation.</p>
+        <p>Be honest with yourself for a moment.</p>
+        <p>You have read the books. Done the journaling. Sat through the courses, the therapy, the manifesting. At some point you saw the money pattern clearly and told yourself, <strong>"Now that I see it, I can change it."</strong></p>
+        <p>And then it came back. The opportunity appeared, and something in you hesitated. The rate was yours to raise, and you left it where it was. The money came in, and somehow it did not stay. <strong>Same ceiling. Different month.</strong></p>
 
         <div class="agitation__callout">
-          <p>"The money opportunity appeared, and something made you hesitate. The relationship got good, and something made you pull back. The purpose felt clear, and something made you doubt."</p>
+          <p>"You did not name it wrong. You named it. But naming a ceiling has never once lowered it, and every month it stays named and unmoved, it quietly resets your income again."</p>
         </div>
 
-        <p>Not because you were not trying hard enough. Because <strong>the part of you running that pattern is not your conscious mind</strong> — and your conscious mind, no matter how awake, cannot clear what it cannot reach.</p>
-        <p>This is the gap between a reading that names your block and work that actually dissolves it. <strong>This is the gap the Soul Ritual Practice closes.</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ PAIN POINTS ═══ -->
-  <section class="pain">
-    <div class="container">
-      <span class="section-label">If Any of This Sounds Familiar</span>
-      <h2 class="pain__headline">
-        You Already Know What Your Pattern Is.<br />
-        <em>That Has Never Been the Problem.</em>
-      </h2>
-      <div class="pain__list">
-        <div class="pain__item">
-          <p>You know exactly what your pattern is. You could write an essay on it. <em>And it still runs your life every single day.</em></p>
-        </div>
-        <div class="pain__item">
-          <p>You have had the breakthrough. More than once. The clarity came — and six weeks later you were back in the same place wearing a different outfit.</p>
-        </div>
-        <div class="pain__item">
-          <p>The money, the relationship, the purpose — you work on one and another falls. <em>Something seems to regulate how much good you are allowed to hold at once.</em></p>
-        </div>
-        <div class="pain__item">
-          <p>You are not broken. You are not resistant. <em>You are working on the wrong layer.</em></p>
-        </div>
-        <div class="pain__callout">
-          <p>Most healing work asks your mind to fix what your mind did not create. That is the gap. That is why nothing holds.</p>
-        </div>
+        <p>That is the gap between a reading that names your Wealth Block and the work that actually dissolves it. <strong>The Soul Ritual Practice is built to close that gap, at the layer where the ceiling was set.</strong></p>
       </div>
     </div>
   </section>
@@ -1186,16 +1163,15 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
   <!-- ═══ MECHANISM / THREE PROTOCOLS ═══ -->
   <section class="mechanism">
     <div class="container">
-      <span class="mechanism__eyebrow">The Clearing Mechanism</span>
       <h2 class="mechanism__headline">
-        Three Written Protocols,<br /><em>Calibrated to Your Block Type</em>
+        Three Written Rituals,<br /><em>Calibrated to Your Wealth Block</em>
       </h2>
-      <p class="mechanism__subhead">Not a general healing. A targeted practice for the exact pattern your cards revealed.</p>
+      <p class="mechanism__subhead">Not a general healing. The exact protocol for the precise ceiling your cards revealed.</p>
 
       <div class="mechanism__body">
-        <p>Every Mirror Block was installed at a specific moment — a moment where a younger version of you drew a conclusion about how the world works and what was safe to receive. That conclusion hardened into a belief. That belief became a pattern. <strong>The pattern has been running ever since.</strong></p>
-        <p>The problem with most healing work is that it tries to reason with the pattern — to talk it out of existence. But the pattern is not rational. It is somatic. It lives in the body's memory, not the mind's story.</p>
-        <p>The Soul Ritual Practice works differently. It moves through three distinct stages, each one targeting a different layer of where your block lives. Every protocol is written specifically for your block type — calibrated at the exact depth the pattern was first laid down.</p>
+        <p>There is a slow way to clear a Wealth Block, the one you have been on for years: read enough, journal enough, manifest enough, and hope it loosens on its own. It almost never does, because none of it reaches the layer the block actually lives on. <strong>The Soul Ritual Practice is the fast track.</strong> It goes straight to that layer, in the right order, and clears it directly.</p>
+        <p>Your Wealth Block was installed at a specific moment. A younger version of you drew a quiet conclusion about money, about what was safe to have, to want, to keep. That conclusion hardened into a belief. The belief became a ceiling. <strong>The ceiling has been resetting your income ever since.</strong></p>
+        <p>Most money work tries to reason with that ceiling, to talk it out of existence with mindset and budgets. But the ceiling is not rational. It lives in the body, not the bank account. The Soul Ritual Practice moves through three stages, each meeting the block at a different layer, each written for your specific type.</p>
       </div>
 
       <hr class="gold-rule" style="margin: 0 auto 40px;" />
@@ -1205,21 +1181,21 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
           <div class="report-card__num">Ritual One</div>
           <div class="report-card__body">
             <h3>The Root Witnessing</h3>
-            <p>Traces your block back to the exact moment it was installed — not the story you tell about it. This is precision work, not journalling. Most people say this ritual alone feels like something lifting after the first read.</p>
+            <p>Traces your Wealth Block to the exact moment it was set, not the story you tell about money, the moment underneath it. This is precision work, not journaling. Most people say this ritual alone feels like something loosening on the first read.</p>
           </div>
         </div>
         <div class="report-card">
           <div class="report-card__num">Ritual Two</div>
           <div class="report-card__body">
             <h3>The Pattern Interruption</h3>
-            <p>The exact sequence for interrupting your block the moment it starts running. Different techniques for different block types — because the fear underneath each one was installed differently and must be met differently.</p>
+            <p>The ceiling shows itself most clearly the instant money gets close: the moment you are about to receive, quote, ask, or invest. This is the exact sequence for catching it there and interrupting it in real time, with the specific move for your block type.</p>
           </div>
         </div>
         <div class="report-card">
           <div class="report-card__num">Ritual Three</div>
           <div class="report-card__body">
             <h3>The New Imprint</h3>
-            <p>Clearing the old pattern leaves a space. What fills that space determines whether the change holds. This final ritual installs a new belief at the body level — the piece that makes the shift structural rather than temporary.</p>
+            <p>Clearing the old ceiling leaves an empty space. What fills it decides whether the change holds or quietly resets. This final ritual writes a new ceiling at the body level, the imprint that makes more money feel safe to keep. This is what makes the shift structural, not a good week.</p>
           </div>
         </div>
       </div>
@@ -1229,120 +1205,17 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
   <!-- ═══ LUNA CREDENTIAL ═══ -->
   <section class="luna-section">
     <div class="container">
-      <h2 class="luna-section__headline">Why Luna &mdash; <em>and Why Now</em></h2>
+      <h2 class="luna-section__headline">Why Me, <em>and Why Now</em></h2>
 
       <div class="luna-card">
         <div class="luna-card__body">
-          <p>Eleven years ago I was where you are. I had done the reading. I understood my pattern intellectually. I could see exactly how it showed up across every area of my life. <strong>And I kept watching it happen anyway.</strong></p>
-          <p>The turning point was not another reading. It was a session with a healer who understood that the pattern had to be met at the level where it was created — not explained, not reasoned with, but <em>witnessed and released</em> in the body.</p>
-          <p>I spent the next seven years learning every clearing method I could find. Then I spent four more years distilling what works into a written protocol that could reach anyone — specific to each Mirror Block type, no practitioner required, no scheduling, no in-person session.</p>
-          <p>I have now run this practice with thousands of people at every stage of their journey. <strong>The block that could not be shifted through understanding moved when they followed the right kind of work, at the right layer, in the right order.</strong></p>
-          <p>The Soul Mirror Reading you just claimed identifies your block. The practice below is how I walk you through clearing it — the same sequence I would take you through if you were sitting in my reading room.</p>
+          <p>Eleven years ago I was exactly where you are. I had done the reading. I understood my money pattern perfectly. I could trace it, name it, explain it. <strong>And I watched it cap me anyway, year after year.</strong></p>
+          <p>What finally moved it was not another reading. It was meeting the pattern at the layer where it was set, not explained, not budgeted around, but <em>witnessed and rewritten</em> in the body. I spent the years after distilling that into a written protocol anyone could follow alone, specific to each Wealth Block type, no practitioner and no scheduling required.</p>
+          <p>I have now walked thousands of people through this. <strong>The ceiling that would not move through understanding moved when they did the right work, at the right layer, in the right order.</strong> Your reading names your block. This is how I walk you through clearing it, the same sequence I would use if you were sitting across from me.</p>
         </div>
         <div class="luna-card__sig">
-          <p>With love and with clarity,<br /><strong>Luna Ross</strong> &mdash; 11 years, 4,800+ readings</p>
+          <p>With love and with clarity,<br /><strong>Luna Ross</strong> &middot; 11 years, 4,800+ readings</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ PRACTICE VISUAL REMOVED — product images now live inside each card ═══ -->
-
-  <!-- ═══ INCLUDES ═══ -->
-  <section class="includes">
-    <div class="container">
-      <span class="includes__eyebrow">Everything Inside The Practice</span>
-      <h2 class="includes__headline">Here Is What You <em>Receive</em></h2>
-      <p class="includes__subhead">Two core pieces that form one complete clearing practice. Delivered the moment you confirm — yours to keep for life.</p>
-<div class="includes-grid">
-
-        <h3 class="include-item__headline">The Mirror Block Clearing Rituals &mdash; A 3-Part Protocol</h3>
-        <div class="include-item__hero">
-          <img src="frontend/images/ups-downs/main-clearing-rituals.png" alt="The Mirror Block Clearing Rituals — 3-Part Trilogy">
-        </div>
-
-        <div class="include-item">
-          <div class="include-item__content">
-            <p>Luna's complete clearing practice, built as three sequential rituals specific to your block type. Each ritual meets the pattern at a different layer — from the moment it was first installed, to the daily interruption technique, to the new belief that takes its place.</p>
-            <div class="include-item__parts">
-              <div class="part-item">
-                <strong>Ritual One &mdash; The Root Witnessing</strong>
-                <p>Traces your block back to the exact moment it was installed. Precision work, not journalling.</p>
-              </div>
-              <div class="part-item">
-                <strong>Ritual Two &mdash; The Pattern Interruption</strong>
-                <p>The sequence for interrupting your block the moment it runs. Specific to your block type.</p>
-              </div>
-              <div class="part-item">
-                <strong>Ritual Three &mdash; The New Imprint</strong>
-                <p>Installing a new belief at the body level. What makes the shift structural, not temporary.</p>
-              </div>
-            </div>
-            <span class="include-item__value">Value: $201</span>
-          </div>
-        </div>
-
-        <h3 class="include-item__headline">The Mirror Block Workbook &mdash; 45 Pages</h3>
-        <div class="include-item__hero include-item__hero--portrait">
-          <img src="frontend/images/ups-downs/main-workbook.png" alt="The Mirror Block Workbook — 45 Pages">
-        </div>
-
-        <div class="include-item">
-          <div class="include-item__content">
-            <p>Your companion workbook for the full practice — prompts, reflections, and integration exercises that walk alongside each of the three rituals. Designed to be returned to repeatedly. The work deepens with every pass.</p>
-            <span class="include-item__value">Value: $97</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ BONUSES ═══ -->
-  <section class="bonuses">
-    <div class="container">
-      <span class="bonuses__eyebrow">✦ Plus, When You Claim Today ✦</span>
-      <h2 class="bonuses__headline">Three Free Bonuses<br /><em>Worth $151, Yours Free</em></h2>
-      <p class="bonuses__subhead">These are the tools I built for people who want the shift to hold — not just land. Included free when you claim the Soul Ritual Practice today.</p>
-
-      <div class="bonuses-grid">
-
-        <div class="bonus-item">
-          <span class="bonus-item__badge">Bonus One</span>
-          <div class="bonus-item__image">
-            <img src="frontend/images/ups-downs/bonus-1-audio-companion.png" alt="Soul Ritual Audio Companion">
-          </div>
-          <div class="bonus-item__content">
-            <h3>Soul Ritual Audio Companion</h3>
-            <p>Three short guided audios (10&ndash;15 minutes each), one for each Clearing Ritual. I walk you through the key practice out loud &mdash; for the moments when your body needs to hear the work instead of read it. Listen in the morning. Listen on the commute. Listen before you sleep.</p>
-            <span class="bonus-item__value">Value: $67</span>
-          </div>
-        </div>
-
-        <div class="bonus-item">
-          <span class="bonus-item__badge">Bonus Two</span>
-          <div class="bonus-item__image">
-            <img src="frontend/images/ups-downs/bonus-2-wealth-alert.png" alt="The Wealth Alert Protocol">
-          </div>
-          <div class="bonus-item__content">
-            <h3>The Wealth Alert Protocol</h3>
-            <p>A specific protocol for catching your Mirror Block in the moment it affects money. The block shows up most clearly at the instant you are about to receive, quote, or ask for more &mdash; and that is exactly where most people miss it. A written guide with the exact signals to watch for, and the counter-move to make in real time.</p>
-            <span class="bonus-item__value">Value: $47</span>
-          </div>
-        </div>
-
-        <div class="bonus-item">
-          <span class="bonus-item__badge">Bonus Three</span>
-          <div class="bonus-item__image">
-            <img src="frontend/images/ups-downs/bonus-3-love-harmony.png" alt="The Love Harmony Audio">
-          </div>
-          <div class="bonus-item__content">
-            <h3>The Love Harmony Audio</h3>
-            <p>A 15-minute guided audio voiced by Luna, specifically for the love mirror. The clearing work changes how you show up in partnership &mdash; this audio walks you through integrating the shift so your relationships can hold what you are now allowed to receive.</p>
-            <span class="bonus-item__value">Value: $37</span>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -1350,9 +1223,9 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
   <!-- ═══ TESTIMONIALS ═══ -->
   <section class="testimonials">
     <div class="container">
-      <span class="testimonials__eyebrow">✦ From People Who Almost Said No ✦</span>
+      <span class="testimonials__eyebrow">✦ From People Who Almost Clicked Away ✦</span>
       <h2 class="testimonials__headline">
-        They Nearly Clicked Away.<br /><em>Then They Chose This.</em>
+        They Nearly Said No.<br /><em>Then the Ceiling Moved.</em>
       </h2>
 
       <div class="testimonial-grid">
@@ -1361,8 +1234,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
           <img class="testimonial__avatar" src="frontend/images/upsell/testimonial-margaret-v.png" alt="Margaret V." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__quote">"I almost closed this page. I told myself I had done enough inner work already. Something made me stay. Four months in, and the pattern that ran my life for thirty years is finally quiet. I have never written a review for anything. I am writing this one."</p>
-            <span class="testimonial__name">Margaret V., 52 &mdash; Edinburgh, UK</span>
+            <p class="testimonial__quote">"I almost closed this page. I told myself I had done enough inner work to last a lifetime. Something made me stay. Four months on, I finally raised my rates after years of stalling, and the client said yes without blinking. The number I could never get past is not the ceiling anymore."</p>
+            <span class="testimonial__name">Margaret V., 52 &middot; Edinburgh, UK</span>
           </div>
         </div>
 
@@ -1370,8 +1243,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
           <img class="testimonial__avatar" src="frontend/images/upsell/testimonial-david-r.png" alt="David R." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__quote">"I hovered over 'no thanks' for a long time. I am not usually an add-on person. But the way Luna described the gap — between knowing and clearing — landed too precisely to ignore. Best $97 I have spent this year. I am on my second read-through of Ritual One."</p>
-            <span class="testimonial__name">David R., 49 &mdash; Manchester, UK</span>
+            <p class="testimonial__quote">"I will be honest, I bought it more out of curiosity than belief. I have done the courses. What I did not expect was Ritual Two catching me in the exact half-second I always talk myself down on price. I held my number on a proposal last month that I would have slashed a year ago. It stuck. Ninety-seven dollars came back the first time I used it."</p>
+            <span class="testimonial__name">David R., 49 &middot; Manchester, UK</span>
           </div>
         </div>
 
@@ -1379,55 +1252,56 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
           <img class="testimonial__avatar" src="frontend/images/upsell/testimonial-sophia-k.png" alt="Sophia K." />
           <div class="testimonial__body">
             <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__quote">"I actually did click away. Then I came back through the follow-up email the next day and bought it. The section on how my block was formed made me cry — not from pain, from relief. I have been in therapy for six years. This reached somewhere therapy did not."</p>
-            <span class="testimonial__name">Sophia K., 47 &mdash; Melbourne, AU</span>
+            <p class="testimonial__quote">"I actually did click away. Then I came back the next day and bought it. The Root Witnessing showed me where my whole 'money never stays' story started, and I cried, not from pain, from relief. For the first time in my life a good month did not quietly undo itself the next."</p>
+            <span class="testimonial__name">Sophia K., 47 &middot; Melbourne, AU</span>
           </div>
         </div>
 
       </div>
+      <p style="text-align:center; max-width:640px; margin:28px auto 0; font-size:13px; color:#9a8fae; font-style:italic;">Individual results vary and are not typical. The Soul Ritual Practice is a self-guided practice, not financial advice.</p>
     </div>
   </section>
 
   <!-- ═══ URGENCY ═══ -->
   <section class="urgency">
     <div class="container">
-      <h2 class="urgency__headline">Founding Member Price &mdash; Only Shown on This Page</h2>
-      <p class="urgency__body">This offer is shown only to new Soul Mirror members immediately after their reading. When the Soul Ritual Practice opens to the public, it will be priced at $197. The founding member rate below is available only here, only now.</p>
+      <h2 class="urgency__headline">Founding Member Price, This Page Only</h2>
+      <p class="urgency__body">Two things are true right now. The $97 founding rate is shown once, here, then returns to its $197 public price. And the ceiling does not pause while you decide. Left alone, it resets your income again next month, the same way it has every month so far. The page closing is the small loss. Another year at the same ceiling is the real one.</p>
     </div>
   </section>
 
   <!-- ═══ OFFER BOX ═══ -->
   <section class="offer" id="offer">
     <div class="container">
-      <span class="offer__eyebrow">Complete Your Soul Mirror Journey</span>
+      <span class="offer__eyebrow">Complete Your Wealth Work</span>
       <h2 class="offer__headline">Add The Soul Ritual Practice</h2>
-      <p class="offer__subhead">One payment. Instant download. Yours to keep for life.</p>
+      <p class="offer__subhead">The diagnosis is on its way. This is the treatment. Yours to keep for life.</p>
 
       <div class="offer__package-image">
-        <img src="frontend/images/ups-downs/upsell1-package.png" alt="The Complete Soul Ritual Practice — all 5 products together">
+        <img src="frontend/images/ups-downs/upsell1-package.png" alt="The Complete Soul Ritual Practice, all products together" />
       </div>
 
       <div class="value-stack">
         <p class="value-stack__title">Everything You Receive</p>
         <div class="value-line">
-          <span class="value-line__name">The Mirror Block Clearing Rituals &mdash; A 3-Part Protocol</span>
-          <span class="value-line__price">$201</span>
+          <span class="value-line__name">The Mirror Block Clearing Rituals, a 3-Part Protocol</span>
+          <span class="value-line__price">$249</span>
         </div>
         <div class="value-line">
-          <span class="value-line__name">The Mirror Block Workbook &mdash; 45 Pages</span>
-          <span class="value-line__price">$97</span>
+          <span class="value-line__name">The Mirror Block Workbook, 45 Pages</span>
+          <span class="value-line__price">$79</span>
         </div>
         <div class="value-line">
-          <span class="value-line__name"><strong style="color:#E8C97A;">Bonus 1</strong> &mdash; Soul Ritual Audio Companion</span>
-          <span class="value-line__price">$67</span>
+          <span class="value-line__name"><strong style="color:#E8C97A;">Bonus 1</strong> &middot; Soul Ritual Audio Companion</span>
+          <span class="value-line__price">$59</span>
         </div>
         <div class="value-line">
-          <span class="value-line__name"><strong style="color:#E8C97A;">Bonus 2</strong> &mdash; The Wealth Alert Protocol</span>
-          <span class="value-line__price">$47</span>
+          <span class="value-line__name"><strong style="color:#E8C97A;">Bonus 2</strong> &middot; The Wealth Alert Protocol</span>
+          <span class="value-line__price">$39</span>
         </div>
         <div class="value-line">
-          <span class="value-line__name"><strong style="color:#E8C97A;">Bonus 3</strong> &mdash; The Love Harmony Audio</span>
-          <span class="value-line__price">$37</span>
+          <span class="value-line__name"><strong style="color:#E8C97A;">Bonus 3</strong> &middot; The Love Harmony Audio</span>
+          <span class="value-line__price">$23</span>
         </div>
         <div class="value-line value-line--total">
           <span class="value-line__name">Total Value</span>
@@ -1437,7 +1311,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
 
       <div class="coupon">
         <span class="coupon__label">✦ &nbsp; Founding Member Coupon Applied &nbsp; ✦</span>
-        <span class="coupon__amount">&minus; $100.00 OFF</span>
+        <span class="coupon__amount">- $100.00 OFF</span>
         <span class="coupon__code">Code <span>FOUNDING100</span></span>
       </div>
 
@@ -1445,15 +1319,16 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
         <span class="price-reveal__label">Founding Member Price Today</span>
         <span class="price-reveal__was">$197</span>
         <span class="price-reveal__now">$97</span>
-        <span class="price-reveal__note">One payment. Instant access. No subscription.</span>
+        <span class="price-reveal__note">The full $449 practice, $100 off, for $97. One payment, no subscription.</span>
       </div>
 
       <a href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>" class="cta-btn">
-        Yes, I Want To Upgrade My Soul Mirror Journey
+        Yes, Add The Soul Ritual Practice &middot; $97
       </a>
+      <p style="text-align:center; color:#cdb98c; font-size:13px; margin:10px 0 0;">Charged to the order you just placed. No card to re-enter. Backed by the 90-day guarantee below.</p>
 
       <a class="cta-btn--secondary" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">
-        No thank you &mdash; I'll work through my block alone
+        No thank you, continue to my reading &rarr;
       </a>
     </div>
   </section>
@@ -1462,9 +1337,9 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
   <section class="guarantee">
     <div class="container">
       <div class="guarantee__inner">
-        <img class="guarantee__badge" src="frontend/images/ups-downs/img-bb865578d0.png" alt="90-Day Guarantee Badge">
-        <h2 class="guarantee__headline">The Soul Ritual Practice &mdash; 90-Day Guarantee</h2>
-        <p class="guarantee__body">Work through the practice. If you do not feel a genuine shift in how you relate to your Mirror Block within 90 days — email us for a full refund of your $97. No explanation required. No questions asked. The risk is entirely mine, not yours.</p>
+        <img class="guarantee__badge" src="frontend/images/ups-downs/img-bb865578d0.png" alt="90-Day Guarantee Badge" />
+        <h2 class="guarantee__headline">The Soul Ritual Practice, 90-Day Guarantee</h2>
+        <p class="guarantee__body">Do the work. Read the three rituals, follow them in order, and use them for 90 days. If you have honestly done that and nothing about your money ceiling has loosened, email me for a full refund of your $97. You decide whether it worked, no hoops, no explanation required. You keep the rituals, the workbook, and all three bonuses either way. The risk is entirely mine, not yours.</p>
       </div>
     </div>
   </section>
@@ -1476,33 +1351,23 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
       <div class="faq-list">
 
         <details class="faq-item">
-          <summary class="faq-item__q">Do I need to read my Soul Mirror Reading first?</summary>
-          <div class="faq-item__a">Not necessarily — the practice is built around your Mirror Block type, which your reading has already identified. That said, reading your PDF first deepens the work considerably. Most people find the two work best together.</div>
+          <summary class="faq-item__q">I have not seen my reading yet. Am I buying blind?</summary>
+          <div class="faq-item__a">No, and this is the part most people get backwards. All four block-type versions live inside the practice. Your reading has already identified which one is yours, so the moment it lands, the exact protocol for your ceiling is sitting ready to open, no waiting, nothing to request. Buying now simply means the treatment is already in your hands the instant the diagnosis arrives, instead of days later.</div>
         </details>
 
         <details class="faq-item">
           <summary class="faq-item__q">How is this different from the reading I just bought?</summary>
-          <div class="faq-item__a">Your reading is diagnostic — it names the pattern and shows you where it lives. The Soul Ritual Practice is the clearing — the written protocol for dissolving the pattern at the level where it was created. The two are designed to work together. Reading alone is Part One. Practice is Part Two.</div>
+          <div class="faq-item__a">Your reading is the diagnosis. It names the ceiling and shows you where it lives. The Soul Ritual Practice is the treatment: the written protocol that clears it at the layer where it was set. The reading is Part One. This is Part Two. They are built to work as one.</div>
         </details>
 
         <details class="faq-item">
-          <summary class="faq-item__q">What if I'm not "spiritual enough" for this?</summary>
-          <div class="faq-item__a">The clearing techniques work at the level of the nervous system and somatic memory — not belief. They are not asking you to believe anything. They are asking your body to release something it has been holding. You do not need to be spiritual. You need to be willing.</div>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-item__q">How is this different from therapy or journalling?</summary>
-          <div class="faq-item__a">Therapy operates through language and narrative. The Soul Ritual Practice targets the pre-narrative layer where the block was created. Many people who worked through this practice had been in therapy for years beforehand. Most say the reports reached something therapy could not.</div>
+          <summary class="faq-item__q">What if I am not "spiritual enough" for this?</summary>
+          <div class="faq-item__a">The rituals work at the level of the nervous system and body memory, not belief. They do not ask you to believe anything. They ask your body to release a ceiling it has been holding. You do not need to be spiritual. You need to be willing.</div>
         </details>
 
         <details class="faq-item">
           <summary class="faq-item__q">How does access work?</summary>
-          <div class="faq-item__a">The moment your payment processes, everything is available for immediate download — the three Clearing Rituals, the Workbook, and all three bonuses. Yours to keep forever. No subscription, no expiry.</div>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-item__q">Is the practice specific to my block type?</summary>
-          <div class="faq-item__a">Yes. Each report contains block-specific protocols. The method for a "Not Yet Ready" block is different from the method for a "Too Much" block — because the pattern forms differently and must be interrupted differently. Your reading identified your block. The practice was written for it.</div>
+          <div class="faq-item__a">The moment your payment confirms, everything downloads instantly: the three Clearing Rituals, the 45-page Workbook, and all three bonuses. Yours to keep for life. No subscription, no expiry. It is charged to the order you just placed, so there is no card to re-enter.</div>
         </details>
 
       </div>
@@ -1513,20 +1378,19 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
   <section class="final-cta" id="no-thanks">
     <div class="container">
       <h2 class="final-cta__headline">
-        You Already Have <em>Part One.</em><br />
-        Take the Second Half With You.
+        You Have the Diagnosis.<br />
+        <em>Take the Treatment With You.</em>
       </h2>
       <p class="final-cta__body">
-        The reading gave you the name. The practice gives you the clearing. These are the two halves of the same work — and you deserve both.
+        The reading names the ceiling on your money. The Soul Ritual Practice is how you lift it. Add it now and all four block-type protocols sit waiting, so the instant your reading names yours, the exact clearing work is already in your hands. These are the two halves of one piece of work, and you have come too far to keep only half.
       </p>
 
       <a href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>" class="cta-btn" style="text-decoration:none; display:inline-block; margin-bottom:16px;">
-        Yes, I Want To Upgrade My Soul Mirror Journey
+        Yes, Add The Soul Ritual Practice &middot; $97
       </a>
 
-      <p class="cta-subtext" style="margin-top:12px;">
-        Or close this page &mdash; your Soul Mirror Reading will be delivered within 12&ndash;24 hours regardless.
-      </p>
+      <a class="cta-btn--secondary" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>" style="display:inline-block; margin-top:14px;">No thank you, continue to my reading &rarr;</a>
+      <p class="cta-subtext" style="margin-top:12px;">Your reading arrives within 24 hours either way.</p>
     </div>
   </section>
 
@@ -1534,10 +1398,10 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
   <footer class="footer">
     <div class="container">
       <p>
-        &copy; 2026 Soul Mirror Reading &mdash; A Luna Ross Brand &mdash; All Rights Reserved<br />
+        &copy; 2026 Soul Mirror Reading, A Luna Ross Brand, All Rights Reserved<br />
         <a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="#">Contact</a><br /><br />
         ClickBank is the retailer of products on this site. CLICKBANK&reg; is a registered trademark of Click Sales Inc.
-        The Soul Ritual Practice is a self-guided written practice. Results may vary. This service is not a substitute for licensed mental health care.
+        The Soul Ritual Practice is a self-guided written practice. Results may vary and are not typical. This is not financial advice and is not a substitute for licensed mental health care.
       </p>
     </div>
   </footer>

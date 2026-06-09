@@ -8,6 +8,7 @@ use App\Application\ReadingOrchestrator;
 use App\Application\ReadingServiceFactory;
 use App\Config\AppConfig;
 use App\Domain\CardImageUrlBuilder;
+use App\Domain\MirrorBlockResolver;
 use App\Domain\SunSignResolver;
 use App\Logging\PipelineLogger;
 use App\Services\KitService;
@@ -39,7 +40,7 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             'love_reading', 'life_reading', 'wealth_reading',
             'love_card_image', 'life_card_image', 'wealth_card_image',
             'sun_sign', 'sun_personal_life', 'sun_profession', 'sun_health',
-            'sun_emotions', 'sun_travel', 'sun_luck',
+            'sun_emotions', 'sun_travel', 'sun_luck', 'reading_member_url',
         ];
 
         return array_map(static fn (string $k): array => ['key' => $k], $keys);
@@ -91,6 +92,7 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             new KitService($config, $client),
             new SunSignResolver(),
             new CardImageUrlBuilder(),
+            new MirrorBlockResolver(),
             new PipelineLogger($config),
             null,
         );
@@ -148,6 +150,7 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             new KitService($config, $client),
             new SunSignResolver(),
             new CardImageUrlBuilder(),
+            new MirrorBlockResolver(),
             new PipelineLogger($config),
             null,
         );
@@ -191,13 +194,15 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             new KitService($config, $client),
             new SunSignResolver(),
             new CardImageUrlBuilder(),
+            new MirrorBlockResolver(),
             new PipelineLogger($config),
             null,
         );
 
         $result = $orchestrator->run($this->validReadingBody());
 
-        $this->assertSame(500, $result->httpStatus);
+        // Kit failures are non-fatal: the reading still returns 200 and the lead is kept.
+        $this->assertSame(200, $result->httpStatus);
         $log = (string) file_get_contents($logPath);
         $this->assertStringContainsString('kit: fail', $log);
 
@@ -206,30 +211,10 @@ final class ReadingOrchestratorPipelineTest extends TestCase
 
     public function testSuccessfulRunWithLocalTarotAndSunWithoutAstroHttp(): void
     {
-        $configNoAstro = new AppConfig(
-            astroUserId: '',
-            astroApiKey: '',
+        $configNoAstro = TestAppConfig::make(
             tarotSource: 'local',
             sunSource: 'local',
-            dataDir: \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data',
-            sunSignTimezone: 'UTC',
-            kitApiKey: 'kit-secret',
-            kitTagName: 'soul-mirror-leads',
-            kitTagNameBuyer: 'soul-mirror-buyers',
-            kitFormUid: '87bff9e0cc',
-            kitFormEmbedScript: '',
-            kitFormEmbedUid: '',
             kitFormSubscribeVia: 'none',
-            pipelineFileLog: false,
-            pipelineLogPath: '',
-            sslCaBundlePath: '',
-            dbHost: '127.0.0.1',
-            dbPort: 3306,
-            dbName: '',
-            dbUser: '',
-            dbPass: '',
-            appBaseUrl: 'https://example.test',
-            clickbankInsSlackWebhookUrl: '',
         );
 
         $client = new Client(['handler' => HandlerStack::create(new MockHandler([]))]);
@@ -241,6 +226,7 @@ final class ReadingOrchestratorPipelineTest extends TestCase
             new KitService($configNoAstro, $client),
             new SunSignResolver(),
             new CardImageUrlBuilder(),
+            new MirrorBlockResolver(),
             new PipelineLogger($configNoAstro),
             null,
         );

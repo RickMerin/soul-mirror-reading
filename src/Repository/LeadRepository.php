@@ -22,16 +22,18 @@ final class LeadRepository
         string $gender,
         array $cards,
         ?array $readingPayload = null,
+        ?string $mirrorBlockSlug = null,
     ): string {
         $uuid = $this->lookupUuidByEmail($email) ?? $this->uuidV4();
 
         $stmt = $this->pdo->prepare(
-            'INSERT INTO leads (uuid, email, name, dob, gender, cards_json, reading_payload_json, funnel_step)
-             VALUES (:uuid, :email, :name, :dob, :gender, :cards_json, :reading_payload_json, :funnel_step)
+            'INSERT INTO leads (uuid, email, name, dob, gender, mirror_block_slug, cards_json, reading_payload_json, funnel_step)
+             VALUES (:uuid, :email, :name, :dob, :gender, :mirror_block_slug, :cards_json, :reading_payload_json, :funnel_step)
              ON DUPLICATE KEY UPDATE
                 name = VALUES(name),
                 dob = VALUES(dob),
                 gender = VALUES(gender),
+                mirror_block_slug = COALESCE(VALUES(mirror_block_slug), mirror_block_slug),
                 cards_json = VALUES(cards_json),
                 reading_payload_json = VALUES(reading_payload_json),
                 funnel_step = VALUES(funnel_step),
@@ -43,6 +45,7 @@ final class LeadRepository
             ':name' => $name,
             ':dob' => $dob,
             ':gender' => $gender,
+            ':mirror_block_slug' => $mirrorBlockSlug,
             ':cards_json' => json_encode($cards, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR),
             ':reading_payload_json' => $readingPayload === null
                 ? null
@@ -91,6 +94,17 @@ final class LeadRepository
         }
 
         return $newId;
+    }
+
+    public function updateMirrorBlockSlug(int $leadId, string $slug): void
+    {
+        $stmt = $this->pdo->prepare(
+            'UPDATE leads SET mirror_block_slug = :slug, updated_at = CURRENT_TIMESTAMP WHERE id = :id'
+        );
+        $stmt->execute([
+            ':slug' => strtolower(trim($slug)),
+            ':id' => $leadId,
+        ]);
     }
 
     /**

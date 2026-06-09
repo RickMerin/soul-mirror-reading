@@ -8,6 +8,7 @@ use App\Config\AppConfig;
 use App\Domain\CardImageUrlBuilder;
 use App\Domain\FormSubmission;
 use App\Domain\KitEmbedFieldMap;
+use App\Domain\MirrorBlockResolver;
 use App\Domain\SunSignResolver;
 use App\Logging\PipelineLogger;
 use App\Repository\LeadRepository;
@@ -30,6 +31,7 @@ final class ReadingOrchestrator
         private readonly KitService $kit,
         private readonly SunSignResolver $sunSignResolver,
         private readonly CardImageUrlBuilder $cardImages,
+        private readonly MirrorBlockResolver $mirrorBlocks,
         private readonly PipelineLogger $pipelineLog,
         private readonly ?LeadRepository $leadRepository = null,
     ) {}
@@ -79,6 +81,7 @@ final class ReadingOrchestrator
             ['id' => $c2, 'name' => $card2Name],
             ['id' => $c3, 'name' => $card3Name],
         ];
+        $mirrorBlockSlug = $this->mirrorBlocks->resolveFromCardIds([$c1, $c2, $c3]);
         $leadUuid = null;
         if ($this->leadRepository !== null) {
             try {
@@ -88,6 +91,7 @@ final class ReadingOrchestrator
                     dob: $dob,
                     gender: $gender,
                     cards: $cards,
+                    mirrorBlockSlug: $mirrorBlockSlug,
                 );
                 $this->pipelineLog->line('lead: upsert ok');
             } catch (Throwable $e) {
@@ -165,10 +169,11 @@ final class ReadingOrchestrator
                     $this->pipelineLog->line('kit: embed handoff (browser submits form with kitEmbedFields)');
                 }
             } catch (Throwable $e) {
-                error_log('ReadingOrchestrator Kit: ' . $e->getMessage());
-                $this->pipelineLog->line('kit: fail ' . $e::class . ' ' . $this->shortSafeMessage($e));
-
-                return new ReadingResult(500, ['error' => 'Internal server error.']);
+                // Non-fatal: the lead is already captured, and in embed mode the browser
+                // submits to Kit directly. A Kit hiccup must not block the reading or the
+                // user's path to the next step, so log it and continue with HTTP 200.
+                error_log('ReadingOrchestrator Kit (non-fatal): ' . $e->getMessage());
+                $this->pipelineLog->line('kit: fail (non-fatal, continuing) ' . $e::class . ' ' . $this->shortSafeMessage($e));
             }
         }
 

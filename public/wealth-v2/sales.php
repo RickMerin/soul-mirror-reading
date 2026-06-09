@@ -47,7 +47,7 @@ body,p,li,.tsl,.vsl-sub,.testi-body,.testi-name,.faq-q,.faq-a,.card-mirror p,.ca
 h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Garamond',Georgia,serif !important;}
 .tsl,.vsl-sub,.testi-body,.faq-a,.vip-list li{letter-spacing:-0.003em;}
 .tslfig{margin:30px 0;}
-.tslmid{display:block;width:100%;border-radius:14px;border:1px solid rgba(212,175,55,.5);box-shadow:0 16px 44px rgba(0,0,0,.5);}
+.tslmid{display:block;width:100%;border-radius:14px;border:1px solid rgba(212,175,55,.5);box-shadow:0 16px 44px rgba(0,0,0,.5);overflow:hidden;background:#160c34;}
 .tslfigcap{text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:10px 0 0;}
 </style></head>
 
@@ -89,7 +89,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <p class="vsl-sub">It is the one belief quietly setting your wealth ceiling, year after year. Your three cards point straight to it.</p>
 <div class="tslwrap">
 <video class="luna-hero" autoplay loop muted playsinline preload="auto" poster="../assets/luna-portrait.jpg" aria-label="Luna Ross, your reader">
-<source src="../assets/luna-motion.mp4" type="video/mp4">
+<source src="../assets/luna-motion.mp4?v=3" type="video/mp4">
 <img src="../assets/luna-portrait.jpg" alt="Luna Ross, your reader">
 </video>
 <p class="luna-cap">Luna Ross, your reader</p>
@@ -108,7 +108,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <p class="tsl">The root is a single belief you formed before you had words for it. Usually in childhood. About what is safe to have, and what it quietly costs you to keep it.</p>
 <p class="tsl">It runs underneath your money, your love, and your sense of purpose, all at the same time.</p>
 <p class="tsl">This is your <span class="tslbold">Wealth Block</span>. And your three cards have been pointing straight at it.</p>
-<figure class="tslfig"><img class="tslmid" src="../assets/luna-hands-cards.jpg" alt="Luna reading your three cards"><figcaption class="tslfigcap">The three cards you drew, as I read them.</figcaption></figure>
+<figure class="tslfig"><video class="tslmid" autoplay loop muted playsinline preload="auto" poster="../assets/luna-hands-cards.jpg" aria-label="Luna reading your three cards"><source src="../assets/luna-hands-motion.mp4?v=1" type="video/mp4"><img class="tslmid" src="../assets/luna-hands-cards.jpg" alt="Luna reading your three cards"></video><figcaption class="tslfigcap">The three cards you drew, as I read them.</figcaption></figure>
 <p class="tsl">It shows up in all three areas. But it speaks loudest in money, because money keeps the most precise record.</p>
 <p class="tsl">Every time money comes close and you quietly brace for it to leave, every time something in you whispers "not yet, not for me," you are following an instruction you did not knowingly write.</p>
 <p class="tsl">Here is what it is doing right now.</p>

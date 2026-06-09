@@ -38,6 +38,7 @@ final class KitService
         ['label' => 'Sun Emotions', 'key' => 'sun_emotions'],
         ['label' => 'Sun Travel', 'key' => 'sun_travel'],
         ['label' => 'Sun Luck', 'key' => 'sun_luck'],
+        ['label' => 'Reading Member URL', 'key' => 'reading_member_url'],
     ];
 
     public function __construct(
@@ -178,6 +179,29 @@ final class KitService
         }
 
         return $this->formUidToNumericId[$formUidOrNumericId];
+    }
+
+    /**
+     * Tags the buyer and stores the member-area URL so a Kit automation can email the delivery link.
+     */
+    public function notifyReadingDelivered(string $email, string $firstName, string $memberUrl): void
+    {
+        if ($this->config->kitApiKey === '' || $email === '') {
+            return;
+        }
+
+        $this->request('POST', 'subscribers', [
+            'email_address' => $email,
+            'first_name' => $firstName,
+            'fields' => [
+                'reading_member_url' => $memberUrl,
+            ],
+        ]);
+
+        $tag = strtolower(trim($this->config->kitTagNameReadingDelivered));
+        if ($tag !== '') {
+            $this->tagEmailWithTagNames($email, [$tag], false);
+        }
     }
 
     /**

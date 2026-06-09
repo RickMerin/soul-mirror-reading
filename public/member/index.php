@@ -5,6 +5,7 @@ use App\Config\AppConfig;
 use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
+use App\Repository\ReadingDeliveryRepository;
 use App\Services\MemberUrlBuilder;
 
 $projectRoot = dirname(__DIR__, 2);
@@ -66,7 +67,20 @@ try {
     }
 
     $firstName = explode(' ', trim($fullName))[0] ?? $fullName;
-    $mirrorBlockLabel = 'The Threshold Block';
+    $mirrorBlockSlug = trim((string) ($lead['mirror_block_slug'] ?? ''));
+    $mirrorBlockLabel = match ($mirrorBlockSlug) {
+        'not-yet-ready' => 'The Not Yet Ready Block',
+        'waiting-to-end' => 'Waiting for the Good Thing to End',
+        'too-much' => 'Too Much / Making Yourself Smaller',
+        'cannot-receive-help' => 'Cannot Let Others Help',
+        default => 'Your Mirror Block',
+    };
+
+    $deliveries = new ReadingDeliveryRepository($pdo);
+    $delivery = $deliveries->findByLeadId($leadId);
+    $readingPdfUrl = $delivery !== null
+        ? MemberUrlBuilder::apiPath('member-reading-pdf.php')
+        : memberEnvString('MEMBER_URL_READING_PDF', '#');
 
     // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.
     $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
@@ -89,7 +103,7 @@ try {
         '{{MIRROR_BLOCK}}' => $h($mirrorBlockLabel),
         '{{LOGOUT_URL}}' => $h(MemberUrlBuilder::logoutPath()),
         '{{CLKBANK_NOTICE}}' => $h(memberEnvString('MEMBER_CLKBANK_NOTICE', 'Billing: CLKBANK · REBORNF')),
-        '{{MEMBER_URL_READING_PDF}}' => $h(memberEnvString('MEMBER_URL_READING_PDF', '#')),
+        '{{MEMBER_URL_READING_PDF}}' => $h($readingPdfUrl),
         '{{MEMBER_URL_BONUS_COMPANION}}' => $h(memberEnvString('MEMBER_URL_BONUS_COMPANION', '#')),
         '{{MEMBER_URL_BONUS_SHIFT_TRACKER}}' => $h(memberEnvString('MEMBER_URL_BONUS_SHIFT_TRACKER', '#')),
         '{{MEMBER_URL_BONUS_ROOT_CAUSE}}' => $h(memberEnvString('MEMBER_URL_BONUS_ROOT_CAUSE', '#')),
