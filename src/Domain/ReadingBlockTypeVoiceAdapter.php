@@ -14,6 +14,8 @@ final class ReadingBlockTypeVoiceAdapter
 {
     private const NOT_YOUR_TYPE_MARKER = 'Not your type · included for the full framework';
 
+    private const PRIMARY_TYPE_ONE_KICKER = 'Your Mirror Block · Type One';
+
     /** @var array<int, non-empty-string> */
     private const TYPE_KICKER = [
         1 => 'Type One',
@@ -22,43 +24,106 @@ final class ReadingBlockTypeVoiceAdapter
         4 => 'Type Four',
     ];
 
+    /** @var array<int, non-empty-string> */
+    private const TYPE_ORDINAL = [
+        1 => 'first',
+        2 => 'second',
+        3 => 'third',
+        4 => 'fourth',
+    ];
+
     public function adapt(string $html, string $mirrorBlockSlug): string
     {
         $typeNumber = MirrorBlockCatalog::typeNumberForSlug($mirrorBlockSlug) ?? 1;
 
-        foreach (self::TYPE_KICKER as $number => $kicker) {
-            $section = $this->extractTypeSection($html, $kicker);
-            if ($section === null) {
-                continue;
-            }
+        $html = $this->adaptPrimaryDeepSection($html, $typeNumber);
 
-            [$fullMatch, $sectionHtml] = $section;
-            $adapted = $sectionHtml;
-
-            if ($number === $typeNumber) {
-                $adapted = $this->removeNotYourTypeLabel($adapted);
-                if ($number !== 1) {
-                    $adapted = $this->toSecondPerson($adapted);
-                }
-            } else {
-                $adapted = $this->ensureNotYourTypeLabel($adapted);
-                if ($number === 1) {
-                    $adapted = $this->toThirdPerson($adapted);
-                }
-            }
-
-            $html = str_replace($fullMatch, $adapted, $html);
+        foreach ([2, 3, 4] as $number) {
+            $html = $this->adaptFrameworkTypeSection($html, $number, $typeNumber);
         }
 
+        return $this->adaptMirrorBlockMetaCopy($html, $typeNumber);
+    }
+
+    private function adaptPrimaryDeepSection(string $html, int $buyerTypeNumber): string
+    {
+        if ($buyerTypeNumber === 1) {
+            return $html;
+        }
+
+        $section = $this->extractBetweenKickers($html, self::PRIMARY_TYPE_ONE_KICKER, self::TYPE_KICKER[2]);
+        if ($section === null) {
+            return $html;
+        }
+
+        [$fullMatch, $sectionHtml] = $section;
+        $adapted = $this->toThirdPerson($sectionHtml);
+        $adapted = $this->ensureNotYourTypeLabel($adapted);
+        $adapted = str_replace(
+            '<div class="kicker">' . self::PRIMARY_TYPE_ONE_KICKER . '</div>',
+            '<div class="kicker">' . self::TYPE_KICKER[1] . '</div>',
+            $adapted,
+        );
+
+        return str_replace($fullMatch, $adapted, $html);
+    }
+
+    private function adaptFrameworkTypeSection(string $html, int $sectionType, int $buyerTypeNumber): string
+    {
+        $kicker = self::TYPE_KICKER[$sectionType];
+        $endKicker = $sectionType < 4 ? self::TYPE_KICKER[$sectionType + 1] : null;
+        $section = $this->extractBetweenKickers($html, $kicker, $endKicker);
+        if ($section === null) {
+            return $html;
+        }
+
+        [$fullMatch, $sectionHtml] = $section;
+        $adapted = $sectionHtml;
+
+        if ($sectionType === $buyerTypeNumber) {
+            $adapted = $this->removeNotYourTypeLabel($adapted);
+            $adapted = $this->toSecondPerson($adapted);
+            $adapted = str_replace(
+                '<div class="kicker">' . $kicker . '</div>',
+                '<div class="kicker">' . $this->primaryKickerLabel($sectionType) . '</div>',
+                $adapted,
+            );
+        } else {
+            $adapted = $this->ensureNotYourTypeLabel($adapted);
+        }
+
+        return str_replace($fullMatch, $adapted, $html);
+    }
+
+    private function adaptMirrorBlockMetaCopy(string $html, int $typeNumber): string
+    {
+        $ordinal = self::TYPE_ORDINAL[$typeNumber] ?? self::TYPE_ORDINAL[1];
+
+        $html = str_replace(
+            'Yours is the first, named precisely and addressed to you.',
+            'Yours is the ' . $ordinal . ', named precisely and addressed to you.',
+            $html,
+        );
+        $html = str_replace(
+            'Your cards named yours, Sarah: the first one.',
+            'Your cards named yours, Sarah: the ' . $ordinal . ' one.',
+            $html,
+        );
+
         return $html;
+    }
+
+    private function primaryKickerLabel(int $typeNumber): string
+    {
+        return 'Your Mirror Block · ' . (self::TYPE_KICKER[$typeNumber] ?? self::TYPE_KICKER[1]);
     }
 
     /**
      * @return array{0: non-empty-string, 1: non-empty-string}|null
      */
-    private function extractTypeSection(string $html, string $kicker): ?array
+    private function extractBetweenKickers(string $html, string $startKicker, ?string $endKicker): ?array
     {
-        $startNeedle = '<div class="kicker">' . $kicker . '</div>';
+        $startNeedle = '<div class="kicker">' . $startKicker . '</div>';
         $start = strpos($html, $startNeedle);
         if ($start === false) {
             return null;
@@ -66,14 +131,17 @@ final class ReadingBlockTypeVoiceAdapter
 
         $searchFrom = $start + strlen($startNeedle);
         $end = strlen($html);
-        foreach (self::TYPE_KICKER as $otherKicker) {
-            if ($otherKicker === $kicker) {
-                continue;
+
+        if ($endKicker !== null) {
+            $endNeedle = '<div class="kicker">' . $endKicker . '</div>';
+            $endPos = strpos($html, $endNeedle, $searchFrom);
+            if ($endPos !== false) {
+                $end = $endPos;
             }
-            $otherNeedle = '<div class="kicker">' . $otherKicker . '</div>';
-            $otherPos = strpos($html, $otherNeedle, $searchFrom);
-            if ($otherPos !== false && $otherPos < $end) {
-                $end = $otherPos;
+        } else {
+            $partFour = strpos($html, '<div class="part">Part Four</div>', $searchFrom);
+            if ($partFour !== false) {
+                $end = $partFour;
             }
         }
 
