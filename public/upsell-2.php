@@ -216,7 +216,7 @@
       <div class="wrap">
         <h1>Your Block Was Never Just About Money.<br /><em>It Runs Your Love and Purpose Too.</em></h1>
         <p class="subhead">Same block. Two more mirrors. Your money work will clear them eventually, just slowly. This goes straight at love and purpose, so the change lands in weeks, not someday.</p>
-        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-hero2.png" alt="Two clouded mirrors clearing to gold light, one for love and one for purpose, deep violet and gold" />
+        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-hero2.webp" alt="Two clouded mirrors clearing to gold light, one for love and one for purpose, deep violet and gold" />
       </div>
     </section>
 
@@ -310,7 +310,7 @@
         <div class="stack" style="margin-top:26px;">
           <div class="card bonus">
             <span class="bonus__badge">Bonus 1</span>
-            <img class="bonus-img" src="https://soulmirrorreading.com/frontend/images/upsell2/bonus-purpose-alignment.png" alt="The Purpose Alignment Ritual" />
+            <img class="bonus-img" src="https://soulmirrorreading.com/frontend/images/upsell2/bonus-purpose-alignment.webp" alt="The Purpose Alignment Ritual" />
             <div class="bonus__content">
               <h3>The Purpose Alignment Ritual</h3>
               <p>The same block that guards your heart also dims your direction; it calls your real work a hobby. This clears it at the same layer, so what you keep circling stops feeling off-limits.</p>
@@ -319,7 +319,7 @@
           </div>
           <div class="card bonus">
             <span class="bonus__badge">Bonus 2</span>
-            <img class="bonus-img" src="https://soulmirrorreading.com/frontend/images/upsell2/bonus-open-heart-audio.png" alt="The Open-Heart Audio" />
+            <img class="bonus-img" src="https://soulmirrorreading.com/frontend/images/upsell2/bonus-open-heart-audio.webp" alt="The Open-Heart Audio" />
             <div class="bonus__content">
               <h3>The Open-Heart Audio</h3>
               <p>The receiving-love clearing as guided audio. Press play, follow my voice, let the guard soften. For the nights you want to be walked through it.</p>
@@ -328,7 +328,7 @@
           </div>
           <div class="card bonus">
             <span class="bonus__badge">Bonus 3</span>
-            <img class="bonus-img" src="https://soulmirrorreading.com/frontend/images/upsell2/bonus-daily-clarity.png" alt="The Daily Clarity Practice" />
+            <img class="bonus-img" src="https://soulmirrorreading.com/frontend/images/upsell2/bonus-daily-clarity.webp" alt="The Daily Clarity Practice" />
             <div class="bonus__content">
               <h3>The Daily Clarity Practice</h3>
               <p>A one-page ritual that keeps both mirrors clear. Sixty seconds a morning to catch the old reflex before it runs the day.</p>
@@ -361,7 +361,7 @@
         <div style="margin-top:26px;">
           <div class="testi">
             <div class="testi__row">
-              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-margaret-v.png" alt="Margaret V." />
+              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-margaret-v.webp" alt="Margaret V." />
               <div><div class="testi__name">Margaret V.</div><div class="testi__meta">52 &middot; Edinburgh, UK</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -369,7 +369,7 @@
           </div>
           <div class="testi">
             <div class="testi__row">
-              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-david-r.png" alt="David R." />
+              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-david-r.webp" alt="David R." />
               <div><div class="testi__name">David R.</div><div class="testi__meta">49 &middot; Manchester, UK</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -377,7 +377,7 @@
           </div>
           <div class="testi">
             <div class="testi__row">
-              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-sophia-k.png" alt="Sophia K." />
+              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-sophia-k.webp" alt="Sophia K." />
               <div><div class="testi__name">Sophia K.</div><div class="testi__meta">47 &middot; Melbourne, AU</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -403,7 +403,7 @@
           <span class="offer-label">Complete the Clearing</span>
           <h2 style="margin-bottom:10px;">Add The Love Clarity Ritual</h2>
           <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">Your money work clears the root in time. This clears love and purpose now. Yours to keep for life.</p>
-          <img src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-package.png" alt="The complete Love Clarity Ritual, all products together" style="width:100%;max-width:420px;display:block;margin:0 auto 26px;filter:drop-shadow(0 18px 36px rgba(0,0,0,.45));" />
+          <img src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-package.webp" alt="The complete Love Clarity Ritual, all products together" style="width:100%;max-width:420px;display:block;margin:0 auto 26px;filter:drop-shadow(0 18px 36px rgba(0,0,0,.45));" />
 
           <ul class="vlist">
             <li><span class="vs-name">The Love Clarity Ritual, a 3-Movement Practice</span><span class="vs-price">$147</span></li>
@@ -439,7 +439,7 @@
     <section class="section">
       <div class="wrap">
         <div class="guarantee">
-          <img src="https://soulmirrorreading.com/frontend/images/upsell2/guarantee-badge.png" alt="90-Day Guarantee Badge" />
+          <img src="https://soulmirrorreading.com/frontend/images/upsell2/guarantee-badge.webp" alt="90-Day Guarantee Badge" />
           <h2 style="font-size:clamp(20px,3vw,26px);margin-bottom:14px;">The Love Clarity Ritual, 90-Day Guarantee</h2>
           <p>Follow all three movements for a real 90 days. If your love life and your sense of purpose feel no different, reply and I refund every cent of your $67. No questionnaire, no proof. You keep the ritual and all three bonuses no matter what.</p>
         </div>
