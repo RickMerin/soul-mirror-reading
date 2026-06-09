@@ -3,5 +3,6 @@ node_modules/
 /vendor/
 .phpunit.cache/
 /storage/logs/*.log
+/storage/pdf-work/
 # Download from https://curl.se/ca/cacert.pem for local TLS verification (Windows)
 /storage/cacert.pem

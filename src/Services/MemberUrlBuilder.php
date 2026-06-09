@@ -61,6 +61,12 @@ final class MemberUrlBuilder
         return ($base === '' ? '' : $base) . '/logout.php';
     }
 
+    public static function apiPath(string $scriptName, string $requestScriptName = ''): string
+    {
+        $base = self::siteBasePath(self::serverScriptName($requestScriptName));
+        return ($base === '' ? '' : $base) . '/api/' . ltrim($scriptName, '/');
+    }
+
     /**
      * Site URL path prefix (no trailing slash), e.g. '' at domain root or '/soul-mirror-reading'.
      */
