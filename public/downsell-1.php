@@ -1,799 +1,562 @@
 <?php
-declare(strict_types=1);
+/**
+ * Soul Mirror Reading , Downsell 1 (REDESIGN, wealth-v2 design system)
+ * Offer:    Soul Ritual Practice , $97 declined -> $67 one-time downsell
+ * ClickBank: item srp-1-ds   accept cbur=a   decline cbur=d
+ *
+ * Deploy as: /downsell-1.php  (site root , root-relative asset paths assume root)
+ *
+ * Design system borrowed from /wealth-v2/sales.php:
+ *   - assets/sales-v2-bundle.min.css  (dream-bg, .cta, .testi-card, .vip-box,
+ *     .bonus-grid/.bonus-card-compact, .pricing-block, .final-cta, .faq-section,
+ *     .topnotice, .site-footer, the gold/violet :root palette)
+ *   - assets/sales-v2.min.js  (dream-bg sparkle + shooting-star animation,
+ *     .firstname personalization from ?first_name=, GSAP .js-reveal fade-ins,
+ *     CTA smooth-scroll, the 25-min rolling #countdownMinutes/#countdownSeconds timer)
+ *
+ * Personalization: .firstname spans auto-fill from the ?first_name= query param
+ * passed through the ClickBank upsell flow; fall back word is "Friend".
+ */
+?>
+<!DOCTYPE html>
+<html lang="en" data-funnel-base="">
 
-$projectRoot = dirname(__DIR__);
-require $projectRoot . '/vendor/autoload.php';
-
-\App\Config\AppConfig::load($projectRoot);
-
-$downsellCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&cbur=a';
-$declineToReadingUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&cbur=d';
-
-?><!DOCTYPE html>
-<html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<!-- Refresh v11 downsell guarantee badge -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wait — One More Thing From Luna</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
-    rel="stylesheet"
-  />
-  <style>
-    :root {
-      --violet-deep:  #2D1B69;
-      --violet-mid:   #2a1252;
-      --violet-dark:  #1a0d40;
-      --gold:         #D4AF37;
-      --gold-light:   #e8c97a;
-      --gold-dim:     #8B6914;
-      --gold-pale:    #f5e9c0;
-      --cream:        #FEFCF8;
-      --cream-warm:   #f9f5ec;
-      --text-body:    #2c2040;
-      --text-muted:   #6b5c82;
-      --white:        #ffffff;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="One more thing from Luna. The complete Soul Ritual Practice , same three Rituals, the Workbook, and all three bonuses , at a one-time price you will not see again.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Wait, One More Thing From Luna</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Crimson+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <!-- Shared wealth-v2 design system (component classes, dream-bg, palette) -->
+  <link rel="stylesheet" href="assets/sales-v2-bundle.min.css">
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background-color: var(--cream);
-      color: var(--text-body);
-      font-family: 'Crimson Pro', Georgia, serif;
-      font-size: 19px;
-      line-height: 1.75;
-    }
-
-    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-
-    .section-label {
-      font-family: 'Cinzel', serif;
-      font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--gold); display: block; margin-bottom: 14px;
-    }
-
-    /* ═══ NOTICE BAR ═══ */
-    .notice-bar { background: var(--violet-deep); padding: 11px 24px; text-align: center; }
-    .notice-bar p {
-      font-family: 'Cinzel', serif; font-size: 12px;
-      letter-spacing: 0.12em; color: var(--gold-light); text-transform: uppercase;
-    }
-
-    /* ═══ HERO ═══ */
-    .hero {
-      background: linear-gradient(160deg, var(--violet-mid) 0%, var(--violet-deep) 60%, var(--violet-dark) 100%);
-      padding: 64px 24px 0; text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.14) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .hero__eyebrow {
-      font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 22px; display: block;
-      position: relative;
-    }
-    .hero__headline {
-      font-family: 'Cinzel', serif; font-weight: 700;
-      font-size: clamp(28px, 5vw, 42px); line-height: 1.2; color: var(--cream);
-      margin-bottom: 22px; max-width: 640px; margin-left: auto; margin-right: auto;
-      position: relative;
-    }
-    .hero__headline em { color: var(--gold-light); font-style: italic; }
-    .hero__subhead {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.8vw, 22px);
-      font-style: italic; color: rgba(254,252,248,0.85);
-      max-width: 580px; margin: 0 auto 40px; line-height: 1.55;
-      position: relative;
-    }
-    .hero__image {
-      max-width: 720px; width: 100%; margin: 0 auto;
-      display: block; border-radius: 10px 10px 0 0;
-      position: relative;
-      box-shadow: 0 -10px 40px rgba(212,175,55,0.18);
-    }
-
-    /* ═══ PART 1 / PART 2 FRAME ═══ */
-    .journey { background: var(--cream); padding: 56px 24px 40px; }
-    .journey__inner { max-width: 640px; margin: 0 auto; text-align: center; }
-    .journey__label {
-      font-family: 'Cinzel', serif; font-size: 12px; font-weight: 600; letter-spacing: 0.16em;
-      text-transform: uppercase; color: #8B6914;
-      margin-bottom: 16px; display: block;
-    }
-    .journey__body {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(19px, 2.6vw, 23px);
-      font-style: italic;
-      color: var(--violet-deep);
-      line-height: 1.55;
-    }
-    .journey__body strong {
-      font-style: normal; font-family: 'Cinzel', serif;
-      font-weight: 600; font-size: 0.95em; letter-spacing: 0.04em;
-    }
-
-    .part-row {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 20px;
-      margin-top: 32px;
-      align-items: stretch;
-    }
-    .part-col {
-      padding: 20px 16px;
-      border: 1px solid rgba(154,114,48,0.25);
-      border-radius: 8px;
-      text-align: center;
-      background: var(--cream-warm);
-    }
-    .part-col--done { border-color: rgba(154,114,48,0.45); background: rgba(212,175,55,0.08); }
-    .part-col__num {
-      font-family: 'Cinzel', serif; font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 8px; display: block;
-    }
-    .part-col__title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px; font-weight: 600;
-      color: var(--violet-deep); margin-bottom: 6px;
-      line-height: 1.3;
-    }
-    .part-col__status {
-      font-family: 'Crimson Pro', serif; font-size: 13px;
-      font-style: italic; color: var(--text-muted);
-    }
-    .part-col__status--done { color: #15803D; font-weight: 500; }
-    .part-arrow {
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gold); font-size: 22px; font-family: 'Cinzel', serif;
-    }
-
-    /* ═══ BRIDGE ═══ */
-    .bridge { background: var(--cream); padding: 40px 24px 60px; }
-    .bridge__body { font-size: 19px; line-height: 1.8; color: var(--text-body); max-width: 620px; margin: 0 auto; }
-    .bridge__body p + p { margin-top: 20px; }
-    .bridge__body strong { color: var(--violet-deep); }
-    .bridge__sig {
-      margin-top: 28px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(212,175,55,0.25);
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 17px;
-      color: var(--text-muted);
-      text-align: center;
-    }
-    .bridge__sig strong { color: var(--violet-deep); font-style: normal; }
-
-    /* ═══ PAIN POINTS ═══ */
-    .pain { background: var(--violet-deep); padding: 64px 24px; }
-    .pain__headline {
-      font-family: 'Cinzel', serif; font-size: clamp(21px, 3.6vw, 30px);
-      font-weight: 600; color: var(--cream);
-      margin-bottom: 36px; line-height: 1.3;
-    }
-    .pain__headline em { color: var(--gold-light); font-style: italic; }
-    .pain__list { display: flex; flex-direction: column; gap: 16px; }
-    .pain__item { padding: 16px 0; border-bottom: 1px solid rgba(212,175,55,0.15); }
-    .pain__item:last-of-type { border-bottom: none; }
-    .pain__item p {
-      font-family: 'Crimson Pro', serif; font-size: 18px;
-      color: rgba(254,252,248,0.9); line-height: 1.72;
-    }
-    .pain__item p em { font-style: italic; color: var(--gold-light); }
-
-    /* ═══ TESTIMONIALS ═══ */
-    .testimonials { background: var(--cream-warm); padding: 68px 24px; }
-    .testimonials__eyebrow {
-      font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--gold);
-      text-align: center; margin-bottom: 12px; display: block;
-    }
-    .testimonials__headline {
-      font-family: 'Cinzel', serif; font-size: clamp(20px, 3.4vw, 27px);
-      font-weight: 600; color: var(--violet-deep);
-      text-align: center; margin-bottom: 40px; line-height: 1.35;
-    }
-    .testimonials__headline em { color: var(--gold); font-style: italic; font-family: 'Cormorant Garamond', serif; }
-    .testimonial-grid { display: flex; flex-direction: column; gap: 18px; }
-    .testimonial {
-      display: flex; gap: 20px; align-items: flex-start;
-      background: var(--white); border-radius: 10px;
-      border: 1px solid rgba(212,175,55,0.22);
-      padding: 26px;
-      box-shadow: 0 4px 16px rgba(45,27,105,0.05);
-    }
-    .testimonial__avatar {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(212,175,55,0.4);
-      flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(45,27,105,0.1);
-    }
-    .testimonial__body { flex: 1; }
-    .testimonial__stars {
-      color: var(--gold); font-size: 14px; letter-spacing: 3px;
-      margin-bottom: 8px; display: block;
-    }
-    .testimonial__quote {
-      font-family: 'Cormorant Garamond', serif; font-size: 18px;
-      font-style: italic; line-height: 1.6; color: var(--text-body);
-      margin-bottom: 12px;
-    }
-    .testimonial__name {
-      font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--text-muted);
-    }
-
-    /* ═══ PRICE DROP / OFFER ═══ */
-    /* ═══ PRODUCT LINEUP ═══ */
-    .product-lineup {
-      background: var(--cream); padding: 56px 24px 36px; text-align: center;
-    }
-    .product-lineup__eyebrow {
-      font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--gold-dim); display: block; margin-bottom: 10px;
-    }
-    .product-lineup__headline {
-      font-family: 'Cinzel', serif; font-size: clamp(22px, 3.5vw, 30px);
-      font-weight: 600; color: var(--violet-deep);
-      margin-bottom: 36px; line-height: 1.3;
-    }
-    .product-lineup__headline em {
-      color: var(--gold); font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
-    }
-    .lineup-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .lineup-item { text-align: center; }
-    .lineup-item img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 6px;
-      box-shadow: 0 6px 18px rgba(45,27,105,0.18);
-      margin-bottom: 10px;
-    }
-    .lineup-item__label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--violet-deep);
-      line-height: 1.3;
-    }
-    .product-lineup__image {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 12px;
-    }
-    .product-lineup__image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    @media (max-width: 720px) {
-      .lineup-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-      .lineup-item__label { font-size: 12px; }
-    }
-
-    .price-drop {
-      background: linear-gradient(160deg, var(--violet-mid) 0%, var(--violet-deep) 100%);
-      padding: 72px 24px; text-align: center;
-    }
-    .price-drop__eyebrow {
-      font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 16px; display: block;
-    }
-    .price-drop__headline {
-      font-family: 'Cinzel', serif; font-size: clamp(23px, 4vw, 32px);
-      font-weight: 700; color: var(--cream);
-      margin-bottom: 12px; line-height: 1.3;
-    }
-    .price-drop__sub {
-      font-family: 'Cormorant Garamond', serif; font-size: 20px;
-      font-style: italic; color: rgba(254,252,248,0.78);
-      margin-bottom: 40px;
-    }
-    .value-stack {
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.3);
-      border-radius: 10px; padding: 30px 26px; margin-bottom: 32px; text-align: left;
-    }
-    .value-stack__title {
-      font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 20px; text-align: center;
-    }
-    .value-line {
-      display: flex; justify-content: space-between; align-items: baseline;
-      padding: 9px 0; border-bottom: 1px solid rgba(212,175,55,0.12); gap: 16px;
-    }
-    .value-line:last-child { border-bottom: none; }
-    .value-line__name { font-size: 16px; color: rgba(254,252,248,0.88); line-height: 1.4; }
-    .value-line__price {
-      font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold-light);
-      flex-shrink: 0; text-decoration: line-through; opacity: 0.7;
-    }
-    .value-line--total {
-      margin-top: 8px; padding-top: 14px;
-      border-top: 1px solid rgba(212,175,55,0.35); border-bottom: none;
-    }
-    .value-line--total .value-line__name {
-      font-family: 'Cormorant Garamond', serif; font-size: 18px;
-      font-weight: 600; color: var(--cream);
-    }
-    .value-line--total .value-line__price {
-      font-size: 15px; text-decoration: none; opacity: 1; color: var(--gold-light);
-    }
-
-    /* ═══ COUPON BADGE ═══ */
-    .coupon {
-      display: inline-block;
-      position: relative;
-      background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0.08) 100%);
-      border: 1.5px dashed rgba(232,201,122,0.6);
-      border-radius: 8px;
-      padding: 14px 28px;
-      margin: 0 auto 28px;
-      max-width: 440px;
-    }
-    .coupon::before, .coupon::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      background: var(--violet-deep);
-      transform: translateY(-50%);
-    }
-    .coupon::before { left: -10px; }
-    .coupon::after { right: -10px; }
-    .coupon__label {
-      font-family: 'Cinzel', serif; font-size: 9px;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold); display: block; margin-bottom: 6px;
-    }
-    .coupon__amount {
-      font-family: 'Cinzel', serif; font-size: 22px;
-      font-weight: 700; color: var(--gold-light);
-      display: block; letter-spacing: 0.04em;
-    }
-    .coupon__code {
-      font-family: 'Cinzel', serif; font-size: 11px;
-      letter-spacing: 0.16em; color: rgba(254,252,248,0.62);
-      display: block; margin-top: 6px;
-    }
-    .coupon__code span {
-      color: var(--gold-light);
-      background: rgba(212,175,55,0.12);
-      border: 1px solid rgba(232,201,122,0.3);
-      padding: 2px 8px;
-      border-radius: 3px;
-      margin-left: 6px;
-      letter-spacing: 0.14em;
-    }
-
-    .price-reveal { text-align: center; margin: 28px 0 32px; }
-    .price-reveal__label {
-      font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--gold);
-      display: block; margin-bottom: 8px;
-    }
-    .price-was-row {
-      display: flex; align-items: center; justify-content: center; gap: 20px;
-      margin-bottom: 4px;
-    }
-    .price-reveal__was {
-      font-family: 'Cormorant Garamond', serif; font-size: 26px;
-      color: rgba(254,252,248,0.38); text-decoration: line-through;
-    }
-    .price-reveal__arrow { color: var(--gold-light); font-size: 22px; }
-    .price-reveal__now {
-      font-family: 'Cinzel', serif; font-size: clamp(52px, 10vw, 76px);
-      font-weight: 700; color: var(--gold-light); line-height: 1; display: block;
-    }
-    .price-reveal__note {
-      font-size: 15px; color: rgba(254,252,248,0.55);
-      margin-top: 8px; display: block;
-    }
-    .price-savings {
-      display: inline-block;
-      background: rgba(212,175,55,0.15);
-      border: 1px solid rgba(212,175,55,0.4);
-      border-radius: 20px;
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--gold-light);
-      padding: 6px 18px;
-      margin-top: 14px;
-    }
-
-    .cta-btn {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
-      color: var(--violet-deep); font-family: 'Cinzel', serif;
-      font-size: clamp(13px, 2.5vw, 16px); font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; text-decoration: none; padding: 22px 44px;
-      border-radius: 6px; border: none; cursor: pointer;
-      width: 100%; max-width: 500px; text-align: center;
-      box-shadow: 0 6px 24px rgba(212,175,55,0.35);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(212,175,55,0.45); }
-    .cta-btn--secondary {
-      background: transparent; color: rgba(254,252,248,0.45);
-      font-family: 'Crimson Pro', serif; font-size: 14px;
-      text-transform: none; font-weight: 300;
-      display: block; margin-top: 14px; text-align: center;
-      cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
-      border: none; padding: 8px; width: 100%;
-    }
-    .cta-btn--secondary:hover { color: rgba(254,252,248,0.7); }
-    .cta-subtext { margin-top: 18px; font-size: 14px; color: rgba(254,252,248,0.55); line-height: 1.6; }
-
-    /* ═══ GUARANTEE ═══ */
-    .guarantee { background: var(--cream); padding: 60px 24px; }
-    .guarantee__inner {
-      background: var(--cream-warm); border: 2px solid rgba(212,175,55,0.3);
-      border-radius: 12px; padding: 40px 34px; text-align: center;
-      max-width: 600px; margin: 0 auto;
-    }
-    .guarantee__badge {
-      display: block;
-      width: 140px;
-      height: auto;
-      margin: 0 auto 18px;
-    }
-    @media (max-width: 768px) {
-      .guarantee__badge { width: 120px; margin-bottom: 14px; }
-    }
-    .guarantee__headline {
-      font-family: 'Cinzel', serif; font-size: clamp(17px, 2.5vw, 22px);
-      font-weight: 600; color: var(--violet-deep); margin-bottom: 14px;
-    }
-    .guarantee__body {
-      font-size: 17px; line-height: 1.75; color: var(--text-body);
-    }
-
-    /* ═══ FOOTER ═══ */
-    .footer { background: var(--violet-mid); padding: 24px; text-align: center; }
-    .footer p { font-size: 12px; color: rgba(254,252,248,0.38); line-height: 1.6; }
-    .footer a { color: rgba(254,252,248,0.45); text-decoration: underline; text-underline-offset: 2px; }
-
-    @media (max-width: 600px) {
-      .part-row { grid-template-columns: 1fr; }
-      .part-arrow { transform: rotate(90deg); padding: 6px 0; }
-      .testimonial { flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 22px 18px; }
-      .value-stack { padding: 24px 18px; }
-      .guarantee__inner { padding: 32px 20px; }
-    }
-  
-    /* MOBILE OPTIMIZATION - Tablet, phone, small phone */
-    @media (max-width: 768px) {
-      .container { padding: 0 18px; }
-      .notice-bar p { font-size: 10px; letter-spacing: 0.08em; }
-
-      .hero { padding: 44px 18px 28px; }
-      .hero__headline { font-size: clamp(22px, 5.5vw, 32px); line-height: 1.22; }
-      .hero__subhead { font-size: 17px; line-height: 1.5; }
-
-      .journey { padding: 44px 18px; }
-      .journey__body { font-size: 17px; line-height: 1.6; }
-      .part-row { grid-template-columns: 1fr !important; gap: 14px; }
-      .part-col { padding: 18px; }
-      .part-col__title { font-size: 17px; }
-      .part-arrow { transform: rotate(90deg) !important; padding: 6px 0; }
-
-      .bridge { padding: 44px 18px; }
-      .bridge__body p { font-size: 17px; line-height: 1.65; }
-
-      .pain { padding: 52px 18px; }
-      .pain__headline { font-size: clamp(22px, 5vw, 28px); line-height: 1.3; margin-bottom: 28px; }
-      .pain__item p { font-size: 17px; line-height: 1.6; }
-
-      .testimonials { padding: 52px 18px; }
-      .testimonials__headline { font-size: clamp(20px, 4.8vw, 26px); }
-      .testimonial { flex-direction: column; padding: 22px 20px; gap: 14px; text-align: center; align-items: center; }
-      .testimonial__avatar { width: 84px; height: 84px; }
-      .testimonial__quote { font-size: 17px; line-height: 1.6; }
-
-      .product-lineup { padding: 44px 18px 28px; }
-      .product-lineup__headline { font-size: clamp(22px, 5vw, 26px); margin-bottom: 28px; }
-      .lineup-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-      .lineup-item__label { font-size: 11px; line-height: 1.3; }
-
-      .price-drop { padding: 52px 18px; }
-      .price-drop__headline { font-size: clamp(22px, 5.2vw, 28px); }
-      .price-drop__sub { font-size: 17px; }
-      .value-stack { padding: 22px 18px; }
-      .value-stack__title { font-size: 12px; letter-spacing: 0.08em; }
-      .value-line__name { font-size: 14px; line-height: 1.35; }
-      .value-line__price { font-size: 13px; }
-      .value-line--total .value-line__name { font-size: 17px; }
-      .value-line--total .value-line__price { font-size: 14px; }
-      .coupon { max-width: 320px; padding: 12px 22px; }
-      .coupon__amount { font-size: 19px; }
-      .coupon__code { font-size: 10px; }
-      .price-reveal__now { font-size: clamp(44px, 12vw, 60px); }
-      .price-reveal__was { font-size: 20px; }
-      .price-savings { font-size: 10px; }
-      .cta-btn { padding: 20px 22px; font-size: clamp(13px, 3.5vw, 15px); letter-spacing: 0.08em; min-height: 54px; }
-      .cta-btn--secondary { font-size: 13px; margin-top: 14px; padding: 10px 6px; }
-      .cta-subtext { font-size: 13px; }
-
-      .guarantee { padding: 48px 18px; }
-      .guarantee__inner { padding: 30px 22px; max-width: 100%; }
-      .guarantee__headline { font-size: 19px; }
-      .guarantee__body { font-size: 16px; line-height: 1.65; }
-
-      .footer { padding: 22px 18px; }
-      .footer p { font-size: 12px; }
-    }
-
-    @media (max-width: 480px) {
-      .lineup-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 420px) {
-      .container { padding: 0 14px; }
-      .hero__headline { font-size: 22px; }
-      .pain__headline, .price-drop__headline, .testimonials__headline,
-      .product-lineup__headline { font-size: 20px; }
-      .price-reveal__now { font-size: 40px; }
-      .coupon { max-width: 100%; padding: 12px 16px; }
-      .cta-btn { padding: 18px 12px; font-size: 12px; letter-spacing: 0.06em; }
-    }
-
-  </style>
-
-  <!-- ─────────────────────────────────────────
-    Microsoft Clarity
-  ───────────────────────────────────────── -->
+  <!-- Microsoft Clarity (same project tag as the rest of the funnel) -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wq82rtc2gf");
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
+
+  <!-- Page-level overrides, mirrors wealth-v2 #tsl-style:
+       Inter for body copy, Cormorant for display, dimmed cosmic bg. -->
+  <style id="ds-style">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    body { background:#0b0718 !important; }
+    .dream-bg { filter:brightness(0.5) saturate(1.05) !important; }
+
+    /* Inter for everything readable; Cormorant for headlines (matches wealth-v2). */
+    body,p,li,.vsl-sub,.testi-body,.testi-name,.faq-q,.faq-a,
+    .vip-list,.vip-list li,.vip-list li span,.price-note,.cta,
+    .cta-trust-row,.cta-trust-row span,.topnotice,.topnotice strong,
+    .ds-lede,.ds-sig,.part-col__title,.part-col__status,.value-line__name {
+      font-family:'Inter',system-ui,sans-serif !important;
+    }
+    h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em { font-family:'Cormorant Garamond',Georgia,serif !important; }
+
+    /* ── Luna note / hero ── */
+    .ds-eyebrow{
+      text-align:center; letter-spacing:.32em; color:var(--gold);
+      font-family:'Cinzel',sans-serif; font-size:11px; text-transform:uppercase;
+      margin-bottom:16px; display:block;
+    }
+    .luna-hero{
+      display:block; width:128px; height:128px; object-fit:cover;
+      margin:0 auto 12px; border-radius:50%;
+      border:2px solid rgba(212,175,55,.6); box-shadow:0 12px 36px rgba(0,0,0,.55);
+      background:#160c34;
+    }
+    .luna-cap{
+      text-align:center; font-family:'Cormorant Garamond',serif; font-style:italic;
+      font-size:16px; color:#cdb98c; letter-spacing:.02em; margin:0 0 26px;
+    }
+    .ds-lede{
+      max-width:560px; margin:0 auto; color:rgba(255,255,255,.86);
+      font-size:18px; line-height:1.7; text-align:center;
+    }
+    .ds-lede strong{ color:var(--gold-light); font-weight:600; }
+
+    /* ── "What you have / what you still need" two-part frame ── */
+    .part-row{
+      display:grid; grid-template-columns:1fr auto 1fr; gap:16px;
+      align-items:stretch; max-width:600px; margin:32px auto 0;
+    }
+    .part-col{
+      backdrop-filter:blur(4px);
+      background:linear-gradient(180deg,rgba(45,27,105,.55),rgba(30,13,64,.85));
+      border:1px solid rgba(212,175,55,.35); border-radius:14px;
+      padding:22px 18px; text-align:center;
+    }
+    .part-col--done{ border-color:rgba(34,184,74,.45); background:linear-gradient(180deg,rgba(26,138,58,.18),rgba(30,13,64,.85)); }
+    /* Part Two glow-up */
+    .part-col--next{
+      border-color:rgba(212,175,55,.85);
+      background:linear-gradient(180deg,rgba(74,52,140,.5),rgba(38,18,78,.92));
+      position:relative;
+      animation:partGlow 2.6s ease-in-out infinite;
+    }
+    @keyframes partGlow{
+      0%,100%{ box-shadow:0 0 16px rgba(212,175,55,.25), inset 0 0 14px rgba(212,175,55,.05); }
+      50%{ box-shadow:0 0 32px rgba(212,175,55,.55), inset 0 0 20px rgba(212,175,55,.12); }
+    }
+    .part-col--next .part-col__num{ color:var(--gold-light); }
+    .part-col__badge{
+      position:absolute; top:-10px; left:50%; transform:translateX(-50%);
+      background:linear-gradient(135deg,#e8c97a 0%,#b8941f 100%);
+      color:#2a1252; font-family:'Cinzel',sans-serif; font-size:9px; font-weight:700;
+      letter-spacing:.14em; text-transform:uppercase; white-space:nowrap;
+      padding:4px 12px; border-radius:11px; box-shadow:0 3px 10px rgba(212,175,55,.45);
+    }
+    .part-col__price{ font-size:13px; color:rgba(255,255,255,.6); margin-top:2px; }
+    .part-col__price strong{ font-family:'Cormorant Garamond',serif; color:var(--gold-light); font-size:21px; font-weight:600; letter-spacing:.01em; }
+    .part-col__num{
+      font-family:'Cinzel',sans-serif; font-size:10px; font-weight:600;
+      letter-spacing:.22em; text-transform:uppercase; color:var(--gold);
+      display:block; margin-bottom:8px;
+    }
+    .part-col--done .part-col__num{ color:#5fe08a; }
+    .part-col__title{
+      font-family:'Cormorant Garamond',serif !important; font-size:19px; font-weight:600;
+      color:#fff; line-height:1.25; margin-bottom:8px;
+    }
+    .part-col__status{ font-size:13px; color:var(--text-muted); font-style:italic; }
+    .part-col__status--done{ color:#5fe08a; font-style:normal; font-weight:500; }
+    .part-arrow{ display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:22px; }
+    @media (width<=600px){
+      .part-row{ grid-template-columns:1fr; gap:12px; }
+      .part-arrow{ transform:rotate(90deg); }
+    }
+
+    /* ── Luna bridge note ── */
+    .ds-note{ max-width:600px; margin:0 auto; }
+    .ds-note p{ font-size:18px; line-height:1.75; color:rgba(255,255,255,.86); }
+    .ds-note p strong{ color:var(--gold-light); }
+    .ds-sig{
+      margin-top:24px; padding-top:18px; border-top:1px solid rgba(212,175,55,.25);
+      text-align:center; font-family:'Cormorant Garamond',serif !important; font-style:italic;
+      font-size:16px; color:var(--text-muted);
+    }
+    .ds-sig strong{ color:var(--gold-light); font-style:normal; }
+
+    /* ── Coupon device on the price block ── */
+    .ds-coupon{
+      display:inline-block; position:relative;
+      background:linear-gradient(135deg,rgba(212,175,55,.16) 0%,rgba(212,175,55,.07) 100%);
+      border:1.5px dashed rgba(232,201,122,.6); border-radius:10px;
+      padding:14px 30px; margin:0 auto 24px; max-width:440px;
+    }
+    .ds-coupon::before,.ds-coupon::after{
+      content:''; position:absolute; top:50%; width:16px; height:16px;
+      border-radius:50%; background:var(--violet); transform:translateY(-50%);
+    }
+    .ds-coupon::before{ left:-9px; } .ds-coupon::after{ right:-9px; }
+    .ds-coupon__label{
+      font-family:'Cinzel',sans-serif; font-size:9px; letter-spacing:.3em;
+      text-transform:uppercase; color:var(--gold); display:block; margin-bottom:6px;
+    }
+    .ds-coupon__amount{
+      font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:600;
+      color:var(--gold-light); display:block; letter-spacing:.02em;
+    }
+    .ds-coupon__code{
+      font-family:'Cinzel',sans-serif; font-size:10px; letter-spacing:.16em;
+      color:rgba(255,255,255,.6); display:block; margin-top:6px;
+    }
+    .ds-coupon__code span{
+      color:var(--gold-light); background:rgba(212,175,55,.12);
+      border:1px solid rgba(232,201,122,.3); padding:2px 8px; border-radius:3px;
+      margin-left:6px; letter-spacing:.14em;
+    }
+
+    /* Value stack lines inside the pricing block (strike-through anchors) */
+    .value-stack{ text-align:left; max-width:460px; margin:0 auto 26px; }
+    .value-line{
+      display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+      padding:10px 0; border-bottom:1px solid rgba(212,175,55,.15);
+    }
+    .value-line:last-child{ border-bottom:none; }
+    .value-line__name{ font-size:15px; color:var(--text); line-height:1.4; }
+    .value-line__name strong{ color:var(--gold-light); }
+    .value-line__price{
+      font-family:'Cinzel',sans-serif; font-size:13px; color:var(--gold-light);
+      flex-shrink:0; text-decoration:line-through; opacity:.7;
+    }
+    .value-line--total{ margin-top:6px; padding-top:14px; border-top:1px solid rgba(212,175,55,.4); border-bottom:none; }
+    .value-line--total .value-line__name{ font-family:'Cormorant Garamond',serif !important; font-size:18px; font-weight:600; color:#fff; }
+    .value-line--total .value-line__price{ font-size:15px; text-decoration:none; opacity:1; }
+
+    /* Was -> Now price row inside pricing block */
+    .ds-price-was{
+      font-family:'Cormorant Garamond',serif; font-size:26px;
+      color:rgba(255,255,255,.4); text-decoration:line-through;
+      text-decoration-color:var(--gold); margin-right:14px;
+    }
+
+    /* Soft "no thanks" decline link (consistent with wealth-v2 muted styling) */
+    .ds-decline{
+      display:block; margin:18px auto 0; max-width:460px; text-align:center;
+      background:transparent; border:none; cursor:pointer;
+      font-family:'Inter',system-ui,sans-serif; font-size:14px; font-weight:300;
+      color:rgba(255,255,255,.5); text-decoration:underline; text-underline-offset:3px;
+    }
+    .ds-decline:hover{ color:rgba(255,255,255,.78); }
+
+    /* Reassurance row under the accept CTA */
+    .ds-reassure{ margin-top:18px; font-size:14px; color:rgba(255,255,255,.55); line-height:1.6; }
+
+    /* Countdown sublabel tweak */
+    .countdown-bar{ margin:28px auto 0; }
+  </style>
 </head>
+
 <body>
 
-  <!-- ═══ NOTICE BAR ═══ -->
-  <div class="notice-bar">
-    <p style="color: #ec1229; font-weight: 700;">Wait &mdash; Before You Go &mdash; A One-Time Offer</p>
+  <!-- ── Animated cosmic background (driven by sales-v2.min.js) ── -->
+  <div class="dream-bg" aria-hidden="true">
+    <div class="dream-veil"></div>
+    <div class="milky-way"></div>
+    <div class="dream-orb one"></div>
+    <div class="dream-orb two"></div>
+    <div class="dream-orb three"></div>
+    <div class="dream-shooting" id="dreamShooting"></div>
+    <div class="dream-sparkles" id="dreamSparkles"></div>
   </div>
 
-  <!-- ═══ HERO ═══ -->
-  <section class="hero">
-    <div class="container">
-      <span class="hero__eyebrow">A final note from Luna Ross</span>
-      <h1 class="hero__headline">
-        I Am Not Letting You Leave<br /><em>Without the Second Half.</em>
-      </h1>
-      <p class="hero__subhead">
-        $97 was not right for you today. Fine. I would rather meet you where you are than watch you walk away from work you will need.
-      </p>
-    </div>
-    <img class="hero__image" src="frontend/images/downsell/hero-journal-candle-mirror.png" alt="Open journal, lit candle, antique mirror on writing desk" />
-  </section>
+  <main id="main-content">
 
-  <!-- ═══ PART 1 / PART 2 FRAME ═══ -->
-  <section class="journey">
-    <div class="journey__inner">
-      <span class="journey__label">✦ &nbsp; What You Already Have. What You Still Need. &nbsp; ✦</span>
-      <p class="journey__body">
-        You have <strong>Part One</strong>. This page is still offering you <strong>Part Two</strong> — at a price I do not usually show.
-      </p>
+  <!-- ── TOP NOTICE BAR (downsell red) ── -->
+  <div class="topnotice" style="background:#9b1c1c;border-bottom:1px solid #c0392b;">
+    <strong>WAIT</strong><span class="notice-dot">&middot;</span><strong>I Just Took <span style="color:#E8C97A;">$30 Off</span> the Soul Ritual Practice</strong><span class="notice-dot">&middot;</span><strong>This Lower Price Won't Be Shown Again</strong>
+  </div>
 
-      <div class="part-row">
-        <div class="part-col part-col--done">
-          <span class="part-col__num">Part One</span>
-          <p class="part-col__title">The Soul Mirror Reading</p>
-          <p class="part-col__status part-col__status--done">✓ You just claimed this</p>
-        </div>
-        <div class="part-arrow">→</div>
-        <div class="part-col">
-          <span class="part-col__num">Part Two</span>
-          <p class="part-col__title">The Soul Ritual Practice</p>
-          <p class="part-col__status">Now $67 &mdash; one time only</p>
+    <!-- ═══════════════════════════════════════════
+         HERO , Luna's final note, acknowledge the decline
+         ═══════════════════════════════════════════ -->
+    <section class="vsl-section">
+      <div class="wrap">
+        <h1 class="vsl-headline"><span class="firstname">Friend</span>, I'm Not Letting You Leave<br><em>Without the Second Half.</em></h1>
+
+        <p class="ds-lede">$97 wasn't right for you today, and that's okay. But the practice your reading named is what loosens the ceiling on your money, the figure your income keeps returning to no matter how hard you work. Same complete practice, <strong>$67, one time only.</strong></p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         WHAT YOU HAVE / WHAT YOU STILL NEED
+         ═══════════════════════════════════════════ -->
+    <section class="section" style="padding-top:24px;">
+      <div class="wrap">
+        <span class="section-eyebrow">What You Already Have &nbsp;&middot;&nbsp; What You Still Need</span>
+        <p style="text-align:center; max-width:560px; margin:0 auto;">You have <strong>Part One</strong>. This page is still holding <strong>Part Two</strong> for you, at a price it will not show again.</p>
+
+        <div class="part-row">
+          <div class="part-col part-col--done">
+            <span class="part-col__num">Part One</span>
+            <p class="part-col__title">The Soul Mirror Reading</p>
+            <p class="part-col__status part-col__status--done">&#10003; You just claimed this</p>
+          </div>
+          <div class="part-arrow">&rarr;</div>
+          <div class="part-col part-col--next">
+            <span class="part-col__num">Part Two</span>
+            <p class="part-col__title">The Soul Ritual Practice</p>
+            <p class="part-col__price">Now <strong>$67</strong> &middot; one time only</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ BRIDGE ═══ -->
-  <section class="bridge">
-    <div class="container">
-      <div class="bridge__body">
-        <p>Your reading shows you the root. That matters enormously.</p>
-        <p>But I have sat with thousands of people who could see their Mirror Block exactly — and still watched it run their life for another decade. Not because they were not trying. <strong>Because seeing is not the same as clearing.</strong></p>
-        <p>The Soul Ritual Practice is the same complete clearing work — the three Rituals, the Workbook, and all three bonuses. The only thing that changed is the price — and the fact that this page will not be offered to you again.</p>
-      </div>
-      <p class="bridge__sig"><strong>Luna Ross</strong></p>
-    </div>
-  </section>
-
-  <!-- ═══ PAIN POINTS ═══ -->
-  <section class="pain">
-    <div class="container">
-      <span class="section-label">You Already Know This Is You</span>
-      <h2 class="pain__headline">
-        You Have Tried Everything.<br />
-        <em>And The Pattern Keeps Coming Back.</em>
-      </h2>
-      <div class="pain__list">
-        <div class="pain__item">
-          <p>You know exactly what your pattern is. You could write an essay on it. <em>And it still runs your life every single day.</em></p>
-        </div>
-        <div class="pain__item">
-          <p>You have had breakthroughs. The clarity came — and six weeks later you were back in the same place wearing a different outfit.</p>
-        </div>
-        <div class="pain__item">
-          <p>You are not broken. You are not resistant. <em>You are working on the wrong layer.</em></p>
+    <!-- ═══════════════════════════════════════════
+         BRIDGE , seeing is not the same as clearing
+         ═══════════════════════════════════════════ -->
+    <section class="section" style="padding-top:0;">
+      <div class="wrap">
+        <div class="ds-note">
+          <p>Your reading shows you the ceiling on your money. That matters enormously, <span class="firstname">Friend</span>.</p>
+          <p>But I have sat with thousands of people who could see their Wealth Block exactly, the precise ceiling on their money, and still watched it hold their income at the same figure for another decade. Not because they weren't trying. <strong>Because seeing it is not the same as clearing it.</strong></p>
+          <p>The Soul Ritual Practice is the fast track that does the clearing, the accelerated ritual that goes straight to the layer where the ceiling was set, instead of the slow years of reading and journaling. The same three Rituals, the same Workbook, the same three bonuses I just showed you. Nothing has been stripped out. The only thing that changed is the price, and the fact that this page will not be offered to you again.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ TESTIMONIALS ═══ -->
-  <section class="testimonials">
-    <div class="container">
-      <span class="testimonials__eyebrow">✦ From People Who Almost Said No Twice ✦</span>
-      <h2 class="testimonials__headline">
-        They Clicked Away Once.<br /><em>This Page Brought Them Back.</em>
-      </h2>
+    <!-- ═══════════════════════════════════════════
+         EARLY OFFER / CTA (relocated above the pain section)
+         ═══════════════════════════════════════════ -->
+    <section style="padding:8px 24px 16px;">
+      <div class="pricing-block" id="early-offer">
+        <span class="section-eyebrow" style="margin-bottom:14px;">One-Time Offer &middot; Disappears When You Leave</span>
+        <h2>Complete Your Journey<br><em>for $67</em></h2>
+        <p class="price-note" style="margin:6px auto 0; max-width:460px;">The fast-track ritual that clears the ceiling on your money.</p>
 
-      <div class="testimonial-grid">
+        <div class="ds-coupon" style="margin-top:18px;">
+          <span class="ds-coupon__label">&#10022; &nbsp; One-Time Discount Applied &nbsp; &#10022;</span>
+          <span class="ds-coupon__amount">&minus; $30.00 OFF</span>
+          <span class="ds-coupon__code">Code <span>EXTRA30</span></span>
+        </div>
 
-        <div class="testimonial">
-          <img class="testimonial__avatar" src="frontend/images/downsell/testimonial-jennifer-l.png" alt="Jennifer L." />
-          <div class="testimonial__body">
-            <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__quote">"I almost said no at $97. When I saw the price drop I almost said no again — I thought it must be a lesser version. It is not. It is the same practice. I finished it over a weekend. My husband noticed the change before I told him I had done anything."</p>
-            <span class="testimonial__name">Jennifer L., 51 &mdash; Denver, US</span>
+        <div style="margin:6px 0 2px; text-align:center;">
+          <div style="font-family:'Cinzel',sans-serif; font-size:12px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-bottom:10px;">Total Value <span style="text-decoration:line-through; color:rgba(255,255,255,.5);">$449</span></div>
+          <div style="font-family:'Cinzel',sans-serif; font-size:12px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-bottom:8px;">Your Price, One Time Only</div>
+          <div class="price-row">
+            <span class="ds-price-was">$197</span>
+            <span class="ds-price-was">$97</span>
+            <span class="price-currency">$</span><span class="price-new">67</span>
+          </div>
+        </div>
+        <p class="price-note">One payment &middot; Instant download &middot; No subscription</p>
+
+        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&amp;cbur=a" class="cta" style="margin-top:22px;">Yes, Upgrade My Order Now &rarr;</a>
+        <div class="cta-trust-row" style="margin-top:16px;">
+          <span>&#128274; Secure Checkout</span>
+          <span>&#9889; Delivered Immediately</span>
+          <span>&#127769; 90-Day Guarantee</span>
+        </div>
+        <a class="ds-decline" href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&amp;cbur=d">No thank you, take me to my reading only</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         PAIN , you already know this is you
+         ═══════════════════════════════════════════ -->
+    <section class="section">
+      <div class="wrap">
+        <h2><span class="firstname">Friend</span>, You Work Harder Every Year.<br><em>And Your Income Keeps Landing on the Same Number.</em></h2>
+
+        <div class="vip-box" style="text-align:left;">
+          <ul class="vip-list" style="max-width:560px;">
+            <li><span>You know your number. The figure your income quietly returns to, year after year. You have worked, learned, and pushed past it, and still you land right back on it. <em>That ceiling is not bad luck. It is your Wealth Block, holding the line.</em></span></li>
+            <li><span>Money comes close. A raise, a big client, a yes you can almost taste. Then something unseen pulls it back and the door closes again. You have felt that flinch the moment money gets real, and quietly braced for it to leave.</span></li>
+            <li><span>You undercharge. You round the quote down before you say it out loud, you talk yourself out of asking for more, you call settling for less being realistic. <strong>You are not broken. You have been working on the wrong layer of your wealth.</strong></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         TESTIMONIALS , people who almost said no twice
+         ═══════════════════════════════════════════ -->
+    <section class="section" style="padding-top:0;">
+      <div class="wrap">
+        <span class="section-eyebrow">From People Who Almost Said No Twice</span>
+        <h2>They Clicked Away Once.<br><em>This Page Brought Them Back.</em></h2>
+
+        <div class="testi-card">
+          <div class="testi-avatar-row">
+            <img class="testi-avatar" src="frontend/images/downsell/testimonial-jennifer-l.png" alt="Jennifer L." decoding="async" loading="lazy">
+            <div>
+              <div class="testi-name">Jennifer L.</div>
+              <div class="testi-meta">51 &middot; Denver, US</div>
+            </div>
+          </div>
+          <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p class="testi-body">"I almost said no at $97. When I saw the price drop I almost said no again, because I assumed it had to be a lesser version. It is not. It is the exact same practice. What it named was the reason I had not raised my rates in six years, I kept deciding I was not ready. I worked through it over a weekend, then sent a renewal at a higher number for the first time. The client said yes the same day. That raise has stayed in every invoice since."</p>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-avatar-row">
+            <img class="testi-avatar" src="frontend/images/downsell/testimonial-marcus-t.png" alt="Marcus T." decoding="async" loading="lazy">
+            <div>
+              <div class="testi-name">Marcus T.</div>
+              <div class="testi-meta">46 &middot; Austin, US</div>
+            </div>
+          </div>
+          <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p class="testi-body">"Full disclosure, I was the definition of skeptical. I clicked 'no thanks' on the first offer. Something made me reconsider when I saw this page. It named the exact thing I do every time money gets close, I quietly talk the number down before anyone can say no. On the very next deal I held my price instead of discounting it like always. That one quote was higher than my old monthly take. I do not fully know how to explain it. I just stopped flinching at my own number."</p>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-avatar-row">
+            <img class="testi-avatar" src="frontend/images/downsell/testimonial-elena-m.png" alt="Elena M." decoding="async" loading="lazy">
+            <div>
+              <div class="testi-name">Elena M.</div>
+              <div class="testi-meta">43 &middot; Barcelona, ES</div>
+            </div>
+          </div>
+          <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p class="testi-body">"I nearly didn't take it. I already have too many courses sitting unfinished. This is the only one I finished in a single weekend, because it was not a course, it was a practice. It showed me why every good month used to quietly undo itself, I would earn well, then sabotage the next one back down to my usual figure. Three months in, the good month did not collapse. It held. That has never happened before."</p>
+        </div>
+
+        <p style="text-align:center; max-width:560px; margin:22px auto 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:rgba(255,255,255,.45);">Individual results vary and are not typical. The Soul Ritual Practice is for insight and self-reflection. It is not financial advice.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         WHAT YOU RECEIVE , VIP box + product image + bonuses
+         ═══════════════════════════════════════════ -->
+    <section class="section" style="padding-top:0;">
+      <div class="wrap">
+        <div class="vip-box">
+          <h2>The Complete <em>Soul Ritual Practice</em></h2>
+          <img src="frontend/images/ups-downs/upsell1-package.png" alt="The complete Soul Ritual Practice, the three Clearing Rituals, the Workbook, and three bonuses" class="vip-mockup" style="max-width:340px;">
+          <div class="vip-valued">Total Value <span class="amount">$449</span></div>
+          <ul class="vip-list">
+            <li><span><strong>The Mirror Block Clearing Rituals.</strong> A 3-part protocol that interrupts the block where it actually lives.</span></li>
+            <li><span><strong>The Mirror Block Workbook.</strong> 45 pages that walk you through the clearing, step by step.</span></li>
+            <li><span><strong>Bonus 1. Soul Ritual Audio Companion.</strong> The full practice, guided in Luna's voice.</span></li>
+            <li><span><strong>Bonus 2. The Wealth Alert Protocol.</strong> Catch the block the moment it tries to pull money back.</span></li>
+            <li><span><strong>Bonus 3. The Love Harmony Audio.</strong> The same clearing, turned toward connection.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         BONUS GRID , reinforce that nothing is stripped
+         ═══════════════════════════════════════════ -->
+    <section class="section" style="padding-top:0;">
+      <div class="wrap">
+        <h2>Every Bonus Still <em>Included</em></h2>
+        <p style="text-align:center; max-width:520px; margin:0 auto 8px;">The $67 version is not a lighter version. You get the full stack, exactly as it was at $97.</p>
+
+        <div class="bonus-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="bonus-card-compact">
+            <span class="free-badge">INCLUDED</span>
+            <div class="bonus-num">Bonus 1</div>
+            <h4>Soul Ritual Audio Companion</h4>
+            <div class="value">Valued at $67</div>
+          </div>
+          <div class="bonus-card-compact">
+            <span class="free-badge">INCLUDED</span>
+            <div class="bonus-num">Bonus 2</div>
+            <h4>The Wealth Alert Protocol</h4>
+            <div class="value">Valued at $47</div>
+          </div>
+          <div class="bonus-card-compact">
+            <span class="free-badge">INCLUDED</span>
+            <div class="bonus-num">Bonus 3</div>
+            <h4>The Love Harmony Audio</h4>
+            <div class="value">Valued at $37</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         PRICING BLOCK , the offer, coupon, was->now, accept + decline
+         ═══════════════════════════════════════════ -->
+    <section style="padding:0 24px 56px; position:relative;" id="offer">
+      <div class="pricing-block">
+        <span class="section-eyebrow" style="margin-bottom:18px;">One-Time Offer &middot; Disappears When You Leave</span>
+        <h2>Complete Your Journey<br><em>for $67</em></h2>
+        <p class="price-note" style="margin-bottom:24px;">Same complete practice. Same three bonuses. The only thing lower is the price.</p>
+
+        <div class="value-stack">
+          <div class="value-line">
+            <span class="value-line__name">The Mirror Block Clearing Rituals, a 3-part protocol</span>
+            <span class="value-line__price">$201</span>
+          </div>
+          <div class="value-line">
+            <span class="value-line__name">The Mirror Block Workbook, 45 pages</span>
+            <span class="value-line__price">$97</span>
+          </div>
+          <div class="value-line">
+            <span class="value-line__name"><strong>Bonus 1.</strong> Soul Ritual Audio Companion</span>
+            <span class="value-line__price">$67</span>
+          </div>
+          <div class="value-line">
+            <span class="value-line__name"><strong>Bonus 2.</strong> The Wealth Alert Protocol</span>
+            <span class="value-line__price">$47</span>
+          </div>
+          <div class="value-line">
+            <span class="value-line__name"><strong>Bonus 3.</strong> The Love Harmony Audio</span>
+            <span class="value-line__price">$37</span>
+          </div>
+          <div class="value-line value-line--total">
+            <span class="value-line__name">Total Value</span>
+            <span class="value-line__price">$449</span>
           </div>
         </div>
 
-        <div class="testimonial">
-          <img class="testimonial__avatar" src="frontend/images/downsell/testimonial-marcus-t.png" alt="Marcus T." />
-          <div class="testimonial__body">
-            <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__quote">"Full disclosure: I was the definition of sceptical. I clicked 'no thanks' on the first offer. Something made me reconsider when I saw this page. Three weeks later I accepted a role I would have walked away from. I do not know how to explain it. I just know it worked."</p>
-            <span class="testimonial__name">Marcus T., 46 &mdash; Austin, US</span>
+        <div class="ds-coupon">
+          <span class="ds-coupon__label">&#10022; &nbsp; One-Time Discount Applied &nbsp; &#10022;</span>
+          <span class="ds-coupon__amount">&minus; $30.00 OFF</span>
+          <span class="ds-coupon__code">Code <span>EXTRA30</span></span>
+        </div>
+
+        <div style="margin:8px 0 6px; text-align:center;">
+          <div style="font-family:'Cinzel',sans-serif; font-size:12px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-bottom:10px;">Your Price, One Time Only</div>
+          <div class="price-row">
+            <span class="ds-price-was">$197</span>
+            <span class="ds-price-was">$97</span>
+            <span class="price-currency">$</span><span class="price-new">67</span>
           </div>
         </div>
+        <p class="price-note">One payment &middot; Instant download &middot; No subscription</p>
 
-        <div class="testimonial">
-          <img class="testimonial__avatar" src="frontend/images/downsell/testimonial-elena-m.png" alt="Elena M." />
-          <div class="testimonial__body">
-            <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__quote">"I nearly did not take it. I already have too many courses sitting unfinished. This is the only one I finished in a single weekend — because it was not a course, it was a practice. Reading it felt like being seen. I keep Ritual Three on my desk now."</p>
-            <span class="testimonial__name">Elena M., 43 &mdash; Barcelona, ES</span>
-          </div>
+        <!-- Rolling 25-min timer rendered by sales-v2.min.js (#countdownMinutes/#countdownSeconds) -->
+        <div class="countdown-bar">
+          <div class="countdown-label">This One-Time Price Closes In</div>
+          <div class="countdown-time"><span id="countdownMinutes">25</span>:<span id="countdownSeconds">00</span></div>
+          <div class="countdown-sublabel">When this page closes, the $67 offer closes with it.</div>
         </div>
 
-      </div>
-    </div>
-  </section>
+        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&amp;cbur=a" class="cta" style="margin-top:28px;">Yes, Upgrade My Order Now &rarr;</a>
+        <div class="cta-trust-row" style="margin-top:16px;">
+          <span>&#128274; Secure Checkout</span>
+          <span>&#9889; Delivered Immediately</span>
+          <span>&#127769; 90-Day Guarantee</span>
+        </div>
 
-  <!-- ═══ PRODUCT LINEUP ═══ -->
-  <section class="product-lineup">
-    <div class="container">
-      <span class="product-lineup__eyebrow">✦ Everything You Receive ✦</span>
-      <h2 class="product-lineup__headline">The Complete <em>Soul Ritual Practice</em></h2>
-      <div class="product-lineup__image">
-          <img src="frontend/images/ups-downs/upsell1-package.png" alt="The complete Soul Ritual Practice bundle — Clearing Rituals, Workbook, and 3 bonuses" />
-        </div>
-    </div>
-  </section>
+        <p class="ds-reassure">Secure checkout via ClickBank &middot; Everything delivered immediately</p>
 
-  <!-- ═══ PRICE DROP + OFFER ═══ -->
-  <section class="price-drop" id="offer">
-    <div class="container">
-      <span class="price-drop__eyebrow">One-Time Offer &mdash; Disappears When You Leave</span>
-      <h2 class="price-drop__headline">Complete Your Journey for $67</h2>
-      <p class="price-drop__sub">Same complete practice. Same three bonuses. The only thing lower is the price.</p>
+        <a class="ds-decline" href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&amp;cbur=d">No thank you, take me to my reading only</a>
 
-      <div class="value-stack">
-        <p class="value-stack__title">Everything You Receive</p>
-        <div class="value-line">
-          <span class="value-line__name">The Mirror Block Clearing Rituals &mdash; A 3-Part Protocol</span>
-          <span class="value-line__price">$201</span>
+        <div class="pricing-inline-guarantee">
+          <img src="cards/guarantee-badge.png" alt="90-Day Guarantee">
+          <div><strong>90-Day Money-Back Guarantee.</strong><br>Work through the practice. If you do not feel a genuine shift within 90 days, reply and I refund every penny of your $67. You keep everything. The risk is entirely mine.</div>
         </div>
-        <div class="value-line">
-          <span class="value-line__name">The Mirror Block Workbook &mdash; 45 Pages</span>
-          <span class="value-line__price">$97</span>
-        </div>
-        <div class="value-line">
-          <span class="value-line__name"><strong style="color:#E8C97A;">Bonus 1</strong> &mdash; Soul Ritual Audio Companion</span>
-          <span class="value-line__price">$67</span>
-        </div>
-        <div class="value-line">
-          <span class="value-line__name"><strong style="color:#E8C97A;">Bonus 2</strong> &mdash; The Wealth Alert Protocol</span>
-          <span class="value-line__price">$47</span>
-        </div>
-        <div class="value-line">
-          <span class="value-line__name"><strong style="color:#E8C97A;">Bonus 3</strong> &mdash; The Love Harmony Audio</span>
-          <span class="value-line__price">$37</span>
-        </div>
-        <div class="value-line value-line--total">
-          <span class="value-line__name">Total Value</span>
-          <span class="value-line__price">$449</span>
+
+        <div class="trust-badge-row">
+          <span>&#128274; Secure Checkout</span>
+          <span>&#9889; Delivered Immediately</span>
+          <span>&#9733;&#9733;&#9733;&#9733;&#9733; 4,800+ Readings</span>
         </div>
       </div>
+    </section>
 
-      <div class="coupon">
-        <span class="coupon__label">✦ &nbsp; One-Time Discount Applied &nbsp; ✦</span>
-        <span class="coupon__amount">&minus; $30.00 OFF</span>
-        <span class="coupon__code">Code <span>EXTRA30</span></span>
-      </div>
+    <!-- ═══════════════════════════════════════════
+         FAQ , kills the two downsell objections
+         ═══════════════════════════════════════════ -->
+    <!-- FAQ section removed per request -->
 
-      <div class="price-reveal">
-        <span class="price-reveal__label">Your Price &mdash; One Time Only</span>
-        <div class="price-was-row">
-          <span class="price-reveal__was">$97</span>
-          <span class="price-reveal__arrow">→</span>
-        </div>
-        <span class="price-reveal__now">$67</span>
-        <span class="price-reveal__note">One payment. Instant download. No subscription.</span>
-      </div>
+    <!-- ═══════════════════════════════════════════
+         FINAL CTA
+         ═══════════════════════════════════════════ -->
+    <!-- Final CTA section removed; offer relocated to the early CTA above the pain section -->
 
-      <a href="<?= htmlspecialchars($downsellCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>" class="cta-btn">
-        Yes, I Want To Upgrade My Soul Mirror Journey
-      </a>
 
-      <a class="cta-btn--secondary" href="<?= htmlspecialchars($declineToReadingUrl, ENT_QUOTES, 'UTF-8') ?>">
-        No thank you &mdash; proceed to my reading only
-      </a>
+  </main>
 
-      <p class="cta-subtext">
-        Secure checkout via ClickBank &mdash; Everything delivered immediately
+  <!-- ═══ FOOTER (shared legal block, matches wealth-v2) ═══ -->
+  <footer class="site-footer js-reveal">
+    <div class="footer-legal-copy">
+      <p>ClickBank is the retailer of products on this site. CLICKBANK&reg; is a registered trademark of Click Sales, Inc.,
+        a Delaware corporation located at 1444 S. Entertainment Ave., Suite 410 Boise, ID 83709, USA and used by
+        permission. ClickBank's role as retailer does not constitute an endorsement, approval or review of these
+        products or any claim, statement or opinion used in promotion of these products.</p>
+      <p>Individual results vary and are not typical. A Soul Mirror Reading and the Soul Ritual Practice are for insight
+        and self-reflection. They are not financial, medical, or psychological advice and do not guarantee any specific outcome.</p>
+      <p>For Product Support, please contact the vendor: <a href="mailto:support@soulmirrorreading.com">HERE</a></p>
+      <p>For Order Support, please contact ClickBank: <a href="https://www.clkbank.com/" target="_blank" rel="noopener">HERE</a> or 1-800-390-6035</p>
+      <p class="footer-links">
+        <a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp;
+        <a href="/terms-conditions">Terms &amp; Conditions</a> &nbsp;&middot;&nbsp;
+        <a href="mailto:support@soulmirrorreading.com">Contact Us</a> &nbsp;&middot;&nbsp;
+        <a href="/refund-return-policy">Refund &amp; Return Policy</a>
       </p>
-    </div>
-  </section>
-
-  <!-- ═══ GUARANTEE ═══ -->
-  <section class="guarantee">
-    <div class="container">
-      <div class="guarantee__inner">
-        <img class="guarantee__badge" src="frontend/images/ups-downs/guarantee-badge.png" alt="90 Day Mirror Guarantee" />
-        <h2 class="guarantee__headline">90-Day Full Refund Guarantee</h2>
-        <p class="guarantee__body">
-          Work through the practice. If you do not feel a genuine shift within 90 days — email us for a full refund of your $67. No questions, no explanation. The risk is entirely mine.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ FINAL DECLINE ═══ -->
-
-  <!-- ═══ FOOTER ═══ -->
-  <footer class="footer">
-    <div class="container">
-      <p>
-        &copy; 2026 Soul Mirror Reading &mdash; A Luna Ross Brand &mdash; All Rights Reserved<br />
-        <a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="#">Contact</a><br /><br />
-        ClickBank is the retailer of products on this site. CLICKBANK&reg; is a registered trademark of Click Sales Inc.
-      </p>
+      <p>Copyright &copy; 2026 Soul Mirror Reading. All Rights Reserved.</p>
     </div>
   </footer>
 
+  <!-- GSAP (for .js-reveal) + shared funnel JS (dream-bg, .firstname, countdown, CTA scroll) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="assets/sales-v2.min.js"></script>
+
 </body>
+
 </html>
