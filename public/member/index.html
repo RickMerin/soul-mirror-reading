@@ -19,7 +19,7 @@
      ═════════════════════════════════════════════════════════ -->
 
   <!-- Server injects window.__SMR_MEMBER__ (ritual access); asset hrefs use {{MEMBER_*}} placeholders. -->
-  <script>window.__SMR_MEMBER__ = { ritualUnlocked: '{{RITUAL_UNLOCKED_JS}}' === 'true' };</script>
+  <script>window.__SMR_MEMBER__ = { ritualUnlocked: '{{RITUAL_UNLOCKED_JS}}' === 'true', readingReady: {{ READING_READY_JS }} };</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1478,8 +1478,8 @@
                   <button type="button" class="btn-icon" id="pdf-btn-next" onclick="changePage(1)"
                     aria-label="Next page">▶</button>
                 </div>
-                <a href="{{MEMBER_URL_READING_PDF}}" class="btn-download" id="reading-btn" target="_blank"
-                  rel="noopener noreferrer">⬇ Download Full Reading</a>
+                <a href="{{MEMBER_URL_READING_DOWNLOAD}}" class="btn-download" id="reading-btn" target="_blank"
+                  rel="noopener noreferrer" {{READING_READY_ATTR}}>⬇ Download Full Reading</a>
               </div>
             </div>
           </div>
@@ -1878,13 +1878,21 @@
       const btnPrev = document.getElementById('pdf-btn-prev');
       const btnNext = document.getElementById('pdf-btn-next');
 
+      const readingReady = window.__SMR_MEMBER__ && window.__SMR_MEMBER__.readingReady === true;
+      const pendingMsg = {{ READING_PENDING_MESSAGE_JS }
+    };
       const pdfUrl = root && root.dataset.readingPdf ? String(root.dataset.readingPdf).trim() : '';
-      if (!root || !pdfUrl || pdfUrl === '#') {
+        if (!root || !readingReady || !pdfUrl || pdfUrl === '#') {
         if (statusEl) {
-          statusEl.textContent = 'Preview unavailable. Use Download to open your reading.';
-          statusEl.classList.add('is-error');
+          statusEl.textContent = pendingMsg || 'Your reading is not available yet.';
+          statusEl.classList.add(readingReady ? 'is-error' : '');
         }
         if (infoEl) infoEl.textContent = 'Preview · —';
+        const dlBtn = document.getElementById('reading-btn');
+        if (dlBtn && !readingReady) {
+          dlBtn.setAttribute('aria-disabled', 'true');
+          dlBtn.classList.add('is-disabled');
+        }
         return;
       }
 

@@ -17,7 +17,9 @@ use App\Domain\SunSignResolver;
 use App\Infrastructure\DatabaseConnection;
 use App\Logging\PipelineLogger;
 use App\Repository\LeadRepository;
+use App\Repository\PurchaseRepository;
 use App\Services\KitService;
+use App\Services\ReadingDeliveryTrigger;
 use GuzzleHttp\Client;
 
 $projectRoot = dirname(__DIR__, 2);
@@ -67,6 +69,7 @@ $config = AppConfig::load($projectRoot);
 $http = new Client($config->guzzleClientConfig());
 $pipelineLog = new PipelineLogger($config);
 $leadRepository = null;
+$pdo = null;
 if ($config->hasDatabaseConfig()) {
     try {
         $pdo = DatabaseConnection::fromConfig($config);
@@ -88,6 +91,19 @@ $orchestrator = new ReadingOrchestrator(
 );
 
 $result = $orchestrator->run($body);
+
+if ($result->httpStatus === 200 && $leadRepository !== null && $pdo !== null) {
+    $email = strtolower(trim((string) ($body['email'] ?? '')));
+    if ($email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $leadId = $leadRepository->findIdByEmail($email);
+        if ($leadId !== null) {
+            $purchaseId = (new PurchaseRepository($pdo))->findDeliverableMainReadingPurchaseId($leadId);
+            if ($purchaseId !== null) {
+                (new ReadingDeliveryTrigger($projectRoot))->queuePurchaseDelivery($purchaseId);
+            }
+        }
+    }
+}
 
 http_response_code($result->httpStatus);
 echo json_encode($result->json, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);

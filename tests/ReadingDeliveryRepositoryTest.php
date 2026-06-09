@@ -32,12 +32,12 @@ final class ReadingDeliveryRepositoryTest extends TestCase
         );
 
         $purchaseId = (int) $pdo->query('SELECT id FROM purchases LIMIT 1')->fetchColumn();
-        self::assertFalse($deliveries->existsForPurchase($purchaseId));
+        self::assertFalse($deliveries->hasCompletedDelivery($purchaseId));
 
         $deliveries->createPending($purchaseId, $leadId, 'readings/test.pdf');
         $deliveries->markGenerated($purchaseId);
 
-        self::assertTrue($deliveries->existsForPurchase($purchaseId));
+        self::assertTrue($deliveries->hasCompletedDelivery($purchaseId));
         $row = $deliveries->findByLeadId($leadId);
         self::assertIsArray($row);
         self::assertSame('readings/test.pdf', $row['s3_object_key'] ?? null);

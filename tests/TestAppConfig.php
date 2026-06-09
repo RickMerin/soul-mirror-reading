@@ -57,6 +57,10 @@ final class TestAppConfig
             awsS3Bucket: '',
             kitTagNameReadingDelivered: 'reading-delivered',
             soulMirrorCardsBaseUrl: 'https://soulmirrorreading.com/cards',
+            pdfGeneratorApiKey: '',
+            pdfGeneratorApiSecret: '',
+            pdfGeneratorApiWorkspace: '',
+            pdfGeneratorApiBaseUrl: '',
         );
     }
 }

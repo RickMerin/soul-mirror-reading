@@ -18,6 +18,8 @@ use App\Config\AppConfig;
 use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
+use App\Repository\ReadingDeliveryRepository;
+use App\Services\ReadingDeliveryTrigger;
 
 $projectRoot = dirname(__DIR__);
 
@@ -130,6 +132,11 @@ try {
         $itemsSmr1,
         $rawInsRefunded,
     );
+    $purchaseId = $purchases->findIdByReceipt($receiptSmr1);
+    if ($purchaseId !== null && !(new ReadingDeliveryRepository($pdo))->hasCompletedDelivery($purchaseId)) {
+        (new ReadingDeliveryTrigger($projectRoot))->queuePurchaseDelivery($purchaseId);
+        echo '  Queued personalized PDF generation for purchase id ' . $purchaseId . PHP_EOL;
+    }
 } catch (Throwable $e) {
     fwrite(STDERR, 'Seed failed: ' . $e->getMessage() . PHP_EOL);
     exit(1);
