@@ -44,9 +44,11 @@ final class ReadingDeliveryOrchestrator
             return false;
         }
 
-        if ($this->deliveries->existsForPurchase($purchaseId)) {
+        if ($this->deliveries->hasCompletedDelivery($purchaseId)) {
             return true;
         }
+
+        $this->deliveries->clearRetryableDelivery($purchaseId);
 
         $items = $this->decodeItemsJson($purchaseRow['items_json'] ?? null);
         if (!ReadingProductSkus::purchaseIncludesMainReading($items)) {
@@ -119,15 +121,21 @@ final class ReadingDeliveryOrchestrator
             $this->s3->uploadPdf($outputPdfPath, $s3Key);
             $this->deliveries->markGenerated($purchaseId);
 
-            $memberUrl = rtrim($this->config->appBaseUrl, '/') . '/member/';
-            $this->kit->notifyReadingDelivered($email, $firstName, $memberUrl);
-            $this->deliveries->markEmailed($purchaseId);
+            try {
+                $memberUrl = rtrim($this->config->appBaseUrl, '/') . '/member/';
+                $this->kit->notifyReadingDelivered($email, $firstName, $memberUrl);
+                $this->deliveries->markEmailed($purchaseId);
+            } catch (Throwable $kitError) {
+                error_log('reading_delivery: purchase=' . $purchaseId . ' kit_notify_fail ' . $kitError::class);
+            }
 
             $this->logDeliverySuccess($purchaseId, $s3Key);
 
             return true;
         } catch (Throwable $e) {
-            $this->deliveries->markFailed($purchaseId, $e->getMessage());
+            if (!$this->deliveries->hasCompletedDelivery($purchaseId)) {
+                $this->deliveries->markFailed($purchaseId, $e->getMessage());
+            }
             $this->logDeliveryFailure($purchaseId, $e);
             throw $e;
         } finally {
@@ -137,6 +145,21 @@ final class ReadingDeliveryOrchestrator
                 }
             }
         }
+    }
+
+    public function deliverForPurchaseId(int $purchaseId): bool
+    {
+        $row = $this->deliveries->findPurchaseRowForDelivery($purchaseId);
+        if ($row === null) {
+            return false;
+        }
+
+        $status = strtolower(trim((string) ($row['status'] ?? '')));
+        if (!in_array($status, ['approved', 'complete', 'completed', 'active'], true)) {
+            return false;
+        }
+
+        return $this->deliverForPurchaseRow($row);
     }
 
     /**

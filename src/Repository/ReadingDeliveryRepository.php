@@ -10,12 +10,44 @@ final class ReadingDeliveryRepository
 {
     public function __construct(private readonly PDO $pdo) {}
 
-    public function existsForPurchase(int $purchaseId): bool
+    public function hasCompletedDelivery(int $purchaseId): bool
     {
-        $stmt = $this->pdo->prepare('SELECT id FROM reading_deliveries WHERE purchase_id = :purchase_id LIMIT 1');
+        $stmt = $this->pdo->prepare(
+            "SELECT id FROM reading_deliveries
+             WHERE purchase_id = :purchase_id AND status IN ('generated', 'emailed')
+             LIMIT 1"
+        );
         $stmt->execute([':purchase_id' => $purchaseId]);
 
         return $stmt->fetchColumn() !== false;
+    }
+
+    public function clearRetryableDelivery(int $purchaseId): void
+    {
+        $stmt = $this->pdo->prepare(
+            "DELETE FROM reading_deliveries
+             WHERE purchase_id = :purchase_id AND status IN ('failed', 'pending')"
+        );
+        $stmt->execute([':purchase_id' => $purchaseId]);
+    }
+
+    /**
+     * @return array<string, mixed>|null
+     */
+    public function findPurchaseRowForDelivery(int $purchaseId): ?array
+    {
+        $stmt = $this->pdo->prepare(
+            "SELECT p.id AS purchase_id, p.lead_id, p.clickbank_receipt, p.items_json, p.status,
+                    l.email, l.name, l.gender, l.cards_json, l.mirror_block_slug
+             FROM purchases p
+             INNER JOIN leads l ON l.id = p.lead_id
+             WHERE p.id = :purchase_id
+             LIMIT 1"
+        );
+        $stmt->execute([':purchase_id' => $purchaseId]);
+        $row = $stmt->fetch();
+
+        return is_array($row) ? $row : null;
     }
 
     /**

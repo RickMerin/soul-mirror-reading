@@ -59,7 +59,18 @@ final class AppConfig
         /** Kit tag applied when a personalized reading PDF is ready (triggers delivery email automation). */
         public readonly string $kitTagNameReadingDelivered,
         public readonly string $soulMirrorCardsBaseUrl,
+        public readonly string $pdfGeneratorApiKey,
+        public readonly string $pdfGeneratorApiSecret,
+        public readonly string $pdfGeneratorApiWorkspace,
+        public readonly string $pdfGeneratorApiBaseUrl,
     ) {}
+
+    public function hasPdfGeneratorApi(): bool
+    {
+        return $this->pdfGeneratorApiKey !== ''
+            && $this->pdfGeneratorApiSecret !== ''
+            && $this->pdfGeneratorApiWorkspace !== '';
+    }
 
     /**
      * Default Guzzle options for outbound API calls (AstrologyAPI, Kit).
@@ -170,6 +181,10 @@ final class AppConfig
             soulMirrorCardsBaseUrl: $get('SOUL_MIRROR_CARDS_BASE_URL') !== ''
                 ? rtrim($get('SOUL_MIRROR_CARDS_BASE_URL'), '/')
                 : 'https://soulmirrorreading.com/cards',
+            pdfGeneratorApiKey: $get('PDF_GENERATOR_API_KEY'),
+            pdfGeneratorApiSecret: $get('PDF_GENERATOR_API_SECRET'),
+            pdfGeneratorApiWorkspace: $get('PDF_GENERATOR_API_WORKSPACE'),
+            pdfGeneratorApiBaseUrl: rtrim($get('PDF_GENERATOR_API_BASE_URL'), '/'),
         );
     }
 

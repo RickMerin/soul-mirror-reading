@@ -7,6 +7,7 @@ use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
 use App\Repository\ReadingDeliveryRepository;
 use App\Services\MemberUrlBuilder;
+use App\Services\S3ReadingStorage;
 
 $projectRoot = dirname(__DIR__, 2);
 require $projectRoot . '/vendor/autoload.php';
@@ -78,9 +79,19 @@ try {
 
     $deliveries = new ReadingDeliveryRepository($pdo);
     $delivery = $deliveries->findByLeadId($leadId);
-    $readingPdfUrl = $delivery !== null
-        ? MemberUrlBuilder::apiPath('member-reading-pdf.php')
-        : memberEnvString('MEMBER_URL_READING_PDF', '#');
+    $readingReady = $delivery !== null;
+    $readingPdfUrl = '#';
+    $readingDownloadUrl = '#';
+    $readingPendingMessage = 'Your personalized reading is being prepared. Check back soon — it usually takes a few minutes after purchase.';
+    if ($readingReady) {
+        $s3Key = (string) ($delivery['s3_object_key'] ?? '');
+        $storage = new S3ReadingStorage($config);
+        if ($s3Key !== '' && $storage->isConfigured()) {
+            $readingPdfUrl = $storage->createPresignedDownloadUrl($s3Key, 3600);
+        }
+        $readingDownloadUrl = MemberUrlBuilder::apiPath('member-reading-pdf.php');
+        $readingPendingMessage = '';
+    }
 
     // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.
     $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
@@ -104,6 +115,14 @@ try {
         '{{LOGOUT_URL}}' => $h(MemberUrlBuilder::logoutPath()),
         '{{CLKBANK_NOTICE}}' => $h(memberEnvString('MEMBER_CLKBANK_NOTICE', 'Billing: CLKBANK · REBORNF')),
         '{{MEMBER_URL_READING_PDF}}' => $h($readingPdfUrl),
+        '{{MEMBER_URL_READING_DOWNLOAD}}' => $h($readingDownloadUrl),
+        '{{READING_PENDING_MESSAGE}}' => $h($readingPendingMessage),
+        '{{READING_READY_JS}}' => $readingReady ? 'true' : 'false',
+        '{{READING_READY_ATTR}}' => $readingReady ? '' : 'aria-disabled="true" tabindex="-1"',
+        '{{READING_PENDING_MESSAGE_JS}}' => json_encode(
+            $readingPendingMessage !== '' ? $readingPendingMessage : 'Your reading is not available yet.',
+            JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR,
+        ),
         '{{MEMBER_URL_BONUS_COMPANION}}' => $h(memberEnvString('MEMBER_URL_BONUS_COMPANION', '#')),
         '{{MEMBER_URL_BONUS_SHIFT_TRACKER}}' => $h(memberEnvString('MEMBER_URL_BONUS_SHIFT_TRACKER', '#')),
         '{{MEMBER_URL_BONUS_ROOT_CAUSE}}' => $h(memberEnvString('MEMBER_URL_BONUS_ROOT_CAUSE', '#')),

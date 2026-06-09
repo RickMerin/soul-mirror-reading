@@ -3,16 +3,9 @@
 
 declare(strict_types=1);
 
-use App\Application\ReadingDeliveryOrchestrator;
+use App\Application\ReadingDeliveryFactory;
 use App\Config\AppConfig;
-use App\Domain\MirrorBlockResolver;
-use App\Domain\ReadingTemplatePersonalizer;
-use App\Domain\SoulMirrorCardImageUrlBuilder;
 use App\Infrastructure\DatabaseConnection;
-use App\Repository\LeadRepository;
-use App\Repository\ReadingDeliveryRepository;
-use App\Services\KitService;
-use App\Services\ReadingPdfRenderer;
 use App\Services\S3ReadingStorage;
 use GuzzleHttp\Client;
 
@@ -43,19 +36,7 @@ foreach ($argv as $arg) {
 
 $pdo = DatabaseConnection::fromConfig($config);
 $http = new Client($config->guzzleClientConfig());
-$orchestrator = new ReadingDeliveryOrchestrator(
-    config: $config,
-    deliveries: new ReadingDeliveryRepository($pdo),
-    leads: new LeadRepository($pdo),
-    personalizer: new ReadingTemplatePersonalizer(
-        new SoulMirrorCardImageUrlBuilder($config->soulMirrorCardsBaseUrl),
-    ),
-    mirrorBlocks: new MirrorBlockResolver(),
-    s3: $storage,
-    pdfRenderer: new ReadingPdfRenderer($projectRoot),
-    kit: new KitService($config, $http),
-    projectRoot: $projectRoot,
-);
+$orchestrator = ReadingDeliveryFactory::orchestrator($config, $pdo, $http, $projectRoot);
 
 $pending = $orchestrator->findPendingPurchases($limit);
 if ($pending === []) {

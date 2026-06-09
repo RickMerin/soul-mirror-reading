@@ -73,14 +73,19 @@ final class S3ReadingStorage
             return $this->client;
         }
 
-        $this->client = new S3Client([
+        $clientConfig = [
             'version' => 'latest',
             'region' => $this->config->awsRegion,
             'credentials' => [
                 'key' => $this->config->awsAccessKeyId,
                 'secret' => $this->config->awsSecretAccessKey,
             ],
-        ]);
+        ];
+        if ($this->config->sslCaBundlePath !== '') {
+            $clientConfig['http'] = ['verify' => $this->config->sslCaBundlePath];
+        }
+
+        $this->client = new S3Client($clientConfig);
 
         return $this->client;
     }
