@@ -6,6 +6,7 @@ use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
 use App\Services\KitService;
+use App\Services\ReadingDeliveryTrigger;
 use App\Services\SlackClickBankInsLogger;
 use GuzzleHttp\Client;
 
@@ -121,6 +122,7 @@ try {
         $items,
         $payload
     );
+    $purchaseId = $purchases->findIdByReceipt($receipt);
 } catch (Throwable $e) {
     error_log('clickbank-ins.php persistence failed: ' . $e->getMessage());
     http_response_code(500);
@@ -144,6 +146,11 @@ if (clickbankPurchaseShouldTagBuyerInKit($status) && $config->kitApiKey !== '') 
     } catch (Throwable $e) {
         error_log('clickbank-ins.php Kit subscribe failed: ' . $e->getMessage());
     }
+}
+
+if (isset($purchaseId) && is_int($purchaseId) && $purchaseId > 0
+    && ReadingDeliveryTrigger::shouldDeliverForApprovedPurchase($status, $items)) {
+    (new ReadingDeliveryTrigger($projectRoot))->queuePurchaseDelivery($purchaseId);
 }
 
 http_response_code(200);
