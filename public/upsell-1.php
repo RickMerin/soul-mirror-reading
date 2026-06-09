@@ -262,7 +262,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
       <div class="wrap">
         <h2>You Have Named This Pattern Before.<br /><em>It Still Decides What You Earn.</em></h2>
         <div class="body-copy">
-          <p>Be honest with yourself for a moment.</p>
+          <p>Here is the part almost no one says out loud.</p>
           <p>You have read the books. Done the journaling. Sat through the courses, the therapy, the manifesting. At some point you saw the money pattern clearly and told yourself, <strong>"Now that I see it, I can change it."</strong></p>
           <p>And then it came back. The opportunity appeared, and something in you hesitated. The rate was yours to raise, and you left it where it was. The money came in, and somehow it did not stay. <strong>Same ceiling. Different month.</strong></p>
         </div>
@@ -304,7 +304,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
     <!-- LUNA -->
     <section class="section">
       <div class="wrap">
-        <h2>Why Me, <em>and Why Now</em></h2>
+        <h2>I Carried This Ceiling <em>for Years Before I Cleared It</em></h2>
         <div class="card luna-card">
           <div class="body-copy">
             <p>Eleven years ago I was exactly where you are. I had done the reading. I understood my money pattern perfectly. I could trace it, name it, explain it. <strong>And I watched it cap me anyway, year after year.</strong></p>
@@ -336,7 +336,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
               <div><div class="testi__name">David R.</div><div class="testi__meta">49 &middot; Manchester, UK</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"I will be honest, I bought it more out of curiosity than belief. I have done the courses. What I did not expect was Ritual Two catching me in the exact half-second I always talk myself down on price. I held my number on a proposal last month that I would have slashed a year ago. It stuck. Ninety-seven dollars came back the first time I used it."</p>
+            <p class="testi__body">"I will be honest, I bought it more out of curiosity than belief. I have done the courses. What I did not expect was Ritual Two catching me in the exact half-second I always talk myself down on price. I held my number on a proposal last month that I would have slashed a year ago. It stuck. It paid for itself the first time I used it."</p>
           </div>
           <div class="testi">
             <div class="testi__row">
@@ -369,11 +369,11 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
           <img class="hero-img" src="frontend/images/ups-downs/upsell1-package.png" alt="The Complete Soul Ritual Practice, all products together" style="max-width:420px;margin:0 auto 26px;" />
 
           <ul class="vlist">
-            <li><span class="vs-name">The Mirror Block Clearing Rituals, a 3-Part Protocol</span><span class="vs-price">$249</span></li>
-            <li><span class="vs-name">The Mirror Block Workbook, 45 Pages</span><span class="vs-price">$79</span></li>
-            <li><span class="vs-name"><strong>Bonus 1</strong>&nbsp;&middot; Soul Ritual Audio Companion</span><span class="vs-price">$59</span></li>
-            <li><span class="vs-name"><strong>Bonus 2</strong>&nbsp;&middot; The Wealth Alert Protocol</span><span class="vs-price">$39</span></li>
-            <li><span class="vs-name"><strong>Bonus 3</strong>&nbsp;&middot; The Love Harmony Audio</span><span class="vs-price">$23</span></li>
+            <li><span class="vs-name">The Mirror Block Clearing Rituals, a 3-Part Protocol</span><span class="vs-price">$201</span></li>
+            <li><span class="vs-name">The Mirror Block Workbook, 45 Pages</span><span class="vs-price">$97</span></li>
+            <li><span class="vs-name"><strong>Bonus 1</strong>&nbsp;&middot; Soul Ritual Audio Companion</span><span class="vs-price">$67</span></li>
+            <li><span class="vs-name"><strong>Bonus 2</strong>&nbsp;&middot; The Wealth Alert Protocol</span><span class="vs-price">$47</span></li>
+            <li><span class="vs-name"><strong>Bonus 3</strong>&nbsp;&middot; The Love Harmony Audio</span><span class="vs-price">$37</span></li>
             <li class="vs-total"><span class="vs-name">Total Value</span><span class="vs-price">$449</span></li>
           </ul>
 
@@ -389,7 +389,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
               <span class="price-old">$197</span>
               <span class="price-new"><span class="cur">$</span>97</span>
             </div>
-            <p class="price-note">The full $449 practice, $100 off, for $97. One payment, no subscription.</p>
+            <p class="price-note">Worked through with me one-to-one, this sequence runs $197, which is the public price the moment this launch ends. The only reason it is $97 today is that founding members who take it early help me prove it works at scale. You are paying the founding rate for being early, not buying a lesser version. It is the identical practice, complete. One payment, no subscription.</p>
           </div>
 
           <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Upgrade My Order Now</a>
@@ -405,7 +405,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
         <div class="guarantee">
           <img src="frontend/images/ups-downs/img-bb865578d0.png" alt="90-Day Guarantee Badge" />
           <h2 style="font-size:clamp(20px,3vw,26px);margin-bottom:14px;">The Soul Ritual Practice, 90-Day Guarantee</h2>
-          <p>Do the work. Read the three rituals, follow them in order, and use them for 90 days. If you have honestly done that and nothing about your money ceiling has loosened, email me for a full refund of your $97. You decide whether it worked, no hoops, no explanation required. You keep the rituals, the workbook, and all three bonuses either way. The risk is entirely mine, not yours.</p>
+          <p>Open the three rituals, follow them in order, and give them a real 90 days. If at any point in those 90 days your money ceiling has not budged, reply and I refund every cent of your $97. No questionnaire, no proof, no explaining yourself; your word is enough. You keep the rituals, the workbook, and all three bonuses no matter what. The only way you lose here is by never opening them.</p>
         </div>
       </div>
     </section>
@@ -417,7 +417,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
         <div class="faq" style="margin-top:24px;">
           <details>
             <summary>I have not seen my reading yet. Am I buying blind?</summary>
-            <div class="faq__a">No, and this is the part most people get backwards. All four block-type versions live inside the practice. Your reading has already identified which one is yours, so the moment it lands, the exact protocol for your ceiling is sitting ready to open, no waiting, nothing to request. Buying now simply means the treatment is already in your hands the instant the diagnosis arrives, instead of days later.</div>
+            <div class="faq__a">No, and this is the part most people get backwards. All four block-type versions live inside the practice. Your reading has already identified which one is yours, so the moment it lands, the exact protocol for your ceiling is sitting ready to open, no waiting, nothing to request. Buying now simply means the treatment is already in your hands the instant the diagnosis arrives, instead of days later. And if it ever feels like it was not yours, the 90-day guarantee makes the whole thing free to walk away from. You genuinely cannot get this wrong by acting now.</div>
           </details>
           <details>
             <summary>How is this different from the reading I just bought?</summary>
@@ -425,11 +425,15 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
           </details>
           <details>
             <summary>What if I am not "spiritual enough" for this?</summary>
-            <div class="faq__a">The rituals work at the level of the nervous system and body memory, not belief. They do not ask you to believe anything. They ask your body to release a ceiling it has been holding. You do not need to be spiritual. You need to be willing.</div>
+            <div class="faq__a">You do not need to believe in any of it. These are written steps you read and follow: no chanting, no altar, no faith required. They work on body memory and the nervous system, the same way a slow breath drops your shoulders whether you believe in it or not. Plenty of people start out of pure curiosity and feel something shift anyway. Skeptical is fine. Willing to read three pages is all it takes.</div>
           </details>
           <details>
             <summary>How does access work?</summary>
             <div class="faq__a">The moment your payment confirms, everything downloads instantly: the three Clearing Rituals, the 45-page Workbook, and all three bonuses. Yours to keep for life. No subscription, no expiry. It is charged to the order you just placed, so there is no card to re-enter.</div>
+          </details>
+          <details>
+            <summary>I have already done so much inner work. Why would this be any different?</summary>
+            <div class="faq__a">Because everything you have done so far worked at the level of understanding: books, journaling, courses, talking it through. That is real, and it is also why the ceiling kept coming back. Understanding a pattern has never once dissolved it. This is the one piece that works at the layer where the block was actually set, in the body, not the mind. It is not more of what you have tried. It is the step the rest of it was missing.</div>
           </details>
         </div>
       </div>
