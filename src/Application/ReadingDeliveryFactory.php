@@ -11,6 +11,7 @@ use App\Domain\SoulMirrorCardImageUrlBuilder;
 use App\Repository\LeadRepository;
 use App\Repository\ReadingDeliveryRepository;
 use App\Services\KitService;
+use App\Services\LocalTarotPredictionRepository;
 use App\Services\ReadingPdfRenderer;
 use App\Services\S3ReadingStorage;
 use GuzzleHttp\ClientInterface;
@@ -33,6 +34,7 @@ final class ReadingDeliveryFactory
             leads: new LeadRepository($pdo),
             personalizer: new ReadingTemplatePersonalizer(
                 new SoulMirrorCardImageUrlBuilder($config->soulMirrorCardsBaseUrl),
+                new LocalTarotPredictionRepository($config->tarotPredictionsPath()),
             ),
             mirrorBlocks: new MirrorBlockResolver(),
             s3: new S3ReadingStorage($config),
