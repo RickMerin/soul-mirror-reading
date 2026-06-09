@@ -267,8 +267,8 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <div style="background: linear-gradient(180deg, rgba(45,27,105,0.65), rgba(30,13,64,0.92)); border: 1px solid var(--gold); border-radius: 14px; padding: 32px 28px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); text-align: center;">
         
         <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">Your Wealth Is Blocked</h4>
-        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money arrives. Money quietly leaves. The same income range, year after year, no matter what you try.</p>
-        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block is working, and the practice that clears it.</div>
+        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money arrives. Money quietly leaves. The same ceiling, year after year, no matter what you try.</p>
+        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block is working, and the one practice that clears it. Not more effort, not another course, not trying harder. Just one quiet shift, and the money that always slipped away starts to move <strong style="color:var(--gold-light);">on its own</strong>, and finally stays.</div>
       </div>
     </div>
 
@@ -276,12 +276,14 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <!-- CTA after diagnostic proof -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
+      <p style="max-width:480px; margin:14px auto 0; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.72);">Your free cards named the block. Your full reading reads all three together and shows you <strong style="color:var(--gold-light);">exactly how it works</strong>, where it took root, and the practice that clears it. Hand-written for your cards, in your inbox within 24 hours.</p>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
-        <span>&#127769; 90-Day Guarantee</span>
       </div>
+      <p style="max-width:500px; margin:12px auto 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,0.62);"><span style="color:var(--gold-light);">&#127769; 90-day promise.</span> Read it. If the Wealth Block I name does not feel unmistakably like your life, reply and I refund every penny. You keep the reading and all four bonuses.</p>
+      <p style="max-width:460px; margin:18px auto 0; font-size:13px; font-style:italic; line-height:1.6; color:rgba(255,255,255,0.6);">&ldquo;It named the exact belief that had quietly kept me at the same number for years. A few weeks after the clearing practice, money started arriving in ways it never had, and for the first time, it simply stayed.&rdquo; <span style="color:var(--gold-light); font-style:normal;">Hannah T., 44</span></p>
     </div>
   </div>
 </section>
@@ -329,7 +331,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
       <!-- CTA inside the VIP box -->
       <div style="text-align:center; margin-top:32px;">
-        <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
+        <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
         <div class="cta-trust-row" style="margin-top:14px;">
           <span>&#128274; Secure Checkout</span>
           <span>&#9889; Delivered in 12-24 Hrs</span>
