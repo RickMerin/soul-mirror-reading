@@ -4,12 +4,59 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use App\Domain\ReadingProductSkus;
 use JsonException;
 use PDO;
 
 final class PurchaseRepository
 {
     public function __construct(private readonly PDO $pdo) {}
+
+    public function findIdByReceipt(string $receipt): ?int
+    {
+        $stmt = $this->pdo->prepare('SELECT id FROM purchases WHERE clickbank_receipt = :receipt LIMIT 1');
+        $stmt->execute([':receipt' => $receipt]);
+        $id = $stmt->fetchColumn();
+
+        return is_numeric($id) ? (int) $id : null;
+    }
+
+    /**
+     * First approved main-reading purchase for this lead that has no completed PDF delivery yet.
+     */
+    public function findDeliverableMainReadingPurchaseId(int $leadId): ?int
+    {
+        $stmt = $this->pdo->prepare(
+            "SELECT p.id, p.items_json
+             FROM purchases p
+             LEFT JOIN reading_deliveries d ON d.purchase_id = p.id AND d.status IN ('generated', 'emailed')
+             WHERE p.lead_id = :lead_id
+               AND d.id IS NULL
+               AND p.status IN ('approved', 'complete', 'completed', 'active')
+             ORDER BY p.created_at ASC"
+        );
+        $stmt->execute([':lead_id' => $leadId]);
+
+        while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
+            $raw = $row['items_json'] ?? '';
+            if (!is_string($raw) || $raw === '') {
+                continue;
+            }
+            try {
+                $items = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+            } catch (\JsonException) {
+                continue;
+            }
+            if (!is_array($items)) {
+                continue;
+            }
+            if (ReadingProductSkus::purchaseIncludesMainReading($items)) {
+                return (int) $row['id'];
+            }
+        }
+
+        return null;
+    }
 
     public function buyerHasAnyPurchase(int $leadId): bool
     {

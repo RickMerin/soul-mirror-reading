@@ -5,6 +5,7 @@
   "license": "proprietary",
   "require": {
     "php": "^8.2",
+    "aws/aws-sdk-php": "^3.384",
     "guzzlehttp/guzzle": "^7.9",
     "vlucas/phpdotenv": "^5.6"
   },

@@ -51,6 +51,16 @@ final class TestAppConfig
             dbPass: '',
             appBaseUrl: 'https://example.test',
             clickbankInsSlackWebhookUrl: '',
+            awsAccessKeyId: '',
+            awsSecretAccessKey: '',
+            awsRegion: 'us-east-1',
+            awsS3Bucket: '',
+            kitTagNameReadingDelivered: 'reading-delivered',
+            soulMirrorCardsBaseUrl: 'https://soulmirrorreading.com/cards',
+            pdfGeneratorApiKey: '',
+            pdfGeneratorApiSecret: '',
+            pdfGeneratorApiWorkspace: '',
+            pdfGeneratorApiBaseUrl: '',
         );
     }
 }
