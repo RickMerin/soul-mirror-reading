@@ -1,0 +1,11 @@
+{
+  "name": "soul-mirror-pdf-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node render-pdf.mjs"
+  },
+  "dependencies": {
+    "puppeteer": "^24.2.0"
+  }
+}

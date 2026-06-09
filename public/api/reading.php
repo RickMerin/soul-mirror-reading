@@ -12,6 +12,7 @@ use App\Application\ReadingOrchestrator;
 use App\Application\ReadingServiceFactory;
 use App\Config\AppConfig;
 use App\Domain\CardImageUrlBuilder;
+use App\Domain\MirrorBlockResolver;
 use App\Domain\SunSignResolver;
 use App\Infrastructure\DatabaseConnection;
 use App\Logging\PipelineLogger;
@@ -81,6 +82,7 @@ $orchestrator = new ReadingOrchestrator(
     new KitService($config, $http),
     new SunSignResolver(),
     new CardImageUrlBuilder(),
+    new MirrorBlockResolver(),
     $pipelineLog,
     $leadRepository,
 );

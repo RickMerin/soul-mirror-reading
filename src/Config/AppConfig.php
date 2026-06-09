@@ -52,6 +52,13 @@ final class AppConfig
         public readonly string $appBaseUrl,
         /** Slack Incoming Webhook URL for ClickBank INS logs; empty = disabled. */
         public readonly string $clickbankInsSlackWebhookUrl,
+        public readonly string $awsAccessKeyId,
+        public readonly string $awsSecretAccessKey,
+        public readonly string $awsRegion,
+        public readonly string $awsS3Bucket,
+        /** Kit tag applied when a personalized reading PDF is ready (triggers delivery email automation). */
+        public readonly string $kitTagNameReadingDelivered,
+        public readonly string $soulMirrorCardsBaseUrl,
     ) {}
 
     /**
@@ -153,6 +160,16 @@ final class AppConfig
             dbPass: $get('DB_PASS'),
             appBaseUrl: rtrim($get('APP_BASE_URL'), '/'),
             clickbankInsSlackWebhookUrl: $get('CLICKBANK_INS_SLACK_WEBHOOK_URL'),
+            awsAccessKeyId: $get('AWS_ACCESS_KEY_ID'),
+            awsSecretAccessKey: $get('AWS_SECRET_ACCESS_KEY'),
+            awsRegion: $get('AWS_REGION') !== '' ? $get('AWS_REGION') : 'us-east-1',
+            awsS3Bucket: $get('AWS_S3_BUCKET'),
+            kitTagNameReadingDelivered: $get('KIT_TAG_NAME_READING_DELIVERED') !== ''
+                ? $get('KIT_TAG_NAME_READING_DELIVERED')
+                : 'reading-delivered',
+            soulMirrorCardsBaseUrl: $get('SOUL_MIRROR_CARDS_BASE_URL') !== ''
+                ? rtrim($get('SOUL_MIRROR_CARDS_BASE_URL'), '/')
+                : 'https://soulmirrorreading.com/cards',
         );
     }
 

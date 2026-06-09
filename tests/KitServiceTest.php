@@ -25,7 +25,7 @@ final class KitServiceTest extends TestCase
             'love_reading', 'life_reading', 'wealth_reading',
             'love_card_image', 'life_card_image', 'wealth_card_image',
             'sun_sign', 'sun_personal_life', 'sun_profession', 'sun_health',
-            'sun_emotions', 'sun_travel', 'sun_luck',
+            'sun_emotions', 'sun_travel', 'sun_luck', 'reading_member_url',
         ];
 
         return array_map(static fn (string $k): array => ['key' => $k], $keys);
