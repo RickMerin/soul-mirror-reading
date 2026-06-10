@@ -264,7 +264,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
     <section class="section center">
       <div class="wrap">
         <div style="text-align:center;margin:0 auto 24px;">
-          <img src="frontend/images/inner-circle/luna-avatar.png" alt="Luna Ross" onerror="this.style.visibility='hidden'" style="width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid #d4af37;box-shadow:0 0 0 6px rgba(212,175,55,0.12),0 10px 34px rgba(0,0,0,0.5);">
+          <img src="frontend/images/inner-circle/luna-avatar.webp" width="130" height="130" decoding="async" alt="Luna Ross" onerror="this.style.visibility='hidden'" style="width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid #d4af37;box-shadow:0 0 0 6px rgba(212,175,55,0.12),0 10px 34px rgba(0,0,0,0.5);">
         </div>
         <span class="eyebrow">A Private Invitation From Luna</span>
         <h1>Every Day, Something Tests You. And You Face It <em>Alone.</em></h1>
@@ -275,7 +275,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
     <!-- 3. INTRODUCE LUNA'S GUIDE -->
     <section class="section">
       <div class="wrap">
-        <img src="frontend/images/inner-circle/inner-circle-intro.png" alt="The Inner Circle, Luna one message away" style="display:block;width:100%;max-width:560px;margin:4px auto 30px;border-radius:14px;border:1px solid rgba(212,175,55,0.35);box-shadow:0 14px 44px rgba(0,0,0,0.5);">
+        <img src="frontend/images/inner-circle/inner-circle-intro.webp" width="1200" height="800" decoding="async" loading="lazy" alt="The Inner Circle, Luna one message away" style="display:block;width:100%;max-width:560px;margin:4px auto 30px;border-radius:14px;border:1px solid rgba(212,175,55,0.35);box-shadow:0 14px 44px rgba(0,0,0,0.5);">
         <h2>The Inner Circle</h2>
         <p class="subhead">Unlimited private 1-1 sessions with Luna. Anytime, about anything.</p>
         <div class="body-copy" style="margin-top:26px;">
@@ -351,12 +351,12 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
         <h2>From Members Who Stopped <em>Facing It Alone.</em></h2>
         <div style="margin-top:26px;">
           <div class="testi">
-            <div class="testi__row"><img class="testi__avatar" src="frontend/images/inner-circle/member-rachel.png" alt="Rachel M." onerror="this.style.display='none'"><div><div class="testi__name">Rachel M.</div><div class="testi__meta">Inner Circle Member</div></div></div>
+            <div class="testi__row"><img class="testi__avatar" src="frontend/images/inner-circle/member-rachel.webp" width="56" height="56" decoding="async" loading="lazy" alt="Rachel M." onerror="this.style.display='none'"><div><div class="testi__name">Rachel M.</div><div class="testi__meta">Inner Circle Member</div></div></div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <p class="testi__body">"I asked Luna whether to send the email or wait. She told me exactly which fear was talking. I sent it. They said yes. One session, ten minutes, the raise I had avoided for a year."</p>
           </div>
           <div class="testi">
-            <div class="testi__row"><img class="testi__avatar" src="frontend/images/inner-circle/member-sophie.png" alt="Sophie T." onerror="this.style.display='none'"><div><div class="testi__name">Sophie T.</div><div class="testi__meta">Inner Circle Member</div></div></div>
+            <div class="testi__row"><img class="testi__avatar" src="frontend/images/inner-circle/member-sophie.webp" width="56" height="56" decoding="async" loading="lazy" alt="Sophie T." onerror="this.style.display='none'"><div><div class="testi__name">Sophie T.</div><div class="testi__meta">Inner Circle Member</div></div></div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <p class="testi__body">"I almost backed out of an opportunity because it felt like too much. I asked Luna first. I did not back out. That one session was worth the whole year to me."</p>
           </div>
