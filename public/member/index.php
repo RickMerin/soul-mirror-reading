@@ -77,21 +77,35 @@ try {
         default => 'Your Mirror Block',
     };
 
+    $fallbackReadingPdfUrl = memberEnvString('MEMBER_URL_READING_PDF', '#');
+
     $deliveries = new ReadingDeliveryRepository($pdo);
     $delivery = $deliveries->findByLeadId($leadId);
-    $readingReady = $delivery !== null;
     $readingPdfUrl = '#';
     $readingDownloadUrl = '#';
     $readingPendingMessage = 'Your personalized reading is being prepared. Check back soon — it usually takes a few minutes after purchase.';
-    if ($readingReady) {
+    $hasSavedPdf = false;
+
+    if ($delivery !== null) {
         $s3Key = (string) ($delivery['s3_object_key'] ?? '');
-        $storage = new S3ReadingStorage($config);
-        if ($s3Key !== '' && $storage->isConfigured()) {
-            $readingPdfUrl = $storage->createPresignedDownloadUrl($s3Key, 3600);
+        if ($s3Key !== '') {
+            $storage = new S3ReadingStorage($config);
+            if ($storage->isConfigured()) {
+                $readingPdfUrl = $storage->createPresignedDownloadUrl($s3Key, 3600);
+                $readingDownloadUrl = MemberUrlBuilder::apiPath('member-reading-pdf.php');
+                $hasSavedPdf = true;
+                $readingPendingMessage = '';
+            }
         }
-        $readingDownloadUrl = MemberUrlBuilder::apiPath('member-reading-pdf.php');
+    }
+
+    if (!$hasSavedPdf && $fallbackReadingPdfUrl !== '#') {
+        $readingPdfUrl = $fallbackReadingPdfUrl;
+        $readingDownloadUrl = $fallbackReadingPdfUrl;
         $readingPendingMessage = '';
     }
+
+    $readingReady = $readingPdfUrl !== '#';
 
     // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.
     $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
