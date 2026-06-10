@@ -275,7 +275,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
     <!-- 3. INTRODUCE LUNA'S GUIDE -->
     <section class="section">
       <div class="wrap">
-        <img src="frontend/images/inner-circle/inner-circle-intro.webp" width="1800" height="1208" decoding="async" alt="The Inner Circle, Luna one message away" style="display:block;width:100%;height:auto;max-width:560px;margin:4px auto 30px;border-radius:14px;border:1px solid rgba(212,175,55,0.35);box-shadow:0 14px 44px rgba(0,0,0,0.5);">
+        <img src="frontend/images/inner-circle/inner-circle-intro.webp?v=2" width="1800" height="1208" decoding="async" alt="The Inner Circle, Luna one message away" style="display:block;width:100%;height:auto;max-width:560px;margin:4px auto 30px;border-radius:14px;border:1px solid rgba(212,175,55,0.35);box-shadow:0 14px 44px rgba(0,0,0,0.5);">
         <h2>The Inner Circle</h2>
         <p class="subhead">Unlimited private 1-1 sessions with Luna. Anytime, about anything.</p>
         <div class="body-copy" style="margin-top:26px;">
