@@ -214,34 +214,9 @@
     <!-- HERO -->
     <section class="section center">
       <div class="wrap">
-        <h1>Your Block Was Never Just About Money.<br /><em>It Runs Your Love and Purpose Too.</em></h1>
-        <p class="subhead">Same block. Two more mirrors. Your money work will clear them eventually, just slowly. This goes straight at love and purpose, so the change lands in weeks, not someday.</p>
+        <h1>Clear Love and Purpose <span style="color:#E8C97A;background:rgba(212,175,55,0.16);padding:0 10px;border-radius:8px;text-decoration:underline;text-decoration-color:#E8C97A;text-underline-offset:6px;text-decoration-thickness:2px;">10x</span> Faster.<br /><em>The Accelerated Ritual for the Two Mirrors Money Can't Reach in Time.</em></h1>
+        <p class="subhead">Same block, two more mirrors. Your money work gets there slowly. This goes straight at love and purpose, in weeks.</p>
         <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-hero2.webp" alt="Two clouded mirrors clearing to gold light, one for love and one for purpose, deep violet and gold" />
-      </div>
-    </section>
-
-    <!-- EARLY OFFER -->
-    <section class="section--tight">
-      <div class="wrap" style="max-width:600px;">
-        <div class="offer-box">
-          <span class="offer-label">Clear the Other Two Mirrors</span>
-          <h2 style="font-size:30px;margin-bottom:12px;">Add The Love Clarity Ritual</h2>
-          <p style="color:#e9e2f2;font-size:16px;line-height:1.6;margin:0 auto 18px;max-width:480px;">The written rituals that go straight at love and purpose. Your money work reaches the same root in time; this gets there fast. Downloads now, yours for life.</p>
-          <ul class="vlist" style="margin-bottom:20px;">
-            <li><span class="vs-name">The Love Clarity Ritual: a 3-movement practice to clear the block where it blocks love.</span></li>
-            <li><span class="vs-name"><strong>Bonus:</strong>&nbsp;The Purpose Alignment Ritual, to clear it where it stalls your direction.</span></li>
-            <li><span class="vs-name">2 more bonuses: the Open-Heart Audio and the Daily Clarity Practice.</span></li>
-          </ul>
-          <p style="color:#cfc7e6;font-size:14px;margin-bottom:4px;">$290 value &middot; <span class="founding-blink">$100 member discount applied</span></p>
-          <div class="price-row" style="margin:4px 0 8px;">
-            <span class="price-old" style="font-size:20px;">$167</span>
-            <span class="price-new" style="font-size:46px;"><span class="cur">$</span>67</span>
-          </div>
-          <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Member rate, this page only. One payment, no subscription.</p>
-          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=a">Yes, Upgrade My Order Now.</a>
-          <p class="cta-fine">This adds to the order you just placed. No card to re-enter. One tap and it is yours. Backed by a 90-day money-back guarantee.</p>
-          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=d">No thank you, continue &rarr;</a>
-        </div>
       </div>
     </section>
 
@@ -272,7 +247,6 @@
         <h2>You Can Name the Money Pattern.<br /><em>Why Does Love Still Feel Like This?</em></h2>
         <div class="body-copy">
           <p>Same flinch, different mirror. Someone gets close and you brace for it to end. You feel the pull toward work that is truly yours and quietly file it under "someday."</p>
-          <div class="tslpull" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold-light);border-left:3px solid #C9A14A;padding:16px 22px;margin:26px 0;background:rgba(201,161,74,.08);border-radius:0 8px 8px 0;line-height:1.5;">The pull-back that capped your income is the same one guarding your heart and shrinking your purpose. One block, three mirrors.</div>
           <p>The money work reaches them eventually. But eventually can mean years. <strong>This goes straight at both, so the change comes in weeks.</strong></p>
         </div>
       </div>
@@ -297,6 +271,31 @@
             <div class="mv__num">Movement Three</div>
             <div class="mv__body"><h3>The Open Imprint</h3><p>Sets a new pattern at the body level, so love feels safe to keep, not something to flinch from. This is what makes the shift hold.</p></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EARLY OFFER -->
+    <section class="section--tight">
+      <div class="wrap" style="max-width:600px;">
+        <div class="offer-box">
+          <span class="offer-label">Clear the Other Two Mirrors</span>
+          <h2 style="font-size:30px;margin-bottom:12px;">Add The Love Clarity Ritual</h2>
+          <p style="color:#e9e2f2;font-size:16px;line-height:1.6;margin:0 auto 18px;max-width:480px;">The written rituals that go straight at love and purpose. Your money work reaches the same root in time; this gets there fast. Downloads now, yours for life.</p>
+          <ul class="vlist" style="margin-bottom:20px;">
+            <li><span class="vs-name">The Love Clarity Ritual: a 3-movement practice to clear the block where it blocks love.</span></li>
+            <li><span class="vs-name"><strong>Bonus:</strong>&nbsp;The Purpose Alignment Ritual, to clear it where it stalls your direction.</span></li>
+            <li><span class="vs-name">2 more bonuses: the Open-Heart Audio and the Daily Clarity Practice.</span></li>
+          </ul>
+          <p style="color:#cfc7e6;font-size:14px;margin-bottom:4px;">$290 value &middot; <span class="founding-blink">$100 member discount applied</span></p>
+          <div class="price-row" style="margin:4px 0 8px;">
+            <span class="price-old" style="font-size:20px;">$167</span>
+            <span class="price-new" style="font-size:46px;"><span class="cur">$</span>67</span>
+          </div>
+          <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Member rate, this page only. One payment, no subscription.</p>
+          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=a">Yes, Upgrade My Order Now.</a>
+          <p class="cta-fine">This adds to the order you just placed. No card to re-enter. One tap and it is yours. Backed by a 90-day money-back guarantee.</p>
+          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=d">No thank you, continue &rarr;</a>
         </div>
       </div>
     </section>
@@ -442,31 +441,6 @@
           <img src="https://soulmirrorreading.com/frontend/images/upsell2/guarantee-badge.webp" alt="90-Day Guarantee Badge" />
           <h2 style="font-size:clamp(20px,3vw,26px);margin-bottom:14px;">The Love Clarity Ritual, 90-Day Guarantee</h2>
           <p>Follow all three movements for a real 90 days. If your love life and your sense of purpose feel no different, reply and I refund every cent of your $67. No questionnaire, no proof. You keep the ritual and all three bonuses no matter what.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section">
-      <div class="wrap">
-        <h2>Questions About the Ritual</h2>
-        <div class="faq" style="margin-top:24px;">
-          <details>
-            <summary>How is this different from the money rituals?</summary>
-            <div class="faq__a">Same root, so the money rituals ease love and purpose too, eventually. The catch is time: that can take months or years. This goes straight at love and purpose, so you feel it in weeks. If you took the money practice, this is the accelerator.</div>
-          </details>
-          <details>
-            <summary>Do I need to see my reading first?</summary>
-            <div class="faq__a">No, that is the point. You already know love and purpose feel off. This works on the same block your reading names, whichever type you are, ready the moment you want it.</div>
-          </details>
-          <details>
-            <summary>What if I am not "spiritual enough" for this?</summary>
-            <div class="faq__a">You do not need to believe in any of it. These are written steps you read and follow: no chanting, no altar. They work on body memory the way a slow breath drops your shoulders whether you believe in it or not.</div>
-          </details>
-          <details>
-            <summary>How does access work?</summary>
-            <div class="faq__a">It downloads the instant your payment confirms: all three movements and all three bonuses. Yours for life, no subscription. Charged to the order you just placed, so no card to re-enter.</div>
-          </details>
         </div>
       </div>
     </section>
