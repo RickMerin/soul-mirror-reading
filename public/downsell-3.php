@@ -264,7 +264,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1-ds&cbur=d';
     <section class="section center">
       <div class="wrap">
         <div style="text-align:center;margin:0 auto 24px;">
-          <img src="frontend/images/inner-circle/luna-avatar.png" alt="Luna Ross" onerror="this.style.visibility='hidden'" style="width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid #d4af37;box-shadow:0 0 0 6px rgba(212,175,55,0.12),0 10px 34px rgba(0,0,0,0.5);">
+          <img src="frontend/images/inner-circle/luna-avatar.webp" width="130" height="130" decoding="async" alt="Luna Ross" onerror="this.style.visibility='hidden'" style="width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid #d4af37;box-shadow:0 0 0 6px rgba(212,175,55,0.12),0 10px 34px rgba(0,0,0,0.5);">
         </div>
         <span class="eyebrow">A Private Invitation From Luna</span>
         <h1>I've Lowered Your Price. <em>You Keep Everything.</em></h1>
