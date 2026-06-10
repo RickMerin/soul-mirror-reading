@@ -63,7 +63,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
     .subhead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2.6vw,22px);color:var(--text-muted);text-align:center;max-width:600px;margin:0 auto 8px;line-height:1.55}
     .lead{text-align:center;max-width:580px;margin:0 auto 26px;color:var(--text-muted);font-size:17px}
     .body-copy{max-width:620px;margin:0 auto;font-size:17px;line-height:1.8;color:var(--text)}
-    .body-copy p+p{margin-top:18px}
+    .body-copy p+p{margin-top:22px}
+    .body-copy + .body-copy{margin-top:36px}
     .body-copy strong{color:var(--gold-light)}
     .gold-rule{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);max-width:340px;margin:28px auto}
 
@@ -220,12 +221,49 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
     <!-- HERO -->
     <section class="section center">
       <div class="wrap">
-        <h1>The Reading Named the Pattern Capping Your Money.<br /><em>This Is How You Clear It.</em></h1>
+        <h1>Clear Your Wealth Block <span style="color:#E8C97A;background:rgba(212,175,55,0.16);padding:0 10px;border-radius:8px;text-decoration:underline;text-decoration-color:#E8C97A;text-underline-offset:6px;text-decoration-thickness:2px;">10x</span> Faster.<br><em>The Accelerated Ritual, Not Another Year of Slow Inner Work.</em></h1>
         <p class="subhead">The Soul Ritual Practice is the fast track to clearing it: the exact rituals, in the right order, for the precise Wealth Block your three cards revealed. You are seconds from holding both halves of the work.</p>
         <video class="hero-img" autoplay loop muted playsinline poster="frontend/images/upsell/upsell-hero.jpg">
           <source src="frontend/images/upsell/upsell-hero-motion.mp4" type="video/mp4" />
           <img class="hero-img" src="frontend/images/upsell/upsell-hero.jpg" alt="Hands performing a clearing ritual over a gold filigree mirror with rising smoke, deep violet and gold" />
         </video>
+      </div>
+    </section>
+
+    <!-- AGITATION -->
+    <section class="section">
+      <div class="wrap">
+        <h2>You Have Named This Pattern Before.<br /><em>It Still Decides What You Earn.</em></h2>
+        <div class="body-copy">
+          <p>Here is the part almost no one says out loud.</p>
+          <p>You have read the books. Done the journaling. Sat through the courses, the therapy, the manifesting. At some point you saw the money pattern clearly and told yourself, <strong>"Now that I see it, I can change it."</strong></p>
+          <p>And then it came back. The opportunity appeared, and something in you hesitated. The rate was yours to raise, and you left it where it was. The money came in, and somehow it did not stay. <strong>Same ceiling. Different month.</strong></p>
+        </div>
+        <div class="body-copy">
+          <p>That is the gap between a reading that names your Wealth Block and the work that actually dissolves it. <strong>The Soul Ritual Practice is built to close that gap, at the layer where the ceiling was set.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MECHANISM / THREE RITUALS -->
+    <section class="section">
+      <div class="wrap">
+        <h2>Three Written Rituals,<br /><em>Calibrated to Your Wealth Block</em></h2>
+        <hr class="gold-rule" />
+        <div class="stack">
+          <div class="card mv">
+            <div class="mv__num">Ritual One</div>
+            <div class="mv__body"><h3>The Root Witnessing</h3><p>Traces your Wealth Block to the exact moment it was set, not the story you tell about money, the moment underneath it. This is precision work, not journaling. Most people say this ritual alone feels like something loosening on the first read.</p></div>
+          </div>
+          <div class="card mv">
+            <div class="mv__num">Ritual Two</div>
+            <div class="mv__body"><h3>The Pattern Interruption</h3><p>The ceiling shows itself most clearly the instant money gets close: the moment you are about to receive, quote, ask, or invest. This is the exact sequence for catching it there and interrupting it in real time, with the specific move for your block type.</p></div>
+          </div>
+          <div class="card mv">
+            <div class="mv__num">Ritual Three</div>
+            <div class="mv__body"><h3>The New Imprint</h3><p>Clearing the old ceiling leaves an empty space. What fills it decides whether the change holds or quietly resets. This final ritual writes a new ceiling at the body level, the imprint that makes more money feel safe to keep. This is what makes the shift structural, not a good week.</p></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -253,50 +291,6 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
           <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Upgrade My Order Now</a>
           <p class="cta-fine">This adds to the order you just placed. No card to re-enter. Backed by a 90-day money-back guarantee.</p>
           <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- AGITATION -->
-    <section class="section">
-      <div class="wrap">
-        <h2>You Have Named This Pattern Before.<br /><em>It Still Decides What You Earn.</em></h2>
-        <div class="body-copy">
-          <p>Here is the part almost no one says out loud.</p>
-          <p>You have read the books. Done the journaling. Sat through the courses, the therapy, the manifesting. At some point you saw the money pattern clearly and told yourself, <strong>"Now that I see it, I can change it."</strong></p>
-          <p>And then it came back. The opportunity appeared, and something in you hesitated. The rate was yours to raise, and you left it where it was. The money came in, and somehow it did not stay. <strong>Same ceiling. Different month.</strong></p>
-        </div>
-        <div class="card" style="max-width:620px;margin:26px auto;border-left:3px solid var(--gold);">
-          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold-light);line-height:1.55;margin:0;">"You did not name it wrong. You named it. But naming a ceiling has never once lowered it, and every month it stays named and unmoved, it quietly resets your income again."</p>
-        </div>
-        <div class="body-copy">
-          <p>That is the gap between a reading that names your Wealth Block and the work that actually dissolves it. <strong>The Soul Ritual Practice is built to close that gap, at the layer where the ceiling was set.</strong></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- MECHANISM / THREE RITUALS -->
-    <section class="section">
-      <div class="wrap">
-        <h2>Three Written Rituals,<br /><em>Calibrated to Your Wealth Block</em></h2>
-        <p class="subhead">Not a general healing. The exact protocol for the precise ceiling your cards revealed.</p>
-        <div class="body-copy" style="margin-top:22px;">
-          <p>You have read, journaled, and manifested, and the ceiling never really moved, because none of that reaches the layer your Wealth Block actually lives on. <strong>The Soul Ritual Practice is the fast track:</strong> it goes straight to that layer and clears it, in three stages, each written for your exact block type.</p>
-        </div>
-        <hr class="gold-rule" />
-        <div class="stack">
-          <div class="card mv">
-            <div class="mv__num">Ritual One</div>
-            <div class="mv__body"><h3>The Root Witnessing</h3><p>Traces your Wealth Block to the exact moment it was set, not the story you tell about money, the moment underneath it. This is precision work, not journaling. Most people say this ritual alone feels like something loosening on the first read.</p></div>
-          </div>
-          <div class="card mv">
-            <div class="mv__num">Ritual Two</div>
-            <div class="mv__body"><h3>The Pattern Interruption</h3><p>The ceiling shows itself most clearly the instant money gets close: the moment you are about to receive, quote, ask, or invest. This is the exact sequence for catching it there and interrupting it in real time, with the specific move for your block type.</p></div>
-          </div>
-          <div class="card mv">
-            <div class="mv__num">Ritual Three</div>
-            <div class="mv__body"><h3>The New Imprint</h3><p>Clearing the old ceiling leaves an empty space. What fills it decides whether the change holds or quietly resets. This final ritual writes a new ceiling at the body level, the imprint that makes more money feel safe to keep. This is what makes the shift structural, not a good week.</p></div>
-          </div>
         </div>
       </div>
     </section>
@@ -406,35 +400,6 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
           <img src="frontend/images/ups-downs/img-bb865578d0.png" alt="90-Day Guarantee Badge" />
           <h2 style="font-size:clamp(20px,3vw,26px);margin-bottom:14px;">The Soul Ritual Practice, 90-Day Guarantee</h2>
           <p>Open the three rituals, follow them in order, and give them a real 90 days. If at any point in those 90 days your money ceiling has not budged, reply and I refund every cent of your $97. No questionnaire, no proof, no explaining yourself; your word is enough. You keep the rituals, the workbook, and all three bonuses no matter what. The only way you lose here is by never opening them.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section">
-      <div class="wrap">
-        <h2>Questions About the Practice</h2>
-        <div class="faq" style="margin-top:24px;">
-          <details>
-            <summary>I have not seen my reading yet. Am I buying blind?</summary>
-            <div class="faq__a">No, and this is the part most people get backwards. All four block-type versions live inside the practice. Your reading has already identified which one is yours, so the moment it lands, the exact protocol for your ceiling is sitting ready to open, no waiting, nothing to request. Buying now simply means the treatment is already in your hands the instant the diagnosis arrives, instead of days later. And if it ever feels like it was not yours, the 90-day guarantee makes the whole thing free to walk away from. You genuinely cannot get this wrong by acting now.</div>
-          </details>
-          <details>
-            <summary>How is this different from the reading I just bought?</summary>
-            <div class="faq__a">Your reading is the diagnosis. It names the ceiling and shows you where it lives. The Soul Ritual Practice is the treatment: the written protocol that clears it at the layer where it was set. The reading is Part One. This is Part Two. They are built to work as one.</div>
-          </details>
-          <details>
-            <summary>What if I am not "spiritual enough" for this?</summary>
-            <div class="faq__a">You do not need to believe in any of it. These are written steps you read and follow: no chanting, no altar, no faith required. They work on body memory and the nervous system, the same way a slow breath drops your shoulders whether you believe in it or not. Plenty of people start out of pure curiosity and feel something shift anyway. Skeptical is fine. Willing to read three pages is all it takes.</div>
-          </details>
-          <details>
-            <summary>How does access work?</summary>
-            <div class="faq__a">The moment your payment confirms, everything downloads instantly: the three Clearing Rituals, the 45-page Workbook, and all three bonuses. Yours to keep for life. No subscription, no expiry. It is charged to the order you just placed, so there is no card to re-enter.</div>
-          </details>
-          <details>
-            <summary>I have already done so much inner work. Why would this be any different?</summary>
-            <div class="faq__a">Because everything you have done so far worked at the level of understanding: books, journaling, courses, talking it through. That is real, and it is also why the ceiling kept coming back. Understanding a pattern has never once dissolved it. This is the one piece that works at the layer where the block was actually set, in the body, not the mind. It is not more of what you have tried. It is the step the rest of it was missing.</div>
-          </details>
         </div>
       </div>
     </section>
