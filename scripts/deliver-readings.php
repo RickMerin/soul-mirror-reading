@@ -3,6 +3,15 @@
 
 declare(strict_types=1);
 
+/**
+ * Batch worker for personalized reading PDF delivery.
+ *
+ * Preferred: cPanel cron every minute, e.g.
+ *   php /home/USER/path/to/scripts/deliver-readings.php --limit=5
+ *
+ * Fallback: external scheduler pings GET /api/run-delivery.php?key=SECRET
+ */
+
 use App\Application\ReadingDeliveryFactory;
 use App\Config\AppConfig;
 use App\Infrastructure\DatabaseConnection;
@@ -38,27 +47,26 @@ $pdo = DatabaseConnection::fromConfig($config);
 $http = new Client($config->guzzleClientConfig());
 $orchestrator = ReadingDeliveryFactory::orchestrator($config, $pdo, $http, $projectRoot);
 
-$pending = $orchestrator->findPendingPurchases($limit);
-if ($pending === []) {
+$result = $orchestrator->processPendingBatch($limit);
+if ($result['queued'] === 0) {
     echo "No purchases awaiting reading delivery.\n";
     exit(0);
 }
 
-echo 'Processing ' . count($pending) . " purchase(s)...\n";
-$ok = 0;
-$fail = 0;
+echo 'Processing ' . $result['queued'] . " purchase(s)...\n";
 
-foreach ($pending as $row) {
-    $purchaseId = (int) ($row['purchase_id'] ?? 0);
-    try {
-        $orchestrator->deliverForPurchaseRow($row);
-        echo "  purchase {$purchaseId}: delivered\n";
-        $ok++;
-    } catch (Throwable $e) {
-        echo "  purchase {$purchaseId}: failed — " . substr($e->getMessage(), 0, 120) . "\n";
-        $fail++;
-    }
+$failedByPurchaseId = [];
+foreach ($result['errors'] as $error) {
+    $failedByPurchaseId[(int) ($error['purchase_id'] ?? 0)] = (string) ($error['message'] ?? 'unknown');
 }
 
-echo "Done. success={$ok} failed={$fail}\n";
-exit($fail > 0 ? 1 : 0);
+foreach ($result['purchase_ids'] as $purchaseId) {
+    if (isset($failedByPurchaseId[$purchaseId])) {
+        echo "  purchase {$purchaseId}: failed — {$failedByPurchaseId[$purchaseId]}\n";
+        continue;
+    }
+    echo "  purchase {$purchaseId}: delivered\n";
+}
+
+echo "Done. success={$result['success']} failed={$result['failed']}\n";
+exit($result['failed'] > 0 ? 1 : 0);
