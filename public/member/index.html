@@ -1866,7 +1866,8 @@
       document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
     }
-
+</script>
+  <script>
     // ─── PDF flipbook (PDF.js + {{MEMBER_URL_READING_PDF}}) ───
     (function setupPdfFlipbook() {
       window.changePage = function () { };
@@ -2047,7 +2048,7 @@
       }
     })();
   </script>
-  <script defer src="/assets/vturb-player-guard.min.js?v={{VTURB_GUARD_VER}}"></script>
+  <script defer src="../assets/vturb-player-guard.min.js?v={{VTURB_GUARD_VER}}"></script>
 
 </body>
 
