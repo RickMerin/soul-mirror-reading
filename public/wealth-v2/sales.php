@@ -296,7 +296,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <div class="testi-card">
       <div class="testi-avatar-row">
         <picture>
-          <source type="image/webp" srcset="../frontend/images/sales/rebecca-hartley.webp">
+          <source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.webp">
           <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.png" alt="Rebecca Hartley" decoding="async" loading="lazy">
         </source></picture>
         <div>
