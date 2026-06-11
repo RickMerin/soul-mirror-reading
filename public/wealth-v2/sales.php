@@ -475,7 +475,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <div class="testi-card">
       <div class="testi-avatar-row">
-        <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.png" alt="Diane R.">
+        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.png" alt="Diane R." width="56" height="56" decoding="async" loading="lazy"></picture>
         <div>
           <div class="testi-name">Diane R.</div>
           <div class="testi-meta">54 &middot; Retired teacher</div>
@@ -491,7 +491,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <div class="testi-card">
       <div class="testi-avatar-row">
-        <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.png" alt="James H.">
+        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.png" alt="James H." width="56" height="56" decoding="async" loading="lazy"></picture>
         <div>
           <div class="testi-name">James H.</div>
           <div class="testi-meta">48 &middot; Business owner</div>
@@ -503,7 +503,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <div class="testi-card">
       <div class="testi-avatar-row">
-        <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.png" alt="Carolyn M.">
+        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.png" alt="Carolyn M." width="56" height="56" decoding="async" loading="lazy"></picture>
         <div>
           <div class="testi-name">Carolyn M.</div>
           <div class="testi-meta">61 &middot; Holistic practitioner</div>
