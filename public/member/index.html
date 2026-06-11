@@ -19,7 +19,7 @@
      ═════════════════════════════════════════════════════════ -->
 
   <!-- Server injects window.__SMR_MEMBER__ (ritual access); asset hrefs use {{MEMBER_*}} placeholders. -->
-  <script>window.__SMR_MEMBER__ = { ritualUnlocked: '{{RITUAL_UNLOCKED_JS}}' === 'true', loveClarityUnlocked: '{{LOVE_CLARITY_UNLOCKED_JS}}' === 'true', readingReady: {{ READING_READY_JS }} };</script>
+  <script>window.__SMR_MEMBER__ = { ritualUnlocked: '{{RITUAL_UNLOCKED_JS}}' === 'true', loveClarityUnlocked: '{{LOVE_CLARITY_UNLOCKED_JS}}' === 'true', readingReady: '{{READING_READY_JS}}' === 'true' };</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1292,7 +1292,7 @@
   </style>
 </head>
 
-<body>
+<body data-reading-pending="{{READING_PENDING_MESSAGE}}">
 
   <!-- SIDEBAR OVERLAY (mobile) -->
   <div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
@@ -2006,10 +2006,9 @@
       const btnNext = document.getElementById('pdf-btn-next');
 
       const readingReady = window.__SMR_MEMBER__ && window.__SMR_MEMBER__.readingReady === true;
-      const pendingMsg = {{ READING_PENDING_MESSAGE_JS }
-    };
+      const pendingMsg = (document.body && document.body.dataset.readingPending) || '';
       const pdfUrl = root && root.dataset.readingPdf ? String(root.dataset.readingPdf).trim() : '';
-        if (!root || !readingReady || !pdfUrl || pdfUrl === '#') {
+      if (!root || !readingReady || !pdfUrl || pdfUrl === '#') {
         if (statusEl) {
           statusEl.textContent = pendingMsg || 'Your reading is not available yet.';
           statusEl.classList.add(readingReady ? 'is-error' : '');
@@ -2157,8 +2156,10 @@
 
       const cfg = window.__SMR_MEMBER__ || {};
       if (cfg.ritualUnlocked === true) {
-        document.getElementById('ritual-full').style.display = 'block';
-        document.getElementById('ritual-locked').style.display = 'none';
+        const ritualFull = document.getElementById('ritual-full');
+        const ritualLocked = document.getElementById('ritual-locked');
+        if (ritualFull) ritualFull.style.display = 'block';
+        if (ritualLocked) ritualLocked.style.display = 'none';
         const hFull = document.getElementById('ritual-section-heading-full');
         const hLocked = document.getElementById('ritual-section-heading-locked');
         const asideFull = document.getElementById('ritual-vsl-aside-full');
