@@ -111,11 +111,16 @@ try {
     $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
     $ritualUnlocked = $ritualSku !== '' && $purchases->leadHasApprovedPurchaseWithItemSku($leadId, $ritualSku);
 
+    // Aligns with love-clarity upsell (`cbitems=lcr-1` / `lcr-1-ds`).
+    $loveClarityUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'lcr-1')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'lcr-1-ds');
+
     $h = static function (string $s): string {
         return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     };
 
     $otoUrl = memberEnvString('MEMBER_OTO_CHECKOUT_URL', '#');
+    $lcrCheckoutUrl = memberEnvString('MEMBER_LCR_CHECKOUT_URL', '#');
 
     $guardPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'vturb-player-guard.min.js';
     $guardVer = is_file($guardPath) ? (string) filemtime($guardPath) : (string) time();
@@ -146,7 +151,13 @@ try {
         '{{MEMBER_URL_RITUAL_REPORT3}}' => $h(memberEnvString('MEMBER_URL_RITUAL_REPORT3', '#')),
         '{{MEMBER_URL_RITUAL_WORKBOOK}}' => $h(memberEnvString('MEMBER_URL_RITUAL_WORKBOOK', '#')),
         '{{MEMBER_OTO_CHECKOUT_URL}}' => $h($otoUrl),
+        '{{MEMBER_LCR_CHECKOUT_URL}}' => $h($lcrCheckoutUrl),
         '{{RITUAL_UNLOCKED_JS}}' => $ritualUnlocked ? 'true' : 'false',
+        '{{LOVE_CLARITY_UNLOCKED_JS}}' => $loveClarityUnlocked ? 'true' : 'false',
+        '{{MEMBER_URL_LCR_GUIDE}}' => $h(memberEnvString('MEMBER_URL_LCR_GUIDE', '#')),
+        '{{MEMBER_URL_LCR_PURPOSE}}' => $h(memberEnvString('MEMBER_URL_LCR_PURPOSE', '#')),
+        '{{MEMBER_URL_LCR_AUDIO}}' => $h(memberEnvString('MEMBER_URL_LCR_AUDIO', '')),
+        '{{MEMBER_URL_LCR_DAILY}}' => $h(memberEnvString('MEMBER_URL_LCR_DAILY', '#')),
         '{{VTURB_GUARD_VER}}' => $guardVer,
     ];
     $rendered = strtr($html, $replacements);
