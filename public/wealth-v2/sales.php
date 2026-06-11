@@ -69,7 +69,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
 
 <div class="topnotice" style="background:#9b1c1c;color:#fff;border-bottom:1px solid #c0392b;">
-  <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>But I Noticed a Pattern in Your Specific Cards</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Please Read This Before It Arrives</strong>
+  <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Read This First, It Changes What You Do With It</strong>
 </div>
 
 
@@ -81,12 +81,12 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
   <div class="wrap">
     
 
-<h1 class="vsl-headline"><span class="firstname">Friend</span>, There Is One Hidden Pattern. It Sits Beneath Everything You've Struggled With.<br><em>Your three cards just brought it to the surface. Once you see it, you cannot unsee it.</em></h1>
+<h1 class="vsl-headline">There Is One Hidden Pattern Beneath Everything You've Struggled With.</h1>
 
 
     
 
-<p class="vsl-sub">It is the one belief quietly setting your wealth ceiling, year after year. Your three cards point straight to it.</p>
+<p class="vsl-sub">Your three cards just brought it to the surface, and they are waiting below. Once you see it, you cannot unsee it.</p>
 <div class="tslwrap">
 <video class="luna-hero" autoplay loop muted playsinline preload="auto" poster="../assets/luna-portrait.jpg" aria-label="Luna Ross, your reader">
 <source src="../assets/luna-motion.mp4?v=3" type="video/mp4">
