@@ -163,6 +163,46 @@ final class ReadingDeliveryOrchestrator
     }
 
     /**
+     * Deliver up to $limit eligible pending purchases; returns run statistics (no PII).
+     *
+     * @return array{
+     *     queued: int,
+     *     success: int,
+     *     failed: int,
+     *     purchase_ids: list<int>,
+     *     errors: list<array{purchase_id: int, message: string}>
+     * }
+     */
+    public function processPendingBatch(int $limit): array
+    {
+        $pending = $this->findPendingPurchases($limit);
+        $result = [
+            'queued' => count($pending),
+            'success' => 0,
+            'failed' => 0,
+            'purchase_ids' => [],
+            'errors' => [],
+        ];
+
+        foreach ($pending as $row) {
+            $purchaseId = (int) ($row['purchase_id'] ?? 0);
+            $result['purchase_ids'][] = $purchaseId;
+            try {
+                $this->deliverForPurchaseRow($row);
+                $result['success']++;
+            } catch (Throwable $e) {
+                $result['failed']++;
+                $result['errors'][] = [
+                    'purchase_id' => $purchaseId,
+                    'message' => substr($e->getMessage(), 0, 200),
+                ];
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * @return list<array<string, mixed>>
      */
     public function findPendingPurchases(int $limit = 50): array

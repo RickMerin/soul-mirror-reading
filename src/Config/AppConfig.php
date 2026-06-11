@@ -63,6 +63,8 @@ final class AppConfig
         public readonly string $pdfGeneratorApiSecret,
         public readonly string $pdfGeneratorApiWorkspace,
         public readonly string $pdfGeneratorApiBaseUrl,
+        /** Shared secret for GET /api/run-delivery.php (external cron ping); empty = endpoint disabled. */
+        public readonly string $deliveryCronKey,
     ) {}
 
     public function hasPdfGeneratorApi(): bool
@@ -185,6 +187,7 @@ final class AppConfig
             pdfGeneratorApiSecret: $get('PDF_GENERATOR_API_SECRET'),
             pdfGeneratorApiWorkspace: $get('PDF_GENERATOR_API_WORKSPACE'),
             pdfGeneratorApiBaseUrl: rtrim($get('PDF_GENERATOR_API_BASE_URL'), '/'),
+            deliveryCronKey: $get('DELIVERY_CRON_KEY'),
         );
     }
 
