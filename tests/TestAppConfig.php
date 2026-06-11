@@ -61,6 +61,7 @@ final class TestAppConfig
             pdfGeneratorApiSecret: '',
             pdfGeneratorApiWorkspace: '',
             pdfGeneratorApiBaseUrl: '',
+            deliveryCronKey: '',
         );
     }
 }

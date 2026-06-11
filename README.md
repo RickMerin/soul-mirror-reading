@@ -53,6 +53,29 @@ Tarot funnel: visitors pick three cards, submit a form, and the server fetches A
 | `composer migrate` | Apply pending SQL migrations from `database/migrations/*.sql`                     |
 | `npm ci`           | Install Node dependencies for CSS/email builds (see `package.json`)               |
 | `npm run build`    | Bundle CSS to `public/assets/*.min.css` and generate `public/email-template.html` |
+| `php scripts/deliver-readings.php --limit=5` | Batch deliver pending personalized reading PDFs (cron worker) |
+
+## Reading PDF delivery (cron)
+
+After a buyer’s purchase is approved, a worker generates their personalized PDF (HTML → PDF API → S3 → Kit delivery email). The worker is **run-and-exit** — not a daemon.
+
+**Option 1 — cPanel cron (preferred, $0):** add a job every minute:
+
+```bash
+php /home/USER/path/to/soul-mirror-reading/scripts/deliver-readings.php --limit=5
+```
+
+Use the full server path to PHP and the project. A 24-hour delivery promise is fine with every 1–5 minutes.
+
+**Option 2 — HTTP + external scheduler (if CLI cron is flaky):** set `DELIVERY_CRON_KEY` in `.env` to a long random secret, then ping once per minute:
+
+```http
+GET /api/run-delivery.php?key=YOUR_SECRET&limit=1
+```
+
+Use a free scheduler (cron-job.org, GitHub Actions `schedule`, Cloudflare Cron Trigger, UptimeRobot, etc.). Each request processes up to `limit` readings (max 5); default `limit=1` keeps web requests bounded.
+
+Requires AWS S3, PDF Generator API, database, and Kit vars (see `.env.example`). Manual recovery: `php scripts/deliver-reading-one.php --purchase-id=ID`.
 
 ## GitHub Actions deploy secrets
 
@@ -104,5 +127,11 @@ Styles for the email shell live under `frontend/styles/email/`. If `public/email
   - **400:** `{ "error": "..." }` (validation / bad JSON)
   - **502:** `{ "error": "Failed to fetch tarot reading." }` (upstream AstrologyAPI failure)
   - **500:** generic internal error message for the client; details in server logs only
+
+- **`GET /api/run-delivery.php`** (delivery worker; requires `DELIVERY_CRON_KEY`)
+  - **Query:** `key` (required), `limit` (optional, default `1`, max `5`)
+  - **200:** `{ "ok": true, "queued": 0, "success": 0, "failed": 0, "purchase_ids": [] }`
+  - **401:** invalid or missing `key`
+  - **503:** endpoint disabled or worker not configured
 
 Security and layering conventions are summarized in `.cursor/rules/` (see `soul-mirror-engineering.mdc` and `php-api-security.mdc`).
