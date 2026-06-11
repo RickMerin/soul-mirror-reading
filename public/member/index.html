@@ -19,7 +19,7 @@
      ═════════════════════════════════════════════════════════ -->
 
   <!-- Server injects window.__SMR_MEMBER__ (ritual access); asset hrefs use {{MEMBER_*}} placeholders. -->
-  <script>window.__SMR_MEMBER__ = { ritualUnlocked: '{{RITUAL_UNLOCKED_JS}}' === 'true', readingReady: {{ READING_READY_JS }} };</script>
+  <script>window.__SMR_MEMBER__ = { ritualUnlocked: '{{RITUAL_UNLOCKED_JS}}' === 'true', loveClarityUnlocked: '{{LOVE_CLARITY_UNLOCKED_JS}}' === 'true', readingReady: '{{READING_READY_JS}}' === 'true' };</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1292,7 +1292,7 @@
   </style>
 </head>
 
-<body>
+<body data-reading-pending="{{READING_PENDING_MESSAGE}}">
 
   <!-- SIDEBAR OVERLAY (mobile) -->
   <div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
@@ -1326,6 +1326,10 @@
       <div class="nav-item" onclick="showSection('ritual', this)">
         <span class="nav-icon">🕯</span> Soul Ritual Practice
         <span class="nav-lock" id="ritual-lock">🔒</span>
+      </div>
+      <div class="nav-item" onclick="showSection('love-clarity', this)">
+        <span class="nav-icon">💗</span> Love Clarity Ritual
+        <span class="nav-lock" id="love-clarity-lock">🔒</span>
       </div>
 
       <div class="nav-section-label" style="margin-top:8px;">Support</div>
@@ -1824,6 +1828,128 @@
       </div>
     </div>
 
+    <!-- ══════════════════════ LOVE CLARITY RITUAL (OTO2) ══════════════════════ -->
+    <div class="section" id="section-love-clarity">
+      <div class="content-wrap">
+    
+        <div id="love-clarity-section-heading-full" class="section-heading" style="display:none;">
+          <p class="eyebrow">✦ Your Love Clarity Ritual</p>
+          <h2>The <em>Love Clarity Ritual</em> Library</h2>
+          <p>Your companion practice for love and connection. Begin with the core guide, then move through each bonus in
+            order.</p>
+        </div>
+        <div id="love-clarity-section-heading-locked" class="section-heading">
+          <p class="eyebrow">✦ Deepen The Work</p>
+          <h2>The <em>Love Clarity Ritual</em> Library</h2>
+          <p>Your reading names the pattern running beneath love. The Love Clarity Ritual gives you the structured tools
+            to clear it — where most buyers say the shift in connection finally lands.</p>
+        </div>
+    
+        <!-- ─── Full-access view (buyers of lcr-1 / lcr-1-ds) ─── -->
+        <div id="love-clarity-full" style="display:none;">
+    
+          <!-- Core Guide -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-icon">
+                <picture style="display:block;max-width:clamp(50px, 10vw, 80px);margin:0 auto;">
+                  <source srcset="../cards/mirror-love.webp" style="width:100%;height:auto;max-width:80px;"
+                    type="image/webp" loading="lazy">
+                  <img src="../cards/mirror-love.webp"
+                    style="width:100%;height:auto;max-width:80px;display:block;margin:0 auto;" alt="Mirror Love Card"
+                    loading="lazy">
+                </picture>
+              </span>
+              <h2>The Love Clarity Ritual</h2>
+              <span class="card-label">Start Here</span>
+            </div>
+            <div class="card-body">
+              <p style="margin-bottom:20px;">The core guide — a structured ritual practice for seeing and clearing the
+                pattern beneath how you give, receive, and hold space in love. Everything else in this library builds
+                from here.</p>
+              <a href="{{MEMBER_URL_LCR_GUIDE}}" class="btn-download" id="lcr-guide-btn" target="_blank"
+                rel="noopener noreferrer">⬇ Download PDF</a>
+            </div>
+          </div>
+    
+          <!-- Bonus 1: Purpose Alignment -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-icon">✨</span>
+              <h2>Bonus One &nbsp;·&nbsp; The Purpose Alignment Ritual</h2>
+              <span class="card-label">Bonus 1</span>
+            </div>
+            <div class="card-body">
+              <p style="margin-bottom:20px;">Align your heart's intention with the love you are calling in — clearing
+                the gap between what you say you want and what your pattern still protects you from receiving.</p>
+              <a href="{{MEMBER_URL_LCR_PURPOSE}}" class="btn-download" id="lcr-purpose-btn" target="_blank"
+                rel="noopener noreferrer">⬇ Download PDF</a>
+            </div>
+          </div>
+    
+          <!-- Bonus 2: Open-Heart Audio -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-icon">🎧</span>
+              <h2>Bonus Two &nbsp;·&nbsp; The Open-Heart Audio</h2>
+              <span class="card-label">Bonus 2</span>
+            </div>
+            <div class="card-body">
+              <p style="margin-bottom:20px;">A guided audio from Luna to soften the guard around your heart — so the
+                clearing work in the guide can land somatically, not just intellectually.</p>
+              <div class="audio-card" style="margin-bottom:14px;">
+                <div class="audio-card-label">Guided Audio &nbsp;·&nbsp; Voiced by Luna</div>
+                <h3>Listen Here</h3>
+                <audio class="audio-player" controls id="lcr-audio" src="{{MEMBER_URL_LCR_AUDIO}}">
+                  Your browser does not support audio.
+                </audio>
+              </div>
+              <a href="{{MEMBER_URL_LCR_AUDIO}}" class="btn-download" id="lcr-audio-btn" target="_blank"
+                rel="noopener noreferrer">⬇ Download Audio</a>
+            </div>
+          </div>
+    
+          <!-- Bonus 3: Daily Clarity -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-icon">📅</span>
+              <h2>Bonus Three &nbsp;·&nbsp; The Daily Clarity Practice</h2>
+              <span class="card-label">Bonus 3</span>
+            </div>
+            <div class="card-body">
+              <p style="margin-bottom:20px;">A daily practice to anchor the shift — short prompts and rituals you can
+                return to each morning so love clarity becomes lived, not just understood.</p>
+              <a href="{{MEMBER_URL_LCR_DAILY}}" class="btn-download" id="lcr-daily-btn" target="_blank"
+                rel="noopener noreferrer">⬇ Download PDF</a>
+            </div>
+          </div>
+    
+        </div>
+    
+        <!-- ─── Locked view (basic buyers — shown by default) ─── -->
+        <div id="love-clarity-locked">
+          <div class="upgrade-card">
+            <div class="upgrade-body" style="padding-top:56px;">
+              <div class="upgrade-label">Included In Love Clarity Ritual</div>
+              <div class="upgrade-title">The Complete Love Clarity Library</div>
+              <p class="upgrade-desc">Four companion pieces designed to take your reading from insight into real shift in
+                how you love and connect.</p>
+              <ul class="upgrade-list">
+                <li>The Love Clarity Ritual &nbsp;—&nbsp; Core Guide</li>
+                <li>Bonus One &nbsp;—&nbsp; The Purpose Alignment Ritual</li>
+                <li>Bonus Two &nbsp;—&nbsp; The Open-Heart Audio</li>
+                <li>Bonus Three &nbsp;—&nbsp; The Daily Clarity Practice</li>
+              </ul>
+              <a href="{{MEMBER_LCR_CHECKOUT_URL}}" class="btn-unlock" id="lcr-upsell-btn" target="_blank"
+                rel="noopener noreferrer">💗 Add Love Clarity Ritual</a>
+              <p class="upgrade-guarantee">🛡 60 Day 100% Money Back Guarantee</p>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+
     <!-- FOOTER -->
     <div class="page-footer">
       <p>© 2026 Soul Mirror Reading. All rights reserved.</p>
@@ -1880,10 +2006,9 @@
       const btnNext = document.getElementById('pdf-btn-next');
 
       const readingReady = window.__SMR_MEMBER__ && window.__SMR_MEMBER__.readingReady === true;
-      const pendingMsg = {{ READING_PENDING_MESSAGE_JS }
-    };
+      const pendingMsg = (document.body && document.body.dataset.readingPending) || '';
       const pdfUrl = root && root.dataset.readingPdf ? String(root.dataset.readingPdf).trim() : '';
-        if (!root || !readingReady || !pdfUrl || pdfUrl === '#') {
+      if (!root || !readingReady || !pdfUrl || pdfUrl === '#') {
         if (statusEl) {
           statusEl.textContent = pendingMsg || 'Your reading is not available yet.';
           statusEl.classList.add(readingReady ? 'is-error' : '');
@@ -2031,8 +2156,10 @@
 
       const cfg = window.__SMR_MEMBER__ || {};
       if (cfg.ritualUnlocked === true) {
-        document.getElementById('ritual-full').style.display = 'block';
-        document.getElementById('ritual-locked').style.display = 'none';
+        const ritualFull = document.getElementById('ritual-full');
+        const ritualLocked = document.getElementById('ritual-locked');
+        if (ritualFull) ritualFull.style.display = 'block';
+        if (ritualLocked) ritualLocked.style.display = 'none';
         const hFull = document.getElementById('ritual-section-heading-full');
         const hLocked = document.getElementById('ritual-section-heading-locked');
         const asideFull = document.getElementById('ritual-vsl-aside-full');
@@ -2044,6 +2171,20 @@
         const lockIcon = document.getElementById('ritual-lock');
         if (lockIcon) {
           lockIcon.style.display = 'none';
+        }
+      }
+      if (cfg.loveClarityUnlocked === true) {
+        const lcrFull = document.getElementById('love-clarity-full');
+        const lcrLocked = document.getElementById('love-clarity-locked');
+        if (lcrFull) lcrFull.style.display = 'block';
+        if (lcrLocked) lcrLocked.style.display = 'none';
+        const lcrHFull = document.getElementById('love-clarity-section-heading-full');
+        const lcrHLocked = document.getElementById('love-clarity-section-heading-locked');
+        if (lcrHFull) lcrHFull.style.display = 'block';
+        if (lcrHLocked) lcrHLocked.style.display = 'none';
+        const lcrLockIcon = document.getElementById('love-clarity-lock');
+        if (lcrLockIcon) {
+          lcrLockIcon.style.display = 'none';
         }
       }
     })();
