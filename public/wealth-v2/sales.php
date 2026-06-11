@@ -81,12 +81,12 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
   <div class="wrap">
     
 
-<h1 class="vsl-headline">There Is One Hidden Pattern Beneath Everything You've Struggled With.</h1>
+<h1 class="vsl-headline">There Is <span style="color:var(--gold-light);text-decoration:underline;text-decoration-color:rgba(212,175,55,0.6);text-decoration-thickness:2px;text-underline-offset:7px;">One Hidden Pattern</span> Beneath Everything You've Struggled With.</h1>
 
 
     
 
-<p class="vsl-sub">Your three cards just brought it to the surface, and they are waiting below. Once you see it, you cannot unsee it.</p>
+<p class="vsl-sub">Your three cards just brought it to the surface, and they are <span style="color:var(--gold-light);text-decoration:underline;text-decoration-color:rgba(212,175,55,0.6);text-decoration-thickness:2px;text-underline-offset:4px;">waiting below</span>. Once you see it, you cannot unsee it.</p>
 <div class="tslwrap">
 <video class="luna-hero" autoplay loop muted playsinline preload="auto" poster="../assets/luna-portrait.jpg" aria-label="Luna Ross, your reader">
 <source src="../assets/luna-motion.mp4?v=3" type="video/mp4">
