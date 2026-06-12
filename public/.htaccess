@@ -35,6 +35,7 @@ Options -Indexes
     # Legal pages (clean URLs to php)
     RewriteRule ^privacy-policy$ privacy-policy.php [L]
     RewriteRule ^terms-conditions$ terms-conditions.php [L]
+    RewriteRule ^refund-return-policy$ refund-return-policy.php [L]
 
     # When docroot is the repo root, browsers may hit /public/v2/; canonical funnel URL is /v2/.
     RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/index\.php
