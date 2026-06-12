@@ -32,6 +32,10 @@ Options -Indexes
     RewriteRule ^api/reading$ api/reading.php [L]
     RewriteRule ^api/clickbank-ins$ api/clickbank-ins.php [L]
 
+    # Legal pages (clean URLs to php)
+    RewriteRule ^privacy-policy$ privacy-policy.php [L]
+    RewriteRule ^terms-conditions$ terms-conditions.php [L]
+
     # When docroot is the repo root, browsers may hit /public/v2/; canonical funnel URL is /v2/.
     RewriteCond %{THE_REQUEST} \s[^\s]*/public/v2/index\.php
     RewriteCond %{REQUEST_URI} ^(.*)/public/v2/index\.php$
