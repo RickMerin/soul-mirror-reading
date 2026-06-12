@@ -29,6 +29,11 @@
     hr{border:none;height:1px;background:linear-gradient(90deg,transparent,#d4af3759,transparent);margin:30px 0}
     .guarantee{border:1px solid #d4af3759;border-radius:12px;background:linear-gradient(135deg,#d4af3714,#d4af3705);padding:18px 22px;margin:18px 0 8px}
     .guarantee strong{color:var(--gold-light)}
+    .clkbank-cta{border:1px solid #d4af3773;border-radius:14px;background:linear-gradient(135deg,#2d1b6960,#1e0d4088);padding:24px 24px 22px;margin:26px 0;text-align:center}
+    .clkbank-cta h2{margin:0 0 10px}
+    .clkbank-cta p{color:var(--text-muted);max-width:560px;margin:0 auto 6px}
+    .clkbank-btn{display:inline-block;margin-top:16px;background:linear-gradient(180deg,#f0d38a,#d4af37);color:#1a0d2e;font-family:'Cinzel',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:14px 30px;border-radius:50px;box-shadow:0 8px 22px #d4af3740;transition:filter .15s,transform .12s}
+    .clkbank-btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
     .footer{position:relative;z-index:1;background:#0e0820;border-top:1px solid #d4af3726;padding:30px 24px;text-align:center;margin-top:36px}
     .footer p{font-size:12px;color:#9a93b3;line-height:1.65;max-width:780px;margin:0 auto 8px}
     .footer a{color:#b7afd0;text-decoration:underline;text-underline-offset:2px}
@@ -48,13 +53,20 @@
         <p style="margin:0"><strong>Our 90-Day Money-Back Guarantee.</strong> Every Soul Mirror Reading product is backed by a 90-day money-back guarantee. If you are not satisfied with your purchase for any reason, you may request a full refund within 90 days of your original purchase date. Because our products are digital, there is nothing to ship back.</p>
       </div>
 
+      <div class="clkbank-cta">
+        <h2>For Refunds and Order Questions, Visit ClickBank</h2>
+        <p>ClickBank is the authorized retailer for every order placed on this site, and they manage all billing on our behalf. For a refund, a cancellation, a billing question, or anything else related to your order, the fastest way to get help is through ClickBank's secure customer portal.</p>
+        <p>Look up your order with your email and order number, and resolve most requests in just a few minutes.</p>
+        <a class="clkbank-btn" href="https://clkbank.com/" target="_blank" rel="noopener">Visit clkbank.com &#8594;</a>
+      </div>
+
       <h2>How to Request a Refund</h2>
-      <p>To request a refund, contact us at <a href="mailto:support@soulmirrorreading.com">support@soulmirrorreading.com</a> and include your order receipt number or the email address you used at checkout. You may also request a refund directly through ClickBank using the details below. We aim to respond to every request promptly.</p>
+      <p>The quickest route is ClickBank's customer portal at <a href="https://clkbank.com/" target="_blank" rel="noopener">clkbank.com</a>. You can also contact us directly at <a href="mailto:support@soulmirrorreading.com">support@soulmirrorreading.com</a> and include your order receipt number or the email address you used at checkout. We aim to respond to every request promptly.</p>
 
       <h2>ClickBank Customer Support</h2>
       <p>ClickBank is the retailer of products on this site and handles customer payments and refunds. You can reach ClickBank Customer Support at any time:</p>
       <ul>
-        <li>Online: <a href="https://www.clkbank.com/" target="_blank" rel="noopener">www.clkbank.com</a></li>
+        <li>Online: <a href="https://clkbank.com/" target="_blank" rel="noopener">clkbank.com</a></li>
         <li>Phone: 1-800-390-6035</li>
         <li>Mail: ClickBank, 1444 S. Entertainment Ave., Suite 410, Boise, ID 83709, USA</li>
       </ul>
@@ -63,13 +75,13 @@
       <p>All Soul Mirror Reading products, including readings, guided practices, and audio sessions, are digital and delivered electronically. When a refund is issued, access to the related product and any associated member content may be removed.</p>
 
       <h2>Recurring Subscriptions</h2>
-      <p>Some offers may include a subscription or recurring rebill. You may cancel a recurring subscription at any time to stop future charges. To cancel, email <a href="mailto:support@soulmirrorreading.com">support@soulmirrorreading.com</a> or manage your subscription directly through ClickBank using your order receipt. Cancelling stops future payments; past payments remain subject to the 90-day guarantee above.</p>
+      <p>Some offers may include a subscription or recurring rebill. You may cancel a recurring subscription at any time to stop future charges. To cancel, visit <a href="https://clkbank.com/" target="_blank" rel="noopener">clkbank.com</a> or email <a href="mailto:support@soulmirrorreading.com">support@soulmirrorreading.com</a> with your order receipt. Cancelling stops future payments; past payments remain subject to the 90-day guarantee above.</p>
 
       <h2>How Refunds Are Processed</h2>
       <p>Once a refund is approved, it is processed by ClickBank to your original payment method. Please allow a few business days for the refund to appear, depending on your bank or card issuer.</p>
 
       <h2>Contact</h2>
-      <p>Questions about a refund or cancellation? Email us at <a href="mailto:support@soulmirrorreading.com">support@soulmirrorreading.com</a> and we will be glad to help.</p>
+      <p>Questions about a refund or cancellation? Visit <a href="https://clkbank.com/" target="_blank" rel="noopener">clkbank.com</a> for order help, or email us at <a href="mailto:support@soulmirrorreading.com">support@soulmirrorreading.com</a> and we will be glad to assist.</p>
 
       <hr />
       <p style="font-size:14px;color:var(--text-muted)">This policy applies to purchases made through soulmirrorreading.com. ClickBank's own customer guarantee may also apply to your order.</p>
