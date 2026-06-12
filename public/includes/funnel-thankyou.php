@@ -72,6 +72,15 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   </div>
 
   <script defer src="<?= htmlspecialchars($assetRoot, ENT_QUOTES) ?>assets/thankyou.min.js?v=<?= htmlspecialchars((string) $jsVer, ENT_QUOTES) ?>"></script>
+  <footer style="text-align:center;padding:30px 20px;font-family:system-ui,-apple-system,sans-serif;font-size:13px;line-height:1.7;color:#9a93b3;border-top:1px solid rgba(212,175,55,.18);margin-top:34px">
+    <p style="margin:0 0 6px">
+      <a href="/privacy-policy" style="color:#b7afd0;text-decoration:underline;text-underline-offset:2px">Privacy Policy</a> &nbsp;&middot;&nbsp;
+      <a href="/terms-conditions" style="color:#b7afd0;text-decoration:underline;text-underline-offset:2px">Terms &amp; Conditions</a> &nbsp;&middot;&nbsp;
+      <a href="/refund-return-policy" style="color:#b7afd0;text-decoration:underline;text-underline-offset:2px">Refund &amp; Return Policy</a> &nbsp;&middot;&nbsp;
+      <a href="mailto:support@soulmirrorreading.com" style="color:#b7afd0;text-decoration:underline;text-underline-offset:2px">Contact Us</a>
+    </p>
+    <p style="margin:0">Copyright &copy; 2026 Soul Mirror Reading. All Rights Reserved.</p>
+  </footer>
 </body>
 
 </html>
