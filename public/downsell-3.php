@@ -206,6 +206,17 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=mm-1-ds&cbur=d';
       </div>
     </section>
 
+    <!-- GUARANTEE -->
+    <section class="section section--tight">
+      <div class="wrap">
+        <div style="max-width:620px;margin:0 auto;text-align:center;border:1px solid #d4af3759;border-radius:16px;background:#1e0d4080;backdrop-filter:blur(4px);padding:36px 30px;">
+          <img src="https://soulmirrorreading.com/frontend/images/upsell2/guarantee-badge.webp" alt="90-Day Guarantee Badge" onerror="this.style.display='none'" style="width:112px;height:auto;margin:0 auto 14px;display:block;filter:drop-shadow(0 10px 20px #d4af3740);" />
+          <h2 style="font-size:clamp(20px,3vw,26px);margin-bottom:14px;">The Mirror Meditations, 90-Day Guarantee</h2>
+          <p style="font-size:16px;line-height:1.7;color:var(--text-muted);max-width:540px;margin:0 auto;">Play the sessions for a real 90 days, morning and night. If the old pattern creeps back and nothing feels more sealed, reply and I refund every cent of your $27. No questionnaire, no proof. You keep all six sessions and the bonus, no matter what.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- OFFER -->
     <section class="section" id="offer">
       <div class="wrap" style="max-width:560px;">
