@@ -347,8 +347,11 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=mm-1&cbur=d';
       <div class="wrap" style="max-width:620px;">
         <h2>Don't Let the Clearing <em>Quietly Reset.</em></h2>
         <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 22px;">You moved something most people never reach. These sessions are how you build the wall around it, morning and night, until it is sealed in for good. A few quiet minutes, in my voice, and the old pattern never finds its way back in.</p>
-        <hr class="gold-rule" style="margin:10px auto 22px;">
-        <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto;"><strong style="color:var(--gold-light);">And you risk nothing.</strong> The Mirror Meditations are covered by my full 90-day money-back guarantee. Listen for three months. If they are not holding you the way I promise, tell my team and I will refund every cent, and you keep the recordings.</p>
+        <div style="max-width:620px;margin:30px auto 0;text-align:center;border:1px solid #d4af3759;border-radius:16px;background:#1e0d4080;backdrop-filter:blur(4px);padding:38px 32px;">
+          <img src="https://soulmirrorreading.com/frontend/images/upsell2/guarantee-badge.webp" alt="90-Day Guarantee Badge" onerror="this.style.display='none'" style="width:120px;height:auto;margin:0 auto 14px;display:block;filter:drop-shadow(0 10px 20px #d4af3740);" />
+          <h2 style="font-size:clamp(20px,3vw,26px);margin-bottom:14px;">The Mirror Meditations, 90-Day Guarantee</h2>
+          <p style="font-size:17px;line-height:1.7;color:var(--text-muted);max-width:540px;margin:0 auto;">Play the sessions for a real 90 days, morning and night. If the old pattern creeps back and nothing feels more sealed, reply and I refund every cent of your $47. No questionnaire, no proof. You keep all six sessions and the bonus, no matter what.</p>
+        </div>
       </div>
     </section>
 
