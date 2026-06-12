@@ -74,10 +74,9 @@ require $projectRoot . '/vendor/autoload.php';
 \App\Config\AppConfig::load($projectRoot);
 
 $oto = $_ENV['UPSELL_OTO_CHECKOUT_URL'] ?? getenv('UPSELL_OTO_CHECKOUT_URL');
-if (!is_string($oto) || trim($oto) === '') {
-    $oto = $_ENV['MEMBER_OTO_CHECKOUT_URL'] ?? getenv('MEMBER_OTO_CHECKOUT_URL');
-}
-$otoCheckoutUrl = is_string($oto) && trim($oto) !== '' ? trim($oto) : '#';
+$otoCheckoutUrl = is_string($oto) && trim($oto) !== ''
+    ? trim($oto)
+    : 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=a';
 $downsellPageUrl = 'downsell-1.php';
 
 ?>

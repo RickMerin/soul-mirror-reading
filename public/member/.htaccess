@@ -1,0 +1,11 @@
+# Member portal template (index.html) is server-rendered only — never serve it directly.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^index\.html$ index.php [L,R=301]
+</IfModule>
+
+<IfModule mod_authz_core.c>
+    <Files "index.html">
+        Require all denied
+    </Files>
+</IfModule>

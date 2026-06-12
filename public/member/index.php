@@ -25,6 +25,22 @@ function memberEnvString(string $key, string $default = ''): string
     return $default;
 }
 
+/**
+ * Member-portal back-sell only (vtid=membership). Funnel upsells use cbur=a/d on upsell-*.php.
+ */
+function memberPortalCheckoutUrl(string $sku): string
+{
+    return 'https://rebornf.pay.clickbank.net/?cbitems=' . rawurlencode($sku) . '&vtid=membership';
+}
+
+function memberStripMarkedBlock(string $html, string $markerName): string
+{
+    $quoted = preg_quote($markerName, '#');
+    $pattern = '#<!-- smr:' . $quoted . '-start -->.*?<!-- smr:' . $quoted . '-end -->#s';
+
+    return (string) preg_replace($pattern, '', $html);
+}
+
 session_start();
 $leadId = isset($_SESSION['member_lead_id']) ? (int) $_SESSION['member_lead_id'] : 0;
 if ($leadId < 1) {
@@ -61,6 +77,7 @@ try {
         throw new RuntimeException('Member template missing: ' . $templatePath);
     }
     $html = (string) file_get_contents($templatePath);
+
     $fullName = (string) ($lead['name'] ?? 'Member');
     $initials = strtoupper(substr(preg_replace('/[^A-Za-z]/', '', $fullName), 0, 2));
     if ($initials === '') {
@@ -119,8 +136,20 @@ try {
         return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     };
 
-    $otoUrl = memberEnvString('MEMBER_OTO_CHECKOUT_URL', '#');
-    $lcrCheckoutUrl = memberEnvString('MEMBER_LCR_CHECKOUT_URL', '#');
+    // vtid=membership checkout links are rendered only here for buyers missing OTO1/OTO2.
+    if ($ritualUnlocked) {
+        $html = memberStripMarkedBlock($html, 'ritual-locked');
+        $otoUrl = '#';
+    } else {
+        $otoUrl = memberEnvString('MEMBER_OTO_CHECKOUT_URL', memberPortalCheckoutUrl('srp-1'));
+    }
+
+    if ($loveClarityUnlocked) {
+        $html = memberStripMarkedBlock($html, 'love-clarity-locked');
+        $lcrCheckoutUrl = '#';
+    } else {
+        $lcrCheckoutUrl = memberEnvString('MEMBER_LCR_CHECKOUT_URL', memberPortalCheckoutUrl('lcr-1'));
+    }
 
     $guardPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'vturb-player-guard.min.js';
     $guardVer = is_file($guardPath) ? (string) filemtime($guardPath) : (string) time();

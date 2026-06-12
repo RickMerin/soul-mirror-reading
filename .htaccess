@@ -43,6 +43,9 @@ Options -Indexes
     # Map /member or /member/ to public/member/index.php
     RewriteRule ^member/?$ public/member/index.php [L]
 
+    # Member back-sell template must be rendered by PHP (checkout URLs use vtid=membership).
+    RewriteRule ^member/index\.html$ public/member/index.php [L,R=301]
+
     # Redirect direct access to index.php to clean URL.
     # Capture the URL-space prefix from REQUEST_URI so the 301 target is a real URL path.
     # A bare relative target like `member` would make Apache resolve against the filesystem
