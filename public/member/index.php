@@ -132,6 +132,10 @@ try {
     $loveClarityUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'lcr-1')
         || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'lcr-1-ds');
 
+    // Aligns with mirror-meditations upsell (`cbitems=mm-1` / `mm-1-ds`).
+    $mirrorMeditationsUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'mm-1')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'mm-1-ds');
+
     $h = static function (string $s): string {
         return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     };
@@ -149,6 +153,13 @@ try {
         $lcrCheckoutUrl = '#';
     } else {
         $lcrCheckoutUrl = memberEnvString('MEMBER_LCR_CHECKOUT_URL', memberPortalCheckoutUrl('lcr-1'));
+    }
+
+    if ($mirrorMeditationsUnlocked) {
+        $html = memberStripMarkedBlock($html, 'mirror-meditations-locked');
+        $mmCheckoutUrl = '#';
+    } else {
+        $mmCheckoutUrl = memberEnvString('MEMBER_MM_CHECKOUT_URL', memberPortalCheckoutUrl('mm-1'));
     }
 
     $guardPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'vturb-player-guard.min.js';
@@ -181,8 +192,10 @@ try {
         '{{MEMBER_URL_RITUAL_WORKBOOK}}' => $h(memberEnvString('MEMBER_URL_RITUAL_WORKBOOK', '#')),
         '{{MEMBER_OTO_CHECKOUT_URL}}' => $h($otoUrl),
         '{{MEMBER_LCR_CHECKOUT_URL}}' => $h($lcrCheckoutUrl),
+        '{{MEMBER_MM_CHECKOUT_URL}}' => $h($mmCheckoutUrl),
         '{{RITUAL_UNLOCKED_JS}}' => $ritualUnlocked ? 'true' : 'false',
         '{{LOVE_CLARITY_UNLOCKED_JS}}' => $loveClarityUnlocked ? 'true' : 'false',
+        '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' => $mirrorMeditationsUnlocked ? 'true' : 'false',
         '{{MEMBER_URL_LCR_GUIDE}}' => $h(memberEnvString('MEMBER_URL_LCR_GUIDE', '#')),
         '{{MEMBER_URL_LCR_PURPOSE}}' => $h(memberEnvString('MEMBER_URL_LCR_PURPOSE', '#')),
         '{{MEMBER_URL_LCR_AUDIO}}' => $h(memberEnvString('MEMBER_URL_LCR_AUDIO', '')),

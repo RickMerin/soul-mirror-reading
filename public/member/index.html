@@ -19,7 +19,7 @@
      ═════════════════════════════════════════════════════════ -->
 
   <!-- Server injects window.__SMR_MEMBER__ (ritual access); asset hrefs use {{MEMBER_*}} placeholders. -->
-  <script>window.__SMR_MEMBER__ = { ritualUnlocked: '{{RITUAL_UNLOCKED_JS}}' === 'true', loveClarityUnlocked: '{{LOVE_CLARITY_UNLOCKED_JS}}' === 'true', readingReady: '{{READING_READY_JS}}' === 'true' };</script>
+  <script>window.__SMR_MEMBER__ = { ritualUnlocked: '{{RITUAL_UNLOCKED_JS}}' === 'true', loveClarityUnlocked: '{{LOVE_CLARITY_UNLOCKED_JS}}' === 'true', mirrorMeditationsUnlocked: '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' === 'true', readingReady: '{{READING_READY_JS}}' === 'true' };</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1550,6 +1550,10 @@
         <span class="nav-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.7 12 20 12 20Z"/></svg></span> Love Clarity Ritual
         <span class="nav-lock" id="love-clarity-lock"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="10.5" width="13" height="9" rx="1.6"/><path d="M8.4 10.5V8a3.6 3.6 0 0 1 7.2 0v2.5"/></svg></span>
       </div>
+      <div class="nav-item" onclick="showSection('mirror-meditations', this)">
+        <span class="nav-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16 5.4 5.4 0 0 1 0-16Z"/></svg></span> Mirror Meditations
+        <span class="nav-lock" id="mirror-meditations-lock"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="10.5" width="13" height="9" rx="1.6"/><path d="M8.4 10.5V8a3.6 3.6 0 0 1 7.2 0v2.5"/></svg></span>
+      </div>
 
       <div class="nav-section-label" style="margin-top:8px;">Support</div>
       <a href="https://www.clkbank.com/" class="nav-item" target="_blank">
@@ -2215,6 +2219,133 @@
       </div>
     </div>
 
+    <!-- ══════════════════════ MIRROR MEDITATIONS (OTO3) ══════════════════════ -->
+    <div class="section" id="section-mirror-meditations">
+      <div class="content-wrap">
+
+        <div id="mirror-meditations-section-heading-full" class="section-heading" style="display:none;">
+          <p class="eyebrow">✦ Your Mirror Meditations</p>
+          <h2>The <em>Mirror Meditations</em> Library</h2>
+          <p>Seven guided meditations to keep each mirror clear, day by day. A morning and a night practice for money, love, and purpose, plus a 60-second reset for any moment the old pattern stirs.</p>
+        </div>
+        <div id="mirror-meditations-section-heading-locked" class="section-heading">
+          <p class="eyebrow">✦ Deepen The Work</p>
+          <h2>The <em>Mirror Meditations</em> Library</h2>
+          <p>Keep every mirror clear with a daily practice. Seven short guided meditations, morning and night, for the moments the old pattern tries to creep back in.</p>
+        </div>
+
+        <!-- ─── Full-access view (buyers of mm-1 / mm-1-ds) ─── -->
+        <div id="mirror-meditations-full" style="display:none;">
+
+          <!-- Money -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-icon" style="font-size:50px;line-height:1;display:block;text-align:center;">💰</span>
+              <h2>Money &nbsp;&middot;&nbsp; Morning &amp; Night</h2>
+              <span class="card-label">2 Meditations</span>
+            </div>
+            <div class="card-body">
+              <p style="margin-bottom:20px;">Open and close your day with the money mirror clear. The morning meditation sets the tone before the old pattern can fire; the night one releases whatever the day stirred up.</p>
+              <div class="audio-card" style="margin-bottom:10px;">
+                <div class="audio-card-label">Morning</div>
+                <h3>Money &middot; Morning</h3>
+                <audio class="audio-player" controls preload="none" src="https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell3/Mirror+Meditations/money-morning.mp3">Your browser does not support audio.</audio>
+              </div>
+              <div class="audio-card">
+                <div class="audio-card-label">Night</div>
+                <h3>Money &middot; Night</h3>
+                <audio class="audio-player" controls preload="none" src="https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell3/Mirror+Meditations/money-night.mp3">Your browser does not support audio.</audio>
+              </div>
+            </div>
+          </div>
+
+          <!-- Love -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-icon" style="font-size:50px;line-height:1;display:block;text-align:center;">💛</span>
+              <h2>Love &nbsp;&middot;&nbsp; Morning &amp; Night</h2>
+              <span class="card-label">2 Meditations</span>
+            </div>
+            <div class="card-body">
+              <p style="margin-bottom:20px;">Soften the guard around your heart at the start and end of the day, so love has room to move toward you and stay. Morning to open, night to release.</p>
+              <div class="audio-card" style="margin-bottom:10px;">
+                <div class="audio-card-label">Morning</div>
+                <h3>Love &middot; Morning</h3>
+                <audio class="audio-player" controls preload="none" src="https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell3/Mirror+Meditations/love-morning.mp3">Your browser does not support audio.</audio>
+              </div>
+              <div class="audio-card">
+                <div class="audio-card-label">Night</div>
+                <h3>Love &middot; Night</h3>
+                <audio class="audio-player" controls preload="none" src="https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell3/Mirror+Meditations/love-night.mp3">Your browser does not support audio.</audio>
+              </div>
+            </div>
+          </div>
+
+          <!-- Purpose -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-icon" style="font-size:50px;line-height:1;display:block;text-align:center;">🧭</span>
+              <h2>Purpose &nbsp;&middot;&nbsp; Morning &amp; Night</h2>
+              <span class="card-label">2 Meditations</span>
+            </div>
+            <div class="card-body">
+              <p style="margin-bottom:20px;">Reconnect with your direction before the day pulls you off course, then let go of the day's noise at night so your sense of purpose stays steady.</p>
+              <div class="audio-card" style="margin-bottom:10px;">
+                <div class="audio-card-label">Morning</div>
+                <h3>Purpose &middot; Morning</h3>
+                <audio class="audio-player" controls preload="none" src="https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell3/Mirror+Meditations/purpose-morning.mp3">Your browser does not support audio.</audio>
+              </div>
+              <div class="audio-card">
+                <div class="audio-card-label">Night</div>
+                <h3>Purpose &middot; Night</h3>
+                <audio class="audio-player" controls preload="none" src="https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell3/Mirror+Meditations/purpose-night.mp3">Your browser does not support audio.</audio>
+              </div>
+            </div>
+          </div>
+
+          <!-- 60-Second Reset -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-icon" style="font-size:50px;line-height:1;display:block;text-align:center;">⏱️</span>
+              <h2>The 60-Second Reset</h2>
+              <span class="card-label">Anytime</span>
+            </div>
+            <div class="card-body">
+              <p style="margin-bottom:20px;">For the moment you feel the old pattern fire: in a meeting, a conversation, right before a decision. One minute to interrupt the groove and come back to yourself.</p>
+              <div class="audio-card">
+                <div class="audio-card-label">Quick Reset</div>
+                <h3>The 60-Second Reset</h3>
+                <audio class="audio-player" controls preload="none" src="https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell3/Mirror+Meditations/sixty-second-reset.mp3">Your browser does not support audio.</audio>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ─── Locked view (basic buyers, shown by default) ─── -->
+        <!-- smr:mirror-meditations-locked-start -->
+        <div id="mirror-meditations-locked">
+          <div class="upgrade-card">
+            <div class="upgrade-body" style="padding-top:56px;">
+              <div class="upgrade-label">Included In Mirror Meditations</div>
+              <div class="upgrade-title">The Complete Mirror Meditations Library</div>
+              <p class="upgrade-desc">Seven guided meditations to keep the work alive between sessions, morning and night, across every mirror.</p>
+              <ul class="upgrade-list">
+                <li>Money &nbsp;&middot;&nbsp; Morning &amp; Night</li>
+                <li>Love &nbsp;&middot;&nbsp; Morning &amp; Night</li>
+                <li>Purpose &nbsp;&middot;&nbsp; Morning &amp; Night</li>
+                <li>The 60-Second Reset</li>
+              </ul>
+              <a href="{{MEMBER_MM_CHECKOUT_URL}}" class="btn-unlock" id="mm-upsell-btn" target="_blank" rel="noopener noreferrer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16 5.4 5.4 0 0 1 0-16Z"/></svg> Add Mirror Meditations</a>
+              <p class="upgrade-guarantee"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4 19 6v5.2c0 4.8-3.1 7.5-7 9.4-3.9-1.9-7-4.6-7-9.4V6Z"/><path d="m9 11.8 2.2 2.2L15.2 10"/></svg> 90 Day 100% Money Back Guarantee</p>
+            </div>
+          </div>
+        </div>
+        <!-- smr:mirror-meditations-locked-end -->
+
+      </div>
+    </div>
+
     <!-- FOOTER -->
     <div class="page-footer">
       <p>© 2026 Soul Mirror Reading. All rights reserved.</p>
@@ -2454,6 +2585,20 @@
         const lcrLockIcon = document.getElementById('love-clarity-lock');
         if (lcrLockIcon) {
           lcrLockIcon.style.display = 'none';
+        }
+      }
+      if (cfg.mirrorMeditationsUnlocked === true) {
+        const mmFull = document.getElementById('mirror-meditations-full');
+        const mmLocked = document.getElementById('mirror-meditations-locked');
+        if (mmFull) mmFull.style.display = 'block';
+        if (mmLocked) mmLocked.style.display = 'none';
+        const mmHFull = document.getElementById('mirror-meditations-section-heading-full');
+        const mmHLocked = document.getElementById('mirror-meditations-section-heading-locked');
+        if (mmHFull) mmHFull.style.display = 'block';
+        if (mmHLocked) mmHLocked.style.display = 'none';
+        const mmLockIcon = document.getElementById('mirror-meditations-lock');
+        if (mmLockIcon) {
+          mmLockIcon.style.display = 'none';
         }
       }
     })();
