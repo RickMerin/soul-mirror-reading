@@ -58,8 +58,8 @@
       --purple-soft: #4a2fa0;
       --text: #ece8f6;
       --text-dark: #ffffff;
-      --text-mid: #c4bce0;
-      --muted: #978fb6;
+      --text-mid: #ded9f3;
+      --muted: #b0a9cd;
       --border: rgba(212, 175, 55, 0.18);
       --border-soft: rgba(212, 175, 55, 0.1);
       --border-glow: rgba(212, 175, 55, 0.4);
@@ -77,8 +77,8 @@
       color: var(--text);
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       font-weight: 400;
-      font-size: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);
-      line-height: 1.7;
+      font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.1875rem);
+      line-height: 1.72;
       min-height: 100vh;
       display: flex;
       -webkit-font-smoothing: antialiased;
@@ -1493,6 +1493,21 @@
       stroke-linejoin: round;
     }
 
+    /* ─── READABILITY PASS: larger, higher-contrast body copy ─── */
+    .card-body,
+    .card-body > p,
+    .page-hero p,
+    .section-heading p,
+    .accordion-desc,
+    .upgrade-desc,
+    .upgrade-list li,
+    .daily-ritual p,
+    .step-desc {
+      font-size: clamp(1.05rem, 0.97rem + 0.42vw, 1.2rem) !important;
+      line-height: 1.72;
+      color: var(--text);
+    }
+
   </style>
 </head>
 
@@ -1590,15 +1605,6 @@
           <h1>Welcome Back, <em id="hero-name">{{FIRST_NAME}}</em></h1>
           <p>Your Soul Mirror Reading has been prepared with intention. Follow the three steps below to meet your Mirror
             Block, the single pattern running love, money, and purpose in your life.</p>
-        </div>
-
-        <!-- Mirror Block Reveal (personalised) -->
-        <div class="block-reveal">
-          <p class="block-reveal-label">☽ &nbsp; Your Mirror Block Type &nbsp; ☾</p>
-          <h2 class="block-reveal-title"><em id="block-name">{{MIRROR_BLOCK}}</em></h2>
-          <p class="block-reveal-desc">This is the specific pattern identified through your three cards. Your full
-            reading below unpacks exactly how it has been running beneath your decisions, and what begins to change
-            once you see it clearly.</p>
         </div>
 
         <!-- Daily Ritual -->
@@ -2358,9 +2364,12 @@
         document.getElementById('user-initials').textContent = ini || 'SM';
       }
       if (mirrorBlock) {
-        document.getElementById('user-block').textContent = mirrorBlock + ' · Member';
-        document.getElementById('block-name').textContent = mirrorBlock;
-        document.getElementById('card-reading-label').textContent = mirrorBlock + ' · 18 to 24 Pages';
+        var ub = document.getElementById('user-block');
+        if (ub) ub.textContent = mirrorBlock + ' · Member';
+        var bn = document.getElementById('block-name');
+        if (bn) bn.textContent = mirrorBlock;
+        var crl = document.getElementById('card-reading-label');
+        if (crl) crl.textContent = mirrorBlock + ' · 18 to 24 Pages';
       }
 
       const cfg = window.__SMR_MEMBER__ || {};
