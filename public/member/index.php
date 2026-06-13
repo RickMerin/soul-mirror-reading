@@ -124,6 +124,12 @@ try {
 
     $readingReady = $readingPdfUrl !== '#';
 
+    // 2h reading countdown: seconds remaining since the reading became ready (DB-side, tz-safe).
+    // 0 for existing buyers (ready > 2h ago) and the env-fallback path, so they see no countdown.
+    $readingCountdownSeconds = ($readingReady && $hasSavedPdf)
+        ? $deliveries->unlockSecondsRemaining($leadId, 7200)
+        : 0;
+
     // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.
     $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
     $ritualUnlocked = $ritualSku !== '' && $purchases->leadHasApprovedPurchaseWithItemSku($leadId, $ritualSku);
@@ -177,6 +183,7 @@ try {
         '{{MEMBER_URL_READING_DOWNLOAD}}' => $h($readingDownloadUrl),
         '{{READING_PENDING_MESSAGE}}' => $h($readingPendingMessage),
         '{{READING_READY_JS}}' => $readingReady ? 'true' : 'false',
+        '{{READING_COUNTDOWN_SECONDS}}' => (string) $readingCountdownSeconds,
         '{{READING_READY_ATTR}}' => $readingReady ? '' : 'aria-disabled="true" tabindex="-1"',
         '{{READING_PENDING_MESSAGE_JS}}' => json_encode(
             $readingPendingMessage !== '' ? $readingPendingMessage : 'Your reading is not available yet.',
