@@ -159,7 +159,7 @@ try {
         $html = memberStripMarkedBlock($html, 'mirror-meditations-locked');
         $mmCheckoutUrl = '#';
     } else {
-        $mmCheckoutUrl = memberEnvString('MEMBER_MM_CHECKOUT_URL', memberPortalCheckoutUrl('mm-1'));
+        $mmCheckoutUrl = memberEnvString('MEMBER_MM_CHECKOUT_URL', 'https://rebornf.pay.clickbank.net/?cbitems=mm-1&vtid=membership');
     }
 
     $guardPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'vturb-player-guard.min.js';
