@@ -54,10 +54,10 @@ $html = preg_replace_callback(
     $html
 ) ?? $html;
 
-$checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems={$cbItem}&template=order-3&cbfid=63301&exitoffer=exit-1";
+$checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems={$cbItem}&template=order-3&cbfid=63457&exitoffer=exit-1";
 $checkoutPhp = '<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>';
 $html = str_replace(
-    'href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=order-3&amp;cbfid=63301&amp;exitoffer=exit-1"',
+    'href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=order-3&amp;cbfid=63457&amp;exitoffer=exit-1"',
     'href="' . $checkoutPhp . '"',
     $html
 );
