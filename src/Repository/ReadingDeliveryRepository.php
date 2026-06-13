@@ -67,6 +67,28 @@ final class ReadingDeliveryRepository
         return is_array($row) ? $row : null;
     }
 
+    /**
+     * Seconds left in a release window (e.g. 7200 = 2h) measured from when the
+     * reading became ready (generated_at). Computed entirely DB-side via NOW()
+     * so it is timezone-safe. Returns 0 once the reading has been ready longer
+     * than the window (i.e. existing buyers see no countdown).
+     */
+    public function unlockSecondsRemaining(int $leadId, int $windowSeconds): int
+    {
+        $window = max(0, $windowSeconds);
+        $stmt = $this->pdo->prepare(
+            "SELECT GREATEST(0, " . $window . " - TIMESTAMPDIFF(SECOND, generated_at, NOW())) AS s
+             FROM reading_deliveries
+             WHERE lead_id = :lead_id AND status IN ('generated', 'emailed') AND generated_at IS NOT NULL
+             ORDER BY generated_at DESC
+             LIMIT 1"
+        );
+        $stmt->execute([':lead_id' => $leadId]);
+        $value = $stmt->fetchColumn();
+
+        return $value === false ? 0 : (int) $value;
+    }
+
     public function createPending(int $purchaseId, int $leadId, string $s3ObjectKey): void
     {
         $stmt = $this->pdo->prepare(

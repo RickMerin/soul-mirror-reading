@@ -19,7 +19,7 @@
      ═════════════════════════════════════════════════════════ -->
 
   <!-- Server injects window.__SMR_MEMBER__ (ritual access); asset hrefs use {{MEMBER_*}} placeholders. -->
-  <script>window.__SMR_MEMBER__ = { ritualUnlocked: '{{RITUAL_UNLOCKED_JS}}' === 'true', loveClarityUnlocked: '{{LOVE_CLARITY_UNLOCKED_JS}}' === 'true', mirrorMeditationsUnlocked: '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' === 'true', readingReady: '{{READING_READY_JS}}' === 'true' };</script>
+  <script>window.__SMR_MEMBER__ = { ritualUnlocked: '{{RITUAL_UNLOCKED_JS}}' === 'true', loveClarityUnlocked: '{{LOVE_CLARITY_UNLOCKED_JS}}' === 'true', mirrorMeditationsUnlocked: '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' === 'true', readingReady: '{{READING_READY_JS}}' === 'true', readingCountdownSeconds: parseInt('{{READING_COUNTDOWN_SECONDS}}', 10) || 0 };</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2615,13 +2615,13 @@
   </script>
   <script>
     (function () {
-      // ─── Reading 2-hour countdown gate (anticipation; client-anchored on first visit) ───
+      // ─── Reading 2-hour countdown gate (server-anchored to when the reading became ready) ───
       var card = document.getElementById('reading-card');
       var cfg = window.__SMR_MEMBER__ || {};
-      if (!card || cfg.readingReady !== true) return;   // only gate a server-ready reading
-      var DELAY = 2 * 60 * 60 * 1000, KEY = 'smr_reading_ready_at';
-      var t = parseInt(localStorage.getItem(KEY) || '0', 10);
-      if (!t || isNaN(t)) { t = Date.now() + DELAY; localStorage.setItem(KEY, String(t)); }
+      if (!card || cfg.readingReady !== true) return;        // only a server-ready reading
+      var secs = parseInt(cfg.readingCountdownSeconds || 0, 10);
+      if (!(secs > 0)) return;                                // existing buyers / ready > 2h ago: no gate
+      var t = Date.now() + secs * 1000;
       var cd = document.getElementById('reading-countdown'),
           fb = document.getElementById('member-reading-flipbook'),
           btn = document.getElementById('reading-btn'),
