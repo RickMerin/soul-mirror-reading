@@ -6,7 +6,7 @@ $jsPath = __DIR__ . "/../assets/sales-v2.min.js";
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-wtsl&template=order-3&cbfid=63457&exitoffer=exit-1";
 ?>
-<!-- wealth-v2 sales.php update 2026-06-13: Gilded Spread card showcase, de-duplicated sales letter, removed value-stack + duplicate combo, tightened Diagnosis copy, re-angled CTAs (Clear My Wealth Block / Get My Full Reading). Test cohort start 2026-06-13. -->
+<!-- wealth-v2 sales.php update 2026-06-13: Gilded Spread card showcase, de-duplicated sales letter, removed value-stack + duplicate combo, tightened Diagnosis copy, re-angled CTAs (Clear My Wealth Block / Get My Full Reading), card section shown on load (entrance reveal removed). Test cohort start 2026-06-13. -->
 <!DOCTYPE html>
 <html lang="en" data-funnel-base="wealth-v2/">
 
@@ -520,7 +520,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <div class="gs-spread">
 
-      <div class="gs-frame gs-frame-love js-reveal" data-card-slot="love">
+      <div class="gs-frame gs-frame-love" data-card-slot="love">
         <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-love.png" alt="Love Mirror"></div>
         <div class="gs-kicker">Mirror One</div>
         <div class="gs-stage">
@@ -537,7 +537,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         <p>Where you pull back right before connection becomes real. The pattern that keeps love feeling just slightly out of reach.</p>
       </div>
 
-      <div class="gs-frame gs-frame-life js-reveal" data-card-slot="life">
+      <div class="gs-frame gs-frame-life" data-card-slot="life">
         <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-life.png" alt="Life Mirror"></div>
         <div class="gs-kicker">Mirror Two</div>
         <div class="gs-stage">
@@ -554,7 +554,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         <p>Where your energy leaks and your choices keep looping. The place you feel most stuck, showing you the exact map you have been following.</p>
       </div>
 
-      <div class="gs-frame gs-frame-wealth js-reveal" data-card-slot="wealth">
+      <div class="gs-frame gs-frame-wealth" data-card-slot="wealth">
         <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-wealth.png" alt="Wealth Mirror"></div>
         <div class="gs-kicker">Mirror Three</div>
         <div class="gs-stage">
@@ -573,13 +573,13 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     </div>
 
-    <div class="gs-connector js-reveal" aria-hidden="true">
+    <div class="gs-connector" aria-hidden="true">
       <span class="gs-connector-line"></span>
       <span class="gs-connector-label">Three Cards, One Root</span>
       <span class="gs-connector-arrow">&#9662;</span>
     </div>
 
-    <div class="gs-featured js-reveal">
+    <div class="gs-featured">
       <div class="gs-featured-emblem"><img src="https://soulmirrorreading.com/cards/mirror-block.png" alt="Wealth Block"></div>
       <div class="gs-featured-body">
         <h4>The Hidden Layer.<br>This Is Your Wealth Block.</h4>
