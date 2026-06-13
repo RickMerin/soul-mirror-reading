@@ -6,7 +6,7 @@ $jsPath = __DIR__ . "/../assets/sales-v2.min.js";
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 $guardPath = __DIR__ . '/../assets/vturb-player-guard.min.js';
 $guardVer = is_file($guardPath) ? filemtime($guardPath) : time();
-$checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1-l&template=order-3&cbfid=63301&exitoffer=exit-1';
+$checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1-l&template=order-3&cbfid=63457&exitoffer=exit-1';
 $metaDescription = 'See the one core belief, your Mirror Block, behind your Love, Life, and Wealth cards. Deep card work, clearing practice, and 90-day prompts delivered with your Soul Mirror Reading.';
 $pageTitle = 'Your Soul Mirror Reading. The Love Block, Decoded From Your Cards';
 ?>
