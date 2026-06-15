@@ -320,23 +320,6 @@
     </section>
 
     <!-- ═══════════════════════════════════════════
-         PAIN , you already know this is you
-         ═══════════════════════════════════════════ -->
-    <section class="section">
-      <div class="wrap">
-        <h2><span class="firstname">Friend</span>, You Work Harder Every Year.<br><em>And Your Income Keeps Landing on the Same Number.</em></h2>
-
-        <div class="vip-box" style="text-align:left;">
-          <ul class="vip-list" style="max-width:560px;">
-            <li><span>You know your number. The figure your income quietly returns to, year after year. You have worked, learned, and pushed past it, and still you land right back on it. <em>That ceiling is not bad luck. It is your Wealth Block, holding the line.</em></span></li>
-            <li><span>Money comes close. A raise, a big client, a yes you can almost taste. Then something unseen pulls it back and the door closes again. You have felt that flinch the moment money gets real, and quietly braced for it to leave.</span></li>
-            <li><span>You undercharge. You round the quote down before you say it out loud, you talk yourself out of asking for more, you call settling for less being realistic. <strong>You are not broken. You have been working on the wrong layer of your wealth.</strong></span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
          TESTIMONIALS , people who almost said no twice
          ═══════════════════════════════════════════ -->
     <section class="section" style="padding-top:0;">
