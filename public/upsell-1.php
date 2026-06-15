@@ -234,14 +234,15 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
     <!-- AGITATION -->
     <section class="section">
       <div class="wrap">
-        <h2>You Have Named This Pattern Before.<br /><em>It Still Decides What You Earn.</em></h2>
+        <h2>Picture the Next Time Money Comes to You.<br /><em>This Time, It Stays.</em></h2>
         <div class="body-copy">
-          <p>Here is the part almost no one says out loud.</p>
-          <p>You have read the books. Done the journaling. Sat through the courses, the therapy, the manifesting. At some point you saw the money pattern clearly and told yourself, <strong>"Now that I see it, I can change it."</strong></p>
-          <p>And then it came back. The opportunity appeared, and something in you hesitated. The rate was yours to raise, and you left it where it was. The money came in, and somehow it did not stay. <strong>Same ceiling. Different month.</strong></p>
+          <p>The next time you quote your rate, you say the higher number first. The figure that used to make your throat tighten. No softening it. No watching their face. No quiet voice talking you back down before they have even answered. The number leaves your mouth, and you let it stand. <strong>You set the number, and the number holds.</strong></p>
+          <p>When the opportunity comes, you reach for it in the same breath you notice it. Not next week, once you have thought about it. Not once you feel ready. <strong>You move while it is still warm</strong>, because the part of you that used to freeze and call it caution has gone quiet.</p>
+          <p>And the money that arrives actually settles. It does not get spent before it lands, or leak out through some expense that appears the moment your balance does. No quiet urge to give it away or spend it back down to the level you are used to. It sits there. It builds. <strong>For the first time, more comes in than goes back out, and it keeps.</strong></p>
+          <p>None of this is a louder version of trying harder, or a personality you fake your way into. It is what is left once the pattern that kept setting your ceiling stops running underneath your decisions. The flinch was never about your worth or your skill. It was a quiet instruction you were obeying without ever agreeing to it.</p>
         </div>
         <div class="body-copy">
-          <p>That is the gap between a reading that names your Wealth Block and the work that actually dissolves it. <strong>The Soul Ritual Practice is built to close that gap, at the layer where the ceiling was set.</strong></p>
+          <p>Your reading already did the naming. It told you exactly which Wealth Block has been setting the ceiling, and naming it is what makes it possible to clear it. <strong>The Soul Ritual Practice is the work that clears it</strong>: three written rituals that go to the layer where the ceiling was set and dissolve it there, so the woman in those paragraphs above is simply who you become.</p>
         </div>
       </div>
     </section>
