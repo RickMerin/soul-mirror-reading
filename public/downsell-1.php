@@ -309,7 +309,7 @@
         </div>
         <p class="price-note">One payment &middot; Instant download &middot; No subscription</p>
 
-        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&amp;cbur=a" class="cta" style="margin-top:22px;">Yes, Upgrade My Order Now &rarr;</a>
+        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&amp;cbur=a" class="cta" style="margin-top:22px;">Yes. Upgrade My Order Now!</a>
         <div class="cta-trust-row" style="margin-top:16px;">
           <span>&#128274; Secure Checkout</span>
           <span>&#9889; Delivered Immediately</span>
@@ -353,7 +353,7 @@
             </div>
           </div>
           <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-          <p class="testi-body">"I almost said no at $97. When I saw the price drop I almost said no again, because I assumed it had to be a lesser version. It is not. It is the exact same practice. What it named was the reason I had not raised my rates in six years, I kept deciding I was not ready. I worked through it over a weekend, then sent a renewal at a higher number for the first time. The client said yes the same day. That raise has stayed in every invoice since."</p>
+          <p class="testi-body">"I did Ritual One, the Root Witnessing, and finally saw the exact moment my Wealth Block was set. A client who had stalled on paying me for months sent the full $3,200 the week after, no chasing from me. What surprised me more was that it stayed. Normally a sum like that finds a reason to leave by the end of the month. This time it just sat there and was mine."</p>
         </div>
 
         <div class="testi-card">
@@ -365,7 +365,7 @@
             </div>
           </div>
           <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-          <p class="testi-body">"Full disclosure, I was the definition of skeptical. I clicked 'no thanks' on the first offer. Something made me reconsider when I saw this page. It named the exact thing I do every time money gets close, I quietly talk the number down before anyone can say no. On the very next deal I held my price instead of discounting it like always. That one quote was higher than my old monthly take. I do not fully know how to explain it. I just stopped flinching at my own number."</p>
+          <p class="testi-body">"Full disclosure, I clicked away on the first offer and almost did again here. What pulled me back was Ritual Two, the Pattern Interruption, which caught the exact thing I do the second a quote leaves my hands: I talk my own number down before anyone else can. My usual rate was $1,800. I sent the next proposal at $2,600, did not flinch, and they paid it. That was the Wealth Block letting go in real time, and I have not gone back down since."</p>
         </div>
 
         <div class="testi-card">
@@ -377,7 +377,7 @@
             </div>
           </div>
           <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-          <p class="testi-body">"I nearly didn't take it. I already have too many courses sitting unfinished. This is the only one I finished in a single weekend, because it was not a course, it was a practice. It showed me why every good month used to quietly undo itself, I would earn well, then sabotage the next one back down to my usual figure. Three months in, the good month did not collapse. It held. That has never happened before."</p>
+          <p class="testi-body">"For years every good month quietly undid itself. I would earn well, then pull the next one back down to my usual figure without noticing. Ritual Three, the New Imprint, was where I wrote a higher ceiling into my body so more money felt safe to keep. Four months on I have held just over 4,000 euros that in the old pattern would have leaked away by now. Same income I have always had. It just stays now."</p>
         </div>
 
         <p style="text-align:center; max-width:560px; margin:22px auto 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:rgba(255,255,255,.45);">Individual results vary and are not typical. The Soul Ritual Practice is for insight and self-reflection. It is not financial advice.</p>
@@ -494,7 +494,7 @@
           <div class="countdown-sublabel">When this page closes, the $67 offer closes with it.</div>
         </div>
 
-        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&amp;cbur=a" class="cta" style="margin-top:28px;">Yes, Upgrade My Order Now &rarr;</a>
+        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds&amp;cbur=a" class="cta" style="margin-top:28px;">Yes. Upgrade My Order Now!</a>
         <div class="cta-trust-row" style="margin-top:16px;">
           <span>&#128274; Secure Checkout</span>
           <span>&#9889; Delivered Immediately</span>
