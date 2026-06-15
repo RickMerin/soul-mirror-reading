@@ -327,6 +327,25 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
       }
     });
   </script>
+
+  <?php if (($funnelBase ?? '') === 'wealth-v2/'): ?>
+  <!-- wealth-v2 only: hide the page header (eyebrow + headline + subhead) once the visitor picks their first card -->
+  <script>
+    (function () {
+      var rt = document.getElementById('cardsRemainingText');
+      var hdr = document.querySelector('.site-header');
+      if (!rt || !hdr) return;
+      var obs = new MutationObserver(function () {
+        var m = (rt.textContent || '').match(/(\d+)\s+more/);
+        if (m && parseInt(m[1], 10) < 3) {        // at least one card chosen
+          hdr.style.display = 'none';
+          obs.disconnect();
+        }
+      });
+      obs.observe(rt, { childList: true, characterData: true, subtree: true });
+    })();
+  </script>
+  <?php endif; ?>
 </body>
 
 </html>
