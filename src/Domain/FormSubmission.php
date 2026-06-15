@@ -101,6 +101,10 @@ final class FormSubmission
 
     private static function validatedDob(string $value): ?string
     {
+        if ($value === '') {
+            return ''; // DOB is optional; an empty value is accepted (no sun sign is computed).
+        }
+
         if (!preg_match('/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(\d{4})$/', $value, $matches)) {
             return null;
         }

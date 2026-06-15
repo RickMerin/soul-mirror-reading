@@ -282,25 +282,6 @@ if (pick) {
   if (kitCfg) injectKitEmbedScript(kitCfg);
 }
 
-(function () {
-  const daySelect = document.getElementById("inputDobDay");
-  const yearSelect = document.getElementById("inputDobYear");
-  if (!daySelect || !yearSelect) return;
-  for (let d = 1; d <= 31; d++) {
-    const o = document.createElement("option");
-    o.value = String(d).padStart(2, "0");
-    o.textContent = String(d);
-    daySelect.appendChild(o);
-  }
-  const currentYear = new Date().getFullYear();
-  for (let y = currentYear; y >= currentYear - 100; y--) {
-    const o = document.createElement("option");
-    o.value = String(y);
-    o.textContent = String(y);
-    yearSelect.appendChild(o);
-  }
-})();
-
 const readingForm = document.getElementById("readingForm");
 const submitBtn = document.getElementById("submitBtn");
 const errorMsg = document.getElementById("errorMsg");
@@ -309,12 +290,8 @@ if (readingForm && submitBtn && errorMsg && pick) {
   const formControls = {
     name: document.getElementById("inputName"),
     email: document.getElementById("inputEmail"),
-    month: document.getElementById("inputDobMonth"),
-    day: document.getElementById("inputDobDay"),
-    year: document.getElementById("inputDobYear"),
     gender: document.getElementById("inputGender"),
   };
-  const dobRow = document.querySelector(".dob-row");
 
   /**
    * @param {HTMLElement | null} element
@@ -328,43 +305,25 @@ if (readingForm && submitBtn && errorMsg && pick) {
   }
 
   /**
-   * @param {boolean} hasError
-   */
-  function toggleDobError(hasError) {
-    const dobGroup = formControls.month?.closest(".form-group");
-    if (dobGroup) dobGroup.classList.toggle("field-error", hasError);
-    if (dobRow) dobRow.classList.toggle("field-error", hasError);
-    [formControls.month, formControls.day, formControls.year].forEach((field) => {
-      field?.setAttribute("aria-invalid", hasError ? "true" : "false");
-    });
-  }
-
-  /**
    * @param {boolean} [showErrors]
    */
   function validateForm(showErrors = false) {
     const name = formControls.name?.value.trim() ?? "";
     const email = formControls.email?.value.trim() ?? "";
-    const dobMonth = formControls.month?.value ?? "";
-    const dobDay = formControls.day?.value ?? "";
-    const dobYear = formControls.year?.value ?? "";
     const gender = formControls.gender?.value.trim() ?? "";
 
     const invalidName = name.length < 2 || name.length > 120;
     const invalidEmail = !EMAIL_RE.test(email) || email.length > 254;
-    const invalidDob = !(dobMonth && dobDay && dobYear);
     const invalidGender = !(gender === "Female" || gender === "Male");
-    const hasErrors = invalidName || invalidEmail || invalidDob || invalidGender;
+    const hasErrors = invalidName || invalidEmail || invalidGender;
 
     if (showErrors) {
       toggleFieldError(formControls.name, invalidName);
       toggleFieldError(formControls.email, invalidEmail);
-      toggleDobError(invalidDob);
       toggleFieldError(formControls.gender, invalidGender);
     } else {
       toggleFieldError(formControls.name, false);
       toggleFieldError(formControls.email, false);
-      toggleDobError(false);
       toggleFieldError(formControls.gender, false);
     }
 
@@ -385,7 +344,6 @@ if (readingForm && submitBtn && errorMsg && pick) {
       payload: {
         name,
         email,
-        dob: `${dobMonth}/${dobDay}/${dobYear}`,
         gender,
       },
     };
@@ -394,9 +352,6 @@ if (readingForm && submitBtn && errorMsg && pick) {
   [
     formControls.name,
     formControls.email,
-    formControls.month,
-    formControls.day,
-    formControls.year,
     formControls.gender,
   ].forEach((field) => {
     field?.addEventListener("input", () => validateForm(false));
@@ -411,7 +366,7 @@ if (readingForm && submitBtn && errorMsg && pick) {
     const validation = validateForm(true);
     if (!validation.isValid) return;
 
-    const { name, email, dob, gender } = validation.payload;
+    const { name, email, gender } = validation.payload;
 
     submitBtn.disabled = true;
     submitBtn.classList.remove("is-invalid");
@@ -428,7 +383,6 @@ if (readingForm && submitBtn && errorMsg && pick) {
         body: JSON.stringify({
           name,
           email,
-          dob,
           gender,
           card1: pick[0].id,
           card2: pick[1].id,
