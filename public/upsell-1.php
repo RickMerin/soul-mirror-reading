@@ -81,6 +81,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
     .cta-decline{display:block;width:100%;margin-top:16px;background:none;border:none;cursor:pointer;text-align:center;color:#cdc6e0;opacity:.7;font-family:'Inter',sans-serif;font-size:14px;text-decoration:underline;text-underline-offset:3px}
     .cta-decline:hover{opacity:1}
     .cta-fine{text-align:center;color:#bdb4d6;font-size:13px;margin-top:12px;line-height:1.6}
+    .cta-instant{display:block;max-width:520px;margin:0 auto 12px;color:var(--gold-light);font-family:'Inter',sans-serif;font-size:14.5px;font-weight:700;line-height:1.55;text-align:center}
 
     /* GLASS CARD (matches .card-mirror) */
     .card{backdrop-filter:blur(4px);background:linear-gradient(#2d1b6980,#1e0d40d9);border:1px solid #d4af3759;border-radius:14px;padding:26px 24px}
@@ -204,7 +205,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
 
   <!-- NOTICE BAR -->
   <div class="topnotice">
-    <strong>Hold On, This Is Just for You</strong><span class="dot">&middot;</span><strong>A Members-Only Upgrade Just Unlocked, $100 Off</strong><span class="dot">&middot;</span><strong>Before Your Reading Lands</strong>
+    <strong>Hold On, This Is Just for You</strong><span class="dot">&middot;</span><strong>A Members-Only Upgrade Just Unlocked, $352 Off</strong><span class="dot">&middot;</span><strong>Before Your Reading Lands</strong>
   </div>
 
   <!-- COSMIC BACKGROUND -->
@@ -281,15 +282,16 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
             <li><span class="vs-name">Yours to keep for life. Instant download.</span></li>
           </ul>
           <div class="pricing" style="margin:0;">
-            <p style="color:#cfc7e6;font-size:14px;margin-bottom:4px;">$449 value &middot; <span class="founding-blink">$100 founding discount applied</span></p>
+            <p style="color:#cfc7e6;font-size:14px;margin-bottom:4px;">$449 total value &middot; <span class="founding-blink">you save $352 today</span></p>
             <div class="price-row" style="margin:4px 0 8px;">
-              <span class="price-old" style="font-size:20px;">$197</span>
+              <span class="price-old" style="font-size:20px;">$449</span>
               <span class="price-new" style="font-size:46px;"><span class="cur">$</span>97</span>
             </div>
-            <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Founding member rate, this page only. One payment, no subscription.</p>
+            <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Founding rate, this page only. That is $100 below the $197 public launch price. One payment, no subscription.</p>
           </div>
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Upgrade My Order Now</a>
-          <p class="cta-fine">This adds to the order you just placed. No card to re-enter. Backed by a 90-day money-back guarantee.</p>
+          <p class="cta-instant">&#10022; One tap adds it to the order you just placed. No card to re-enter, no second checkout.</p>
+          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Add It to My Order &middot; One Tap</a>
+          <p class="cta-fine">Backed by a 90-day money-back guarantee.</p>
           <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
         </div>
       </div>
@@ -372,22 +374,23 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
           </ul>
 
           <div class="coupon">
-            <span class="coupon__label">✦ &nbsp; Founding Member Coupon Applied &nbsp; ✦</span>
-            <span class="coupon__amount">- $100.00 OFF</span>
-            <span class="coupon__code">Code <span>FOUNDING100</span></span>
+            <span class="coupon__label">✦ &nbsp; Founding Member Saving Applied &nbsp; ✦</span>
+            <span class="coupon__amount">$352 OFF</span>
+            <span class="coupon__code">$449 value <span>$97 today</span></span>
           </div>
 
           <div class="pricing">
             <span class="price-label">Founding Member Price Today</span>
             <div class="price-row">
-              <span class="price-old">$197</span>
+              <span class="price-old">$449</span>
               <span class="price-new"><span class="cur">$</span>97</span>
             </div>
-            <p class="price-note">Worked through with me one-to-one, this sequence runs $197, which is the public price the moment this launch ends. The only reason it is $97 today is that founding members who take it early help me prove it works at scale. You are paying the founding rate for being early, not buying a lesser version. It is the identical practice, complete. One payment, no subscription.</p>
+            <p class="price-note">Sold separately, these total $449. Worked through with me one-to-one, the sequence runs $197, which is the public price the moment this launch ends. Your founding rate today is $97: that is $352 below the full value, and $100 below the public price. The only reason it is this low is that founding members who take it early help me prove it works at scale. You are paying the founding rate for being early, not buying a lesser version. It is the identical practice, complete. One payment, no subscription.</p>
           </div>
 
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Upgrade My Order Now</a>
-          <p class="cta-fine">Charged to the order you just placed. No card to re-enter. Backed by the 90-day guarantee below.</p>
+          <p class="cta-instant">&#10022; One tap adds it to the order you just placed. No card to re-enter, no second checkout.</p>
+          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Add It to My Order &middot; One Tap</a>
+          <p class="cta-fine">Backed by the 90-day guarantee below.</p>
           <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
         </div>
       </div>
@@ -399,7 +402,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
         <div class="guarantee">
           <img src="frontend/images/ups-downs/img-bb865578d0.png" alt="90-Day Guarantee Badge" />
           <h2 style="font-size:clamp(20px,3vw,26px);margin-bottom:14px;">The Soul Ritual Practice, 90-Day Guarantee</h2>
-          <p>Open the three rituals, follow them in order, and give them a real 90 days. If at any point in those 90 days your money ceiling has not budged, reply and I refund every cent of your $97. No questionnaire, no proof, no explaining yourself; your word is enough. You keep the rituals, the workbook, and all three bonuses no matter what. The only way you lose here is by never opening them.</p>
+          <p>Open the three rituals, follow them in order, and give them a real 90 days. If at any point in those 90 days your money ceiling has not budged, or you simply feel it was not for you, reply and I refund every cent of your $97. No questionnaire, no proof, no explaining yourself; your word is enough. You keep the rituals, the workbook, and all three bonuses no matter what. The only way you lose here is by never opening them.</p>
         </div>
       </div>
     </section>
@@ -409,7 +412,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
       <div class="wrap" style="max-width:620px;">
         <h2>You Have the Diagnosis.<br /><em>Take the Treatment With You.</em></h2>
         <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 30px;">The reading names the ceiling on your money. The Soul Ritual Practice is how you lift it. Add it now and all four block-type protocols sit waiting, so the instant your reading names yours, the exact clearing work is already in your hands. These are the two halves of one piece of work, and you have come too far to keep only half.</p>
-        <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Upgrade My Order Now</a>
+        <p class="cta-instant">&#10022; One tap adds it to the order you just placed. No card to re-enter, no second checkout.</p>
+        <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Add It to My Order &middot; One Tap</a>
         <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
         <p class="cta-fine">Your reading arrives within 24 hours either way.</p>
       </div>
