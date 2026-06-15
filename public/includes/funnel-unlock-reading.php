@@ -84,6 +84,17 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
+
+  <!-- Opt-in focus: dim the page background so the form pops + smaller recap cards (all angles) -->
+  <style id="optin-focus">
+    .dream-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 24%,rgba(46,27,105,.55),rgba(10,7,22,.86) 78%);}
+    .unlock-main .unlock-panel{background:rgba(255,253,249,.975);border:1px solid rgba(196,160,82,.5);border-radius:18px;box-shadow:0 26px 70px rgba(0,0,0,.55);padding:26px 20px 22px;max-width:430px;margin:26px auto;}
+    .chosen-recap{gap:8px;margin-bottom:22px;}
+    .recap-card img{max-width:62px;height:85px;}
+    .recap-card{flex:46px;min-width:40px;max-width:66px;padding:6px 5px 5px;}
+    .recap-label{font-size:9px;letter-spacing:.1em;}
+    .recap-name{font-size:11px;}
+  </style>
 </head>
 
 <body>
@@ -125,32 +136,6 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
             <label for="inputEmail">Your Email</label>
             <input type="email" id="inputEmail" placeholder="Enter Your Email Address..." required
               autocomplete="email" />
-          </div>
-          <div class="form-group">
-            <label>Date of Birth</label>
-            <div class="dob-row">
-              <select id="inputDobMonth" required>
-                <option value="" disabled selected>Month</option>
-                <option value="01">January</option>
-                <option value="02">February</option>
-                <option value="03">March</option>
-                <option value="04">April</option>
-                <option value="05">May</option>
-                <option value="06">June</option>
-                <option value="07">July</option>
-                <option value="08">August</option>
-                <option value="09">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-              </select>
-              <select id="inputDobDay" required>
-                <option value="" disabled selected>Day</option>
-              </select>
-              <select id="inputDobYear" required>
-                <option value="" disabled selected>Year</option>
-              </select>
-            </div>
           </div>
           <div class="form-group">
             <label for="inputGender">Gender</label>
