@@ -81,7 +81,6 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
     .cta-decline{display:block;width:100%;margin-top:16px;background:none;border:none;cursor:pointer;text-align:center;color:#cdc6e0;opacity:.7;font-family:'Inter',sans-serif;font-size:14px;text-decoration:underline;text-underline-offset:3px}
     .cta-decline:hover{opacity:1}
     .cta-fine{text-align:center;color:#bdb4d6;font-size:13px;margin-top:12px;line-height:1.6}
-    .cta-instant{display:block;max-width:520px;margin:0 auto 12px;color:var(--gold-light);font-family:'Inter',sans-serif;font-size:14.5px;font-weight:700;line-height:1.55;text-align:center}
 
     /* GLASS CARD (matches .card-mirror) */
     .card{backdrop-filter:blur(4px);background:linear-gradient(#2d1b6980,#1e0d40d9);border:1px solid #d4af3759;border-radius:14px;padding:26px 24px}
@@ -288,25 +287,9 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
             </div>
             <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Founding rate, this page only. That is $100 below the $197 public launch price. One payment, no subscription.</p>
           </div>
-          <p class="cta-instant">&#10022; One tap adds it to the order you just placed. No card to re-enter, no second checkout.</p>
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Add It to My Order &middot; One Tap</a>
+          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes. Upgrade My Order Now!</a>
           <p class="cta-fine">Backed by a 90-day money-back guarantee.</p>
           <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- LUNA -->
-    <section class="section">
-      <div class="wrap">
-        <h2>I Carried This Ceiling <em>for Years Before I Cleared It</em></h2>
-        <div class="card luna-card">
-          <div class="body-copy">
-            <p>Eleven years ago I was exactly where you are. I had done the reading. I understood my money pattern perfectly. I could trace it, name it, explain it. <strong>And I watched it cap me anyway, year after year.</strong></p>
-            <p>What finally moved it was not another reading. It was meeting the pattern at the layer where it was set, not explained, not budgeted around, but <em style="color:var(--gold-light);">witnessed and rewritten</em> in the body. I spent the years after distilling that into a written protocol anyone could follow alone, specific to each Wealth Block type, no practitioner and no scheduling required.</p>
-            <p>I have now walked thousands of people through this. <strong>The ceiling that would not move through understanding moved when they did the right work, at the right layer, in the right order.</strong> Your reading names your block. This is how I walk you through clearing it, the same sequence I would use if you were sitting across from me.</p>
-          </div>
-          <p class="luna-sig">With love and with clarity,<br /><strong style="color:#fff;font-style:normal;">Luna Ross</strong> &middot; 11 years, 4,800+ readings</p>
         </div>
       </div>
     </section>
@@ -314,8 +297,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
     <!-- TESTIMONIALS -->
     <section class="section">
       <div class="wrap">
-        <span class="eyebrow">✦ From People Who Almost Clicked Away ✦</span>
-        <h2>They Nearly Said No.<br /><em>Then the Ceiling Moved.</em></h2>
+        <span class="eyebrow">✦ Real Members, Real Shifts ✦</span>
+        <h2>They Did the Quiet Work.<br /><em>Then the Money Followed.</em></h2>
         <div style="margin-top:26px;">
           <div class="testi">
             <div class="testi__row">
@@ -323,7 +306,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
               <div><div class="testi__name">Margaret V.</div><div class="testi__meta">52 &middot; Edinburgh, UK</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"I almost closed this page. I told myself I had done enough inner work to last a lifetime. Something made me stay. Four months on, I finally raised my rates after years of stalling, and the client said yes without blinking. The number I could never get past is not the ceiling anymore."</p>
+            <p class="testi__body">"Money has come in before and somehow always found a way back out again. About six weeks into the New Imprint work, a payment I had given up chasing landed, &pound;2,400, and for once I did not flinch or rush to spend it. Clearing the Wealth Block is the only thing I did differently, and this time my body actually let me keep it instead of quietly handing it back."</p>
           </div>
           <div class="testi">
             <div class="testi__row">
@@ -331,7 +314,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
               <div><div class="testi__name">David R.</div><div class="testi__meta">49 &middot; Manchester, UK</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"I will be honest, I bought it more out of curiosity than belief. I have done the courses. What I did not expect was Ritual Two catching me in the exact half-second I always talk myself down on price. I held my number on a proposal last month that I would have slashed a year ago. It stuck. It paid for itself the first time I used it."</p>
+            <p class="testi__body">"For years I would write a fair number on a quote, then panic and knock it down before I hit send. The Pattern Interruption caught me in that exact half-second on a proposal last month, the instant the block kicked in. I left it at &pound;3,200, where I would normally have slashed it to &pound;2,000, and the client said yes and paid it in full. I have used that same catch on three quotes since."</p>
           </div>
           <div class="testi">
             <div class="testi__row">
@@ -339,7 +322,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
               <div><div class="testi__name">Sophia K.</div><div class="testi__meta">47 &middot; Melbourne, AU</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"I actually did click away. Then I came back the next day and bought it. The Root Witnessing showed me where my whole 'money never stays' story started, and I cried, not from pain, from relief. For the first time in my life a good month did not quietly undo itself the next."</p>
+            <p class="testi__body">"My block was never about earning, it was that money never stayed. The Root Witnessing took me back to the exact moment that 'money never stays' story got set, and once I could see it I stopped feeding it. Three months on, I have $4,100 that has actually held in the account, month after month, instead of vanishing the way it always used to."</p>
           </div>
         </div>
         <p style="text-align:center;max-width:620px;margin:18px auto 0;font-size:13px;color:#9a93b3;font-style:italic;">Individual results vary and are not typical. The Soul Ritual Practice is a self-guided practice, not financial advice.</p>
@@ -387,8 +370,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
             <p class="price-note">Sold separately, these total $449. Worked through with me one-to-one, the sequence runs $197, which is the public price the moment this launch ends. Your founding rate today is $97: that is $352 below the full value, and $100 below the public price. The only reason it is this low is that founding members who take it early help me prove it works at scale. You are paying the founding rate for being early, not buying a lesser version. It is the identical practice, complete. One payment, no subscription.</p>
           </div>
 
-          <p class="cta-instant">&#10022; One tap adds it to the order you just placed. No card to re-enter, no second checkout.</p>
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Add It to My Order &middot; One Tap</a>
+          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes. Upgrade My Order Now!</a>
           <p class="cta-fine">Backed by the 90-day guarantee below.</p>
           <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
         </div>
@@ -411,8 +393,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d';
       <div class="wrap" style="max-width:620px;">
         <h2>You Have the Diagnosis.<br /><em>Take the Treatment With You.</em></h2>
         <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 30px;">The reading names the ceiling on your money. The Soul Ritual Practice is how you lift it. Add it now and all four block-type protocols sit waiting, so the instant your reading names yours, the exact clearing work is already in your hands. These are the two halves of one piece of work, and you have come too far to keep only half.</p>
-        <p class="cta-instant">&#10022; One tap adds it to the order you just placed. No card to re-enter, no second checkout.</p>
-        <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Add It to My Order &middot; One Tap</a>
+        <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes. Upgrade My Order Now!</a>
         <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
         <p class="cta-fine">Your reading arrives within 24 hours either way.</p>
       </div>
