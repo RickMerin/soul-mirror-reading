@@ -1,7 +1,7 @@
 <?php
 /**
  * Soul Mirror Reading , Downsell 1 (REDESIGN, wealth-v2 design system)
- * Offer:    Soul Ritual Practice , $97 declined -> $67 one-time downsell
+ * Offer:    Soul Ritual Practice , $97 declined -> $47 one-time downsell
  * ClickBank: item srp-1-ds-v2   accept cbur=a   decline cbur=d
  *
  * Deploy as: /downsell-1.php  (site root , root-relative asset paths assume root)
@@ -232,7 +232,7 @@
 
   <!-- ── TOP NOTICE BAR (downsell red) ── -->
   <div class="topnotice" style="background:#9b1c1c;border-bottom:1px solid #c0392b;">
-    <strong>WAIT</strong><span class="notice-dot">&middot;</span><strong>I Just Took <span style="color:#E8C97A;">$30 Off</span> the Soul Ritual Practice</strong><span class="notice-dot">&middot;</span><strong>This Lower Price Won't Be Shown Again</strong>
+    <strong>WAIT</strong><span class="notice-dot">&middot;</span><strong>I Just Took <span style="color:#E8C97A;">$50 Off</span> the Soul Ritual Practice</strong><span class="notice-dot">&middot;</span><strong>This Lower Price Won't Be Shown Again</strong>
   </div>
 
     <!-- ═══════════════════════════════════════════
@@ -242,7 +242,7 @@
       <div class="wrap">
         <h1 class="vsl-headline"><span class="firstname">Friend</span>, I'm Not Letting You Leave<br><em>Without the Second Half.</em></h1>
 
-        <p class="ds-lede">$97 wasn't right for you today, and that's okay. But the practice your reading named is what loosens the ceiling on your money, the figure your income keeps returning to no matter how hard you work. Same complete practice, <strong>$67, one time only.</strong></p>
+        <p class="ds-lede">$97 wasn't right for you today, and that's okay. But the practice your reading named is what loosens the ceiling on your money, the figure your income keeps returning to no matter how hard you work. Same complete practice, <strong>$47, one time only.</strong></p>
       </div>
     </section>
 
@@ -264,7 +264,7 @@
           <div class="part-col part-col--next">
             <span class="part-col__num">Part Two</span>
             <p class="part-col__title">The Soul Ritual Practice</p>
-            <p class="part-col__price">Now <strong>$67</strong> &middot; one time only</p>
+            <p class="part-col__price">Now <strong>$47</strong> &middot; one time only</p>
           </div>
         </div>
       </div>
@@ -289,13 +289,13 @@
     <section style="padding:8px 24px 16px;">
       <div class="pricing-block" id="early-offer">
         <span class="section-eyebrow" style="margin-bottom:14px;">One-Time Offer &middot; Disappears When You Leave</span>
-        <h2>Complete Your Journey<br><em>for $67</em></h2>
+        <h2>Complete Your Journey<br><em>for $47</em></h2>
         <p class="price-note" style="margin:6px auto 0; max-width:460px;">The fast-track ritual that clears the ceiling on your money.</p>
 
         <div class="ds-coupon" style="margin-top:18px;">
           <span class="ds-coupon__label">&#10022; &nbsp; One-Time Discount Applied &nbsp; &#10022;</span>
-          <span class="ds-coupon__amount">&minus; $30.00 OFF</span>
-          <span class="ds-coupon__code">Code <span>EXTRA30</span></span>
+          <span class="ds-coupon__amount">&minus; $50.00 OFF</span>
+          <span class="ds-coupon__code">Code <span>EXTRA50</span></span>
         </div>
 
         <div style="margin:6px 0 2px; text-align:center;">
@@ -304,7 +304,7 @@
           <div class="price-row">
             <span class="ds-price-was">$197</span>
             <span class="ds-price-was">$97</span>
-            <span class="price-currency">$</span><span class="price-new">67</span>
+            <span class="price-currency">$</span><span class="price-new">47</span>
           </div>
         </div>
         <p class="price-note">One payment &middot; Instant download &middot; No subscription</p>
@@ -393,7 +393,7 @@
     <section class="section" style="padding-top:0;">
       <div class="wrap">
         <h2>Every Bonus Still <em>Included</em></h2>
-        <p style="text-align:center; max-width:520px; margin:0 auto 8px;">The $67 version is not a lighter version. You get the full stack, exactly as it was at $97.</p>
+        <p style="text-align:center; max-width:520px; margin:0 auto 8px;">The $47 version is not a lighter version. You get the full stack, exactly as it was at $97.</p>
 
         <div class="bonus-grid" style="grid-template-columns:repeat(3,1fr);">
           <div class="bonus-card-compact">
@@ -424,7 +424,7 @@
     <section style="padding:0 24px 56px; position:relative;" id="offer">
       <div class="pricing-block">
         <span class="section-eyebrow" style="margin-bottom:18px;">One-Time Offer &middot; Disappears When You Leave</span>
-        <h2>Complete Your Journey<br><em>for $67</em></h2>
+        <h2>Complete Your Journey<br><em>for $47</em></h2>
         <p class="price-note" style="margin-bottom:24px;">Same complete practice. Same three bonuses. The only thing lower is the price.</p>
 
         <div class="value-stack">
@@ -456,8 +456,8 @@
 
         <div class="ds-coupon">
           <span class="ds-coupon__label">&#10022; &nbsp; One-Time Discount Applied &nbsp; &#10022;</span>
-          <span class="ds-coupon__amount">&minus; $30.00 OFF</span>
-          <span class="ds-coupon__code">Code <span>EXTRA30</span></span>
+          <span class="ds-coupon__amount">&minus; $50.00 OFF</span>
+          <span class="ds-coupon__code">Code <span>EXTRA50</span></span>
         </div>
 
         <div style="margin:8px 0 6px; text-align:center;">
@@ -465,7 +465,7 @@
           <div class="price-row">
             <span class="ds-price-was">$197</span>
             <span class="ds-price-was">$97</span>
-            <span class="price-currency">$</span><span class="price-new">67</span>
+            <span class="price-currency">$</span><span class="price-new">47</span>
           </div>
         </div>
         <p class="price-note">One payment &middot; Instant download &middot; No subscription</p>
@@ -474,7 +474,7 @@
         <div class="countdown-bar">
           <div class="countdown-label">This One-Time Price Closes In</div>
           <div class="countdown-time"><span id="countdownMinutes">25</span>:<span id="countdownSeconds">00</span></div>
-          <div class="countdown-sublabel">When this page closes, the $67 offer closes with it.</div>
+          <div class="countdown-sublabel">When this page closes, the $47 offer closes with it.</div>
         </div>
 
         <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds-v2&amp;cbur=a" class="cta" style="margin-top:28px;">Yes. Upgrade My Order Now!</a>
@@ -490,7 +490,7 @@
 
         <div class="pricing-inline-guarantee">
           <img src="cards/guarantee-badge.png" alt="90-Day Guarantee">
-          <div><strong>90-Day Money-Back Guarantee.</strong><br>Work through the practice. If you do not feel a genuine shift within 90 days, reply and I refund every penny of your $67. You keep everything. The risk is entirely mine.</div>
+          <div><strong>90-Day Money-Back Guarantee.</strong><br>Work through the practice. If you do not feel a genuine shift within 90 days, reply and I refund every penny of your $47. You keep everything. The risk is entirely mine.</div>
         </div>
 
         <div class="trust-badge-row">
