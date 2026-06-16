@@ -1,7 +1,7 @@
 <?php
 /**
  * Soul Mirror Reading , Downsell 1 (REDESIGN, wealth-v2 design system)
- * Offer:    Soul Ritual Practice , $97 declined -> $47 one-time downsell
+ * Offer:    Soul Ritual Practice , $67 declined -> $47 one-time downsell
  * ClickBank: item srp-1-ds-v2   accept cbur=a   decline cbur=d
  *
  * Deploy as: /downsell-1.php  (site root , root-relative asset paths assume root)
@@ -232,7 +232,7 @@
 
   <!-- ── TOP NOTICE BAR (downsell red) ── -->
   <div class="topnotice" style="background:#9b1c1c;border-bottom:1px solid #c0392b;">
-    <strong>WAIT</strong><span class="notice-dot">&middot;</span><strong>I Just Took <span style="color:#E8C97A;">$50 Off</span> the Soul Ritual Practice</strong><span class="notice-dot">&middot;</span><strong>This Lower Price Won't Be Shown Again</strong>
+    <strong>WAIT</strong><span class="notice-dot">&middot;</span><strong>I Just Took <span style="color:#E8C97A;">$20 Off</span> the Soul Ritual Practice</strong><span class="notice-dot">&middot;</span><strong>This Lower Price Won't Be Shown Again</strong>
   </div>
 
     <!-- ═══════════════════════════════════════════
@@ -242,7 +242,7 @@
       <div class="wrap">
         <h1 class="vsl-headline"><span class="firstname">Friend</span>, I'm Not Letting You Leave<br><em>Without the Second Half.</em></h1>
 
-        <p class="ds-lede">$97 wasn't right for you today, and that's okay. But the practice your reading named is what loosens the ceiling on your money, the figure your income keeps returning to no matter how hard you work. Same complete practice, <strong>$47, one time only.</strong></p>
+        <p class="ds-lede">$67 wasn't right for you today, and that's okay. But the practice your reading named is what loosens the ceiling on your money, the figure your income keeps returning to no matter how hard you work. Same complete practice, <strong>$47, one time only.</strong></p>
       </div>
     </section>
 
@@ -294,8 +294,8 @@
 
         <div class="ds-coupon" style="margin-top:18px;">
           <span class="ds-coupon__label">&#10022; &nbsp; One-Time Discount Applied &nbsp; &#10022;</span>
-          <span class="ds-coupon__amount">&minus; $50.00 OFF</span>
-          <span class="ds-coupon__code">Code <span>EXTRA50</span></span>
+          <span class="ds-coupon__amount">&minus; $20.00 OFF</span>
+          <span class="ds-coupon__code">Code <span>EXTRA20</span></span>
         </div>
 
         <div style="margin:6px 0 2px; text-align:center;">
@@ -303,7 +303,7 @@
           <div style="font-family:'Cinzel',sans-serif; font-size:12px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-bottom:8px;">Your Price, One Time Only</div>
           <div class="price-row">
             <span class="ds-price-was">$197</span>
-            <span class="ds-price-was">$97</span>
+            <span class="ds-price-was">$67</span>
             <span class="price-currency">$</span><span class="price-new">47</span>
           </div>
         </div>
@@ -393,7 +393,7 @@
     <section class="section" style="padding-top:0;">
       <div class="wrap">
         <h2>Every Bonus Still <em>Included</em></h2>
-        <p style="text-align:center; max-width:520px; margin:0 auto 8px;">The $47 version is not a lighter version. You get the full stack, exactly as it was at $97.</p>
+        <p style="text-align:center; max-width:520px; margin:0 auto 8px;">The $47 version is not a lighter version. You get the full stack, exactly as it was at $67.</p>
 
         <div class="bonus-grid" style="grid-template-columns:repeat(3,1fr);">
           <div class="bonus-card-compact">
@@ -456,15 +456,15 @@
 
         <div class="ds-coupon">
           <span class="ds-coupon__label">&#10022; &nbsp; One-Time Discount Applied &nbsp; &#10022;</span>
-          <span class="ds-coupon__amount">&minus; $50.00 OFF</span>
-          <span class="ds-coupon__code">Code <span>EXTRA50</span></span>
+          <span class="ds-coupon__amount">&minus; $20.00 OFF</span>
+          <span class="ds-coupon__code">Code <span>EXTRA20</span></span>
         </div>
 
         <div style="margin:8px 0 6px; text-align:center;">
           <div style="font-family:'Cinzel',sans-serif; font-size:12px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-bottom:10px;">Your Price, One Time Only</div>
           <div class="price-row">
             <span class="ds-price-was">$197</span>
-            <span class="ds-price-was">$97</span>
+            <span class="ds-price-was">$67</span>
             <span class="price-currency">$</span><span class="price-new">47</span>
           </div>
         </div>
