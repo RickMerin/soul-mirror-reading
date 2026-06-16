@@ -283,7 +283,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-v2&cbur=d';
             <p style="color:#cfc7e6;font-size:14px;margin-bottom:4px;">$449 total value &middot; <span class="founding-blink">you save $382 today</span></p>
             <div class="price-row" style="margin:4px 0 8px;">
               <span class="price-old" style="font-size:20px;">$449</span>
-              <span class="price-new" style="font-size:46px;"><span class="cur">$</span>97</span>
+              <span class="price-new" style="font-size:46px;"><span class="cur">$</span>67</span>
             </div>
             <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Founding rate, this page only. That is $130 below the $197 public launch price. One payment, no subscription.</p>
           </div>
@@ -365,7 +365,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-v2&cbur=d';
             <span class="price-label">Founding Member Price Today</span>
             <div class="price-row">
               <span class="price-old">$449</span>
-              <span class="price-new"><span class="cur">$</span>97</span>
+              <span class="price-new"><span class="cur">$</span>67</span>
             </div>
             <p class="price-note">Sold separately, these total $449. Worked through with me one-to-one, the sequence runs $197, which is the public price the moment this launch ends. Your founding rate today is $67: that is $382 below the full value, and $130 below the public price. The only reason it is this low is that founding members who take it early help me prove it works at scale. You are paying the founding rate for being early, not buying a lesser version. It is the identical practice, complete. One payment, no subscription.</p>
           </div>
