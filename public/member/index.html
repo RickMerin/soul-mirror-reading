@@ -1244,6 +1244,26 @@
       background: rgba(10, 7, 22, 0.42);
     }
 
+    /* Soul Ritual welcome video: locked placeholder for non-buyers (player is not loaded at all) */
+    .ritual-vsl-lock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      width: 100%;
+      min-height: 200px;
+      padding: 2.2rem 1.5rem;
+      text-align: center;
+      color: var(--gold-lt);
+      position: relative;
+      z-index: 2;
+    }
+    .ritual-vsl-lock .rvl-icon { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 1.6; opacity: 0.9; }
+    .ritual-vsl-lock .rvl-text { font-family: 'Cinzel', serif; font-size: 0.74rem; letter-spacing: 1.2px; text-transform: uppercase; opacity: 0.92; max-width: 16rem; }
+    .upgrade-card.is-ritual-unlocked .ritual-vsl-lock { display: none; }
+    .upgrade-card:not(.is-ritual-unlocked) #vid-69f8b30bfe543f779059745a { display: none !important; }
+
     .upgrade-img-inner {
       position: relative;
       z-index: 1;
@@ -1907,6 +1927,10 @@
               <vturb-smartplayer id="vid-69f8b30bfe543f779059745a"
                 style="display: block; margin: 0 auto; width: 100%; max-width: 400px;" data-autoplay="false" autoplay="false"
                 data-muted="true" muted="true" data-smr-guard="1"></vturb-smartplayer>
+              <div class="ritual-vsl-lock" aria-hidden="true">
+                <svg class="rvl-icon" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="1.8"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
+                <span class="rvl-text">Included in the Soul Ritual Practice</span>
+              </div>
             </div>
             <div id="ritual-vsl-aside-full" class="upgrade-body" style="display:none;">
               <div class="upgrade-label">Begin Here</div>
@@ -2524,8 +2548,10 @@
         });
     })();
 
-    /** ConverteAI / vturb: inject once after parse so the smartplayer mounts; unlock state only affects CSS (pill + blur). */
+    /** ConverteAI / vturb: the Soul Ritual welcome video loads ONLY for buyers of the practice (srp-1).
+        Non-buyers never fetch the player, so the video is genuinely blocked, not merely blurred. */
     (function loadRitualVslConverteAi() {
+      if (((window.__SMR_MEMBER__ || {}).ritualUnlocked !== true)) return;
       if (document.querySelector('script[data-smr-converteai-ritual-vsl]')) return;
       const s = document.createElement('script');
       s.async = true;

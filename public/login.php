@@ -123,12 +123,18 @@ if (!$config->hasDatabaseConfig()) {
         radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.16), transparent 35%),
         linear-gradient(150deg, var(--bg-dark), var(--bg-mid));
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 24px;
     }
 
     .login-shell {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    body > footer {
       width: 100%;
       max-width: 520px;
     }
