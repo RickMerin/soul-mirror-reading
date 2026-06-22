@@ -7,8 +7,8 @@ require $projectRoot . '/vendor/autoload.php';
 \App\Config\AppConfig::load($projectRoot);
 
 
-$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=a';
-$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
+$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&template=1on1';
+$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&template=1on1';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Upsell 3 (OTO3) - The Inner Circle, unlimited private 1-1 sessions membership (wealth-v2 cosmic system) -->
-  <!-- TODO: create ClickBank recurring item ic-1: $37 trial -> $19/month, then wire these URLs -->
+  <!-- ic-1 ClickBank recurring item is LIVE/Active: $37 first month, then $19/month rebill -->
+  <!-- TODO: wire $otoCheckoutUrl / Thank-You-URL -> inner-circle.php access page -->
   <title>The Inner Circle, Your Own Private Line to Luna Ross</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -244,11 +245,6 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
 </head>
 <body>
 
-  <!-- 1. NOTICE BAR -->
-  <div class="topnotice">
-    <strong>One Last Thing</strong> <span class="dot">&middot;</span> <strong>Members-Only</strong> <span class="dot">&middot;</span> <strong>You Will Not See This Page Again</strong>
-  </div>
-
   <!-- COSMIC BACKGROUND -->
   <div class="dream-bg" aria-hidden="true">
     <div class="dream-veil"></div>
@@ -294,10 +290,9 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
             <span class="price-old">$120 per session</span>
             <span class="price-new"><span class="cur">$</span>37</span>
           </div>
-          <p class="price-note" style="margin:0 auto 22px;">for your first month, then <strong style="color:var(--gold-light);">$19/month</strong>. Cancel anytime in one click.</p>
+          <p class="price-note" style="margin:0 auto 22px;">for your first month, then <strong style="color:var(--gold-light);">$19/month</strong> for unlimited sessions. Cancel anytime in one click.</p>
           <div style="text-align:center;margin:2px auto 18px;"><span style="display:inline-block;font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);border:1px solid #d4af3759;border-radius:50px;padding:7px 18px;">&#10003;&nbsp; 90-Day Money-Back Guarantee</span></div>
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Upgrade My Order Now</a>
-          <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue without The Inner Circle.</a>
+          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, I Want To Talk To Luna</a>
         </div>
       </div>
     </section>
@@ -371,7 +366,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
         <h2>The Next Time the Pattern Tests You, <em>Don't Face It Alone.</em></h2>
         <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 22px;">The block will test you again. That is not a maybe. Next time, do not face it with the old voice. Sit down with me instead, any day you need me.</p>
         <hr class="gold-rule" style="margin:10px auto 22px;">
-        <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto;"><strong style="color:var(--gold-light);">And you risk nothing.</strong> Your first month is protected by my full 90-day money-back guarantee. If it is not for you, tell my team any time in the first 90 days and I will refund every payment, no questions asked, and you can cancel in one click anytime.</p>
+        <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto;"><strong style="color:var(--gold-light);">And you risk nothing.</strong> Your membership is protected by my full 90-day money-back guarantee. If it is not for you, tell my team any time in the first 90 days and I will refund every payment, no questions asked, and you can cancel in one click anytime.</p>
       </div>
     </section>
 
@@ -394,7 +389,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
 
           <div class="founding-panel">
             <span class="founding-head">✦ &nbsp; Founding Member Invitation &nbsp; ✦</span>
-            <p>Your <strong>first month is $37</strong>. After that it is <strong>$19/month for unlimited sessions</strong>, and your founding rate is locked for as long as you stay.</p>
+            <p>Your <strong>first month is $37</strong>. After that it is <strong>$19/month for unlimited sessions</strong>, your founding rate locked for as long as you stay.</p>
           </div>
 
           <div class="pricing">
@@ -403,14 +398,13 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&cbur=d';
               <span class="price-old">$120 per session</span>
               <span class="price-new"><span class="cur">$</span>37</span>
             </div>
-            <p class="price-note">for your first month, then $19/month for unlimited sessions, locked</p>
+            <p class="price-note">for your first month, then $19/month for unlimited sessions, your founding rate locked</p>
           </div>
 
-          <p class="cta-fine" style="max-width:520px;margin:8px auto 18px;">A monthly membership. After your $37 first month, you are billed $19/month for unlimited sessions. Cancel anytime in one click, no email, no phone call, no hoops.</p>
+          <p class="cta-fine" style="max-width:520px;margin:8px auto 18px;">A monthly membership. Your first month is $37, then you are billed $19/month for unlimited sessions.</p>
           <div style="text-align:center;margin:2px auto 18px;"><span style="display:inline-block;font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);border:1px solid #d4af3759;border-radius:50px;padding:7px 18px;">&#10003;&nbsp; 90-Day Money-Back Guarantee</span></div>
 
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Upgrade My Order Now</a>
-          <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, complete my order without The Inner Circle.</a>
+          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, I Want To Talk To Luna</a>
           <p style="text-align:center;margin-top:14px;font-size:12px;color:#9a93b3;letter-spacing:.04em;">&#128274; Secure checkout. Billing handled by ClickBank, the trusted retailer for this product.</p>
         </div>
       </div>
