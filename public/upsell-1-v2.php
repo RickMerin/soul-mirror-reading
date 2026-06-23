@@ -233,13 +233,13 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-v2&cbur=d';
     <!-- AGITATION -->
     <section class="section">
       <div class="wrap">
-        <h2>Picture the Payment Landing in Your Account.<br /><em>This Time, It Holds.</em></h2>
+        <h2>When the Block Lifts,<br /><em>the Money Moves.</em></h2>
         <div class="body-copy">
-          <p>The notification lands. The balance ticks up, and for once it holds. <strong>No expense appearing the moment money does. No quiet urge to spend it back down to the level you are used to.</strong> It settles. It builds.</p>
-          <p>More comes in than goes back out, and it keeps. Not because you tried harder, but because the pattern that kept resetting your balance to its old ceiling stopped running underneath your decisions.</p>
+          <p>Sit with me. A payment lands. Then another. Then a number you have not seen on your screen in years. <strong>The money comes in, and it stays.</strong></p>
+          <p>The Wealth Block can lift inside a week. I have watched it lift inside a day. The second it goes, the bracing in your body stops. <strong>Receiving becomes the default. Money you were not chasing starts to land.</strong></p>
         </div>
         <div class="body-copy">
-          <p>Your reading named the Wealth Block setting that ceiling. The Soul Ritual Practice is the work that clears it: <strong>three written rituals that dissolve the ceiling at the layer where it was set.</strong></p>
+          <p>Your reading named the block. <strong>What follows is the practice I built to clear it.</strong></p>
         </div>
       </div>
     </section>
@@ -287,9 +287,16 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-v2&cbur=d';
             </div>
             <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Founding rate, this page only. That is $130 below the $197 public launch price. One payment, no subscription.</p>
           </div>
+          <!-- Mini-testimonial inside early offer (impulse-moment proof) -->
+          <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(212,175,55,0.3);border-radius:10px;padding:12px 14px;margin:0 auto 18px;max-width:480px;text-align:left;">
+            <img src="frontend/images/upsell/testimonial-margaret-v.png" alt="Margaret V." style="width:44px;height:44px;border-radius:50%;border:2px solid rgba(212,175,55,0.55);flex-shrink:0;object-fit:cover;" />
+            <div style="flex:1;min-width:0;">
+              <p style="font-size:13.5px;font-style:italic;color:var(--text);line-height:1.5;margin:0;">"$2,400 came in over three days. This time I was actually responsible with it. Months on, that money is still working for me."</p>
+              <p style="font-size:10.5px;color:var(--gold-light);font-family:'Cinzel',sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-top:5px;">Margaret V. &middot; 52 &middot; Edinburgh</p>
+            </div>
+          </div>
           <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes. Upgrade My Order Now!</a>
           <p class="cta-fine">Backed by a 90-day money-back guarantee.</p>
-          <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
         </div>
       </div>
     </section>
@@ -372,7 +379,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-v2&cbur=d';
 
           <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes. Upgrade My Order Now!</a>
           <p class="cta-fine">Backed by the 90-day guarantee below.</p>
-          <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
+          <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thanks, I'll do the slow version &rarr;</a>
         </div>
       </div>
     </section>
@@ -394,7 +401,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-v2&cbur=d';
         <h2>You Have the Diagnosis.<br /><em>Take the Treatment With You.</em></h2>
         <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 30px;">The reading names the ceiling on your money. The Soul Ritual Practice is how you lift it. Add it now and all four block-type protocols sit waiting, so the instant your reading names yours, the exact clearing work is already in your hands. These are the two halves of one piece of work, and you have come too far to keep only half.</p>
         <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes. Upgrade My Order Now!</a>
-        <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
+        <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thanks, I'll do the slow version &rarr;</a>
         <p class="cta-fine">Your reading arrives within 24 hours either way.</p>
       </div>
     </section>
