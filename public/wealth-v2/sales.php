@@ -454,7 +454,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     
 
-<p class="vsl-sub">Your three cards just brought it to the surface, and they are <span style="color:var(--gold-light);text-decoration:underline;text-decoration-color:rgba(212,175,55,0.6);text-decoration-thickness:2px;text-underline-offset:4px;">waiting below</span>. Once you see it, you cannot unsee it.</p>
+<p class="vsl-sub">Your three cards have warned you about this for years. Ignored long enough, it quietly turns <span style="color:var(--gold-light);text-decoration:underline;text-decoration-color:rgba(212,175,55,0.6);text-decoration-thickness:2px;text-underline-offset:4px;">deadly</span>.</p>
 <div class="tslwrap">
 <video class="luna-hero" autoplay loop muted playsinline preload="auto" poster="../assets/luna-portrait.jpg" aria-label="Luna Ross, your reader">
 <source src="../assets/luna-motion.mp4?v=3" type="video/mp4">
@@ -521,7 +521,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <div class="gs-spread">
 
       <div class="gs-frame gs-frame-love" data-card-slot="love">
-        <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-love.png" alt="Love Mirror"></div>
+        <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-love.webp" alt="Love Mirror"></div>
         <div class="gs-kicker">Mirror One</div>
         <div class="gs-stage">
           <div class="gs-window card-wireframe" data-card-image="love">
@@ -538,7 +538,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       </div>
 
       <div class="gs-frame gs-frame-life" data-card-slot="life">
-        <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-life.png" alt="Life Mirror"></div>
+        <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-life.webp" alt="Life Mirror"></div>
         <div class="gs-kicker">Mirror Two</div>
         <div class="gs-stage">
           <div class="gs-window card-wireframe" data-card-image="life">
@@ -555,7 +555,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       </div>
 
       <div class="gs-frame gs-frame-wealth" data-card-slot="wealth">
-        <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-wealth.png" alt="Wealth Mirror"></div>
+        <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-wealth.webp" alt="Wealth Mirror"></div>
         <div class="gs-kicker">Mirror Three</div>
         <div class="gs-stage">
           <div class="gs-window card-wireframe" data-card-image="wealth">
@@ -580,7 +580,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     </div>
 
     <div class="gs-featured">
-      <div class="gs-featured-emblem"><img src="https://soulmirrorreading.com/cards/mirror-block.png" alt="Wealth Block"></div>
+      <div class="gs-featured-emblem"><img src="https://soulmirrorreading.com/cards/mirror-block.webp" alt="Wealth Block"></div>
       <div class="gs-featured-body">
         <h4>The Hidden Layer.<br>This Is Your Wealth Block.</h4>
         <p>The one belief running all three. Until it is named clearly, every reading you ever get will point to the same wall.</p>
@@ -669,7 +669,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
   <div class="wrap">
     <div class="vip-box">
       <h2>Inside Your <em>Soul Mirror Reading</em></h2>
-      <img src="https://soulmirrorreading.com/frontend/images/sales/soul-mirror-reading.png" alt="Soul Mirror Reading" class="vip-mockup">
+      <img src="https://soulmirrorreading.com/frontend/images/sales/soul-mirror-reading.webp" alt="Soul Mirror Reading" class="vip-mockup">
       <div class="vip-valued">Valued at <span class="amount">$197</span></div>
       <ul class="vip-list">
         <li><span><strong>Your Wealth Block Identified.</strong> The one core belief running Love, Life, and Wealth at the same time.</span></li>
@@ -705,28 +705,28 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <div class="bonus-grid">
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/mirror-block-companion-guide.png" alt="Companion Guide">
+        <img src="https://soulmirrorreading.com/frontend/images/sales/mirror-block-companion-guide.webp" alt="Companion Guide">
         <div class="bonus-num">Bonus 1</div>
         <h4>Mirror Block Companion Guide</h4>
         <div class="value">Valued at $67</div>
       </div>
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/21-days-shift-tracker.png" alt="Shift Tracker">
+        <img src="https://soulmirrorreading.com/frontend/images/sales/21-days-shift-tracker.webp" alt="Shift Tracker">
         <div class="bonus-num">Bonus 2</div>
         <h4>21-Day Shift Tracker</h4>
         <div class="value">Valued at $47</div>
       </div>
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/root-cause-reading-guide.png" alt="Root Cause Guide">
+        <img src="https://soulmirrorreading.com/frontend/images/sales/root-cause-reading-guide.webp" alt="Root Cause Guide">
         <div class="bonus-num">Bonus 3</div>
         <h4>Root Cause Reading Guide</h4>
         <div class="value">Valued at $47</div>
       </div>
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/mirror-clarity-meditation.png" alt="Clarity Meditation">
+        <img src="https://soulmirrorreading.com/frontend/images/sales/mirror-clarity-meditation.webp" alt="Clarity Meditation">
         <div class="bonus-num">Bonus 4</div>
         <h4>Mirror Clarity Meditation</h4>
         <div class="value">Valued at $37</div>
@@ -799,7 +799,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
 
     <div class="pricing-inline-guarantee">
-      <img src="https://soulmirrorreading.com/cards/guarantee-badge.png" alt="90-Day Guarantee">
+      <img src="https://soulmirrorreading.com/cards/guarantee-badge.webp" alt="90-Day Guarantee">
       <div><strong>90-Day Money-Back Guarantee.</strong><br>Read it. If the Wealth Block I name does not feel unmistakably like your life, reply and I refund every penny. You keep the reading and all four bonuses.</div>
     </div>
 
@@ -953,7 +953,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
 
     <div style="margin:28px auto 12px;">
-      <img src="https://soulmirrorreading.com/frontend/images/sales/bundle-product-image.png" alt="Soul Mirror Reading complete bundle" style="max-width:420px; width:100%; height:auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));">
+      <img src="https://soulmirrorreading.com/frontend/images/sales/bundle-product-image.webp" alt="Soul Mirror Reading complete bundle" style="max-width:420px; width:100%; height:auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));">
     </div>
 
     <div style="margin:24px 0;">
