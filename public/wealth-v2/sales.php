@@ -18,7 +18,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-wtsl&template=o
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Crimson+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/sales-v2-bundle.min.css?v=<?= htmlspecialchars((string) $cssVer, ENT_QUOTES) ?>">
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -28,9 +28,8 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-wtsl&template=o
     })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
 <style id="tsl-style">
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 .tslwrap{max-width:600px;margin:24px auto 0;text-align:left;}
-.tsl{font-family:'Crimson Pro',Georgia,serif;font-size:18px;line-height:1.65;color:#e9e2f2;margin-bottom:15px;}
+.tsl{font-family:'Inter',system-ui,sans-serif;font-size:18px;line-height:1.65;color:#e9e2f2;margin-bottom:15px;}
 .vsl-sub,.testi-body,.faq-a,.card-mirror p{font-size:18px !important;line-height:1.72 !important;}
 .vip-list li,.vip-list li span,.price-note{font-size:18px !important;line-height:1.6 !important;}
 .tslbold{color:#fff;font-weight:600;}
@@ -475,6 +474,8 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <p class="tsl">They all aimed at the symptom. None of them touched the root.</p>
 <p class="tsl">It is a single belief you formed before you had words for it. Usually in childhood. About what is safe to have, and what it quietly costs you to keep it.</p>
 <p class="tsl">It runs underneath your money, your love, and your sense of purpose, all at the same time.</p>
+<p class="tsl">It is the same quiet pull that has you bracing right when love starts to feel safe, the small voice that says do not get too comfortable.</p>
+<p class="tsl">It is why the work you know you were meant to do still feels one step away, always almost, never quite yet.</p>
 <p class="tsl">This is your <span class="tslbold">Wealth Block</span>. And your three cards have been pointing straight at it.</p>
 <figure class="tslfig"><video class="tslmid" autoplay loop muted playsinline preload="auto" poster="../assets/luna-hands-cards.jpg" aria-label="Luna reading your three cards"><source src="../assets/luna-hands-motion.mp4?v=1" type="video/mp4"><img class="tslmid" src="../assets/luna-hands-cards.jpg" alt="Luna reading your three cards"></video><figcaption class="tslfigcap">The three cards you drew, as I read them.</figcaption></figure>
 <p class="tsl">It speaks loudest in money, because money keeps the most precise record.</p>
@@ -521,7 +522,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <div class="gs-spread">
 
       <div class="gs-frame gs-frame-love" data-card-slot="love">
-        <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-love.webp" alt="Love Mirror"></div>
+        <div class="gs-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-love.webp" alt="Love Mirror"></div>
         <div class="gs-kicker">Mirror One</div>
         <div class="gs-stage">
           <div class="gs-window card-wireframe" data-card-image="love">
@@ -538,7 +539,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       </div>
 
       <div class="gs-frame gs-frame-life" data-card-slot="life">
-        <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-life.webp" alt="Life Mirror"></div>
+        <div class="gs-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-life.webp" alt="Life Mirror"></div>
         <div class="gs-kicker">Mirror Two</div>
         <div class="gs-stage">
           <div class="gs-window card-wireframe" data-card-image="life">
@@ -555,7 +556,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       </div>
 
       <div class="gs-frame gs-frame-wealth" data-card-slot="wealth">
-        <div class="gs-emblem"><img src="https://soulmirrorreading.com/cards/mirror-wealth.webp" alt="Wealth Mirror"></div>
+        <div class="gs-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-wealth.webp" alt="Wealth Mirror"></div>
         <div class="gs-kicker">Mirror Three</div>
         <div class="gs-stage">
           <div class="gs-window card-wireframe" data-card-image="wealth">
@@ -580,7 +581,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     </div>
 
     <div class="gs-featured">
-      <div class="gs-featured-emblem"><img src="https://soulmirrorreading.com/cards/mirror-block.webp" alt="Wealth Block"></div>
+      <div class="gs-featured-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-block.webp" alt="Wealth Block"></div>
       <div class="gs-featured-body">
         <h4>The Hidden Layer.<br>This Is Your Wealth Block.</h4>
         <p>The one belief running all three. Until it is named clearly, every reading you ever get will point to the same wall.</p>
@@ -620,7 +621,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         
         <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">Your Wealth Is Blocked</h4>
         <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money arrives. Money quietly leaves. The same ceiling, year after year, no matter what you try.</p>
-        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block is working, and the one practice that clears it. Not more effort, not another course, not trying harder. Just one quiet shift, and the money that always slipped away starts to move <strong style="color:var(--gold-light);">on its own</strong>, and finally stays.</div>
+        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block is working, and the one practice that clears it. Not more effort, not another course, not trying harder. Just one quiet shift, and the pattern that kept pulling your money back finally loosens its grip, so what comes in has a <strong style="color:var(--gold-light);">real chance to stay</strong>.</div>
       </div>
     </div>
 
@@ -634,8 +635,8 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
       </div>
-      <p style="max-width:500px; margin:12px auto 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,0.62);"><span style="color:var(--gold-light);">&#127769; 90-day promise.</span> Read it. If the Wealth Block I name does not feel unmistakably like your life, reply and I refund every penny. You keep the reading and all four bonuses.</p>
-      <p style="max-width:460px; margin:18px auto 0; font-size:13px; font-style:italic; line-height:1.6; color:rgba(255,255,255,0.6);">&ldquo;It named the exact belief that had quietly kept me at the same number for years. A few weeks after the clearing practice, money started arriving in ways it never had, and for the first time, it simply stayed.&rdquo; <span style="color:var(--gold-light); font-style:normal;">Hannah T., 44</span></p>
+      <p style="max-width:500px; margin:12px auto 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,0.62);"><span style="color:var(--gold-light);">&#127769; 90-day promise.</span> Read your full reading. If it is not worth far more than $37 to you, for any reason, reply and I refund every penny.</p>
+      <p style="max-width:460px; margin:18px auto 0; font-size:13px; font-style:italic; line-height:1.6; color:rgba(255,255,255,0.6);">&ldquo;It named the exact belief that had quietly kept me at the same number for years. Once I could finally see it, I stopped quietly talking myself out of asking for what my work is worth.&rdquo; <span style="color:var(--gold-light); font-style:normal;">Hannah T., 44</span></p>
     </div>
   </div>
 </section>
@@ -659,6 +660,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
       <p class="testi-body">"I almost closed the tab. After ten years of courses and readings that all said the same thing in slightly different words, I expected more of the same. It was not. The Wealth Block Luna named was the exact reason I had spent fifteen years quoting low and apologizing for my prices. Two weeks later a client asked for a full brand kit. Normally I would have said fifteen hundred and felt guilty. I sat with what the reading showed me and sent the quote for four thousand. She replied 'that sounds fair' and paid the deposit that afternoon. I am not saying the cards did it. I am saying they finally let me see the wall I had been pricing myself behind."</p>
     </div>
+    <p style="text-align:center; max-width:580px; margin:16px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
   </div>
 </section>
 
@@ -669,7 +671,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
   <div class="wrap">
     <div class="vip-box">
       <h2>Inside Your <em>Soul Mirror Reading</em></h2>
-      <img src="https://soulmirrorreading.com/frontend/images/sales/soul-mirror-reading.webp" alt="Soul Mirror Reading" class="vip-mockup">
+      <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/soul-mirror-reading.webp" alt="Soul Mirror Reading" class="vip-mockup">
       <div class="vip-valued">Valued at <span class="amount">$197</span></div>
       <ul class="vip-list">
         <li><span><strong>Your Wealth Block Identified.</strong> The one core belief running Love, Life, and Wealth at the same time.</span></li>
@@ -705,28 +707,28 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <div class="bonus-grid">
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/mirror-block-companion-guide.webp" alt="Companion Guide">
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/mirror-block-companion-guide.webp" alt="Companion Guide">
         <div class="bonus-num">Bonus 1</div>
         <h4>Mirror Block Companion Guide</h4>
         <div class="value">Valued at $67</div>
       </div>
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/21-days-shift-tracker.webp" alt="Shift Tracker">
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/21-days-shift-tracker.webp" alt="Shift Tracker">
         <div class="bonus-num">Bonus 2</div>
         <h4>21-Day Shift Tracker</h4>
         <div class="value">Valued at $47</div>
       </div>
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/root-cause-reading-guide.webp" alt="Root Cause Guide">
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/root-cause-reading-guide.webp" alt="Root Cause Guide">
         <div class="bonus-num">Bonus 3</div>
         <h4>Root Cause Reading Guide</h4>
         <div class="value">Valued at $47</div>
       </div>
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/mirror-clarity-meditation.webp" alt="Clarity Meditation">
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/mirror-clarity-meditation.webp" alt="Clarity Meditation">
         <div class="bonus-num">Bonus 4</div>
         <h4>Mirror Clarity Meditation</h4>
         <div class="value">Valued at $37</div>
@@ -799,8 +801,8 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
 
     <div class="pricing-inline-guarantee">
-      <img src="https://soulmirrorreading.com/cards/guarantee-badge.webp" alt="90-Day Guarantee">
-      <div><strong>90-Day Money-Back Guarantee.</strong><br>Read it. If the Wealth Block I name does not feel unmistakably like your life, reply and I refund every penny. You keep the reading and all four bonuses.</div>
+      <img loading="lazy" src="https://soulmirrorreading.com/cards/guarantee-badge.webp" alt="90-Day Guarantee">
+      <div><strong>90-Day Money-Back Guarantee.</strong><br>Read your full reading. If it is not worth far more than $37 to you, for any reason, reply and I refund every penny.</div>
     </div>
 
     <div class="trust-badge-row">
@@ -934,7 +936,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       </details>
       <details>
         <summary>What if I am not satisfied?</summary>
-        <p class="faq-a">You are covered by a 90-day guarantee. Read your reading. If the Wealth Block I name does not feel unmistakably like your life, if it reads like something that could be sent to anyone, reply to the delivery email and I refund every penny. You keep the reading and all four bonuses. In nineteen years, that has almost never happened.</p>
+        <p class="faq-a">You are covered by a 90-day money-back guarantee. Read your full reading. If it is not worth far more than $37 to you, for any reason, reply to the delivery email and I refund every penny. In nineteen years, that has almost never happened.</p>
       </details>
     </div>
   </div>
@@ -953,7 +955,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
 
     <div style="margin:28px auto 12px;">
-      <img src="https://soulmirrorreading.com/frontend/images/sales/bundle-product-image.webp" alt="Soul Mirror Reading complete bundle" style="max-width:420px; width:100%; height:auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));">
+      <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/bundle-product-image.webp" alt="Soul Mirror Reading complete bundle" style="max-width:420px; width:100%; height:auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));">
     </div>
 
     <div style="margin:24px 0;">
