@@ -4,12 +4,11 @@ $cssPath = __DIR__ . "/../assets/sales-v2-bundle.min.css";
 $cssVer = is_file($cssPath) ? filemtime($cssPath) : time();
 $jsPath = __DIR__ . "/../assets/sales-v2.min.js";
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
-$guardPath = __DIR__ . '/../assets/vturb-player-guard.min.js';
-$guardVer = is_file($guardPath) ? filemtime($guardPath) : time();
 $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=order-3&cbfid=63457&exitoffer=exit-1";
 ?>
+<!-- wealth-v2 sales.php update 2026-06-13: Gilded Spread card showcase, de-duplicated sales letter, removed value-stack + duplicate combo, tightened Diagnosis copy, re-angled CTAs (Clear My Wealth Block / Get My Full Reading), card section shown on load (entrance reveal removed). Test cohort start 2026-06-13. -->
 <!DOCTYPE html>
-<html lang="en" data-funnel-base="wealth/">
+<html lang="en" data-funnel-base="wealth-v2/">
 
 <head>
   <meta charset="UTF-8">
@@ -19,7 +18,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Crimson+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/sales-v2-bundle.min.css?v=<?= htmlspecialchars((string) $cssVer, ENT_QUOTES) ?>">
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -28,7 +27,396 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
-</head>
+<style id="tsl-style">
+.tslwrap{max-width:600px;margin:24px auto 0;text-align:left;}
+.tsl{font-family:'Inter',system-ui,sans-serif;font-size:18px;line-height:1.65;color:#e9e2f2;margin-bottom:15px;}
+.vsl-sub,.testi-body,.faq-a,.card-mirror p{font-size:18px !important;line-height:1.72 !important;}
+.vip-list li,.vip-list li span,.price-note{font-size:18px !important;line-height:1.6 !important;}
+.tslbold{color:#fff;font-weight:600;}
+.pcard{color:#E8C97A;font-style:italic;font-weight:600;}
+.pdate{color:#E8C97A;font-style:italic;}
+.tslpull{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#E8C97A;border-left:3px solid #C9A14A;padding:16px 22px;margin:26px 0;background:rgba(201,161,74,.08);border-radius:0 8px 8px 0;line-height:1.5;}
+.tslbridge{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cbb88a;margin:8px 0 0;}
+body{background:#0b0718 !important;}
+.dream-bg{filter:brightness(0.5) saturate(1.05) !important;}
+.luna-hero{display:block;width:62%;max-width:320px;margin:6px auto 14px;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 16px 44px rgba(0,0,0,.55);overflow:hidden;background:#160c34;}
+.luna-cap{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:0 0 24px;}
+.vsl-headline{font-size:clamp(25px,6vw,36px) !important;line-height:1.07 !important;margin-bottom:14px !important;letter-spacing:0 !important;}
+.vsl-headline em{font-size:0.93em;}
+body,p,li,.tsl,.vsl-sub,.testi-body,.testi-name,.faq-q,.faq-a,.card-mirror p,.card-name-label,.vip-list,.vip-list li,.vip-list li span,.price-note,.luna-cap,.cta,.cta-trust-row,.cta-trust-row span,.topnotice,.topnotice strong,[style*="Cinzel"],[style*="Crimson"]{font-family:'Inter',system-ui,sans-serif !important;}
+h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Garamond',Georgia,serif !important;}
+.tsl,.vsl-sub,.testi-body,.faq-a,.vip-list li{letter-spacing:-0.003em;}
+.tslfig{margin:30px 0;}
+.tslmid{display:block;width:100%;border-radius:14px;border:1px solid rgba(212,175,55,.5);box-shadow:0 16px 44px rgba(0,0,0,.5);overflow:hidden;background:#160c34;}
+.tslfigcap{text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:10px 0 0;}
+
+/* ============================================================
+   THE GILDED SPREAD, MIRROR-CROWNED
+   Drop-in redesign for the "These Are the Cards You Chose Today"
+   section. Scoped with the .gs- prefix so it overrides the old
+   .three-cards / .card-mirror tile look WITHOUT touching the JS
+   injection contract (data-card-image / data-card-name / has-card / visible).
+   ============================================================ */
+
+.gs-subhead{
+  text-align:center;
+  max-width:560px;
+  margin:0 auto 6px;
+  color:var(--text);
+}
+
+/* opening divider under the subhead */
+.gs-divider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  max-width:300px;
+  margin:16px auto 34px;
+}
+.gs-divider span{
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#d4af3766,transparent);
+}
+.gs-divider i{
+  color:var(--gold);
+  font-style:normal;
+  font-size:14px;
+  opacity:.85;
+}
+
+/* the three-card spread row, with a warm altar light pool behind it */
+.gs-spread{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+  margin:0 auto;
+  max-width:760px;
+  align-items:start;
+  position:relative;
+}
+.gs-spread::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:46%;
+  transform:translate(-50%,-50%);
+  width:84%;
+  height:74%;
+  pointer-events:none;
+  z-index:0;
+  border-radius:50%;
+  background:radial-gradient(60% 60% at 50% 50%,rgba(212,175,55,.13),rgba(212,175,55,0) 70%);
+  filter:blur(6px);
+}
+
+/* each hero frame (glass card matching the system) */
+.gs-frame{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  background:linear-gradient(180deg,#2d1b6980,#1e0d40d9);
+  border:1px solid #d4af3759;
+  border-radius:16px;
+  padding:20px 16px 22px;
+  -webkit-backdrop-filter:blur(4px);
+  backdrop-filter:blur(4px);
+}
+
+/* the ornate themed mirror, shown INTACT as a crowning emblem */
+.gs-emblem{
+  width:88px;
+  height:104px;
+  margin:0 auto 4px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+.gs-emblem img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 5px 14px rgba(0,0,0,.45));
+}
+/* themed colored glow per area (rose / blue / gold) */
+.gs-frame-love   .gs-emblem img{ filter:drop-shadow(0 5px 14px rgba(0,0,0,.45)) drop-shadow(0 0 12px rgba(224,138,154,.42)); }
+.gs-frame-life   .gs-emblem img{ filter:drop-shadow(0 5px 14px rgba(0,0,0,.45)) drop-shadow(0 0 12px rgba(127,160,224,.42)); }
+.gs-frame-wealth .gs-emblem img{ filter:drop-shadow(0 5px 14px rgba(0,0,0,.45)) drop-shadow(0 0 12px rgba(232,201,122,.50)); }
+
+.gs-kicker{
+  font-family:'Cinzel',serif;
+  font-size:10px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--gold);
+  opacity:.85;
+  margin-bottom:14px;
+}
+
+/* stage holds the framed card window */
+.gs-stage{
+  position:relative;
+  max-width:200px;
+  margin:0 auto 16px;
+}
+/* thin gold frame just outside the window edge */
+.gs-stage::before{
+  content:"";
+  position:absolute;
+  inset:-7px;
+  border:1px solid #d4af3766;
+  border-radius:13px;
+  pointer-events:none;
+  z-index:2;
+}
+/* themed glow color fed to the window box-shadow */
+.gs-frame-love   .gs-stage{ --gs-glow:rgba(224,138,154,.30); }
+.gs-frame-life   .gs-stage{ --gs-glow:rgba(127,160,224,.30); }
+.gs-frame-wealth .gs-stage{ --gs-glow:rgba(232,201,122,.34); }
+
+/* THE INJECTION TARGET. Stays a DIV + keeps .card-wireframe.
+   Portrait ratio locked in BOTH states so nothing reflows. */
+.gs-window{
+  position:relative;
+  aspect-ratio:1/1.6;
+  width:100%;
+  max-width:200px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  border:2px dashed #d4af3766;
+  border-radius:9px;
+  background-color:#ffffff08;
+  background-position:50% 50%;
+  background-size:cover;
+  background-repeat:no-repeat;
+  color:#d4af378c;
+  overflow:hidden;
+  box-shadow:inset 0 0 24px #1e0d4080, 0 0 26px var(--gs-glow,transparent);
+}
+
+/* faint numeral watermark behind the empty placeholder */
+.gs-numeral{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Cinzel',serif;
+  font-size:88px;
+  font-weight:700;
+  color:#d4af3712;
+  z-index:0;
+  pointer-events:none;
+  line-height:1;
+  user-select:none;
+}
+
+/* FILLED STATE. JS adds .has-card after setting the inline
+   background-image; we only restyle border / shadow, never the
+   background shorthand, so the injected card survives at cover. */
+.gs-window.has-card,
+.card-wireframe.gs-window.has-card{
+  border:1px solid #d4af37;
+  background-color:transparent;
+  box-shadow:0 8px 26px #00000059, 0 0 0 1px #d4af3733, 0 0 30px var(--gs-glow,transparent);
+}
+.gs-window.has-card .gs-numeral{ display:none; }
+.gs-window.has-card .wf-content,
+.card-wireframe.gs-window.has-card .wf-content{ display:none; }
+
+/* EMPTY-STATE placeholder content */
+.gs-window .wf-content{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  line-height:1.3;
+}
+.gs-window .wf-icon{
+  font-size:30px;
+  color:#d4af3773;
+  margin-bottom:7px;
+  line-height:1;
+}
+.gs-window .wf-label{
+  font-family:'Cinzel',serif;
+  font-size:9px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#d4af378c;
+}
+
+/* alive gold sheen on the EMPTY placeholder only (killed once filled) */
+.gs-window::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  border-radius:9px;
+  opacity:0;
+  background:linear-gradient(115deg,transparent 38%,rgba(232,201,122,.22) 50%,transparent 62%);
+  background-size:220% 100%;
+}
+.gs-window.has-card::after{ display:none; }
+
+/* labels under each frame */
+.gs-area{
+  font-family:'Cinzel',serif;
+  font-size:13px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:4px;
+}
+/* drawn card NAME. Forced to Cormorant to beat the global Inter
+   override; stays hidden until JS adds .visible (display untouched). */
+.gs-cardname{
+  font-family:'Cormorant Garamond',serif !important;
+  font-style:italic;
+  font-size:18px;
+  line-height:1.25;
+  color:var(--gold-light);
+  margin:0 0 10px;
+}
+.gs-cardname.visible{
+  display:block;
+  animation:gsNameIn .6s ease both;
+}
+@keyframes gsNameIn{
+  from{ opacity:0; transform:translateY(4px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+.gs-frame p{
+  margin:0;
+  font-size:15px;
+  line-height:1.55;
+  color:var(--text);
+}
+
+/* connector: the trio resolves down into the Wealth Block */
+.gs-connector{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  margin:34px auto 0;
+}
+.gs-connector-line{
+  width:1px;
+  height:34px;
+  background:linear-gradient(180deg,transparent,#d4af3799);
+}
+.gs-connector-label{
+  font-family:'Cinzel',serif;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold);
+  opacity:1;
+}
+.gs-connector-arrow{
+  color:var(--gold);
+  font-size:18px;
+  line-height:.6;
+  opacity:.85;
+}
+
+/* featured Wealth Block payoff panel */
+.gs-featured{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  max-width:620px;
+  margin:18px auto 0;
+  padding:26px 30px;
+  text-align:left;
+  border:1px solid var(--gold-light);
+  border-radius:16px;
+  background:linear-gradient(180deg,#2d1b69,#1e0d40);
+  box-shadow:0 8px 32px #d4af3733, inset 0 0 40px #d4af370d;
+}
+.gs-featured-emblem{
+  flex-shrink:0;
+  width:104px;
+  height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.gs-featured-emblem img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.55)) drop-shadow(0 0 14px rgba(212,175,55,.20));
+}
+.gs-featured-body h4{
+  font-family:'Cinzel',serif;
+  font-size:14px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+  line-height:1.5;
+  margin:0 0 10px;
+}
+.gs-featured-body p{
+  margin:0;
+  font-size:15px;
+  line-height:1.6;
+  color:var(--text);
+}
+
+/* alive empty-state sheen, only when motion is allowed */
+@media (prefers-reduced-motion:no-preference){
+  .gs-window:not(.has-card)::after{
+    animation:gsSheen 5.5s ease-in-out infinite;
+  }
+  @keyframes gsSheen{
+    0%{ opacity:0; background-position:160% 0; }
+    18%{ opacity:.5; }
+    40%{ opacity:0; background-position:-60% 0; }
+    100%{ opacity:0; background-position:-60% 0; }
+  }
+}
+
+/* ---------- mobile: premium single-column stack ---------- */
+@media (max-width:720px){
+  .gs-spread{
+    grid-template-columns:1fr;
+    gap:30px;
+    max-width:340px;
+  }
+  .gs-spread::before{ display:none; }
+  .gs-stage{ max-width:150px; }
+  .gs-window{ max-width:150px; }
+  .gs-cardname{ font-size:18px; }
+  .gs-featured{
+    flex-direction:column;
+    text-align:center;
+    gap:16px;
+    padding:26px 22px;
+  }
+  .gs-featured-body h4{ letter-spacing:.14em; }
+}
+
+/* ---------- small phones ---------- */
+@media (max-width:400px){
+  .gs-spread{ max-width:300px; }
+  .gs-emblem{ width:78px; height:92px; }
+}
+
+/* ---------- respect reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  .gs-cardname.visible{ animation:none; }
+  .gs-window:not(.has-card)::after{ animation:none; opacity:0; }
+}
+</style></head>
 
 <body>
 
@@ -48,7 +436,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
 
 <div class="topnotice" style="background:#9b1c1c;color:#fff;border-bottom:1px solid #c0392b;">
-  <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>But I Noticed a Pattern in Your Specific Cards First</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Please Read This Before It Arrives</strong>
+  <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Read This First, It Changes What You Do With It</strong>
 </div>
 
 
@@ -60,52 +448,66 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
   <div class="wrap">
     
 
-<h1 class="vsl-headline">The Wealth Block Is the Root.<br><em>Clear It, and Watch the Money Move.</em></h1>
+<h1 class="vsl-headline">There Is <span style="color:var(--gold-light);">One Hidden Pattern</span> Beneath Everything You've Struggled With.</h1>
 
 
     
 
-<p class="vsl-sub">It is the one belief quietly setting your wealth ceiling, year after year. Your three cards point straight to it.</p>
+<p class="vsl-sub">Your three cards have warned you about this for years. Ignored long enough, it quietly turns <span style="color:var(--gold-light);text-decoration:underline;text-decoration-color:rgba(212,175,55,0.6);text-decoration-thickness:2px;text-underline-offset:4px;">deadly</span>.</p>
+<div class="tslwrap">
+<video class="luna-hero" autoplay loop muted playsinline preload="auto" poster="../assets/luna-portrait.jpg" aria-label="Luna Ross, your reader">
+<source src="../assets/luna-motion.mp4?v=3" type="video/mp4">
+<img src="../assets/luna-portrait.jpg" alt="Luna Ross, your reader">
+</video>
+<p class="luna-cap">Luna Ross, your reader</p>
+<p class="tsl"><span class="firstname">Friend</span>, here on <span class="pdate">today</span>, I have all three of your cards in front of me.</p>
+<p class="tsl cards-line" style="display:none"><span class="pcard" data-card="wealth">your Wealth card</span> in your Wealth house. <span class="pcard" data-card="love">your Love card</span> in your Love. <span class="pcard" data-card="life">your Life card</span> in your Life.</p>
+<p class="tsl">The moment I laid them out, one pattern stepped forward.</p>
+<p class="tsl">There is a number your money keeps returning to.</p>
+<p class="tsl">No matter how hard you work, how much you learn, or how much you pray on it, you land back at the same figure.</p>
+<p class="tsl">More comes close. A windfall, an unexpected opening, a yes you can almost taste.</p>
+<p class="tsl">Then something unseen pulls it back, and the door quietly closes again.</p>
+<p class="tsl"><span class="pcard" data-card="wealth">your Wealth card</span> landing in your Wealth house is where I see it most clearly.</p>
+<p class="tsl">You have tried the things that were supposed to fix this. Therapy. Manifesting. The courses.</p>
+<p class="tsl">Each one worked for a while. Then the same ceiling came back.</p>
+<p class="tsl">That is not a willpower problem, <span class="firstname">Friend</span>. And it was never your fault.</p>
+<p class="tsl">They all aimed at the symptom. None of them touched the root.</p>
+<p class="tsl">It is a single belief you formed before you had words for it. Usually in childhood. About what is safe to have, and what it quietly costs you to keep it.</p>
+<p class="tsl">It runs underneath your money, your love, and your sense of purpose, all at the same time.</p>
+<p class="tsl">It is the same quiet pull that has you bracing right when love starts to feel safe, the small voice that says do not get too comfortable.</p>
+<p class="tsl">It is why the work you know you were meant to do still feels one step away, always almost, never quite yet.</p>
+<p class="tsl">This is your <span class="tslbold">Wealth Block</span>. And your three cards have been pointing straight at it.</p>
+<figure class="tslfig"><video class="tslmid" autoplay loop muted playsinline preload="auto" poster="../assets/luna-hands-cards.jpg" aria-label="Luna reading your three cards"><source src="../assets/luna-hands-motion.mp4?v=1" type="video/mp4"><img class="tslmid" src="../assets/luna-hands-cards.jpg" alt="Luna reading your three cards"></video><figcaption class="tslfigcap">The three cards you drew, as I read them.</figcaption></figure>
+<p class="tsl">It speaks loudest in money, because money keeps the most precise record.</p>
+<p class="tsl">Every time something in you whispers "not yet, not for me," you are following an instruction you did not knowingly write.</p>
+<p class="tsl">Here is what it is doing right now.</p>
+<p class="tsl">It is holding your income exactly where you have learned to expect it. And it is patient.</p>
+<p class="tsl">It does not need a bad month to win. It only needs you to keep deciding you are not ready.</p>
+<p class="tsl">Picture six months from now. The same ceiling. The same quiet math where you settle for less and call it realistic.</p>
+<p class="tsl">A year from now, the loss has compounded. In money, and in the part of you that has stopped expecting more.</p>
+<div class="tslpull">The block does not fight you. It waits you out. Left unnamed, it always wins, because you cannot clear what you cannot see.</div>
+<p class="tsl">The free preview on its way to your inbox will confirm your Wealth Block is there, <span class="firstname">Friend</span>. It can show you its shape.</p>
+<p class="tsl">What it cannot do is read <span class="pcard" data-card="wealth">your Wealth card</span>, <span class="pcard" data-card="love">your Love card</span>, and <span class="pcard" data-card="life">your Life card</span> together.</p>
+<p class="tsl">That is your Soul Mirror Reading.</p>
+<p class="tsl">I read all three by hand, <span class="firstname">Friend</span>, and show you the precise belief setting your ceiling, the exact moves it has been making behind your back, and the one practice that interrupts it where it actually lives.</p>
+<p class="tsl">Hand-written for your cards. In your inbox within 24 hours.</p>
+<p class="tsl">Your cards have already shown me what it is doing. The reading is how you finally see it, and begin to clear it.</p>
+</div>
 
 
     
 
-<p class="vsl-sub" style="margin-top:-8px;"><em>Your Soul Mirror Reading names exactly which Wealth Block is yours, and the practice that clears it. Tap play to find out more.</em></p>
 
 
 
-    <div class="video-frame">
-      <vturb-smartplayer id="vid-6a03e48213e119642182af7b"
-        style="display: block; margin: 0 auto; width: 100%;"
-        data-autoplay="false" autoplay="false"
-        data-muted="true" muted="true"
-        data-smr-guard="1"></vturb-smartplayer>
-      <script type="text/javascript">
-        var s = document.createElement("script");
-        s.src = "https://scripts.converteai.net/6fa5f75c-723e-4301-a459-76c14edde081/players/6a03e48213e119642182af7b/v4/player.js";
-        s.async = !0;
-        document.head.appendChild(s);
-      </script>
-      <script defer src="../assets/vturb-player-guard.min.js?v=<?= htmlspecialchars((string) $guardVer, ENT_QUOTES) ?>"></script>
+
     </div>
-
-  </div>
 </section>
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
      CTA #1, RIGHT AFTER VSL (NEW)
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
-<section style="padding: 20px 24px 60px; position:relative;">
-  <div class="cta-block">
-    <div class="small-headline">Ready to See Your <em>Wealth Block?</em></div>
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
-    <div class="cta-trust-row">
-      <span>&#128274; Secure Checkout</span>
-      <span>&#9889; Delivered in 12-24 Hrs</span>
-      <span>&#127769; 90-Day Guarantee</span>
-    </div>
-  </div>
-</section>
+
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
      3-CARD BREAKDOWN (existing, now personalized + headline updated)
@@ -113,57 +515,75 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 <section class="section">
   <div class="wrap">
     <h2><span class="firstname">Friend</span>, These Are the Cards<br><em>You Chose Today</em></h2>
-    <p style="text-align:center; max-width:560px; margin:0 auto 24px;">Three cards. Three mirrors. One hidden belief running all of them. This is what your reading has been pointing to.</p>
+    <p class="gs-subhead">Three cards. Three mirrors. One hidden belief running all of them. This is what your reading has been pointing to.</p>
 
-    <div class="three-cards">
-      <div class="card-mirror" data-card-slot="love">
-        <div class="mirror-pair">
-          <img src="https://soulmirrorreading.com/cards/mirror-love.png" alt="Love Mirror" class="mirror-img">
-          <div class="pair-plus">+</div>
-          <div class="card-wireframe" data-card-image="love">
+    <div class="gs-divider" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
+
+    <div class="gs-spread">
+
+      <div class="gs-frame gs-frame-love" data-card-slot="love">
+        <div class="gs-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-love.webp" alt="Love Mirror"></div>
+        <div class="gs-kicker">Mirror One</div>
+        <div class="gs-stage">
+          <div class="gs-window card-wireframe" data-card-image="love">
+            <span class="gs-numeral" aria-hidden="true">I</span>
             <div class="wf-content">
               <div class="wf-icon">&#10022;</div>
               <div class="wf-label">Your Card</div>
             </div>
           </div>
         </div>
-        <h4>Mirror One &middot; Love</h4>
-        <div class="card-name-label" data-card-name="love"></div>
+        <div class="gs-area">Love</div>
+        <div class="gs-cardname card-name-label" data-card-name="love"></div>
         <p>Where you pull back right before connection becomes real. The pattern that keeps love feeling just slightly out of reach.</p>
       </div>
-      <div class="card-mirror" data-card-slot="life">
-        <div class="mirror-pair">
-          <img src="https://soulmirrorreading.com/cards/mirror-life.png" alt="Life Mirror" class="mirror-img">
-          <div class="pair-plus">+</div>
-          <div class="card-wireframe" data-card-image="life">
+
+      <div class="gs-frame gs-frame-life" data-card-slot="life">
+        <div class="gs-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-life.webp" alt="Life Mirror"></div>
+        <div class="gs-kicker">Mirror Two</div>
+        <div class="gs-stage">
+          <div class="gs-window card-wireframe" data-card-image="life">
+            <span class="gs-numeral" aria-hidden="true">II</span>
             <div class="wf-content">
               <div class="wf-icon">&#10022;</div>
               <div class="wf-label">Your Card</div>
             </div>
           </div>
         </div>
-        <h4>Mirror Two &middot; Life</h4>
-        <div class="card-name-label" data-card-name="life"></div>
+        <div class="gs-area">Life</div>
+        <div class="gs-cardname card-name-label" data-card-name="life"></div>
         <p>Where your energy leaks and your choices keep looping. The place you feel most stuck, showing you the exact map you have been following.</p>
       </div>
-      <div class="card-mirror" data-card-slot="wealth">
-        <div class="mirror-pair">
-          <img src="https://soulmirrorreading.com/cards/mirror-wealth.png" alt="Wealth Mirror" class="mirror-img">
-          <div class="pair-plus">+</div>
-          <div class="card-wireframe" data-card-image="wealth">
+
+      <div class="gs-frame gs-frame-wealth" data-card-slot="wealth">
+        <div class="gs-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-wealth.webp" alt="Wealth Mirror"></div>
+        <div class="gs-kicker">Mirror Three</div>
+        <div class="gs-stage">
+          <div class="gs-window card-wireframe" data-card-image="wealth">
+            <span class="gs-numeral" aria-hidden="true">III</span>
             <div class="wf-content">
               <div class="wf-icon">&#10022;</div>
               <div class="wf-label">Your Card</div>
             </div>
           </div>
         </div>
-        <h4>Mirror Three &middot; Wealth</h4>
-        <div class="card-name-label" data-card-name="wealth"></div>
+        <div class="gs-area">Wealth</div>
+        <div class="gs-cardname card-name-label" data-card-name="wealth"></div>
         <p>What you believe you are allowed to have. The inherited story about deserving that has been setting your ceiling without your knowledge.</p>
       </div>
-      <div class="card-mirror featured">
-        <img src="https://soulmirrorreading.com/cards/mirror-block.png" alt="Wealth Block" class="mirror-img" style="max-width:140px;">
-        <h4>The Hidden Layer &middot; Wealth Block</h4>
+
+    </div>
+
+    <div class="gs-connector" aria-hidden="true">
+      <span class="gs-connector-line"></span>
+      <span class="gs-connector-label">Three Cards, One Root</span>
+      <span class="gs-connector-arrow">&#9662;</span>
+    </div>
+
+    <div class="gs-featured">
+      <div class="gs-featured-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-block.webp" alt="Wealth Block"></div>
+      <div class="gs-featured-body">
+        <h4>The Hidden Layer.<br>This Is Your Wealth Block.</h4>
         <p>The one belief running all three. Until it is named clearly, every reading you ever get will point to the same wall.</p>
       </div>
     </div>
@@ -174,68 +594,34 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
      DIAGNOSTIC PROOF (NEW v2)
-     "The Reading Is a Diagnostic. Not a Guess."
-     Shows the 4 possible outcomes + the 22,100 combinations math
+     "This Is a Diagnosis. Not a Prediction."
+     Diagnosis framing: three cards read as one connected system
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section class="section" style="position:relative;">
   <div class="wrap">
-    <h2>This Is a <em>Diagnostic.</em> Not a Guess.</h2>
+    <h2>This Is a <em>Diagnosis.</em> Not a Prediction.</h2>
 
     
 
-<p style="text-align:center; max-width:600px; margin:0 auto 18px;">Your three cards point to one specific belief at the root of your wealth. The same belief quietly shapes your relationships and your sense of purpose. Name it at the wealth root. Watch all three balance back.</p>
+<p style="text-align:center; max-width:600px; margin:0 auto 18px;">Your three cards point to one belief sitting at the root of your wealth. The same belief is quietly shaping your love and your purpose too. Name it once, and all three start to move.</p>
 
-    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">There are <strong style="color:var(--gold-light);">22,100 possible 3-card combinations</strong>. Yours decodes to exactly one Wealth Block. Not a vibe. Not a horoscope. A specific diagnosis built from the precise cards you drew.</p>
+    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">This is not a horoscope. Like a doctor reading three symptoms together instead of one at a time, it reads the <strong style="color:var(--gold-light);">three cards you actually drew</strong>, and the houses they landed in, as one connected system. That is what turns an interesting card into the exact pattern you keep living. Built from your cards. Never a script.</p>
 
 
-
-    <!-- User's 3 cards as the "input" -->
-    <div style="max-width:480px; margin:28px auto 20px;">
-      <div style="text-align:center; font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.25em; color:var(--gold); text-transform:uppercase; margin-bottom:16px;">Your Combination</div>
-      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;">
-        <div style="text-align:center;">
-          <div class="card-wireframe card-wireframe-sm" data-card-image="love">
-            <div class="wf-content">
-              <div class="wf-icon">&#10022;</div>
-              <div class="wf-label">Love</div>
-            </div>
-          </div>
-          <div class="card-name-label" data-card-name="love" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:var(--gold-light); margin-top:8px;"></div>
-        </div>
-        <div style="text-align:center;">
-          <div class="card-wireframe card-wireframe-sm" data-card-image="life">
-            <div class="wf-content">
-              <div class="wf-icon">&#10022;</div>
-              <div class="wf-label">Life</div>
-            </div>
-          </div>
-          <div class="card-name-label" data-card-name="life" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:var(--gold-light); margin-top:8px;"></div>
-        </div>
-        <div style="text-align:center;">
-          <div class="card-wireframe card-wireframe-sm" data-card-image="wealth">
-            <div class="wf-content">
-              <div class="wf-icon">&#10022;</div>
-              <div class="wf-label">Wealth</div>
-            </div>
-          </div>
-          <div class="card-name-label" data-card-name="wealth" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:var(--gold-light); margin-top:8px;"></div>
-        </div>
-      </div>
-    </div>
 
     <!-- Down arrow / decoding indicator -->
     <div style="text-align:center; margin:24px auto 8px;">
-      <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.25em; color:var(--gold); text-transform:uppercase; margin-bottom:8px;">Decodes To</div>
+      <div class="gs-connector-label" style="margin-bottom:8px;">Now The Pattern Has A Name</div>
       <div style="color:var(--gold); font-size:24px; line-height:1;">&darr;</div>
     </div>
 
     <!-- Diagnosis card (always visible, no tap gate) -->
     <div style="max-width:560px; margin:16px auto 0;">
       <div style="background: linear-gradient(180deg, rgba(45,27,105,0.65), rgba(30,13,64,0.92)); border: 1px solid var(--gold); border-radius: 14px; padding: 32px 28px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); text-align: center;">
-        <div style="font-family:'Cinzel',sans-serif; font-size:10px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:12px;">What Your Cards Point To</div>
+        
         <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">Your Wealth Is Blocked</h4>
-        <p data-mirror-block-summary style="font-size:16px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money arrives. Money quietly leaves. The same income range, year after year, no matter what you try.</p>
-        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:15px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading names <strong style="color:var(--gold-light);">exactly which</strong> Wealth Block this is, and the practice that clears it.</div>
+        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money arrives. Money quietly leaves. The same ceiling, year after year, no matter what you try.</p>
+        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block is working, and the one practice that clears it. Not more effort, not another course, not trying harder. Just one quiet shift, and the pattern that kept pulling your money back finally loosens its grip, so what comes in has a <strong style="color:var(--gold-light);">real chance to stay</strong>.</div>
       </div>
     </div>
 
@@ -243,12 +629,14 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <!-- CTA after diagnostic proof -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Clear My Wealth Block &rarr;</a>
+      <p style="max-width:480px; margin:14px auto 0; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.72);">Your free cards named the block. Your full reading reads all three together and shows you <strong style="color:var(--gold-light);">exactly how it works</strong>, where it took root, and the practice that clears it. Hand-written for your cards, in your inbox within 24 hours.</p>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
-        <span>&#127769; 90-Day Guarantee</span>
       </div>
+      <p style="max-width:500px; margin:12px auto 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,0.62);"><span style="color:var(--gold-light);">&#127769; 90-day promise.</span> Read your full reading. If it is not worth far more than $37 to you, for any reason, reply and I refund every penny.</p>
+      <p style="max-width:460px; margin:18px auto 0; font-size:13px; font-style:italic; line-height:1.6; color:rgba(255,255,255,0.6);">&ldquo;It named the exact belief that had quietly kept me at the same number for years. Once I could finally see it, I stopped quietly talking myself out of asking for what my work is worth.&rdquo; <span style="color:var(--gold-light); font-style:normal;">Hannah T., 44</span></p>
     </div>
   </div>
 </section>
@@ -261,7 +649,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
     <div class="testi-card">
       <div class="testi-avatar-row">
         <picture>
-          <source type="image/webp" srcset="../frontend/images/sales/rebecca-hartley.webp">
+          <source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.webp">
           <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.png" alt="Rebecca Hartley" decoding="async" loading="lazy">
         </source></picture>
         <div>
@@ -272,6 +660,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
       <p class="testi-body">"I almost closed the tab. After ten years of courses and readings that all said the same thing in slightly different words, I expected more of the same. It was not. The Wealth Block Luna named was the exact reason I had spent fifteen years quoting low and apologizing for my prices. Two weeks later a client asked for a full brand kit. Normally I would have said fifteen hundred and felt guilty. I sat with what the reading showed me and sent the quote for four thousand. She replied 'that sounds fair' and paid the deposit that afternoon. I am not saying the cards did it. I am saying they finally let me see the wall I had been pricing myself behind."</p>
     </div>
+    <p style="text-align:center; max-width:580px; margin:16px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
   </div>
 </section>
 
@@ -282,7 +671,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
   <div class="wrap">
     <div class="vip-box">
       <h2>Inside Your <em>Soul Mirror Reading</em></h2>
-      <img src="https://soulmirrorreading.com/frontend/images/sales/soul-mirror-reading.png" alt="Soul Mirror Reading" class="vip-mockup">
+      <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/soul-mirror-reading.webp" alt="Soul Mirror Reading" class="vip-mockup">
       <div class="vip-valued">Valued at <span class="amount">$197</span></div>
       <ul class="vip-list">
         <li><span><strong>Your Wealth Block Identified.</strong> The one core belief running Love, Life, and Wealth at the same time.</span></li>
@@ -296,7 +685,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
       <!-- CTA inside the VIP box -->
       <div style="text-align:center; margin-top:32px;">
-        <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block</a>
+        <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Clear My Wealth Block &rarr;</a>
         <div class="cta-trust-row" style="margin-top:14px;">
           <span>&#128274; Secure Checkout</span>
           <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -318,28 +707,28 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
     <div class="bonus-grid">
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/mirror-block-companion-guide.png" alt="Companion Guide">
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/mirror-block-companion-guide.webp" alt="Companion Guide">
         <div class="bonus-num">Bonus 1</div>
         <h4>Mirror Block Companion Guide</h4>
         <div class="value">Valued at $67</div>
       </div>
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/21-days-shift-tracker.png" alt="Shift Tracker">
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/21-days-shift-tracker.webp" alt="Shift Tracker">
         <div class="bonus-num">Bonus 2</div>
         <h4>21-Day Shift Tracker</h4>
         <div class="value">Valued at $47</div>
       </div>
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/root-cause-reading-guide.png" alt="Root Cause Guide">
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/root-cause-reading-guide.webp" alt="Root Cause Guide">
         <div class="bonus-num">Bonus 3</div>
         <h4>Root Cause Reading Guide</h4>
         <div class="value">Valued at $47</div>
       </div>
       <div class="bonus-card-compact">
         <span class="free-badge">FREE</span>
-        <img src="https://soulmirrorreading.com/frontend/images/sales/mirror-clarity-meditation.png" alt="Clarity Meditation">
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/mirror-clarity-meditation.webp" alt="Clarity Meditation">
         <div class="bonus-num">Bonus 4</div>
         <h4>Mirror Clarity Meditation</h4>
         <div class="value">Valued at $37</div>
@@ -365,18 +754,11 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <p style="max-width:560px; margin:0 auto 32px; color:rgba(255,255,255,0.7); font-style:italic;">The exact combination you drew today is what makes the diagnosis precise. Come back in a week and the cards, and the reading, will be different.</p>
 
-    <div style="display:inline-block; width:100%; max-width:520px; background: linear-gradient(180deg, rgba(45,27,105,0.7), rgba(30,13,64,0.9)); border: 1px solid rgba(212,175,55,0.4); border-radius: 16px; padding: 26px 30px; margin: 0 auto 32px; box-shadow: 0 12px 32px rgba(0,0,0,0.4); text-align:left;">
-      <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.25em; color:rgba(232,201,122,0.75); text-transform:uppercase; margin-bottom:18px; text-align:center;">What You're Getting</div>
-      <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Cormorant Garamond',serif; font-size:18px; color:#fff; margin-bottom:12px;"><span>Your Soul Mirror Reading</span><span>$197</span></div>
-      <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Cormorant Garamond',serif; font-size:18px; color:#fff; margin-bottom:16px;"><span>4 Bonus Materials</span><span>$198</span></div>
-      <div style="border-top:1px solid rgba(212,175,55,0.3); padding-top:16px; display:flex; justify-content:space-between; align-items:baseline; font-family:'Cormorant Garamond',serif; font-size:17px; color:rgba(255,255,255,0.85); margin-bottom:16px;"><span>Total Value</span><span style="text-decoration:line-through; text-decoration-color:rgba(212,175,55,0.6);">$395</span></div>
-      <div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-family:'Cinzel',sans-serif; font-size:13px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase;">Today</span><span style="font-family:'Cormorant Garamond',serif; font-size:46px; font-weight:600; color:var(--gold-light); line-height:1;">$37</span></div>
-    </div>
 
     <p style="max-width:560px; margin:0 auto 24px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna's private readings run <strong style="color:var(--gold-light); text-decoration:line-through; text-decoration-color: rgba(212,175,55,0.5);">$395</strong>.<br>Today, the complete package with all 4 bonuses is just <strong style="color:var(--gold-light); font-size:18px;">$37</strong>.</p>
 
     <div style="text-align:center; margin-top:24px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#127769; 90-Day Money-Back Guarantee</span>
         <span>&#9889; Delivered Within 24 Hours</span>
@@ -416,11 +798,11 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <li><span><strong>Bonus 4.</strong> Clarity Meditation ($37)</span></li>
     </ul>
 
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
 
     <div class="pricing-inline-guarantee">
-      <img src="https://soulmirrorreading.com/cards/guarantee-badge.png" alt="90-Day Guarantee">
-      <div><strong>90-Day Money Back Guarantee.</strong><br>If it does not show you something real, refund. No questions.</div>
+      <img loading="lazy" src="https://soulmirrorreading.com/cards/guarantee-badge.webp" alt="90-Day Guarantee">
+      <div><strong>90-Day Money-Back Guarantee.</strong><br>Read your full reading. If it is not worth far more than $37 to you, for any reason, reply and I refund every penny.</div>
     </div>
 
     <div class="trust-badge-row">
@@ -440,7 +822,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <div class="testi-card">
       <div class="testi-avatar-row">
-        <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.png" alt="Diane R.">
+        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.png" alt="Diane R." width="56" height="56" decoding="async" loading="lazy"></picture>
         <div>
           <div class="testi-name">Diane R.</div>
           <div class="testi-meta">54 &middot; Retired teacher</div>
@@ -456,7 +838,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <div class="testi-card">
       <div class="testi-avatar-row">
-        <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.png" alt="James H.">
+        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.png" alt="James H." width="56" height="56" decoding="async" loading="lazy"></picture>
         <div>
           <div class="testi-name">James H.</div>
           <div class="testi-meta">48 &middot; Business owner</div>
@@ -468,7 +850,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <div class="testi-card">
       <div class="testi-avatar-row">
-        <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.png" alt="Carolyn M.">
+        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.png" alt="Carolyn M." width="56" height="56" decoding="async" loading="lazy"></picture>
         <div>
           <div class="testi-name">Carolyn M.</div>
           <div class="testi-meta">61 &middot; Holistic practitioner</div>
@@ -481,7 +863,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
     <!-- CTA after testimonials cluster -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -503,20 +885,20 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <div style="background: linear-gradient(180deg, rgba(45,27,105,0.6), rgba(30,13,64,0.85)); border: 1px solid rgba(212,175,55,0.45); border-radius: 14px; padding: 28px 22px; backdrop-filter: blur(4px);">
         <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:14px;">Path A</div>
         <h3 style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#fff; font-weight:600; line-height:1.3; margin-bottom:14px;">You <em style="color:var(--gold-light); font-style:italic;">See It Clearly</em></h3>
-        <p style="font-size:15px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0;">Within 24 hours, your Soul Mirror Reading lands in your inbox. You read it once on your couch. The next morning you read it again, slower. You see the single belief that has been running underneath every choice in love, money, and purpose. The work begins from there. Most people tell me it takes 21 days before they notice they have stopped doing the thing they have been doing for years.</p>
+        <p style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0;">Within 24 hours, your Soul Mirror Reading lands in your inbox. You read it once on your couch. The next morning you read it again, slower. You see the single belief that has been running underneath every choice in love, money, and purpose. The work begins from there. Most people tell me it takes 21 days before they notice they have stopped doing the thing they have been doing for years.</p>
       </div>
       <!-- Path B -->
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 28px 22px; backdrop-filter: blur(4px);">
         <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.22em; color:rgba(255,255,255,0.5); text-transform:uppercase; margin-bottom:14px;">Path B</div>
         <h3 style="font-family:'Cormorant Garamond',serif; font-size:22px; color:rgba(255,255,255,0.7); font-weight:600; line-height:1.3; margin-bottom:14px;">You <em style="color:rgba(255,255,255,0.55); font-style:italic;">Don't.</em></h3>
-        <p style="font-size:15px; color:rgba(255,255,255,0.6); line-height:1.7; margin:0;">You close this page. You finish your tea. The pattern keeps running. Six months from now, you are back here. Or somewhere else, looking at the same wall in different paint. The cards you chose minutes ago will not carry the same precision a week from now. The window narrows quietly.</p>
+        <p style="font-size:18px; color:rgba(255,255,255,0.6); line-height:1.7; margin:0;">You close this page. You finish your tea. The pattern keeps running. Six months from now, you are back here. Or somewhere else, looking at the same wall in different paint. The cards you chose minutes ago will not carry the same precision a week from now. The window narrows quietly.</p>
       </div>
     </div>
 
     
 
 <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Take Path A &middot; Reveal My Wealth Block &middot; $37 &rarr;</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Take Path A &middot; Get My Full Reading &middot; $37 &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -554,7 +936,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       </details>
       <details>
         <summary>What if I am not satisfied?</summary>
-        <p class="faq-a">You are covered by our 90-day guarantee. If the report does not give you something genuinely useful, email us and we will refund you completely. We would rather you keep the money than feel like the mirror did not show you anything real.</p>
+        <p class="faq-a">You are covered by a 90-day money-back guarantee. Read your full reading. If it is not worth far more than $37 to you, for any reason, reply to the delivery email and I refund every penny. In nineteen years, that has almost never happened.</p>
       </details>
     </div>
   </div>
@@ -573,7 +955,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 
 
     <div style="margin:28px auto 12px;">
-      <img src="https://soulmirrorreading.com/frontend/images/sales/bundle-product-image.png" alt="Soul Mirror Reading complete bundle" style="max-width:420px; width:100%; height:auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));">
+      <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/bundle-product-image.webp" alt="Soul Mirror Reading complete bundle" style="max-width:420px; width:100%; height:auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));">
     </div>
 
     <div style="margin:24px 0;">
@@ -581,7 +963,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
       <div style="font-family:'Cormorant Garamond',serif; font-size:48px; color:var(--gold-light); font-weight:600;">$37</div>
     </div>
 
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Reveal My Wealth Block &middot; $37 &rarr;</a>
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
     <p style="margin-top:18px; font-size:13px; color:rgba(255,255,255,0.6);">Instant access &middot; 90-day guarantee &middot; Secure checkout</p>
   </div>
 </section>
@@ -610,6 +992,6 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script defer src="../assets/sales-v2.min.js?v=<?= htmlspecialchars((string) $jsVer, ENT_QUOTES) ?>"></script>
-</body>
+<script>(function(){function go(){try{var d=new Date();var t=d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});var pd=document.querySelectorAll('.pdate');for(var i=0;i<pd.length;i++){pd[i].textContent=t;}}catch(e){}try{var any=false;var L=document.querySelectorAll('[data-card-name]');for(var j=0;j<L.length;j++){var k=L[j].getAttribute('data-card-name');var tx=(L[j].textContent||'').trim();if(tx){any=true;var pc=document.querySelectorAll('.pcard');for(var m=0;m<pc.length;m++){if(pc[m].getAttribute('data-card')===k){pc[m].textContent=tx;}}}}if(any){var cl=document.querySelectorAll('.cards-line');for(var n=0;n<cl.length;n++){cl[n].style.display='';}}}catch(e){}}document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);var c=0,iv=setInterval(function(){go();if(++c>10){clearInterval(iv);}},250);})();</script></body>
 
 </html>
