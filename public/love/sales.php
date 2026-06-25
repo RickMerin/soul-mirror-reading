@@ -437,7 +437,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
 
 <div class="topnotice" style="background:#9b1c1c;color:#fff;border-bottom:1px solid #c0392b;">
-  <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Read This First, It Changes What You Do With It</strong>
+  <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Read This First, It Changes How You Recognize Real Love When It Comes</strong>
 </div>
 
 
@@ -449,12 +449,12 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
   <div class="wrap">
 
 
-<h1 class="vsl-headline">There Is <span style="color:var(--gold-light);">One Hidden Pattern</span> Beneath Everything You've Struggled With.</h1>
+<h1 class="vsl-headline">There Is <span style="color:var(--gold-light);">One Hidden Reason</span> The Love You Can Feel Is Meant For You Keeps Slipping Away.</h1>
 
 
 
 
-<p class="vsl-sub">Your three cards just brought it to the surface, and they are <span style="color:var(--gold-light);text-decoration:underline;text-decoration-color:rgba(212,175,55,0.6);text-decoration-thickness:2px;text-underline-offset:4px;">waiting below</span>. Once you see it, you cannot unsee it.</p>
+<p class="vsl-sub">Your three cards have warned you about this for years. Ignored long enough, it quietly costs you <span style="color:var(--gold-light);text-decoration:underline;text-decoration-color:rgba(212,175,55,0.6);text-decoration-thickness:2px;text-underline-offset:4px;">the love you are meant for</span>.</p>
 <div class="tslwrap">
 <video class="luna-hero" autoplay loop muted playsinline preload="auto" poster="../assets/luna-portrait.jpg" aria-label="Luna Ross, your reader">
 <source src="../assets/luna-motion.mp4?v=3" type="video/mp4">
@@ -462,35 +462,35 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 </video>
 <p class="luna-cap">Luna Ross, your reader</p>
 <p class="tsl"><span class="firstname">Friend</span>, here on <span class="pdate">today</span>, I have all three of your cards in front of me.</p>
-<p class="tsl cards-line" style="display:none"><span class="pcard" data-card="wealth">your Wealth card</span> in your Wealth house. <span class="pcard" data-card="love">your Love card</span> in your Love. <span class="pcard" data-card="life">your Life card</span> in your Life.</p>
+<p class="tsl cards-line" style="display:none"><span class="pcard" data-card="love">your Love card</span> in your Love house. <span class="pcard" data-card="life">your Life card</span> in your Life. <span class="pcard" data-card="wealth">your Wealth card</span> in your Wealth.</p>
 <p class="tsl">The moment I laid them out, one pattern stepped forward.</p>
-<p class="tsl">There is a pattern your love life keeps returning to.</p>
-<p class="tsl">No matter who you meet, how openly you give, or how much you pray on it, you land back in the same painful dynamic.</p>
-<p class="tsl">It starts strong. A connection that feels real, a closeness you can almost lean into, a love you can nearly trust.</p>
-<p class="tsl">Then something unseen pulls them back, and the warmth quietly cools again.</p>
+<p class="tsl">There is a reason the love you can feel is meant for you keeps not quite arriving.</p>
+<p class="tsl">The almost-ones. The near-misses. The wrong people who felt familiar, and the long stretches alone in between. Different faces, the same quiet ending.</p>
+<p class="tsl">Sometimes it starts to be real. A connection you can feel, a closeness you can almost lean into, a person you can nearly let in.</p>
+<p class="tsl">Then, right as it gets close, something in you braces. You pull back a little, or look past the steady one toward someone who was never quite available, and the distance returns.</p>
 <p class="tsl"><span class="pcard" data-card="love">your Love card</span> landing in your Love house is where I see it most clearly.</p>
-<p class="tsl">You have tried the things that were supposed to fix this. Therapy. Manifesting. The courses.</p>
-<p class="tsl">Each one worked for a while. Then the same wall came back.</p>
-<p class="tsl">That is not a willpower problem, <span class="firstname">Friend</span>. And it was never your fault.</p>
+<p class="tsl">You have tried the things that were supposed to bring it. The apps. The advice. The therapy. The courses.</p>
+<p class="tsl">Each one helped for a while. Then the right love stayed just out of reach again, the same way it always has.</p>
+<p class="tsl">That is not about trying harder, <span class="firstname">Friend</span>. And it was never your fault.</p>
 <p class="tsl">They all aimed at the symptom. None of them touched the root.</p>
-<p class="tsl">It is a single belief you formed before you had words for it. Usually in childhood. About what is safe to let close, and what it quietly costs you to be truly seen.</p>
-<p class="tsl">It runs underneath your love, your money, and your sense of purpose, all at the same time.</p>
+<p class="tsl">It is a single belief you formed before you had words for it, often one you quietly inherited. A belief about whether love is safe to have, and safe to keep, once it is truly yours.</p>
+<p class="tsl">It runs underneath your love first, and quietly underneath your money and your sense of purpose too, all at the same time.</p>
 <p class="tsl">This is your <span class="tslbold">Love Block</span>. And your three cards have been pointing straight at it.</p>
 <figure class="tslfig"><video class="tslmid" autoplay loop muted playsinline preload="auto" poster="../assets/luna-hands-cards.jpg" aria-label="Luna reading your three cards"><source src="../assets/luna-hands-motion.mp4?v=1" type="video/mp4"><img class="tslmid" src="../assets/luna-hands-cards.jpg" alt="Luna reading your three cards"></video><figcaption class="tslfigcap">The three cards you drew, as I read them.</figcaption></figure>
-<p class="tsl">It speaks loudest in love, because your closest relationships keep the most honest record.</p>
-<p class="tsl">Every time something in you whispers "not too close, not for me," you are following an instruction you did not knowingly write.</p>
+<p class="tsl">It speaks loudest in love, because your closest relationships keep the most honest record of who you let near.</p>
+<p class="tsl">Every time something in you whispers "not this one, not too close, not yet," you are following an instruction you did not knowingly write.</p>
 <p class="tsl">Here is what it is doing right now.</p>
-<p class="tsl">It is keeping one hand on the door of your own heart, exactly where you have learned to expect it. And it is patient.</p>
-<p class="tsl">It does not need a heartbreak to win. It only needs you to keep deciding you are not ready to be fully met.</p>
-<p class="tsl">Picture six months from now. The same wall. The same quiet bracing where you give more, receive less, and call it normal.</p>
-<p class="tsl">A year from now, the distance has compounded. In your relationships, and in the part of you that has stopped expecting to be loved well.</p>
-<div class="tslpull">The block does not fight you. It waits you out. Left unnamed, it always wins, because you cannot clear what you cannot see.</div>
+<p class="tsl">It is keeping one hand on the door of your own heart, holding the right person at exactly the distance you have learned to expect. And it is patient.</p>
+<p class="tsl">It does not need a heartbreak to win. It only needs you to keep deciding, quietly, that you are not ready to be fully met and fully kept.</p>
+<p class="tsl">Picture six months from now. The same near-miss. The same quiet bracing the moment someone real gets close, where you give more, let in less, and call it normal.</p>
+<p class="tsl">A year from now, the distance has compounded. Another person you almost let stay, and a quieter part of you that has stopped expecting your person to arrive at all.</p>
+<div class="tslpull">The block does not fight you. It waits you out. Left unnamed, it keeps the right love at arm's length, because you cannot let in what you cannot see you are pushing away.</div>
 <p class="tsl">The free preview on its way to your inbox will confirm your Love Block is there, <span class="firstname">Friend</span>. It can show you its shape.</p>
-<p class="tsl">What it cannot do is read <span class="pcard" data-card="wealth">your Wealth card</span>, <span class="pcard" data-card="love">your Love card</span>, and <span class="pcard" data-card="life">your Life card</span> together.</p>
+<p class="tsl">What it cannot do is read <span class="pcard" data-card="love">your Love card</span>, <span class="pcard" data-card="life">your Life card</span>, and <span class="pcard" data-card="wealth">your Wealth card</span> together.</p>
 <p class="tsl">That is your Soul Mirror Reading.</p>
-<p class="tsl">I read all three by hand, <span class="firstname">Friend</span>, and show you the precise belief setting the distance, the exact moves it has been making behind your back, and the one practice that interrupts it where it actually lives.</p>
+<p class="tsl">I read all three by hand, <span class="firstname">Friend</span>, and show you the precise belief keeping your person at arm's length, the exact moves it makes the moment real closeness arrives, and the one practice that interrupts it where it actually lives.</p>
 <p class="tsl">Hand-written for your cards. In your inbox within 24 hours.</p>
-<p class="tsl">Your cards have already shown me what it is doing. The reading is how you finally see it, and begin to clear it.</p>
+<p class="tsl">Your cards have already shown me what it is doing. The reading is how you finally see it, stop bracing when love gets close, and let the right one come closer, and stay.</p>
 </div>
 
 
@@ -513,7 +513,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <section class="section">
   <div class="wrap">
     <h2><span class="firstname">Friend</span>, These Are the Cards<br><em>You Chose Today</em></h2>
-    <p class="gs-subhead">Three cards. Three mirrors. One hidden belief running all of them. This is what your reading has been pointing to.</p>
+    <p class="gs-subhead">Three cards. Three mirrors. One hidden belief about whether love is safe to keep, running all of them. This is what your reading has been pointing to.</p>
 
     <div class="gs-divider" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
 
@@ -533,7 +533,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         </div>
         <div class="gs-area">Love</div>
         <div class="gs-cardname card-name-label" data-card-name="love"></div>
-        <p>Where you pull back right before connection becomes real. The pattern that keeps love feeling just slightly out of reach.</p>
+        <p>Where you brace, or quietly pull back, the moment real closeness arrives. The pattern that keeps the love you can feel is meant for you just out of reach.</p>
       </div>
 
       <div class="gs-frame gs-frame-life" data-card-slot="life">
@@ -550,7 +550,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         </div>
         <div class="gs-area">Life</div>
         <div class="gs-cardname card-name-label" data-card-name="life"></div>
-        <p>Where your energy leaks and your choices keep looping. The place you feel most stuck, showing you the exact map you have been following.</p>
+        <p>Where the same belief shapes your choices and your sense of purpose. The place you feel most stuck, showing you the exact map you have been following in love and out of it.</p>
       </div>
 
       <div class="gs-frame gs-frame-wealth" data-card-slot="wealth">
@@ -567,7 +567,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         </div>
         <div class="gs-area">Wealth</div>
         <div class="gs-cardname card-name-label" data-card-name="wealth"></div>
-        <p>What you believe you are allowed to receive. The same inherited story about deserving, quietly shaping your money the way it shapes your love.</p>
+        <p>What you believe you are allowed to receive and keep. The same inherited story about deserving, quietly shaping your money the way it shapes your love.</p>
       </div>
 
     </div>
@@ -582,7 +582,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <div class="gs-featured-emblem"><img src="https://soulmirrorreading.com/cards/mirror-block.png" alt="Love Block"></div>
       <div class="gs-featured-body">
         <h4>The Hidden Layer.<br>This Is Your Love Block.</h4>
-        <p>The one belief running all three. Until it is named clearly, every reading you ever get will point to the same wall.</p>
+        <p>The one belief, about whether love is safe to have and to keep, running all three. Until it is named clearly, every reading you ever get will point to the same wall between you and your person.</p>
       </div>
     </div>
 
@@ -601,9 +601,9 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
 
 
-<p style="text-align:center; max-width:600px; margin:0 auto 18px;">Your three cards point to one belief sitting at the root of your closest relationships. The same belief is quietly shaping your money and your purpose too. Name it once, and all three start to move.</p>
+<p style="text-align:center; max-width:600px; margin:0 auto 18px;">Your three cards point to one belief sitting at the root of who you let close, and who you keep at arm's length. This is not only about your love life: the same belief is quietly shaping your money and your purpose too. Name it once, and all three start to move.</p>
 
-    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">This is not a horoscope. Like a doctor reading three symptoms together instead of one at a time, it reads the <strong style="color:var(--gold-light);">three cards you actually drew</strong>, and the houses they landed in, as one connected system. That is what turns an interesting card into the exact pattern you keep living. Built from your cards. Never a script.</p>
+    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">This is not a horoscope. Like a doctor reading three symptoms together instead of one at a time, it reads the <strong style="color:var(--gold-light);">three cards you actually drew</strong>, your Love card first, then your Life and your Wealth, and the houses they landed in, as one connected system. That is what turns an interesting card into the exact reason the right love keeps almost arriving and then slipping away. Built from your cards. Never a script.</p>
 
 
 
@@ -617,9 +617,9 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <div style="max-width:560px; margin:16px auto 0;">
       <div style="background: linear-gradient(180deg, rgba(45,27,105,0.65), rgba(30,13,64,0.92)); border: 1px solid var(--gold); border-radius: 14px; padding: 32px 28px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); text-align: center;">
 
-        <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">Your Love Is Blocked</h4>
-        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Love arrives. Love quietly pulls away. The same wall, relationship after relationship, no matter who it is.</p>
-        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Love Block is working, and the one practice that clears it. Not more giving, not another book, not loving harder. Just one quiet shift, and the love that always slipped away starts to come closer <strong style="color:var(--gold-light);">on its own</strong>, and finally stays.</div>
+        <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">The Love Meant For You Is Blocked</h4>
+        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">The right love almost arrives. Then it quietly slips away, or you brace and hold it at a distance. The same wall, near-miss after near-miss, no matter who it is.</p>
+        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Love Block is working, and the one practice that clears it. Not more dating apps, not another book, not loving harder. Just one quiet shift, so you stop recognizing the wrong people as familiar and stop bracing when the right one gets close. The love you have always been able to feel is meant for you can finally come <strong style="color:var(--gold-light);">closer</strong>, and you can let it stay.</div>
       </div>
     </div>
 
@@ -628,13 +628,13 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <!-- CTA after diagnostic proof -->
     <div style="text-align:center; margin-top:40px;">
       <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Clear My Love Block &rarr;</a>
-      <p style="max-width:480px; margin:14px auto 0; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.72);">Your free cards named the block. Your full reading reads all three together and shows you <strong style="color:var(--gold-light);">exactly how it works</strong>, where it took root, and the practice that clears it. Hand-written for your cards, in your inbox within 24 hours.</p>
+      <p style="max-width:480px; margin:14px auto 0; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.72);">Your free cards named the belief keeping your person at arm's length. Your full reading reads all three together, your Love card first, and shows you <strong style="color:var(--gold-light);">exactly how it works</strong>, where it took root, and the practice that clears it. Hand-written for your cards, in your inbox within 24 hours.</p>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
       </div>
       <p style="max-width:500px; margin:12px auto 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,0.62);"><span style="color:var(--gold-light);">&#127769; 90-day promise.</span> Read it. If the Love Block I name does not feel unmistakably like your life, reply and I refund every penny. You keep the reading and all four bonuses.</p>
-      <p style="max-width:460px; margin:18px auto 0; font-size:13px; font-style:italic; line-height:1.6; color:rgba(255,255,255,0.6);">&ldquo;It named the exact belief that had quietly kept me at arm's length for years. A few weeks after the clearing practice, love started arriving in ways it never had, and for the first time, it simply stayed.&rdquo; <span style="color:var(--gold-light); font-style:normal;">Hannah T., 44</span></p>
+      <p style="max-width:460px; margin:18px auto 0; font-size:13px; font-style:italic; line-height:1.6; color:rgba(255,255,255,0.6);">&ldquo;It named the exact belief that had quietly kept me at arm's length for years. A few weeks after the clearing practice, I stopped reaching for the unavailable ones, and when a steady, kind man got close I finally let him in instead of pulling back. For the first time, I let it stay.&rdquo; <span style="color:var(--gold-light); font-style:normal;">Hannah T., 44</span></p>
     </div>
   </div>
 </section>
@@ -656,7 +656,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         </div>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I almost closed the tab. After ten years of courses and readings that all said the same thing in slightly different words, I expected more of the same. It was not. The Love Block Luna named was the exact reason I had spent fifteen years over-giving and then bracing the moment anyone got close. Two weeks later the man I had been seeing asked to make things real. Normally I would have found a quiet reason to pull back and call it being careful. I sat with what the reading showed me and let him in instead. He said 'that is all I wanted' and stayed the weekend. I am not saying the cards did it. I am saying they finally let me see the wall I had been keeping love behind."</p>
+      <p class="testi-body">"I almost closed the tab. After ten years of apps and readings that all said the same gentle thing, I expected more of the same. It was not. The Love Block Luna named was the exact reason I spent fifteen years over-giving and then quietly pulling back the moment anyone got close. Two weeks later the man I had been seeing asked to make things real. Normally I would have found a careful reason to disappear. I sat with what the reading showed me and let him in instead. He stayed the weekend, and for once I did not spend it waiting for it to end. I am not saying the cards did it. I am saying they finally let me see the wall I had been keeping love behind."</p>
     </div>
   </div>
 </section>
@@ -671,13 +671,13 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <img src="https://soulmirrorreading.com/frontend/images/sales/soul-mirror-reading.png" alt="Soul Mirror Reading" class="vip-mockup">
       <div class="vip-valued">Valued at <span class="amount">$197</span></div>
       <ul class="vip-list">
-        <li><span><strong>Your Love Block Identified.</strong> The one core belief running Love, Life, and Wealth at the same time.</span></li>
-        <li><span><strong>Love Mirror Deep-Dive.</strong> What your Love card means in context of all three cards.</span></li>
-        <li><span><strong>Life Mirror Deep-Dive.</strong> Where your energy is leaking and what it would take to shift it.</span></li>
-        <li><span><strong>Wealth Mirror Deep-Dive.</strong> The inherited story about deserving that has been setting your ceiling.</span></li>
-        <li><span><strong>Mirror Block Clearing Practice.</strong> Seven questions, ten minutes, designed to begin the release.</span></li>
+        <li><span><strong>Your Love Block Identified.</strong> The one hidden belief keeping the right love at arm's length, the same belief quietly shaping your Love, Life, and Wealth at once.</span></li>
+        <li><span><strong>Love Mirror Deep-Dive.</strong> What your Love card reveals about why your person keeps almost arriving, read in the context of all three cards.</span></li>
+        <li><span><strong>Life Mirror Deep-Dive.</strong> How the same block shapes your days and your sense of purpose, and what it would take to shift it.</span></li>
+        <li><span><strong>Wealth Mirror Deep-Dive.</strong> The same inherited story about what you are allowed to receive, the one that decides whether you let love stay, quietly setting your ceiling with money too.</span></li>
+        <li><span><strong>Mirror Block Clearing Practice.</strong> Seven questions, ten minutes, designed to begin loosening the wall you have been keeping love behind.</span></li>
         <li><span><strong>Reversed Card Companion.</strong> Nuanced interpretation if any of your cards appeared reversed.</span></li>
-        <li><span><strong>90-Day Mirror Check-In Prompts.</strong> Twelve weekly questions to keep the clarity working.</span></li>
+        <li><span><strong>90-Day Mirror Check-In Prompts.</strong> Twelve weekly questions to keep you letting love close instead of bracing the moment it gets near.</span></li>
       </ul>
 
       <!-- CTA inside the VIP box -->
@@ -699,7 +699,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <section class="section" style="position:relative;">
   <div class="wrap">
     <h2>4 Bonuses Included <em>Free</em></h2>
-    <p style="text-align:center; max-width:520px; margin:0 auto 8px;">Available only on this page, when you claim your Soul Mirror Reading now.</p>
+    <p style="text-align:center; max-width:520px; margin:0 auto 8px;">Available only on this page, when you claim your Soul Mirror Reading now. Each one helps you recognize the right love, and stop bracing when it comes.</p>
 
     <div class="bonus-grid">
       <div class="bonus-card-compact">
@@ -745,14 +745,14 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section style="padding: 60px 24px 40px; text-align:center; position:relative;">
   <div class="wrap">
-    <h2 style="margin-bottom:18px;"><span class="firstname">Friend</span>, Your Soul Mirror Reading<br>Is Written by Hand.<br><em>Order Today, It Lands Within 24 Hours.</em></h2>
+    <h2 style="margin-bottom:18px;"><span class="firstname">Friend</span>, Your Soul Mirror Reading<br>Is Written by Hand.<br><em>Order Today, The Love Meant For You Is One Reading Closer.</em></h2>
 
-    <p style="max-width:560px; margin:0 auto 14px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna writes every reading by hand from your specific 3-card combination, reading your Love card most closely of all. Order now and yours goes into today's writing queue, delivered straight to your inbox within 24 hours.</p>
+    <p style="max-width:560px; margin:0 auto 14px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna reads your Love card first, then your Life and your Wealth, and writes every reading by hand from your specific 3-card combination. Order now and yours goes into today's writing queue, delivered straight to your inbox within 24 hours.</p>
 
-    <p style="max-width:560px; margin:0 auto 32px; color:rgba(255,255,255,0.7); font-style:italic;">The exact combination you drew today is what makes the diagnosis precise, the pattern your love life keeps returning to. Come back in a week and the cards, and the reading, will be different.</p>
+    <p style="max-width:560px; margin:0 auto 32px; color:rgba(255,255,255,0.7); font-style:italic;">The exact combination you drew today is what makes the diagnosis precise, the reason the right love keeps slipping away just as it gets close. Come back in a week and the cards, and the reading, will be different.</p>
 
 
-    <p style="max-width:560px; margin:0 auto 24px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna's private readings run <strong style="color:var(--gold-light); text-decoration:line-through; text-decoration-color: rgba(212,175,55,0.5);">$395</strong>.<br>Today, the complete package with all 4 bonuses is just <strong style="color:var(--gold-light); font-size:18px;">$37</strong>.</p>
+    <p style="max-width:560px; margin:0 auto 24px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna's private readings run <strong style="color:var(--gold-light); text-decoration:line-through; text-decoration-color: rgba(212,175,55,0.5);">$395</strong>.<br>Today, the complete package with all 4 bonuses, and the belief keeping your person at arm's length finally named, is just <strong style="color:var(--gold-light); font-size:18px;">$37</strong>.</p>
 
     <div style="text-align:center; margin-top:24px;">
       <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
@@ -786,9 +786,9 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <p class="price-note">One-time payment &middot; Delivered within 12 to 24 hours</p>
 
     <ul class="vip-list" style="max-width:440px;">
-      <li><span>Your personalised Soul Mirror Reading. <em>$197 value</em></span></li>
-      <li><span>Mirror Block identification + all 3 deep-dives</span></li>
-      <li><span>Mirror Block Clearing Practice + 90-day prompts</span></li>
+      <li><span>Your personalised Soul Mirror Reading, the one belief keeping love at arm's length, named. <em>$197 value</em></span></li>
+      <li><span>Love Block identification, Love card read first, plus all 3 deep-dives</span></li>
+      <li><span>Love Block Clearing Practice + 90-day prompts to stop bracing when love gets close</span></li>
       <li><span><strong>Bonus 1.</strong> Companion Guide ($67)</span></li>
       <li><span><strong>Bonus 2.</strong> 21-Day Shift Tracker ($47)</span></li>
       <li><span><strong>Bonus 3.</strong> Root Cause Guide ($47)</span></li>
@@ -828,7 +828,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
 
 
-<p class="testi-body">"I have had tarot readings for twenty years and always felt something was missing. This one gave me the piece. The Love Block Luna named was the same reason I kept giving everything and getting so little back in my last three relationships. One belief. Three rooms of my life. Six weeks later I stopped bracing the moment someone got close, and the man I had almost talked myself out of finally felt safe enough to stay. We are closer now than I have let anyone be in years."</p>
+<p class="testi-body">"I have had tarot readings for twenty years and always felt one piece was missing. This gave me the piece. The Love Block Luna named was the same reason I kept choosing men who could never quite stay, and then blaming myself when they left. One belief, sitting under my love, my work, and my money all at once. Six weeks later I stopped reaching for the familiar ache, and the steady, ordinary man I had almost overlooked is the one still here. Closer than I have let anyone be in years."</p>
 
 
     </div>
@@ -842,7 +842,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         </div>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I was skeptical. I'm a practical person. I just wanted to see what the cards said. But the Love Block explanation stopped me cold. It named the exact thing I do every time someone gets close, I quietly pull away first so I never have to be the one left. I stayed in the conversation instead of going cold on the very next person who mattered. That one change has been worth more to me than I can put a price on."</p>
+      <p class="testi-body">"I am a practical person and I only wanted to see what the cards said. The Love Block explanation stopped me cold. It named the exact thing I do every time someone gets close, I pull away first so I am never the one left behind. The very next person who mattered, I stayed in the conversation instead of going cold. We are still together. That one change has been worth more than I can put a price on."</p>
     </div>
 
     <div class="testi-card">
@@ -854,7 +854,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         </div>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"Three cards. One pattern. I have spent years in therapy trying to understand why the same things kept happening in love, at work, with money. This report showed me in 20 minutes. The clearing practice alone is worth ten times what I paid."</p>
+      <p class="testi-body">"Three cards, one pattern. I have spent years in therapy trying to understand why love kept arriving and then thinning out, the same story in different faces. This showed me in twenty minutes. The belief it named was the reason I never felt safe enough to let the good ones stay. The clearing practice alone gave me back something I thought I had aged out of, the feeling that the right love could still find me, and that I would not push it away this time."</p>
     </div>
     <p style="text-align:center; max-width:580px; margin:22px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. A Soul Mirror Reading is for insight and self-reflection. It is not relationship advice and does not guarantee any specific outcome.</p>
 
@@ -883,13 +883,13 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <div style="background: linear-gradient(180deg, rgba(45,27,105,0.6), rgba(30,13,64,0.85)); border: 1px solid rgba(212,175,55,0.45); border-radius: 14px; padding: 28px 22px; backdrop-filter: blur(4px);">
         <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:14px;">Path A</div>
         <h3 style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#fff; font-weight:600; line-height:1.3; margin-bottom:14px;">You <em style="color:var(--gold-light); font-style:italic;">See It Clearly</em></h3>
-        <p style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0;">Within 24 hours, your Soul Mirror Reading lands in your inbox. You read it once on your couch. The next morning you read it again, slower. You see the single belief that has been bending every relationship you have ever opened your heart to, and how that same pattern has quietly capped your money and your sense of purpose too. The work begins from there. Most people tell me it takes 21 days before they notice they have stopped bracing the moment love gets close, the way they have for years.</p>
+        <p style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0;">Within 24 hours, your Soul Mirror Reading lands in your inbox. You read it once on your couch. The next morning you read it again, slower. You see the single belief that has kept the right love almost arriving and then slipping away, that has drawn you to the unavailable and made you go cold first, and how that same belief has quietly capped your money and your sense of purpose too. The work begins from there. Most people tell me it takes 21 days before they notice they have stopped bracing the moment love gets close, the way they have for years, and start recognizing the steady ones they used to overlook.</p>
       </div>
       <!-- Path B -->
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 28px 22px; backdrop-filter: blur(4px);">
         <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.22em; color:rgba(255,255,255,0.5); text-transform:uppercase; margin-bottom:14px;">Path B</div>
         <h3 style="font-family:'Cormorant Garamond',serif; font-size:22px; color:rgba(255,255,255,0.7); font-weight:600; line-height:1.3; margin-bottom:14px;">You <em style="color:rgba(255,255,255,0.55); font-style:italic;">Don't.</em></h3>
-        <p style="font-size:18px; color:rgba(255,255,255,0.6); line-height:1.7; margin:0;">You close this page. You finish your tea. The pattern keeps running. Six months from now, you are back here. Or with someone new, watching the same closeness slowly pull away, the same wall in different paint. The cards you chose minutes ago will not carry the same precision a week from now. The window narrows quietly.</p>
+        <p style="font-size:18px; color:rgba(255,255,255,0.6); line-height:1.7; margin:0;">You close this page. You finish your tea. The block keeps running. Six months from now, you are back here. Or with someone new, watching the closeness slowly pull away again, or quietly overlooking the person who was right in front of you, the same wall in different paint. The cards you chose minutes ago will not carry the same precision a week from now. The window narrows quietly.</p>
       </div>
     </div>
 
@@ -918,23 +918,23 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <div class="faq" style="margin-top:32px;">
       <details>
         <summary>What is a Love Block exactly?</summary>
-        <p class="faq-a">A Love Block is a core belief, usually formed early in life and often inherited from someone else, that shows up identically across your closest relationships, your daily experience, and your relationship with money and purpose. It is not a flaw and it is not permanent. But it is specific, and once you can see it clearly, it loses most of its power.</p>
+        <p class="faq-a">A Love Block is a hidden belief about whether love is safe to have and to keep, usually formed before you had words for it and often inherited from someone else. It quietly draws you toward the unavailable, makes you brace the moment real closeness arrives, or keeps you invisible to the person actually meant for you. The same belief shows up in your daily life and your relationship with money and purpose too. It is not a flaw and it is not permanent. But it is specific, and once you can see it clearly, it loses most of its power.</p>
       </details>
       <details>
         <summary>How is this different from the reading I will receive in my email?</summary>
 
 
-<p class="faq-a">The email reading shows you what each card says in isolation. The Soul Mirror Reading decodes what your three cards mean together, with your Love card read most closely. The pattern running underneath them, the single belief connecting them, and the Clearing Practice to begin loosening it. One card is information. Three cards read as a system is a diagnosis.</p>
+<p class="faq-a">The email reading shows you what each card says in isolation. The Soul Mirror Reading decodes what your Love card, your Life card, and your Wealth card mean together, with your Love card read most closely. The belief keeping the right love at arm's length, the single thread connecting all three, and the Clearing Practice to begin loosening it. One card is information. Three cards read as a system is a diagnosis.</p>
 
 
       </details>
       <details>
         <summary>What happens after I order?</summary>
-        <p class="faq-a">Your reading takes 12 to 24 hours to complete, hand-written by Luna for your specific card combination. You will receive it as a PDF in your inbox. Use the Clearing Practice once. Seven questions, ten minutes. The shift begins there.</p>
+        <p class="faq-a">Your reading takes 12 to 24 hours to complete, hand-written by Luna for your specific card combination, your Love card read first. You will receive it as a PDF in your inbox. Use the Clearing Practice once. Seven questions, ten minutes. The shift begins there.</p>
       </details>
       <details>
         <summary>What if I am not satisfied?</summary>
-        <p class="faq-a">You are covered by a 90-day guarantee. Read your reading. If the Love Block I name does not feel unmistakably like your life, if it reads like something that could be sent to anyone, reply to the delivery email and I refund every penny. You keep the reading and all four bonuses. In nineteen years, that has almost never happened.</p>
+        <p class="faq-a">You are covered by a 90-day guarantee. Read your reading. If the Love Block I name does not feel unmistakably like your own love life, if it reads like something that could be sent to anyone, reply to the delivery email and I refund every penny. You keep the reading and all four bonuses. In nineteen years, that has almost never happened.</p>
       </details>
     </div>
   </div>
@@ -945,10 +945,10 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section style="padding: 0 24px 60px;">
   <div class="final-cta">
-    <h2><span class="firstname">Friend</span>, Your Cards Are Drawn.<br><em>Your Love Block Is Waiting to Be Cleared.</em></h2>
+    <h2><span class="firstname">Friend</span>, Your Cards Are Drawn.<br><em>The Love Meant For You Is Closer Than The Block Has Let You Feel.</em></h2>
 
 
-<p style="max-width:560px; margin:18px auto 24px; color:rgba(255,255,255,0.85);">The pattern is already there. It has been running quietly for years, bending your closest relationships, and quietly capping your money and your sense of purpose too. The only question is whether you let another year pass without seeing it clearly.</p>
+<p style="max-width:560px; margin:18px auto 24px; color:rgba(255,255,255,0.85);">The block is already there. It has been running quietly for years, keeping the right love almost arriving and then slipping away, and quietly capping your money and your sense of purpose too. The only question is whether you let another year pass without seeing it clearly, while your person stays just out of reach.</p>
 
 
 
