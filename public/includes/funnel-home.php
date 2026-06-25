@@ -328,8 +328,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     });
   </script>
 
-  <?php if (($funnelBase ?? '') === 'wealth-v2/'): ?>
-  <!-- wealth-v2 only: hide the page header (eyebrow + headline + subhead) once the visitor picks their first card -->
+  <?php if (in_array(($funnelBase ?? ''), ['wealth-v2/', 'love/', 'love-v2/'], true)): ?>
+  <!-- wealth-v2 + love + love-v2: hide the page header (eyebrow + headline + subhead) once the visitor picks their first card -->
   <script>
     (function () {
       var rt = document.getElementById('cardsRemainingText');
