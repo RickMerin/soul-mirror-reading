@@ -402,7 +402,7 @@
           <span class="offer-label">Complete the Clearing</span>
           <h2 style="margin-bottom:10px;">Add The Wealth Clarity Ritual</h2>
           <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">Your first reading clears the root in time. This clears wealth and purpose now. Yours to keep for life.</p>
-          <img src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-package.webp" alt="The complete Wealth Clarity Ritual, all products together" style="width:100%;max-width:420px;display:block;margin:0 auto 26px;filter:drop-shadow(0 18px 36px rgba(0,0,0,.45));" />
+          <img src="https://soulmirrorreading.com/frontend/images/upsell2/wcr-package.webp" alt="The complete Wealth Clarity Ritual, all products together" style="width:100%;max-width:420px;display:block;margin:0 auto 26px;filter:drop-shadow(0 18px 36px rgba(0,0,0,.45));" />
 
           <ul class="vlist">
             <li><span class="vs-name">The Wealth Clarity Ritual, a 3-Movement Practice</span><span class="vs-price">$147</span></li>
