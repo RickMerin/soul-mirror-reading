@@ -449,7 +449,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
   <div class="wrap">
 
 
-<h1 class="vsl-headline">There Is <span style="color:var(--gold-light);">One Hidden Reason</span> The Love You Can Feel Is Meant For You Keeps Slipping Away.</h1>
+<h1 class="vsl-headline">There Is <span style="color:var(--gold-light);">One Hidden Pattern</span> Beneath Everything You've Struggled With.</h1>
 
 
 
