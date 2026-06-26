@@ -269,7 +269,7 @@
           <span class="offer-label">One-Time Offer, Disappears When You Leave</span>
           <h2 style="margin-bottom:10px;">Clear the Other Two Mirrors for $47</h2>
           <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">The same rituals that speed up wealth and purpose. Same three bonuses. The only thing lower is the price.</p>
-          <img class="lineup-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-package.webp" alt="The complete Wealth Clarity Ritual bundle, the 3-movement practice and 3 bonuses" style="margin-bottom:26px;" />
+          <img class="lineup-img" src="https://soulmirrorreading.com/frontend/images/upsell2/wcr-package.webp" alt="The complete Wealth Clarity Ritual bundle, the 3-movement practice and 3 bonuses" style="margin-bottom:26px;" />
 
           <ul class="vlist">
             <li><span class="vs-name">The Wealth Clarity Ritual, a 3-Movement Practice</span><span class="vs-price">$147</span></li>
