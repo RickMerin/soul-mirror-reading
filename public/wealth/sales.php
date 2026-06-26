@@ -4,7 +4,7 @@ $cssPath = __DIR__ . "/../assets/sales-v2-bundle.min.css";
 $cssVer = is_file($cssPath) ? filemtime($cssPath) : time();
 $jsPath = __DIR__ . "/../assets/sales-v2.min.js";
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
-$checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=order-3&cbfid=63457&exitoffer=exit-1";
+$checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=order-4&cbfid=63457&exitoffer=exit-1";
 ?>
 <!-- wealth-v2 sales.php update 2026-06-13: Gilded Spread card showcase, de-duplicated sales letter, removed value-stack + duplicate combo, tightened Diagnosis copy, re-angled CTAs (Clear My Wealth Block / Get My Full Reading), card section shown on load (entrance reveal removed). Test cohort start 2026-06-13. -->
 <!DOCTYPE html>
