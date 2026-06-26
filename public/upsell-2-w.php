@@ -216,7 +216,7 @@
       <div class="wrap">
         <h1>Clear Wealth and Purpose <span style="color:#E8C97A;background:rgba(212,175,55,0.16);padding:0 10px;border-radius:8px;text-decoration:underline;text-decoration-color:#E8C97A;text-underline-offset:6px;text-decoration-thickness:2px;">10x</span> Faster.<br /><em>The Accelerated Ritual for the Two Mirrors Your First Reading Couldn't Reach in Time.</em></h1>
         <p class="subhead">Same block, two more mirrors. Your first reading gets there slowly. This goes straight at wealth and purpose, in weeks.</p>
-        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-hero2.webp" alt="Two clouded mirrors clearing to gold light, one for wealth and one for purpose, deep violet and gold" />
+        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/wcr-hero.webp" alt="Two clouded mirrors clearing to gold light, one for wealth and one for purpose, deep violet and gold" />
       </div>
     </section>
 
