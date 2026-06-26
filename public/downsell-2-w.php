@@ -177,7 +177,7 @@
       <div class="wrap">
         <h1>I Am Not Letting You Leave<br /><em>With Two Mirrors Still Clouded.</em></h1>
         <p class="subhead">$67 was not right today. Fine. Same rituals, lower price. I would rather meet you here than watch you wait months for your love work to reach wealth and purpose on its own.</p>
-        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-hero2.webp" alt="Two antique mirrors clearing to gold light, one for wealth and one for purpose" />
+        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/wcr-hero.webp" alt="Two antique mirrors clearing to gold light, one for wealth and one for purpose" />
       </div>
     </section>
 
