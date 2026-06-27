@@ -42,6 +42,55 @@ function memberStripMarkedBlock(string $html, string $markerName): string
 }
 
 session_start();
+
+// ── TEST-ONLY preview (host-gated; can never run on production) ──
+$__host = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
+$__pf = '';
+if ($__host === 'test.soulmirrorreading.com' && isset($_GET['preview'])) {
+    $__p = (string) $_GET['preview'];
+    if ($__p === 'love' || $__p === 'wealth') { $__pf = $__p; }
+}
+if ($__pf !== '') {
+    $tpl = (string) file_get_contents(__DIR__ . '/index.html');
+    if ($__pf === 'love') {
+        $tpl = preg_replace('#<!-- smr:ritual-love-locked-start -->.*?<!-- smr:ritual-love-locked-end -->#s', '', $tpl);
+        $tpl = preg_replace('#<!-- smr:wealth-clarity-locked-start -->.*?<!-- smr:wealth-clarity-locked-end -->#s', '', $tpl);
+    } else {
+        $tpl = preg_replace('#<!-- smr:ritual-locked-start -->.*?<!-- smr:ritual-locked-end -->#s', '', $tpl);
+        $tpl = preg_replace('#<!-- smr:love-clarity-locked-start -->.*?<!-- smr:love-clarity-locked-end -->#s', '', $tpl);
+        $tpl = preg_replace('#<!-- smr:mirror-meditations-locked-start -->.*?<!-- smr:mirror-meditations-locked-end -->#s', '', $tpl);
+    }
+    $pv = [
+        '{{FUNNEL}}' => $__pf,
+        '{{NAME}}' => 'Preview ' . ucfirst($__pf) . ' Buyer',
+        '{{FIRST_NAME}}' => 'Preview',
+        '{{INITIALS}}' => 'PV',
+        '{{MIRROR_BLOCK}}' => 'Your Mirror Block',
+        '{{LOGOUT_URL}}' => '/member/logout.php',
+        '{{CLKBANK_NOTICE}}' => 'PREVIEW (test only)',
+        '{{MEMBER_URL_READING_PDF}}' => '#', '{{MEMBER_URL_READING_DOWNLOAD}}' => '#',
+        '{{READING_PENDING_MESSAGE}}' => '', '{{READING_READY_JS}}' => 'true',
+        '{{READING_COUNTDOWN_SECONDS}}' => '0', '{{READING_READY_ATTR}}' => '',
+        '{{RITUAL_WELCOME_CARD_MOD}}' => ' is-ritual-unlocked',
+        '{{RITUAL_LOVE_WELCOME_CARD_MOD}}' => ' is-ritual-unlocked',
+        '{{RITUAL_UNLOCKED_JS}}' => 'true', '{{LOVE_CLARITY_UNLOCKED_JS}}' => 'true', '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' => 'true',
+        '{{MEMBER_OTO_CHECKOUT_URL}}' => '#', '{{MEMBER_OTO_LOVE_CHECKOUT_URL}}' => '#',
+        '{{MEMBER_LCR_CHECKOUT_URL}}' => '#', '{{MEMBER_WCR_CHECKOUT_URL}}' => '#', '{{MEMBER_MM_CHECKOUT_URL}}' => '#',
+        '{{VTURB_GUARD_VER}}' => (string) time(),
+    ];
+    foreach (['BONUS_COMPANION','BONUS_SHIFT_TRACKER','BONUS_ROOT_CAUSE','BONUS_MEDITATION_AUDIO',
+              'RITUAL_REPORT1','RITUAL_REPORT2','RITUAL_REPORT3','RITUAL_WORKBOOK',
+              'RITUAL_LOVE_REPORT1','RITUAL_LOVE_REPORT2','RITUAL_LOVE_REPORT3','RITUAL_LOVE_WORKBOOK',
+              'LCR_GUIDE','LCR_PURPOSE','LCR_AUDIO','LCR_DAILY',
+              'WCR_GUIDE','WCR_PURPOSE','WCR_AUDIO','WCR_DAILY'] as $k) {
+        $pv['{{MEMBER_URL_' . $k . '}}'] = '#';
+    }
+    $out = strtr($tpl, $pv);
+    $out = preg_replace('/\{\{[A-Z_]+\}\}/', '#', $out);
+    header('Content-Type: text/html; charset=utf-8');
+    echo $out;
+    exit;
+}
 $leadId = isset($_SESSION['member_lead_id']) ? (int) $_SESSION['member_lead_id'] : 0;
 if ($leadId < 1) {
     header('Location: ' . MemberUrlBuilder::loginPath());
@@ -142,6 +191,20 @@ try {
     $mirrorMeditationsUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'mm-1')
         || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'mm-1-ds');
 
+    // Love-funnel delivery: which front-end did this buyer come through, and their love-set unlocks.
+    $boughtLove = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-l');
+    $boughtWealth = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-w')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-wtsl');
+    $funnel = ($boughtLove && !$boughtWealth) ? 'love' : (($boughtWealth && !$boughtLove) ? 'wealth' : 'all');
+
+    $ritualLoveUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l-ds')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l-ds2');
+    $wealthClarityUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'wcr-1')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'wcr-1-ds');
+    if ($ritualLoveUnlocked) { $html = memberStripMarkedBlock($html, 'ritual-love-locked'); }
+    if ($wealthClarityUnlocked) { $html = memberStripMarkedBlock($html, 'wealth-clarity-locked'); }
+
     $h = static function (string $s): string {
         return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     };
@@ -208,6 +271,18 @@ try {
         '{{MEMBER_URL_LCR_AUDIO}}' => $h(memberEnvString('MEMBER_URL_LCR_AUDIO', '')),
         '{{MEMBER_URL_LCR_DAILY}}' => $h(memberEnvString('MEMBER_URL_LCR_DAILY', '#')),
         '{{VTURB_GUARD_VER}}' => $guardVer,
+        '{{FUNNEL}}' => $funnel,
+        '{{RITUAL_LOVE_WELCOME_CARD_MOD}}' => $ritualLoveUnlocked ? ' is-ritual-unlocked' : '',
+        '{{MEMBER_OTO_LOVE_CHECKOUT_URL}}' => $h($ritualLoveUnlocked ? '#' : memberPortalCheckoutUrl('srp-1-l')),
+        '{{MEMBER_WCR_CHECKOUT_URL}}' => $h($wealthClarityUnlocked ? '#' : memberPortalCheckoutUrl('wcr-1')),
+        '{{MEMBER_URL_RITUAL_LOVE_REPORT1}}' => $h(memberEnvString('MEMBER_URL_RITUAL_LOVE_REPORT1', '#')),
+        '{{MEMBER_URL_RITUAL_LOVE_REPORT2}}' => $h(memberEnvString('MEMBER_URL_RITUAL_LOVE_REPORT2', '#')),
+        '{{MEMBER_URL_RITUAL_LOVE_REPORT3}}' => $h(memberEnvString('MEMBER_URL_RITUAL_LOVE_REPORT3', '#')),
+        '{{MEMBER_URL_RITUAL_LOVE_WORKBOOK}}' => $h(memberEnvString('MEMBER_URL_RITUAL_LOVE_WORKBOOK', '#')),
+        '{{MEMBER_URL_WCR_GUIDE}}' => $h(memberEnvString('MEMBER_URL_WCR_GUIDE', '#')),
+        '{{MEMBER_URL_WCR_PURPOSE}}' => $h(memberEnvString('MEMBER_URL_WCR_PURPOSE', '#')),
+        '{{MEMBER_URL_WCR_AUDIO}}' => $h(memberEnvString('MEMBER_URL_WCR_AUDIO', '')),
+        '{{MEMBER_URL_WCR_DAILY}}' => $h(memberEnvString('MEMBER_URL_WCR_DAILY', '#')),
     ];
     $rendered = strtr($html, $replacements);
 
