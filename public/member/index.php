@@ -86,6 +86,7 @@ if ($__pf !== '') {
               'WCR_GUIDE','WCR_PURPOSE','WCR_AUDIO','WCR_DAILY'] as $k) {
         $pv['{{MEMBER_URL_' . $k . '}}'] = '#';
     }
+    $pv['{{MEMBER_URL_WCR_GUIDE}}'] = 'https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell2/wealth-clarity-ritual-guide.pdf';
     $out = strtr($tpl, $pv);
     $out = preg_replace('/\{\{[A-Z_]+\}\}/', '#', $out);
     header('Content-Type: text/html; charset=utf-8');
@@ -280,7 +281,7 @@ try {
         '{{MEMBER_URL_RITUAL_LOVE_REPORT2}}' => $h(memberEnvString('MEMBER_URL_RITUAL_LOVE_REPORT2', '#')),
         '{{MEMBER_URL_RITUAL_LOVE_REPORT3}}' => $h(memberEnvString('MEMBER_URL_RITUAL_LOVE_REPORT3', '#')),
         '{{MEMBER_URL_RITUAL_LOVE_WORKBOOK}}' => $h(memberEnvString('MEMBER_URL_RITUAL_LOVE_WORKBOOK', '#')),
-        '{{MEMBER_URL_WCR_GUIDE}}' => $h(memberEnvString('MEMBER_URL_WCR_GUIDE', '#')),
+        '{{MEMBER_URL_WCR_GUIDE}}' => $h(memberEnvString('MEMBER_URL_WCR_GUIDE', 'https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell2/wealth-clarity-ritual-guide.pdf')),
         '{{MEMBER_URL_WCR_PURPOSE}}' => $h(memberEnvString('MEMBER_URL_WCR_PURPOSE', '#')),
         '{{MEMBER_URL_WCR_AUDIO}}' => $h(memberEnvString('MEMBER_URL_WCR_AUDIO', '')),
         '{{MEMBER_URL_WCR_DAILY}}' => $h(memberEnvString('MEMBER_URL_WCR_DAILY', '#')),
