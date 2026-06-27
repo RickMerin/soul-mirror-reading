@@ -74,7 +74,7 @@ if ($__pf !== '') {
         '{{READING_COUNTDOWN_SECONDS}}' => '0', '{{READING_READY_ATTR}}' => '',
         '{{RITUAL_WELCOME_CARD_MOD}}' => ' is-ritual-unlocked',
         '{{RITUAL_LOVE_WELCOME_CARD_MOD}}' => ' is-ritual-unlocked',
-        '{{RITUAL_UNLOCKED_JS}}' => 'true', '{{LOVE_CLARITY_UNLOCKED_JS}}' => 'true', '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' => 'true',
+        '{{RITUAL_UNLOCKED_JS}}' => 'true', '{{LOVE_CLARITY_UNLOCKED_JS}}' => 'true', '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' => 'true', '{{WEALTH_CLARITY_UNLOCKED_JS}}' => 'true',
         '{{MEMBER_OTO_CHECKOUT_URL}}' => '#', '{{MEMBER_OTO_LOVE_CHECKOUT_URL}}' => '#',
         '{{MEMBER_LCR_CHECKOUT_URL}}' => '#', '{{MEMBER_WCR_CHECKOUT_URL}}' => '#', '{{MEMBER_MM_CHECKOUT_URL}}' => '#',
         '{{VTURB_GUARD_VER}}' => (string) time(),
@@ -183,7 +183,10 @@ try {
 
     // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.
     $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
-    $ritualUnlocked = $ritualSku !== '' && $purchases->leadHasApprovedPurchaseWithItemSku($leadId, $ritualSku);
+    $ritualUnlocked = ($ritualSku !== '' && $purchases->leadHasApprovedPurchaseWithItemSku($leadId, $ritualSku))
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l-ds')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l-ds2');
 
     // Aligns with love-clarity upsell (`cbitems=lcr-1` / `lcr-1-ds`).
     $loveClarityUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'lcr-1')
@@ -268,6 +271,7 @@ try {
         '{{RITUAL_UNLOCKED_JS}}' => $ritualUnlocked ? 'true' : 'false',
         '{{LOVE_CLARITY_UNLOCKED_JS}}' => $loveClarityUnlocked ? 'true' : 'false',
         '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' => $mirrorMeditationsUnlocked ? 'true' : 'false',
+        '{{WEALTH_CLARITY_UNLOCKED_JS}}' => $wealthClarityUnlocked ? 'true' : 'false',
         '{{MEMBER_URL_LCR_GUIDE}}' => $h(memberEnvString('MEMBER_URL_LCR_GUIDE', '#')),
         '{{MEMBER_URL_LCR_PURPOSE}}' => $h(memberEnvString('MEMBER_URL_LCR_PURPOSE', '#')),
         '{{MEMBER_URL_LCR_AUDIO}}' => $h(memberEnvString('MEMBER_URL_LCR_AUDIO', '')),
