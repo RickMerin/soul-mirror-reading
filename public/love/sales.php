@@ -4,7 +4,7 @@ $cssPath = __DIR__ . "/../assets/sales-v2-bundle.min.css";
 $cssVer = is_file($cssPath) ? filemtime($cssPath) : time();
 $jsPath = __DIR__ . "/../assets/sales-v2.min.js";
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
-$checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-l&template=order-4&cbfid=63566&exitoffer=exit-1";
+$checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-l&template=order-4&cbfid=63566&exitoffer=exit-2";
 ?>
 <!-- love sales.php 2026-06-13: love-angle rebuild on the wealth-v2 design (shared CSS bundle); copy reframed to the Love Block as the root pattern; item smr-1-l. -->
 <!DOCTYPE html>
