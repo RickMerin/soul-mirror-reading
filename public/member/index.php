@@ -55,6 +55,7 @@ if ($__pf !== '') {
     if ($__pf === 'love') {
         $tpl = preg_replace('#<!-- smr:ritual-love-locked-start -->.*?<!-- smr:ritual-love-locked-end -->#s', '', $tpl);
         $tpl = preg_replace('#<!-- smr:wealth-clarity-locked-start -->.*?<!-- smr:wealth-clarity-locked-end -->#s', '', $tpl);
+        $tpl = preg_replace('#<!-- smr:mirror-meditations-locked-start -->.*?<!-- smr:mirror-meditations-locked-end -->#s', '', $tpl);
     } else {
         $tpl = preg_replace('#<!-- smr:ritual-locked-start -->.*?<!-- smr:ritual-locked-end -->#s', '', $tpl);
         $tpl = preg_replace('#<!-- smr:love-clarity-locked-start -->.*?<!-- smr:love-clarity-locked-end -->#s', '', $tpl);
