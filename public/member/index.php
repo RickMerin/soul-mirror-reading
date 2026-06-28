@@ -178,10 +178,12 @@ try {
 
     $readingReady = $readingPdfUrl !== '#';
 
-    // 2h reading countdown: seconds remaining since the reading became ready (DB-side, tz-safe).
-    // 0 for existing buyers (ready > 2h ago) and the env-fallback path, so they see no countdown.
-    $readingCountdownSeconds = ($readingReady && $hasSavedPdf)
-        ? $deliveries->unlockSecondsRemaining($leadId, 7200)
+    // "Luna is preparing your reading" gate: seconds left in the 2h window from PURCHASE (DB-side, tz-safe).
+    // Anchored to purchase (not PDF generation) so it applies on EVERY path, including the env-fallback,
+    // closing the instant-access gap for buyers who open the portal before the personalized PDF is generated.
+    // 0 for existing buyers (purchased > 2h ago) so they see the reading immediately, no countdown.
+    $readingCountdownSeconds = $readingReady
+        ? $purchases->purchaseUnlockSecondsRemaining($leadId, 7200)
         : 0;
 
     // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.

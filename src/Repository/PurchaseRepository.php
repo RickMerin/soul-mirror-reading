@@ -125,6 +125,28 @@ final class PurchaseRepository
      * @param array<int,array<string,mixed>> $items
      * @param array<string,mixed> $rawInsPayload
      */
+    /**
+     * Seconds remaining in a post-purchase window (the "preparing your reading" gate),
+     * measured from the buyer's EARLIEST approved purchase. Returns 0 once the window has
+     * elapsed (existing buyers) or if there is no approved purchase. Computed entirely
+     * DB-side via NOW() so it is timezone-safe, mirroring ReadingDeliveryRepository.
+     */
+    public function purchaseUnlockSecondsRemaining(int $leadId, int $windowSeconds): int
+    {
+        $window = max(0, $windowSeconds);
+        $stmt = $this->pdo->prepare(
+            "SELECT GREATEST(0, " . $window . " - TIMESTAMPDIFF(SECOND, created_at, NOW())) AS s
+             FROM purchases
+             WHERE lead_id = :lead_id AND status IN ('approved', 'complete', 'completed', 'active')
+             ORDER BY created_at ASC
+             LIMIT 1"
+        );
+        $stmt->execute([':lead_id' => $leadId]);
+        $value = $stmt->fetchColumn();
+
+        return $value === false ? 0 : (int) $value;
+    }
+
     public function upsertByReceipt(
         int $leadId,
         string $receipt,
