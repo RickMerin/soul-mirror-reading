@@ -22,6 +22,10 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
   <title>Soul Mirror Reading — Free 3-Card Tarot Reading</title>
   <link rel="icon" type="image/svg+xml" href="<?= htmlspecialchars($assetRoot, ENT_QUOTES) ?>favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- card-face images come from trustedtarot.com; warm the connection so the reveal is instant on pick -->
+  <link rel="preconnect" href="https://www.trustedtarot.com">
+  <link rel="dns-prefetch" href="https://www.trustedtarot.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap"
     rel="stylesheet">
