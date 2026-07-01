@@ -7,8 +7,8 @@ require $projectRoot . '/vendor/autoload.php';
 \App\Config\AppConfig::load($projectRoot);
 
 
-$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&template=1on1';
-$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1&template=1on1';
+$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1on1';
+$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1on1';
 
 ?><!DOCTYPE html>
 <html lang="en">

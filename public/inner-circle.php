@@ -63,8 +63,13 @@ try {
     $leadId = $leads->findIdByEmail($email);
     $receiptKnown = $purchases->findIdByReceipt($receipt) !== null;
 
-    if ($leadId !== null && $receiptKnown
-        && $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'ic-1')) {
+    $ownsInnerCircle = false;
+    if ($leadId !== null) {
+        foreach (['tic-1', 'tic-1-ds', 'ic-1', 'ic-1-ds'] as $icSku) {
+            if ($purchases->leadHasApprovedPurchaseWithItemSku($leadId, $icSku)) { $ownsInnerCircle = true; break; }
+        }
+    }
+    if ($leadId !== null && $receiptKnown && $ownsInnerCircle) {
         $verified = true;
         $stmt = $pdo->prepare('SELECT name FROM leads WHERE id = :id LIMIT 1');
         $stmt->execute([':id' => $leadId]);
