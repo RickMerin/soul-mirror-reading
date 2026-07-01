@@ -7,8 +7,8 @@ require $projectRoot . '/vendor/autoload.php';
 \App\Config\AppConfig::load($projectRoot);
 
 
-$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1-ds&cbur=a';
-$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1-ds&cbur=d';
+$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&cbur=a';
+$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&cbur=d';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1-ds&cbur=d';
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Upsell 3 (OTO3) - The Inner Circle, unlimited private 1-1 sessions membership (wealth-v2 cosmic system) -->
-  <!-- TODO: create ClickBank recurring item ic-1-ds: $17 trial -> $19/month, then wire these URLs -->
+  <!-- TODO: create ClickBank recurring item tic-1-ds: $17 trial -> $19/month, then wire these URLs -->
   <title>The Inner Circle (Members Rate), Your Own Private Line to Luna Ross</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
