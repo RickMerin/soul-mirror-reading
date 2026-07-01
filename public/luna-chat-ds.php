@@ -307,7 +307,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
           <p class="cta-fine" style="max-width:520px;margin:8px auto 18px;">A monthly membership. After your $17 first month, you are billed $19/month for unlimited sessions. Cancel anytime in one click, no email, no phone call, no hoops.</p>
           <div style="text-align:center;margin:2px auto 18px;"><span style="display:inline-block;font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);border:1px solid #d4af3759;border-radius:50px;padding:7px 18px;">&#10003;&nbsp; 90-Day Money-Back Guarantee</span></div>
 
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Upgrade My Order Now</a>
+          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, I Want To Talk To Luna</a>
         </div>
       </div>
     </section>
