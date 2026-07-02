@@ -283,7 +283,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
           <ul class="vlist">
             <li><span class="vs-name">Unlimited private 1-1 sessions with Luna, each worth <strong>$120</strong> on its own</span></li>
             <li><span class="vs-name">A thoughtful, personal reply within the hour, every time</span></li>
-            <li><span class="vs-name">Guidance that knows your reading and your specific Wealth Block</span></li>
+            <li><span class="vs-name">Guidance that knows your reading and your specific Mirror Block</span></li>
             <li><span class="vs-name">A private space on your phone, day and night, including the 2am moments</span></li>
             <li><span class="vs-name">Bring me as much as you want, as often as you want, no limit</span></li>
           </ul>

@@ -304,7 +304,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
         <p class="lead">There is no limit and no meter. No question too small, none too big. Bring me as much as you want, as often as you want. Whatever you would normally carry alone, bring it to a session:</p>
         <ul class="ask-list">
           <li>"Should I ask for the raise, or is that the old fear talking?"</li>
-          <li>"Is this opportunity genuinely too much, or is that my Wealth Block?"</li>
+          <li>"Is this opportunity genuinely too much, or is that my Mirror Block?"</li>
           <li>"He hasn't replied. What is my Love card trying to tell me?"</li>
           <li>"I drew the Tower this morning. What does it mean for me?"</li>
           <li>"I have a decision by Friday. Help me see which choice is fear and which is me."</li>
@@ -380,7 +380,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
           <ul class="vlist">
             <li><span class="vs-name">Unlimited private 1-1 sessions with Luna, each worth <strong>$120</strong> on its own</span></li>
             <li><span class="vs-name">A thoughtful, personal reply within the hour, every time</span></li>
-            <li><span class="vs-name">Guidance that knows your reading and your specific Wealth Block</span></li>
+            <li><span class="vs-name">Guidance that knows your reading and your specific Mirror Block</span></li>
             <li><span class="vs-name">A private space on your phone, day and night, including the 2am moments</span></li>
             <li><span class="vs-name">Bring me as much as you want, as often as you want, no limit</span></li>
           </ul>
