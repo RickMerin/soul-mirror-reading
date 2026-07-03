@@ -188,10 +188,13 @@ try {
 
     // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.
     $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
-    $ritualUnlocked = ($ritualSku !== '' && $purchases->leadHasApprovedPurchaseWithItemSku($leadId, $ritualSku))
-        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l')
-        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l-ds')
-        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l-ds2');
+    // Soul Ritual Practice is the SAME product across every funnel/variant; unlock for ANY of its SKUs.
+    $ritualSkus = ['srp-1', 'srp-1-ds', 'srp-1-ds2', 'srp-1-v2', 'srp-1-ds-v2', 'srp-1-ds2-v2', 'srp-1-l', 'srp-1-l-ds', 'srp-1-l-ds2'];
+    if ($ritualSku !== '' && !in_array($ritualSku, $ritualSkus, true)) { $ritualSkus[] = $ritualSku; }
+    $ritualUnlocked = false;
+    foreach ($ritualSkus as $srpSku) {
+        if ($purchases->leadHasApprovedPurchaseWithItemSku($leadId, $srpSku)) { $ritualUnlocked = true; break; }
+    }
 
     // Aligns with love-clarity upsell (`cbitems=lcr-1` / `lcr-1-ds`).
     $loveClarityUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'lcr-1')
