@@ -186,8 +186,8 @@ try {
         ? $purchases->purchaseUnlockSecondsRemaining($leadId, 7200)
         : 0;
 
-    // Exactly the SKUs that grant Soul Ritual Practice (per TS 2026-06-29): wealth-v2 variants + love variants.
-    $ritualSkus = ['srp-1-v2', 'srp-1-ds-v2', 'srp-1-ds2-v2', 'srp-1-l', 'srp-1-l-ds', 'srp-1-l-ds2'];
+    // Every ACTIVE Soul Ritual Practice SKU unlocks the product (base + wealth-v2 + love variants) so no buyer is locked out.
+    $ritualSkus = ['srp-1', 'srp-1-ds', 'srp-1-ds-v2', 'srp-1-ds2', 'srp-1-ds2-v2', 'srp-1-l', 'srp-1-l-ds', 'srp-1-l-ds2', 'srp-1-v2'];
     $ritualUnlocked = false;
     foreach ($ritualSkus as $srpSku) {
         if ($purchases->leadHasApprovedPurchaseWithItemSku($leadId, $srpSku)) { $ritualUnlocked = true; break; }
