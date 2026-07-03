@@ -186,11 +186,8 @@ try {
         ? $purchases->purchaseUnlockSecondsRemaining($leadId, 7200)
         : 0;
 
-    // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.
-    $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
-    // Soul Ritual Practice is the SAME product across every funnel/variant; unlock for ANY of its SKUs.
-    $ritualSkus = ['srp-1', 'srp-1-ds', 'srp-1-ds2', 'srp-1-v2', 'srp-1-ds-v2', 'srp-1-ds2-v2', 'srp-1-l', 'srp-1-l-ds', 'srp-1-l-ds2'];
-    if ($ritualSku !== '' && !in_array($ritualSku, $ritualSkus, true)) { $ritualSkus[] = $ritualSku; }
+    // Exactly the SKUs that grant Soul Ritual Practice (per TS 2026-06-29): wealth-v2 variants + love variants.
+    $ritualSkus = ['srp-1-v2', 'srp-1-ds-v2', 'srp-1-ds2-v2', 'srp-1-l', 'srp-1-l-ds', 'srp-1-l-ds2'];
     $ritualUnlocked = false;
     foreach ($ritualSkus as $srpSku) {
         if ($purchases->leadHasApprovedPurchaseWithItemSku($leadId, $srpSku)) { $ritualUnlocked = true; break; }
