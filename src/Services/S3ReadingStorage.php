@@ -67,6 +67,14 @@ final class S3ReadingStorage
         return (string) $request->getUri();
     }
 
+    public function deleteObject(string $objectKey): void
+    {
+        $this->client()->deleteObject([
+            'Bucket' => $this->config->awsS3Bucket,
+            'Key' => $objectKey,
+        ]);
+    }
+
     private function client(): S3Client
     {
         if ($this->client !== null) {

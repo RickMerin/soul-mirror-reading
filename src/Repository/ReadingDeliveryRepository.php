@@ -68,6 +68,27 @@ final class ReadingDeliveryRepository
     }
 
     /**
+     * @return list<string>
+     */
+    public function findS3ObjectKeysByLeadId(int $leadId): array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT s3_object_key FROM reading_deliveries WHERE lead_id = :lead_id'
+        );
+        $stmt->execute([':lead_id' => $leadId]);
+
+        $keys = [];
+        while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
+            $key = $row['s3_object_key'] ?? '';
+            if (is_string($key) && $key !== '') {
+                $keys[] = $key;
+            }
+        }
+
+        return $keys;
+    }
+
+    /**
      * Seconds left in a release window (e.g. 7200 = 2h) measured from when the
      * reading became ready (generated_at). Computed entirely DB-side via NOW()
      * so it is timezone-safe. Returns 0 once the reading has been ready longer

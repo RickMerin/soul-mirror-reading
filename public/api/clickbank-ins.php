@@ -2,11 +2,14 @@
 declare(strict_types=1);
 
 use App\Config\AppConfig;
+use App\Application\ClickBankBuyerRemovalService;
 use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
+use App\Repository\ReadingDeliveryRepository;
 use App\Services\KitService;
 use App\Services\ReadingDeliveryTrigger;
+use App\Services\S3ReadingStorage;
 use App\Services\SlackClickBankInsLogger;
 use GuzzleHttp\Client;
 
@@ -110,6 +113,7 @@ try {
     $pdo = DatabaseConnection::fromConfig($config);
     $leads = new LeadRepository($pdo);
     $purchases = new PurchaseRepository($pdo);
+    $deliveries = new ReadingDeliveryRepository($pdo);
 
     $leadId = $leads->findOrCreateMinimalByEmail($email, extractBuyerName($payload));
     $purchases->upsertByReceipt(
@@ -123,6 +127,13 @@ try {
         $payload
     );
     $purchaseId = $purchases->findIdByReceipt($receipt);
+
+    (new ClickBankBuyerRemovalService(
+        $leads,
+        $purchases,
+        $deliveries,
+        new S3ReadingStorage($config),
+    ))->removeBuyerIfFullyRevoked($leadId, $status);
 } catch (Throwable $e) {
     error_log('clickbank-ins.php persistence failed: ' . $e->getMessage());
     http_response_code(500);
