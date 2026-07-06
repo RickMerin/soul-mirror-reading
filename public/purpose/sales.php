@@ -30,6 +30,15 @@ $pageTitle = 'Your Soul Mirror Reading. What the Cards Are Really Saying';
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
+<script>
+    window.clickmagick_cmc = {
+        uid: '92654',
+        hid: '1214314307',
+        cmc_project: 'Soul Mirror Reading',
+        cmc_goal: 'a',
+        vid_info: 'on',
+    }
+</script>
 <script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 
