@@ -31,6 +31,7 @@ Options -Indexes
 
     RewriteRule ^api/reading$ api/reading.php [L]
     RewriteRule ^api/clickbank-ins$ api/clickbank-ins.php [L]
+    RewriteRule ^api/inner-circle-entitlement$ api/inner-circle-entitlement.php [L]
 
     # Legal pages (clean URLs to php)
     RewriteRule ^privacy-policy$ privacy-policy.php [L]

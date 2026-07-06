@@ -41,6 +41,45 @@ final class PurchaseRepositorySkuTest extends TestCase
         self::assertFalse($purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-2'));
     }
 
+    public function testLeadHasApprovedInnerCirclePurchaseMatchesIc1Ds(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $leadId = $leads->findOrCreateMinimalByEmail('icds@example.com', 'IC DS Buyer');
+
+        $purchases->upsertByReceipt(
+            $leadId,
+            'CB-ICDS',
+            'SALE',
+            'approved',
+            'USD',
+            17.00,
+            [['sku' => 'ic-1-ds']],
+            []
+        );
+
+        self::assertTrue($purchases->leadHasApprovedInnerCirclePurchase($leadId));
+        self::assertTrue($purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'ic-1-ds'));
+    }
+
+    public function testRevokeApprovedPurchasesContainingSkusUpdatesMatchingRows(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $leadId = $leads->findOrCreateMinimalByEmail('revoke@example.com', 'Revoke Buyer');
+
+        $purchases->upsertByReceipt($leadId, 'R-IC', 'BILL', 'approved', 'USD', 19.00, [['sku' => 'ic-1']], []);
+        $purchases->upsertByReceipt($leadId, 'R-SMR', 'SALE', 'approved', 'USD', 47.00, [['sku' => 'smr-1']], []);
+
+        $count = $purchases->revokeApprovedPurchasesContainingSkus($leadId, ['ic-1', 'ic-1-ds'], 'cancelled');
+
+        self::assertSame(1, $count);
+        self::assertFalse($purchases->leadHasApprovedInnerCirclePurchase($leadId));
+        self::assertTrue($purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1'));
+    }
+
     public function testLeadHasApprovedPurchaseWithItemSkuIgnoresNonApprovedStatus(): void
     {
         $pdo = $this->createDatabase();

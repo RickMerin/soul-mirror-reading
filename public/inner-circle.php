@@ -10,8 +10,8 @@ use App\Repository\PurchaseRepository;
 /**
  * The Inner Circle access bridge.
  *
- * ClickBank's Thank-You URL for ic-1 points here with ?cbreceipt={receipt}&email={email}.
- * We confirm the buyer actually owns ic-1, mint a short HMAC gating token (the same format the
+ * ClickBank's Thank-You URL for ic-1 / ic-1-ds points here with ?cbreceipt={receipt}&email={email}.
+ * We confirm the buyer actually owns an Inner Circle SKU, mint a short HMAC gating token (the same format the
  * Cloudflare Worker verifies), and redirect into the chat already activated. Returning visitors
  * with no receipt are sent straight to the chat, where they log in by email.
  *
@@ -52,7 +52,7 @@ if ($receipt === '' || $email === '' || $secret === '' || !$config->hasDatabaseC
     icRedirect($workerUrl);
 }
 
-// First access from the Thank-You URL: confirm this buyer actually owns ic-1.
+// First access from the Thank-You URL: confirm this buyer owns Inner Circle (ic-1 or ic-1-ds).
 $firstName = '';
 $verified = false;
 try {
@@ -64,7 +64,7 @@ try {
     $receiptKnown = $purchases->findIdByReceipt($receipt) !== null;
 
     if ($leadId !== null && $receiptKnown
-        && $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'ic-1')) {
+        && $purchases->leadHasApprovedInnerCirclePurchase($leadId)) {
         $verified = true;
         $stmt = $pdo->prepare('SELECT name FROM leads WHERE id = :id LIMIT 1');
         $stmt->execute([':id' => $leadId]);

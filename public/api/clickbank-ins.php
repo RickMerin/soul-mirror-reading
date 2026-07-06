@@ -3,10 +3,13 @@ declare(strict_types=1);
 
 use App\Config\AppConfig;
 use App\Application\ClickBankBuyerRemovalService;
+use App\Application\ClickBankProductRevocationService;
+use App\Domain\ClickBankInsStatusMapper;
 use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
 use App\Repository\ReadingDeliveryRepository;
+use App\Services\InnerCircleRevocationNotifier;
 use App\Services\KitService;
 use App\Services\ReadingDeliveryTrigger;
 use App\Services\S3ReadingStorage;
@@ -106,8 +109,8 @@ if ($receipt === null) {
 }
 
 $items = extractItems($payload);
-$status = normalizeStatus($payload);
-$txnType = extractTxnType($payload);
+$status = ClickBankInsStatusMapper::normalizeFromPayload($payload);
+$txnType = ClickBankInsStatusMapper::extractTxnType($payload);
 
 try {
     $pdo = DatabaseConnection::fromConfig($config);
@@ -127,6 +130,11 @@ try {
         $payload
     );
     $purchaseId = $purchases->findIdByReceipt($receipt);
+
+    (new ClickBankProductRevocationService(
+        $purchases,
+        InnerCircleRevocationNotifier::fromEnvironment(new Client($config->guzzleClientConfig())),
+    ))->revokeForInsEvent($leadId, $email, $items, $status, $receipt);
 
     (new ClickBankBuyerRemovalService(
         $leads,
@@ -267,45 +275,6 @@ function extractReceipt(array $payload): ?string
     $receipt = trim($receipt);
 
     return $receipt !== '' ? substr($receipt, 0, 120) : null;
-}
-
-/**
- * Extracts transaction type from the payload and normalizes it to uppercase.
- *
- * @param array $payload The notification payload.
- * @return string|null The transaction type, or null if not found.
- */
-function extractTxnType(array $payload): ?string
-{
-    $txnType = payloadValue($payload, ['transactionType', 'txnType', 'transType', 'eventType']);
-    if (!is_string($txnType) || trim($txnType) === '') {
-        return null;
-    }
-
-    return strtoupper(trim($txnType));
-}
-
-/**
- * Determines a normalized purchase status from the payload or transaction type.
- *
- * @param array $payload The notification payload.
- * @return string The status (approved, refunded, etc.).
- */
-function normalizeStatus(array $payload): string
-{
-    $status = payloadValue($payload, ['status', 'order.orderStatus']);
-    if (is_string($status) && trim($status) !== '') {
-        return strtolower(trim($status));
-    }
-    $txnType = extractTxnType($payload);
-
-    return match ($txnType) {
-        'SALE', 'BILL', 'BILLED', 'TEST_SALE' => 'approved',
-        'RFND', 'REFUND' => 'refunded',
-        'CGBK', 'CHARGEBACK' => 'chargeback',
-        'CANCEL-REBILL' => 'cancelled',
-        default => 'pending',
-    };
 }
 
 /**
