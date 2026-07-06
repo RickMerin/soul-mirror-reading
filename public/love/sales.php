@@ -417,7 +417,16 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
   .gs-cardname.visible{ animation:none; }
   .gs-window:not(.has-card)::after{ animation:none; opacity:0; }
 }
-</style><script src='//cdn.clkmc.com/cmc.js'></script>
+</style><script>
+    window.clickmagick_cmc = {
+        uid: '92654',
+        hid: '1214314307',
+        cmc_project: 'Soul Mirror Reading',
+        cmc_goal: 'a',
+        vid_info: 'on',
+    }
+</script>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 
 <body>
