@@ -192,6 +192,7 @@
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wq82rtc2gf");
   </script>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 <body>
 
@@ -293,9 +294,9 @@
             <span class="price-new" style="font-size:46px;"><span class="cur">$</span>67</span>
           </div>
           <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Member rate, this page only. One payment, no subscription.</p>
-          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=a">Yes, Upgrade My Order Now.</a>
+          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=a&amp;vtid=[cmc_vid]">Yes, Upgrade My Order Now.</a>
           <p class="cta-fine">This adds to the order you just placed. No card to re-enter. One tap and it is yours. Backed by a 90-day money-back guarantee.</p>
-          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=d">No thank you, continue &rarr;</a>
+          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, continue &rarr;</a>
         </div>
       </div>
     </section>
@@ -427,9 +428,9 @@
             <p class="price-note">The Love Clarity Ritual runs $167 the moment this page closes. The $100 member discount is yours for already being on the path. One payment, no subscription, yours for life.</p>
           </div>
 
-          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=a">Yes, Upgrade My Order Now.</a>
+          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=a&amp;vtid=[cmc_vid]">Yes, Upgrade My Order Now.</a>
           <p class="cta-fine">Charged to the order you just placed. No card to re-enter. Backed by the 90-day guarantee below.</p>
-          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=d">No thank you, continue &rarr;</a>
+          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, continue &rarr;</a>
         </div>
       </div>
     </section>
@@ -450,8 +451,8 @@
       <div class="wrap" style="max-width:620px;">
         <h2>You Cleared One Mirror.<br /><em>Do Not Leave the Other Two.</em></h2>
         <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 30px;">The block was never only about money. It is the same reflex bracing your heart and shrinking your purpose. Walk away and that is months, maybe years, of it still running. Take the fast track with you instead.</p>
-        <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=a">Yes, Upgrade My Order Now.</a>
-        <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=d">No thank you, continue &rarr;</a>
+        <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=a&amp;vtid=[cmc_vid]">Yes, Upgrade My Order Now.</a>
+        <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, continue &rarr;</a>
         <p class="cta-fine">Your reading arrives within 24 hours either way.</p>
       </div>
     </section>

@@ -95,6 +95,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     .recap-label{font-size:9px;letter-spacing:.1em;}
     .recap-name{font-size:11px;}
   </style>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 
 <body>

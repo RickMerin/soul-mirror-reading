@@ -208,6 +208,16 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
+<script>
+    window.clickmagick_cmc = {
+        uid: '92654',
+        hid: '1214314307',
+        cmc_project: 'Soul Mirror Reading',
+        vid_info: 'on',
+        utm_source: 'organic',
+    }
+</script>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 
 <body>

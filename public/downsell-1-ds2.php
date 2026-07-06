@@ -214,6 +214,7 @@
     /* Countdown sublabel tweak */
     .countdown-bar{ margin:28px auto 0; }
   </style>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 
 <body>
@@ -269,13 +270,13 @@
         <p class="price-note">One payment &middot; Instant download &middot; No subscription</p>
 
         <!-- TODO(checkout): confirm/create the $47 ClickBank item. Placeholder uses srp-1-ds2 (pattern: srp-1 -> srp-1-ds -> srp-1-ds2). -->
-        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds2&amp;cbur=a" class="cta" style="margin-top:22px;">Yes, I Will Take the Final Offer &middot; $47 &rarr;</a>
+        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds2&amp;cbur=a&amp;vtid=[cmc_vid]" class="cta" style="margin-top:22px;">Yes, I Will Take the Final Offer &middot; $47 &rarr;</a>
         <div class="cta-trust-row" style="margin-top:16px;">
           <span>&#128274; Secure Checkout</span>
           <span>&#9889; Delivered Immediately</span>
           <span>&#127769; 90-Day Guarantee</span>
         </div>
-        <a class="ds-decline" href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds2&amp;cbur=d">No thank you, take me to my reading</a>
+        <a class="ds-decline" href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds2&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, take me to my reading</a>
 
         <div class="pricing-inline-guarantee">
           <img src="cards/guarantee-badge.png" alt="90-Day Guarantee">
