@@ -6,7 +6,7 @@ $jsPath = __DIR__ . '/../assets/sales-v2.min.js';
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 $guardPath = __DIR__ . '/../assets/vturb-player-guard.min.js';
 $guardVer = is_file($guardPath) ? filemtime($guardPath) : time();
-$checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-4&cbfid=63457&exitoffer=exit-1';
+$checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-4&cbfid=63457&exitoffer=exit-1&vtid=[cmc_vid]';
 ?>
 <!DOCTYPE html>
 <html lang="en" data-funnel-base="v2/">
@@ -29,6 +29,7 @@ $checkoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=smr-1&template=order-
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 
 <body>

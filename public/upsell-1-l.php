@@ -7,8 +7,8 @@ require $projectRoot . '/vendor/autoload.php';
 \App\Config\AppConfig::load($projectRoot);
 
 
-$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-l&cbur=a';
-$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-l&cbur=d';
+$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-l&cbur=a&vtid=[cmc_vid]';
+$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-l&cbur=d&vtid=[cmc_vid]';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -199,6 +199,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-l&cbur=d';
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wq82rtc2gf");
   </script>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 <body>
 

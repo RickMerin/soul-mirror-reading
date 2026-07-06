@@ -155,6 +155,7 @@
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wq82rtc2gf");
   </script>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 <body>
 
@@ -295,9 +296,9 @@
             <p class="price-note">One payment. Instant download. No subscription.</p>
           </div>
 
-          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1-ds&amp;cbur=a">Yes, Upgrade My Order Now.</a>
+          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1-ds&amp;cbur=a&amp;vtid=[cmc_vid]">Yes, Upgrade My Order Now.</a>
           <p class="cta-fine">Secure checkout via ClickBank, everything delivered immediately.</p>
-          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1-ds&amp;cbur=d">No thank you, continue to my reading</a>
+          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1-ds&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, continue to my reading</a>
         </div>
       </div>
     </section>
