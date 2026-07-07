@@ -19,6 +19,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="facebook-domain-verification" content="hlet0z126jdfwyyz33pwzbaoe9q6hp" />
   <title>Soul Mirror Reading — Free 3-Card Tarot Reading</title>
   <link rel="icon" type="image/svg+xml" href="<?= htmlspecialchars($assetRoot, ENT_QUOTES) ?>favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
