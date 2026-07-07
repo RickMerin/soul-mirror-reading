@@ -127,6 +127,7 @@ final class PurchaseRepositorySkuTest extends TestCase
                 clickbank_receipt TEXT NULL UNIQUE,
                 txn_type TEXT NULL,
                 status TEXT NOT NULL DEFAULT "pending",
+                access_until TEXT NULL,
                 currency TEXT NULL,
                 amount NUMERIC NULL,
                 items_json TEXT NOT NULL,

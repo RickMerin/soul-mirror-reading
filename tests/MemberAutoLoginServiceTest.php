@@ -90,6 +90,7 @@ final class MemberAutoLoginServiceTest extends TestCase
                 clickbank_receipt TEXT NULL,
                 txn_type TEXT NULL,
                 status TEXT NOT NULL,
+                access_until TEXT NULL,
                 currency TEXT NULL,
                 amount TEXT NULL,
                 items_json TEXT NOT NULL,

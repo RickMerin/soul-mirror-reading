@@ -20,8 +20,13 @@ final class SlackClickBankInsLogger
         private readonly ClientInterface $http,
     ) {}
 
-    public function notify(array $payload, ?string $txnType, string $receipt): void
-    {
+    public function notify(
+        array $payload,
+        ?string $txnType,
+        string $receipt,
+        string $status = '',
+        ?string $accessUntil = null,
+    ): void {
         $url = $this->config->clickbankInsSlackWebhookUrl;
         if ($url === '') {
             return;
@@ -30,7 +35,7 @@ final class SlackClickBankInsLogger
         try {
             $body = [
                 'text' => ClickBankInsSlackTable::fallbackText($payload, $txnType, $receipt),
-                'blocks' => ClickBankInsSlackTable::buildBlocks($payload, $txnType, $receipt),
+                'blocks' => ClickBankInsSlackTable::buildBlocks($payload, $txnType, $receipt, $status, $accessUntil),
             ];
             $json = json_encode($body, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
         } catch (JsonException $e) {

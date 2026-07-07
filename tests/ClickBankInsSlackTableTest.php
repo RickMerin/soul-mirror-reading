@@ -325,4 +325,52 @@ final class ClickBankInsSlackTableTest extends TestCase
         self::assertStringContainsString('receipt=(missing)', $text);
         self::assertStringContainsString('txn=(missing)', $text);
     }
+
+    public function testBuildBlocksAccessRowShowsPaidThroughForCancel(): void
+    {
+        $payload = ['receipt' => 'C1', 'transactionType' => 'CANCEL-REBILL', 'lineItems' => []];
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'CANCEL-REBILL', 'C1', 'cancelled', '2026-08-05 03:00:00');
+
+        $access = self::accessRowValue($blocks[0]['rows']);
+        self::assertNotNull($access);
+        self::assertStringContainsString('until 2026-08-05 03:00:00', $access);
+    }
+
+    public function testBuildBlocksAccessRowShowsImmediateForRefund(): void
+    {
+        $payload = ['receipt' => 'R1', 'transactionType' => 'RFND', 'lineItems' => []];
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'RFND', 'R1', 'refunded', null);
+
+        self::assertSame('revoked immediately', self::accessRowValue($blocks[0]['rows']));
+    }
+
+    public function testBuildBlocksAccessRowShowsImmediateForChargeback(): void
+    {
+        $payload = ['receipt' => 'B1', 'transactionType' => 'CGBK', 'lineItems' => []];
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'CGBK', 'B1', 'chargeback', null);
+
+        self::assertSame('revoked immediately', self::accessRowValue($blocks[0]['rows']));
+    }
+
+    public function testBuildBlocksOmitsAccessRowForApprovedSale(): void
+    {
+        $payload = self::v7OriginalPayload();
+        $blocks = ClickBankInsSlackTable::buildBlocks($payload, 'TEST_SALE', 'HTY7MF4E', 'approved', null);
+
+        self::assertNull(self::accessRowValue($blocks[0]['rows']));
+    }
+
+    /**
+     * @param array<int, array<int, array<string, mixed>>> $rows
+     */
+    private static function accessRowValue(array $rows): ?string
+    {
+        foreach ($rows as $row) {
+            if (str_contains(self::fieldLabelText($row[0]), 'Access')) {
+                return self::valueText($row[1]);
+            }
+        }
+
+        return null;
+    }
 }
