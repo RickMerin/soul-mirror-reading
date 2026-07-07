@@ -45,22 +45,25 @@ session_start();
 
 // ── TEST-ONLY preview (host-gated; can never run on production) ──
 $__host = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
-$__pf = '';
+$__pf = ''; $__plocked = false;
 if ($__host === 'test.soulmirrorreading.com' && isset($_GET['preview'])) {
     $__p = (string) $_GET['preview'];
-    if ($__p === 'love' || $__p === 'wealth') { $__pf = $__p; }
+    if (in_array($__p, ['love', 'wealth', 'love-locked', 'wealth-locked'], true)) {
+        $__plocked = (substr($__p, -7) === '-locked');
+        $__pf = $__plocked ? substr($__p, 0, -7) : $__p;
+    }
 }
 if ($__pf !== '') {
     $tpl = (string) file_get_contents(__DIR__ . '/index.html');
-    if ($__pf === 'love') {
-        $tpl = preg_replace('#<!-- smr:ritual-love-locked-start -->.*?<!-- smr:ritual-love-locked-end -->#s', '', $tpl);
-        $tpl = preg_replace('#<!-- smr:wealth-clarity-locked-start -->.*?<!-- smr:wealth-clarity-locked-end -->#s', '', $tpl);
-        $tpl = preg_replace('#<!-- smr:mirror-meditations-locked-start -->.*?<!-- smr:mirror-meditations-locked-end -->#s', '', $tpl);
-    } else {
-        $tpl = preg_replace('#<!-- smr:ritual-locked-start -->.*?<!-- smr:ritual-locked-end -->#s', '', $tpl);
-        $tpl = preg_replace('#<!-- smr:love-clarity-locked-start -->.*?<!-- smr:love-clarity-locked-end -->#s', '', $tpl);
-        $tpl = preg_replace('#<!-- smr:mirror-meditations-locked-start -->.*?<!-- smr:mirror-meditations-locked-end -->#s', '', $tpl);
+    $offOto2 = ($__pf === 'love') ? 'love-clarity' : 'wealth-clarity';
+    $inOto2  = ($__pf === 'love') ? 'wealth-clarity' : 'love-clarity';
+    $tpl = preg_replace('#<!-- smr:' . $offOto2 . '-section-start -->.*?<!-- smr:' . $offOto2 . '-section-end -->#s', '', $tpl);
+    $tpl = preg_replace('#<!-- smr:' . $offOto2 . '-nav-start -->.*?<!-- smr:' . $offOto2 . '-nav-end -->#s', '', $tpl);
+    foreach (['ritual', $inOto2, 'mirror-meditations'] as $pr) {
+        $m = $__plocked ? ($pr . '-full') : ($pr . '-locked');
+        $tpl = preg_replace('#<!-- smr:' . $m . '-start -->.*?<!-- smr:' . $m . '-end -->#s', '', $tpl);
     }
+    $__pvco = $__plocked ? 'https://rebornf.pay.clickbank.net/?cbitems=upgrade&vtid=membership' : '#';
     $pv = [
         '{{FUNNEL}}' => $__pf,
         '{{NAME}}' => 'Preview ' . ucfirst($__pf) . ' Buyer',
@@ -72,11 +75,11 @@ if ($__pf !== '') {
         '{{MEMBER_URL_READING_PDF}}' => '#', '{{MEMBER_URL_READING_DOWNLOAD}}' => '#',
         '{{READING_PENDING_MESSAGE}}' => '', '{{READING_READY_JS}}' => 'true',
         '{{READING_COUNTDOWN_SECONDS}}' => '0', '{{READING_READY_ATTR}}' => '',
-        '{{RITUAL_WELCOME_CARD_MOD}}' => ' is-ritual-unlocked',
-        '{{RITUAL_LOVE_WELCOME_CARD_MOD}}' => ' is-ritual-unlocked',
-        '{{RITUAL_UNLOCKED_JS}}' => 'true', '{{LOVE_CLARITY_UNLOCKED_JS}}' => 'true', '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' => 'true',
-        '{{MEMBER_OTO_CHECKOUT_URL}}' => '#', '{{MEMBER_OTO_LOVE_CHECKOUT_URL}}' => '#',
-        '{{MEMBER_LCR_CHECKOUT_URL}}' => '#', '{{MEMBER_WCR_CHECKOUT_URL}}' => '#', '{{MEMBER_MM_CHECKOUT_URL}}' => '#',
+        '{{RITUAL_WELCOME_CARD_MOD}}' => $__plocked ? '' : ' is-ritual-unlocked',
+        '{{RITUAL_LOVE_WELCOME_CARD_MOD}}' => '',
+        '{{RITUAL_UNLOCKED_JS}}' => $__plocked ? 'false' : 'true', '{{LOVE_CLARITY_UNLOCKED_JS}}' => $__plocked ? 'false' : 'true', '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' => $__plocked ? 'false' : 'true', '{{WEALTH_CLARITY_UNLOCKED_JS}}' => $__plocked ? 'false' : 'true',
+        '{{MEMBER_OTO_CHECKOUT_URL}}' => $__pvco, '{{MEMBER_OTO_LOVE_CHECKOUT_URL}}' => $__pvco,
+        '{{MEMBER_LCR_CHECKOUT_URL}}' => $__pvco, '{{MEMBER_WCR_CHECKOUT_URL}}' => $__pvco, '{{MEMBER_MM_CHECKOUT_URL}}' => $__pvco,
         '{{VTURB_GUARD_VER}}' => (string) time(),
     ];
     foreach (['BONUS_COMPANION','BONUS_SHIFT_TRACKER','BONUS_ROOT_CAUSE','BONUS_MEDITATION_AUDIO',
@@ -86,7 +89,7 @@ if ($__pf !== '') {
               'WCR_GUIDE','WCR_PURPOSE','WCR_AUDIO','WCR_DAILY'] as $k) {
         $pv['{{MEMBER_URL_' . $k . '}}'] = '#';
     }
-    $pv['{{MEMBER_URL_WCR_GUIDE}}'] = 'https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell2/wealth-clarity-ritual-guide.pdf';
+    if (!$__plocked) { $pv['{{MEMBER_URL_WCR_GUIDE}}'] = 'https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell2/wealth-clarity-ritual-guide.pdf'; }
     $out = strtr($tpl, $pv);
     $out = preg_replace('/\{\{[A-Z_]+\}\}/', '#', $out);
     header('Content-Type: text/html; charset=utf-8');
@@ -175,15 +178,20 @@ try {
 
     $readingReady = $readingPdfUrl !== '#';
 
-    // 2h reading countdown: seconds remaining since the reading became ready (DB-side, tz-safe).
-    // 0 for existing buyers (ready > 2h ago) and the env-fallback path, so they see no countdown.
-    $readingCountdownSeconds = ($readingReady && $hasSavedPdf)
-        ? $deliveries->unlockSecondsRemaining($leadId, 7200)
+    // "Luna is preparing your reading" gate: seconds left in the 2h window from PURCHASE (DB-side, tz-safe).
+    // Anchored to purchase (not PDF generation) so it applies on EVERY path, including the env-fallback,
+    // closing the instant-access gap for buyers who open the portal before the personalized PDF is generated.
+    // 0 for existing buyers (purchased > 2h ago) so they see the reading immediately, no countdown.
+    $readingCountdownSeconds = $readingReady
+        ? $purchases->purchaseUnlockSecondsRemaining($leadId, 7200)
         : 0;
 
-    // Aligns with upsell-1.php (`cbitems=srp-1`); override via .env for downsell SKU or multi-product setups.
-    $ritualSku = memberEnvString('MEMBER_RITUAL_SKU', 'srp-1');
-    $ritualUnlocked = $ritualSku !== '' && $purchases->leadHasApprovedPurchaseWithItemSku($leadId, $ritualSku);
+    // Every ACTIVE Soul Ritual Practice SKU unlocks the product (base + wealth-v2 + love variants) so no buyer is locked out.
+    $ritualSkus = ['srp-1', 'srp-1-ds', 'srp-1-ds-v2', 'srp-1-ds2', 'srp-1-ds2-v2', 'srp-1-l', 'srp-1-l-ds', 'srp-1-l-ds2', 'srp-1-v2'];
+    $ritualUnlocked = false;
+    foreach ($ritualSkus as $srpSku) {
+        if ($purchases->leadHasApprovedPurchaseWithItemSku($leadId, $srpSku)) { $ritualUnlocked = true; break; }
+    }
 
     // Aligns with love-clarity upsell (`cbitems=lcr-1` / `lcr-1-ds`).
     $loveClarityUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'lcr-1')
@@ -194,9 +202,11 @@ try {
         || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'mm-1-ds');
 
     // Love-funnel delivery: which front-end did this buyer come through, and their love-set unlocks.
-    $boughtLove = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-l');
+    $boughtLove = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-l')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-exit-l');
     $boughtWealth = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-w')
-        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-wtsl');
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-wtsl')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-exit');
     $funnel = ($boughtLove && !$boughtWealth) ? 'love' : (($boughtWealth && !$boughtLove) ? 'wealth' : 'all');
 
     $ritualLoveUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l')
@@ -204,34 +214,37 @@ try {
         || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'srp-1-l-ds2');
     $wealthClarityUnlocked = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'wcr-1')
         || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'wcr-1-ds');
-    if ($ritualLoveUnlocked) { $html = memberStripMarkedBlock($html, 'ritual-love-locked'); }
-    if ($wealthClarityUnlocked) { $html = memberStripMarkedBlock($html, 'wealth-clarity-locked'); }
-
     $h = static function (string $s): string {
         return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     };
 
-    // vtid=membership checkout links are rendered only here for buyers missing OTO1/OTO2.
-    if ($ritualUnlocked) {
-        $html = memberStripMarkedBlock($html, 'ritual-locked');
-        $otoUrl = '#';
-    } else {
-        $otoUrl = memberEnvString('MEMBER_OTO_CHECKOUT_URL', memberPortalCheckoutUrl('srp-1'));
+    // ── Funnel + entitlement gating (server-side; non-owners NEVER receive a product's files) ──
+    // Off-funnel OTO2 is removed ENTIRELY: love buyers never see Love Clarity, wealth buyers never see Wealth Clarity.
+    if (($funnel === 'love') && !$loveClarityUnlocked) {
+        $html = memberStripMarkedBlock($html, 'love-clarity-section');
+        $html = memberStripMarkedBlock($html, 'love-clarity-nav');
+    }
+    if (($funnel === 'wealth') && !$wealthClarityUnlocked) {
+        $html = memberStripMarkedBlock($html, 'wealth-clarity-section');
+        $html = memberStripMarkedBlock($html, 'wealth-clarity-nav');
+    }
+    // Per product: OWNED -> strip the locked offer (show downloads); NOT OWNED -> strip the -full block
+    // (removes every download URL, placeholder AND hardcoded, from the served HTML), leaving only the offer.
+    foreach ([
+        ['ritual', $ritualUnlocked],
+        ['love-clarity', $loveClarityUnlocked],
+        ['wealth-clarity', $wealthClarityUnlocked],
+        ['mirror-meditations', $mirrorMeditationsUnlocked],
+    ] as $pair) {
+        [$pName, $pOwned] = $pair;
+        $html = memberStripMarkedBlock($html, $pOwned ? ($pName . '-locked') : ($pName . '-full'));
     }
 
-    if ($loveClarityUnlocked) {
-        $html = memberStripMarkedBlock($html, 'love-clarity-locked');
-        $lcrCheckoutUrl = '#';
-    } else {
-        $lcrCheckoutUrl = memberEnvString('MEMBER_LCR_CHECKOUT_URL', memberPortalCheckoutUrl('lcr-1'));
-    }
-
-    if ($mirrorMeditationsUnlocked) {
-        $html = memberStripMarkedBlock($html, 'mirror-meditations-locked');
-        $mmCheckoutUrl = '#';
-    } else {
-        $mmCheckoutUrl = memberEnvString('MEMBER_MM_CHECKOUT_URL', 'https://rebornf.pay.clickbank.net/?cbitems=mm-1&vtid=membership');
-    }
+    // Upgrade checkout links shown inside the locked offers (funnel-aware where the product SKU differs).
+    $ritualUpgradeSku = ($funnel === 'love') ? 'srp-1-l' : 'srp-1';
+    $otoUrl = $ritualUnlocked ? '#' : memberEnvString('MEMBER_OTO_CHECKOUT_URL', memberPortalCheckoutUrl($ritualUpgradeSku));
+    $lcrCheckoutUrl = $loveClarityUnlocked ? '#' : memberEnvString('MEMBER_LCR_CHECKOUT_URL', memberPortalCheckoutUrl('lcr-1'));
+    $mmCheckoutUrl = $mirrorMeditationsUnlocked ? '#' : memberEnvString('MEMBER_MM_CHECKOUT_URL', 'https://rebornf.pay.clickbank.net/?cbitems=mm-1&vtid=membership');
 
     $guardPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'vturb-player-guard.min.js';
     $guardVer = is_file($guardPath) ? (string) filemtime($guardPath) : (string) time();
@@ -268,6 +281,7 @@ try {
         '{{RITUAL_UNLOCKED_JS}}' => $ritualUnlocked ? 'true' : 'false',
         '{{LOVE_CLARITY_UNLOCKED_JS}}' => $loveClarityUnlocked ? 'true' : 'false',
         '{{MIRROR_MEDITATIONS_UNLOCKED_JS}}' => $mirrorMeditationsUnlocked ? 'true' : 'false',
+        '{{WEALTH_CLARITY_UNLOCKED_JS}}' => $wealthClarityUnlocked ? 'true' : 'false',
         '{{MEMBER_URL_LCR_GUIDE}}' => $h(memberEnvString('MEMBER_URL_LCR_GUIDE', '#')),
         '{{MEMBER_URL_LCR_PURPOSE}}' => $h(memberEnvString('MEMBER_URL_LCR_PURPOSE', '#')),
         '{{MEMBER_URL_LCR_AUDIO}}' => $h(memberEnvString('MEMBER_URL_LCR_AUDIO', '')),
@@ -282,9 +296,9 @@ try {
         '{{MEMBER_URL_RITUAL_LOVE_REPORT3}}' => $h(memberEnvString('MEMBER_URL_RITUAL_LOVE_REPORT3', '#')),
         '{{MEMBER_URL_RITUAL_LOVE_WORKBOOK}}' => $h(memberEnvString('MEMBER_URL_RITUAL_LOVE_WORKBOOK', '#')),
         '{{MEMBER_URL_WCR_GUIDE}}' => $h(memberEnvString('MEMBER_URL_WCR_GUIDE', 'https://soulmirrorreading.s3.us-west-1.amazonaws.com/upsell2/wealth-clarity-ritual-guide.pdf')),
-        '{{MEMBER_URL_WCR_PURPOSE}}' => $h(memberEnvString('MEMBER_URL_WCR_PURPOSE', '#')),
-        '{{MEMBER_URL_WCR_AUDIO}}' => $h(memberEnvString('MEMBER_URL_WCR_AUDIO', '')),
-        '{{MEMBER_URL_WCR_DAILY}}' => $h(memberEnvString('MEMBER_URL_WCR_DAILY', '#')),
+        '{{MEMBER_URL_WCR_PURPOSE}}' => $h(memberEnvString('MEMBER_URL_LCR_PURPOSE', '#')),
+        '{{MEMBER_URL_WCR_AUDIO}}' => $h(memberEnvString('MEMBER_URL_LCR_AUDIO', '')),
+        '{{MEMBER_URL_WCR_DAILY}}' => $h(memberEnvString('MEMBER_URL_LCR_DAILY', '#')),
     ];
     $rendered = strtr($html, $replacements);
 

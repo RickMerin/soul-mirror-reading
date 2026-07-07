@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use App\Domain\InnerCircleSkus;
 use App\Domain\ReadingProductSkus;
 use JsonException;
 use PDO;
@@ -121,10 +122,121 @@ final class PurchaseRepository
         return false;
     }
 
+    public function leadHasApprovedInnerCirclePurchase(int $leadId): bool
+    {
+        foreach (InnerCircleSkus::ALL as $sku) {
+            if ($this->leadHasApprovedPurchaseWithItemSku($leadId, $sku)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param list<non-empty-string> $skus
+     */
+    public function purchaseContainsAnySku(array $items, array $skus): bool
+    {
+        $needles = array_map(static fn (string $s): string => strtolower(trim($s)), $skus);
+        foreach ($items as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+            foreach (['sku', 'item', 'itemNo', 'productSku'] as $key) {
+                if (!array_key_exists($key, $item)) {
+                    continue;
+                }
+                $val = $item[$key];
+                if (!is_string($val) && !is_numeric($val)) {
+                    continue;
+                }
+                $needle = strtolower(trim((string) $val));
+                if ($needle !== '' && in_array($needle, $needles, true)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Marks approved purchases containing any of the given SKUs as revoked.
+     *
+     * @param list<non-empty-string> $skus
+     */
+    public function revokeApprovedPurchasesContainingSkus(
+        int $leadId,
+        array $skus,
+        string $revokedStatus,
+    ): int {
+        if ($skus === []) {
+            return 0;
+        }
+
+        $stmt = $this->pdo->prepare(
+            "SELECT id, items_json FROM purchases
+             WHERE lead_id = :lead_id
+               AND status IN ('approved', 'complete', 'completed', 'active')"
+        );
+        $stmt->execute([':lead_id' => $leadId]);
+
+        $update = $this->pdo->prepare(
+            'UPDATE purchases SET status = :status, updated_at = CURRENT_TIMESTAMP WHERE id = :id'
+        );
+
+        $revoked = 0;
+        while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
+            $raw = $row['items_json'] ?? '';
+            if (!is_string($raw) || $raw === '') {
+                continue;
+            }
+            try {
+                $items = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+            } catch (JsonException) {
+                continue;
+            }
+            if (!is_array($items) || !$this->purchaseContainsAnySku($items, $skus)) {
+                continue;
+            }
+
+            $update->execute([
+                ':status' => $revokedStatus,
+                ':id' => (int) $row['id'],
+            ]);
+            ++$revoked;
+        }
+
+        return $revoked;
+    }
+
     /**
      * @param array<int,array<string,mixed>> $items
      * @param array<string,mixed> $rawInsPayload
      */
+    /**
+     * Seconds remaining in a post-purchase window (the "preparing your reading" gate),
+     * measured from the buyer's EARLIEST approved purchase. Returns 0 once the window has
+     * elapsed (existing buyers) or if there is no approved purchase. Computed entirely
+     * DB-side via NOW() so it is timezone-safe, mirroring ReadingDeliveryRepository.
+     */
+    public function purchaseUnlockSecondsRemaining(int $leadId, int $windowSeconds): int
+    {
+        $window = max(0, $windowSeconds);
+        $stmt = $this->pdo->prepare(
+            "SELECT GREATEST(0, " . $window . " - TIMESTAMPDIFF(SECOND, created_at, NOW())) AS s
+             FROM purchases
+             WHERE lead_id = :lead_id AND status IN ('approved', 'complete', 'completed', 'active')
+             ORDER BY created_at ASC
+             LIMIT 1"
+        );
+        $stmt->execute([':lead_id' => $leadId]);
+        $value = $stmt->fetchColumn();
+
+        return $value === false ? 0 : (int) $value;
+    }
+
     public function upsertByReceipt(
         int $leadId,
         string $receipt,

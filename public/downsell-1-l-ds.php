@@ -1,8 +1,8 @@
 <?php
 /**
  * Soul Mirror Reading , Downsell 1 (REDESIGN, wealth-v2 design system)
- * Offer:    Soul Ritual Practice , $67 declined -> $47 one-time downsell
- * ClickBank: item srp-1-ds-v2   accept cbur=a   decline cbur=d
+ * Offer:    Soul Ritual Practice , $97 declined -> $67 one-time downsell
+ * ClickBank: item srp-1-ds   accept cbur=a   decline cbur=d
  *
  * Deploy as: /downsell-1.php  (site root , root-relative asset paths assume root)
  *
@@ -233,7 +233,7 @@
 
   <!-- ── TOP NOTICE BAR (downsell red) ── -->
   <div class="topnotice" style="background:#9b1c1c;border-bottom:1px solid #c0392b;">
-    <strong>WAIT</strong><span class="notice-dot">&middot;</span><strong>I Just Took <span style="color:#E8C97A;">$20 Off</span> the Soul Ritual Practice</strong><span class="notice-dot">&middot;</span><strong>This Lower Price Won't Be Shown Again</strong>
+    <strong>WAIT</strong><span class="notice-dot">&middot;</span><strong>I Just Took <span style="color:#E8C97A;">$50 Off</span> the Soul Ritual Practice</strong><span class="notice-dot">&middot;</span><strong>This Lower Price Won't Be Shown Again</strong>
   </div>
 
     <!-- ═══════════════════════════════════════════
@@ -243,7 +243,7 @@
       <div class="wrap">
         <h1 class="vsl-headline"><span class="firstname">Friend</span>, I'm Not Letting You Leave<br><em>Without the Second Half.</em></h1>
 
-        <p class="ds-lede">$67 wasn't right for you today, and that's okay. But the practice your reading named is what loosens the ceiling on your money, the figure your income keeps returning to no matter how hard you work. Same complete practice, <strong>$47, one time only.</strong></p>
+        <p class="ds-lede">$97 wasn't right for you today, and that's okay. But the practice your reading named is what loosens the ceiling on your love, the moment closeness starts to feel real and something in you quietly pulls back. Same complete practice, <strong>$47, one time only.</strong></p>
       </div>
     </section>
 
@@ -277,9 +277,9 @@
     <section class="section" style="padding-top:0;">
       <div class="wrap">
         <div class="ds-note">
-          <p>Your reading shows you the ceiling on your money. That matters enormously, <span class="firstname">Friend</span>.</p>
-          <p>But I have sat with thousands of people who could see their Wealth Block exactly, the precise ceiling on their money, and still watched it hold their income at the same figure for another decade. Not because they weren't trying. <strong>Because seeing it is not the same as clearing it.</strong></p>
-          <p>The Soul Ritual Practice is the fast track that does the clearing, the accelerated ritual that goes straight to the layer where the ceiling was set, instead of the slow years of reading and journaling. The same three Rituals, the same Workbook, the same three bonuses I just showed you. Nothing has been stripped out. The only thing that changed is the price, and the fact that this page will not be offered to you again.</p>
+          <p>Your reading shows you the ceiling on your love. That matters enormously, <span class="firstname">Friend</span>.</p>
+          <p>But I have sat with thousands of people who could see their Love Block exactly, the precise reason real closeness keeps slipping away, and still watched it pull them toward the wrong people for another decade. Not because they weren't trying. <strong>Because seeing it is not the same as clearing it.</strong></p>
+          <p>The Soul Ritual Practice is the fast track that does the clearing, the accelerated ritual that goes straight to the layer where the Love Block was set, instead of the slow years of reading and journaling. The same three Rituals, the same Workbook, the same three bonuses I just showed you. Nothing has been stripped out. The only thing that changed is the price, and the fact that this page will not be offered to you again.</p>
         </div>
       </div>
     </section>
@@ -291,32 +291,32 @@
       <div class="pricing-block" id="early-offer">
         <span class="section-eyebrow" style="margin-bottom:14px;">One-Time Offer &middot; Disappears When You Leave</span>
         <h2>Complete Your Journey<br><em>for $47</em></h2>
-        <p class="price-note" style="margin:6px auto 0; max-width:460px;">The fast-track ritual that clears the ceiling on your money.</p>
+        <p class="price-note" style="margin:6px auto 0; max-width:460px;">The fast-track ritual that clears the ceiling on your love.</p>
 
         <div class="ds-coupon" style="margin-top:18px;">
           <span class="ds-coupon__label">&#10022; &nbsp; One-Time Discount Applied &nbsp; &#10022;</span>
-          <span class="ds-coupon__amount">&minus; $20.00 OFF</span>
-          <span class="ds-coupon__code">Code <span>EXTRA20</span></span>
+          <span class="ds-coupon__amount">&minus; $50.00 OFF</span>
+          <span class="ds-coupon__code">Code <span>EXTRA50</span></span>
         </div>
 
         <div style="margin:6px 0 2px; text-align:center;">
           <div style="font-family:'Cinzel',sans-serif; font-size:12px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-bottom:10px;">Total Value <span style="text-decoration:line-through; color:rgba(255,255,255,.5);">$449</span></div>
           <div style="font-family:'Cinzel',sans-serif; font-size:12px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-bottom:8px;">Your Price, One Time Only</div>
           <div class="price-row">
-            <span class="ds-price-was">$197</span>
-            <span class="ds-price-was">$67</span>
+            <span class="ds-price-was">$147</span>
+            <span class="ds-price-was">$97</span>
             <span class="price-currency">$</span><span class="price-new">47</span>
           </div>
         </div>
         <p class="price-note">One payment &middot; Instant download &middot; No subscription</p>
 
-        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds-v2&amp;cbur=a&amp;vtid=[cmc_vid]" class="cta" style="margin-top:22px;">Yes. Upgrade My Order Now!</a>
+        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-l-ds&amp;cbur=a&amp;vtid=[cmc_vid]" class="cta" style="margin-top:22px;">Yes. Upgrade My Order Now!</a>
         <div class="cta-trust-row" style="margin-top:16px;">
           <span>&#128274; Secure Checkout</span>
           <span>&#9889; Delivered Immediately</span>
           <span>&#127769; 90-Day Guarantee</span>
         </div>
-        <a class="ds-decline" href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds-v2&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, take me to my reading only</a>
+        <a class="ds-decline" href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-l-ds&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, take me to my reading only</a>
       </div>
     </section>
 
@@ -337,7 +337,7 @@
             </div>
           </div>
           <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-          <p class="testi-body">"I did Ritual One, the Root Witnessing, and finally saw the exact moment my Wealth Block was set. A client who had stalled on paying me for months sent the full $3,200 the week after, no chasing from me. What surprised me more was that it stayed. Normally a sum like that finds a reason to leave by the end of the month. This time it just sat there and was mine."</p>
+          <p class="testi-body">"I did Ritual One, the Root Witnessing, and finally saw the exact moment my Love Block was set. A man I had quietly written off as just a friend asked me to dinner the week after, no engineering from me. What surprised me more was that I let it happen. Normally I find a reason to keep someone kind at arm's length by the end of the first month. This time I just stayed, and let myself be wanted."</p>
         </div>
 
         <div class="testi-card">
@@ -349,7 +349,7 @@
             </div>
           </div>
           <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-          <p class="testi-body">"Full disclosure, I clicked away on the first offer and almost did again here. What pulled me back was Ritual Two, the Pattern Interruption, which caught the exact thing I do the second a quote leaves my hands: I talk my own number down before anyone else can. My usual rate was $1,800. I sent the next proposal at $2,600, did not flinch, and they paid it. That was the Wealth Block letting go in real time, and I have not gone back down since."</p>
+          <p class="testi-body">"Full disclosure, I clicked away on the first offer and almost did again here. What pulled me back was Ritual Two, the Pattern Interruption, which caught the exact thing I do the second someone good gets close: I find the flaw and start the slow pull away before they can leave first. The next time the urge hit, I named it and stayed put instead. We are still together three months on, and for once I am not bracing for the end. That was the Love Block letting go in real time, and I have not slid back since."</p>
         </div>
 
         <div class="testi-card">
@@ -361,10 +361,10 @@
             </div>
           </div>
           <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-          <p class="testi-body">"For years every good month quietly undid itself. I would earn well, then pull the next one back down to my usual figure without noticing. Ritual Three, the New Imprint, was where I wrote a higher ceiling into my body so more money felt safe to keep. Four months on I have held just over 4,000 euros that in the old pattern would have leaked away by now. Same income I have always had. It just stays now."</p>
+          <p class="testi-body">"For years every good connection quietly undid itself. I would meet someone right, then sabotage it back down to almost without noticing, every near-miss landing in the same place. Ritual Three, the New Imprint, was where I wrote a higher ceiling into my body so being truly loved felt safe to keep. Four months on I am still with him, the kind of closeness that in the old pattern would have slipped away by now. Same heart I have always had. It just stays open now."</p>
         </div>
 
-        <p style="text-align:center; max-width:560px; margin:22px auto 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:rgba(255,255,255,.45);">Individual results vary and are not typical. The Soul Ritual Practice is for insight and self-reflection. It is not financial advice.</p>
+        <p style="text-align:center; max-width:560px; margin:22px auto 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:rgba(255,255,255,.45);">Individual results vary and are not typical. The Soul Ritual Practice is for insight and self-reflection. It is not relationship or psychological advice.</p>
       </div>
     </section>
 
@@ -381,8 +381,8 @@
             <li><span><strong>The Mirror Block Clearing Rituals.</strong> A 3-part protocol that interrupts the block where it actually lives.</span></li>
             <li><span><strong>The Mirror Block Workbook.</strong> 45 pages that walk you through the clearing, step by step.</span></li>
             <li><span><strong>Bonus 1. Soul Ritual Audio Companion.</strong> The full practice, guided in Luna's voice.</span></li>
-            <li><span><strong>Bonus 2. The Wealth Alert Protocol.</strong> Catch the block the moment it tries to pull money back.</span></li>
-            <li><span><strong>Bonus 3. The Love Harmony Audio.</strong> The same clearing, turned toward connection.</span></li>
+            <li><span><strong>Bonus 2. The Closeness Alert Protocol.</strong> Catch the block the moment it tries to pull you away from real love.</span></li>
+            <li><span><strong>Bonus 3. The Love Harmony Audio.</strong> The same clearing, turned toward the partner meant for you.</span></li>
           </ul>
         </div>
       </div>
@@ -394,7 +394,7 @@
     <section class="section" style="padding-top:0;">
       <div class="wrap">
         <h2>Every Bonus Still <em>Included</em></h2>
-        <p style="text-align:center; max-width:520px; margin:0 auto 8px;">The $47 version is not a lighter version. You get the full stack, exactly as it was at $67.</p>
+        <p style="text-align:center; max-width:520px; margin:0 auto 8px;">The $47 version is not a lighter version. You get the full stack, exactly as it was at $97.</p>
 
         <div class="bonus-grid" style="grid-template-columns:repeat(3,1fr);">
           <div class="bonus-card-compact">
@@ -406,7 +406,7 @@
           <div class="bonus-card-compact">
             <span class="free-badge">INCLUDED</span>
             <div class="bonus-num">Bonus 2</div>
-            <h4>The Wealth Alert Protocol</h4>
+            <h4>The Closeness Alert Protocol</h4>
             <div class="value">Valued at $47</div>
           </div>
           <div class="bonus-card-compact">
@@ -442,7 +442,7 @@
             <span class="value-line__price">$67</span>
           </div>
           <div class="value-line">
-            <span class="value-line__name"><strong>Bonus 2.</strong> The Wealth Alert Protocol</span>
+            <span class="value-line__name"><strong>Bonus 2.</strong> The Closeness Alert Protocol</span>
             <span class="value-line__price">$47</span>
           </div>
           <div class="value-line">
@@ -457,15 +457,15 @@
 
         <div class="ds-coupon">
           <span class="ds-coupon__label">&#10022; &nbsp; One-Time Discount Applied &nbsp; &#10022;</span>
-          <span class="ds-coupon__amount">&minus; $20.00 OFF</span>
-          <span class="ds-coupon__code">Code <span>EXTRA20</span></span>
+          <span class="ds-coupon__amount">&minus; $50.00 OFF</span>
+          <span class="ds-coupon__code">Code <span>EXTRA50</span></span>
         </div>
 
         <div style="margin:8px 0 6px; text-align:center;">
           <div style="font-family:'Cinzel',sans-serif; font-size:12px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-bottom:10px;">Your Price, One Time Only</div>
           <div class="price-row">
-            <span class="ds-price-was">$197</span>
-            <span class="ds-price-was">$67</span>
+            <span class="ds-price-was">$147</span>
+            <span class="ds-price-was">$97</span>
             <span class="price-currency">$</span><span class="price-new">47</span>
           </div>
         </div>
@@ -478,7 +478,7 @@
           <div class="countdown-sublabel">When this page closes, the $47 offer closes with it.</div>
         </div>
 
-        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds-v2&amp;cbur=a&amp;vtid=[cmc_vid]" class="cta" style="margin-top:28px;">Yes. Upgrade My Order Now!</a>
+        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-l-ds&amp;cbur=a&amp;vtid=[cmc_vid]" class="cta" style="margin-top:28px;">Yes. Upgrade My Order Now!</a>
         <div class="cta-trust-row" style="margin-top:16px;">
           <span>&#128274; Secure Checkout</span>
           <span>&#9889; Delivered Immediately</span>
@@ -487,7 +487,7 @@
 
         <p class="ds-reassure">Secure checkout via ClickBank &middot; Everything delivered immediately</p>
 
-        <a class="ds-decline" href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds-v2&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, take me to my reading only</a>
+        <a class="ds-decline" href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-l-ds&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, take me to my reading only</a>
 
         <div class="pricing-inline-guarantee">
           <img src="cards/guarantee-badge.png" alt="90-Day Guarantee">
@@ -523,7 +523,7 @@
         permission. ClickBank's role as retailer does not constitute an endorsement, approval or review of these
         products or any claim, statement or opinion used in promotion of these products.</p>
       <p>Individual results vary and are not typical. A Soul Mirror Reading and the Soul Ritual Practice are for insight
-        and self-reflection. They are not financial, medical, or psychological advice and do not guarantee any specific outcome.</p>
+        and self-reflection. They are not relationship, medical, or psychological advice and do not guarantee any specific outcome.</p>
       <p>For Product Support, please contact the vendor: <a href="mailto:support@soulmirrorreading.com">HERE</a></p>
       <p>For Order Support, please contact ClickBank: <a href="https://www.clkbank.com/" target="_blank" rel="noopener">HERE</a> or 1-800-390-6035</p>
       <p class="footer-links">

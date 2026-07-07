@@ -4,7 +4,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Downsell 2 - Love Clarity Ritual v2 (wealth-v2 cosmic system) -->
+  <!-- Downsell 2 - Wealth Clarity Ritual v2 (wealth-v2 cosmic system) -->
   <title>Wait, One More Thing From Luna</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -177,8 +177,8 @@
     <section class="section center">
       <div class="wrap">
         <h1>I Am Not Letting You Leave<br /><em>With Two Mirrors Still Clouded.</em></h1>
-        <p class="subhead">$67 was not right today. Fine. Same rituals, lower price. I would rather meet you here than watch you wait months for your money work to reach love and purpose on its own.</p>
-        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-hero2.webp" alt="Two antique mirrors clearing to gold light, one for love and one for purpose" />
+        <p class="subhead">$67 was not right today. Fine. Same rituals, lower price. I would rather meet you here than watch you wait months for your love work to reach wealth and purpose on its own.</p>
+        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/wcr-hero.webp" alt="Two antique mirrors clearing to gold light, one for wealth and one for purpose" />
       </div>
     </section>
 
@@ -186,17 +186,17 @@
     <section class="section--tight center">
       <div class="wrap">
         <span class="eyebrow">✦ &nbsp; The Mirror You Cleared. The Two You Have Not. &nbsp; ✦</span>
-        <p class="subhead">Your money work will reach <strong style="color:var(--gold-light);font-style:normal;">love and purpose</strong> in time. This page is the shortcut, at a price I do not usually show.</p>
+        <p class="subhead">Your love work will reach <strong style="color:var(--gold-light);font-style:normal;">wealth and purpose</strong> in time. This page is the shortcut, at a price I do not usually show.</p>
         <div class="part-grid">
           <div class="part-col part-col--done">
             <span class="part-num">Mirror One</span>
-            <p class="part-title">Money</p>
+            <p class="part-title">Love</p>
             <p class="part-status part-status--done">✓ The work you came in for</p>
           </div>
           <div class="part-arrow">→</div>
           <div class="part-col part-col--active">
             <span class="part-num">Mirrors Two &amp; Three</span>
-            <p class="part-title">Love &amp; Purpose</p>
+            <p class="part-title">Wealth &amp; Purpose</p>
             <p class="part-status">Still needs clearing &middot; Now $47</p>
           </div>
         </div>
@@ -208,8 +208,8 @@
       <div class="wrap">
         <div class="card" style="max-width:640px;margin:0 auto;">
           <div class="body-copy">
-            <p>Clearing the money mirror matters. But it was never the only mirror the block was hiding in.</p>
-            <p>The money work reaches love and purpose in the end, because it is one root. But the end can be another decade of the same pattern bracing your heart and shrinking your purpose. <strong>This is the same complete clearing for the other two: three movements, three bonuses. Only the price changed, and this page will not be offered again.</strong></p>
+            <p>Clearing the love mirror matters. But it was never the only mirror the block was hiding in.</p>
+            <p>The love work reaches wealth and purpose in the end, because it is one root. But the end can be another decade of the same pattern capping what you earn and shrinking the work you were meant to do. <strong>This is the same complete clearing for the other two: three movements, three bonuses. Only the price changed, and this page will not be offered again.</strong></p>
           </div>
           <p class="bridge-sig"><strong style="color:#fff;font-style:normal;">Luna Ross</strong></p>
         </div>
@@ -220,11 +220,11 @@
     <section class="section">
       <div class="wrap">
         <span class="eyebrow">You Already Know This Is You</span>
-        <h2>You Fixed the Money Story.<br /><em>The Bracing Never Stopped.</em></h2>
+        <h2>You Fixed the Love Story.<br /><em>The Ceiling Never Moved.</em></h2>
         <div class="pain-list" style="margin-top:24px;">
-          <div class="pain-item">Someone gets close, and quietly you wait for it to fall apart. <em>You stopped noticing you do it.</em></div>
-          <div class="pain-item">You feel the pull toward work that is truly yours, and file it under "someday" one more time.</div>
-          <div class="pain-item">You are not too much. You are not too closed off. <em>It is one block, still running in two mirrors you never cleared.</em></div>
+          <div class="pain-item">The money climbs to a certain line, then quietly slides back down. <em>You stopped noticing you do it.</em></div>
+          <div class="pain-item">You feel the pull toward the work that is truly yours, and file it under "someday" one more time.</div>
+          <div class="pain-item">You are not bad with money. You are not lazy about your calling. <em>It is one block, still running in two mirrors you never cleared.</em></div>
         </div>
       </div>
     </section>
@@ -241,7 +241,7 @@
               <div><div class="testi__name">Jennifer L.</div><div class="testi__meta">51 &middot; Denver, US</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"I almost said no at $67. When the price dropped I almost said no again, thinking it was a lesser version. It is not. Same ritual. My husband noticed the change before I told him I had done anything."</p>
+            <p class="testi__body">"I almost said no at $67. When the price dropped I almost said no again, thinking it was a lesser version. It is not. Same ritual. A client raised her offer for me before I had told anyone I was doing this work."</p>
           </div>
           <div class="testi">
             <div class="testi__row">
@@ -249,7 +249,7 @@
               <div><div class="testi__name">Marcus T.</div><div class="testi__meta">46 &middot; Austin, US</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"I was the definition of sceptical. I clicked 'no thanks' the first time. Something made me reconsider here. Three weeks later I launched the work I had sat on for years. I just know it worked."</p>
+            <p class="testi__body">"I was the definition of sceptical. I clicked 'no thanks' the first time. Something made me reconsider here. Three weeks later I launched the work I had sat on for years, and the first invoice landed bigger than I would have dared to ask. I just know it worked."</p>
           </div>
           <div class="testi">
             <div class="testi__row">
@@ -257,7 +257,7 @@
               <div><div class="testi__name">Elena M.</div><div class="testi__meta">43 &middot; Barcelona, ES</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"I have too many courses sitting unfinished. This is the only one I finished in a single weekend, because it is a practice, not a course. The Pattern in Love movement felt like being seen."</p>
+            <p class="testi__body">"I have too many courses sitting unfinished. This is the only one I finished in a single weekend, because it is a practice, not a course. The Pattern in Wealth movement felt like being seen."</p>
           </div>
         </div>
       </div>
@@ -269,13 +269,13 @@
         <div class="offer-box">
           <span class="offer-label">One-Time Offer, Disappears When You Leave</span>
           <h2 style="margin-bottom:10px;">Clear the Other Two Mirrors for $47</h2>
-          <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">The same rituals that speed up love and purpose. Same three bonuses. The only thing lower is the price.</p>
-          <img class="lineup-img" src="https://soulmirrorreading.com/frontend/images/upsell2/upsell2-package.webp" alt="The complete Love Clarity Ritual bundle, the 3-movement practice and 3 bonuses" style="margin-bottom:26px;" />
+          <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">The same rituals that speed up wealth and purpose. Same three bonuses. The only thing lower is the price.</p>
+          <img class="lineup-img" src="https://soulmirrorreading.com/frontend/images/upsell2/wcr-package.webp" alt="The complete Wealth Clarity Ritual bundle, the 3-movement practice and 3 bonuses" style="margin-bottom:26px;" />
 
           <ul class="vlist">
-            <li><span class="vs-name">The Love Clarity Ritual, a 3-Movement Practice</span><span class="vs-price">$147</span></li>
+            <li><span class="vs-name">The Wealth Clarity Ritual, a 3-Movement Practice</span><span class="vs-price">$147</span></li>
             <li><span class="vs-name"><strong>Bonus 1</strong>&nbsp;&middot; The Purpose Alignment Ritual</span><span class="vs-price">$67</span></li>
-            <li><span class="vs-name"><strong>Bonus 2</strong>&nbsp;&middot; The Open-Heart Audio</span><span class="vs-price">$47</span></li>
+            <li><span class="vs-name"><strong>Bonus 2</strong>&nbsp;&middot; The Open-to-Receiving Audio</span><span class="vs-price">$47</span></li>
             <li><span class="vs-name"><strong>Bonus 3</strong>&nbsp;&middot; The Daily Clarity Practice</span><span class="vs-price">$29</span></li>
             <li class="vs-total"><span class="vs-name">Total Value</span><span class="vs-price">$290</span></li>
           </ul>
@@ -296,9 +296,9 @@
             <p class="price-note">One payment. Instant download. No subscription.</p>
           </div>
 
-          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1-ds&amp;cbur=a&amp;vtid=[cmc_vid]">Yes, Upgrade My Order Now.</a>
+          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=wcr-1-ds&amp;cbur=a&amp;vtid=[cmc_vid]">Yes, Upgrade My Order Now.</a>
           <p class="cta-fine">Secure checkout via ClickBank, everything delivered immediately.</p>
-          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=lcr-1-ds&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, continue to my reading</a>
+          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=wcr-1-ds&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, continue to my reading</a>
         </div>
       </div>
     </section>
@@ -309,7 +309,7 @@
         <div class="guarantee">
           <img src="https://soulmirrorreading.com/frontend/images/upsell2/guarantee-badge.webp" alt="90 Day Mirror Guarantee" />
           <h2 style="font-size:clamp(19px,2.8vw,24px);margin-bottom:14px;">90-Day Money-Back Guarantee</h2>
-          <p>Work through all three movements. If your love life and your sense of purpose feel no different within 90 days, email us for a full refund of your $47. No questions, no explanation. The risk is entirely mine.</p>
+          <p>Work through all three movements. If your relationship with money and your sense of purpose feel no different within 90 days, email us for a full refund of your $47. No questions, no explanation. The risk is entirely mine.</p>
         </div>
       </div>
     </section>

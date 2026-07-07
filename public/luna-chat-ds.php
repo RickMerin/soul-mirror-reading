@@ -7,8 +7,8 @@ require $projectRoot . '/vendor/autoload.php';
 \App\Config\AppConfig::load($projectRoot);
 
 
-$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1-ds&cbur=a';
-$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1-ds&cbur=d';
+$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template=1on1&vtid=[cmc_vid]';
+$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template=1on1&vtid=[cmc_vid]';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1-ds&cbur=d';
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Upsell 3 (OTO3) - The Inner Circle, unlimited private 1-1 sessions membership (wealth-v2 cosmic system) -->
-  <!-- TODO: create ClickBank recurring item ic-1-ds: $17 trial -> $19/month, then wire these URLs -->
+  <!-- TODO: create ClickBank recurring item tic-1-ds: $17 trial -> $19/month, then wire these URLs -->
   <title>The Inner Circle (Members Rate), Your Own Private Line to Luna Ross</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -241,6 +241,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1-ds&cbur=d';
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wq82rtc2gf");
   </script>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 <body>
 
@@ -283,7 +284,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1-ds&cbur=d';
           <ul class="vlist">
             <li><span class="vs-name">Unlimited private 1-1 sessions with Luna, each worth <strong>$120</strong> on its own</span></li>
             <li><span class="vs-name">A thoughtful, personal reply within the hour, every time</span></li>
-            <li><span class="vs-name">Guidance that knows your reading and your specific Wealth Block</span></li>
+            <li><span class="vs-name">Guidance that knows your reading and your specific Mirror Block</span></li>
             <li><span class="vs-name">A private space on your phone, day and night, including the 2am moments</span></li>
             <li><span class="vs-name">Bring me as much as you want, as often as you want, no limit</span></li>
           </ul>
@@ -307,8 +308,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=ic-1-ds&cbur=d';
           <p class="cta-fine" style="max-width:520px;margin:8px auto 18px;">A monthly membership. After your $17 first month, you are billed $19/month for unlimited sessions. Cancel anytime in one click, no email, no phone call, no hoops.</p>
           <div style="text-align:center;margin:2px auto 18px;"><span style="display:inline-block;font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);border:1px solid #d4af3759;border-radius:50px;padding:7px 18px;">&#10003;&nbsp; 90-Day Money-Back Guarantee</span></div>
 
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Upgrade My Order Now</a>
-          <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, complete my order without The Inner Circle.</a>
+          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, I Want To Talk To Luna</a>
         </div>
       </div>
     </section>

@@ -37,6 +37,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 
 <body>

@@ -7,8 +7,8 @@ require $projectRoot . '/vendor/autoload.php';
 \App\Config\AppConfig::load($projectRoot);
 
 
-$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=a&vtid=[cmc_vid]';
-$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid=[cmc_vid]';
+$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-l&cbur=a&vtid=[cmc_vid]';
+$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1-l&cbur=d&vtid=[cmc_vid]';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -205,7 +205,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
 
   <!-- NOTICE BAR -->
   <div class="topnotice">
-    <strong>Hold On, This Is Just for You</strong><span class="dot">&middot;</span><strong>A Members-Only Upgrade Just Unlocked, $352 Off</strong><span class="dot">&middot;</span><strong>Before Your Reading Lands</strong>
+    <strong>Hold On, This Is Just for You</strong><span class="dot">&middot;</span><strong>A Members-Only Upgrade Just Unlocked, $382 Off</strong><span class="dot">&middot;</span><strong>Before Your Reading Lands</strong>
   </div>
 
   <!-- COSMIC BACKGROUND -->
@@ -222,8 +222,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
     <!-- HERO -->
     <section class="section center">
       <div class="wrap">
-        <h1>Clear Your Wealth Block <span style="color:#E8C97A;background:rgba(212,175,55,0.16);padding:0 10px;border-radius:8px;text-decoration:underline;text-decoration-color:#E8C97A;text-underline-offset:6px;text-decoration-thickness:2px;">10x</span> Faster.<br><em>The Accelerated Ritual, Not Another Year of Slow Inner Work.</em></h1>
-        <p class="subhead">The Soul Ritual Practice is the fast track to clearing it: the exact rituals, in the right order, for the precise Wealth Block your three cards revealed. You are seconds from holding both halves of the work.</p>
+        <h1>Clear Your Love Block <span style="color:#E8C97A;background:rgba(212,175,55,0.16);padding:0 10px;border-radius:8px;text-decoration:underline;text-decoration-color:#E8C97A;text-underline-offset:6px;text-decoration-thickness:2px;">10x</span> Faster.<br><em>The Accelerated Ritual, Not Another Year of Slow Inner Work.</em></h1>
+        <p class="subhead">The Soul Ritual Practice is the fast track to clearing it: the exact rituals, in the right order, for the precise Love Block your three cards revealed. You are seconds from holding both halves of the work.</p>
         <video class="hero-img" autoplay loop muted playsinline poster="frontend/images/upsell/upsell-hero.jpg">
           <source src="frontend/images/upsell/upsell-hero-motion.mp4" type="video/mp4" />
           <img class="hero-img" src="frontend/images/upsell/upsell-hero.jpg" alt="Hands performing a clearing ritual over a gold filigree mirror with rising smoke, deep violet and gold" />
@@ -234,13 +234,13 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
     <!-- AGITATION -->
     <section class="section">
       <div class="wrap">
-        <h2>Picture the Payment Landing in Your Account.<br /><em>This Time, It Holds.</em></h2>
+        <h2>Picture the Right Person Finally Arriving.<br /><em>This Time, You Let Them Stay.</em></h2>
         <div class="body-copy">
-          <p>The notification lands. The balance ticks up, and for once it holds. <strong>No expense appearing the moment money does. No quiet urge to spend it back down to the level you are used to.</strong> It settles. It builds.</p>
-          <p>More comes in than goes back out, and it keeps. Not because you tried harder, but because the pattern that kept resetting your balance to its old ceiling stopped running underneath your decisions.</p>
+          <p>Someone good shows up, and for once it holds. <strong>No flaw appearing the moment things feel real. No quiet urge to pull back the instant closeness gets close.</strong> It settles. It deepens.</p>
+          <p>You stay open longer than you ever could before, and it lasts. Not because you tried harder, but because the pattern that kept resetting every connection back to its old distance stopped running underneath your decisions.</p>
         </div>
         <div class="body-copy">
-          <p>Your reading named the Wealth Block setting that ceiling. The Soul Ritual Practice is the work that clears it: <strong>three written rituals that dissolve the ceiling at the layer where it was set.</strong></p>
+          <p>Your reading named the Love Block setting that limit. The Soul Ritual Practice is the work that clears it: <strong>three written rituals that dissolve the wall at the layer where it was set.</strong></p>
         </div>
       </div>
     </section>
@@ -248,20 +248,20 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
     <!-- MECHANISM / THREE RITUALS -->
     <section class="section">
       <div class="wrap">
-        <h2>Three Written Rituals,<br /><em>Calibrated to Your Wealth Block</em></h2>
+        <h2>Three Written Rituals,<br /><em>Calibrated to Your Love Block</em></h2>
         <hr class="gold-rule" />
         <div class="stack">
           <div class="card mv">
             <div class="mv__num">Ritual One</div>
-            <div class="mv__body"><h3>The Root Witnessing</h3><p>Traces your Wealth Block to the exact moment it was set, not the story you tell about money, the moment underneath it. This is precision work, not journaling. Most people say this ritual alone feels like something loosening on the first read.</p></div>
+            <div class="mv__body"><h3>The Root Witnessing</h3><p>Traces your Love Block to the exact moment it was set, not the story you tell about your love life, the moment underneath it. This is precision work, not journaling. Most people say this ritual alone feels like something loosening on the first read.</p></div>
           </div>
           <div class="card mv">
             <div class="mv__num">Ritual Two</div>
-            <div class="mv__body"><h3>The Pattern Interruption</h3><p>The ceiling shows itself most clearly the instant money gets close: the moment you are about to receive, quote, ask, or invest. This is the exact sequence for catching it there and interrupting it in real time, with the specific move for your block type.</p></div>
+            <div class="mv__body"><h3>The Pattern Interruption</h3><p>The wall shows itself most clearly the instant closeness gets close: the moment someone real reaches for you, opens up, or stays. This is the exact sequence for catching it there and interrupting it in real time, with the specific move for your block type.</p></div>
           </div>
           <div class="card mv">
             <div class="mv__num">Ritual Three</div>
-            <div class="mv__body"><h3>The New Imprint</h3><p>Clearing the old ceiling leaves an empty space. What fills it decides whether the change holds or quietly resets. This final ritual writes a new ceiling at the body level, the imprint that makes more money feel safe to keep. This is what makes the shift structural, not a good week.</p></div>
+            <div class="mv__body"><h3>The New Imprint</h3><p>Clearing the old wall leaves an empty space. What fills it decides whether the change holds or quietly resets. This final ritual writes a new pattern at the body level, the imprint that makes real closeness feel safe to keep. This is what makes the shift structural, not a good week.</p></div>
           </div>
         </div>
       </div>
@@ -271,22 +271,22 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
     <section class="section--tight">
       <div class="wrap" style="max-width:600px;">
         <div class="offer-box">
-          <span class="offer-label">The Fast Track to Clear Your Wealth Block</span>
+          <span class="offer-label">The Fast Track to Clear Your Love Block</span>
           <h2 style="font-size:30px;margin-bottom:12px;">Add The Soul Ritual Practice</h2>
           <p style="color:#e9e2f2;font-size:16px;line-height:1.6;margin:0 auto 18px;max-width:480px;">One payment. Instant download. Yours to keep for life. The reading lands in your inbox within 24 hours; this is ready the moment you confirm.</p>
           <ul class="vlist" style="margin-bottom:20px;">
             <li><span class="vs-name">The Mirror Block Clearing Rituals, a 3-part protocol. All four block-type versions are inside, so whichever one your reading reveals is ready the moment it lands.</span></li>
             <li><span class="vs-name">The Mirror Block Workbook, 45 pages to deepen and hold the work.</span></li>
-            <li><span class="vs-name">3 free bonuses: the Audio Companion, the Wealth Alert Protocol, the Love Harmony Audio.</span></li>
+            <li><span class="vs-name">3 free bonuses: the Audio Companion, the Love Alert Protocol, the Love Harmony Audio.</span></li>
             <li><span class="vs-name">Yours to keep for life. Instant download.</span></li>
           </ul>
           <div class="pricing" style="margin:0;">
-            <p style="color:#cfc7e6;font-size:14px;margin-bottom:4px;">$449 total value &middot; <span class="founding-blink">you save $352 today</span></p>
+            <p style="color:#cfc7e6;font-size:14px;margin-bottom:4px;">$449 total value &middot; <span class="founding-blink">you save $382 today</span></p>
             <div class="price-row" style="margin:4px 0 8px;">
               <span class="price-old" style="font-size:20px;">$449</span>
-              <span class="price-new" style="font-size:46px;"><span class="cur">$</span>97</span>
+              <span class="price-new" style="font-size:46px;"><span class="cur">$</span>67</span>
             </div>
-            <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Founding rate, this page only. That is $100 below the $197 public launch price. One payment, no subscription.</p>
+            <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Founding rate, this page only. That is $130 below the $197 public launch price. One payment, no subscription.</p>
           </div>
           <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes. Upgrade My Order Now!</a>
           <p class="cta-fine">Backed by a 90-day money-back guarantee.</p>
@@ -299,7 +299,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
     <section class="section">
       <div class="wrap">
         <span class="eyebrow">✦ Real Members, Real Shifts ✦</span>
-        <h2>They Did the Quiet Work.<br /><em>Then the Money Followed.</em></h2>
+        <!-- love re-angle -->
+        <h2>They Did the Quiet Work.<br /><em>Then the Love Followed.</em></h2>
         <div style="margin-top:26px;">
           <div class="testi">
             <div class="testi__row">
@@ -307,7 +308,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
               <div><div class="testi__name">Margaret V.</div><div class="testi__meta">52 &middot; Edinburgh, UK</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"Money has come in before and somehow always found a way back out again. About six weeks into the New Imprint work, a payment I had given up chasing landed, &pound;2,400, and for once I did not flinch or rush to spend it. Clearing the Wealth Block is the only thing I did differently, and this time my body actually let me keep it instead of quietly handing it back."</p>
+            <p class="testi__body">"Good men have come into my life before and somehow always found a way back out again. About six weeks into the New Imprint work, someone kind and steady showed up, and for once I did not flinch or find a reason to end it early. Clearing the Love Block is the only thing I did differently, and this time my body actually let me stay open instead of quietly pushing him away."</p>
           </div>
           <div class="testi">
             <div class="testi__row">
@@ -315,7 +316,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
               <div><div class="testi__name">David R.</div><div class="testi__meta">49 &middot; Manchester, UK</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"For years I would write a fair number on a quote, then panic and knock it down before I hit send. The Pattern Interruption caught me in that exact half-second on a proposal last month, the instant the block kicked in. I left it at &pound;3,200, where I would normally have slashed it to &pound;2,000, and the client said yes and paid it in full. I have used that same catch on three quotes since."</p>
+            <p class="testi__body">"For years, the moment someone got close, I would find a reason to pull back before things got real. The Pattern Interruption caught me in that exact half-second on a third date last month, the instant the block kicked in. I stayed instead of bolting the way I always had, and we are still seeing each other, closer every week. I have used that same catch every time the old urge to run shows up since."</p>
           </div>
           <div class="testi">
             <div class="testi__row">
@@ -323,10 +324,10 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
               <div><div class="testi__name">Sophia K.</div><div class="testi__meta">47 &middot; Melbourne, AU</div></div>
             </div>
             <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"My block was never about earning, it was that money never stayed. The Root Witnessing took me back to the exact moment that 'money never stays' story got set, and once I could see it I stopped feeding it. Three months on, I have $4,100 that has actually held in the account, month after month, instead of vanishing the way it always used to."</p>
+            <p class="testi__body">"My block was never about meeting people, it was that love never stayed. The Root Witnessing took me back to the exact moment that 'love never stays' story got set, and once I could see it I stopped feeding it. Three months on, I am in something that has actually held, week after week, instead of falling apart the way it always used to."</p>
           </div>
         </div>
-        <p style="text-align:center;max-width:620px;margin:18px auto 0;font-size:13px;color:#9a93b3;font-style:italic;">Individual results vary and are not typical. The Soul Ritual Practice is a self-guided practice, not financial advice.</p>
+        <p style="text-align:center;max-width:620px;margin:18px auto 0;font-size:13px;color:#9a93b3;font-style:italic;">Individual results vary and are not typical. The Soul Ritual Practice is a self-guided practice, not relationship or medical advice.</p>
       </div>
     </section>
 
@@ -334,7 +335,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
     <section class="section--tight center">
       <div class="wrap" style="max-width:640px;">
         <h2 style="font-size:clamp(20px,3.4vw,26px);">Founding Member Price, This Page Only</h2>
-        <p style="color:var(--text-muted);font-size:16px;line-height:1.7;max-width:560px;margin:0 auto;">Two things are true right now. The $97 founding rate is shown once, here, then returns to its $197 public price. And the ceiling does not pause while you decide. Left alone, it resets your income again next month, the same way it has every month so far. The page closing is the small loss. Another year at the same ceiling is the real one.</p>
+        <p style="color:var(--text-muted);font-size:16px;line-height:1.7;max-width:560px;margin:0 auto;">Two things are true right now. The $67 founding rate is shown once, here, then returns to its $197 public price. And the block does not pause while you decide. Left alone, it pulls you back from the next real connection too, the same way it has with every one so far. The page closing is the small loss. Another year of near-misses is the real one.</p>
       </div>
     </section>
 
@@ -342,7 +343,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
     <section class="section" id="offer">
       <div class="wrap" style="max-width:620px;">
         <div class="offer-box">
-          <span class="offer-label">Complete Your Wealth Work</span>
+          <span class="offer-label">Complete Your Love Work</span>
           <h2 style="margin-bottom:10px;">Add The Soul Ritual Practice</h2>
           <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">The diagnosis is on its way. This is the treatment. Yours to keep for life.</p>
           <img class="hero-img" src="frontend/images/ups-downs/upsell1-package.png" alt="The Complete Soul Ritual Practice, all products together" style="max-width:420px;margin:0 auto 26px;" />
@@ -351,24 +352,24 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
             <li><span class="vs-name">The Mirror Block Clearing Rituals, a 3-Part Protocol</span><span class="vs-price">$201</span></li>
             <li><span class="vs-name">The Mirror Block Workbook, 45 Pages</span><span class="vs-price">$97</span></li>
             <li><span class="vs-name"><strong>Bonus 1</strong>&nbsp;&middot; Soul Ritual Audio Companion</span><span class="vs-price">$67</span></li>
-            <li><span class="vs-name"><strong>Bonus 2</strong>&nbsp;&middot; The Wealth Alert Protocol</span><span class="vs-price">$47</span></li>
+            <li><span class="vs-name"><strong>Bonus 2</strong>&nbsp;&middot; The Love Alert Protocol</span><span class="vs-price">$47</span></li>
             <li><span class="vs-name"><strong>Bonus 3</strong>&nbsp;&middot; The Love Harmony Audio</span><span class="vs-price">$37</span></li>
             <li class="vs-total"><span class="vs-name">Total Value</span><span class="vs-price">$449</span></li>
           </ul>
 
           <div class="coupon">
             <span class="coupon__label">✦ &nbsp; Founding Member Saving Applied &nbsp; ✦</span>
-            <span class="coupon__amount">$352 OFF</span>
-            <span class="coupon__code">$449 value <span>$97 today</span></span>
+            <span class="coupon__amount">$382 OFF</span>
+            <span class="coupon__code">$449 value <span>$67 today</span></span>
           </div>
 
           <div class="pricing">
             <span class="price-label">Founding Member Price Today</span>
             <div class="price-row">
               <span class="price-old">$449</span>
-              <span class="price-new"><span class="cur">$</span>97</span>
+              <span class="price-new"><span class="cur">$</span>67</span>
             </div>
-            <p class="price-note">Sold separately, these total $449. Worked through with me one-to-one, the sequence runs $197, which is the public price the moment this launch ends. Your founding rate today is $97: that is $352 below the full value, and $100 below the public price. The only reason it is this low is that founding members who take it early help me prove it works at scale. You are paying the founding rate for being early, not buying a lesser version. It is the identical practice, complete. One payment, no subscription.</p>
+            <p class="price-note">Sold separately, these total $449. Worked through with me one-to-one, the sequence runs $197, which is the public price the moment this launch ends. Your founding rate today is $67: that is $382 below the full value, and $130 below the public price. The only reason it is this low is that founding members who take it early help me prove it works at scale. You are paying the founding rate for being early, not buying a lesser version. It is the identical practice, complete. One payment, no subscription.</p>
           </div>
 
           <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes. Upgrade My Order Now!</a>
@@ -384,7 +385,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
         <div class="guarantee">
           <img src="frontend/images/ups-downs/img-bb865578d0.png" alt="90-Day Guarantee Badge" />
           <h2 style="font-size:clamp(20px,3vw,26px);margin-bottom:14px;">The Soul Ritual Practice, 90-Day Guarantee</h2>
-          <p>Open the three rituals, follow them in order, and give them a real 90 days. If at any point in those 90 days your money ceiling has not budged, or you simply feel it was not for you, reply and I refund every cent of your $97. No questionnaire, no proof, no explaining yourself; your word is enough. You keep the rituals, the workbook, and all three bonuses no matter what. The only way you lose here is by never opening them.</p>
+          <p>Open the three rituals, follow them in order, and give them a real 90 days. If at any point in those 90 days your love patterns have not shifted, or you simply feel it was not for you, reply and I refund every cent of your $67. No questionnaire, no proof, no explaining yourself; your word is enough. You keep the rituals, the workbook, and all three bonuses no matter what. The only way you lose here is by never opening them.</p>
         </div>
       </div>
     </section>
@@ -393,7 +394,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=srp-1&cbur=d&vtid
     <section class="section center" id="no-thanks">
       <div class="wrap" style="max-width:620px;">
         <h2>You Have the Diagnosis.<br /><em>Take the Treatment With You.</em></h2>
-        <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 30px;">The reading names the ceiling on your money. The Soul Ritual Practice is how you lift it. Add it now and all four block-type protocols sit waiting, so the instant your reading names yours, the exact clearing work is already in your hands. These are the two halves of one piece of work, and you have come too far to keep only half.</p>
+        <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 30px;">The reading names the wall around your love. The Soul Ritual Practice is how you take it down. Add it now and all four block-type protocols sit waiting, so the instant your reading names yours, the exact clearing work is already in your hands. These are the two halves of one piece of work, and you have come too far to keep only half.</p>
         <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes. Upgrade My Order Now!</a>
         <a class="cta-decline" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">No thank you, continue to my reading &rarr;</a>
         <p class="cta-fine">Your reading arrives within 24 hours either way.</p>

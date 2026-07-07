@@ -1,25 +1,11 @@
-<?php
-declare(strict_types=1);
-
-$projectRoot = dirname(__DIR__);
-require $projectRoot . '/vendor/autoload.php';
-
-\App\Config\AppConfig::load($projectRoot);
-
-
-$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1on1&vtid=[cmc_vid]';
-$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1on1&vtid=[cmc_vid]';
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="https://soulmirrorreading.com/favicon.svg" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Upsell 3 (OTO3) - The Inner Circle, unlimited private 1-1 sessions membership (wealth-v2 cosmic system) -->
-  <!-- ic-1 ClickBank recurring item is LIVE/Active: $37 first month, then $19/month rebill -->
-  <!-- TODO: wire $otoCheckoutUrl / Thank-You-URL -> inner-circle.php access page -->
-  <title>The Inner Circle, Your Own Private Line to Luna Ross</title>
+  <!-- Upsell 2 - Wealth Clarity Ritual v2 (wealth-v2 cosmic system) -->
+  <title>Clear the Other Two Mirrors, The Wealth Clarity Ritual From Luna Ross</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Crimson+Pro:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -31,9 +17,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
       --text:#fffafff5;--text-muted:#d8d2eb;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    *{min-width:0}
     html{scroll-behavior:smooth}
-    body{background:#0a0716;color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:18px;line-height:1.78;overflow-x:clip}
+    body{background:#0a0716;color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:18px;line-height:1.78;overflow-x:hidden}
 
     /* COSMIC BACKGROUND (matches wealth-v2 sales page) */
     .dream-bg{z-index:0;pointer-events:none;position:fixed;inset:0;overflow:hidden;filter:brightness(.55) saturate(1.05);
@@ -57,14 +42,13 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
     .center{text-align:center}
 
     /* TYPE */
-    h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;color:#fff;line-height:1.18;text-wrap:balance}
+    h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;color:#fff;line-height:1.18}
     h1{font-size:clamp(28px,6vw,44px);font-weight:600;margin-bottom:16px}
     h1 em,h2 em,h3 em{color:var(--gold-light);font-style:italic}
     h2{text-align:center;font-size:clamp(27px,4.5vw,40px);font-weight:600;margin-bottom:22px}
     h3{font-size:22px;font-weight:600;margin-bottom:8px}
     .eyebrow{font-family:'Cinzel',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;text-align:center;margin-bottom:14px;font-weight:600}
     .subhead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2.6vw,22px);color:var(--text-muted);text-align:center;max-width:600px;margin:0 auto 8px;line-height:1.55}
-    .hero-sub{font-size:clamp(19px,4.6vw,22px);line-height:1.68;color:#e7e2f4;max-width:340px;margin:20px auto 0}
     .lead{text-align:center;max-width:580px;margin:0 auto 26px;color:var(--text-muted);font-size:17px}
     .body-copy{max-width:620px;margin:0 auto;font-size:17px;line-height:1.8;color:var(--text)}
     .body-copy p+p{margin-top:18px}
@@ -79,11 +63,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
     .hero-img{display:block;width:100%;max-width:600px;margin:26px auto 0;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 16px 44px rgba(0,0,0,.55);background:#160c34}
 
     /* CTA */
-    .cta{background:linear-gradient(180deg,var(--gold-bright) 0%,var(--gold) 100%);color:#1a0d2e;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;text-shadow:0 1px #fff3;border:none;border-radius:50px;padding:20px 40px;font-family:'Cinzel',sans-serif;font-size:clamp(13px,2.2vw,15px);font-weight:700;text-decoration:none;display:inline-block;width:100%;max-width:520px;text-align:center;box-shadow:0 12px 32px #d4af3766,inset 0 1px #fff6;transition:transform .12s cubic-bezier(.34,1.56,.64,1),box-shadow .2s,filter .15s}
-    .cta:active{transform:translateY(1px) scale(.985);box-shadow:0 6px 18px #d4af3759,inset 0 1px #fff6;filter:brightness(1.04)}
-    .cta:focus-visible{outline:none;box-shadow:0 12px 32px #d4af3766,inset 0 1px #fff6,0 0 0 3px #0a0716,0 0 0 6px var(--gold-light)}
-    .cta-decline:focus-visible,.footer a:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;border-radius:3px;opacity:1}
-    @media (hover:none){.cta:hover{transform:none}}
+    .cta{background:linear-gradient(180deg,var(--gold-bright) 0%,var(--gold) 100%);color:#1a0d2e;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;text-shadow:0 1px #fff3;border:none;border-radius:50px;padding:20px 40px;font-family:'Cinzel',sans-serif;font-size:clamp(13px,2.2vw,15px);font-weight:700;text-decoration:none;display:inline-block;width:100%;max-width:520px;text-align:center;box-shadow:0 12px 32px #d4af3766,inset 0 1px #fff6;transition:transform .15s,box-shadow .2s}
     .cta:hover{transform:translateY(-2px);box-shadow:0 16px 40px #d4af3780}
     .cta-decline{display:block;width:100%;margin-top:16px;background:none;border:none;cursor:pointer;text-align:center;color:#cdc6e0;opacity:.7;font-family:'Inter',sans-serif;font-size:14px;text-decoration:underline;text-underline-offset:3px}
     .cta-decline:hover{opacity:1}
@@ -102,8 +82,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
     .vlist{text-align:left;max-width:480px;margin:0 auto;padding:0;list-style:none}
     .vlist li{color:var(--text);border-bottom:1px solid #d4af3726;display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 0;font-size:16px;line-height:1.45}
     .vlist li:last-child{border-bottom:none}
-    .vlist .vs-name{display:block;position:relative;padding-left:22px}
-    .vlist .vs-name::before{content:"✦";color:var(--gold);position:absolute;left:0;top:1px;font-size:13px}
+    .vlist .vs-name{display:flex;gap:9px}
+    .vlist .vs-name::before{content:"✦";color:var(--gold);flex-shrink:0;margin-top:2px;font-size:13px}
     .vlist .vs-price{font-family:'Cinzel',sans-serif;font-size:13px;color:var(--gold-light);opacity:.7;text-decoration:line-through;flex-shrink:0;white-space:nowrap}
     .vlist strong{color:var(--gold-light)}
     .vlist .vs-total{margin-top:6px;padding-top:14px;border-top:1px solid #d4af3759;border-bottom:none}
@@ -169,7 +149,6 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
     .testi{backdrop-filter:blur(4px);background:#ffffff0f;border:1px solid #d4af374d;border-radius:14px;max-width:620px;margin:0 auto 16px;padding:26px 26px}
     .testi__row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
     .testi__avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid #d4af3780;flex-shrink:0}
-    .testi__mono{width:56px;height:56px;flex-shrink:0;border-radius:50%;border:2px solid #d4af3780;background:radial-gradient(circle at 50% 38%,#3b1f6e,#1e0d40);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold-light)}
     .testi__name{font-family:'Cinzel',sans-serif;font-size:14px;font-weight:700;color:#fff;letter-spacing:.04em}
     .testi__meta{font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.08em;color:var(--gold-light);margin-top:3px}
     .testi__stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:8px}
@@ -204,36 +183,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
       .offer-box{padding:28px 20px}
       .topnotice{font-size:10.5px;letter-spacing:.06em}
       .topnotice .dot{margin:0 6px}
-      .wrap{padding:0 20px}
-      .subhead,.lead,.body-copy,.price-note,.cta-fine,.ask-list li,.testi__body,.guarantee p,.founding-panel p,.offer-box p,h1,h2{overflow-wrap:break-word}
-      .subhead,.lead,.guarantee p{max-width:340px}
-      h1,h2{letter-spacing:0}
-      .topnotice{font-size:11px;letter-spacing:.04em;padding:11px 14px;line-height:1.5;white-space:normal}
-      .topnotice strong{white-space:nowrap}
-      .topnotice .dot{margin:0 5px}
-      .cta{padding:18px 22px;letter-spacing:.07em;font-size:14px;line-height:1.2}
-      .section{padding:36px 0}
-      .section--tight{padding:24px 0}
-      .ask-list li{padding:14px 16px 14px 34px;font-size:16px;line-height:1.5}
-      .ask-list li::before{left:13px;top:15px}
-      .eyebrow{letter-spacing:.14em;font-size:11px}
-      .cta-decline{display:block;width:100%;margin-top:22px;min-height:44px;padding:12px 8px;line-height:1.4}
     }
-    @media (max-width:400px){.topnotice{font-size:10px}}
-
-    /* OTO3 additions: ask-list + founding panel (cosmic system, same tokens) */
-    .ask-list{list-style:none;margin:0 auto;padding:0;max-width:600px}
-    .ask-list li{position:relative;padding:16px 18px 16px 38px;margin-bottom:12px;border:1px solid #d4af3733;border-radius:12px;background:#1e0d4080;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.55;color:var(--text)}
-    .ask-list li::before{content:"✦";position:absolute;left:15px;top:16px;color:var(--gold);font-style:normal;font-size:13px}
-    .founding-panel{border:1.5px solid #d4af3799;border-radius:14px;background:linear-gradient(135deg,rgba(212,175,55,.13),rgba(212,175,55,.05));max-width:480px;margin:24px auto 6px;padding:22px 26px;text-align:center}
-    .founding-panel .founding-head{font-family:'Cinzel',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px;font-weight:700}
-    .founding-panel p{font-size:15px;line-height:1.65;color:#e9e2f2;margin:0}
-    .founding-panel strong{color:var(--gold-light)}
-
-    /* STICKY BUY BAR (mobile only) */
-    .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#1e0d40e6,#0e0820f2);border-top:1px solid #d4af3759;backdrop-filter:blur(6px)}
-    .sticky-cta a{display:block;width:100%;max-width:520px;margin:0 auto;border-radius:50px;padding:14px 20px;font-family:'Cinzel',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center;text-decoration:none;color:#1a0d2e;background:linear-gradient(180deg,var(--gold-bright),var(--gold));box-shadow:0 8px 22px #d4af3766}
-    @media(max-width:640px){.sticky-cta.show{display:block}}
   </style>
 
   <!-- Microsoft Clarity -->
@@ -246,6 +196,11 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
 </head>
 <body>
 
+  <!-- NOTICE BAR -->
+  <div class="topnotice">
+    <strong>Hold On, One Mirror Is Still Clouded</strong><span class="dot">&middot;</span><strong>Your Wealth &amp; Purpose Mirrors Just Unlocked</strong><span class="dot">&middot;</span><strong>$100 Off, This Page Only</strong>
+  </div>
+
   <!-- COSMIC BACKGROUND -->
   <div class="dream-bg" aria-hidden="true">
     <div class="dream-veil"></div>
@@ -257,161 +212,251 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
 
   <main>
 
-    <!-- 2. HERO -->
+    <!-- HERO -->
     <section class="section center">
       <div class="wrap">
-        <div style="text-align:center;margin:0 auto 24px;">
-          <img src="frontend/images/inner-circle/luna-avatar.webp" width="130" height="130" decoding="async" alt="Luna Ross" onerror="this.style.visibility='hidden'" style="width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid #d4af37;box-shadow:0 0 0 6px rgba(212,175,55,0.12),0 10px 34px rgba(0,0,0,0.5);">
-        </div>
-        <span class="eyebrow">A Private Invitation From Luna</span>
-        <h1>Every Day, Something Tests You. And You Face It <em>Alone.</em></h1>
-        <p class="subhead hero-sub">A decision lands on you at 2am and there's no one to tell. From today, you reach for me instead. A private 1-1 session with me, any day you need it.</p>
+        <h1>Clear Wealth and Purpose <span style="color:#E8C97A;background:rgba(212,175,55,0.16);padding:0 10px;border-radius:8px;text-decoration:underline;text-decoration-color:#E8C97A;text-underline-offset:6px;text-decoration-thickness:2px;">10x</span> Faster.<br /><em>The Accelerated Ritual for the Two Mirrors Your First Reading Couldn't Reach in Time.</em></h1>
+        <p class="subhead">Same block, two more mirrors. Your first reading gets there slowly. This goes straight at wealth and purpose, in weeks.</p>
+        <img class="hero-img" src="https://soulmirrorreading.com/frontend/images/upsell2/wcr-hero.webp" alt="Two clouded mirrors clearing to gold light, one for wealth and one for purpose, deep violet and gold" />
       </div>
     </section>
 
-    <!-- 3. INTRODUCE LUNA'S GUIDE -->
-    <section class="section">
+    <!-- JOURNEY / PART FRAME -->
+    <section class="section center">
       <div class="wrap">
-        <img src="frontend/images/inner-circle/inner-circle-intro.webp?v=2" width="1800" height="1208" decoding="async" alt="The Inner Circle, Luna one message away" style="display:block;width:100%;height:auto;max-width:560px;margin:4px auto 30px;border-radius:14px;border:1px solid rgba(212,175,55,0.35);box-shadow:0 14px 44px rgba(0,0,0,0.5);">
-        <h2>The Inner Circle</h2>
-        <p class="subhead">Unlimited private 1-1 sessions with Luna. Anytime, about anything.</p>
-        <div class="body-copy" style="margin-top:26px;">
-          <p>Every time you reach out, it is a private session: just you and me, about your reading, your block, and the moment you are actually in. You message me, and within the hour I reply, personally, considered, and only ever about you. A single private session with a reader of my experience is worth <strong>$120</strong>. Inside The Inner Circle, you have them whenever you need one, with no limit.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- EARLY OFFER (right after intro) -->
-    <section class="section section--tight" id="offer-early">
-      <div class="wrap" style="max-width:540px;">
-        <div class="offer-box" style="text-align:center;box-shadow:0 6px 20px #0004;border-color:#d4af3733;">
-          <h2 style="margin-bottom:14px;">Begin Your Membership</h2>
-          <p style="color:#e9e2f2;font-size:17px;line-height:1.6;max-width:430px;margin:0 auto 20px;">Unlimited private 1-1 sessions with Luna, <strong style="color:var(--gold-light);">each worth $120</strong>, yours whenever you need one.</p>
-          <div class="price-row" style="justify-content:center;margin-bottom:2px;">
-            <span class="price-old">$120 per session</span>
-            <span class="price-new"><span class="cur">$</span>37</span>
+        <span class="eyebrow">✦ &nbsp; One Block. Three Mirrors. &nbsp; ✦</span>
+        <p class="subhead">One block runs <strong style="color:var(--gold-light);font-style:normal;">all three</strong> mirrors. Your first reading loosens the others slowly. This clears wealth and purpose now.</p>
+        <div class="part-grid">
+          <div class="part-col part-col--done">
+            <span class="part-num">Mirror One</span>
+            <p class="part-title">Love</p>
+            <p class="part-status part-status--done">✓ The work you came in for</p>
           </div>
-          <p class="price-note" style="margin:0 auto 22px;">for your first month, then <strong style="color:var(--gold-light);">$19/month</strong> for unlimited sessions. Cancel anytime in one click.</p>
-          <div style="text-align:center;margin:2px auto 18px;"><span style="display:inline-block;font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);border:1px solid #d4af3759;border-radius:50px;padding:7px 18px;">&#10003;&nbsp; 90-Day Money-Back Guarantee</span></div>
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, I Want To Talk To Luna</a>
+          <div class="part-arrow">→</div>
+          <div class="part-col part-col--active">
+            <span class="part-num">Mirrors Two &amp; Three</span>
+            <p class="part-title">Wealth &amp; Purpose</p>
+            <p class="part-status">Still needs clearing</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. WHAT YOU CAN ASK (THE STAR) -->
+    <!-- AGITATION -->
     <section class="section">
       <div class="wrap">
-        <h2>In Every Session, Ask Me <em>Anything.</em></h2>
-        <p class="lead">There is no limit and no meter. No question too small, none too big. Bring me as much as you want, as often as you want. Whatever you would normally carry alone, bring it to a session:</p>
-        <ul class="ask-list">
-          <li>"Should I ask for the raise, or is that the old fear talking?"</li>
-          <li>"Is this opportunity genuinely too much, or is that my Mirror Block?"</li>
-          <li>"He hasn't replied. What is my Love card trying to tell me?"</li>
-          <li>"I drew the Tower this morning. What does it mean for me?"</li>
-          <li>"I have a decision by Friday. Help me see which choice is fear and which is me."</li>
-          <li>"Something good is happening and I can feel myself bracing for it to end. How do I stop?"</li>
-          <li>"What does this week hold for my money?"</li>
-          <li>"I can't sleep and my mind won't stop. Talk me through it."</li>
-          <li>"I have no one to really talk to about any of this. Can I just tell you what's going on, and will you listen?"</li>
-          <li>"The doubt is creeping back after the ritual. Is that normal?"</li>
-        </ul>
-        <p class="subhead" style="margin:26px auto 0;max-width:580px;">Money. Love. A card. A choice. A fear at 2am. If it is on your mind, it belongs in a session, and <strong style="color:var(--gold-light);font-style:normal;">you will never run out of questions you are allowed to ask.</strong></p>
+        <h2>You Can Name the Love Pattern.<br /><em>Why Does Money Still Feel Like This?</em></h2>
+        <div class="body-copy">
+          <p>Same flinch, different mirror. The money climbs a little and you find a way to give it back. You feel the pull toward work that is truly yours and quietly file it under "someday."</p>
+          <p>Your first reading reaches them eventually. But eventually can mean years. <strong>This goes straight at both, so the change comes in weeks.</strong></p>
+        </div>
       </div>
     </section>
 
-    <!-- 5. HOW IT WORKS -->
+    <!-- MECHANISM / THREE MOVEMENTS -->
     <section class="section">
       <div class="wrap">
-        <h2>As Simple As Texting a Friend.</h2>
-        <hr class="gold-rule" style="margin:14px auto 26px;" />
+        <h2>Three Movements.<br /><em>The Block, Cleared in Wealth and Purpose.</em></h2>
+        <p class="subhead">Not another reading. You already know wealth and purpose feel off, so this skips the diagnosis and goes straight to the clearing.</p>
+        <hr class="gold-rule" style="margin-top:34px;" />
         <div class="stack">
           <div class="card mv">
-            <div class="mv__num">Open It</div>
-            <div class="mv__body"><p>A private space on your phone, yours the moment you join. No app store, no setup.</p></div>
+            <div class="mv__num">Movement One</div>
+            <div class="mv__body"><h3>The Pattern in Wealth</h3><p>See the exact move your block makes the second the money rises: the give-back, the self-sabotage, the bracing. Named precisely, so you can catch it instead of living it.</p></div>
           </div>
           <div class="card mv">
-            <div class="mv__num">Start a Session</div>
-            <div class="mv__body"><p>Bring me whatever is on your mind. Type it like you would say it out loud. Nothing is too small.</p></div>
+            <div class="mv__num">Movement Two</div>
+            <div class="mv__body"><h3>The Clearing</h3><p>The sequence that releases the guard around receiving, so more money stops registering as a risk. This is the part that loosens the bracing.</p></div>
           </div>
           <div class="card mv">
-            <div class="mv__num">I Reply Within the Hour</div>
-            <div class="mv__body"><p>Considered, personal, and about you. A real session, never a vending-machine reply.</p></div>
+            <div class="mv__num">Movement Three</div>
+            <div class="mv__body"><h3>The Open Imprint</h3><p>Sets a new pattern at the body level, so wealth feels safe to keep, not something to flinch from. This is what makes the shift hold.</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 6. PROOF -->
+    <!-- EARLY OFFER -->
+    <section class="section--tight">
+      <div class="wrap" style="max-width:600px;">
+        <div class="offer-box">
+          <span class="offer-label">Clear the Other Two Mirrors</span>
+          <h2 style="font-size:30px;margin-bottom:12px;">Add The Wealth Clarity Ritual</h2>
+          <p style="color:#e9e2f2;font-size:16px;line-height:1.6;margin:0 auto 18px;max-width:480px;">The written rituals that go straight at wealth and purpose. Your first reading reaches the same root in time; this gets there fast. Downloads now, yours for life.</p>
+          <ul class="vlist" style="margin-bottom:20px;">
+            <li><span class="vs-name">The Wealth Clarity Ritual: a 3-movement practice to clear the block where it blocks money.</span></li>
+            <li><span class="vs-name"><strong>Bonus:</strong>&nbsp;The Purpose Alignment Ritual, to clear it where it stalls your direction.</span></li>
+            <li><span class="vs-name">2 more bonuses: the Open-Flow Audio and the Daily Clarity Practice.</span></li>
+          </ul>
+          <p style="color:#cfc7e6;font-size:14px;margin-bottom:4px;">$290 value &middot; <span class="founding-blink">$100 member discount applied</span></p>
+          <div class="price-row" style="margin:4px 0 8px;">
+            <span class="price-old" style="font-size:20px;">$167</span>
+            <span class="price-new" style="font-size:46px;"><span class="cur">$</span>67</span>
+          </div>
+          <p style="color:#cdb98c;font-size:13px;margin:0 auto 18px;">Member rate, this page only. One payment, no subscription.</p>
+          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=wcr-1&amp;cbur=a&amp;vtid=[cmc_vid]">Yes, Upgrade My Order Now.</a>
+          <p class="cta-fine">This adds to the order you just placed. No card to re-enter. One tap and it is yours. Backed by a 90-day money-back guarantee.</p>
+          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=wcr-1&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, continue &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BONUSES -->
     <section class="section">
       <div class="wrap">
-        <h2>From Members Who Stopped <em>Facing It Alone.</em></h2>
-        <div style="margin-top:26px;">
-          <div class="testi">
-            <div class="testi__row"><img class="testi__avatar" src="frontend/images/inner-circle/member-rachel.webp" width="56" height="56" decoding="async" loading="lazy" alt="Rachel M." onerror="this.style.display='none'"><div><div class="testi__name">Rachel M.</div><div class="testi__meta">Inner Circle Member</div></div></div>
-            <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"I asked Luna whether to send the email or wait. She told me exactly which fear was talking. I sent it. They said yes. One session, ten minutes, the raise I had avoided for a year."</p>
+        <span class="eyebrow">✦ Included With The Wealth Clarity Ritual ✦</span>
+        <h2>Three Bonuses to <em>Carry It Into Purpose</em></h2>
+        <p class="subhead">Wealth is one mirror. These take the same clearing into your purpose and keep both clear day to day.</p>
+        <div class="stack" style="margin-top:26px;">
+          <div class="card bonus">
+            <span class="bonus__badge">Bonus 1</span>
+            <img class="bonus-img" src="https://soulmirrorreading.com/frontend/images/upsell2/bonus-purpose-alignment.webp" alt="The Purpose Alignment Ritual" />
+            <div class="bonus__content">
+              <h3>The Purpose Alignment Ritual</h3>
+              <p>The same block that caps your income also dims your direction; it calls your real work a hobby. This clears it at the same layer, so what you keep circling stops feeling off-limits.</p>
+              <span class="val">Value $67</span>
+            </div>
           </div>
-          <div class="testi">
-            <div class="testi__row"><img class="testi__avatar" src="frontend/images/inner-circle/member-sophie.webp" width="56" height="56" decoding="async" loading="lazy" alt="Sophie T." onerror="this.style.display='none'"><div><div class="testi__name">Sophie T.</div><div class="testi__meta">Inner Circle Member</div></div></div>
-            <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testi__body">"I almost backed out of an opportunity because it felt like too much. I asked Luna first. I did not back out. That one session was worth the whole year to me."</p>
+          <div class="card bonus">
+            <span class="bonus__badge">Bonus 2</span>
+            <img class="bonus-img" src="https://soulmirrorreading.com/frontend/images/upsell2/bonus-open-heart-audio.webp" alt="The Open-Flow Audio" />
+            <div class="bonus__content">
+              <h3>The Open-Flow Audio</h3>
+              <p>The receiving-money clearing as guided audio. Press play, follow my voice, let the guard soften. For the nights you want to be walked through it.</p>
+              <span class="val">Value $47</span>
+            </div>
+          </div>
+          <div class="card bonus">
+            <span class="bonus__badge">Bonus 3</span>
+            <img class="bonus-img" src="https://soulmirrorreading.com/frontend/images/upsell2/bonus-daily-clarity.webp" alt="The Daily Clarity Practice" />
+            <div class="bonus__content">
+              <h3>The Daily Clarity Practice</h3>
+              <p>A one-page ritual that keeps both mirrors clear. Sixty seconds a morning to catch the old reflex before it runs the day.</p>
+              <span class="val">Value $29</span>
+            </div>
           </div>
         </div>
-        <p style="text-align:center;max-width:620px;margin:18px auto 0;font-size:13px;color:#9a93b3;font-style:italic;">Individual experiences. Results vary. For guidance and reflection, not financial, medical, or professional advice.</p>
       </div>
     </section>
 
-    <!-- 7a. CLOSE + GUARANTEE LEAD-IN (no button) -->
-    <section class="section center">
-      <div class="wrap" style="max-width:620px;">
-        <h2>The Next Time the Pattern Tests You, <em>Don't Face It Alone.</em></h2>
-        <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 22px;">The block will test you again. That is not a maybe. Next time, do not face it with the old voice. Sit down with me instead, any day you need me.</p>
-        <hr class="gold-rule" style="margin:10px auto 22px;">
-        <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto;"><strong style="color:var(--gold-light);">And you risk nothing.</strong> Your membership is protected by my full 90-day money-back guarantee. If it is not for you, tell my team any time in the first 90 days and I will refund every payment, no questions asked, and you can cancel in one click anytime.</p>
+    <!-- LUNA -->
+    <section class="section">
+      <div class="wrap">
+        <h2>I Cleared the Love Mirror First, Too.<br /><em>Then I Found the Other Two.</em></h2>
+        <div class="card luna-card">
+          <div class="body-copy">
+            <p>When I finally cleared my own love mirror, I thought the work was done. It was not. Months later I was still bracing every time the money climbed, still circling work I never let myself claim. <strong>Same block, different mirror.</strong></p>
+            <p>Given enough time, the first clearing alone would have softened them. I did not want to wait years. So I built the clearing for wealth and purpose the same way: written, step by step. I have now walked thousands through clearing all three. <strong>This is the half that makes a whole life feel different, not just a quieter heart.</strong></p>
+          </div>
+          <p class="luna-sig">With love and with clarity,<br /><strong style="color:#fff;font-style:normal;">Luna Ross</strong> &middot; 11 years, 4,800+ readings</p>
+        </div>
       </div>
     </section>
 
-    <!-- 7. OFFER BOX -->
+    <!-- TESTIMONIALS -->
+    <section class="section">
+      <div class="wrap">
+        <span class="eyebrow">✦ From People Who Almost Skipped This ✦</span>
+        <h2>They Did the First Clearing.<br /><em>Then the Other Two Mirrors Cleared.</em></h2>
+        <div style="margin-top:26px;">
+          <div class="testi">
+            <div class="testi__row">
+              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-margaret-v.webp" alt="Margaret V." />
+              <div><div class="testi__name">Margaret V.</div><div class="testi__meta">52 &middot; Edinburgh, UK</div></div>
+            </div>
+            <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testi__body">"I almost skipped this. Three weeks in, I stopped quietly handing the extra money back. I did not realise I had been doing that for years until it stopped."</p>
+          </div>
+          <div class="testi">
+            <div class="testi__row">
+              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-david-r.webp" alt="David R." />
+              <div><div class="testi__name">David R.</div><div class="testi__meta">49 &middot; Manchester, UK</div></div>
+            </div>
+            <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testi__body">"The Purpose Alignment ritual named something I never had words for. I had been treating my real work like a hobby. I finally launched the thing I had sat on for four years."</p>
+          </div>
+          <div class="testi">
+            <div class="testi__row">
+              <img class="testi__avatar" src="https://soulmirrorreading.com/frontend/images/upsell2/testimonial-sophia-k.webp" alt="Sophia K." />
+              <div><div class="testi__name">Sophia K.</div><div class="testi__meta">47 &middot; Melbourne, AU</div></div>
+            </div>
+            <div class="testi__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testi__body">"I bought it sceptical. The Pattern in Wealth movement showed me the exact second I talk myself out of charging more. Last week I caught myself, and for the first time I did not. Worth it on its own."</p>
+          </div>
+        </div>
+        <p style="text-align:center;max-width:620px;margin:18px auto 0;font-size:13px;color:#9a93b3;font-style:italic;">Individual results vary and are not typical. The Wealth Clarity Ritual is a self-guided practice, not financial or medical advice.</p>
+      </div>
+    </section>
+
+    <!-- URGENCY -->
+    <section class="section--tight center">
+      <div class="wrap" style="max-width:640px;">
+        <h2 style="font-size:clamp(20px,3.4vw,26px);">This Page Only. The Other Two Mirrors Do Not Wait.</h2>
+        <p style="color:var(--text-muted);font-size:16px;line-height:1.7;max-width:560px;margin:0 auto;">The $67 member rate shows once, here, then returns to $167. And every month your first clearing takes to reach wealth and purpose is another month of the old reflex running. This is the page that skips the wait.</p>
+      </div>
+    </section>
+
+    <!-- MAIN OFFER -->
     <section class="section" id="offer">
       <div class="wrap" style="max-width:620px;">
-        <div class="offer-box" style="border-width:1.5px;box-shadow:0 18px 56px #0008,0 0 0 1px #d4af3726;">
-          <h2 style="margin-bottom:10px;">The Inner Circle</h2>
-          <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">Unlimited private 1-1 sessions with Luna, personalized to your reading.</p>
+        <div class="offer-box">
+          <span class="offer-label">Complete the Clearing</span>
+          <h2 style="margin-bottom:10px;">Add The Wealth Clarity Ritual</h2>
+          <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">Your first reading clears the root in time. This clears wealth and purpose now. Yours to keep for life.</p>
+          <img src="https://soulmirrorreading.com/frontend/images/upsell2/wcr-package.webp" alt="The complete Wealth Clarity Ritual, all products together" style="width:100%;max-width:420px;display:block;margin:0 auto 26px;filter:drop-shadow(0 18px 36px rgba(0,0,0,.45));" />
 
           <ul class="vlist">
-            <li><span class="vs-name">Unlimited private 1-1 sessions with Luna, each worth <strong>$120</strong> on its own</span></li>
-            <li><span class="vs-name">A thoughtful, personal reply within the hour, every time</span></li>
-            <li><span class="vs-name">Guidance that knows your reading and your specific Mirror Block</span></li>
-            <li><span class="vs-name">A private space on your phone, day and night, including the 2am moments</span></li>
-            <li><span class="vs-name">Bring me as much as you want, as often as you want, no limit</span></li>
+            <li><span class="vs-name">The Wealth Clarity Ritual, a 3-Movement Practice</span><span class="vs-price">$147</span></li>
+            <li><span class="vs-name"><strong>Bonus 1</strong>&nbsp;&middot; The Purpose Alignment Ritual</span><span class="vs-price">$67</span></li>
+            <li><span class="vs-name"><strong>Bonus 2</strong>&nbsp;&middot; The Open-Flow Audio</span><span class="vs-price">$47</span></li>
+            <li><span class="vs-name"><strong>Bonus 3</strong>&nbsp;&middot; The Daily Clarity Practice</span><span class="vs-price">$29</span></li>
+            <li class="vs-total"><span class="vs-name">Total Value</span><span class="vs-price">$290</span></li>
           </ul>
 
-          <p style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.45;color:#fff;max-width:460px;margin:24px auto 0;">One private session with Luna is worth <strong style="color:var(--gold-light);">$120</strong>. Inside The Inner Circle, your sessions are <strong style="color:var(--gold-light);">unlimited</strong>.</p>
-
-          <div class="founding-panel">
-            <span class="founding-head">✦ &nbsp; Founding Member Invitation &nbsp; ✦</span>
-            <p>Your <strong>first month is $37</strong>. After that it is <strong>$19/month for unlimited sessions</strong>, your founding rate locked for as long as you stay.</p>
+          <div class="coupon">
+            <span class="coupon__label">✦ &nbsp; Member Coupon Applied &nbsp; ✦</span>
+            <span class="coupon__amount">- $100.00 OFF</span>
+            <span class="coupon__code">Code <span>MEMBER100</span></span>
           </div>
 
           <div class="pricing">
-            <span class="price-label">Founding Member Price</span>
+            <span class="price-label">Member Price Today</span>
             <div class="price-row">
-              <span class="price-old">$120 per session</span>
-              <span class="price-new"><span class="cur">$</span>37</span>
+              <span class="price-old">$167</span>
+              <span class="price-new"><span class="cur">$</span>67</span>
             </div>
-            <p class="price-note">for your first month, then $19/month for unlimited sessions, your founding rate locked</p>
+            <p class="price-note">The Wealth Clarity Ritual runs $167 the moment this page closes. The $100 member discount is yours for already being on the path. One payment, no subscription, yours for life.</p>
           </div>
 
-          <p class="cta-fine" style="max-width:520px;margin:8px auto 18px;">A monthly membership. Your first month is $37, then you are billed $19/month for unlimited sessions.</p>
-          <div style="text-align:center;margin:2px auto 18px;"><span style="display:inline-block;font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);border:1px solid #d4af3759;border-radius:50px;padding:7px 18px;">&#10003;&nbsp; 90-Day Money-Back Guarantee</span></div>
-
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, I Want To Talk To Luna</a>
-          <p style="text-align:center;margin-top:14px;font-size:12px;color:#9a93b3;letter-spacing:.04em;">&#128274; Secure checkout. Billing handled by ClickBank, the trusted retailer for this product.</p>
+          <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=wcr-1&amp;cbur=a&amp;vtid=[cmc_vid]">Yes, Upgrade My Order Now.</a>
+          <p class="cta-fine">Charged to the order you just placed. No card to re-enter. Backed by the 90-day guarantee below.</p>
+          <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=wcr-1&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, continue &rarr;</a>
         </div>
       </div>
     </section>
 
-    <div class="sticky-cta" id="stickyCta"><a href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Keep Luna One Message Away &nbsp;&middot;&nbsp; $37</a></div>
+    <!-- GUARANTEE -->
+    <section class="section">
+      <div class="wrap">
+        <div class="guarantee">
+          <img src="https://soulmirrorreading.com/frontend/images/upsell2/guarantee-badge.webp" alt="90-Day Guarantee Badge" />
+          <h2 style="font-size:clamp(20px,3vw,26px);margin-bottom:14px;">The Wealth Clarity Ritual, 90-Day Guarantee</h2>
+          <p>Follow all three movements for a real 90 days. If your relationship with money and your sense of purpose feel no different, reply and I refund every cent of your $67. No questionnaire, no proof. You keep the ritual and all three bonuses no matter what.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section center" id="no-thanks">
+      <div class="wrap" style="max-width:620px;">
+        <h2>You Cleared One Mirror.<br /><em>Do Not Leave the Other Two.</em></h2>
+        <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 30px;">The block was never only about love. It is the same reflex capping your money and shrinking your purpose. Walk away and that is months, maybe years, of it still running. Take the fast track with you instead.</p>
+        <a class="cta" href="https://rebornf.pay.clickbank.net/?cbitems=wcr-1&amp;cbur=a&amp;vtid=[cmc_vid]">Yes, Upgrade My Order Now.</a>
+        <a class="cta-decline" href="https://rebornf.pay.clickbank.net/?cbitems=wcr-1&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, continue &rarr;</a>
+        <p class="cta-fine">Your reading arrives within 24 hours either way.</p>
+      </div>
+    </section>
+
   </main>
 
   <!-- FOOTER -->
@@ -419,10 +464,9 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
     <p>ClickBank is the retailer of products on this site. CLICKBANK&reg; is a registered trademark of Click Sales, Inc., a Delaware corporation located at 1444 S. Entertainment Ave., Suite 410 Boise, ID 83709, USA and used by permission. ClickBank's role as retailer does not constitute an endorsement, approval or review of these products or any claim, statement or opinion used in promotion of these products.</p>
     <p>For Product Support, please contact the vendor: <a href="mailto:support@soulmirrorreading.com">HERE</a>. For Order Support, please contact ClickBank: <a href="https://www.clkbank.com/" target="_blank" rel="noopener">HERE</a> or 1-800-390-6035</p>
     <p><a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms-conditions">Terms &amp; Conditions</a> &nbsp;&middot;&nbsp; <a href="mailto:support@soulmirrorreading.com">Contact Us</a> &nbsp;&middot;&nbsp; <a href="/refund-return-policy">Refund &amp; Return Policy</a></p>
-    <p>The Inner Circle is an ongoing membership providing guidance and reflection. It is Luna's trained AI guide, not personal correspondence, and is not financial, medical, or professional advice. Results vary. You can cancel anytime.</p>
+    <p>The Wealth Clarity Ritual is a self-guided written practice. Results may vary and are not typical. This is not financial advice and is not a substitute for licensed financial or mental health care.</p>
     <p>&copy; 2026 Soul Mirror Reading, A Luna Ross Brand. All Rights Reserved.</p>
   </footer>
 
-  <script>(function(){var ec=document.getElementById('offer-early'),sc=document.getElementById('stickyCta');if(!ec||!sc)return;addEventListener('scroll',function(){sc.classList.toggle('show',ec.getBoundingClientRect().bottom<0)},{passive:true});})();</script>
 </body>
 </html>

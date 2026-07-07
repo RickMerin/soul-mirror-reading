@@ -1,0 +1,73 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Application;
+
+use App\Domain\ClickBankPurchaseStatus;
+use App\Domain\InnerCircleSkus;
+use App\Repository\PurchaseRepository;
+use App\Services\InnerCircleRevocationNotifier;
+
+/**
+ * Revokes per-product entitlements when ClickBank sends cancel/refund/chargeback INS events.
+ */
+final class ClickBankProductRevocationService
+{
+    public function __construct(
+        private readonly PurchaseRepository $purchases,
+        private readonly InnerCircleRevocationNotifier $innerCircleNotifier,
+    ) {}
+
+    /**
+     * @param array<int, array<string, mixed>> $items INS line items for the current event
+     */
+    public function revokeForInsEvent(
+        int $leadId,
+        string $email,
+        array $items,
+        string $status,
+        ?string $receipt,
+    ): int {
+        if (!ClickBankPurchaseStatus::isRevoked($status)) {
+            return 0;
+        }
+
+        if (!$this->shouldRevokeInnerCircle($leadId, $items, $receipt)) {
+            return 0;
+        }
+
+        $revoked = $this->purchases->revokeApprovedPurchasesContainingSkus(
+            $leadId,
+            InnerCircleSkus::ALL,
+            $status,
+        );
+
+        if ($revoked > 0) {
+            $this->innerCircleNotifier->notifyRevoked($email, $status, $receipt);
+        }
+
+        return $revoked;
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $items
+     */
+    private function shouldRevokeInnerCircle(int $leadId, array $items, ?string $receipt): bool
+    {
+        if (InnerCircleSkus::purchaseIncludesInnerCircle($items)) {
+            return true;
+        }
+
+        if ($receipt === null || $receipt === '') {
+            return false;
+        }
+
+        $purchaseId = $this->purchases->findIdByReceipt($receipt);
+        if ($purchaseId === null) {
+            return false;
+        }
+
+        return $this->purchases->leadHasApprovedInnerCirclePurchase($leadId);
+    }
+}

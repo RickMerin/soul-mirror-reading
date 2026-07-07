@@ -107,6 +107,12 @@ final class LeadRepository
         ]);
     }
 
+    public function deleteById(int $leadId): void
+    {
+        $stmt = $this->pdo->prepare('DELETE FROM leads WHERE id = :id');
+        $stmt->execute([':id' => $leadId]);
+    }
+
     /**
      * @return array<string,mixed>|null
      */

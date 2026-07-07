@@ -19,9 +19,14 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="facebook-domain-verification" content="ebi1lrsltlywgx2tncrcbtrtmwuru4" />
   <title>Soul Mirror Reading — Free 3-Card Tarot Reading</title>
   <link rel="icon" type="image/svg+xml" href="<?= htmlspecialchars($assetRoot, ENT_QUOTES) ?>favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- card-face images come from trustedtarot.com; warm the connection so the reveal is instant on pick -->
+  <link rel="preconnect" href="https://www.trustedtarot.com">
+  <link rel="dns-prefetch" href="https://www.trustedtarot.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap"
     rel="stylesheet">
@@ -204,6 +209,16 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wq82rtc2gf");
   </script>
+<script>
+    window.clickmagick_cmc = {
+        uid: '92654',
+        hid: '1214314307',
+        cmc_project: 'Soul Mirror Reading',
+        vid_info: 'on',
+        utm_source: 'organic',
+    }
+</script>
+<script src='//cdn.clkmc.com/cmc.js'></script>
 </head>
 
 <body>
@@ -328,8 +343,8 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
     });
   </script>
 
-  <?php if (($funnelBase ?? '') === 'wealth-v2/'): ?>
-  <!-- wealth-v2 only: hide the page header (eyebrow + headline + subhead) once the visitor picks their first card -->
+  <?php if (in_array(($funnelBase ?? ''), ['wealth-v2/', 'love/', 'love-v2/'], true)): ?>
+  <!-- wealth-v2 + love + love-v2: hide the page header (eyebrow + headline + subhead) once the visitor picks their first card -->
   <script>
     (function () {
       var rt = document.getElementById('cardsRemainingText');

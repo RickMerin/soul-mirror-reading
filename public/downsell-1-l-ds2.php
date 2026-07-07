@@ -25,7 +25,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="description" content="The final offer. The complete Soul Ritual Practice at its lowest price ever, $47, this page only.">
+  <meta name="description" content="The final offer. The complete Soul Ritual Practice at its lowest price ever, $37, this page only.">
   <meta name="robots" content="noindex, nofollow">
   <title>One Final Offer From Luna</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -234,14 +234,14 @@
 
     <!-- ── TOP NOTICE BAR (final offer red) ── -->
     <div class="topnotice" style="background:#7a1020;border-bottom:1px solid #c0392b;">
-      <strong>FINAL OFFER</strong><span class="notice-dot">&middot;</span><strong>The Last Time You'll See the Soul Ritual Practice</strong><span class="notice-dot">&middot;</span><strong>Lowest Price Ever, <span style="color:#E8C97A;">$47</span></strong>
+      <strong>FINAL OFFER</strong><span class="notice-dot">&middot;</span><strong>The Last Time You'll See the Soul Ritual Practice</strong><span class="notice-dot">&middot;</span><strong>Lowest Price Ever, <span style="color:#E8C97A;">$37</span></strong>
     </div>
 
     <!-- HERO (short) -->
     <section class="vsl-section">
       <div class="wrap">
         <h1 class="vsl-headline"><span class="firstname">Friend</span>, One Last Door.<br><em>Then I Will Stop Asking.</em></h1>
-        <p class="ds-lede">You passed at $97. You passed at $67. I am not going to keep knocking. This is the lowest price the Soul Ritual Practice will ever carry, and this page is the only place it exists. <strong>$47, one time, then it closes for good.</strong></p>
+        <p class="ds-lede">You passed at $97. You passed at $67. I am not going to keep knocking. This is the lowest price the Soul Ritual Practice will ever carry, and this page is the only place it exists. It is the ritual that clears your Love Block, the quiet pattern that keeps pulling in the wrong people and bracing you the moment real closeness arrives. <strong>$37, one time, then it closes for good.</strong></p>
       </div>
     </section>
 
@@ -249,12 +249,12 @@
     <section style="padding:8px 24px 44px;" id="offer">
       <div class="pricing-block" style="border-color:rgba(212,175,55,.85); box-shadow:0 0 34px rgba(212,175,55,.3);">
         <span class="section-eyebrow" style="margin-bottom:14px;">Final Offer &middot; This Page Only</span>
-        <h2>The Complete Soul Ritual Practice<br><em>for $47</em></h2>
-        <p class="price-note" style="margin-bottom:20px;">The same fast-track ritual that clears the ceiling on your money. Nothing removed. The only thing that has changed, three times now, is the price.</p>
+        <h2>The Complete Soul Ritual Practice<br><em>for $37</em></h2>
+        <p class="price-note" style="margin-bottom:20px;">The same fast-track ritual that clears your Love Block 10x faster, so the love you are meant for can finally reach you. Nothing removed. The only thing that has changed, three times now, is the price.</p>
 
         <div class="ds-coupon">
           <span class="ds-coupon__label">&#10022; &nbsp; Final Discount Applied &nbsp; &#10022;</span>
-          <span class="ds-coupon__amount">&minus; $20.00 OFF</span>
+          <span class="ds-coupon__amount">&minus; $30.00 OFF</span>
           <span class="ds-coupon__code">Code <span>LASTCALL</span></span>
         </div>
 
@@ -264,23 +264,23 @@
           <div class="price-row">
             <span class="ds-price-was">$97</span>
             <span class="ds-price-was">$67</span>
-            <span class="price-currency">$</span><span class="price-new">47</span>
+            <span class="price-currency">$</span><span class="price-new">37</span>
           </div>
         </div>
         <p class="price-note">One payment &middot; Instant download &middot; No subscription</p>
 
         <!-- TODO(checkout): confirm/create the $47 ClickBank item. Placeholder uses srp-1-ds2 (pattern: srp-1 -> srp-1-ds -> srp-1-ds2). -->
-        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds2&amp;cbur=a&amp;vtid=[cmc_vid]" class="cta" style="margin-top:22px;">Yes, I Will Take the Final Offer &middot; $47 &rarr;</a>
+        <a href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-l-ds2&amp;cbur=a&amp;vtid=[cmc_vid]" class="cta" style="margin-top:22px;">Yes, I Will Take the Final Offer &middot; $37 &rarr;</a>
         <div class="cta-trust-row" style="margin-top:16px;">
           <span>&#128274; Secure Checkout</span>
           <span>&#9889; Delivered Immediately</span>
           <span>&#127769; 90-Day Guarantee</span>
         </div>
-        <a class="ds-decline" href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-ds2&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, take me to my reading</a>
+        <a class="ds-decline" href="https://rebornf.pay.clickbank.net/?cbitems=srp-1-l-ds2&amp;cbur=d&amp;vtid=[cmc_vid]">No thank you, take me to my reading</a>
 
         <div class="pricing-inline-guarantee">
           <img src="cards/guarantee-badge.png" alt="90-Day Guarantee">
-          <div><strong>Still the full 90-Day Money-Back Guarantee.</strong><br>Same complete practice, same protection, lowest price. If your money ceiling has not budged in 90 days, reply and I refund every cent of your $47. You keep everything.</div>
+          <div><strong>Still the full 90-Day Money-Back Guarantee.</strong><br>Same complete practice, same protection, lowest price. If your Love Block has not started to lift in 90 days, reply and I refund every cent of your $37. You keep everything.</div>
         </div>
       </div>
     </section>
@@ -295,7 +295,7 @@
         permission. ClickBank's role as retailer does not constitute an endorsement, approval or review of these
         products or any claim, statement or opinion used in promotion of these products.</p>
       <p>Individual results vary and are not typical. A Soul Mirror Reading and the Soul Ritual Practice are for insight
-        and self-reflection. They are not financial, medical, or psychological advice and do not guarantee any specific outcome.</p>
+        and self-reflection. They are not relationship, medical, or psychological advice and do not guarantee any specific outcome.</p>
       <p>For Product Support, please contact the vendor: <a href="mailto:support@soulmirrorreading.com">HERE</a></p>
       <p>For Order Support, please contact ClickBank: <a href="https://www.clkbank.com/" target="_blank" rel="noopener">HERE</a> or 1-800-390-6035</p>
       <p class="footer-links">
