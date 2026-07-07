@@ -9,11 +9,11 @@ namespace App\Logging;
  *
  * Mirrors {@see PipelineLogger}'s write pattern: writes to
  * <project>/storage/logs/clickbank-ins.log (or SOUL_MIRROR_LOG_PATH's directory), creating the
- * directory if needed. Records both accepted events (type "event") and rejected ones
- * (type "rejected") so a dropped or undecryptable notification is never silent.
+ * directory if needed. Records received POSTs, parsed payloads, accepted events (type "event"),
+ * and rejected ones (type "rejected") so a dropped or undecryptable notification is never silent.
  *
  * Never writes secrets, IVs, or ciphertext. The buyer email and full payload are intentionally
- * omitted; only the receipt, transaction type, normalized status, and access window are stored.
+ * omitted; only the receipt, transaction type, normalized status, SKUs, and access window are stored.
  */
 final class ClickBankInsLogger
 {
@@ -30,16 +30,67 @@ final class ClickBankInsLogger
     }
 
     /**
-     * Logs an accepted INS event.
+     * Logs that a POST body was received (before decrypt).
      */
-    public function logEvent(?string $transactionType, ?string $receipt, string $status, ?string $accessUntil): void
+    public function logReceived(int $bytes): void
     {
+        $this->write([
+            'type' => 'received',
+            'bytes' => $bytes,
+        ]);
+    }
+
+    /**
+     * Logs a successfully decrypted and validated payload summary (before persistence).
+     *
+     * @param list<string> $itemSkus
+     */
+    public function logParsed(
+        ?string $transactionType,
+        ?string $receipt,
+        string $status,
+        int $itemCount,
+        array $itemSkus,
+    ): void {
+        $this->write([
+            'type' => 'parsed',
+            'transactionType' => $transactionType,
+            'receipt' => $receipt,
+            'status' => $status,
+            'itemCount' => $itemCount,
+            'itemSkus' => $itemSkus,
+        ]);
+    }
+
+    /**
+     * Logs an accepted INS event after persistence and revocation handling.
+     *
+     * @param list<string> $itemSkus
+     */
+    public function logProcessed(
+        ?string $transactionType,
+        ?string $receipt,
+        string $status,
+        int $leadId,
+        ?int $purchaseId,
+        int $revokedCount,
+        string $revocationAction,
+        bool $buyerRemoved,
+        ?string $accessUntil,
+        array $itemSkus = [],
+    ): void {
         $this->write([
             'type' => 'event',
             'transactionType' => $transactionType,
             'receipt' => $receipt,
             'status' => $status,
+            'leadId' => $leadId,
+            'purchaseId' => $purchaseId,
+            'revokedCount' => $revokedCount,
+            'revocationAction' => $revocationAction,
+            'buyerRemoved' => $buyerRemoved,
             'accessUntil' => $accessUntil,
+            'itemSkus' => $itemSkus,
         ]);
     }
 
