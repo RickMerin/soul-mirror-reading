@@ -5,6 +5,7 @@ use App\Config\AppConfig;
 use App\Application\ClickBankBuyerRemovalService;
 use App\Application\ClickBankProductRevocationService;
 use App\Domain\ClickBankInsStatusMapper;
+use App\Domain\ClickBankPurchaseStatus;
 use App\Infrastructure\DatabaseConnection;
 use App\Logging\ClickBankInsLogger;
 use App\Repository\LeadRepository;
@@ -42,6 +43,8 @@ if (strlen($raw) > 262144) {
     exit;
 }
 
+$insLog->logReceived(strlen($raw));
+
 try {
     $wrapper = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
 } catch (JsonException) {
@@ -70,12 +73,14 @@ if (!is_string($encrypted) || $encrypted === '' || !is_string($iv) || $iv === ''
 $config = AppConfig::load($projectRoot);
 $secretKey = $_ENV['CLICKBANK_SECRET_KEY'] ?? getenv('CLICKBANK_SECRET_KEY') ?: '';
 if (!is_string($secretKey) || $secretKey === '') {
+    $insLog->logRejected('missing CLICKBANK_SECRET_KEY');
     http_response_code(500);
     error_log('clickbank-ins.php missing CLICKBANK_SECRET_KEY');
     echo json_encode(['error' => 'INS handler is not configured.'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 if (!$config->hasDatabaseConfig()) {
+    $insLog->logRejected('database config missing');
     http_response_code(500);
     error_log('clickbank-ins.php database config missing');
     echo json_encode(['error' => 'INS handler is not configured.'], JSON_UNESCAPED_UNICODE);
@@ -123,6 +128,9 @@ if ($receipt === null) {
 $items = extractItems($payload);
 $status = ClickBankInsStatusMapper::normalizeFromPayload($payload);
 $txnType = ClickBankInsStatusMapper::extractTxnType($payload);
+$itemSkus = extractItemSkus($items);
+
+$insLog->logParsed($txnType, $receipt, $status, count($items), $itemSkus);
 
 try {
     $pdo = DatabaseConnection::fromConfig($config);
@@ -143,10 +151,11 @@ try {
     );
     $purchaseId = $purchases->findIdByReceipt($receipt);
 
-    (new ClickBankProductRevocationService(
+    $revokedCount = (new ClickBankProductRevocationService(
         $purchases,
         InnerCircleRevocationNotifier::fromEnvironment(new Client($config->guzzleClientConfig())),
     ))->revokeForInsEvent($leadId, $email, $items, $status, $receipt);
+    $revocationAction = resolveRevocationAction($status, $revokedCount);
 
     // Capture the Inner Circle paid-through window (set by a soft cancel) before buyer removal,
     // for the audit log and Slack. Null for non-cancel events and for buyers with no IC window.
@@ -158,6 +167,7 @@ try {
         $deliveries,
         new S3ReadingStorage($config),
     ))->removeBuyerIfFullyRevoked($leadId, $status);
+    $buyerRemoved = $leads->findById($leadId) === null;
 } catch (Throwable $e) {
     error_log('clickbank-ins.php persistence failed: ' . $e->getMessage());
     $insLog->logRejected('persistence failed', $txnType, $receipt);
@@ -167,7 +177,18 @@ try {
 }
 
 // Audit the accepted event before responding, so every received INS is recorded.
-$insLog->logEvent($txnType, $receipt, $status, $accessUntil ?? null);
+$insLog->logProcessed(
+    $txnType,
+    $receipt,
+    $status,
+    $leadId,
+    $purchaseId ?? null,
+    $revokedCount ?? 0,
+    $revocationAction ?? 'none',
+    $buyerRemoved ?? false,
+    $accessUntil ?? null,
+    $itemSkus,
+);
 
 // Respond 200 and flush to ClickBank now (INS requires a reply within ~3s), then run the
 // slower side effects (Slack, Kit, reading delivery) after the connection is released.
@@ -401,6 +422,55 @@ function extractItems(array $payload): array
     }
 
     return array_values(array_filter($items, static fn ($item): bool => is_array($item)));
+}
+
+/**
+ * Extracts normalized SKU strings from INS line items (for audit logging only).
+ *
+ * @param array<int, array<string, mixed>> $items
+ * @return list<string>
+ */
+function extractItemSkus(array $items): array
+{
+    $skus = [];
+    foreach ($items as $item) {
+        if (!is_array($item)) {
+            continue;
+        }
+        foreach (['sku', 'item', 'itemNo', 'productSku'] as $key) {
+            if (!array_key_exists($key, $item)) {
+                continue;
+            }
+            $val = $item[$key];
+            if (!is_string($val) && !is_numeric($val)) {
+                continue;
+            }
+            $sku = strtolower(trim((string) $val));
+            if ($sku !== '' && !in_array($sku, $skus, true)) {
+                $skus[] = $sku;
+            }
+        }
+    }
+
+    return $skus;
+}
+
+/**
+ * Describes what revocation handling did for this INS event.
+ */
+function resolveRevocationAction(string $status, int $revokedCount): string
+{
+    if (!ClickBankPurchaseStatus::isRevoked($status)) {
+        return 'skipped_not_revoked';
+    }
+    if ($revokedCount === 0) {
+        return 'skipped_no_ic';
+    }
+    if (strtolower(trim($status)) === 'cancelled') {
+        return 'soft_cancel';
+    }
+
+    return 'hard_revoke';
 }
 
 /**
