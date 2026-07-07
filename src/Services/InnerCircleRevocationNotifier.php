@@ -19,9 +19,23 @@ final class InnerCircleRevocationNotifier
         private readonly string $hmacSecret,
     ) {}
 
-    public function notifyRevoked(string $email, string $reason, ?string $receipt): void
+    /**
+     * Notifies the worker that a buyer lost (or is scheduled to lose) Inner Circle access.
+     *
+     * @param string      $reason      Normalized purchases.status: cancelled / refunded / chargeback.
+     * @param string|null $accessUntil ISO 8601 timestamp when access should end (soft cancel), or
+     *                                 null to revoke immediately (refund / chargeback).
+     */
+    public function notifyRevoked(string $email, string $reason, ?string $receipt, ?string $accessUntil = null): void
     {
-        if ($this->revokeWebhookUrl === '' || $this->hmacSecret === '') {
+        if ($this->revokeWebhookUrl === '') {
+            error_log('Inner Circle revoke webhook skipped: IC_REVOKE_WEBHOOK_URL is not set (revocation not propagated to the worker).');
+
+            return;
+        }
+        if ($this->hmacSecret === '') {
+            error_log('Inner Circle revoke webhook skipped: IC_HMAC_SECRET is not set (cannot sign the request).');
+
             return;
         }
 
@@ -30,10 +44,14 @@ final class InnerCircleRevocationNotifier
             return;
         }
 
+        $kind = strtolower(trim($reason)) === 'cancelled' ? 'cancelled' : 'refunded_or_chargeback';
+
         $body = [
             'email' => $email,
             'reason' => $reason,
             'receipt' => $receipt ?? '',
+            'kind' => $kind,
+            'accessUntil' => self::toIso8601($accessUntil),
         ];
         $json = json_encode($body, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
         $signature = hash_hmac('sha256', $json, $this->hmacSecret);
@@ -51,6 +69,29 @@ final class InnerCircleRevocationNotifier
         } catch (Throwable $e) {
             error_log('Inner Circle revoke webhook failed: ' . $e->getMessage());
         }
+    }
+
+    /**
+     * Normalizes a DB timestamp (typically "Y-m-d H:i:s") to an ISO 8601 string, or null.
+     * A revoke-at value in the past is treated as null (revoke immediately).
+     */
+    private static function toIso8601(?string $timestamp): ?string
+    {
+        if ($timestamp === null) {
+            return null;
+        }
+        $timestamp = trim($timestamp);
+        if ($timestamp === '') {
+            return null;
+        }
+
+        try {
+            $dt = new \DateTimeImmutable($timestamp);
+        } catch (\Exception) {
+            return null;
+        }
+
+        return $dt->format(\DateTimeInterface::ATOM);
     }
 
     public static function fromEnvironment(ClientInterface $http): self

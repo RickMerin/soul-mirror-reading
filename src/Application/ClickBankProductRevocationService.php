@@ -37,6 +37,20 @@ final class ClickBankProductRevocationService
             return 0;
         }
 
+        // A cancelled rebill means the buyer stopped future billing but already paid for the
+        // current period, so keep Inner Circle access until the paid period ends (soft cancel).
+        // Refunds and chargebacks reverse the payment, so they revoke access immediately.
+        if (self::isCancellation($status)) {
+            $accessUntil = $this->purchases->setInnerCircleAccessUntil($leadId, InnerCircleSkus::ALL);
+            if ($accessUntil !== null) {
+                $this->innerCircleNotifier->notifyRevoked($email, $status, $receipt, $accessUntil);
+
+                return 1;
+            }
+
+            return 0;
+        }
+
         $revoked = $this->purchases->revokeApprovedPurchasesContainingSkus(
             $leadId,
             InnerCircleSkus::ALL,
@@ -44,10 +58,15 @@ final class ClickBankProductRevocationService
         );
 
         if ($revoked > 0) {
-            $this->innerCircleNotifier->notifyRevoked($email, $status, $receipt);
+            $this->innerCircleNotifier->notifyRevoked($email, $status, $receipt, null);
         }
 
         return $revoked;
+    }
+
+    private static function isCancellation(string $status): bool
+    {
+        return strtolower(trim($status)) === 'cancelled';
     }
 
     /**

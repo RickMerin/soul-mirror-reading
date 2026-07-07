@@ -20,6 +20,8 @@ final class ClickBankInsSlackTable
         array $payload,
         ?string $txnType,
         string $receipt = '',
+        string $status = '',
+        ?string $accessUntil = null,
     ): array {
         $receiptDisplay = self::resolveReceipt($receipt, $payload);
         $txnDisplay = self::resolveTxnType($txnType, $payload);
@@ -31,6 +33,7 @@ final class ClickBankInsSlackTable
         $portalLink = self::formatPortalLink($payload);
         $upsell = self::formatUpsellSummary($payload);
         $downsell = self::formatDownsellSummary($payload);
+        $accessSummary = self::formatAccessSummary($status, $accessUntil);
 
         $rows = [
             [
@@ -66,6 +69,13 @@ final class ClickBankInsSlackTable
                 self::portalLinkCell($portalLink),
             ],
         ];
+
+        if ($accessSummary !== null) {
+            $rows[] = [
+                self::richTextBoldCell('⏳ Access'),
+                self::rawTextCell($accessSummary),
+            ];
+        }
 
         foreach ($lineItemRows as $lineValue) {
             $rows[] = [
@@ -346,6 +356,28 @@ final class ClickBankInsSlackTable
         }
 
         return $head . ' ×' . $qtyStr;
+    }
+
+    /**
+     * Access-window summary shown only for revoke events. Cancels keep access until the paid
+     * period ends ("until <date>"); refunds and chargebacks revoke immediately. Returns null for
+     * approved sales and unknown statuses so the Access row is omitted.
+     */
+    private static function formatAccessSummary(string $status, ?string $accessUntil): ?string
+    {
+        $normalized = strtolower(trim($status));
+
+        if ($normalized === 'cancelled') {
+            $until = $accessUntil !== null ? trim($accessUntil) : '';
+
+            return $until !== '' ? 'until ' . $until : 'revoked at end of paid period';
+        }
+
+        if ($normalized === 'refunded' || $normalized === 'chargeback') {
+            return 'revoked immediately';
+        }
+
+        return null;
     }
 
     private static function formatUpsellSummary(array $payload): ?string

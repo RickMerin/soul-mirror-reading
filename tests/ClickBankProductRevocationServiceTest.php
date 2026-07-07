@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ClickBankProductRevocationServiceTest extends TestCase
 {
-    public function testCancelRebillRevokesAllInnerCircleReceiptsIncludingRebills(): void
+    public function testCancelRebillKeepsInnerCircleAccessUntilPaidPeriodEnds(): void
     {
         $pdo = $this->createDatabase();
         $leads = new LeadRepository($pdo);
@@ -27,13 +27,39 @@ final class ClickBankProductRevocationServiceTest extends TestCase
         $leadId = $leads->findOrCreateMinimalByEmail('ic@example.com', 'IC Buyer');
         $purchases->upsertByReceipt($leadId, 'R1', 'SALE', 'approved', 'USD', 37.00, [['sku' => 'ic-1']], []);
         $purchases->upsertByReceipt($leadId, 'R2', 'BILL', 'approved', 'USD', 19.00, [['sku' => 'ic-1']], []);
+        // The cancel event's own row is upserted as cancelled by the handler (mirrored here).
         $purchases->upsertByReceipt($leadId, 'R1', 'CANCEL-REBILL', 'cancelled', 'USD', 19.00, [['sku' => 'ic-1']], []);
 
         $revoked = $service->revokeForInsEvent($leadId, 'ic@example.com', [['sku' => 'ic-1']], 'cancelled', 'R1');
 
+        // Soft cancel: one entitlement row is stamped with a paid-through date, none are hard-revoked.
+        self::assertSame(1, $revoked);
+        // The remaining billed row stays approved and access continues (access_until is in the future).
+        self::assertSame('approved', $this->purchaseStatus($pdo, 'R2'));
+        self::assertTrue($purchases->leadHasApprovedInnerCirclePurchase($leadId));
+
+        $accessUntil = $purchases->innerCircleAccessUntil($leadId);
+        self::assertNotNull($accessUntil);
+        self::assertGreaterThan(date('Y-m-d H:i:s'), $accessUntil);
+    }
+
+    public function testCancelWithPastPaidPeriodRevokesAccessImmediately(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $service = $this->createService($purchases, new MockHandler([new Response(200)]));
+
+        $leadId = $leads->findOrCreateMinimalByEmail('old-ic@example.com', 'Old IC Buyer');
+        $purchases->upsertByReceipt($leadId, 'R1', 'SALE', 'approved', 'USD', 37.00, [['sku' => 'ic-1']], []);
+        // Backdate the sale so created_at + 1 month is already in the past.
+        $pdo->exec("UPDATE purchases SET created_at = datetime('now', '-2 months') WHERE clickbank_receipt = 'R1'");
+
+        $revoked = $service->revokeForInsEvent($leadId, 'old-ic@example.com', [['sku' => 'ic-1']], 'cancelled', 'R1');
+
+        // access_until floors to now, so entitlement is effectively revoked immediately.
         self::assertSame(1, $revoked);
         self::assertFalse($purchases->leadHasApprovedInnerCirclePurchase($leadId));
-        self::assertSame('cancelled', $this->purchaseStatus($pdo, 'R2'));
     }
 
     public function testRefundOnInnerCircleKeepsOtherProductApproved(): void
@@ -113,6 +139,7 @@ final class ClickBankProductRevocationServiceTest extends TestCase
                 clickbank_receipt TEXT NULL UNIQUE,
                 txn_type TEXT NULL,
                 status TEXT NOT NULL DEFAULT "pending",
+                access_until TEXT NULL,
                 currency TEXT NULL,
                 amount NUMERIC NULL,
                 items_json TEXT NOT NULL,

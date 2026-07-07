@@ -6,6 +6,7 @@ use App\Application\ClickBankBuyerRemovalService;
 use App\Application\ClickBankProductRevocationService;
 use App\Domain\ClickBankInsStatusMapper;
 use App\Infrastructure\DatabaseConnection;
+use App\Logging\ClickBankInsLogger;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
 use App\Repository\ReadingDeliveryRepository;
@@ -18,6 +19,8 @@ use GuzzleHttp\Client;
 
 $projectRoot = dirname(__DIR__, 2);
 require $projectRoot . '/vendor/autoload.php';
+
+$insLog = new ClickBankInsLogger($projectRoot);
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -33,6 +36,7 @@ if ($raw === false) {
     $raw = '';
 }
 if (strlen($raw) > 262144) {
+    $insLog->logRejected('payload too large');
     http_response_code(413);
     echo json_encode(['error' => 'Payload too large.'], JSON_UNESCAPED_UNICODE);
     exit;
@@ -41,12 +45,14 @@ if (strlen($raw) > 262144) {
 try {
     $wrapper = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
 } catch (JsonException) {
+    $insLog->logRejected('invalid envelope JSON');
     http_response_code(400);
     echo json_encode(['error' => 'Invalid JSON payload.'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 if (!is_array($wrapper)) {
+    $insLog->logRejected('invalid envelope JSON');
     http_response_code(400);
     echo json_encode(['error' => 'Invalid JSON payload.'], JSON_UNESCAPED_UNICODE);
     exit;
@@ -55,6 +61,7 @@ if (!is_array($wrapper)) {
 $encrypted = $wrapper['notification'] ?? null;
 $iv = $wrapper['iv'] ?? null;
 if (!is_string($encrypted) || $encrypted === '' || !is_string($iv) || $iv === '') {
+    $insLog->logRejected('missing envelope fields (notification/iv)');
     http_response_code(400);
     echo json_encode(['error' => 'Missing required INS envelope fields.'], JSON_UNESCAPED_UNICODE);
     exit;
@@ -77,6 +84,7 @@ if (!$config->hasDatabaseConfig()) {
 
 $decrypted = decryptNotification($encrypted, $iv, $secretKey);
 if ($decrypted === null) {
+    $insLog->logRejected('decrypt failed');
     http_response_code(400);
     echo json_encode(['error' => 'Unable to decrypt notification.'], JSON_UNESCAPED_UNICODE);
     exit;
@@ -85,11 +93,13 @@ if ($decrypted === null) {
 try {
     $payload = json_decode($decrypted, true, 512, JSON_THROW_ON_ERROR);
 } catch (JsonException) {
+    $insLog->logRejected('invalid decrypted JSON');
     http_response_code(400);
     echo json_encode(['error' => 'Invalid decrypted notification JSON.'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 if (!is_array($payload)) {
+    $insLog->logRejected('invalid decrypted JSON');
     http_response_code(400);
     echo json_encode(['error' => 'Invalid decrypted notification JSON.'], JSON_UNESCAPED_UNICODE);
     exit;
@@ -97,12 +107,14 @@ if (!is_array($payload)) {
 
 $email = extractBuyerEmail($payload);
 if ($email === null) {
+    $insLog->logRejected('missing buyer email', ClickBankInsStatusMapper::extractTxnType($payload), extractReceipt($payload));
     http_response_code(400);
     echo json_encode(['error' => 'Buyer email is required in INS payload.'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 $receipt = extractReceipt($payload);
 if ($receipt === null) {
+    $insLog->logRejected('missing receipt', ClickBankInsStatusMapper::extractTxnType($payload));
     http_response_code(400);
     echo json_encode(['error' => 'Receipt is required in INS payload.'], JSON_UNESCAPED_UNICODE);
     exit;
@@ -136,6 +148,10 @@ try {
         InnerCircleRevocationNotifier::fromEnvironment(new Client($config->guzzleClientConfig())),
     ))->revokeForInsEvent($leadId, $email, $items, $status, $receipt);
 
+    // Capture the Inner Circle paid-through window (set by a soft cancel) before buyer removal,
+    // for the audit log and Slack. Null for non-cancel events and for buyers with no IC window.
+    $accessUntil = $purchases->innerCircleAccessUntil($leadId);
+
     (new ClickBankBuyerRemovalService(
         $leads,
         $purchases,
@@ -144,15 +160,25 @@ try {
     ))->removeBuyerIfFullyRevoked($leadId, $status);
 } catch (Throwable $e) {
     error_log('clickbank-ins.php persistence failed: ' . $e->getMessage());
+    $insLog->logRejected('persistence failed', $txnType, $receipt);
     http_response_code(500);
     echo json_encode(['error' => 'Unable to persist notification.'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
+// Audit the accepted event before responding, so every received INS is recorded.
+$insLog->logEvent($txnType, $receipt, $status, $accessUntil ?? null);
+
+// Respond 200 and flush to ClickBank now (INS requires a reply within ~3s), then run the
+// slower side effects (Slack, Kit, reading delivery) after the connection is released.
+http_response_code(200);
+echo json_encode(['ok' => true], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+finishClientResponse();
+
 if ($config->clickbankInsSlackWebhookUrl !== '') {
     try {
         $slackHttp = new Client($config->guzzleClientConfig());
-        (new SlackClickBankInsLogger($config, $slackHttp))->notify($payload, $txnType, $receipt);
+        (new SlackClickBankInsLogger($config, $slackHttp))->notify($payload, $txnType, $receipt, $status, $accessUntil ?? null);
     } catch (Throwable $e) {
         error_log('clickbank-ins.php Slack notify failed: ' . $e->getMessage());
     }
@@ -169,11 +195,43 @@ if (clickbankPurchaseShouldTagBuyerInKit($status) && $config->kitApiKey !== '') 
 
 if (isset($purchaseId) && is_int($purchaseId) && $purchaseId > 0
     && ReadingDeliveryTrigger::shouldDeliverForApprovedPurchase($status, $items)) {
-    (new ReadingDeliveryTrigger($projectRoot))->queuePurchaseDelivery($purchaseId);
+    try {
+        (new ReadingDeliveryTrigger($projectRoot))->queuePurchaseDelivery($purchaseId);
+    } catch (Throwable $e) {
+        error_log('clickbank-ins.php reading delivery trigger failed: ' . $e->getMessage());
+    }
 }
 
-http_response_code(200);
-echo json_encode(['ok' => true], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+/**
+ * Flushes the current response to the client and closes the connection so PHP can keep running
+ * the post-response side effects. Prefers fastcgi_finish_request() (PHP-FPM); otherwise falls
+ * back to closing the connection via Content-Length + output flushing.
+ */
+function finishClientResponse(): void
+{
+    if (function_exists('fastcgi_finish_request')) {
+        fastcgi_finish_request();
+
+        return;
+    }
+
+    // Fallback for non-FPM SAPIs: keep running after the client disconnects, tell the client the
+    // exact body length so it stops reading, then flush everything out.
+    ignore_user_abort(true);
+
+    if (!headers_sent()) {
+        $size = ob_get_length();
+        if ($size !== false) {
+            header('Content-Length: ' . (string) $size);
+        }
+        header('Connection: close');
+    }
+
+    while (ob_get_level() > 0) {
+        ob_end_flush();
+    }
+    flush();
+}
 
 /**
  * Decrypts the ClickBank notification using AES-256-CBC.
