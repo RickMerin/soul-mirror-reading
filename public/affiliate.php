@@ -421,7 +421,7 @@ declare(strict_types=1);
       function buildLink(){
         var id = clean(cbid.value);
         if(!id) return '';
-        var link = 'https://hop.clickbank.net/?affiliate=' + encodeURIComponent(id) + '&vendor=' + VENDOR;
+        var link = 'https://hop.clickbank.net/?affiliate=' + encodeURIComponent(id) + '&vendor=' + VENDOR + '&cbpage=wealth';
         var track = clean(tid.value);
         if(track) link += '&tid=' + encodeURIComponent(track);
         return link;
