@@ -231,7 +231,7 @@ declare(strict_types=1);
 
         <h3 class="center" style="font-size:24px">Who This Converts With</h3>
         <div class="body-copy" style="margin-top:6px">
-          <p>Spiritually-minded women, roughly <strong>30 to 55</strong>, in the US, UK, Canada, Australia, and New Zealand. It fits lists and audiences built around <strong>tarot, manifestation, spirituality, self-help, and astrology</strong>.</p>
+          <p>Spiritually-minded men and women, roughly <strong>30 to 55</strong>, in the US, UK, Canada, Australia, and New Zealand. It fits lists and audiences built around <strong>tarot, manifestation, spirituality, self-help, and astrology</strong>.</p>
         </div>
 
         <div class="panel" style="max-width:640px;margin:26px auto 0;text-align:center">
@@ -281,84 +281,17 @@ declare(strict_types=1);
     <section class="section" id="swipes">
       <div class="wrap">
         <span class="eyebrow center" style="display:block">Email Swipes</span>
-        <h2 class="center">Three Ready-To-Send Emails</h2>
-        <p class="lead center" style="margin-bottom:22px">Each swipe drives clicks to your reading. Replace <b style="color:var(--gold-light)">YOURLINK</b> in the body with the hoplink you generated above, then send.</p>
+        <h2 class="center">Ready-To-Send Emails</h2>
+        <p class="lead center" style="margin-bottom:22px">All swipes live in one document. Replace <b style="color:var(--gold-light)">YOURLINK</b> in each email with the hoplink you generated above, then send.</p>
 
         <div class="note" style="margin-bottom:8px">
           <b>Please read before sending.</b> These swipes are starting points; edit them in your own voice. You are responsible for including your own affiliate disclosure, for example a clear line stating that you may earn a commission if someone buys through your link. Follow the FTC endorsement guides and the CAN-SPAM Act. Do not add income promises, health or medical claims, guaranteed outcomes, or fake scarcity.
         </div>
 
-        <!-- SWIPE 1 -->
-        <article class="swipe">
-          <div class="swipe-head">
-            <span class="swipe-label">Swipe 1 &middot; The Repeating Pattern</span>
-            <button type="button" class="copy-btn" data-copy="s1">Copy Swipe</button>
-          </div>
-          <div class="swipe-field">
-            <span class="field-tag">Subject line</span>
-            <p class="swipe-subject" id="s1-subj">The same wall keeps showing up, doesn't it?</p>
-          </div>
-          <div class="swipe-field">
-            <span class="field-tag">Body</span>
-            <div class="swipe-body" id="s1-body">
-              <p>Have you ever noticed how the same feeling seems to follow you from room to room?</p>
-              <p>You finally get some money moving, and something quietly pulls it back down. A relationship starts to feel safe, and you find a reason to hold part of yourself back. A purpose lights up in you, and then the doubt arrives right on schedule.</p>
-              <p>It looks like three separate problems. Money. Love. Purpose. But so often it is one hidden pattern wearing three different masks.</p>
-              <p>Luna Ross calls it your Mirror Block. It is the quiet loop running underneath your choices, and there are four types. Most people carry the same one their whole life without ever naming it.</p>
-              <p>Her free 3-card reading is built to show you which one is yours, in language that is specific rather than vague.</p>
-              <p>If you are ready to see the pattern instead of only feeling it, begin here: <span class="link-token">YOURLINK</span></p>
-              <p>With you,<br />[Your name]</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- SWIPE 2 -->
-        <article class="swipe">
-          <div class="swipe-head">
-            <span class="swipe-label">Swipe 2 &middot; Your Cards Have Chosen</span>
-            <button type="button" class="copy-btn" data-copy="s2">Copy Swipe</button>
-          </div>
-          <div class="swipe-field">
-            <span class="field-tag">Subject line</span>
-            <p class="swipe-subject" id="s2-subj">Your three cards have already chosen themselves</p>
-          </div>
-          <div class="swipe-field">
-            <span class="field-tag">Body</span>
-            <div class="swipe-body" id="s2-body">
-              <p>There is a strange thing about a reading like this one.</p>
-              <p>By the time you sit down for it, the cards have already turned. The pattern you have been living was set in motion long before today. The reading simply gives it a name.</p>
-              <p>Luna Ross lays three cards for you, and together they point to one thing: your Mirror Block. The single hidden reason the same situations keep circling back, in your money, your love, and your sense of purpose.</p>
-              <p>Four blocks exist. You carry one. And once you can see it clearly, you stop mistaking it for bad luck or bad timing.</p>
-              <p>The reading is free, and it takes only a few minutes. What you do with what you see is entirely up to you.</p>
-              <p>Your cards are waiting. See what they have already chosen: <span class="link-token">YOURLINK</span></p>
-              <p>Warmly,<br />[Your name]</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- SWIPE 3 -->
-        <article class="swipe">
-          <div class="swipe-head">
-            <span class="swipe-label">Swipe 3 &middot; You Have Tried Everything</span>
-            <button type="button" class="copy-btn" data-copy="s3">Copy Swipe</button>
-          </div>
-          <div class="swipe-field">
-            <span class="field-tag">Subject line</span>
-            <p class="swipe-subject" id="s3-subj">You have done the work. So why this again?</p>
-          </div>
-          <div class="swipe-field">
-            <span class="field-tag">Body</span>
-            <div class="swipe-body" id="s3-body">
-              <p>You have read the books. You have sat in therapy and said the hard things out loud. You have journaled, manifested, taken the course, kept the morning routine that was supposed to change everything.</p>
-              <p>And still, quietly, the same pattern returns.</p>
-              <p>It is easy to decide the problem must be you. That you did not try hard enough, or want it badly enough. But usually it is not effort that is missing. It is that everything you tried was working on the surface, while one thing underneath was never named.</p>
-              <p>Luna Ross calls that one thing your Mirror Block. Her free 3-card reading is designed to bring it into the light, so you finally understand why the loop keeps closing.</p>
-              <p>You have already done so much of the work. This is simply the piece that sits underneath all of it.</p>
-              <p>Meet your reading here: <span class="link-token">YOURLINK</span></p>
-              <p>Take care,<br />[Your name]</p>
-            </div>
-          </div>
-        </article>
+        <div class="gen-actions" style="margin-top:26px">
+          <a class="btn" href="affiliate-swipes.docx" download>Click For Email Swipes &rarr;</a>
+          <p class="hint" style="margin-top:14px;color:#bdb4d6;font-size:13.5px">Downloads as a Word document. You can also open it in Google Docs.</p>
+        </div>
       </div>
     </section>
 
@@ -467,20 +400,6 @@ declare(strict_types=1);
         if(text) copyText(text, copyLink, 'Copy');
       });
 
-      // Swipe copy buttons: subject line + body, with YOURLINK preserved as plain text.
-      var swipeButtons = document.querySelectorAll('.copy-btn[data-copy]');
-      Array.prototype.forEach.call(swipeButtons, function(btn){
-        btn.addEventListener('click', function(){
-          var key = btn.getAttribute('data-copy');
-          var subj = document.getElementById(key + '-subj');
-          var body = document.getElementById(key + '-body');
-          if(!subj || !body) return;
-          var subjText = subj.textContent.trim();
-          var bodyText = (body.innerText || body.textContent).replace(/\n{3,}/g, '\n\n').trim();
-          var full = 'Subject: ' + subjText + '\n\n' + bodyText;
-          copyText(full, btn, 'Copy Swipe');
-        });
-      });
     })();
   </script>
 
