@@ -212,7 +212,6 @@ declare(strict_types=1);
           <div class="flow-step"><span class="fs-k">Hook</span><span class="fs-t">Free Reading</span><span class="fs-p">Card-picker opt-in</span></div>
           <div class="flow-step"><span class="fs-k">Front End</span><span class="fs-t">$37 Reading</span><span class="fs-p">The full Mirror Block reveal</span></div>
           <div class="flow-step"><span class="fs-k">Upsells</span><span class="fs-t">3 OTOs</span><span class="fs-p">Soul Ritual, Clarity Ritual, Mirror Meditations, each with a downsell</span></div>
-          <div class="flow-step"><span class="fs-k">Back End</span><span class="fs-t">Membership</span><span class="fs-p">Recurring product sold by email</span></div>
         </div>
 
         <hr class="gold-rule" />
