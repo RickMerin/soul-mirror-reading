@@ -38,6 +38,9 @@ Options -Indexes
     RewriteRule ^terms-conditions$ terms-conditions.php [L]
     RewriteRule ^refund-return-policy$ refund-return-policy.php [L]
 
+    # Affiliate (JV) recruitment page (clean URL to php)
+    RewriteRule ^affiliate$ affiliate.php [L]
+
     # Member portal: never serve index.html directly (back-sell checkout uses vtid=membership via PHP).
     RewriteRule ^member/index\.html$ member/index.php [L,R=301]
     RewriteRule ^member/?$ member/index.php [L]
