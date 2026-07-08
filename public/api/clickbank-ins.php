@@ -70,7 +70,16 @@ if (!is_string($encrypted) || $encrypted === '' || !is_string($iv) || $iv === ''
     exit;
 }
 
-$config = AppConfig::load($projectRoot);
+$config = null;
+try {
+    $config = AppConfig::load($projectRoot);
+} catch (Throwable $e) {
+    $insLog->logRejected('config load failed');
+    error_log('clickbank-ins.php config load failed: ' . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(['error' => 'INS handler is not configured.'], JSON_UNESCAPED_UNICODE);
+    exit;
+}
 $secretKey = $_ENV['CLICKBANK_SECRET_KEY'] ?? getenv('CLICKBANK_SECRET_KEY') ?: '';
 if (!is_string($secretKey) || $secretKey === '') {
     $insLog->logRejected('missing CLICKBANK_SECRET_KEY');
