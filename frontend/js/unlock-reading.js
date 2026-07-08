@@ -10,6 +10,13 @@ const KIT_EMBED_POST_SUBMIT_SETTLE_MS = 2000;
 const SUBMIT_BTN_LABEL = "Unlock My Reading \u00a0\u2192";
 const SUBMIT_PENDING_LABEL = "Reading the cards\u2026";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// First name: a letter/mark first, then letters/marks/spaces/apostrophes/periods/hyphens.
+// Mirrors the server rule in FormSubmission::validatedName so the client never accepts
+// what the server rejects. Allows names like O'Brien, Mary-Jane, Anne Marie; blocks digits.
+const NAME_RE = /^[\p{L}\p{M}][\p{L}\p{M}\s'.-]*$/u;
+const NAME_CHARS_ERROR = "Your First Name Only Please (letters only)";
+const FORM_INCOMPLETE_ERROR =
+  "Please complete all required fields with valid details before unlocking your reading.";
 
 /**
  * @returns {{ embedScriptSrc: string, embedDataUid: string, formSubscribeVia: string } | null}
@@ -312,7 +319,9 @@ if (readingForm && submitBtn && errorMsg && pick) {
     const email = formControls.email?.value.trim() ?? "";
     const gender = formControls.gender?.value.trim() ?? "";
 
-    const invalidName = name.length < 2 || name.length > 120;
+    // Name has content but contains numbers / disallowed characters.
+    const nameHasBadChars = name.length > 0 && !NAME_RE.test(name);
+    const invalidName = name.length < 2 || name.length > 120 || nameHasBadChars;
     const invalidEmail = !EMAIL_RE.test(email) || email.length > 254;
     const invalidGender = !(gender === "Female" || gender === "Male");
     const hasErrors = invalidName || invalidEmail || invalidGender;
@@ -322,7 +331,8 @@ if (readingForm && submitBtn && errorMsg && pick) {
       toggleFieldError(formControls.email, invalidEmail);
       toggleFieldError(formControls.gender, invalidGender);
     } else {
-      toggleFieldError(formControls.name, false);
+      // Live typing: only surface the specific "numbers in name" problem right away.
+      toggleFieldError(formControls.name, nameHasBadChars);
       toggleFieldError(formControls.email, false);
       toggleFieldError(formControls.gender, false);
     }
@@ -330,11 +340,14 @@ if (readingForm && submitBtn && errorMsg && pick) {
     submitBtn.disabled = hasErrors;
     submitBtn.classList.toggle("is-invalid", hasErrors);
 
-    if (showErrors && hasErrors) {
-      errorMsg.textContent =
-        "Please complete all required fields with valid details before unlocking your reading.";
+    if (nameHasBadChars) {
+      // Most specific message wins, and it shows live (not just on submit).
+      errorMsg.textContent = NAME_CHARS_ERROR;
       errorMsg.classList.add("visible");
-    } else if (!hasErrors) {
+    } else if (showErrors && hasErrors) {
+      errorMsg.textContent = FORM_INCOMPLETE_ERROR;
+      errorMsg.classList.add("visible");
+    } else {
       errorMsg.textContent = "";
       errorMsg.classList.remove("visible");
     }
