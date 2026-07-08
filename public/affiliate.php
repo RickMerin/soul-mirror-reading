@@ -64,7 +64,7 @@ declare(strict_types=1);
     .gold-rule{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);max-width:340px;margin:30px auto}
 
     /* HERO */
-    .hero-img{display:block;width:100%;max-width:420px;margin:30px auto 0;border-radius:16px;border:1px solid rgba(212,175,55,.5);box-shadow:0 16px 44px rgba(0,0,0,.55);background:#160c34}
+    .hero-img{display:block;width:100%;max-width:240px;height:auto;margin:26px auto 0;border-radius:12px;border:1px solid rgba(212,175,55,.5);box-shadow:0 12px 30px rgba(0,0,0,.5);background:#160c34}
 
     /* FACT CHIPS */
     .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:26px auto 0;max-width:720px}
@@ -91,8 +91,8 @@ declare(strict_types=1);
     .flow{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:10px;max-width:760px;margin:24px auto 0}
     .flow-step{flex:1 1 150px;background:#1e0d40b3;border:1px solid #d4af3740;border-radius:12px;padding:16px 14px;text-align:center}
     .flow-step .fs-k{display:block;font-family:'Cinzel',sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-    .flow-step .fs-t{font-size:15px;color:#fff;font-weight:600}
-    .flow-step .fs-p{font-size:13px;color:var(--text-muted);margin-top:4px}
+    .flow-step .fs-t{display:block;font-size:15px;color:#fff;font-weight:600}
+    .flow-step .fs-p{display:block;font-size:13px;line-height:1.5;color:var(--text-muted);margin-top:5px}
 
     /* LINK GENERATOR */
     .field-row{display:grid;gap:16px;max-width:560px;margin:0 auto}
@@ -150,6 +150,7 @@ declare(strict_types=1);
 
     @media (max-width:640px){
       .section{padding:42px 0}
+      .hero-img{max-width:180px}
       .navbar a{padding:8px 12px;font-size:11px;letter-spacing:.08em}
       .codebox{flex-direction:column;align-items:stretch}
       .copy-btn{width:100%;padding:11px}
@@ -210,7 +211,7 @@ declare(strict_types=1);
         <div class="flow" aria-label="Funnel flow">
           <div class="flow-step"><span class="fs-k">Hook</span><span class="fs-t">Free Reading</span><span class="fs-p">Card-picker opt-in</span></div>
           <div class="flow-step"><span class="fs-k">Front End</span><span class="fs-t">$37 Reading</span><span class="fs-p">The full Mirror Block reveal</span></div>
-          <div class="flow-step"><span class="fs-k">Upsells</span><span class="fs-t">3 OTOs</span><span class="fs-p">Soul Ritual &middot; Clarity Ritual $67 (with $47 downsell) &middot; Mirror Meditations $47 (with $27 downsell)</span></div>
+          <div class="flow-step"><span class="fs-k">Upsells</span><span class="fs-t">3 OTOs</span><span class="fs-p">Soul Ritual, Clarity Ritual, Mirror Meditations, each with a downsell</span></div>
           <div class="flow-step"><span class="fs-k">Back End</span><span class="fs-t">Membership</span><span class="fs-p">Recurring product sold by email</span></div>
         </div>
 
@@ -230,7 +231,7 @@ declare(strict_types=1);
         <hr class="gold-rule" />
 
         <h3 class="center" style="font-size:24px">Who This Converts With</h3>
-        <div class="body-copy center" style="margin-top:6px">
+        <div class="body-copy" style="margin-top:6px">
           <p>Spiritually-minded women, roughly <strong>30 to 55</strong>, in the US, UK, Canada, Australia, and New Zealand. It fits lists and audiences built around <strong>tarot, manifestation, spirituality, self-help, and astrology</strong>.</p>
         </div>
 
