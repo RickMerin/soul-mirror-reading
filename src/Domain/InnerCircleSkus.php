@@ -11,6 +11,8 @@ final class InnerCircleSkus
 {
     /** @var list<non-empty-string> */
     public const ALL = [
+        'tic-1',
+        'tic-1-ds',
         'ic-1',
         'ic-1-ds',
     ];
