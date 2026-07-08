@@ -90,18 +90,36 @@ $orchestrator = new ReadingOrchestrator(
     $leadRepository,
 );
 
-$result = $orchestrator->run($body);
+try {
+    $result = $orchestrator->run($body);
+} catch (Throwable $e) {
+    // Any uncaught failure in the reading pipeline must return JSON, never an empty
+    // fatal 500 (which the browser surfaces to the visitor as "Something went wrong").
+    error_log('reading.php pipeline error: ' . $e::class . ' ' . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(['error' => 'Internal server error.'], JSON_UNESCAPED_UNICODE);
 
+    exit;
+}
+
+// Best-effort: if this (returning) buyer already has a paid main reading, queue its
+// delivery now. This is a side optimization and MUST NOT break the opt-in response,
+// so any failure here (e.g. a DB/query hiccup) is logged and swallowed. A brand-new
+// opt-in lead has no purchase yet, so this normally finds nothing and no-ops.
 if ($result->httpStatus === 200 && $leadRepository !== null && $pdo !== null) {
-    $email = strtolower(trim((string) ($body['email'] ?? '')));
-    if ($email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $leadId = $leadRepository->findIdByEmail($email);
-        if ($leadId !== null) {
-            $purchaseId = (new PurchaseRepository($pdo))->findDeliverableMainReadingPurchaseId($leadId);
-            if ($purchaseId !== null) {
-                (new ReadingDeliveryTrigger($projectRoot))->queuePurchaseDelivery($purchaseId);
+    try {
+        $email = strtolower(trim((string) ($body['email'] ?? '')));
+        if ($email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $leadId = $leadRepository->findIdByEmail($email);
+            if ($leadId !== null) {
+                $purchaseId = (new PurchaseRepository($pdo))->findDeliverableMainReadingPurchaseId($leadId);
+                if ($purchaseId !== null) {
+                    (new ReadingDeliveryTrigger($projectRoot))->queuePurchaseDelivery($purchaseId);
+                }
             }
         }
+    } catch (Throwable $e) {
+        error_log('reading.php delivery-trigger (non-fatal): ' . $e::class . ' ' . $e->getMessage());
     }
 }
 
