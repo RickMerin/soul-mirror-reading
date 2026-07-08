@@ -1262,7 +1262,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         <span class="label">Your Mirror Block Type &nbsp; // &nbsp; One Of Four</span>
         <div style="margin:2px 0 6px;">
           <span class="type-marker">Type</span> <span class="redact type-num">?</span>
-          <span style="margin-left:12px;">&mdash;</span>
+          <span style="margin-left:12px;">&middot;</span>
           <span class="redact block-name">&nbsp;</span>&nbsp;<em style="color:#a99cba;">Block</em>
         </div>
       </div>
