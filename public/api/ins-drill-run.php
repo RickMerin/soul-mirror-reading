@@ -64,3 +64,12 @@ $state = $purchases->findPurchaseWithBuyerByReceipt($receipt);
 echo "== Resulting DB state ==\n";
 echo 'status: ' . ($state['status'] ?? '?') . "\n";
 echo 'access_until: ' . ($state['access_until'] ?? '(null)') . "\n";
+
+echo "\n== Env presence (booleans only) ==\n";
+$revokeUrlSet = (($_ENV['IC_REVOKE_WEBHOOK_URL'] ?? getenv('IC_REVOKE_WEBHOOK_URL') ?: '') !== '') ? 'yes' : 'NO';
+$hmacSet = (($_ENV['IC_HMAC_SECRET'] ?? getenv('IC_HMAC_SECRET') ?: '') !== '') ? 'yes' : 'NO';
+echo "IC_REVOKE_WEBHOOK_URL set: $revokeUrlSet\n";
+echo "IC_HMAC_SECRET set: $hmacSet\n";
+$logPath = $projectRoot . '/storage/logs/clickbank-ins.log';
+echo "\n== Last 8 INS log lines ==\n";
+if (is_file($logPath)) { foreach (array_slice(file($logPath, FILE_IGNORE_NEW_LINES), -8) as $ln) { echo $ln . "\n"; } } else { echo "(no log)\n"; }
