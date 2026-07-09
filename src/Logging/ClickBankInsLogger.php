@@ -108,6 +108,45 @@ final class ClickBankInsLogger
     }
 
     /**
+     * Logs a reconciliation action for one subscription (cron: reconcile-clickbank-subscriptions.php).
+     * Receipt only, never the buyer email, matching this logger's no-PII policy.
+     */
+    public function logReconcile(
+        string $receipt,
+        string $apiStatus,
+        string $action,
+        string $reason,
+        ?string $accessUntilBefore,
+        ?string $accessUntilAfter,
+        bool $fireRevoke,
+    ): void {
+        $this->write([
+            'type' => 'reconcile',
+            'receipt' => $receipt,
+            'apiStatus' => $apiStatus,
+            'action' => $action,
+            'reason' => $reason,
+            'accessUntilBefore' => $accessUntilBefore,
+            'accessUntilAfter' => $accessUntilAfter,
+            'fireRevoke' => $fireRevoke,
+        ]);
+    }
+
+    /**
+     * Logs a reconciliation run summary (totals) at the end of a cron pass.
+     *
+     * @param array<string, int> $totals
+     */
+    public function logReconcileSummary(int $scanned, array $totals): void
+    {
+        $this->write([
+            'type' => 'reconcile_summary',
+            'scanned' => $scanned,
+            'totals' => $totals,
+        ]);
+    }
+
+    /**
      * @param array<string, mixed> $fields
      */
     private function write(array $fields): void
