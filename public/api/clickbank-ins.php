@@ -165,7 +165,6 @@ try {
         $purchases,
         InnerCircleRevocationNotifier::fromEnvironment(new Client($config->guzzleClientConfig())),
     ))->revokeForInsEvent($leadId, $email, $items, $status, $receipt);
-    $revocationAction = resolveRevocationAction($status, $revokedCount);
 
     // Rebill heartbeat: on any APPROVED Inner Circle billing event (SALE / BILL / TEST_* / UNCANCEL*),
     // (re)stamp the paid-through window to transaction time + 1 month + 3 days grace, extend-only.
@@ -175,9 +174,11 @@ try {
         $purchases->extendInnerCircleAccessWindow($leadId, InnerCircleSkus::ALL, extractTransactionTime($payload));
     }
 
-    // Capture the Inner Circle paid-through window (set by the heartbeat above or a soft cancel)
-    // before buyer removal, for the audit log and Slack. Null for events with no IC window.
+    // Capture the Inner Circle paid-through window (set by the heartbeat above or a soft cancel,
+    // including a first-month cancel's window on the just-cancelled row) before buyer removal, for
+    // the audit log and Slack. Null for events with no IC window.
     $accessUntil = $purchases->innerCircleAccessUntil($leadId);
+    $revocationAction = resolveRevocationAction($status, $revokedCount, $accessUntil);
 
     (new ClickBankBuyerRemovalService(
         $leads,
@@ -511,8 +512,14 @@ function extractItemSkus(array $items): array
 
 /**
  * Describes what revocation handling did for this INS event.
+ *
+ * 'skipped_no_ic' means the event did not involve Inner Circle at all (no IC items and no IC
+ * purchase on the lead). 'cancel_no_window' means the cancellation branch DID revoke and notify
+ * the Worker, but no approved or cancelled row yielded a paid-through window, so the Worker was
+ * told to revoke immediately. Distinguishing the two keeps a first-month cancel that fails to
+ * derive a window from masquerading as a non-IC event in the audit log.
  */
-function resolveRevocationAction(string $status, int $revokedCount): string
+function resolveRevocationAction(string $status, int $revokedCount, ?string $accessUntil): string
 {
     if (!ClickBankPurchaseStatus::isRevoked($status)) {
         return 'skipped_not_revoked';
@@ -521,7 +528,7 @@ function resolveRevocationAction(string $status, int $revokedCount): string
         return 'skipped_no_ic';
     }
     if (strtolower(trim($status)) === 'cancelled') {
-        return 'soft_cancel';
+        return $accessUntil === null ? 'cancel_no_window' : 'soft_cancel';
     }
 
     return 'hard_revoke';

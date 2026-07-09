@@ -42,13 +42,13 @@ final class ClickBankProductRevocationService
         // Refunds and chargebacks reverse the payment, so they revoke access immediately.
         if (self::isCancellation($status)) {
             $accessUntil = $this->purchases->setInnerCircleAccessUntil($leadId, InnerCircleSkus::ALL);
-            if ($accessUntil !== null) {
-                $this->innerCircleNotifier->notifyRevoked($email, $status, $receipt, $accessUntil);
 
-                return 1;
-            }
+            // Defense in depth: a cancel on an Inner Circle item must never produce zero side
+            // effects. When no approved or cancelled row yields a paid-through window (e.g. the
+            // only matching rows are refunded), a null window tells the Worker to revoke now.
+            $this->innerCircleNotifier->notifyRevoked($email, $status, $receipt, $accessUntil);
 
-            return 0;
+            return 1;
         }
 
         $revoked = $this->purchases->revokeApprovedPurchasesContainingSkus(

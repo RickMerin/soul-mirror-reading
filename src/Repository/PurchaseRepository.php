@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use App\Domain\ClickBankPurchaseStatus;
 use App\Domain\InnerCircleSkus;
 use App\Domain\ReadingProductSkus;
 use JsonException;
@@ -136,15 +137,18 @@ final class PurchaseRepository
     }
 
     /**
-     * The paid-through timestamp (max access_until) across this lead's approved Inner Circle rows,
-     * or null when none carry a soft-cancel window. Used for logging and Slack display only.
+     * The paid-through timestamp (max access_until) across this lead's approved and cancelled
+     * Inner Circle rows, or null when none carry a soft-cancel window. Cancelled rows are included
+     * because a FIRST-MONTH cancel stamps its paid-through window on the just-cancelled row (the
+     * INS upsert flips the buyer's only row before revocation runs, so no approved row remains).
+     * Used for logging and Slack display only; never for entitlement checks.
      */
     public function innerCircleAccessUntil(int $leadId): ?string
     {
         $stmt = $this->pdo->prepare(
             "SELECT items_json, access_until FROM purchases
              WHERE lead_id = :lead_id
-               AND status IN ('approved', 'complete', 'completed', 'active')
+               AND status IN ('approved', 'complete', 'completed', 'active', 'cancelled')
                AND access_until IS NOT NULL"
         );
         $stmt->execute([':lead_id' => $leadId]);
@@ -259,9 +263,18 @@ final class PurchaseRepository
      * past-dated result never revokes retroactively. The date math is computed DB-side so it is
      * timezone-safe, mirroring purchaseUnlockSecondsRemaining().
      *
+     * FIRST-MONTH CANCEL fallback: the INS handler upserts the event BEFORE revocation runs, so
+     * when the buyer's only Inner Circle row shares the cancel event's receipt it is already
+     * status = cancelled here and the approved scan finds nothing. In that case the same window is
+     * derived from (and stamped on) the cancelled rows themselves, so the paid-through date still
+     * anchors on the last billing row's created_at. A window on a cancelled row never grants
+     * PHP-side entitlement (those queries require an approved status); it feeds the Worker
+     * notification and the audit log. Refunded / chargeback rows are NEVER used: those reverse
+     * the payment and grant nothing.
+     *
      * @param list<non-empty-string> $skus
      * @return string|null The access_until value that was written (as stored by the driver), or
-     *                      null when no approved matching row exists to update.
+     *                      null when no approved or cancelled matching row exists to update.
      */
     public function setInnerCircleAccessUntil(int $leadId, array $skus): ?string
     {
@@ -271,12 +284,55 @@ final class PurchaseRepository
 
         // Approved rows that grant the entitlement (these get access_until stamped) and, among
         // them, the billing rows (SALE / BILL / TEST_SALE / TEST_BILL) that anchor the paid period.
+        [$entitlementIds, $anchorIds] = $this->innerCircleWindowRows($leadId, $skus, ClickBankPurchaseStatus::APPROVED);
+
+        // First-month cancel: no approved row left, fall back to the just-cancelled rows.
+        if ($entitlementIds === []) {
+            [$entitlementIds, $anchorIds] = $this->innerCircleWindowRows($leadId, $skus, ['cancelled']);
+        }
+
+        if ($entitlementIds === []) {
+            return null;
+        }
+
+        // Anchor on the billing rows when present; otherwise fall back to the entitlement rows so
+        // an approved-but-untyped row (or a cancelled row whose txn_type was overwritten by the
+        // cancel upsert) still yields a sensible paid-through date.
+        $anchorIds = $anchorIds !== [] ? $anchorIds : $entitlementIds;
+
+        $anchorPlaceholders = implode(', ', array_fill(0, count($anchorIds), '?'));
+        $accessUntil = $this->computeAccessUntil($anchorPlaceholders, $anchorIds);
+        if ($accessUntil === null) {
+            return null;
+        }
+
+        $entPlaceholders = implode(', ', array_fill(0, count($entitlementIds), '?'));
+        $update = $this->pdo->prepare(
+            "UPDATE purchases
+             SET access_until = ?, updated_at = CURRENT_TIMESTAMP
+             WHERE id IN ($entPlaceholders)"
+        );
+        $update->execute(array_merge([$accessUntil], $entitlementIds));
+
+        return $accessUntil;
+    }
+
+    /**
+     * Purchase ids for this lead in the given statuses whose items include one of $skus
+     * (entitlement rows), plus the subset whose txn_type is a billing type (anchor rows).
+     *
+     * @param list<non-empty-string> $skus
+     * @param list<non-empty-string> $statuses
+     * @return array{0: list<int>, 1: list<int>} [entitlementIds, anchorIds]
+     */
+    private function innerCircleWindowRows(int $leadId, array $skus, array $statuses): array
+    {
+        $statusPlaceholders = implode(', ', array_fill(0, count($statuses), '?'));
         $stmt = $this->pdo->prepare(
             "SELECT id, txn_type, items_json FROM purchases
-             WHERE lead_id = :lead_id
-               AND status IN ('approved', 'complete', 'completed', 'active')"
+             WHERE lead_id = ? AND status IN ($statusPlaceholders)"
         );
-        $stmt->execute([':lead_id' => $leadId]);
+        $stmt->execute(array_merge([$leadId], $statuses));
 
         $billingTypes = ['SALE', 'BILL', 'TEST_SALE', 'TEST_BILL'];
         $entitlementIds = [];
@@ -304,29 +360,7 @@ final class PurchaseRepository
             }
         }
 
-        if ($entitlementIds === []) {
-            return null;
-        }
-
-        // Anchor on the billing rows when present; otherwise fall back to the entitlement rows so
-        // an approved-but-untyped row still yields a sensible paid-through date.
-        $anchorIds = $anchorIds !== [] ? $anchorIds : $entitlementIds;
-
-        $anchorPlaceholders = implode(', ', array_fill(0, count($anchorIds), '?'));
-        $accessUntil = $this->computeAccessUntil($anchorPlaceholders, $anchorIds);
-        if ($accessUntil === null) {
-            return null;
-        }
-
-        $entPlaceholders = implode(', ', array_fill(0, count($entitlementIds), '?'));
-        $update = $this->pdo->prepare(
-            "UPDATE purchases
-             SET access_until = ?, updated_at = CURRENT_TIMESTAMP
-             WHERE id IN ($entPlaceholders)"
-        );
-        $update->execute(array_merge([$accessUntil], $entitlementIds));
-
-        return $accessUntil;
+        return [$entitlementIds, $anchorIds];
     }
 
     /**

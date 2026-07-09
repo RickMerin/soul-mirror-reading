@@ -145,6 +145,62 @@ final class PurchaseRepositoryAccessWindowTest extends TestCase
         self::assertSame($future, $this->accessUntil($pdo, 'IC-1'));
     }
 
+    public function testSetInnerCircleAccessUntilFallsBackToCancelledRow(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $leadId = $leads->findOrCreateMinimalByEmail('first-month@example.com', 'First Month Buyer');
+        // First-month cancel: the buyer's only IC row was already flipped to cancelled by the
+        // INS upsert, so the approved scan finds nothing and the fallback must kick in.
+        $purchases->upsertByReceipt($leadId, 'IC-1', 'CANCEL-TEST-REBILL', 'cancelled', 'USD', 0.00, [['sku' => 'tic-1']], []);
+        $pdo->exec("UPDATE purchases SET created_at = datetime('now', '-10 days') WHERE clickbank_receipt = 'IC-1'");
+
+        $window = $purchases->setInnerCircleAccessUntil($leadId, InnerCircleSkus::ALL);
+
+        $expected = $pdo->query("SELECT datetime(created_at, '+1 month') FROM purchases WHERE clickbank_receipt = 'IC-1'")->fetchColumn();
+        self::assertIsString($expected);
+        self::assertSame($expected, $window);
+        self::assertSame($expected, $this->accessUntil($pdo, 'IC-1'));
+        // The stamped window never re-grants PHP-side entitlement on a cancelled row.
+        self::assertFalse($purchases->leadHasApprovedInnerCirclePurchase($leadId));
+    }
+
+    public function testSetInnerCircleAccessUntilIgnoresRefundedAndChargebackRows(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $leadId = $leads->findOrCreateMinimalByEmail('reversed@example.com', 'Reversed Buyer');
+        // Refunds and chargebacks reverse the payment: they must never yield a paid-through window.
+        $purchases->upsertByReceipt($leadId, 'IC-R', 'RFND', 'refunded', 'USD', 37.00, [['sku' => 'ic-1']], []);
+        $purchases->upsertByReceipt($leadId, 'IC-C', 'CGBK', 'chargeback', 'USD', 19.00, [['sku' => 'tic-1']], []);
+
+        $window = $purchases->setInnerCircleAccessUntil($leadId, InnerCircleSkus::ALL);
+
+        self::assertNull($window);
+        self::assertNull($this->accessUntil($pdo, 'IC-R'));
+        self::assertNull($this->accessUntil($pdo, 'IC-C'));
+    }
+
+    public function testSetInnerCircleAccessUntilPrefersApprovedRowsOverCancelled(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $leadId = $leads->findOrCreateMinimalByEmail('month-two@example.com', 'Month Two Buyer');
+        // Month-2 shape: the cancelled SALE row coexists with a still-approved BILL row. The
+        // approved path must be used and the cancelled fallback must not stamp anything.
+        $purchases->upsertByReceipt($leadId, 'IC-SALE', 'CANCEL-REBILL', 'cancelled', 'USD', 0.00, [['sku' => 'tic-1']], []);
+        $purchases->upsertByReceipt($leadId, 'IC-BILL', 'BILL', 'approved', 'USD', 19.00, [['sku' => 'tic-1']], []);
+
+        $window = $purchases->setInnerCircleAccessUntil($leadId, InnerCircleSkus::ALL);
+
+        self::assertNotNull($window);
+        self::assertSame($window, $this->accessUntil($pdo, 'IC-BILL'));
+        self::assertNull($this->accessUntil($pdo, 'IC-SALE'));
+    }
+
     private function accessUntil(PDO $pdo, string $receipt): ?string
     {
         $stmt = $pdo->prepare('SELECT access_until FROM purchases WHERE clickbank_receipt = :r LIMIT 1');

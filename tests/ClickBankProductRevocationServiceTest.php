@@ -11,12 +11,17 @@ use App\Services\InnerCircleRevocationNotifier;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PDO;
 use PHPUnit\Framework\TestCase;
 
 final class ClickBankProductRevocationServiceTest extends TestCase
 {
+    /** @var list<array{request: Request}> Requests the notifier sent to the Worker webhook. */
+    private array $sent = [];
+
     public function testCancelRebillKeepsInnerCircleAccessUntilPaidPeriodEnds(): void
     {
         $pdo = $this->createDatabase();
@@ -62,6 +67,87 @@ final class ClickBankProductRevocationServiceTest extends TestCase
         self::assertFalse($purchases->leadHasApprovedInnerCirclePurchase($leadId));
     }
 
+    public function testFirstMonthCancelFallsBackToCancelledRowAndNotifiesPaidThrough(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $service = $this->createService($purchases, new MockHandler([new Response(200)]));
+
+        $leadId = $leads->findOrCreateMinimalByEmail('first-month@example.com', 'First Month Buyer');
+        // The buyer's ONLY Inner Circle purchase, 10 days into the first month. The cancel INS
+        // upsert flips this very row BEFORE revocation runs (clickbank-ins.php persists first),
+        // so no approved IC row remains when the paid-through window is computed.
+        $purchases->upsertByReceipt($leadId, 'R1', 'SALE', 'approved', 'USD', 37.00, [['sku' => 'tic-1']], []);
+        $pdo->exec("UPDATE purchases SET created_at = datetime('now', '-10 days') WHERE clickbank_receipt = 'R1'");
+        $purchases->upsertByReceipt($leadId, 'R1', 'CANCEL-TEST-REBILL', 'cancelled', 'USD', 0.00, [['sku' => 'tic-1']], []);
+
+        $revoked = $service->revokeForInsEvent($leadId, 'first-month@example.com', [['sku' => 'tic-1']], 'cancelled', 'R1');
+
+        self::assertSame(1, $revoked);
+        // Paid-through window = the cancelled row's created_at + 1 month (~20 days away, no floor).
+        $expected = $pdo->query("SELECT datetime(created_at, '+1 month') FROM purchases WHERE clickbank_receipt = 'R1'")->fetchColumn();
+        self::assertIsString($expected);
+        self::assertSame($expected, $this->purchaseAccessUntil($pdo, 'R1'));
+        self::assertSame($expected, $purchases->innerCircleAccessUntil($leadId));
+        // The Worker is notified exactly once, with that paid-through window (soft cancel).
+        self::assertCount(1, $this->sent);
+        $body = self::decodeBody($this->sent[0]['request']);
+        self::assertSame('cancelled', $body['kind']);
+        self::assertSame('R1', $body['receipt']);
+        self::assertSame((new \DateTimeImmutable($expected))->format(\DateTimeInterface::ATOM), $body['accessUntil']);
+    }
+
+    public function testCancelWithOnlyRefundedRowsNotifiesImmediateRevokeWithoutWindow(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $service = $this->createService($purchases, new MockHandler([new Response(200)]));
+
+        $leadId = $leads->findOrCreateMinimalByEmail('refunded@example.com', 'Refunded Buyer');
+        // Only a refunded IC row exists: refunds reverse the payment, so the fallback must never
+        // derive a paid-through window from it.
+        $purchases->upsertByReceipt($leadId, 'R1', 'RFND', 'refunded', 'USD', 37.00, [['sku' => 'ic-1']], []);
+
+        $revoked = $service->revokeForInsEvent($leadId, 'refunded@example.com', [['sku' => 'ic-1']], 'cancelled', 'R1');
+
+        // Defense in depth: the cancel still notifies (never zero side effects), but with a null
+        // window (immediate revoke), and the refunded row is never granted an access window.
+        self::assertSame(1, $revoked);
+        self::assertNull($this->purchaseAccessUntil($pdo, 'R1'));
+        self::assertCount(1, $this->sent);
+        $body = self::decodeBody($this->sent[0]['request']);
+        self::assertSame('cancelled', $body['kind']);
+        self::assertNull($body['accessUntil']);
+    }
+
+    public function testMonthTwoCancelStillAnchorsOnRemainingApprovedBillRow(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $service = $this->createService($purchases, new MockHandler([new Response(200)]));
+
+        $leadId = $leads->findOrCreateMinimalByEmail('month-two@example.com', 'Month Two Buyer');
+        $purchases->upsertByReceipt($leadId, 'R1', 'SALE', 'approved', 'USD', 37.00, [['sku' => 'tic-1']], []);
+        $purchases->upsertByReceipt($leadId, 'R1-B002', 'BILL', 'approved', 'USD', 19.00, [['sku' => 'tic-1']], []);
+        $purchases->upsertByReceipt($leadId, 'R1', 'CANCEL-REBILL', 'cancelled', 'USD', 0.00, [['sku' => 'tic-1']], []);
+
+        $revoked = $service->revokeForInsEvent($leadId, 'month-two@example.com', [['sku' => 'tic-1']], 'cancelled', 'R1');
+
+        self::assertSame(1, $revoked);
+        // The approved-row path is used (fallback untouched): the window lands on the approved
+        // BILL row, the cancelled row keeps no window, and entitlement continues until period end.
+        self::assertNotNull($this->purchaseAccessUntil($pdo, 'R1-B002'));
+        self::assertNull($this->purchaseAccessUntil($pdo, 'R1'));
+        self::assertTrue($purchases->leadHasApprovedInnerCirclePurchase($leadId));
+        self::assertCount(1, $this->sent);
+        $body = self::decodeBody($this->sent[0]['request']);
+        self::assertSame('cancelled', $body['kind']);
+        self::assertNotNull($body['accessUntil']);
+    }
+
     public function testRefundOnInnerCircleKeepsOtherProductApproved(): void
     {
         $pdo = $this->createDatabase();
@@ -99,7 +185,9 @@ final class ClickBankProductRevocationServiceTest extends TestCase
 
     private function createService(PurchaseRepository $purchases, MockHandler $mock): ClickBankProductRevocationService
     {
-        $http = new Client(['handler' => HandlerStack::create($mock)]);
+        $stack = HandlerStack::create($mock);
+        $stack->push(Middleware::history($this->sent));
+        $http = new Client(['handler' => $stack]);
         $notifier = new InnerCircleRevocationNotifier($http, 'https://worker.example/revoke', 'test-secret');
 
         return new ClickBankProductRevocationService($purchases, $notifier);
@@ -111,6 +199,26 @@ final class ClickBankProductRevocationServiceTest extends TestCase
         $stmt->execute([':receipt' => $receipt]);
 
         return (string) $stmt->fetchColumn();
+    }
+
+    private function purchaseAccessUntil(PDO $pdo, string $receipt): ?string
+    {
+        $stmt = $pdo->prepare('SELECT access_until FROM purchases WHERE clickbank_receipt = :receipt LIMIT 1');
+        $stmt->execute([':receipt' => $receipt]);
+        $value = $stmt->fetchColumn();
+
+        return is_string($value) && $value !== '' ? $value : null;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function decodeBody(Request $request): array
+    {
+        $decoded = json_decode((string) $request->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        self::assertIsArray($decoded);
+
+        return $decoded;
     }
 
     private function createDatabase(): PDO
