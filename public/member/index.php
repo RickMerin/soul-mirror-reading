@@ -204,7 +204,8 @@ try {
     // Love-funnel delivery: which front-end did this buyer come through, and their love-set unlocks.
     $boughtLove = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-l')
         || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-exit-l');
-    $boughtWealth = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-w')
+    $boughtWealth = $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1')
+        || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-w')
         || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-wtsl')
         || $purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1-exit');
     $funnel = ($boughtLove && !$boughtWealth) ? 'love' : (($boughtWealth && !$boughtLove) ? 'wealth' : 'all');
