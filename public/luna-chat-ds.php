@@ -279,10 +279,10 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
         <div class="offer-box">
           <span class="offer-label">Same Inner Circle, New Price</span>
           <h2 style="margin-bottom:10px;">The Inner Circle</h2>
-          <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">Unlimited private 1-1 sessions with Luna, personalized to your reading.</p>
+          <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">Private 1-1 sessions with Luna, in her voice and reading method, whenever you need her.</p>
 
           <ul class="vlist">
-            <li><span class="vs-name">Unlimited private 1-1 sessions with Luna, each worth <strong>$120</strong> on its own</span></li>
+            <li><span class="vs-name">Private 1-1 sessions with Luna, each worth <strong>$120</strong> on its own</span></li>
             <li><span class="vs-name">A thoughtful, personal reply within the hour, every time</span></li>
             <li><span class="vs-name">Guidance that knows your reading and your specific Mirror Block</span></li>
             <li><span class="vs-name">A private space on your phone, day and night, including the 2am moments</span></li>

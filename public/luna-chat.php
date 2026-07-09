@@ -274,7 +274,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
       <div class="wrap">
         <img src="frontend/images/inner-circle/inner-circle-intro.webp?v=2" width="1800" height="1208" decoding="async" alt="The Inner Circle, Luna one message away" style="display:block;width:100%;height:auto;max-width:560px;margin:4px auto 30px;border-radius:14px;border:1px solid rgba(212,175,55,0.35);box-shadow:0 14px 44px rgba(0,0,0,0.5);">
         <h2>The Inner Circle</h2>
-        <p class="subhead">Unlimited private 1-1 sessions with Luna. Anytime, about anything.</p>
+        <p class="subhead">Private 1-1 sessions with Luna. Anytime, about anything.</p>
         <div class="body-copy" style="margin-top:26px;">
           <p>Every time you reach out, it is a private session: just you and me, about your reading, your block, and the moment you are actually in. You message me, and within the hour I reply, personally, considered, and only ever about you. A single private session with a reader of my experience is worth <strong>$120</strong>. Inside The Inner Circle, you have them whenever you need one, with no limit.</p>
         </div>
@@ -286,7 +286,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
       <div class="wrap" style="max-width:540px;">
         <div class="offer-box" style="text-align:center;box-shadow:0 6px 20px #0004;border-color:#d4af3733;">
           <h2 style="margin-bottom:14px;">Begin Your Membership</h2>
-          <p style="color:#e9e2f2;font-size:17px;line-height:1.6;max-width:430px;margin:0 auto 20px;">Unlimited private 1-1 sessions with Luna, <strong style="color:var(--gold-light);">each worth $120</strong>, yours whenever you need one.</p>
+          <p style="color:#e9e2f2;font-size:17px;line-height:1.6;max-width:430px;margin:0 auto 20px;">Private 1-1 sessions with Luna, <strong style="color:var(--gold-light);">each worth $120</strong>, yours whenever you need one.</p>
           <div class="price-row" style="justify-content:center;margin-bottom:2px;">
             <span class="price-old">$120 per session</span>
             <span class="price-new"><span class="cur">$</span>37</span>
@@ -376,10 +376,10 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
       <div class="wrap" style="max-width:620px;">
         <div class="offer-box" style="border-width:1.5px;box-shadow:0 18px 56px #0008,0 0 0 1px #d4af3726;">
           <h2 style="margin-bottom:10px;">The Inner Circle</h2>
-          <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">Unlimited private 1-1 sessions with Luna, personalized to your reading.</p>
+          <p style="color:#cfc7e6;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:24px;">Private 1-1 sessions with Luna, in her voice and reading method, whenever you need her.</p>
 
           <ul class="vlist">
-            <li><span class="vs-name">Unlimited private 1-1 sessions with Luna, each worth <strong>$120</strong> on its own</span></li>
+            <li><span class="vs-name">Private 1-1 sessions with Luna, each worth <strong>$120</strong> on its own</span></li>
             <li><span class="vs-name">A thoughtful, personal reply within the hour, every time</span></li>
             <li><span class="vs-name">Guidance that knows your reading and your specific Mirror Block</span></li>
             <li><span class="vs-name">A private space on your phone, day and night, including the 2am moments</span></li>
