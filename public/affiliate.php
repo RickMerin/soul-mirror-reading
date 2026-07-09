@@ -328,7 +328,7 @@ declare(strict_types=1);
       <div class="wrap">
         <div class="support-box">
           <h3 style="font-size:22px">Questions Before You Promote?</h3>
-          <p style="color:var(--text-muted);font-size:16px;margin-top:4px">Reach the team at <a href="mailto:support@soulmirrorreading.com">support@soulmirrorreading.com</a> and we will be glad to help.</p>
+          <p style="color:var(--text-muted);font-size:16px;margin-top:4px">Reach the affiliate team at <a href="mailto:affiliate@ignitevisionmedia.com">affiliate@ignitevisionmedia.com</a> and we will be glad to help.</p>
         </div>
       </div>
     </section>
