@@ -6,6 +6,7 @@ use App\Application\ClickBankBuyerRemovalService;
 use App\Application\ClickBankProductRevocationService;
 use App\Domain\ClickBankInsStatusMapper;
 use App\Domain\ClickBankPurchaseStatus;
+use App\Domain\InnerCircleSkus;
 use App\Infrastructure\DatabaseConnection;
 use App\Logging\ClickBankInsLogger;
 use App\Repository\LeadRepository;
@@ -166,8 +167,16 @@ try {
     ))->revokeForInsEvent($leadId, $email, $items, $status, $receipt);
     $revocationAction = resolveRevocationAction($status, $revokedCount);
 
-    // Capture the Inner Circle paid-through window (set by a soft cancel) before buyer removal,
-    // for the audit log and Slack. Null for non-cancel events and for buyers with no IC window.
+    // Rebill heartbeat: on any APPROVED Inner Circle billing event (SALE / BILL / TEST_* / UNCANCEL*),
+    // (re)stamp the paid-through window to transaction time + 1 month + 3 days grace, extend-only.
+    // Access then self-expires at period end if rebills stop, so a missed CANCEL-REBILL INS can never
+    // leave a member with permanent access. Revocation (cancel/refund/chargeback) never reaches here.
+    if (ClickBankPurchaseStatus::isApproved($status) && InnerCircleSkus::purchaseIncludesInnerCircle($items)) {
+        $purchases->extendInnerCircleAccessWindow($leadId, InnerCircleSkus::ALL, extractTransactionTime($payload));
+    }
+
+    // Capture the Inner Circle paid-through window (set by the heartbeat above or a soft cancel)
+    // before buyer removal, for the audit log and Slack. Null for events with no IC window.
     $accessUntil = $purchases->innerCircleAccessUntil($leadId);
 
     (new ClickBankBuyerRemovalService(
@@ -404,6 +413,42 @@ function extractAmount(array $payload): ?float
     }
 
     return null;
+}
+
+/**
+ * Extracts and normalizes the INS transaction time to 'Y-m-d H:i:s', or null when it is
+ * absent/unparseable so the rebill heartbeat falls back to NOW(). ClickBank sends ISO 8601 in
+ * transactionTime; a numeric value is treated as a Unix timestamp. Any timezone skew is absorbed
+ * by the heartbeat's 3-day grace window.
+ *
+ * @param array $payload The notification payload.
+ * @return string|null Normalized 'Y-m-d H:i:s' timestamp, or null.
+ */
+function extractTransactionTime(array $payload): ?string
+{
+    $value = payloadValue($payload, [
+        'transactionTime',
+        'order.transactionTime',
+        'transactionDate',
+        'order.transactionDate',
+    ]);
+    if (!is_string($value) && !is_numeric($value)) {
+        return null;
+    }
+    $value = trim((string) $value);
+    if ($value === '') {
+        return null;
+    }
+
+    try {
+        $dt = is_numeric($value)
+            ? new DateTimeImmutable('@' . $value)
+            : new DateTimeImmutable($value);
+    } catch (Exception) {
+        return null;
+    }
+
+    return $dt->format('Y-m-d H:i:s');
 }
 
 /**

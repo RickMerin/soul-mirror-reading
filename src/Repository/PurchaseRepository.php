@@ -358,6 +358,274 @@ final class PurchaseRepository
     }
 
     /**
+     * Rebill heartbeat: extends this lead's Inner Circle access window on an APPROVED billing event
+     * (SALE / BILL / TEST_SALE / TEST_BILL / UNCANCEL*), so access self-expires at period end when
+     * rebills stop. A single missed cancel INS can never leave a paying-nothing member with
+     * permanent access, because each payment only buys one month plus a grace window.
+     *
+     * Sets access_until = $anchorTime (or NOW() when null) + 1 month + $graceDays days on every
+     * approved purchase row for this lead that contains one of $skus, and NEVER shortens a later
+     * existing access_until (extend-only). The date math is computed DB-side so it stays
+     * timezone-safe, mirroring {@see self::computeAccessUntil()}.
+     *
+     * @param list<non-empty-string> $skus
+     * @param string|null $anchorTime Transaction time as 'Y-m-d H:i:s' (INS payload time), or null for NOW().
+     * @return string|null The resulting access window (max access_until across the updated rows), or
+     *                     null when this lead holds no approved matching row.
+     */
+    public function extendInnerCircleAccessWindow(
+        int $leadId,
+        array $skus,
+        ?string $anchorTime = null,
+        int $graceDays = 3,
+    ): ?string {
+        $target = $this->computeHeartbeatTarget($anchorTime, $graceDays);
+        if ($target === null) {
+            return null;
+        }
+
+        return $this->applyInnerCircleAccessUntil($leadId, $skus, $target, true);
+    }
+
+    /**
+     * Reconciliation setter: stamps access_until = $target on every approved purchase row for this
+     * lead that contains one of $skus. When $extendOnly is true it never shortens a later existing
+     * value (heals a paying member whose access lapsed after a missed BILL INS); when false it
+     * overwrites unconditionally (clamps a cancelled sub down to its true paid-through end).
+     *
+     * @param list<non-empty-string> $skus
+     * @param string $target Target access_until as 'Y-m-d H:i:s'.
+     * @return string|null The resulting access window (max access_until across the updated rows), or
+     *                     null when this lead holds no approved matching row.
+     */
+    public function setInnerCircleAccessUntilTo(
+        int $leadId,
+        array $skus,
+        string $target,
+        bool $extendOnly,
+    ): ?string {
+        $target = trim($target);
+        if ($target === '') {
+            return null;
+        }
+
+        return $this->applyInnerCircleAccessUntil($leadId, $skus, $target, $extendOnly);
+    }
+
+    /**
+     * All distinct ClickBank receipts for approved purchases that contain an Inner Circle SKU,
+     * joined to the buyer email, for the reconciliation cron. Ordered lapsed-window-first so the
+     * members most likely locked out (or overdue for revocation) are reconciled before fresher ones
+     * when a limit is applied.
+     *
+     * @param int|null $limit Max receipts to return (null = no limit).
+     * @return list<array{receipt: string, leadId: int, email: string, accessUntil: string|null, createdAt: string|null, updatedAt: string|null}>
+     */
+    public function findActiveInnerCircleReceipts(?int $limit = null): array
+    {
+        $stmt = $this->pdo->prepare(
+            "SELECT p.clickbank_receipt AS receipt, p.lead_id AS lead_id, l.email AS email,
+                    p.access_until AS access_until, p.created_at AS created_at, p.updated_at AS updated_at,
+                    p.items_json AS items_json
+             FROM purchases p
+             INNER JOIN leads l ON l.id = p.lead_id
+             WHERE p.status IN ('approved', 'complete', 'completed', 'active')
+               AND p.clickbank_receipt IS NOT NULL AND p.clickbank_receipt <> ''
+             ORDER BY (p.access_until IS NULL) DESC, p.access_until ASC, p.id ASC"
+        );
+        $stmt->execute();
+
+        $out = [];
+        $seen = [];
+        while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
+            $raw = $row['items_json'] ?? '';
+            if (!is_string($raw) || $raw === '') {
+                continue;
+            }
+            try {
+                $items = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+            } catch (JsonException) {
+                continue;
+            }
+            if (!is_array($items) || !$this->purchaseContainsAnySku($items, InnerCircleSkus::ALL)) {
+                continue;
+            }
+            $receipt = trim((string) ($row['receipt'] ?? ''));
+            $email = strtolower(trim((string) ($row['email'] ?? '')));
+            if ($receipt === '' || $email === '' || isset($seen[$receipt])) {
+                continue;
+            }
+            $seen[$receipt] = true;
+            $out[] = [
+                'receipt' => $receipt,
+                'leadId' => (int) $row['lead_id'],
+                'email' => $email,
+                'accessUntil' => self::nullableString($row['access_until'] ?? null),
+                'createdAt' => self::nullableString($row['created_at'] ?? null),
+                'updatedAt' => self::nullableString($row['updated_at'] ?? null),
+            ];
+            if ($limit !== null && count($out) >= $limit) {
+                break;
+            }
+        }
+
+        return $out;
+    }
+
+    /**
+     * Buyer + purchase summary for a single receipt, joined to the lead email. Used by the
+     * cancel-INS fire drill to build a realistic payload and read back the resulting state.
+     *
+     * @return array{leadId: int, email: string, status: string, txnType: string|null, accessUntil: string|null, createdAt: string|null, itemsJson: string}|null
+     */
+    public function findPurchaseWithBuyerByReceipt(string $receipt): ?array
+    {
+        $receipt = trim($receipt);
+        if ($receipt === '') {
+            return null;
+        }
+
+        $stmt = $this->pdo->prepare(
+            "SELECT p.lead_id AS lead_id, l.email AS email, p.status AS status, p.txn_type AS txn_type,
+                    p.access_until AS access_until, p.created_at AS created_at, p.items_json AS items_json
+             FROM purchases p
+             INNER JOIN leads l ON l.id = p.lead_id
+             WHERE p.clickbank_receipt = :receipt
+             LIMIT 1"
+        );
+        $stmt->execute([':receipt' => $receipt]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!is_array($row)) {
+            return null;
+        }
+
+        return [
+            'leadId' => (int) $row['lead_id'],
+            'email' => strtolower(trim((string) ($row['email'] ?? ''))),
+            'status' => (string) ($row['status'] ?? ''),
+            'txnType' => self::nullableString($row['txn_type'] ?? null),
+            'accessUntil' => self::nullableString($row['access_until'] ?? null),
+            'createdAt' => self::nullableString($row['created_at'] ?? null),
+            'itemsJson' => is_string($row['items_json'] ?? null) ? (string) $row['items_json'] : '',
+        ];
+    }
+
+    /**
+     * Stamps access_until = $target on this lead's approved rows that contain any of $skus,
+     * returning the resulting window. Shared by the rebill heartbeat and the reconciliation setter.
+     *
+     * @param list<non-empty-string> $skus
+     */
+    private function applyInnerCircleAccessUntil(
+        int $leadId,
+        array $skus,
+        string $target,
+        bool $extendOnly,
+    ): ?string {
+        if ($skus === []) {
+            return null;
+        }
+
+        $stmt = $this->pdo->prepare(
+            "SELECT id, items_json FROM purchases
+             WHERE lead_id = :lead_id
+               AND status IN ('approved', 'complete', 'completed', 'active')"
+        );
+        $stmt->execute([':lead_id' => $leadId]);
+
+        $entitlementIds = [];
+        while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
+            $raw = $row['items_json'] ?? '';
+            if (!is_string($raw) || $raw === '') {
+                continue;
+            }
+            try {
+                $items = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+            } catch (JsonException) {
+                continue;
+            }
+            if (!is_array($items) || !$this->purchaseContainsAnySku($items, $skus)) {
+                continue;
+            }
+            $entitlementIds[] = (int) $row['id'];
+        }
+
+        if ($entitlementIds === []) {
+            return null;
+        }
+
+        $placeholders = implode(', ', array_fill(0, count($entitlementIds), '?'));
+        // Extend-only never moves a later paid-through date earlier (a NULL window is treated as
+        // "needs stamping"); overwrite clamps unconditionally to the cancelled paid-through end.
+        $setExpr = $extendOnly
+            ? 'CASE WHEN access_until IS NULL OR access_until < ? THEN ? ELSE access_until END'
+            : '?';
+        $update = $this->pdo->prepare(
+            "UPDATE purchases
+             SET access_until = $setExpr, updated_at = CURRENT_TIMESTAMP
+             WHERE id IN ($placeholders)"
+        );
+        $params = $extendOnly ? [$target, $target] : [$target];
+        $update->execute(array_merge($params, $entitlementIds));
+
+        return $this->maxAccessUntil($entitlementIds);
+    }
+
+    /**
+     * Computes $anchorTime (or NOW() when null) + 1 month + $graceDays days DB-side, using the
+     * driver's date functions so it stays timezone-safe. $graceDays is cast to a non-negative int
+     * (never interpolated from user input) so inlining it in the SQL is safe.
+     */
+    private function computeHeartbeatTarget(?string $anchorTime, int $graceDays): ?string
+    {
+        $grace = max(0, $graceDays);
+        $driver = (string) $this->pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+
+        if ($driver === 'sqlite') {
+            $anchorExpr = $anchorTime === null ? "'now'" : '?';
+            $sql = "SELECT datetime($anchorExpr, '+1 month', '+$grace days')";
+        } else {
+            $anchorExpr = $anchorTime === null ? 'NOW()' : '?';
+            $sql = "SELECT DATE_ADD(DATE_ADD($anchorExpr, INTERVAL 1 MONTH), INTERVAL $grace DAY)";
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($anchorTime === null ? [] : [$anchorTime]);
+        $value = $stmt->fetchColumn();
+
+        return is_string($value) && $value !== '' ? $value : null;
+    }
+
+    /**
+     * Max access_until across the given purchase ids, or null when none carry a window.
+     *
+     * @param list<int> $ids
+     */
+    private function maxAccessUntil(array $ids): ?string
+    {
+        if ($ids === []) {
+            return null;
+        }
+
+        $placeholders = implode(', ', array_fill(0, count($ids), '?'));
+        $stmt = $this->pdo->prepare("SELECT MAX(access_until) FROM purchases WHERE id IN ($placeholders)");
+        $stmt->execute($ids);
+        $value = $stmt->fetchColumn();
+
+        return is_string($value) && $value !== '' ? $value : null;
+    }
+
+    private static function nullableString(mixed $value): ?string
+    {
+        if (!is_string($value)) {
+            return null;
+        }
+        $value = trim($value);
+
+        return $value !== '' ? $value : null;
+    }
+
+    /**
      * @param array<int,array<string,mixed>> $items
      * @param array<string,mixed> $rawInsPayload
      */
