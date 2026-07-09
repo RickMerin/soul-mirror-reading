@@ -116,6 +116,7 @@ declare(strict_types=1);
     .copy-btn{flex:none;background:transparent;color:var(--gold-light);border:1px solid #d4af3773;border-radius:8px;padding:9px 15px;font-family:'Cinzel',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .15s,color .15s}
     .copy-btn:hover{background:#d4af371f}
     .copy-btn.copied{background:var(--gold);color:#1a0d2e;border-color:var(--gold)}
+    .angle-label{display:block;font-family:'Cinzel',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-bottom:7px;text-align:left}
 
     /* EMAIL SWIPES */
     .swipe{background:linear-gradient(#2d1b6980,#1e0d40d9);border:1px solid #d4af3759;border-radius:16px;padding:24px 22px;margin-top:22px;box-shadow:0 10px 34px #0005;text-align:left}
@@ -247,7 +248,7 @@ declare(strict_types=1);
       <div class="wrap">
         <span class="eyebrow center" style="display:block">Your Affiliate Link</span>
         <h2 class="center">Generate Your ClickBank Hoplink</h2>
-        <p class="lead center" style="margin-bottom:28px">Enter your ClickBank nickname below. Add an optional tracking ID if you want to track a specific campaign, list, or placement inside ClickBank.</p>
+        <p class="lead center" style="margin-bottom:28px">Enter your ClickBank nickname below. Add an optional tracking ID if you want to track a specific campaign, list, or placement inside ClickBank. You get two links, one for each angle page: pick the one that fits your list, or test both.</p>
 
         <div class="panel" style="max-width:600px;margin:0 auto">
           <div class="field-row">
@@ -268,9 +269,15 @@ declare(strict_types=1);
           </div>
 
           <div class="result" id="result" aria-live="polite">
+            <span class="angle-label">Wealth Angle</span>
             <div class="codebox">
-              <code id="hoplink"></code>
-              <button type="button" class="copy-btn" id="copyLink">Copy</button>
+              <code id="hoplink-wealth"></code>
+              <button type="button" class="copy-btn" id="copyWealth">Copy</button>
+            </div>
+            <span class="angle-label" style="margin-top:18px">Love Angle</span>
+            <div class="codebox">
+              <code id="hoplink-love"></code>
+              <button type="button" class="copy-btn" id="copyLove">Copy</button>
             </div>
           </div>
         </div>
@@ -282,15 +289,16 @@ declare(strict_types=1);
       <div class="wrap">
         <span class="eyebrow center" style="display:block">Email Swipes</span>
         <h2 class="center">Ready-To-Send Emails</h2>
-        <p class="lead center" style="margin-bottom:22px">All swipes live in one document. Replace <b style="color:var(--gold-light)">YOURLINK</b> in each email with the hoplink you generated above, then send.</p>
+        <p class="lead center" style="margin-bottom:22px">One swipe document per angle. Use the swipes that match the hoplink you generated above, replace <b style="color:var(--gold-light)">YOURLINK</b> in each email with your link, then send.</p>
 
         <div class="note" style="margin-bottom:8px">
           <b>Please read before sending.</b> These swipes are starting points; edit them in your own voice. You are responsible for including your own affiliate disclosure, for example a clear line stating that you may earn a commission if someone buys through your link. Follow the FTC endorsement guides and the CAN-SPAM Act. Do not add income promises, health or medical claims, guaranteed outcomes, or fake scarcity.
         </div>
 
-        <div class="gen-actions" style="margin-top:26px">
-          <a class="btn" href="affiliate-swipes.docx" download>Click For Email Swipes &rarr;</a>
-          <p class="hint" style="margin-top:14px;color:#bdb4d6;font-size:13.5px">Downloads as a Word document. You can also open it in Google Docs.</p>
+        <div class="gen-actions" style="margin-top:26px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+          <a class="btn" href="https://docs.google.com/document/d/1NPkmuwgd_hUrAgFE-2XIsfpv676732GnNs3mm7iNcPw/edit" target="_blank" rel="noopener">Wealth Angle Swipes &rarr;</a>
+          <a class="btn" href="https://docs.google.com/document/d/1nwFMETbJviUHKBKia3LMNKbxYr9HGvLCpRleztuWkRU/edit" target="_blank" rel="noopener">Love Angle Swipes &rarr;</a>
+          <p class="hint" style="flex-basis:100%;margin-top:4px;color:#bdb4d6;font-size:13.5px">Opens in Google Docs. Match the swipe doc to the angle of your hoplink.</p>
         </div>
       </div>
     </section>
@@ -342,8 +350,10 @@ declare(strict_types=1);
       var tid = document.getElementById('tid');
       var genBtn = document.getElementById('genBtn');
       var result = document.getElementById('result');
-      var hoplink = document.getElementById('hoplink');
-      var copyLink = document.getElementById('copyLink');
+      var hoplinkWealth = document.getElementById('hoplink-wealth');
+      var hoplinkLove = document.getElementById('hoplink-love');
+      var copyWealth = document.getElementById('copyWealth');
+      var copyLove = document.getElementById('copyLove');
 
       function clean(v){ return (v || '').trim(); }
 
@@ -351,22 +361,22 @@ declare(strict_types=1);
       cbid.addEventListener('input', toggleGen);
       toggleGen();
 
-      function buildLink(){
+      function buildLink(page){
         var id = clean(cbid.value);
         if(!id) return '';
-        var link = 'https://hop.clickbank.net/?affiliate=' + encodeURIComponent(id) + '&vendor=' + VENDOR + '&cbpage=wealth';
+        var link = 'https://hop.clickbank.net/?affiliate=' + encodeURIComponent(id) + '&vendor=' + VENDOR + '&cbpage=' + page;
         var track = clean(tid.value);
         if(track) link += '&tid=' + encodeURIComponent(track);
         return link;
       }
 
       genBtn.addEventListener('click', function(){
-        var link = buildLink();
-        if(!link) return;
-        hoplink.textContent = link;
+        var wealth = buildLink('wealth');
+        if(!wealth) return;
+        hoplinkWealth.textContent = wealth;
+        hoplinkLove.textContent = buildLink('love');
         result.classList.add('show');
-        copyLink.classList.remove('copied');
-        copyLink.textContent = 'Copy';
+        [copyWealth, copyLove].forEach(function(b){ b.classList.remove('copied'); b.textContent = 'Copy'; });
       });
 
       function copyText(text, btn, doneLabel){
@@ -395,9 +405,14 @@ declare(strict_types=1);
         document.body.removeChild(ta);
       }
 
-      copyLink.addEventListener('click', function(){
-        var text = hoplink.textContent;
-        if(text) copyText(text, copyLink, 'Copy');
+      copyWealth.addEventListener('click', function(){
+        var text = hoplinkWealth.textContent;
+        if(text) copyText(text, copyWealth, 'Copy');
+      });
+
+      copyLove.addEventListener('click', function(){
+        var text = hoplinkLove.textContent;
+        if(text) copyText(text, copyLove, 'Copy');
       });
 
     })();
