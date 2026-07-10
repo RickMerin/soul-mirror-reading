@@ -8,7 +8,8 @@ require $projectRoot . '/vendor/autoload.php';
 
 
 $otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1on1&vtid=[cmc_vid]';
-$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1on1&vtid=[cmc_vid]';
+// Exit-intent downsell: same membership, lower first month ($17 instead of $37), same $19/mo rebill.
+$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template=1on1&vtid=[cmc_vid]';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -424,5 +425,65 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1o
   </footer>
 
   <script>(function(){var ec=document.getElementById('offer-early'),sc=document.getElementById('stickyCta');if(!ec||!sc)return;addEventListener('scroll',function(){sc.classList.toggle('show',ec.getBoundingClientRect().bottom<0)},{passive:true});})();</script>
+
+  <!-- EXIT-INTENT DOWNSELL POPUP (tic-1-ds, $17 first month) -->
+  <style>
+    .ic-exit{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(8,4,20,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+    .ic-exit.show{display:flex}
+    .ic-exit__card{position:relative;width:100%;max-width:440px;background:linear-gradient(165deg,#241147,#160b30 60%,#0e0820);border:1.5px solid rgba(212,175,55,.6);border-radius:16px;padding:34px 28px 24px;text-align:center;box-shadow:0 26px 70px rgba(0,0,0,.6),0 0 42px rgba(212,175,55,.12);animation:icExitIn .32s cubic-bezier(.2,.8,.25,1) both}
+    @keyframes icExitIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+    .ic-exit__close{position:absolute;top:9px;right:13px;background:none;border:none;color:#b9aee0;font-size:28px;line-height:1;cursor:pointer;padding:4px 8px;transition:color .2s}
+    .ic-exit__close:hover{color:var(--gold-light)}
+    .ic-exit__eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
+    .ic-exit__title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:27px;line-height:1.22;color:var(--cream);margin:0 0 14px}
+    .ic-exit__body{font-family:'Inter',sans-serif;font-size:15.5px;line-height:1.7;color:var(--text-muted);margin:0 0 18px}
+    .ic-exit__body strong{color:var(--gold-light)}
+    .ic-exit__price{margin:0 0 20px;font-family:'Cinzel',serif}
+    .ic-exit__was{color:#9d93bf;text-decoration:line-through;font-size:17px;margin-right:9px}
+    .ic-exit__now{color:var(--gold-bright);font-size:22px;font-weight:600}
+    .ic-exit__cta{display:block;width:100%;border-radius:50px;padding:15px 20px;font-family:'Cinzel',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:#1a0d2e;background:linear-gradient(180deg,var(--gold-bright),var(--gold));box-shadow:0 10px 26px rgba(212,175,55,.4);transition:transform .15s,box-shadow .15s}
+    .ic-exit__cta:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(212,175,55,.5)}
+    .ic-exit__fine{font-family:'Inter',sans-serif;font-size:12.5px;color:#a99fce;margin:12px 0 4px}
+    .ic-exit__decline{background:none;border:none;color:#8f85b3;font-family:'Inter',sans-serif;font-size:13px;text-decoration:underline;cursor:pointer;padding:6px;margin-top:2px;transition:color .2s}
+    .ic-exit__decline:hover{color:var(--text-muted)}
+    @media(max-width:480px){.ic-exit__card{padding:30px 20px 20px}.ic-exit__title{font-size:24px}}
+    @media(prefers-reduced-motion:reduce){.ic-exit__card{animation:none}}
+  </style>
+  <div class="ic-exit" id="icExit" role="dialog" aria-modal="true" aria-labelledby="icExitTitle">
+    <div class="ic-exit__card">
+      <button class="ic-exit__close" id="icExitClose" type="button" aria-label="Close">&times;</button>
+      <p class="ic-exit__eyebrow">A Gentler Way In</p>
+      <h2 class="ic-exit__title" id="icExitTitle">Before you go, let me lower the first step.</h2>
+      <p class="ic-exit__body">If the first month is the only thing holding you back, let it not be. You can begin for <strong>$17 today</strong> instead of $37. Everything else stays exactly the same: a private line to me whenever you need it, then $19 a month, and you can cancel in one click.</p>
+      <div class="ic-exit__price"><span class="ic-exit__was">$37</span><span class="ic-exit__now">$17 first month</span></div>
+      <a class="ic-exit__cta" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Start For $17</a>
+      <p class="ic-exit__fine">Then $19/month. Cancel anytime in one click. 90-day money-back guarantee.</p>
+      <button class="ic-exit__decline" id="icExitDecline" type="button">No thank you, not right now</button>
+    </div>
+  </div>
+  <script>(function(){
+    var m=document.getElementById('icExit');if(!m)return;
+    var KEY='ic_exit_shown',shown=false;
+    function open(){if(shown)return;try{if(sessionStorage.getItem(KEY))return;sessionStorage.setItem(KEY,'1')}catch(e){}shown=true;m.classList.add('show');}
+    function close(){m.classList.remove('show');}
+    document.getElementById('icExitClose').addEventListener('click',close);
+    document.getElementById('icExitDecline').addEventListener('click',close);
+    m.addEventListener('click',function(e){if(e.target===m)close();});
+    addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('show'))close();});
+    try{if(sessionStorage.getItem(KEY))return;}catch(e){}
+    // Arm exit-intent only after 30s on the page, so early leavers are left in peace.
+    setTimeout(function(){
+      try{if(sessionStorage.getItem(KEY))return;}catch(e){}
+      var touch=('ontouchstart'in window)||navigator.maxTouchPoints>0;
+      if(touch){
+        try{history.pushState(null,'',location.href);}catch(e){}
+        addEventListener('popstate',function(){open();});
+      }else{
+        document.addEventListener('mouseout',function(e){
+          if(e.clientY<=0&&!e.relatedTarget&&!e.toElement)open();
+        });
+      }
+    },30000);
+  })();</script>
 </body>
 </html>
