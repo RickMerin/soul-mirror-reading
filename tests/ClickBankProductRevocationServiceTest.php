@@ -153,18 +153,69 @@ final class ClickBankProductRevocationServiceTest extends TestCase
         $pdo = $this->createDatabase();
         $leads = new LeadRepository($pdo);
         $purchases = new PurchaseRepository($pdo);
-        $service = $this->createService($purchases, new MockHandler([new Response(200)]));
+        /** @var list<array{request: Request}> $history */
+        $history = [];
+        $service = $this->createServiceWithHistory(
+            $purchases,
+            new MockHandler([new Response(200)]),
+            $history,
+        );
 
         $leadId = $leads->findOrCreateMinimalByEmail('mixed@example.com', 'Mixed Buyer');
         $purchases->upsertByReceipt($leadId, 'IC-1', 'SALE', 'approved', 'USD', 37.00, [['sku' => 'ic-1']], []);
         $purchases->upsertByReceipt($leadId, 'SMR-1', 'SALE', 'approved', 'USD', 47.00, [['sku' => 'smr-1']], []);
+        // Upsert alone flips the only IC row — sibling revoke count is 0, but Worker must still be notified.
         $purchases->upsertByReceipt($leadId, 'IC-1', 'RFND', 'refunded', 'USD', 37.00, [['sku' => 'ic-1']], []);
 
         $revoked = $service->revokeForInsEvent($leadId, 'mixed@example.com', [['sku' => 'ic-1']], 'refunded', 'IC-1');
 
-        self::assertSame(0, $revoked);
+        self::assertSame(1, $revoked);
         self::assertFalse($purchases->leadHasApprovedInnerCirclePurchase($leadId));
         self::assertTrue($purchases->leadHasApprovedPurchaseWithItemSku($leadId, 'smr-1'));
+
+        self::assertCount(1, $history);
+        $body = self::decodeNotifyBody($history[0]['request']);
+        self::assertSame('refunded_or_chargeback', $body['kind']);
+        self::assertNull($body['accessUntil']);
+    }
+
+    public function testRefundAfterSoftCancelRevokesAccessImmediately(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        /** @var list<array{request: Request}> $history */
+        $history = [];
+        $service = $this->createServiceWithHistory(
+            $purchases,
+            new MockHandler([new Response(200), new Response(200)]),
+            $history,
+        );
+
+        $leadId = $leads->findOrCreateMinimalByEmail('tic@example.com', 'TIC Buyer');
+        $purchases->upsertByReceipt($leadId, 'R1', 'SALE', 'approved', 'USD', 17.00, [['sku' => 'tic-1']], []);
+        $purchases->upsertByReceipt($leadId, 'R2', 'BILL', 'approved', 'USD', 19.00, [['sku' => 'tic-1']], []);
+        $purchases->upsertByReceipt($leadId, 'R1', 'CANCEL-REBILL', 'cancelled', 'USD', 19.00, [['sku' => 'tic-1']], []);
+
+        $cancelled = $service->revokeForInsEvent($leadId, 'tic@example.com', [['sku' => 'tic-1']], 'cancelled', 'R1');
+        self::assertSame(1, $cancelled);
+        self::assertTrue($purchases->leadHasApprovedInnerCirclePurchase($leadId));
+        $accessUntil = $purchases->innerCircleAccessUntil($leadId);
+        self::assertNotNull($accessUntil);
+        self::assertGreaterThan(date('Y-m-d H:i:s'), $accessUntil);
+
+        // Refund the billed period: upsert flips R2, then hard revoke must end access + notify immediately.
+        $purchases->upsertByReceipt($leadId, 'R2', 'RFND', 'refunded', 'USD', 19.00, [['sku' => 'tic-1']], []);
+        $revoked = $service->revokeForInsEvent($leadId, 'tic@example.com', [['sku' => 'tic-1']], 'refunded', 'R2');
+
+        self::assertSame(1, $revoked);
+        self::assertFalse($purchases->leadHasApprovedInnerCirclePurchase($leadId));
+        self::assertNull($purchases->innerCircleAccessUntil($leadId));
+
+        self::assertCount(2, $history);
+        $refundBody = self::decodeNotifyBody($history[1]['request']);
+        self::assertSame('refunded_or_chargeback', $refundBody['kind']);
+        self::assertNull($refundBody['accessUntil']);
     }
 
     public function testApprovedSaleDoesNotRevoke(): void
@@ -191,6 +242,33 @@ final class ClickBankProductRevocationServiceTest extends TestCase
         $notifier = new InnerCircleRevocationNotifier($http, 'https://worker.example/revoke', 'test-secret');
 
         return new ClickBankProductRevocationService($purchases, $notifier);
+    }
+
+    /**
+     * @param list<array{request: Request}> $history
+     */
+    private function createServiceWithHistory(
+        PurchaseRepository $purchases,
+        MockHandler $mock,
+        array &$history,
+    ): ClickBankProductRevocationService {
+        $stack = HandlerStack::create($mock);
+        $stack->push(Middleware::history($history));
+        $http = new Client(['handler' => $stack]);
+        $notifier = new InnerCircleRevocationNotifier($http, 'https://worker.example/revoke', 'test-secret');
+
+        return new ClickBankProductRevocationService($purchases, $notifier);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function decodeNotifyBody(Request $request): array
+    {
+        $decoded = json_decode((string) $request->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        self::assertIsArray($decoded);
+
+        return $decoded;
     }
 
     private function purchaseStatus(PDO $pdo, string $receipt): string

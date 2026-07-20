@@ -205,7 +205,8 @@ final class PurchaseRepository
     }
 
     /**
-     * Marks approved purchases containing any of the given SKUs as revoked.
+     * Marks approved purchases containing any of the given SKUs as revoked and clears
+     * access_until so a prior soft-cancel window cannot outlive a refund/chargeback.
      *
      * @param list<non-empty-string> $skus
      */
@@ -226,7 +227,9 @@ final class PurchaseRepository
         $stmt->execute([':lead_id' => $leadId]);
 
         $update = $this->pdo->prepare(
-            'UPDATE purchases SET status = :status, updated_at = CURRENT_TIMESTAMP WHERE id = :id'
+            'UPDATE purchases
+             SET status = :status, access_until = NULL, updated_at = CURRENT_TIMESTAMP
+             WHERE id = :id'
         );
 
         $revoked = 0;

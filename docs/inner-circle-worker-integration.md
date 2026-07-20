@@ -104,6 +104,8 @@ Re-call the entitlement API on each chat session start (or every N minutes) so a
 
 ## Flow
 
+Cancel alone is a **soft cancel**: remaining approved TIC-1 / IC rows keep access until `access_until`. Refunds and chargebacks are **hard revokes**: access ends immediately and the Worker is told to drop the session (`accessUntil: null`), even if the RFND upsert alone cleared the last approved row.
+
 ```mermaid
 sequenceDiagram
   participant CB as ClickBank
@@ -111,10 +113,14 @@ sequenceDiagram
   participant DB as purchases
   participant Worker as Inner Circle Worker
 
-  CB->>INS: CANCEL-REBILL ic-1
-  INS->>DB: revoke all ic-1/ic-1-ds rows
-  INS->>Worker: POST /api/revoke
-  Worker->>Worker: delete activation
+  CB->>INS: CANCEL-REBILL tic-1
+  INS->>DB: stamp access_until on approved IC rows
+  INS->>Worker: POST revoke kind=cancelled accessUntil=paidThrough
+  Note over Worker: Access allowed until accessUntil
+
+  CB->>INS: RFND tic-1
+  INS->>DB: hard revoke IC rows clear access_until
+  INS->>Worker: POST revoke kind=refunded_or_chargeback accessUntil=null
   Note over Worker: User login
   Worker->>INS: GET inner-circle-entitlement
   INS->>DB: leadHasApprovedInnerCirclePurchase
