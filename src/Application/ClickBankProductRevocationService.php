@@ -51,17 +51,22 @@ final class ClickBankProductRevocationService
             return 0;
         }
 
+        // Refunds / chargebacks end access immediately. The INS upsert may already have flipped
+        // the event receipt to refunded before we run, so sibling revoke can be 0 — still notify
+        // the Worker with accessUntil=null so a prior soft-cancel window cannot keep the session.
         $revoked = $this->purchases->revokeApprovedPurchasesContainingSkus(
             $leadId,
             InnerCircleSkus::ALL,
             $status,
         );
 
-        if ($revoked > 0) {
-            $this->innerCircleNotifier->notifyRevoked($email, $status, $receipt, null);
+        if ($this->purchases->leadHasApprovedInnerCirclePurchase($leadId)) {
+            return $revoked;
         }
 
-        return $revoked;
+        $this->innerCircleNotifier->notifyRevoked($email, $status, $receipt, null);
+
+        return max($revoked, 1);
     }
 
     private static function isCancellation(string $status): bool
