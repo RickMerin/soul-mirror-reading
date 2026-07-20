@@ -33,8 +33,9 @@ Options -Indexes
     RewriteCond %{HTTP_HOST} !^127\.0\.0\.1(:\d+)?$ [NC]
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # If the request is '/' serve the main reading page (PHP provides CSS cache-bust).
-    RewriteRule ^$ public/index.php [L]
+    # Bare root now serves the content magazine (AdSense-facing); funnel home moved to /start.
+    RewriteRule ^start/?$ public/index.php [L]
+    RewriteRule ^$ reading/index.php [L]
 
     RewriteRule ^thankyou\.html$ public/thankyou.php [L,R=301]
     RewriteRule ^sales-page\.html$ public/sales-page.php [L,R=301]
