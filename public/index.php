@@ -1,5 +1,5 @@
 <?php
 declare(strict_types=1);
 $funnelBase = '';
-$assetRoot = '';
+$assetRoot = '/';
 require __DIR__ . '/includes/funnel-home.php';
