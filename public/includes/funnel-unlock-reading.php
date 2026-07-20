@@ -36,6 +36,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 <html lang="en"<?= $funnelBase !== '' ? ' data-funnel-base="' . htmlspecialchars($funnelBase, ENT_QUOTES) . '"' : '' ?>>
 
 <head>
+  <meta name="google-adsense-account" content="ca-pub-7614509729474530">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Unlock Your Reading — Soul Mirror</title>
