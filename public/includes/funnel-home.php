@@ -319,6 +319,7 @@ $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
 
   <footer class="site-footer wavy">
     <p class="site-footer-links">
+      <a href="/reading/">Articles &amp; Guides</a> &nbsp;·&nbsp;
       <a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp;
       <a href="/terms-conditions">Terms &amp; Conditions</a> &nbsp;·&nbsp;
       <a href="mailto:support@soulmirrorreading.com">Contact Us</a> &nbsp;·&nbsp;
