@@ -27,6 +27,8 @@ final class AppConfig
         public readonly string $kitTagName,
         /** Tag when ClickBank INS has no line-item SKUs; empty env falls back to {@see $kitTagName}. */
         public readonly string $kitTagNameBuyer,
+        /** Lead tag for LOVE-funnel opt-ins; keeps them out of the wealth nurture. */
+        public readonly string $kitTagNameLove,
         /** Kit form UID used to subscribe unlock-reading leads to a form automation. */
         public readonly string $kitFormUid,
         /** Full `src` URL from Kit’s JavaScript embed snippet (never an API secret). */
@@ -117,6 +119,7 @@ final class AppConfig
 
         $kitTagName = $get('KIT_TAG_NAME') !== '' ? $get('KIT_TAG_NAME') : 'soul-mirror-leads';
         $kitTagNameBuyer = $get('KIT_TAG_NAME_BUYER') !== '' ? $get('KIT_TAG_NAME_BUYER') : $kitTagName;
+        $kitTagNameLove = $get('KIT_TAG_NAME_LOVE') !== '' ? $get('KIT_TAG_NAME_LOVE') : 'soul-mirror-love-leads';
 
         $kitSubscribeRaw = strtolower(trim($get('KIT_FORM_SUBSCRIBE_VIA')));
         $kitFormSubscribeVia = in_array($kitSubscribeRaw, ['api', 'embed', 'none'], true)
@@ -159,6 +162,7 @@ final class AppConfig
             kitApiKey: $get('KIT_API_KEY'),
             kitTagName: $kitTagName,
             kitTagNameBuyer: $kitTagNameBuyer,
+            kitTagNameLove: $kitTagNameLove,
             kitFormUid: $kitFormUid,
             kitFormEmbedScript: $get('KIT_FORM_EMBED_SCRIPT'),
             kitFormEmbedUid: $get('KIT_FORM_EMBED_UID'),

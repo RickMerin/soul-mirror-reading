@@ -53,6 +53,12 @@ final class ReadingOrchestrator
         $name = $form->name;
         $email = $form->email;
         $dob = $form->dob;
+        // Funnel the opt-in came from (sent by the browser as data-funnel-base, e.g. "love/").
+        // Love-funnel leads get their own tag so they enter the love nurture, not the wealth one.
+        $funnel = strtolower(trim((string) ($body['funnel'] ?? '')));
+        $leadTag = str_starts_with($funnel, 'love')
+            ? $this->config->kitTagNameLove
+            : $this->config->kitTagName;
         $gender = $form->gender;
         $card1Name = $form->card1Name;
         $card2Name = $form->card2Name;
@@ -164,7 +170,7 @@ final class ReadingOrchestrator
                 $this->pipelineLog->line('kit: warning one or more tarot reading slots are empty');
             }
             try {
-                $this->syncKitSubscriberWithReadings($subscriber, $email);
+                $this->syncKitSubscriberWithReadings($subscriber, $email, $leadTag);
                 if ($this->config->kitFormSubscribeVia === 'embed') {
                     $this->pipelineLog->line('kit: embed handoff (browser submits form with kitEmbedFields)');
                 }
@@ -231,7 +237,7 @@ final class ReadingOrchestrator
      *   sunLuck: string,
      * } $subscriber
      */
-    private function syncKitSubscriberWithReadings(array $subscriber, string $email): void
+    private function syncKitSubscriberWithReadings(array $subscriber, string $email, string $leadTag): void
     {
         $this->kit->ensureCustomFields();
         $this->pipelineLog->line('kit: custom_fields ensured');
@@ -248,8 +254,8 @@ final class ReadingOrchestrator
         } elseif ($this->config->kitFormSubscribeVia === 'api') {
             $this->pipelineLog->line('kit: form_subscribe skipped (KIT_FORM_UID empty)');
         }
-        $this->kit->tagSubscriber($email, $this->config->kitTagName, false);
-        $this->pipelineLog->line('kit: tag applied tag=' . $this->config->kitTagName);
+        $this->kit->tagSubscriber($email, $leadTag, false);
+        $this->pipelineLog->line('kit: tag applied tag=' . $leadTag);
     }
 
     private function shortSafeMessage(Throwable $e): string

@@ -397,6 +397,7 @@ if (readingForm && submitBtn && errorMsg && pick) {
           name,
           email,
           gender,
+          funnel: document.documentElement.getAttribute("data-funnel-base") || "",
           card1: pick[0].id,
           card2: pick[1].id,
           card3: pick[2].id,
