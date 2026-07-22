@@ -210,6 +210,7 @@ final class ClickBankBuyerRemovalServiceTest extends TestCase
             kitApiKey: '',
             kitTagName: '',
             kitTagNameBuyer: '',
+            kitTagNameLove: '',
             kitFormUid: '',
             kitFormEmbedScript: '',
             kitFormEmbedUid: '',

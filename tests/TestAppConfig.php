@@ -37,6 +37,7 @@ final class TestAppConfig
             kitApiKey: 'kit-secret',
             kitTagName: 'soul-mirror-leads',
             kitTagNameBuyer: 'soul-mirror-buyers',
+            kitTagNameLove: 'soul-mirror-love-leads',
             kitFormUid: $kitFormUid,
             kitFormEmbedScript: $kitFormEmbedScript,
             kitFormEmbedUid: $kitFormEmbedUid,
