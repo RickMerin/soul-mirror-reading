@@ -410,10 +410,15 @@
     var READING_PICK_KEY = 'soulMirrorReadingPick';
     var HOUSES = ['Love','Life','Wealth'];
     function loadOrPickCards(){
-      // reuse an existing pick (e.g. from the live /wealth/ picker) so cards stay consistent
-      try{ var raw=localStorage.getItem(READING_PICK_KEY); if(raw){ var d=JSON.parse(raw); if(d && d.v===1 && Array.isArray(d.cards) && d.cards.length===3){ return d.cards.map(function(c){ return cardById(Number(c.id)); }); } } }catch(e){}
+      // Reuse a pick only within the SAME visit (sessionStorage), so a mid-flow reload keeps
+      // the same three cards but a return visit draws fresh. Reading localStorage here would
+      // lock a browser to one pick forever, since the draw below writes to it.
+      try{ var raw=sessionStorage.getItem(READING_PICK_KEY); if(raw){ var d=JSON.parse(raw); if(d && d.v===1 && Array.isArray(d.cards) && d.cards.length===3){ return d.cards.map(function(c){ return cardById(Number(c.id)); }); } } }catch(e){}
       var picked=pickThreeRandom();
-      try{ localStorage.setItem(READING_PICK_KEY, JSON.stringify({ v:1, cards:picked.map(function(c){ return { id:c.id, slug:c.slug, name:c.name, suit:c.suit }; }) })); }catch(e){}
+      var payload = JSON.stringify({ v:1, cards:picked.map(function(c){ return { id:c.id, slug:c.slug, name:c.name, suit:c.suit }; }) });
+      try{ sessionStorage.setItem(READING_PICK_KEY, payload); }catch(e){}
+      // keep the funnel-wide contract so sales.php and the rest of the funnel see this pick
+      try{ localStorage.setItem(READING_PICK_KEY, payload); }catch(e){}
       return picked;
     }
     var CARDS = loadOrPickCards().map(function(c,i){ c.house = HOUSES[i]; return c; });
