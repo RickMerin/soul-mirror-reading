@@ -21,12 +21,6 @@
     html{scroll-behavior:smooth}
     body{font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-    .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
-      background:radial-gradient(circle at 12% 12%,#3a2fa0aa 0%,#0000 42%),radial-gradient(circle at 86% 8%,#221a66aa 0%,#0000 44%),radial-gradient(circle at 78% 88%,#4a2f7a66 0%,#0000 40%),linear-gradient(#12102b 0%,#1c1848 46%,#241f57 100%)}
-    .stars{position:fixed;inset:0;opacity:.5;mix-blend-mode:screen;
-      background-image:radial-gradient(1.4px 1.4px at 20% 30%,#fff 40%,#0000),radial-gradient(1.2px 1.2px at 65% 20%,#fff 40%,#0000),radial-gradient(1px 1px at 40% 70%,#fff 40%,#0000),radial-gradient(1.5px 1.5px at 82% 55%,#fff 40%,#0000),radial-gradient(1px 1px at 12% 82%,#fff 40%,#0000);
-      background-repeat:repeat;background-size:340px 340px}
-
     /* mobile default */
     main{position:relative;z-index:1;max-width:468px;margin:0 auto;padding:0 12px 0}
     /* desktop: a touch wider + roomier */
@@ -41,7 +35,6 @@
     .av-sm{width:28px;height:28px;border:1.5px solid rgba(212,175,55,.55);align-self:flex-end;margin-bottom:2px}
 
     /* ===== bridge: real landing CSS is linked above; keep the chat on its own palette ===== */
-    .bg{display:none}
     #chatwrap{--gold:#d4af37;--gold-light:#e8c97a;--text:#f4eeff;--text-muted:#c8c0e2;font-family:'Inter',system-ui,sans-serif}
     #chatwrap .bubble,#chatwrap .qr button,#chatwrap .input-row input,#chatwrap .cta,#chatwrap .botcta{font-family:'Inter',system-ui,sans-serif}
     main{width:100%}
@@ -226,7 +219,6 @@
   </style>
 </head>
 <body>
-  <div class="bg"><div class="stars"></div></div>
   <div class="dream-bg" aria-hidden="true">
     <div class="dream-veil"></div>
     <div class="milky-way"></div>
@@ -901,7 +893,16 @@
         + '<div class="trust"><span>🔒 Secure checkout</span><span>🌙 90-day guarantee</span><span>⚡ 24-hour delivery</span></div></div>';
     }
     function wireCheckout(root, url){
-      (root||document).querySelectorAll('[data-checkout]').forEach(function(a){ a.setAttribute('href', url); });
+      // cmc.js only rewrites links present at page load; our CTAs are injected later,
+      // so resolve [cmc_vid] ourselves from ClickMagick's stored visitor id.
+      var vid = '';
+      try{ vid = localStorage.getItem('_cmc_cmc_vid') || sessionStorage.getItem('_cmc_cmc_vid') || ''; }catch(e){}
+      var finalUrl = vid ? url.replace('[cmc_vid]', encodeURIComponent(vid)) : url;
+      (root||document).querySelectorAll('[data-checkout]').forEach(function(a){
+        a.setAttribute('href', finalUrl);
+        a.setAttribute('target', '_self');
+        a.setAttribute('rel', 'noopener');
+      });
     }
 
     async function run(){
