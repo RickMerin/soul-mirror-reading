@@ -916,8 +916,16 @@
     function wireCheckout(root, url){
       // cmc.js only rewrites links present at page load; our CTAs are injected later,
       // so resolve [cmc_vid] ourselves from ClickMagick's stored visitor id.
+      // cmc.js exposes the visitor id on window.clickmagick_cmc.vid and mirrors it into the
+      // cmc_vid cookie. Read those first; the storage keys are only a legacy fallback.
       var vid = '';
-      try{ vid = localStorage.getItem('_cmc_cmc_vid') || sessionStorage.getItem('_cmc_cmc_vid') || ''; }catch(e){}
+      try{ vid = (window.clickmagick_cmc && window.clickmagick_cmc.vid) || ''; }catch(e){}
+      if(!vid){
+        try{ var m = document.cookie.match(/(?:^|;\s*)cmc_vid=([^;]+)/); if(m) vid = decodeURIComponent(m[1]); }catch(e){}
+      }
+      if(!vid){
+        try{ vid = localStorage.getItem('_cmc_cmc_vid') || sessionStorage.getItem('_cmc_cmc_vid') || ''; }catch(e){}
+      }
       var finalUrl = vid ? url.replace('[cmc_vid]', encodeURIComponent(vid)) : url;
       (root||document).querySelectorAll('[data-checkout]').forEach(function(a){
         a.setAttribute('href', finalUrl);
