@@ -406,22 +406,28 @@
     function nameFromSlug(s){ if(NAME_FIX[s]) return NAME_FIX[s]; return s.split('-').map(function(w,i){ return (i>0 && SMALL[w]) ? w : w.charAt(0).toUpperCase()+w.slice(1); }).join(' '); }
     function suitFor(id){ if(id<=22) return 'major'; if(id<=36) return 'wands'; if(id<=50) return 'cups'; if(id<=64) return 'swords'; return 'pentacles'; }
     function cardById(id){ var i=id-1, slug=CARD_SLUGS[i]; return { id:id, slug:slug, name:nameFromSlug(slug), suit:suitFor(id), img:'https://soulmirrorreading.com/cards/'+(id<10?'0':'')+id+'-'+slug+'.png' }; }
-    function pickThreeRandom(){ var ids=[]; while(ids.length<3){ var r=1+Math.floor(Math.random()*78); if(ids.indexOf(r)<0) ids.push(r); } return ids.map(cardById); }
     var READING_PICK_KEY = 'soulMirrorReadingPick';
     var HOUSES = ['Love','Life','Wealth'];
-    function loadOrPickCards(){
-      // Reuse a pick only within the SAME visit (sessionStorage), so a mid-flow reload keeps
-      // the same three cards but a return visit draws fresh. Reading localStorage here would
-      // lock a browser to one pick forever, since the draw below writes to it.
-      try{ var raw=sessionStorage.getItem(READING_PICK_KEY); if(raw){ var d=JSON.parse(raw); if(d && d.v===1 && Array.isArray(d.cards) && d.cards.length===3){ return d.cards.map(function(c){ return cardById(Number(c.id)); }); } } }catch(e){}
-      var picked=pickThreeRandom();
-      var payload = JSON.stringify({ v:1, cards:picked.map(function(c){ return { id:c.id, slug:c.slug, name:c.name, suit:c.suit }; }) });
-      try{ sessionStorage.setItem(READING_PICK_KEY, payload); }catch(e){}
-      // keep the funnel-wide contract so sales.php and the rest of the funnel see this pick
-      try{ localStorage.setItem(READING_PICK_KEY, payload); }catch(e){}
-      return picked;
+    // Matches the live /wealth/ picker (frontend/js/home.js): shuffle the full 78-card deck on
+    // every load, draw a card at CLICK time out of what is left, and never read a stored pick.
+    // Every visit is a genuinely new reading.
+    function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+    var REMAINING = shuffle(CARD_SLUGS.map(function(_,i){ return cardById(i+1); }));
+    // Filled in as each card is drawn. Kept as one array the whole time, since state.cards holds
+    // a reference to it.
+    var CARDS = [];
+    function drawNextCard(idx){
+      var card = REMAINING.splice(Math.floor(Math.random()*REMAINING.length), 1)[0];
+      card.house = HOUSES[idx];
+      CARDS[idx] = card;
+      return card;
     }
-    var CARDS = loadOrPickCards().map(function(c,i){ c.house = HOUSES[i]; return c; });
+    function persistPick(){
+      // Same contract as home.js goToUnlockPage(): sessionStorage only.
+      try{ sessionStorage.setItem(READING_PICK_KEY, JSON.stringify({ v:1, cards:CARDS.map(function(c){ return { id:c.id, slug:c.slug, name:c.name, suit:c.suit }; }) })); }catch(e){}
+    }
+    // Clear the stale localStorage pick written by earlier builds of this page.
+    try{ localStorage.removeItem(READING_PICK_KEY); }catch(e){}
 
     var BLOCKS = {
       wealth: {
@@ -607,7 +613,7 @@
       animating = true;
       slot.classList.add('done');
       var idx = chosen;
-      var card = CARDS[idx];
+      var card = drawNextCard(idx);
 
       if(idx === 0){
         var sub = document.querySelector('.header-sub');
@@ -659,6 +665,7 @@
         chosen++;
         if(chosen === TOTAL){
           document.querySelectorAll('.card-slot:not(.done)').forEach(function(s){ s.classList.add('spent'); });
+          persistPick();
         }
         setPrompt();
         updateCardsRemainingText();
