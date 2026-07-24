@@ -201,6 +201,43 @@ final class PurchaseRepositoryAccessWindowTest extends TestCase
         self::assertNull($this->accessUntil($pdo, 'IC-SALE'));
     }
 
+    public function testLifetimeSkuGrantsPermanentAccessAndIsNotStampedByTheRecurringHeartbeat(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $leadId = $leads->findOrCreateMinimalByEmail('life@example.com', 'Lifetime Buyer');
+
+        // A one-time lifetime SALE (tic-2), recorded the way the ClickBank INS handler records it.
+        $purchases->upsertByReceipt($leadId, 'IC-LIFE', 'SALE', 'approved', 'USD', 47.00, [['sku' => 'tic-2']], []);
+
+        // The INS handler runs the rebill heartbeat with RECURRING only. A lifetime SALE must NOT be
+        // stamped with an access window, or it would expire ~1 month later with no rebill to extend it.
+        $window = $purchases->extendInnerCircleAccessWindow($leadId, InnerCircleSkus::RECURRING, null);
+
+        self::assertNull($window, 'A lifetime SALE must not receive a recurring access window.');
+        self::assertNull($this->accessUntil($pdo, 'IC-LIFE'), 'access_until must stay NULL (permanent) for a lifetime SKU.');
+        self::assertTrue(
+            $purchases->leadHasApprovedInnerCirclePurchase($leadId),
+            'A lifetime buyer with a NULL access window must be entitled to Inner Circle access.',
+        );
+    }
+
+    public function testLifetimeSkuIsExcludedFromSubscriptionReconciliationCandidates(): void
+    {
+        $pdo = $this->createDatabase();
+        $leads = new LeadRepository($pdo);
+        $purchases = new PurchaseRepository($pdo);
+        $leadId = $leads->findOrCreateMinimalByEmail('life@example.com', 'Lifetime Buyer');
+        $purchases->upsertByReceipt($leadId, 'IC-LIFE', 'SALE', 'approved', 'USD', 47.00, [['sku' => 'tic-2']], []);
+
+        // The subscription reconciler only handles recurring rows; a one-time lifetime receipt must
+        // never be a candidate, or its permanent (NULL) window could be reconciled to an expiry.
+        $receipts = array_column($purchases->findActiveInnerCircleReceipts(), 'receipt');
+
+        self::assertNotContains('IC-LIFE', $receipts, 'A lifetime receipt must not be a reconciliation candidate.');
+    }
+
     private function accessUntil(PDO $pdo, string $receipt): ?string
     {
         $stmt = $pdo->prepare('SELECT access_until FROM purchases WHERE clickbank_receipt = :r LIMIT 1');

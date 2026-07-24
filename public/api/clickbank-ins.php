@@ -170,8 +170,10 @@ try {
     // (re)stamp the paid-through window to transaction time + 1 month + 3 days grace, extend-only.
     // Access then self-expires at period end if rebills stop, so a missed CANCEL-REBILL INS can never
     // leave a member with permanent access. Revocation (cancel/refund/chargeback) never reaches here.
+    // RECURRING only: lifetime SKUs (e.g. tic-2) are intentionally excluded so their access_until
+    // stays NULL (permanent). A one-time buyer never rebills, so a window here would expire them.
     if (ClickBankPurchaseStatus::isApproved($status) && InnerCircleSkus::purchaseIncludesInnerCircle($items)) {
-        $purchases->extendInnerCircleAccessWindow($leadId, InnerCircleSkus::ALL, extractTransactionTime($payload));
+        $purchases->extendInnerCircleAccessWindow($leadId, InnerCircleSkus::RECURRING, extractTransactionTime($payload));
     }
 
     // Capture the Inner Circle paid-through window (set by the heartbeat above or a soft cancel,

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Config\AppConfig;
+use App\Domain\InnerCircleSkus;
 use App\Infrastructure\DatabaseConnection;
 use App\Repository\LeadRepository;
 use App\Repository\PurchaseRepository;
@@ -65,7 +66,7 @@ try {
 
     $ownsInnerCircle = false;
     if ($leadId !== null) {
-        foreach (['tic-1', 'tic-1-ds', 'ic-1', 'ic-1-ds'] as $icSku) {
+        foreach (InnerCircleSkus::ALL as $icSku) {
             if ($purchases->leadHasApprovedPurchaseWithItemSku($leadId, $icSku)) { $ownsInnerCircle = true; break; }
         }
     }

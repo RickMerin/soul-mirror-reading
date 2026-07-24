@@ -484,7 +484,10 @@ final class PurchaseRepository
             } catch (JsonException) {
                 continue;
             }
-            if (!is_array($items) || !$this->purchaseContainsAnySku($items, InnerCircleSkus::ALL)) {
+            // RECURRING only: the reconciler reconciles subscriptions against ClickBank. Lifetime
+            // one-time rows (tic-2) have no subscription and must never be reconciled, or their
+            // permanent (NULL) access window could be stamped with an expiry.
+            if (!is_array($items) || !$this->purchaseContainsAnySku($items, InnerCircleSkus::RECURRING)) {
                 continue;
             }
             $receipt = trim((string) ($row['receipt'] ?? ''));

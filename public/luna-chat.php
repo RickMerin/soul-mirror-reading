@@ -7,9 +7,8 @@ require $projectRoot . '/vendor/autoload.php';
 \App\Config\AppConfig::load($projectRoot);
 
 
-$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1&template=1on1&vtid=[cmc_vid]';
-// Exit-intent downsell: same membership, lower first month ($17 instead of $37), same $19/mo rebill.
-$downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template=1on1&vtid=[cmc_vid]';
+// The Inner Circle, LIFETIME one-time offer. Single item tic-2 ($47, one-time). No downsell, no rebill.
+$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-2&template=1on1&vtid=[cmc_vid]';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -17,9 +16,9 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
   <link rel="icon" type="image/svg+xml" href="https://soulmirrorreading.com/favicon.svg" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- The Inner Circle, standalone private 1-1 sessions membership sold to existing customers (wealth-v2 cosmic system) -->
-  <!-- tic-1 ClickBank recurring item is LIVE/Active: $37 first month, then $19/month rebill (tic-1-ds exit downsell: $17 first month) -->
-  <!-- Copy pass 2026-07-24: warm/post-reading reframe, honest usage framing (no "unlimited"), instant-reply framing -->
+  <!-- The Inner Circle, standalone LIFETIME offer sold to existing customers (wealth-v2 cosmic system) -->
+  <!-- tic-2 ClickBank item: $47 ONE-TIME, lifetime access, no rebill. Backend grants permanent access (access_until stays NULL). -->
+  <!-- 2026-07-24: converted from the $19/mo subscription to a single $47 lifetime offer; exit downsell removed. -->
   <!-- Thank-You-URL -> inner-circle.php access page (live) -->
   <title>The Inner Circle, Your Own Private Line to Luna Ross</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -287,16 +286,16 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
     <section class="section section--tight" id="offer-early">
       <div class="wrap" style="max-width:540px;">
         <div class="offer-box" style="text-align:center;box-shadow:0 6px 20px #0004;border-color:#d4af3733;">
-          <h2 style="margin-bottom:14px;">Begin Your Membership</h2>
+          <h2 style="margin-bottom:14px;">Claim Your Lifetime Place</h2>
           <p style="color:#e9e2f2;font-size:17px;line-height:1.6;max-width:430px;margin:0 auto 20px;">Private 1-1 sessions with Luna, <strong style="color:var(--gold-light);">each worth $120</strong>, yours whenever you need one.</p>
           <div class="price-row" style="justify-content:center;margin-bottom:2px;">
             <span class="price-old">$120 per session</span>
-            <span class="price-new"><span class="cur">$</span>37</span>
+            <span class="price-new"><span class="cur">$</span>47</span>
           </div>
-          <p class="price-note" style="margin:0 auto 22px;">for your first month, then <strong style="color:var(--gold-light);">$19/month</strong>, and you can come to me every day. Cancel anytime in one click.</p>
+          <p class="price-note" style="margin:0 auto 22px;"><strong style="color:var(--gold-light);">one time.</strong> Luna is yours for life. No subscription, no monthly bill, ever.</p>
           <div style="text-align:center;margin:2px auto 18px;"><span style="display:inline-block;font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);border:1px solid #d4af3759;border-radius:50px;padding:7px 18px;">&#10003;&nbsp; 90-Day Money-Back Guarantee</span></div>
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, I Want To Talk To Luna</a>
-          <p class="cta-fine" style="max-width:460px;margin:14px auto 0;">Nineteen dollars a month. Less than one coffee a week, for a reader who knows your block and is there whenever it tests you. Cancel in one click, any time, and my 90-day guarantee covers every payment.</p>
+          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Give Me Luna For Life</a>
+          <p class="cta-fine" style="max-width:460px;margin:14px auto 0;">Forty-seven dollars, one time. No subscription, nothing else to pay, ever. If it is not for you, my 90-day guarantee refunds every penny.</p>
         </div>
       </div>
     </section>
@@ -370,7 +369,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
         <h2>The Next Time the Pattern Tests You, <em>Don't Face It Alone.</em></h2>
         <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 22px;">The block will test you again. That is not a maybe. Next time, do not face it with the old voice. Sit down with me instead, any day you need me.</p>
         <hr class="gold-rule" style="margin:10px auto 22px;">
-        <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto;"><strong style="color:var(--gold-light);">And you risk nothing.</strong> Your membership is protected by my full 90-day money-back guarantee. If it is not for you, tell my team any time in the first 90 days and I will refund every payment, no questions asked, and you can cancel in one click anytime.</p>
+        <p style="color:var(--text-muted);font-size:18px;line-height:1.7;max-width:580px;margin:0 auto;"><strong style="color:var(--gold-light);">And you risk nothing.</strong> Your place is protected by my full 90-day money-back guarantee. If it is not for you, tell my team any time in the first 90 days and I will refund your $47 in full, no questions asked.</p>
       </div>
     </section>
 
@@ -389,32 +388,32 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
             <li><span class="vs-name">Bring me as much as you want, as often as you need, every day</span></li>
           </ul>
 
-          <p style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.45;color:#fff;max-width:460px;margin:24px auto 0;">One private reading with Luna is worth <strong style="color:var(--gold-light);">$120</strong>. Inside The Inner Circle, my door is open to you <strong style="color:var(--gold-light);">every day</strong>.</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.45;color:#fff;max-width:460px;margin:24px auto 0;">One private reading with Luna is worth <strong style="color:var(--gold-light);">$120</strong>. Today, for <strong style="color:var(--gold-light);">$47 once</strong>, my door is open to you every day, <strong style="color:var(--gold-light);">for life</strong>.</p>
 
           <div class="founding-panel">
             <span class="founding-head">✦ &nbsp; Founding Member Invitation &nbsp; ✦</span>
-            <p>Your <strong>first month is $37</strong>. After that it is <strong>just $19/month</strong>, your founding rate locked for as long as you stay. This rate is only open while The Inner Circle stays invitation-only; when it opens to the public, the price goes up.</p>
+            <p>One payment of <strong>$47</strong> today, and Luna is <strong>yours for life</strong>. No subscription, no monthly bill, ever. This founding price is only open while The Inner Circle stays invitation-only; when it opens to the public, it will not be offered again.</p>
           </div>
 
           <div class="pricing">
             <span class="price-label">Founding Member Price</span>
             <div class="price-row">
               <span class="price-old">$120 per session</span>
-              <span class="price-new"><span class="cur">$</span>37</span>
+              <span class="price-new"><span class="cur">$</span>47</span>
             </div>
-            <p class="price-note">for your first month, then $19/month, your founding rate locked</p>
+            <p class="price-note">one time. Luna is yours for life, with no subscription and nothing else to pay</p>
           </div>
 
-          <p class="cta-fine" style="max-width:520px;margin:8px auto 18px;">A monthly membership. Your first month is $37, then you are billed $19/month. Cancel anytime in one click, no email, no phone call.</p>
+          <p class="cta-fine" style="max-width:520px;margin:8px auto 18px;">A one-time payment. $47 today and Luna is yours for life. No subscription, no monthly bills, nothing else to pay, ever.</p>
           <div style="text-align:center;margin:2px auto 18px;"><span style="display:inline-block;font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);border:1px solid #d4af3759;border-radius:50px;padding:7px 18px;">&#10003;&nbsp; 90-Day Money-Back Guarantee</span></div>
 
-          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, I Want To Talk To Luna</a>
-          <p style="text-align:center;margin-top:14px;font-size:12px;color:#9a93b3;letter-spacing:.04em;">&#128274; Secure checkout. Billing handled by ClickBank, the trusted retailer for this product.</p>
+          <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Give Me Luna For Life</a>
+          <p style="text-align:center;margin-top:14px;font-size:12px;color:#9a93b3;letter-spacing:.04em;">&#128274; Secure checkout. Billing handled by ClickBank, the trusted retailer for this product. One-time payment.</p>
         </div>
       </div>
     </section>
 
-    <div class="sticky-cta" id="stickyCta"><a href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Keep Luna One Message Away &nbsp;&middot;&nbsp; $37</a></div>
+    <div class="sticky-cta" id="stickyCta"><a href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Luna For Life &nbsp;&middot;&nbsp; $47</a></div>
   </main>
 
   <!-- FOOTER -->
@@ -422,70 +421,12 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
     <p>ClickBank is the retailer of products on this site. CLICKBANK&reg; is a registered trademark of Click Sales, Inc., a Delaware corporation located at 1444 S. Entertainment Ave., Suite 410 Boise, ID 83709, USA and used by permission. ClickBank's role as retailer does not constitute an endorsement, approval or review of these products or any claim, statement or opinion used in promotion of these products.</p>
     <p>For Product Support, please contact the vendor: <a href="mailto:support@soulmirrorreading.com">HERE</a>. For Order Support, please contact ClickBank: <a href="https://www.clkbank.com/" target="_blank" rel="noopener">HERE</a> or 1-800-390-6035</p>
     <p><a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms-conditions">Terms &amp; Conditions</a> &nbsp;&middot;&nbsp; <a href="mailto:support@soulmirrorreading.com">Contact Us</a> &nbsp;&middot;&nbsp; <a href="/refund-return-policy">Refund &amp; Return Policy</a></p>
-    <p>The Inner Circle is an ongoing membership providing guidance and reflection. It is Luna's trained AI guide, not personal correspondence, and is not financial, medical, or professional advice. Results vary. You can cancel anytime.</p>
+    <p>The Inner Circle is lifetime access to Luna's trained AI guide, providing guidance and reflection. It is a one-time purchase, not personal correspondence, and is not financial, medical, or professional advice. Results vary.</p>
     <p>&copy; 2026 Soul Mirror Reading, A Luna Ross Brand. All Rights Reserved.</p>
   </footer>
 
   <script>(function(){var ec=document.getElementById('offer-early'),sc=document.getElementById('stickyCta');if(!ec||!sc)return;addEventListener('scroll',function(){sc.classList.toggle('show',ec.getBoundingClientRect().bottom<0)},{passive:true});})();</script>
 
-  <!-- EXIT-INTENT DOWNSELL POPUP (tic-1-ds, $17 first month) -->
-  <style>
-    .ic-exit{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(8,4,20,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-    .ic-exit.show{display:flex}
-    .ic-exit__card{position:relative;width:100%;max-width:440px;background:linear-gradient(165deg,#241147,#160b30 60%,#0e0820);border:1.5px solid rgba(212,175,55,.6);border-radius:16px;padding:34px 28px 24px;text-align:center;box-shadow:0 26px 70px rgba(0,0,0,.6),0 0 42px rgba(212,175,55,.12);animation:icExitIn .32s cubic-bezier(.2,.8,.25,1) both}
-    @keyframes icExitIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
-    .ic-exit__close{position:absolute;top:9px;right:13px;background:none;border:none;color:#b9aee0;font-size:28px;line-height:1;cursor:pointer;padding:4px 8px;transition:color .2s}
-    .ic-exit__close:hover{color:var(--gold-light)}
-    .ic-exit__eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
-    .ic-exit__title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:27px;line-height:1.22;color:var(--cream);margin:0 0 14px}
-    .ic-exit__body{font-family:'Inter',sans-serif;font-size:15.5px;line-height:1.7;color:var(--text-muted);margin:0 0 18px}
-    .ic-exit__body strong{color:var(--gold-light)}
-    .ic-exit__price{margin:0 0 20px;font-family:'Cinzel',serif}
-    .ic-exit__was{color:#9d93bf;text-decoration:line-through;font-size:17px;margin-right:9px}
-    .ic-exit__now{color:var(--gold-bright);font-size:22px;font-weight:600}
-    .ic-exit__cta{display:block;width:100%;border-radius:50px;padding:15px 20px;font-family:'Cinzel',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:#1a0d2e;background:linear-gradient(180deg,var(--gold-bright),var(--gold));box-shadow:0 10px 26px rgba(212,175,55,.4);transition:transform .15s,box-shadow .15s}
-    .ic-exit__cta:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(212,175,55,.5)}
-    .ic-exit__fine{font-family:'Inter',sans-serif;font-size:12.5px;color:#a99fce;margin:12px 0 4px}
-    .ic-exit__decline{background:none;border:none;color:#8f85b3;font-family:'Inter',sans-serif;font-size:13px;text-decoration:underline;cursor:pointer;padding:6px;margin-top:2px;transition:color .2s}
-    .ic-exit__decline:hover{color:var(--text-muted)}
-    @media(max-width:480px){.ic-exit__card{padding:30px 20px 20px}.ic-exit__title{font-size:24px}}
-    @media(prefers-reduced-motion:reduce){.ic-exit__card{animation:none}}
-  </style>
-  <div class="ic-exit" id="icExit" role="dialog" aria-modal="true" aria-labelledby="icExitTitle">
-    <div class="ic-exit__card">
-      <button class="ic-exit__close" id="icExitClose" type="button" aria-label="Close">&times;</button>
-      <p class="ic-exit__eyebrow">A Gentler Way In</p>
-      <h2 class="ic-exit__title" id="icExitTitle">Before you go, let me lower the first step.</h2>
-      <p class="ic-exit__body">If the first month is the only thing holding you back, let it not be. You can begin for <strong>$17 today</strong> instead of $37. Everything else stays exactly the same: a private line to me whenever you need it, then $19 a month, and you can cancel in one click.</p>
-      <div class="ic-exit__price"><span class="ic-exit__was">$37</span><span class="ic-exit__now">$17 first month</span></div>
-      <a class="ic-exit__cta" href="<?= htmlspecialchars($downsellPageUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, Start For $17</a>
-      <p class="ic-exit__fine">Then $19/month. Cancel anytime in one click. 90-day money-back guarantee.</p>
-      <button class="ic-exit__decline" id="icExitDecline" type="button">No thank you, not right now</button>
-    </div>
-  </div>
-  <script>(function(){
-    var m=document.getElementById('icExit');if(!m)return;
-    var KEY='ic_exit_shown',shown=false;
-    function open(){if(shown)return;try{if(sessionStorage.getItem(KEY))return;sessionStorage.setItem(KEY,'1')}catch(e){}shown=true;m.classList.add('show');}
-    function close(){m.classList.remove('show');}
-    document.getElementById('icExitClose').addEventListener('click',close);
-    document.getElementById('icExitDecline').addEventListener('click',close);
-    m.addEventListener('click',function(e){if(e.target===m)close();});
-    addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('show'))close();});
-    try{if(sessionStorage.getItem(KEY))return;}catch(e){}
-    // Arm exit-intent only after 30s on the page, so early leavers are left in peace.
-    setTimeout(function(){
-      try{if(sessionStorage.getItem(KEY))return;}catch(e){}
-      var touch=('ontouchstart'in window)||navigator.maxTouchPoints>0;
-      if(touch){
-        try{history.pushState(null,'',location.href);}catch(e){}
-        addEventListener('popstate',function(){open();});
-      }else{
-        document.addEventListener('mouseout',function(e){
-          if(e.clientY<=0&&!e.relatedTarget&&!e.toElement)open();
-        });
-      }
-    },30000);
-  })();</script>
+  <!-- (Exit-intent downsell removed 2026-07-24: single $47 lifetime offer, no downsell item.) -->
 </body>
 </html>

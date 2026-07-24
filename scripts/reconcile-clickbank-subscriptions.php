@@ -156,7 +156,7 @@ foreach ($receipts as $index => $member) {
     if (!$dryRun && $decision->targetAccessUntil !== null) {
         $written = $purchases->setInnerCircleAccessUntilTo(
             $member['leadId'],
-            InnerCircleSkus::ALL,
+            InnerCircleSkus::RECURRING,
             $decision->targetAccessUntil,
             $decision->extendOnly,
         );
