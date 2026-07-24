@@ -8,7 +8,11 @@ require $projectRoot . '/vendor/autoload.php';
 
 
 // The Inner Circle, LIFETIME one-time offer. Single item tic-2 ($47, one-time). No downsell, no rebill.
-$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-2&template=1on1&vtid=[cmc_vid]';
+// NOTE: no template=1on1 here on purpose. The 1on1 ClickBank order-form template still carries the OLD
+// subscription copy ("$37 today, then $19/month, Unlimited"), which contradicts the $47 one-time charge.
+// The default order form renders correctly (product + $47 + immediate access). If Rick builds a branded
+// lifetime order-form template with correct copy, re-add &template=<name> here.
+$otoCheckoutUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-2&vtid=[cmc_vid]';
 
 ?><!DOCTYPE html>
 <html lang="en">
