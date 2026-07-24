@@ -16,6 +16,10 @@ final class ReadingProductSkus
         'smr-1-wtsl',
         'smr-1-l',
         'smr-1-p',
+        // Live-chat funnel front-ends. Same $37 Soul Mirror Reading PDF, tracked as separate
+        // items so live-chat sales attribute cleanly. Must deliver like any other front-end.
+        'smr-1-w-lc',
+        'smr-1-l-lc',
     ];
 
     /**
