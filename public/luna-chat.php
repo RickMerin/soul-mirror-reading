@@ -17,9 +17,10 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
   <link rel="icon" type="image/svg+xml" href="https://soulmirrorreading.com/favicon.svg" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Upsell 3 (OTO3) - The Inner Circle, unlimited private 1-1 sessions membership (wealth-v2 cosmic system) -->
-  <!-- ic-1 ClickBank recurring item is LIVE/Active: $37 first month, then $19/month rebill -->
-  <!-- TODO: wire $otoCheckoutUrl / Thank-You-URL -> inner-circle.php access page -->
+  <!-- The Inner Circle, standalone private 1-1 sessions membership sold to existing customers (wealth-v2 cosmic system) -->
+  <!-- tic-1 ClickBank recurring item is LIVE/Active: $37 first month, then $19/month rebill (tic-1-ds exit downsell: $17 first month) -->
+  <!-- Copy pass 2026-07-24: warm/post-reading reframe, honest usage framing (no "unlimited"), instant-reply framing -->
+  <!-- Thank-You-URL -> inner-circle.php access page (live) -->
   <title>The Inner Circle, Your Own Private Line to Luna Ross</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -265,8 +266,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
           <img src="frontend/images/inner-circle/luna-avatar.webp" width="130" height="130" decoding="async" alt="Luna Ross" onerror="this.style.visibility='hidden'" style="width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid #d4af37;box-shadow:0 0 0 6px rgba(212,175,55,0.12),0 10px 34px rgba(0,0,0,0.5);">
         </div>
         <span class="eyebrow">A Private Invitation From Luna</span>
-        <h1>Every Day, Something Tests You. And You Face It <em>Alone.</em></h1>
-        <p class="subhead hero-sub">A decision lands on you at 2am and there's no one to tell. From today, you reach for me instead. A private 1-1 session with me, any day you need it.</p>
+        <h1>You Have Your Reading. Now You Have <em>Me.</em></h1>
+        <p class="subhead hero-sub">Your reading named the pattern beneath your money, love, and direction. But it does not go quiet. It returns at 2am, in the choice you keep circling, on an ordinary Tuesday. From today, when it does, you reach for me.</p>
       </div>
     </section>
 
@@ -275,9 +276,9 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
       <div class="wrap">
         <img src="frontend/images/inner-circle/inner-circle-intro.webp?v=2" width="1800" height="1208" decoding="async" alt="The Inner Circle, Luna one message away" style="display:block;width:100%;height:auto;max-width:560px;margin:4px auto 30px;border-radius:14px;border:1px solid rgba(212,175,55,0.35);box-shadow:0 14px 44px rgba(0,0,0,0.5);">
         <h2>The Inner Circle</h2>
-        <p class="subhead">Private 1-1 sessions with Luna. Anytime, about anything.</p>
+        <p class="subhead">Me, one message away. Any day you need me.</p>
         <div class="body-copy" style="margin-top:26px;">
-          <p>Every time you reach out, it is a private session: just you and me, about your reading, your block, and the moment you are actually in. You message me, and within the hour I reply, personally, considered, and only ever about you. A single private session with a reader of my experience is worth <strong>$120</strong>. Inside The Inner Circle, you have them whenever you need one, with no limit.</p>
+          <p>You have had one reading from me. Now imagine having me on hand for everything that happens in between: the choice you cannot make, the card you pull and cannot read, the good thing you can already feel yourself bracing to lose. Every time you reach out, it is a private session. Just you and me, about your reading, your block, and the exact moment you are in. A single private reading with a reader of my experience is worth <strong>$120</strong>. Inside The Inner Circle, my door is open to you every day.</p>
         </div>
       </div>
     </section>
@@ -292,9 +293,10 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
             <span class="price-old">$120 per session</span>
             <span class="price-new"><span class="cur">$</span>37</span>
           </div>
-          <p class="price-note" style="margin:0 auto 22px;">for your first month, then <strong style="color:var(--gold-light);">$19/month</strong> for unlimited sessions. Cancel anytime in one click.</p>
+          <p class="price-note" style="margin:0 auto 22px;">for your first month, then <strong style="color:var(--gold-light);">$19/month</strong>, and you can come to me every day. Cancel anytime in one click.</p>
           <div style="text-align:center;margin:2px auto 18px;"><span style="display:inline-block;font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);border:1px solid #d4af3759;border-radius:50px;padding:7px 18px;">&#10003;&nbsp; 90-Day Money-Back Guarantee</span></div>
           <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, I Want To Talk To Luna</a>
+          <p class="cta-fine" style="max-width:460px;margin:14px auto 0;">Nineteen dollars a month. Less than one coffee a week, for a reader who knows your block and is there whenever it tests you. Cancel in one click, any time, and my 90-day guarantee covers every payment.</p>
         </div>
       </div>
     </section>
@@ -303,7 +305,7 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
     <section class="section">
       <div class="wrap">
         <h2>In Every Session, Ask Me <em>Anything.</em></h2>
-        <p class="lead">There is no limit and no meter. No question too small, none too big. Bring me as much as you want, as often as you want. Whatever you would normally carry alone, bring it to a session:</p>
+        <p class="lead">There is no meter, no awkward clock. No question too small, none too big. Bring me as much as you want, as often as you need. Whatever you would normally carry alone, bring it to a session:</p>
         <ul class="ask-list">
           <li>"Should I ask for the raise, or is that the old fear talking?"</li>
           <li>"Is this opportunity genuinely too much, or is that my Mirror Block?"</li>
@@ -335,8 +337,8 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
             <div class="mv__body"><p>Bring me whatever is on your mind. Type it like you would say it out loud. Nothing is too small.</p></div>
           </div>
           <div class="card mv">
-            <div class="mv__num">I Reply Within the Hour</div>
-            <div class="mv__body"><p>Considered, personal, and about you. A real session, never a vending-machine reply.</p></div>
+            <div class="mv__num">I Answer Right Away</div>
+            <div class="mv__body"><p>Considered, personal, and always about you. Not a search result, not a script. A real reply, the moment you need it.</p></div>
           </div>
         </div>
       </div>
@@ -381,17 +383,17 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
 
           <ul class="vlist">
             <li><span class="vs-name">Private 1-1 sessions with Luna, each worth <strong>$120</strong> on its own</span></li>
-            <li><span class="vs-name">A thoughtful, personal reply within the hour, every time</span></li>
+            <li><span class="vs-name">A thoughtful, personal reply right away, every time</span></li>
             <li><span class="vs-name">Guidance that knows your reading and your specific Mirror Block</span></li>
             <li><span class="vs-name">A private space on your phone, day and night, including the 2am moments</span></li>
-            <li><span class="vs-name">Bring me as much as you want, as often as you want, no limit</span></li>
+            <li><span class="vs-name">Bring me as much as you want, as often as you need, every day</span></li>
           </ul>
 
-          <p style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.45;color:#fff;max-width:460px;margin:24px auto 0;">One private session with Luna is worth <strong style="color:var(--gold-light);">$120</strong>. Inside The Inner Circle, your sessions are <strong style="color:var(--gold-light);">unlimited</strong>.</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.45;color:#fff;max-width:460px;margin:24px auto 0;">One private reading with Luna is worth <strong style="color:var(--gold-light);">$120</strong>. Inside The Inner Circle, my door is open to you <strong style="color:var(--gold-light);">every day</strong>.</p>
 
           <div class="founding-panel">
             <span class="founding-head">✦ &nbsp; Founding Member Invitation &nbsp; ✦</span>
-            <p>Your <strong>first month is $37</strong>. After that it is <strong>$19/month for unlimited sessions</strong>, your founding rate locked for as long as you stay.</p>
+            <p>Your <strong>first month is $37</strong>. After that it is <strong>just $19/month</strong>, your founding rate locked for as long as you stay. This rate is only open while The Inner Circle stays invitation-only; when it opens to the public, the price goes up.</p>
           </div>
 
           <div class="pricing">
@@ -400,10 +402,10 @@ $downsellPageUrl = 'https://rebornf.pay.clickbank.net/?cbitems=tic-1-ds&template
               <span class="price-old">$120 per session</span>
               <span class="price-new"><span class="cur">$</span>37</span>
             </div>
-            <p class="price-note">for your first month, then $19/month for unlimited sessions, your founding rate locked</p>
+            <p class="price-note">for your first month, then $19/month, your founding rate locked</p>
           </div>
 
-          <p class="cta-fine" style="max-width:520px;margin:8px auto 18px;">A monthly membership. Your first month is $37, then you are billed $19/month for unlimited sessions.</p>
+          <p class="cta-fine" style="max-width:520px;margin:8px auto 18px;">A monthly membership. Your first month is $37, then you are billed $19/month. Cancel anytime in one click, no email, no phone call.</p>
           <div style="text-align:center;margin:2px auto 18px;"><span style="display:inline-block;font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);border:1px solid #d4af3759;border-radius:50px;padding:7px 18px;">&#10003;&nbsp; 90-Day Money-Back Guarantee</span></div>
 
           <a class="cta" href="<?= htmlspecialchars($otoCheckoutUrl, ENT_QUOTES, 'UTF-8') ?>">Yes, I Want To Talk To Luna</a>
