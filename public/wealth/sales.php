@@ -38,6 +38,14 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-wtsl&template=o
 .tslpull{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#E8C97A;border-left:3px solid #C9A14A;padding:16px 22px;margin:26px 0;background:rgba(201,161,74,.08);border-radius:0 8px 8px 0;line-height:1.5;}
 .tslbridge{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cbb88a;margin:8px 0 0;}
 body{background:#0b0718 !important;}
+/* before/after testimonial images */
+.ba-wrap{position:relative;max-width:86%;border-radius:12px;overflow:hidden;margin:0 auto 18px;border:1px solid rgba(212,175,55,.2);line-height:0;}
+.ba-img{width:100%;height:auto;display:block;}
+.ba-wrap::after{content:"";position:absolute;top:8%;bottom:8%;left:50%;width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-.5px);}
+.ba-label{position:absolute;top:12px;font-family:'Cinzel',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:20px;font-weight:600;z-index:2;}
+.ba-before{left:12px;background:rgba(14,8,32,.62);color:#e9e4f5;border:1px solid rgba(255,255,255,.18);}
+.ba-after{right:12px;background:rgba(212,175,55,.92);color:#231343;border:1px solid rgba(255,255,255,.25);}
+.testi-attrib{display:flex;flex-direction:column;gap:3px;}
 .dream-bg{filter:brightness(0.5) saturate(1.05) !important;}
 .luna-hero{display:block;width:62%;max-width:320px;margin:6px auto 14px;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 16px 44px rgba(0,0,0,.55);overflow:hidden;background:#160c34;}
 .luna-cap{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:0 0 24px;}
@@ -657,20 +665,22 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <section style="padding: 0 0 20px;">
   <div class="wrap">
     <div class="testi-card">
-      <div class="testi-avatar-row">
+      <div class="ba-wrap">
         <picture>
-          <source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.webp">
-          <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.png" alt="Rebecca Hartley" decoding="async" loading="lazy">
-        </source></picture>
-        <div>
-          <div class="testi-name">Rebecca Hartley</div>
-          <div class="testi-meta">47 &middot; Graphic designer</div>
-        </div>
+          <source type="image/webp" srcset="/frontend/images/sales/testimonial-rebecca-ba.webp">
+          <img class="ba-img" src="/frontend/images/sales/testimonial-rebecca-ba.jpg" alt="Rebecca H. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy">
+        </picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I almost closed the tab. After ten years of courses and readings that all said the same thing in slightly different words, I expected more of the same. It was not. The Wealth Block Luna named was the exact reason I had spent fifteen years quoting low and apologizing for my prices. Two weeks later a client asked for a full brand kit. Normally I would have said fifteen hundred and felt guilty. I sat with what the reading showed me and sent the quote for four thousand. She replied 'that sounds fair' and paid the deposit that afternoon. I am not saying the cards did it. I am saying they finally let me see the wall I had been pricing myself behind."</p>
+      <p class="testi-body">"I undercharged for years and never understood why. The reading named the belief behind it. A month later I raised my rates for the first time in three years, and took on a $1,400 client I would normally have talked myself out of."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Rebecca H.</span>
+        <span class="testi-meta">44 &middot; Leeds, UK</span>
+      </div>
     </div>
-    <p style="text-align:center; max-width:580px; margin:16px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
+    <p style="text-align:center; max-width:580px; margin:16px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. Images are dramatizations. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
   </div>
 </section>
 
@@ -831,45 +841,47 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <h2>What 4,800 Readings <em>Have Looked Like</em></h2>
 
     <div class="testi-card">
-      <div class="testi-avatar-row">
-        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.png" alt="Diane R." width="56" height="56" decoding="async" loading="lazy"></picture>
-        <div>
-          <div class="testi-name">Diane R.</div>
-          <div class="testi-meta">54 &middot; Retired teacher</div>
-        </div>
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-diane-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-diane-ba.jpg" alt="Diane R. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      
-
-<p class="testi-body">"I have had tarot readings for twenty years and always felt something was missing. This one gave me the piece. The Wealth Block Luna named was the same reason I had been undercharging in my last three jobs. One belief. Three rooms of my life. Six weeks later I raised my rates for the first time in four years, and the first client I sent the new number to said yes without blinking. The extra has been quietly adding up every month since."</p>
-
-
+      <p class="testi-body">"Money came in and slipped straight back out, every time. Seeing the block written plainly made it click. I finally asked for the raise I had been avoiding, about $300 more a month, and this time I actually kept it."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Diane R.</span>
+        <span class="testi-meta">51 &middot; Ohio, US</span>
+      </div>
     </div>
 
     <div class="testi-card">
-      <div class="testi-avatar-row">
-        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.png" alt="James H." width="56" height="56" decoding="async" loading="lazy"></picture>
-        <div>
-          <div class="testi-name">James H.</div>
-          <div class="testi-meta">48 &middot; Business owner</div>
-        </div>
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-james-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-james-ba.jpg" alt="James H. before and after his Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I was skeptical. I'm a practical person. I just wanted to see what the cards said. But the Wealth Block explanation stopped me cold. It named the exact thing I do every time money gets close, I quietly talk the number down. I held my price on the very next deal instead of discounting it like I always had. That one change paid for this many times over."</p>
+      <p class="testi-body">"I kept sabotaging my own good months without seeing it. The reading showed me the pattern underneath. I stopped, and I just had my steadiest quarter in years, one that did not disappear the way they always used to."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">James H.</span>
+        <span class="testi-meta">47 &middot; Manchester, UK</span>
+      </div>
     </div>
 
     <div class="testi-card">
-      <div class="testi-avatar-row">
-        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.png" alt="Carolyn M." width="56" height="56" decoding="async" loading="lazy"></picture>
-        <div>
-          <div class="testi-name">Carolyn M.</div>
-          <div class="testi-meta">61 &middot; Holistic practitioner</div>
-        </div>
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-carolyn-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-carolyn-ba.jpg" alt="Carolyn M. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"Three cards. One pattern. I have spent years in therapy trying to understand why the same things kept happening in love, at work, with money. This report showed me in 20 minutes. The clearing practice alone is worth ten times what I paid."</p>
+      <p class="testi-body">"I used to say no to money without realizing I was doing it. Once the block was named, I stopped. Nothing dramatic, just a few hundred more each month that finally stays instead of slipping away."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Carolyn M.</span>
+        <span class="testi-meta">39 &middot; Queensland, AU</span>
+      </div>
     </div>
-    <p style="text-align:center; max-width:580px; margin:22px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
+    <p style="text-align:center; max-width:580px; margin:22px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. Images are dramatizations. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
 
     <!-- CTA after testimonials cluster -->
     <div style="text-align:center; margin-top:40px;">
