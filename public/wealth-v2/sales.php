@@ -39,7 +39,7 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-wtsl&template=o
 .tslbridge{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cbb88a;margin:8px 0 0;}
 body{background:#0b0718 !important;}
 /* before/after testimonial images */
-.ba-wrap{position:relative;max-width:86%;border-radius:12px;overflow:hidden;margin:0 auto 18px;border:1px solid rgba(212,175,55,.2);line-height:0;}
+.ba-wrap{position:relative;max-width:60%;}}border-radius:12px;overflow:hidden;margin:0 auto 18px;border:1px solid rgba(212,175,55,.2);line-height:0;}
 .ba-img{width:100%;height:auto;display:block;}
 .ba-wrap::after{content:"";position:absolute;top:8%;bottom:8%;left:50%;width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-.5px);}
 .ba-label{position:absolute;top:12px;font-family:'Cinzel',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:20px;font-weight:600;z-index:2;}
