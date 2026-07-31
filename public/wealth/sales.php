@@ -458,7 +458,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
   <div class="wrap">
     
 
-<h1 class="vsl-headline">There Is <span style="color:var(--gold-light);">One Hidden Pattern</span> Beneath Everything You've Struggled With.</h1>
+<h1 class="vsl-headline"><span class="firstname">Friend</span>, There Is <span style="color:var(--gold-light);">a Number Your Money Keeps Returning To</span>. Your Three Cards Just Showed Me Why.</h1>
 
 
     
