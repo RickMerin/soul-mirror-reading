@@ -39,6 +39,15 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-l&template=orde
 .tslpull{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#E8C97A;border-left:3px solid #C9A14A;padding:16px 22px;margin:26px 0;background:rgba(201,161,74,.08);border-radius:0 8px 8px 0;line-height:1.5;}
 .tslbridge{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cbb88a;margin:8px 0 0;}
 body{background:#0b0718 !important;}
+/* before/after testimonial images */
+.ba-wrap{position:relative;max-width:60%;border-radius:12px;overflow:hidden;margin:0 auto 18px;border:1px solid rgba(212,175,55,.2);line-height:0;}
+.ba-img{width:100%;height:auto;display:block;}
+.ba-wrap::after{content:"";position:absolute;top:8%;bottom:8%;left:50%;width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-.5px);}
+.ba-label{position:absolute;top:12px;font-family:'Cinzel',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:20px;font-weight:600;z-index:2;}
+.ba-before{left:12px;background:rgba(14,8,32,.62);color:#e9e4f5;border:1px solid rgba(255,255,255,.18);}
+.ba-after{right:12px;background:rgba(212,175,55,.92);color:#231343;border:1px solid rgba(255,255,255,.25);}
+.testi-attrib{display:flex;flex-direction:column;gap:3px;}
+@media(min-width:700px){.ba-wrap{max-width:86%;}}
 .dream-bg{filter:brightness(0.5) saturate(1.05) !important;}
 .luna-hero{display:block;width:62%;max-width:320px;margin:6px auto 14px;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 16px 44px rgba(0,0,0,.55);overflow:hidden;background:#160c34;}
 .luna-cap{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:0 0 24px;}
@@ -655,19 +664,22 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <section style="padding: 0 0 20px;">
   <div class="wrap">
     <div class="testi-card">
-      <div class="testi-avatar-row">
+      <div class="ba-wrap">
         <picture>
-          <source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.webp">
-          <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.png" alt="Rebecca Hartley" decoding="async" loading="lazy">
-        </source></picture>
-        <div>
-          <div class="testi-name">Rebecca Hartley</div>
-          <div class="testi-meta">47 &middot; Graphic designer</div>
-        </div>
+          <source type="image/webp" srcset="/frontend/images/sales/testimonial-heather-ba.webp">
+          <img class="ba-img" src="/frontend/images/sales/testimonial-heather-ba.jpg" alt="Heather D. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy">
+        </picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I almost closed the tab. After ten years of apps and readings that all said the same gentle thing, I expected more of the same. It was not. The Love Block Luna named was the exact reason I spent fifteen years over-giving and then quietly pulling back the moment anyone got close. Two weeks later the man I had been seeing asked to make things real. Normally I would have found a careful reason to disappear. I sat with what the reading showed me and let him in instead. He stayed the weekend, and for once I did not spend it waiting for it to end. I am not saying the cards did it. I am saying they finally let me see the wall I had been keeping love behind."</p>
+      <p class="testi-body">"I pulled back the second things felt real. My reading named the pattern exactly. I stopped bracing, and the man I almost pushed away is still here. We just passed a year."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Heather D.</span>
+        <span class="testi-meta">44 &middot; New York, US</span>
+      </div>
     </div>
+    <p style="text-align:center; max-width:580px; margin:16px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. Images are dramatizations. A Soul Mirror Reading is for insight and self-reflection. It is not relationship advice and does not guarantee any specific outcome.</p>
   </div>
 </section>
 
@@ -828,45 +840,47 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <h2>What 4,800 Readings <em>Have Looked Like</em></h2>
 
     <div class="testi-card">
-      <div class="testi-avatar-row">
-        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.png" alt="Diane R." width="56" height="56" decoding="async" loading="lazy"></picture>
-        <div>
-          <div class="testi-name">Diane R.</div>
-          <div class="testi-meta">54 &middot; Retired teacher</div>
-        </div>
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-rachel-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-rachel-ba.jpg" alt="Rachel D. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-
-
-<p class="testi-body">"I have had tarot readings for twenty years and always felt one piece was missing. This gave me the piece. The Love Block Luna named was the same reason I kept choosing men who could never quite stay, and then blaming myself when they left. One belief, sitting under my love, my work, and my money all at once. Six weeks later I stopped reaching for the familiar ache, and the steady, ordinary man I had almost overlooked is the one still here. Closer than I have let anyone be in years."</p>
-
-
+      <p class="testi-body">"Every almost-relationship ended the same way. Naming the block was the first time any of it made sense. Six months on, I am with someone who stayed, and I am not waiting for it to fall apart."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Rachel D.</span>
+        <span class="testi-meta">51 &middot; Washington, US</span>
+      </div>
     </div>
 
     <div class="testi-card">
-      <div class="testi-avatar-row">
-        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.png" alt="James H." width="56" height="56" decoding="async" loading="lazy"></picture>
-        <div>
-          <div class="testi-name">James H.</div>
-          <div class="testi-meta">48 &middot; Business owner</div>
-        </div>
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-madison-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-madison-ba.jpg" alt="Madison C. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I am a practical person and I only wanted to see what the cards said. The Love Block explanation stopped me cold. It named the exact thing I do every time someone gets close, I pull away first so I am never the one left behind. The very next person who mattered, I stayed in the conversation instead of going cold. We are still together. That one change has been worth more than I can put a price on."</p>
+      <p class="testi-body">"I blamed the men for years. It was never the men. I finally saw my part in it, and the relationship I am in now feels different, steady in a way I did not used to allow."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Madison C.</span>
+        <span class="testi-meta">39 &middot; Sydney, AU</span>
+      </div>
     </div>
 
     <div class="testi-card">
-      <div class="testi-avatar-row">
-        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.png" alt="Carolyn M." width="56" height="56" decoding="async" loading="lazy"></picture>
-        <div>
-          <div class="testi-name">Carolyn M.</div>
-          <div class="testi-meta">61 &middot; Holistic practitioner</div>
-        </div>
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-harvey-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-harvey-ba.jpg" alt="Harvey Jr. before and after his Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"Three cards, one pattern. I have spent years in therapy trying to understand why love kept arriving and then thinning out, the same story in different faces. This showed me in twenty minutes. The belief it named was the reason I never felt safe enough to let the good ones stay. The clearing practice alone gave me back something I thought I had aged out of, the feeling that the right love could still find me, and that I would not push it away this time."</p>
+      <p class="testi-body">"I always found the exit before anyone else could. The reading showed me why I kept doing it. I stopped reaching for the door, and the woman I am with now is still here, closer than I let anyone get before."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Harvey Jr.</span>
+        <span class="testi-meta">47 &middot; London, UK</span>
+      </div>
     </div>
-    <p style="text-align:center; max-width:580px; margin:22px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. A Soul Mirror Reading is for insight and self-reflection. It is not relationship advice and does not guarantee any specific outcome.</p>
+    <p style="text-align:center; max-width:580px; margin:22px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. Images are dramatizations. A Soul Mirror Reading is for insight and self-reflection. It is not relationship advice and does not guarantee any specific outcome.</p>
 
     <!-- CTA after testimonials cluster -->
     <div style="text-align:center; margin-top:40px;">
