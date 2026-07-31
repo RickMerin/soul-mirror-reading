@@ -46,6 +46,7 @@ body{background:#0b0718 !important;}
 .ba-before{left:12px;background:rgba(14,8,32,.62);color:#e9e4f5;border:1px solid rgba(255,255,255,.18);}
 .ba-after{right:12px;background:rgba(212,175,55,.92);color:#231343;border:1px solid rgba(255,255,255,.25);}
 .testi-attrib{display:flex;flex-direction:column;gap:3px;}
+@media(min-width:700px){.ba-wrap{max-width:86%;}}
 .dream-bg{filter:brightness(0.5) saturate(1.05) !important;}
 .luna-hero{display:block;width:62%;max-width:320px;margin:6px auto 14px;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 16px 44px rgba(0,0,0,.55);overflow:hidden;background:#160c34;}
 .luna-cap{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:0 0 24px;}
