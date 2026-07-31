@@ -468,7 +468,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
   <div class="wrap">
 
 
-<h1 class="vsl-headline">You Are Not Bad at Love. You Are Carrying One Belief That <span style="color:var(--gold-light);">Braces the Moment It Gets Close</span>.</h1>
+<h1 class="vsl-headline"><span class="firstname">Friend</span>, It Was Never You. It Was Never the Ones You Loved. <span style="color:var(--gold-light);">It Is One Belief You Never Chose.</span></h1>
 
 
 
