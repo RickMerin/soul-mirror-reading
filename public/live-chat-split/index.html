@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Live Reading with Luna Ross · Soul Mirror Reading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Crimson+Pro:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="live-chat-landing.css" />
+  <!-- Microsoft Clarity (project wq82rtc2gf, same as the rest of the funnel) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wq82rtc2gf");
+  </script>
+  <script>
+    window.clickmagick_cmc = {
+        uid: '92654',
+        hid: '1214314307',
+        cmc_project: 'Soul Mirror Reading',
+        vid_info: 'on',
+        utm_source: 'organic',
+        cmc_ref: 'live-chat-split',
+        split_ratio: '50',
+        split_url: 'https://soulmirrorreading.com/wealth/',
+    }
+  </script>
+  <script src='//cdn.clkmc.com/cmc.js'></script>
+  <style>
+    :root{
+      --gold:#d4af37;--gold-light:#e8c97a;
+      --text:#f4eeff;--text-muted:#c8c0e2;
+      --luna-bubble:rgba(255,252,248,0.96);--luna-text:#241546;
+      --user-bubble:linear-gradient(135deg,#d4af37,#b8912b);--user-text:#221237;
+      --card:rgba(255,252,248,.97);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+    /* mobile default */
+    main{position:relative;z-index:1;max-width:468px;margin:0 auto;padding:0 12px 0}
+    /* desktop: a touch wider + roomier */
+    @media(min-width:768px){
+      main{max-width:600px;padding:0 16px 0}
+      .bubble{font-size:16.5px}
+      .chat-body{padding:20px 22px 26px}
+    }
+
+    .av,.av-sm{background:url(luna-avatar.png) center/cover no-repeat;border-radius:50%;flex:none}
+    .av{width:44px;height:44px;border:2px solid var(--gold)}
+    .av-sm{width:28px;height:28px;border:1.5px solid rgba(212,175,55,.55);align-self:flex-end;margin-bottom:2px}
+
+    /* ===== bridge: real landing CSS is linked above; keep the chat on its own palette ===== */
+    #chatwrap{--gold:#d4af37;--gold-light:#e8c97a;--text:#f4eeff;--text-muted:#c8c0e2;font-family:'Inter',system-ui,sans-serif}
+    #chatwrap .bubble,#chatwrap .qr button,#chatwrap .input-row input,#chatwrap .cta,#chatwrap .botcta{font-family:'Inter',system-ui,sans-serif}
+    main{width:100%}
+    #landing.gone{display:none}
+    /* keep the chosen cards clear of the top edge of the viewport */
+    #landing{padding-top:34px}
+    /* reserve room under the cards so the Your Love / Life / Wealth labels
+       are not clipped or overlapped by the divider below */
+    .chosen-zone.visible{padding-bottom:64px}
+
+    /* handoff message, shown in place on the landing (cards stay visible) */
+    #handoff{text-align:center;padding:26px 20px 8px;opacity:0;transition:opacity .55s ease}
+    #handoff.show{opacity:1}
+    #handoff .ho-avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 18px;background:url(luna-avatar.png) center/cover no-repeat;border:2px solid #d4af37;animation:hoPulse 1.9s ease-out infinite}
+    @keyframes hoPulse{0%{box-shadow:0 0 0 0 rgba(212,175,55,.5)}70%{box-shadow:0 0 0 24px rgba(212,175,55,0)}100%{box-shadow:0 0 0 0 rgba(212,175,55,0)}}
+    #handoff .ho-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,4vw,30px);color:#fff;line-height:1.3;margin-bottom:10px}
+    #handoff .ho-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(16px,2.6vw,20px);color:#e8c97a;max-width:460px;margin:0 auto;line-height:1.55}
+    #handoff .ho-dots{display:flex;gap:7px;justify-content:center;margin-top:20px}
+    #handoff .ho-dots span{width:9px;height:9px;border-radius:50%;background:#d4af37;animation:hoBlink 1.2s infinite}
+    #handoff .ho-dots span:nth-child(2){animation-delay:.2s}
+    #handoff .ho-dots span:nth-child(3){animation-delay:.4s}
+    @keyframes hoBlink{0%,60%,100%{opacity:.28}30%{opacity:1}}
+
+    .card3d{width:96px;height:132px;perspective:900px}
+    .card3d .inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.4,0,.2,1)}
+    .card3d.flipped .inner{transform:rotateY(180deg)}
+    .card3d .side{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;overflow:hidden;border:1.5px solid var(--gold)}
+    .card3d .back{background:linear-gradient(160deg,#3a2b74,#1c1140);display:flex;align-items:center;justify-content:center}
+    .card3d .back::after{content:'\263D';font-size:26px;color:rgba(212,175,55,.85)}
+    .card3d .front{transform:rotateY(180deg);background:#0d0722}
+    .card3d .front img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+    .card3d .fh{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(16,10,34,.92));padding:8px 4px 6px;text-align:center}
+    .card3d .fh .hh{font-family:'Cinzel',sans-serif;font-size:9px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+    .card3d .fh .nn{font-family:'Cormorant Garamond',serif;font-size:11.5px;color:#fff;font-style:italic;line-height:1.15}
+
+    /* ===== CHAT ===== */
+    .chat-head{display:flex;align-items:center;gap:11px;padding:12px 14px;margin:14px 0 0;
+      background:rgba(20,16,44,.9);border:1px solid rgba(212,175,55,.22);border-radius:20px 20px 0 0}
+    .chat-head .who{flex:1;min-width:0}
+    .chat-head .name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:#fff;line-height:1.1}
+    .chat-head .status{font-size:11.5px;color:var(--text-muted);display:flex;align-items:center;gap:5px;margin-top:1px}
+    .dot-live{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;flex:none}
+    .chat-head .brandline{font-family:'Cinzel',sans-serif;font-size:9px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-align:right;line-height:1.4}
+
+    .chat-body{background:linear-gradient(180deg,rgba(16,12,36,.72),rgba(22,18,48,.66));border:1px solid rgba(212,175,55,.16);border-top:none;border-radius:0 0 20px 20px;padding:14px 14px 22px;min-height:60vh}
+
+    .chatmeta{text-align:center;font-size:11px;color:var(--text-muted);opacity:.85;margin:2px 0 12px;letter-spacing:.02em}
+    .scarcity{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 14px;max-width:320px;
+      background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.34);border-radius:999px;padding:7px 14px;font-size:12px;color:var(--gold-light);font-weight:500}
+    .scarcity #remain{font-weight:700;transition:opacity .3s}
+    .pulse{width:8px;height:8px;border-radius:50%;background:#f87171;box-shadow:0 0 8px #f87171;animation:pulse 1.5s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+    .sys{text-align:center;font-size:11px;color:var(--gold-light);margin:2px 0 14px;font-family:'Cinzel',sans-serif;letter-spacing:.1em}
+
+    .row{display:flex;gap:8px;margin:7px 0;align-items:flex-end}
+    .row.user{justify-content:flex-end}
+    .row.cont .av-sm{visibility:hidden}
+    .bubble{max-width:82%;padding:11px 15px;border-radius:20px;font-size:15px;line-height:1.5;word-wrap:break-word}
+    .row.luna .bubble{background:var(--luna-bubble);color:var(--luna-text);border-bottom-left-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+    .row.luna.cont .bubble{border-top-left-radius:9px}
+    .row.user .bubble{background:var(--user-bubble);color:var(--user-text);border-bottom-right-radius:6px;font-weight:600;box-shadow:0 4px 14px rgba(212,175,55,.26)}
+    .row.luna .bubble em{font-style:normal;font-weight:700;color:#7c4dbf}
+
+    .typing{display:inline-flex;gap:4px;padding:13px 16px;background:var(--luna-bubble);border-radius:20px;border-bottom-left-radius:6px}
+    .typing span{width:7px;height:7px;border-radius:50%;background:#b9a3d6;animation:blink 1.3s infinite}
+    .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+    @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+    .qr{display:flex;flex-direction:column;gap:8px;margin:10px 0 4px;padding-left:36px}
+    .qr button{width:100%;text-align:left;padding:12px 16px;border-radius:14px;font-size:14px;font-family:'Inter',sans-serif;cursor:pointer;background:rgba(255,252,248,.06);border:1px solid rgba(212,175,55,.3);color:var(--text);transition:transform .1s,background .15s}
+    .qr button:hover{background:rgba(212,175,55,.18)}
+    .qr button:active{transform:scale(.99)}
+
+    .input-wrap{margin:10px 0 4px;padding-left:36px}
+    .input-row{display:flex;gap:8px}
+    .input-row input{flex:1;min-width:0;padding:12px 15px;border-radius:14px;border:1px solid rgba(212,175,55,.4);background:rgba(255,252,248,.1);color:#fff;font-size:15px;font-family:inherit;outline:none}
+    .input-row input:focus{border-color:var(--gold);background:rgba(255,252,248,.16)}
+    .input-row input::placeholder{color:#b7addb}
+    .input-row button{width:50px;flex:none;border:none;border-radius:14px;background:var(--user-bubble);color:var(--user-text);font-size:20px;font-weight:700;cursor:pointer}
+    .in-err{font-size:12px;color:#f6a5a5;margin:6px 2px 0;display:none}
+    .shake{animation:shake .38s}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+    .calc{margin:14px 4px;text-align:center}
+    .calc-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold-light);margin-bottom:12px;min-height:22px}
+    .calc-cards{display:flex;gap:10px;justify-content:center;margin-bottom:14px}
+    .calc-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;max-width:260px;margin:0 auto}
+    .calc-bar-fill{height:100%;width:0;background:linear-gradient(90deg,#8a59ff,#d4af37)}
+
+    .reveal{position:relative;overflow:hidden;margin:14px 4px;padding:22px 18px;text-align:center;border-radius:16px;background:radial-gradient(circle at 50% 0%,rgba(212,175,55,.16),rgba(20,15,44,.5));border:1px solid rgba(212,175,55,.4);animation:revealIn .8s ease both}
+    @keyframes revealIn{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+    .reveal::before{content:'';position:absolute;inset:-45%;background:radial-gradient(circle,rgba(212,175,55,.28),transparent 62%);animation:glowPulse 2.6s ease-in-out infinite;z-index:0}
+    @keyframes glowPulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.8;transform:scale(1.1)}}
+    .reveal>*{position:relative;z-index:1}
+    .reveal .eye{font-family:'Cinzel',sans-serif;font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+    .reveal .block-card{width:118px;aspect-ratio:.78;object-fit:cover;border-radius:12px;border:1.5px solid var(--gold);display:block;margin:12px auto 8px;box-shadow:0 10px 26px rgba(0,0,0,.45);animation:cardDrop .9s .12s ease both}
+    @keyframes cardDrop{from{opacity:0;transform:translateY(-16px) rotateY(42deg) scale(.9)}to{opacity:1;transform:none}}
+    .reveal .blockname{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#fff;margin:2px 0 4px;line-height:1.1;animation:nameGlow 2.6s ease-in-out infinite alternate}
+    .reveal .blockname em{color:var(--gold-light);font-style:italic}
+    @keyframes nameGlow{from{text-shadow:0 0 6px rgba(212,175,55,.15)}to{text-shadow:0 0 20px rgba(212,175,55,.6)}}
+    .reveal .sub{font-size:13.5px;color:var(--text-muted)}
+
+    .datachart{margin:14px 4px;background:rgba(16,12,36,.5);border:1px solid rgba(212,175,55,.16);border-radius:14px;padding:16px}
+    .dc-title{font-family:'Cinzel',sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-align:center}
+    .dc-sub{font-size:11.5px;color:var(--text-muted);text-align:center;margin:3px 0 14px}
+    .dc-row{display:flex;align-items:center;gap:10px;margin:10px 0}
+    .dc-label{width:106px;flex:none;font-size:13px;color:var(--text)}
+    .dc-label em{font-style:normal;color:var(--gold-light);font-size:9.5px;font-family:'Cinzel',sans-serif;letter-spacing:.06em;text-transform:uppercase;display:block;margin-top:1px}
+    .dc-track{flex:1;height:12px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+    .dc-fill{height:100%;width:0;border-radius:99px;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+    .dc-block{background:linear-gradient(90deg,#b8912b,#f0d38a);box-shadow:0 0 12px rgba(212,175,55,.45)}
+    .dc-violet{background:linear-gradient(90deg,#6d4bd6,#a78bfa)}
+    .dc-teal{background:linear-gradient(90deg,#0e9e75,#2dd4bf)}
+    .dc-pct{width:46px;flex:none;text-align:right;font-weight:700;font-size:14px;color:#fff;font-variant-numeric:tabular-nums}
+
+    .mirror{margin:14px 4px;background:var(--card);color:#241546;border-radius:16px;padding:18px;box-shadow:0 10px 28px rgba(0,0,0,.32)}
+    .mirror h4{font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8a6d16;text-align:center;margin-bottom:12px}
+    .mirror .r{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(36,21,70,.1);font-size:13.5px}
+    .mirror .r:last-of-type{border-bottom:none}
+    .mirror .k{color:#6b6482}.mirror .v{font-weight:600;text-align:right;color:#241546}
+    .lockrow .v{filter:blur(4px);user-select:none}
+    .lockbadge{font-style:italic;color:#b08d1e;font-size:12px;text-align:center;margin-top:10px}
+
+    .offer{margin:18px 2px 6px;background:linear-gradient(180deg,var(--card),rgba(255,248,225,.98));color:#241546;border:2px solid var(--gold);border-radius:18px;padding:20px 20px;box-shadow:0 14px 38px rgba(212,175,55,.28)}
+    .offer .ostars{text-align:center;color:var(--gold);font-size:12px;letter-spacing:.04em;margin-bottom:6px}
+    .offer .ostars b{color:#8a6d16;font-weight:600}
+    .offer .oeye{font-family:'Cinzel',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8a6d16;text-align:center}
+    .otimer{text-align:center;font-size:12.5px;color:#7a5e12;background:#fbf3df;border:1px solid rgba(184,145,43,.45);border-radius:10px;padding:7px;margin:9px 0 4px}
+    .otimer b{color:#a3341d;font-weight:700;font-variant-numeric:tabular-nums}
+    .offer .price{text-align:center;margin:6px 0 4px;font-family:'Cormorant Garamond',serif}
+    .offer .price .was{font-size:20px;color:#b3a9a0;text-decoration:line-through;margin-right:8px}
+    .offer .price .now{font-size:46px;font-weight:700;color:#241546}
+    .offer .now sup{font-size:22px;top:-14px}
+    .offer .desc{font-size:13.5px;color:#4a4363;text-align:center;line-height:1.55;margin:6px 4px 14px}
+    .cta{display:block;width:100%;text-align:center;padding:16px;border-radius:14px;border:none;cursor:pointer;text-decoration:none;background:var(--user-bubble);color:var(--user-text);font-weight:700;font-size:16px;font-family:'Inter',sans-serif;box-shadow:0 8px 18px rgba(212,175,55,.38)}
+    .trust{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;margin-top:12px;font-size:11.5px;color:#6b6482}
+    .trust span{white-space:nowrap}
+
+    .sect{max-width:460px;margin:30px auto 0;text-align:center}
+    .sect .eye{font-family:'Cinzel',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+    .sect h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:#fff;margin:8px 0 4px;line-height:1.15}
+    .sect h2 em{color:var(--gold-light);font-style:italic}
+
+    .incl{max-width:440px;margin:16px auto 0;background:var(--card);color:#241546;border-radius:16px;padding:18px 18px 16px;text-align:left;box-shadow:0 10px 28px rgba(0,0,0,.3)}
+    .incl li{list-style:none;display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:#332a4d;padding:7px 0;border-bottom:1px solid rgba(36,21,70,.08)}
+    .incl li .ck{color:#b08d1e;font-weight:700;flex:none}
+    .incl li b{color:#241546}
+    .bonuses{margin-top:14px;background:#fbf3df;border:1px dashed rgba(184,145,43,.5);border-radius:12px;padding:13px 14px}
+    .bonuses .btitle{font-family:'Cinzel',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a6d16;text-align:center;margin-bottom:8px}
+    .brow{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:5px 0;color:#4a4363}
+    .brow .bval{color:#8a6d16;font-weight:600;white-space:nowrap}
+    .brow .bval s{color:#b0a68f;font-weight:400}
+    .brow.total{border-top:1px solid rgba(184,145,43,.35);margin-top:5px;padding-top:9px}
+    .brow.total span:first-child{color:#241546;font-weight:600}
+
+    .tgrid{display:flex;flex-direction:column;gap:12px;max-width:440px;margin:16px auto 0}
+    .tsub{background:var(--card);color:#241546;border-radius:14px;padding:15px 16px;text-align:left;box-shadow:0 8px 22px rgba(0,0,0,.26)}
+    .tsub .stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+    .tsub .tq{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.5;font-style:italic;color:#3a2b5e;margin-top:6px}
+    .tsub .tby{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12.5px;color:#6b6482}
+    .tsub .tface{width:38px;height:38px;border-radius:50%;object-fit:cover;flex:none;border:1.5px solid rgba(212,175,55,.55)}
+    .fineprint{max-width:440px;margin:12px auto 0;font-size:11px;color:#9a92b5;text-align:center;font-style:italic;line-height:1.55}
+    .closer{max-width:420px;margin:22px auto 0;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;color:#ece5f8;text-align:center;line-height:1.4}
+    .botcta{display:block;max-width:440px;margin:16px auto 0;text-align:center;padding:16px;border-radius:14px;border:none;cursor:pointer;text-decoration:none;background:var(--user-bubble);color:var(--user-text);font-weight:700;font-size:16px;font-family:'Inter',sans-serif;box-shadow:0 10px 24px rgba(212,175,55,.32)}
+    .botcta-sub{max-width:440px;margin:9px auto 0;text-align:center;font-size:11.5px;color:var(--text-muted)}
+
+    /* compact full-width footer (matches sales page: violet bar, ClickBank compliant) */
+    footer{margin:28px calc(50% - 50vw) 0;background:#241246;padding:18px 18px 20px;text-align:center}
+    footer>div{max-width:520px;margin:0 auto}
+    footer .fclickbank{font-size:9.5px;color:#847ca6;line-height:1.5;margin-bottom:8px}
+    footer .fsupport{font-size:10.5px;color:#a79fc4;line-height:1.5;margin-bottom:8px}
+    footer .fsupport a{color:#c8c0e2;text-decoration:none}
+    footer .fdisc{font-size:10px;color:#847ca6;line-height:1.5;margin-bottom:9px}
+    footer .flinks{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 12px;font-size:11.5px;margin-bottom:8px}
+    footer .flinks a{color:#c8c0e2;text-decoration:none}
+    footer .flinks a:hover{color:var(--gold-light)}
+    footer .fcopy{font-size:10.5px;color:#6f6890}
+
+    .fade-in{animation:fadeUp .4s ease both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    @media (prefers-reduced-motion:reduce){.fade-in,.reveal,.reveal .block-card,.reveal .blockname{animation:none}.dc-fill,.card3d .inner{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="dream-bg" aria-hidden="true">
+    <div class="dream-veil"></div>
+    <div class="milky-way"></div>
+    <div class="dream-orb one"></div>
+    <div class="dream-orb two"></div>
+    <div class="dream-orb three"></div>
+    <div class="dream-shooting" id="dreamShooting"></div>
+    <div class="dream-sparkles" id="dreamSparkles"></div>
+  </div>
+
+  <div id="landing">
+    <header class="site-header">
+      <div class="header-eyebrow">☽ &nbsp; Soul Mirror Reading &nbsp; ☾</div>
+      <h1>The Mirror Sees What<br><em>You've Been Too Afraid to Look At.</em></h1>
+      <p class="header-sub">Pick 3 cards. Your free reading begins to reveal the shape of the one belief<br>quietly running your love, your life, and your wealth at once.</p>
+    </header>
+
+    <section class="picker-section" id="pickerSection">
+      <div class="stage">
+        <div class="chosen-zone" id="chosenZone">
+          <div class="cs" id="cs0">
+            <div class="cs-corner tl"></div><div class="cs-corner tr"></div>
+            <div class="cs-corner bl"></div><div class="cs-corner br"></div>
+            <div class="cs-border"></div>
+            <div class="cs-inner"><div class="cs-num">I</div><div class="cs-label-text">First</div></div>
+            <div class="placed-card" id="pc0"></div>
+            <div class="cs-slot-label">Your Love</div>
+          </div>
+          <div class="cs" id="cs1" style="transform:translateY(-12px)">
+            <div class="cs-corner tl"></div><div class="cs-corner tr"></div>
+            <div class="cs-corner bl"></div><div class="cs-corner br"></div>
+            <div class="cs-border"></div>
+            <div class="cs-inner"><div class="cs-num">II</div><div class="cs-label-text">Second</div></div>
+            <div class="placed-card" id="pc1"></div>
+            <div class="cs-slot-label">Your Life</div>
+          </div>
+          <div class="cs" id="cs2">
+            <div class="cs-corner tl"></div><div class="cs-corner tr"></div>
+            <div class="cs-corner bl"></div><div class="cs-corner br"></div>
+            <div class="cs-border"></div>
+            <div class="cs-inner"><div class="cs-num">III</div><div class="cs-label-text">Third</div></div>
+            <div class="placed-card" id="pc2"></div>
+            <div class="cs-slot-label">Your Wealth</div>
+          </div>
+        </div>
+
+        <div class="header-divider picker-divider" id="pickerDivider"><span id="cardsRemainingText">Choose your cards below · 3 more</span></div>
+
+        <p class="deck-instruction" id="deckInstruction">Press the button below to reveal your cards</p>
+        <div class="deck-wrap">
+          <div class="deck-arc" id="deckArc">
+            <div class="shuffle-prompt" id="shufflePrompt">
+              <div class="shuffle-prompt-text">Take A Deep Breath &amp;<br>Shuffle Your Cards</div>
+            </div>
+          </div>
+          <div class="prompt-wrap">
+            <div class="sm-prompt" id="smPrompt">
+              While you shuffle, the deck is searching for the one belief showing up in your love, your money, and your purpose at the same time.<br>
+              Hold what feels unresolved. <em>Choose your first card.</em>
+            </div>
+          </div>
+        </div>
+
+        <div id="handoff" hidden>
+          <div class="ho-avatar" aria-hidden="true"></div>
+          <p class="ho-title">Thank you for picking your cards.</p>
+          <p class="ho-sub">Luna Ross is online now, and she would like to speak to you.</p>
+          <div class="ho-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <main>
+
+
+
+    <!-- ===== SCREEN 2: THE LIVE CHAT (sales page) ===== -->
+    <div id="chatwrap" hidden>
+      <div class="chat-head">
+        <span class="av" aria-hidden="true"></span>
+        <div class="who">
+          <div class="name">Luna Ross</div>
+          <div class="status"><span class="dot-live"></span> <span id="headstatus">Online now</span></div>
+        </div>
+        <div class="brandline">Soul Mirror<br/>Reading</div>
+      </div>
+
+      <div class="chat-body">
+        <div class="chatmeta" id="chatmeta"></div>
+        <div class="scarcity"><span class="pulse"></span> <span id="remain">5</span> live readings remaining today</div>
+        <div class="sys">✦ Luna joined your reading ✦</div>
+        <div id="thread" aria-live="polite"></div>
+      </div>
+
+      <div id="bottom" style="display:none">
+        <div class="sect">
+          <div class="eye">Everything from your session</div>
+          <h2 id="inclHeading">Inside Your <em>Wealth Mirror Reading</em></h2>
+          <div class="incl">
+            <li><span class="ck">✓</span><span><b id="inclFirst">Your Wealth Block identified</b>. The one belief running Love, Life and Wealth.</span></li>
+            <li><span class="ck">✓</span><span><b>Love, Life and Wealth Mirror deep-dives</b>. Each card read in the context of all three.</span></li>
+            <li><span class="ck">✓</span><span><b>Mirror Block Clearing Practice</b>. Seven questions, ten minutes, to begin the release.</span></li>
+            <li><span class="ck">✓</span><span><b>Reversed Card Companion</b> + <b>90-Day Check-In Prompts</b>. Keeps the clarity working.</span></li>
+            <div class="bonuses">
+              <div class="btitle">Plus 4 bonuses, yours free today</div>
+              <div class="brow"><span>Mirror Block Companion Guide</span><span class="bval"><s>$67</s> Free</span></div>
+              <div class="brow"><span>21-Day Shift Tracker</span><span class="bval"><s>$47</s> Free</span></div>
+              <div class="brow"><span>Root Cause Reading Guide</span><span class="bval"><s>$47</s> Free</span></div>
+              <div class="brow"><span>Mirror Clarity Meditation</span><span class="bval"><s>$37</s> Free</span></div>
+              <div class="brow total"><span>Total bonus value</span><span class="bval">$198 free</span></div>
+            </div>
+          </div>
+          <a class="botcta" data-checkout>Yes, prepare my reading ($37) →</a>
+          <div class="botcta-sub">90-day money-back guarantee · Secure checkout · Delivered within 24 hours</div>
+        </div>
+
+        <div class="sect">
+          <div class="eye">★★★★★ · 4,800+ readings</div>
+          <h2>What 4,800 Readings <em>Looked Like</em></h2>
+          <div class="tgrid">
+            <div class="tsub">
+              <div class="stars">★★★★★</div>
+              <div class="tq">"I almost closed the tab. After ten years of courses and readings that all said the same thing in slightly different words, I expected more of the same. It was not. The Wealth Block Luna named was the exact reason I had spent fifteen years quoting low and apologizing for my prices. Two weeks later a client asked for a full brand kit. Normally I would have said fifteen hundred and felt guilty. I sat with what the reading showed me and sent the quote for four thousand. She replied 'that sounds fair' and paid the deposit that afternoon. I am not saying the cards did it. I am saying they finally let me see the wall I had been pricing myself behind."</div>
+              <div class="tby"><img class="tface" src="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.png" alt="Rebecca Hartley" /> Rebecca Hartley · 47 · Graphic designer</div>
+            </div>
+            <div class="tsub">
+              <div class="stars">★★★★★</div>
+              <div class="tq">"I have had tarot readings for twenty years and always felt something was missing. This one gave me the piece. The Wealth Block Luna named was the same reason I had been undercharging in my last three jobs. One belief. Three rooms of my life. Six weeks later I raised my rates for the first time in four years, and the first client I sent the new number to said yes without blinking. The extra has been quietly adding up every month since."</div>
+              <div class="tby"><img class="tface" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.png" alt="Diane R." /> Diane R. · 54 · Retired teacher</div>
+            </div>
+            <div class="tsub">
+              <div class="stars">★★★★★</div>
+              <div class="tq">"I was skeptical. I'm a practical person. I just wanted to see what the cards said. But the Wealth Block explanation stopped me cold. It named the exact thing I do every time money gets close, I quietly talk the number down. I held my price on the very next deal instead of discounting it like I always had. That one change paid for this many times over."</div>
+              <div class="tby"><img class="tface" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.png" alt="James H." /> James H. · 48 · Business owner</div>
+            </div>
+            <div class="tsub">
+              <div class="stars">★★★★★</div>
+              <div class="tq">"Three cards. One pattern. I have spent years in therapy trying to understand why the same things kept happening in love, at work, with money. This report showed me in 20 minutes. The clearing practice alone is worth ten times what I paid."</div>
+              <div class="tby"><img class="tface" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.png" alt="Carolyn M." /> Carolyn M. · 61 · Holistic practitioner</div>
+            </div>
+          </div>
+          <div class="fineprint">Individual results vary and are not typical. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</div>
+          <p class="closer" id="closerLine">Your cards are drawn. Your block is named. The only question is whether you see it clearly.</p>
+          <a class="botcta" data-checkout>Yes, prepare my reading ($37) →</a>
+          <div class="botcta-sub">90-day money-back guarantee · Secure checkout · Delivered within 24 hours</div>
+        </div>
+
+        <footer>
+          <div class="fclickbank">ClickBank is the retailer of products on this site. CLICKBANK® is a registered trademark of Click Sales, Inc., a Delaware corporation located at 1444 S. Entertainment Ave., Suite 410 Boise, ID 83709, USA and used by permission. ClickBank's role as retailer does not constitute an endorsement, approval or review of these products or any claim, statement or opinion used in promotion of these products.</div>
+          <div class="fsupport">Product support: <a href="mailto:support@soulmirrorreading.com">contact the vendor</a> · Order support: <a href="https://www.clkbank.com/" target="_blank" rel="noopener">ClickBank</a> or 1-800-390-6035</div>
+          <div class="fdisc">A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</div>
+          <div class="flinks"><a href="https://soulmirrorreading.com/privacy-policy">Privacy Policy</a><a href="https://soulmirrorreading.com/terms-conditions">Terms &amp; Conditions</a><a href="mailto:support@soulmirrorreading.com">Contact Us</a><a href="https://soulmirrorreading.com/refund-return-policy">Refund &amp; Return Policy</a></div>
+          <div class="fcopy">© 2026 Soul Mirror Reading. All rights reserved.</div>
+        </footer>
+      </div>
+    </div>
+  </main>
+
+  <script>
+  (function(){
+    // vtid=[cmc_vid] is swapped at runtime by ClickMagick's cmc.js (loaded in <head>)
+    var CHECKOUT_WEALTH = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w-lc&template=order-4&cbfid=63520&exitoffer=exit-3&vtid=[cmc_vid]";
+    var CHECKOUT_LOVE   = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-l-lc&template=order-4&cbfid=63566&exitoffer=exit-4&vtid=[cmc_vid]";
+    var READING_ENDPOINT = "/api/reading"; // real endpoint, same-origin at deploy; no-ops on localhost preview
+    var ART = {
+      love:"https://soulmirrorreading.com/cards/mirror-love.webp",
+      life:"https://soulmirrorreading.com/cards/mirror-life.webp",
+      wealth:"https://soulmirrorreading.com/cards/mirror-wealth.webp",
+      block:"https://soulmirrorreading.com/cards/mirror-block.webp"
+    };
+    // ===== REAL 78-card deck (matches the live funnel: TarotCardCatalog + /cards/NN-slug.png) =====
+    var CARD_SLUGS = [
+      'the-fool','the-magician','the-high-priestess','the-empress','the-emperor',
+      'the-heirophant','the-lovers','the-chariot','strength','the-hermit',
+      'wheel-of-fortune','justice','the-hanged-man','death','temperance',
+      'the-devil','the-tower','the-star','the-moon','the-sun','judgement','the-world',
+      'ace-of-wands','two-of-wands','three-of-wands','four-of-wands','five-of-wands','six-of-wands','seven-of-wands','eight-of-wands','nine-of-wands','ten-of-wands','page-of-wands','knight-of-wands','queen-of-wands','king-of-wands',
+      'ace-of-cups','two-of-cups','three-of-cups','four-of-cups','five-of-cups','six-of-cups','seven-of-cups','eight-of-cups','nine-of-cups','ten-of-cups','page-of-cups','knight-of-cups','queen-of-cups','king-of-cups',
+      'ace-of-swords','two-of-swords','three-of-swords','four-of-swords','five-of-swords','six-of-swords','seven-of-swords','eight-of-swords','nine-of-swords','ten-of-swords','page-of-swords','knight-of-swords','queen-of-swords','king-of-swords',
+      'ace-of-pentacles','two-of-pentacles','three-of-pentacles','four-of-pentacles','five-of-pentacles','six-of-pentacles','seven-of-pentacles','eight-of-pentacles','nine-of-pentacles','ten-of-pentacles','page-of-pentacles','knight-of-pentacles','queen-of-pentacles','king-of-pentacles'
+    ];
+    var NAME_FIX = { 'the-heirophant':'The Hierophant' };
+    var SMALL = { of:1, the:1, and:1 };
+    function nameFromSlug(s){ if(NAME_FIX[s]) return NAME_FIX[s]; return s.split('-').map(function(w,i){ return (i>0 && SMALL[w]) ? w : w.charAt(0).toUpperCase()+w.slice(1); }).join(' '); }
+    function suitFor(id){ if(id<=22) return 'major'; if(id<=36) return 'wands'; if(id<=50) return 'cups'; if(id<=64) return 'swords'; return 'pentacles'; }
+    function cardById(id){ var i=id-1, slug=CARD_SLUGS[i]; return { id:id, slug:slug, name:nameFromSlug(slug), suit:suitFor(id), img:'https://soulmirrorreading.com/cards/'+(id<10?'0':'')+id+'-'+slug+'.png' }; }
+    var READING_PICK_KEY = 'soulMirrorReadingPick';
+    var HOUSES = ['Love','Life','Wealth'];
+    // Matches the live /wealth/ picker (frontend/js/home.js): shuffle the full 78-card deck on
+    // every load, draw a card at CLICK time out of what is left, and never read a stored pick.
+    // Every visit is a genuinely new reading.
+    function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+    var REMAINING = shuffle(CARD_SLUGS.map(function(_,i){ return cardById(i+1); }));
+    // Filled in as each card is drawn. Kept as one array the whole time, since state.cards holds
+    // a reference to it.
+    var CARDS = [];
+    function drawNextCard(idx){
+      var card = REMAINING.splice(Math.floor(Math.random()*REMAINING.length), 1)[0];
+      card.house = HOUSES[idx];
+      CARDS[idx] = card;
+      return card;
+    }
+    function persistPick(){
+      // Same contract as home.js goToUnlockPage(): sessionStorage only.
+      try{ sessionStorage.setItem(READING_PICK_KEY, JSON.stringify({ v:1, cards:CARDS.map(function(c){ return { id:c.id, slug:c.slug, name:c.name, suit:c.suit }; }) })); }catch(e){}
+    }
+    // Clear the stale localStorage pick written by earlier builds of this page.
+    try{ localStorage.removeItem(READING_PICK_KEY); }catch(e){}
+
+    var BLOCKS = {
+      wealth: {
+        word:'Wealth', checkout: CHECKOUT_WEALTH,
+        nameHtml:'The <em>Wealth</em> Block',
+        sub:'One belief, setting your ceiling. Now it has a name.',
+        chartTitle:'Your Wealth Block, across all three mirrors',
+        chartRows:[{name:'Wealth',tag:'the block',pct:84,cls:'dc-block'},{name:'Love',pct:62,cls:'dc-violet'},{name:'Purpose',pct:57,cls:'dc-teal'}],
+        offerDesc:'Your Wealth Block named, all three Mirror deep-dives, the Clearing Practice, and your 90-day prompts. Hand-written for your cards, in your inbox within 24 hours.',
+        inclHeading:'Inside Your <em>Wealth Mirror Reading</em>',
+        inclFirst:'Your Wealth Block identified',
+        closer:'Your cards are drawn. Your Wealth Block is named. The only question is whether you see it clearly.',
+        ack:'Money. I saw it in the centre card before you tapped.',
+        read:[
+          'Hear this first.',
+          '<em>This is not about effort. And it was never your fault.</em>',
+          'There is a number your income keeps returning to.',
+          'No matter how hard you work, you land back at the same figure.',
+          'More comes close. A yes you can almost taste.',
+          'Then something unseen pulls it back, and the door quietly closes.',
+          'You have tried the things that were meant to fix it. Therapy. Manifesting. The courses.',
+          'Each one worked for a while. Then the same ceiling came back.',
+          'Most people carry this quietly for years. You do not have to.'
+        ],
+        root:'a single <em>belief</em> at the root of your money',
+        futurePace:'If this belief were cleared, and the money could finally land, what would your life look like?',
+        dreams:['Free of the ceiling','Able to breathe again','Proof I was right about myself']
+      },
+      love: {
+        word:'Love', checkout: CHECKOUT_LOVE,
+        nameHtml:'The <em>Love</em> Block',
+        sub:'One belief, keeping love at arm’s length. Now it has a name.',
+        chartTitle:'Your Love Block, across all three mirrors',
+        chartRows:[{name:'Love',tag:'the block',pct:84,cls:'dc-block'},{name:'Purpose',pct:60,cls:'dc-violet'},{name:'Wealth',pct:55,cls:'dc-teal'}],
+        offerDesc:'Your Love Block named, all three Mirror deep-dives, the Clearing Practice, and your 90-day prompts. Hand-written for your cards, in your inbox within 24 hours.',
+        inclHeading:'Inside Your <em>Love Mirror Reading</em>',
+        inclFirst:'Your Love Block identified',
+        closer:'Your cards are drawn. Your Love Block is named. The only question is whether you see it clearly.',
+        ack:'Love. I saw it in your cards before you tapped.',
+        read:[
+          'Hear this first.',
+          '<em>It is not that love does not come to you. It comes.</em>',
+          'There is a moment it gets close, and something in you quietly steps back.',
+          'The almost. The near-miss. The one who could have been.',
+          'You brace, right when it starts to feel safe.',
+          'And the closeness slips away before it can land.',
+          'You have called it bad timing, or the wrong people.',
+          'It is neither. It is one pattern, running underneath all of it.',
+          'Most people carry this quietly for years. You do not have to.'
+        ],
+        root:'a single <em>belief</em> about how much love you are allowed to keep',
+        futurePace:'If this belief were cleared, and love could finally stay, what would your life look like?',
+        dreams:['Finally chosen','Able to trust it','Proof it was always possible']
+      }
+    };
+
+    var state = { name:'', email:'', gender:'', focus:'', block:'wealth', freetext:'', dream:'', cards:CARDS };
+    var geo = { city:'', country:'', ready:false };
+    function fetchGeo(){
+      return fetch('https://get.geojs.io/v1/ip/geo.json').then(function(r){return r.json();}).then(function(d){
+        if(d && d.city){ geo.city = d.city; geo.country = d.country || ''; geo.ready = true; return; }
+        throw 0;
+      }).catch(function(){
+        return fetch('https://ipapi.co/json/').then(function(r){return r.json();}).then(function(d){
+          geo.city = (d && d.city) || ''; geo.country = (d && d.country_name) || ''; geo.ready = true;
+        }).catch(function(){
+          return fetch('https://ipwho.is/').then(function(r){return r.json();}).then(function(d){
+            geo.city = (d && d.city) || ''; geo.country = (d && d.country) || ''; geo.ready = true;
+          }).catch(function(){ geo.ready = true; });
+        });
+      });
+    }
+    var geoPromise = fetchGeo();
+
+    function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]; }); }
+    function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+    function nowTime(){ var d=new Date(); var h=d.getHours(); var m=d.getMinutes(); var ap=h<12?'AM':'PM'; var hh=h%12; if(hh===0)hh=12; return hh+':'+(m<10?'0':'')+m+' '+ap; }
+    function daypart(){ var h=new Date().getHours(); if(h<12) return 'morning'; if(h<17) return 'afternoon'; if(h<21) return 'evening'; return 'night'; }
+    function daypartPhrase(){ var h=new Date().getHours(); if(h<12) return 'this morning'; if(h<17) return 'this afternoon'; if(h<21) return 'this evening'; return 'tonight'; }
+
+    /* ---------- LANDING PICKER (ported from home.js / funnel-home.php) ---------- */
+    var started = false, chosen = 0, animating = false, deckSpread = false;
+    var TOTAL = 3;
+    var PROMPTS = [
+      "Take a breath. Think of what feels unresolved right now.<br>Hold it in your heart, and <em>choose your first card.</em>",
+      "Stay with that feeling. Don't overthink it.<br><em>Choose the card you're drawn to.</em>",
+      "Last one. Trust what calls to you,<br><em>not what you think you should pick.</em>",
+      "Your three cards have been drawn.<br><em>Your reading is being prepared\u2026</em>"
+    ];
+    var FLOAT_CLASSES = ["float-0","float-1","float-2"];
+
+    function faceHTML(card){
+      return '<div class="card3d"><div class="inner">'
+        + '<div class="side back"></div>'
+        + '<div class="side front"><img src="'+card.img+'" alt="'+esc(card.house)+'" />'
+        + '<div class="fh"><div class="hh">'+esc(card.house)+'</div><div class="nn">'+esc(card.name)+'</div></div></div>'
+        + '</div></div>';
+    }
+
+    function getDeckArcLayout(){
+      var mobile = typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 720px)').matches;
+      if(mobile) return { N:14, radius:138, halfCard:31, angleSpan:78, stackSpread:1.68 };
+      return { N:15, radius:280, halfCard:43, angleSpan:88, stackSpread:1.8 };
+    }
+
+    function updateCardsRemainingText(){
+      var el = document.getElementById('cardsRemainingText');
+      if(!el) return;
+      var left = TOTAL - chosen;
+      el.textContent = left > 0 ? ('Choose your cards below \u00b7 ' + left + ' more') : 'Your three cards are drawn';
+    }
+
+    function buildDeck(){
+      var arc = document.getElementById('deckArc');
+      var L = getDeckArcLayout();
+      var halfArc = L.angleSpan / 2;
+      var slots = [];
+      for(var i=0;i<L.N;i++){
+        var angle = -halfArc + (L.angleSpan/(L.N-1))*i;
+        var rad = angle * Math.PI / 180;
+        var cx = Math.sin(rad) * L.radius;
+        var cy = L.radius - Math.cos(rad) * L.radius;
+        var slot = document.createElement('div');
+        slot.className = 'card-slot';
+        slot.dataset.i = String(i);
+        var stackRot = (i - (L.N-1)/2) * L.stackSpread;
+        slot.style.cssText = 'left: calc(50% - '+L.halfCard+'px); bottom: 10px; transform: rotate('+stackRot+'deg); transform-origin: bottom center; transition: none;';
+        slot.dataset.finalLeft = 'calc(50% + '+(cx - L.halfCard)+'px)';
+        slot.dataset.finalBottom = (-cy + 10) + 'px';
+        slot.dataset.finalAngle = String(angle);
+        slot.innerHTML = '<div class="card-inner"><div class="cf cb">'
+          + '<div class="cb-pattern"></div><div class="ms"></div><div class="mv"></div><div class="msh"></div>'
+          + '<div class="mg"><span>\u263d</span><span style="font-size:12px;opacity:0.6">\u2726</span></div>'
+          + '</div></div>';
+        slot.addEventListener('click', (function(s){ return function(){ pickFrom(s); }; })(slot));
+        arc.insertBefore(slot, document.getElementById('shufflePrompt'));
+        slots.push(slot);
+      }
+      document.getElementById('shufflePrompt').addEventListener('click', function(){
+        spreadDeck(slots);
+        var p = document.getElementById('smPrompt');   // reveal the prompt bubble (matches funnel-home.php)
+        if(p) p.classList.add('is-visible');
+      }, { once:true });
+    }
+
+    function spreadDeck(slots){
+      if(deckSpread) return;
+      deckSpread = true;
+      document.getElementById('shufflePrompt').classList.add('hidden');
+      var instr = document.getElementById('deckInstruction');
+      if(instr) instr.classList.add('hidden');
+      slots.forEach(function(slot, i){
+        setTimeout(function(){
+          slot.style.transition = 'left .65s cubic-bezier(0.22,1,0.36,1), bottom .65s cubic-bezier(0.22,1,0.36,1), transform .65s cubic-bezier(0.22,1,0.36,1), filter .65s ease';
+          slot.style.left = slot.dataset.finalLeft;
+          slot.style.bottom = slot.dataset.finalBottom;
+          slot.style.transform = 'rotate(' + slot.dataset.finalAngle + 'deg)';
+          slot.classList.add('revealed');
+        }, i * 40);
+      });
+    }
+
+    function setPrompt(){
+      var p = document.getElementById('smPrompt');
+      if(!p) return;
+      p.style.opacity = '0';
+      setTimeout(function(){ p.innerHTML = PROMPTS[Math.min(chosen,3)]; p.style.opacity = '1'; }, 280);
+    }
+
+    function landCard(slot, card, idx){
+      var pc = document.getElementById('pc'+idx);
+      pc.innerHTML = '<img src="'+card.img+'" alt="'+esc(card.name)+'" />'
+        + '<div class="placed-card-overlay"><div class="placed-name">'+esc(card.name)+'</div><div class="placed-suit">'+esc(card.suit)+'</div></div>';
+      pc.classList.add(FLOAT_CLASSES[idx]);
+      slot.classList.add('filled');
+      setTimeout(function(){ pc.classList.add('show'); }, 40);
+      var ci = slot.querySelector('.cs-inner'); if(ci) ci.style.display = 'none';
+    }
+
+    function pickFrom(slot){
+      if(!deckSpread || animating || chosen >= TOTAL) return;
+      if(slot.classList.contains('done') || slot.classList.contains('spent')) return;
+      animating = true;
+      slot.classList.add('done');
+      var idx = chosen;
+      var card = drawNextCard(idx);
+
+      if(idx === 0){
+        var sub = document.querySelector('.header-sub');
+        if(sub) sub.style.opacity = '0';
+        setTimeout(function(){
+          if(sub) sub.style.display = 'none';
+          document.getElementById('chosenZone').classList.add('visible');
+          document.getElementById('pickerDivider').classList.add('visible');
+          var hdr = document.querySelector('.site-header');
+          if(hdr) hdr.style.display = 'none';
+        }, 500);
+      }
+
+      var destSlot = document.getElementById('cs'+idx);
+      var inner = slot.querySelector('.card-inner');
+      var srcRect = inner.getBoundingClientRect();
+      var fly = document.createElement('div');
+      fly.className = 'flying-card';
+      fly.style.cssText = 'left:'+srcRect.left+'px; top:'+srcRect.top+'px; width:'+srcRect.width+'px; height:'+srcRect.height+'px; transform: rotate('+slot.dataset.finalAngle+'deg); transform-style: preserve-3d;';
+      fly.innerHTML = '<div class="fly-back"><div class="cb-pattern"></div><div class="ms"></div><div class="mv"></div><div class="mg">\u2726</div></div>'
+        + '<div class="fly-front"><img src="'+card.img+'" alt="'+esc(card.name)+'" /></div>';
+      document.body.appendChild(fly);
+
+      setTimeout(function(){
+        fly.style.transition = 'left .28s ease, top .28s ease, transform .28s ease';
+        fly.style.top = (srcRect.top - 50) + 'px';
+        fly.style.transform = 'rotate(0deg) scale(1.08)';
+      }, 20);
+
+      setTimeout(function(){
+        var d = destSlot.getBoundingClientRect();
+        var FW = d.width || 164, FH = d.height || 272;
+        fly.style.transition = 'left .5s cubic-bezier(.4,0,.2,1), top .5s cubic-bezier(.4,0,.2,1), width .5s ease, height .5s ease, transform .5s ease';
+        fly.style.left = (d.left + d.width/2 - FW/2) + 'px';
+        fly.style.top  = (d.top + d.height/2 - FH/2 - 20) + 'px';
+        fly.style.width = FW + 'px';
+        fly.style.height = FH + 'px';
+        fly.style.transform = 'rotate(0deg) scale(1)';
+      }, 250);
+
+      setTimeout(function(){
+        fly.style.transition = 'transform .65s cubic-bezier(.4,0,.2,1)';
+        fly.style.transform = 'rotateY(180deg)';
+      }, 780);
+
+      setTimeout(function(){
+        fly.remove();
+        landCard(destSlot, card, idx);
+        chosen++;
+        if(chosen === TOTAL){
+          document.querySelectorAll('.card-slot:not(.done)').forEach(function(s){ s.classList.add('spent'); });
+          persistPick();
+        }
+        setPrompt();
+        updateCardsRemainingText();
+        if(chosen === TOTAL) setTimeout(showHandoff, 1400);
+        animating = false;
+      }, 1450);
+    }
+
+    function showHandoff(){
+      var h = document.getElementById('handoff');
+      // fade the deck + prompt away; the chosen cards stay on screen
+      var dw = document.querySelector('.deck-wrap');
+      if(dw){
+        dw.style.transition = 'opacity .5s ease';
+        dw.style.opacity = '0';
+        setTimeout(function(){ dw.style.display = 'none'; }, 520);
+      }
+      if(!h){ setTimeout(startChat, 5200); return; }
+      setTimeout(function(){
+        h.hidden = false;
+        setTimeout(function(){ h.classList.add('show'); }, 30);
+      }, 420);
+      setTimeout(startChat, 5800);
+    }
+
+    function startChat(){
+      if(started) return; started = true;
+      state.cards = CARDS;
+      var lp = document.getElementById('landing'); if(lp) lp.classList.add('gone');
+      document.getElementById('chatwrap').hidden = false;
+      var timeStr = nowTime();
+      function paintMeta(){ var m = 'Today · ' + timeStr; if(geo.city){ m += ' · ' + geo.city + (geo.country ? ', ' + geo.country : ''); } document.getElementById('chatmeta').textContent = m; }
+      paintMeta();
+      if(!geo.ready){ geoPromise.then(paintMeta); }
+      window.scrollTo(0,0);
+      startScarcity();
+      run();
+    }
+
+    /* ---------- SCARCITY 5 -> 1 ---------- */
+    function startScarcity(){
+      var remain = 5;
+      function step(){
+        if(remain <= 1) return;
+        remain--;
+        var el = document.getElementById('remain');
+        el.style.opacity = 0;
+        setTimeout(function(){ el.textContent = remain; el.style.opacity = 1; }, 300);
+        schedule();
+      }
+      function schedule(){ setTimeout(step, 24000 + Math.random()*22000); }
+      schedule();
+    }
+
+    /* ---------- OFFER PRICE-HOLD TIMER ---------- */
+    function startOfferTimer(){
+      var el = document.getElementById('otime'); if(!el) return;
+      var secs = 15*60;
+      function tick(){
+        if(secs <= 0){ el.textContent = '00:00'; return; }
+        secs--;
+        var m = Math.floor(secs/60), s = secs%60;
+        el.textContent = m + ':' + (s<10?'0':'') + s;
+        setTimeout(tick, 1000);
+      }
+      tick();
+    }
+
+    /* ---------- CHAT ENGINE ---------- */
+    var thread = document.getElementById('thread');
+    function scrollDown(){ window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' }); }
+    function markPrevCont(){ var last = thread.lastElementChild; if(last && last.classList.contains('luna')) last.classList.add('cont'); }
+    function appendUser(text){
+      var row = document.createElement('div'); row.className='row user fade-in';
+      var b = document.createElement('div'); b.className='bubble'; b.textContent = text;
+      row.appendChild(b); thread.appendChild(row); scrollDown();
+    }
+    function appendBlock(html){
+      var d = document.createElement('div'); d.className='fade-in'; d.innerHTML = html;
+      thread.appendChild(d); scrollDown(); return d;
+    }
+    async function lunaSay(html){
+      markPrevCont();
+      var t = document.createElement('div'); t.className='row luna fade-in';
+      t.innerHTML = '<span class="av-sm"></span><div class="typing"><span></span><span></span><span></span></div>';
+      thread.appendChild(t); scrollDown();
+      var plain = html.replace(/<[^>]+>/g,'');
+      await sleep(Math.min(4200, 600 + plain.length * 42)); // longer messages take noticeably longer
+      t.remove(); markPrevCont();
+      var row = document.createElement('div'); row.className='row luna fade-in';
+      row.innerHTML = '<span class="av-sm"></span><div class="bubble">'+html+'</div>';
+      thread.appendChild(row); scrollDown();
+    }
+    function ask(options){
+      return new Promise(function(resolve){
+        var box = document.createElement('div'); box.className='qr fade-in';
+        options.forEach(function(o){
+          var b = document.createElement('button'); b.textContent = o.label;
+          b.onclick = function(){ box.remove(); appendUser(o.label); resolve(o); };
+          box.appendChild(b);
+        });
+        thread.appendChild(box); scrollDown();
+      });
+    }
+    function input(placeholder, type, validate){
+      return new Promise(function(resolve){
+        var wrap = document.createElement('div'); wrap.className='input-wrap fade-in';
+        var box = document.createElement('div'); box.className='input-row';
+        var inp = document.createElement('input'); inp.type = type||'text'; inp.placeholder = placeholder;
+        if(type==='email'){ inp.setAttribute('inputmode','email'); inp.setAttribute('autocomplete','email'); }
+        var btn = document.createElement('button'); btn.setAttribute('aria-label','Send'); btn.textContent='→';
+        var err = document.createElement('div'); err.className='in-err';
+        function submit(){
+          var v = inp.value.trim();
+          if(!v) return;
+          if(validate && !validate(v)){ err.textContent = validate.msg; err.style.display='block'; inp.classList.add('shake'); setTimeout(function(){ inp.classList.remove('shake'); }, 400); return; }
+          wrap.remove(); appendUser(v); resolve(v);
+        }
+        btn.onclick = submit;
+        inp.addEventListener('keydown', function(e){ if(e.key==='Enter') submit(); });
+        inp.addEventListener('input', function(){ err.style.display='none'; });
+        box.appendChild(inp); box.appendChild(btn);
+        wrap.appendChild(box); wrap.appendChild(err);
+        thread.appendChild(wrap); scrollDown();
+        setTimeout(function(){ inp.focus(); }, 60);
+      });
+    }
+    function vName(v){ return v.length>=2 && /[a-zA-Z]/.test(v) && !/\d/.test(v); }
+    vName.msg = 'Please enter your first name, letters only.';
+    function vEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+    vEmail.msg = 'Please enter a valid email address.';
+
+    function captureLead(){
+      // Links to the real reading API: creates the reading + Kit lead from the actual drawn cards.
+      try{
+        fetch(READING_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            name: state.name,
+            email: state.email,
+            gender: state.gender,            // must be "Female" or "Male" or the API 400s
+            dob: '',                          // optional, empty is accepted
+            // funnel drives the Kit tag: "love*" gets the love nurture tag, else wealth
+            funnel: (state.block === 'love') ? 'love/' : 'wealth/',
+            card1: state.cards[0].id,
+            card2: state.cards[1].id,
+            card3: state.cards[2].id,
+            card1Name: state.cards[0].name,
+            card2Name: state.cards[1].name,
+            card3Name: state.cards[2].name
+          }) }).catch(function(){});
+      }catch(e){}
+    }
+
+    async function typingPause(ms){
+      markPrevCont();
+      var t = document.createElement('div'); t.className='row luna fade-in';
+      t.innerHTML = '<span class="av-sm"></span><div class="typing"><span></span><span></span><span></span></div>';
+      thread.appendChild(t); scrollDown();
+      await sleep(ms); t.remove();
+    }
+
+    /* ---------- CALCULATION CARD REVEAL (1 by 1, ~12s) ---------- */
+    async function revealCardsCalc(cards){
+      var wrap = appendBlock('<div class="calc"><div class="calc-label">Laying out your spread...</div><div class="cards calc-cards"></div><div class="calc-bar"><div class="calc-bar-fill"></div></div></div>');
+      var cc = wrap.querySelector('.calc-cards');
+      var label = wrap.querySelector('.calc-label');
+      var barFill = wrap.querySelector('.calc-bar-fill');
+      cards.forEach(function(c){ var holder=document.createElement('div'); holder.innerHTML=faceHTML(c); cc.appendChild(holder.firstChild); });
+      var c3ds = cc.querySelectorAll('.card3d');
+      barFill.style.transition = 'width 12s linear';
+      setTimeout(function(){ barFill.style.width = '100%'; }, 20);
+      var waits = [3200, 3800, 3800];
+      for(var i=0;i<3;i++){
+        await sleep(waits[i]);
+        label.textContent = 'Reading ' + cards[i].name + '...';
+        c3ds[i].classList.add('flipped');
+        scrollDown();
+      }
+      await sleep(1400);
+      label.textContent = 'Your spread is clear.';
+    }
+
+    async function revealDataChart(block){
+      var rows = block.chartRows;
+      var html = '<div class="datachart"><div class="dc-title">'+block.chartTitle+'</div><div class="dc-sub">One belief, and how strongly it grips each area</div>';
+      rows.forEach(function(r){
+        html += '<div class="dc-row"><span class="dc-label">'+r.name+(r.tag ? ' <em>'+r.tag+'</em>' : '')+'</span>'
+          + '<div class="dc-track"><div class="dc-fill '+r.cls+'"></div></div>'
+          + '<span class="dc-pct">0%</span></div>';
+      });
+      html += '</div>';
+      var el = appendBlock(html);
+      var fills = el.querySelectorAll('.dc-fill');
+      var pcts = el.querySelectorAll('.dc-pct');
+      for(var i=0;i<rows.length;i++){
+        await sleep(i===0 ? 500 : 900);
+        fills[i].style.width = rows[i].pct + '%';
+        pcts[i].textContent = rows[i].pct + '%';
+        scrollDown();
+      }
+      await sleep(900);
+    }
+
+    async function revealMirrorCard(block){
+      var cardsLine = state.cards.map(function(c){ return c.name; }).join(' · ');
+      var rows = [
+        {k:'Reading for', v:esc(state.name || 'You')},
+        geo.city ? {k:'Reading from', v:esc(geo.city)} : null,
+        {k:'Your three cards', v:esc(cardsLine)},
+        {k:'Your block', v:'The ' + block.word + ' Block'},
+        {k:'The belief at the root', v:'You are allowed', lock:true},
+        {k:'Your Clearing Practice', v:'Seven questions', lock:true}
+      ].filter(Boolean);
+      var el = appendBlock('<div class="mirror"><h4>What your mirror shows</h4><div class="mrows"></div><div class="lockbadge" style="opacity:0;transition:opacity .5s">🔒 Locked · revealed in your full reading</div></div>');
+      var mrows = el.querySelector('.mrows');
+      for(var i=0;i<rows.length;i++){
+        await sleep(620);
+        var r = rows[i];
+        var d = document.createElement('div');
+        d.className = 'r fade-in' + (r.lock ? ' lockrow' : '');
+        d.innerHTML = '<span class="k">'+r.k+'</span><span class="v">'+r.v+'</span>';
+        mrows.appendChild(d);
+        scrollDown();
+      }
+      await sleep(450);
+      el.querySelector('.lockbadge').style.opacity = 1;
+    }
+
+    function offerHTML(block){
+      return '<div class="offer">'
+        + '<div class="ostars">★★★★★ · <b>4,800+ readings</b></div>'
+        + '<div class="oeye">Your full reading is ready</div>'
+        + '<div class="otimer">Your session price is held for <b id="otime">15:00</b></div>'
+        + '<div class="price"><span class="was">$395</span><span class="now"><sup>$</sup>37</span></div>'
+        + '<div class="desc">'+block.offerDesc+'</div>'
+        + '<a class="cta" data-checkout>Yes, prepare my reading ($37) →</a>'
+        + '<div class="trust"><span>🔒 Secure checkout</span><span>🌙 90-day guarantee</span><span>⚡ 24-hour delivery</span></div></div>';
+    }
+    function wireCheckout(root, url){
+      // cmc.js only rewrites links present at page load; our CTAs are injected later,
+      // so resolve [cmc_vid] ourselves from ClickMagick's stored visitor id.
+      // cmc.js exposes the visitor id on window.clickmagick_cmc.vid and mirrors it into the
+      // cmc_vid cookie. Read those first; the storage keys are only a legacy fallback.
+      var vid = '';
+      try{ vid = (window.clickmagick_cmc && window.clickmagick_cmc.vid) || ''; }catch(e){}
+      if(!vid){
+        try{ var m = document.cookie.match(/(?:^|;\s*)cmc_vid=([^;]+)/); if(m) vid = decodeURIComponent(m[1]); }catch(e){}
+      }
+      if(!vid){
+        try{ vid = localStorage.getItem('_cmc_cmc_vid') || sessionStorage.getItem('_cmc_cmc_vid') || ''; }catch(e){}
+      }
+      var finalUrl = vid ? url.replace('[cmc_vid]', encodeURIComponent(vid)) : url;
+      (root||document).querySelectorAll('[data-checkout]').forEach(function(a){
+        a.setAttribute('href', finalUrl);
+        a.setAttribute('target', '_self');
+        a.setAttribute('rel', 'noopener');
+      });
+    }
+
+    async function run(){
+      if(!geo.ready){ await Promise.race([geoPromise, sleep(2800)]); }
+      await sleep(600);
+      await lunaSay("You are pulling three cards " + daypartPhrase() + ".");
+      if(geo.city){ await lunaSay("All the way from " + esc(geo.city) + ". I felt them land the moment you did."); }
+      else { await lunaSay("I felt them land the moment you did."); }
+      await lunaSay("I had almost closed my deck for the " + daypart() + ". Your spread would not let me.");
+      await lunaSay("One card is sitting louder than the other two.");
+      await lunaSay("It points to something that has been running quietly for years.");
+      await lunaSay("Before I read it fully, who am I reading for? Your first name is enough.");
+      state.name = await input("Type your first name", "text", vName);
+      await lunaSay(esc(state.name) + ". Yes. That matches what your cards are showing me.");
+      await lunaSay("One quick thing, so I read your spread for the right person.");
+      var g = await ask([
+        {label:"I am a woman", value:"Female"},
+        {label:"I am a man", value:"Male"}
+      ]);
+      state.gender = g.value;
+      await lunaSay("Thank you. Now, in this season of your life, which of these is aching the loudest?");
+      var focus = await ask([
+        {label:"My money keeps hitting a ceiling", value:"money"},
+        {label:"Love arrives, then quietly leaves", value:"love"},
+        {label:"Every area of my life feels stalled", value:"stuck"},
+        {label:"There is one thing I cannot name yet", value:"specific"}
+      ]);
+      state.focus = focus.value;
+      state.block = (focus.value === 'love') ? 'love' : 'wealth';
+      var B = BLOCKS[state.block];
+      await lunaSay(B.ack);
+
+      for(var i=0;i<B.read.length;i++){ await lunaSay(B.read[i]); }
+
+      await lunaSay("Before I read deeper, I want this to reach you.");
+      await lunaSay("If we get disconnected, I do not want your reading lost. Where should I send it?");
+      state.email = await input("Type your email", "email", vEmail);
+      captureLead();
+      await lunaSay("Good. Your reading is safe now, " + esc(state.name) + ".");
+      await lunaSay("One thing before I read the cards. In your own words, what has been weighing on you?");
+      state.freetext = await input("Type your answer");
+      await lunaSay("I felt that before you finished writing.");
+      await lunaSay("What you just named is the thread, and it is in your spread.");
+      await lunaSay("Reading your three cards now. Hold still.");
+      await revealCardsCalc(state.cards);
+
+      await lunaSay("Read as one system, your three cards point to " + B.root + ".");
+      await lunaSay("That is not a willpower problem, " + esc(state.name) + ".");
+      await lunaSay("It runs underneath your money, your love, and your purpose at once.");
+      await lunaSay("There is something I need to show you. Hold on.");
+      await typingPause(1400);
+      appendBlock('<div class="reveal"><div class="eye">Your mirror block</div>'
+        + '<img class="block-card" src="'+ART.block+'" alt="'+B.word+' Block" />'
+        + '<div class="blockname">'+B.nameHtml+'</div>'
+        + '<div class="sub">'+B.sub+'</div></div>');
+      await sleep(2000);
+      await lunaSay("Here is how strongly that one belief is gripping each part of your life.");
+      await revealDataChart(B);
+      await sleep(700);
+      await lunaSay("Look closely at what your " + B.word + " Block is doing.");
+      await lunaSay("It does not stay in one place.");
+      await lunaSay("Sitting at the root, it keeps the other two blocked as well.");
+      await lunaSay("That is why nothing you try in those areas ever fully holds.");
+      await lunaSay("And the longer it sits, the wider it spreads.");
+      await lunaSay("This is why the root has to be cleared now, not someday.");
+      await sleep(400);
+      await lunaSay("Here is your spread, laid out.");
+      await revealMirrorCard(B);
+      await sleep(500);
+
+      await lunaSay("Picture six months from now. The same pattern. The same quiet settling for less.");
+      await lunaSay("A year on, the loss has compounded, in your life and in the part of you that stopped expecting more.");
+      await lunaSay("The block does not fight you. It waits you out.");
+      await lunaSay(B.futurePace);
+      var dream = await ask(B.dreams.map(function(d){ return {label:d}; }));
+      state.dream = dream.label;
+      await lunaSay("I can see it. That is exactly what is waiting on the other side of this.");
+      await lunaSay("Your full reading names the belief at the root, shows the moment it first formed, and gives you the one practice that clears it.");
+      await lunaSay(esc(state.name) + ", are you someone who moves when the moment is right?");
+      var ready = await ask([
+        {label:"Yes, I am ready", value:"yes"},
+        {label:"I need to think about it", value:"think"}
+      ]);
+      if(ready.value === 'think'){
+        await lunaSay("I understand.");
+        await lunaSay("But this window does not stay open.");
+        await lunaSay("What you feel right now, this clarity, this is the moment.");
+      }
+
+      // block-aware bottom + offer
+      document.getElementById('inclHeading').innerHTML = B.inclHeading;
+      document.getElementById('inclFirst').textContent = B.inclFirst;
+      document.getElementById('closerLine').textContent = B.closer;
+      var offer = appendBlock(offerHTML(B));
+      wireCheckout(offer, B.checkout);
+      startOfferTimer();
+      var bottom = document.getElementById('bottom');
+      bottom.style.display = '';
+      wireCheckout(bottom, B.checkout);
+    }
+
+    buildDeck();
+  })();
+  </script>
+</body>
+</html>
