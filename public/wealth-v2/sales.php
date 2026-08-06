@@ -618,19 +618,19 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section class="section" style="position:relative;">
   <div class="wrap">
-    <h2>This Is a <em>Diagnosis.</em> Not a Prediction.</h2>
+    <h2>Three Symptoms. One <em>Diagnosis.</em> It Has a Name.</h2>
 
     
 
-<p style="text-align:center; max-width:600px; margin:0 auto 18px;">Your three cards point to one belief sitting at the root of your wealth. The same belief is quietly shaping your love and your purpose too. Name it once, and all three start to move.</p>
+<p style="text-align:center; max-width:600px; margin:0 auto 18px;">Apart, each card is just interesting. Together, they name the one belief blocking your money, your love, and your purpose. Name it once, and all three move.</p>
 
-    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">This is not a horoscope. Like a doctor reading three symptoms together instead of one at a time, it reads the <strong style="color:var(--gold-light);">three cards you actually drew</strong>, and the houses they landed in, as one connected system. That is what turns an interesting card into the exact pattern you keep living. Built from your cards. Never a script.</p>
+    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">Not a horoscope. It reads the <strong style="color:var(--gold-light);">three cards you drew</strong> as one connected system: the exact pattern you keep living. Never a script.</p>
 
 
 
     <!-- Down arrow / decoding indicator -->
     <div style="text-align:center; margin:24px auto 8px;">
-      <div class="gs-connector-label" style="margin-bottom:8px;">Now The Pattern Has A Name</div>
+      <div class="gs-connector-label" style="margin-bottom:8px;">Now It Has a Name</div>
       <div style="color:var(--gold); font-size:24px; line-height:1;">&darr;</div>
     </div>
 
@@ -639,12 +639,29 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <div style="background: linear-gradient(180deg, rgba(45,27,105,0.65), rgba(30,13,64,0.92)); border: 1px solid var(--gold); border-radius: 14px; padding: 32px 28px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); text-align: center;">
         
         <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">Your Wealth Is Blocked</h4>
-        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money arrives. Money quietly leaves. The same ceiling, year after year, no matter what you try.</p>
-        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block is working, and the one practice that clears it. Not more effort, not another course, not trying harder. Just one quiet shift, and the pattern that kept pulling your money back finally loosens its grip, so what comes in has a <strong style="color:var(--gold-light);">real chance to stay</strong>.</div>
+        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money comes in, then quietly slips out. The same ceiling, year after year. It was never the effort. It is this.</p>
+        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block works, and the one practice that clears it. Not more effort. Not another course. One quiet shift, and what comes in <strong style="color:var(--gold-light);">finally stays</strong>.</div>
       </div>
     </div>
 
     
+
+    <!-- Results (future-pace) -->
+    <div style="max-width:520px; margin:26px auto 0; text-align:center;">
+      <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:13px;">Once the Block Is Named</div>
+      <div style="display:grid; gap:9px; justify-items:center;">
+        <p style="margin:0; font-size:16px; color:rgba(255,255,255,0.9); line-height:1.5;"><span style="color:var(--gold-light); font-weight:700;">&#10003;</span> The ceiling that held for years starts to give.</p>
+        <p style="margin:0; font-size:16px; color:rgba(255,255,255,0.9); line-height:1.5;"><span style="color:var(--gold-light); font-weight:700;">&#10003;</span> Money that slipped away finds a reason to stay.</p>
+        <p style="margin:0; font-size:16px; color:rgba(255,255,255,0.9); line-height:1.5;"><span style="color:var(--gold-light); font-weight:700;">&#10003;</span> The old tension around money begins to ease.</p>
+      </div>
+      <p style="font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; margin:11px auto 0; max-width:420px;">Results vary from person to person.</p>
+    </div>
+
+    <!-- Scarcity -->
+    <div style="max-width:540px; margin:22px auto 0; text-align:center; display:grid; gap:6px;">
+      <p style="margin:0; font-size:13.5px; font-weight:600; color:var(--gold-light); line-height:1.55;">&#9888;&#65039; Luna reads each spread by hand and takes only a limited number a day.</p>
+      <p style="margin:0; font-size:13.5px; font-weight:600; color:var(--gold-light); line-height:1.55;">Leave this page and your three cards reset. This exact spread is only here now.</p>
+    </div>
 
     <!-- CTA after diagnostic proof -->
     <div style="text-align:center; margin-top:40px;">
