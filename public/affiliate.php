@@ -248,7 +248,7 @@ declare(strict_types=1);
       <div class="wrap">
         <span class="eyebrow center" style="display:block">Your Affiliate Link</span>
         <h2 class="center">Generate Your ClickBank Hoplink</h2>
-        <p class="lead center" style="margin-bottom:28px">Enter your ClickBank nickname below. Add an optional tracking ID if you want to track a specific campaign, list, or placement inside ClickBank. You get two links, one for each angle page: pick the one that fits your list, or test both.</p>
+        <p class="lead center" style="margin-bottom:28px">Enter your ClickBank nickname below. Add an optional tracking ID if you want to track a specific campaign, list, or placement inside ClickBank. You get three links: the Wealth and Love angle pages, plus Luna's live-chat funnel. Pick the one that fits your list, or test them.</p>
 
         <div class="panel" style="max-width:600px;margin:0 auto">
           <div class="field-row">
@@ -279,6 +279,12 @@ declare(strict_types=1);
               <code id="hoplink-love"></code>
               <button type="button" class="copy-btn" id="copyLove">Copy</button>
             </div>
+            <span class="angle-label" style="margin-top:18px">Live Chat</span>
+            <div class="codebox">
+              <code id="hoplink-live"></code>
+              <button type="button" class="copy-btn" id="copyLive">Copy</button>
+            </div>
+            <span class="hint" style="display:block;margin-top:7px">Luna's interactive live-chat funnel (wealth and love branches). Use the Wealth Angle swipes with this link.</span>
           </div>
         </div>
       </div>
@@ -352,6 +358,8 @@ declare(strict_types=1);
       var hoplinkLove = document.getElementById('hoplink-love');
       var copyWealth = document.getElementById('copyWealth');
       var copyLove = document.getElementById('copyLove');
+      var hoplinkLive = document.getElementById('hoplink-live');
+      var copyLive = document.getElementById('copyLive');
 
       function clean(v){ return (v || '').trim(); }
 
@@ -373,8 +381,9 @@ declare(strict_types=1);
         if(!wealth) return;
         hoplinkWealth.textContent = wealth;
         hoplinkLove.textContent = buildLink('love');
+        hoplinkLive.textContent = buildLink('live-main');
         result.classList.add('show');
-        [copyWealth, copyLove].forEach(function(b){ b.classList.remove('copied'); b.textContent = 'Copy'; });
+        [copyWealth, copyLove, copyLive].forEach(function(b){ b.classList.remove('copied'); b.textContent = 'Copy'; });
       });
 
       function copyText(text, btn, doneLabel){
@@ -411,6 +420,11 @@ declare(strict_types=1);
       copyLove.addEventListener('click', function(){
         var text = hoplinkLove.textContent;
         if(text) copyText(text, copyLove, 'Copy');
+      });
+
+      copyLive.addEventListener('click', function(){
+        var text = hoplinkLive.textContent;
+        if(text) copyText(text, copyLive, 'Copy');
       });
 
     })();
