@@ -4,7 +4,7 @@ $cssPath = __DIR__ . "/../assets/sales-v2-bundle.min.css";
 $cssVer = is_file($cssPath) ? filemtime($cssPath) : time();
 $jsPath = __DIR__ . "/../assets/sales-v2.min.js";
 $jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
-$checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=order-4&cbfid=63457&exitoffer=exit-1&vtid=[cmc_vid]";
+$checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-wtsl&template=order-4&cbfid=63520&exitoffer=exit-3&vtid=[cmc_vid]";
 ?>
 <!-- wealth-v2 sales.php update 2026-06-13: Gilded Spread card showcase, de-duplicated sales letter, removed value-stack + duplicate combo, tightened Diagnosis copy, re-angled CTAs (Clear My Wealth Block / Get My Full Reading), card section shown on load (entrance reveal removed). Test cohort start 2026-06-13. -->
 <!DOCTYPE html>
@@ -38,6 +38,15 @@ $checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-w&template=orde
 .tslpull{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#E8C97A;border-left:3px solid #C9A14A;padding:16px 22px;margin:26px 0;background:rgba(201,161,74,.08);border-radius:0 8px 8px 0;line-height:1.5;}
 .tslbridge{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cbb88a;margin:8px 0 0;}
 body{background:#0b0718 !important;}
+/* before/after testimonial images */
+.ba-wrap{position:relative;max-width:60%;border-radius:12px;overflow:hidden;margin:0 auto 18px;border:1px solid rgba(212,175,55,.2);line-height:0;}
+.ba-img{width:100%;height:auto;display:block;}
+.ba-wrap::after{content:"";position:absolute;top:8%;bottom:8%;left:50%;width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-.5px);}
+.ba-label{position:absolute;top:12px;font-family:'Cinzel',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:20px;font-weight:600;z-index:2;}
+.ba-before{left:12px;background:rgba(14,8,32,.62);color:#e9e4f5;border:1px solid rgba(255,255,255,.18);}
+.ba-after{right:12px;background:rgba(212,175,55,.92);color:#231343;border:1px solid rgba(255,255,255,.25);}
+.testi-attrib{display:flex;flex-direction:column;gap:3px;}
+@media(min-width:700px){.ba-wrap{max-width:86%;}}
 .dream-bg{filter:brightness(0.5) saturate(1.05) !important;}
 .luna-hero{display:block;width:62%;max-width:320px;margin:6px auto 14px;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 16px 44px rgba(0,0,0,.55);overflow:hidden;background:#160c34;}
 .luna-cap{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:0 0 24px;}
@@ -447,6 +456,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
 <div class="topnotice" style="background:#9b1c1c;color:#fff;border-bottom:1px solid #c0392b;">
   <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Read This First, It Changes What You Do With It</strong>
+  <div style="font-size:12px; font-weight:400; margin-top:5px; color:#fde4dd;">Your full reading is a one-time $37, fully refundable for 90 days. Never a subscription.</div>
 </div>
 
 
@@ -458,7 +468,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
   <div class="wrap">
     
 
-<h1 class="vsl-headline">There Is <span style="color:var(--gold-light);">One Hidden Pattern</span> Beneath Everything You've Struggled With.</h1>
+<h1 class="vsl-headline"><span class="firstname">Friend</span>, The Reason Money Keeps Slipping Away Was Never Willpower. <span style="color:var(--gold-light);">It's One Hidden Pattern.</span></h1>
 
 
     
@@ -609,19 +619,19 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
      &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section class="section" style="position:relative;">
   <div class="wrap">
-    <h2>This Is a <em>Diagnosis.</em> Not a Prediction.</h2>
+    <h2>Three Symptoms. One <em>Diagnosis.</em> It Has a Name.</h2>
 
     
 
-<p style="text-align:center; max-width:600px; margin:0 auto 18px;">Your three cards point to one belief sitting at the root of your wealth. The same belief is quietly shaping your love and your purpose too. Name it once, and all three start to move.</p>
+<p style="text-align:center; max-width:600px; margin:0 auto 18px;">Apart, each card is just interesting. Together, they name the one belief blocking your money, your love, and your purpose. Name it once, and all three move.</p>
 
-    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">This is not a horoscope. Like a doctor reading three symptoms together instead of one at a time, it reads the <strong style="color:var(--gold-light);">three cards you actually drew</strong>, and the houses they landed in, as one connected system. That is what turns an interesting card into the exact pattern you keep living. Built from your cards. Never a script.</p>
+    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">Not a horoscope. It reads the <strong style="color:var(--gold-light);">three cards you drew</strong> as one connected system: the exact pattern you keep living. Never a script.</p>
 
 
 
     <!-- Down arrow / decoding indicator -->
     <div style="text-align:center; margin:24px auto 8px;">
-      <div class="gs-connector-label" style="margin-bottom:8px;">Now The Pattern Has A Name</div>
+      <div class="gs-connector-label" style="margin-bottom:8px;">Now It Has a Name</div>
       <div style="color:var(--gold); font-size:24px; line-height:1;">&darr;</div>
     </div>
 
@@ -630,15 +640,35 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <div style="background: linear-gradient(180deg, rgba(45,27,105,0.65), rgba(30,13,64,0.92)); border: 1px solid var(--gold); border-radius: 14px; padding: 32px 28px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); text-align: center;">
         
         <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">Your Wealth Is Blocked</h4>
-        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money arrives. Money quietly leaves. The same ceiling, year after year, no matter what you try.</p>
-        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your Soul Mirror Reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block is working, and the one practice that clears it. Not more effort, not another course, not trying harder. Just one quiet shift, and the pattern that kept pulling your money back finally loosens its grip, so what comes in has a <strong style="color:var(--gold-light);">real chance to stay</strong>.</div>
+        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money comes in, then quietly slips out. The same ceiling, year after year. It was never the effort. It is this.</p>
+        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block works, and the one practice that clears it. Not more effort. Not another course. One quiet shift, and what comes in <strong style="color:var(--gold-light);">finally stays</strong>.</div>
       </div>
     </div>
 
     
 
+    <!-- Results (future-pace) -->
+    <div style="max-width:520px; margin:26px auto 0; text-align:center;">
+      <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:13px;">Once the Block Is Named</div>
+      <div style="display:grid; gap:9px; justify-items:center;">
+        <p style="margin:0; font-size:16px; color:rgba(255,255,255,0.9); line-height:1.5;"><span style="color:var(--gold-light); font-weight:700;">&#10003;</span> The ceiling that held for years starts to give.</p>
+        <p style="margin:0; font-size:16px; color:rgba(255,255,255,0.9); line-height:1.5;"><span style="color:var(--gold-light); font-weight:700;">&#10003;</span> Money that slipped away finds a reason to stay.</p>
+        <p style="margin:0; font-size:16px; color:rgba(255,255,255,0.9); line-height:1.5;"><span style="color:var(--gold-light); font-weight:700;">&#10003;</span> The old tension around money begins to ease.</p>
+      </div>
+      <p style="font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; margin:11px auto 0; max-width:420px;">Results vary from person to person.</p>
+    </div>
+
+    <!-- Scarcity -->
+    <div style="max-width:540px; margin:22px auto 0; text-align:center; display:grid; gap:6px;">
+      <p style="margin:0; font-size:13.5px; font-weight:600; color:var(--gold-light); line-height:1.55;">&#9888;&#65039; Luna reads each spread by hand and takes only a limited number a day.</p>
+      <p style="margin:0; font-size:13.5px; font-weight:600; color:var(--gold-light); line-height:1.55;">Leave this page and your three cards reset. This exact spread is only here now.</p>
+    </div>
+
     <!-- CTA after diagnostic proof -->
     <div style="text-align:center; margin-top:40px;">
+      <div style="max-width:540px; margin:0 auto 22px; padding:16px 20px; border:1px solid rgba(212,175,55,0.35); border-radius:12px; background:rgba(212,175,55,0.06); text-align:left;">
+        <p style="margin:0; font-size:15px; line-height:1.65; color:rgba(255,255,255,0.9);"><strong style="color:var(--gold-light);">Before you click, here is exactly what happens.</strong> This is a one-time payment of $37. It is not a subscription, it is not a trial that bills you later, and there is no second payment of any kind, now or ever. You pay once, your reading is written and sent, and that is the end of it. Fully refundable for 90 days.</p>
+      </div>
       <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Clear My Wealth Block &rarr;</a>
       <p style="max-width:480px; margin:14px auto 0; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.72);">Your free cards named the block. Your full reading reads all three together and shows you <strong style="color:var(--gold-light);">exactly how it works</strong>, where it took root, and the practice that clears it. Hand-written for your cards, in your inbox within 24 hours.</p>
       <div class="cta-trust-row" style="margin-top:16px;">
@@ -657,20 +687,22 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 <section style="padding: 0 0 20px;">
   <div class="wrap">
     <div class="testi-card">
-      <div class="testi-avatar-row">
+      <div class="ba-wrap">
         <picture>
-          <source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.webp">
-          <img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/sales/rebecca-hartley.png" alt="Rebecca Hartley" decoding="async" loading="lazy">
-        </source></picture>
-        <div>
-          <div class="testi-name">Rebecca Hartley</div>
-          <div class="testi-meta">47 &middot; Graphic designer</div>
-        </div>
+          <source type="image/webp" srcset="/frontend/images/sales/testimonial-rebecca-ba.webp">
+          <img class="ba-img" src="/frontend/images/sales/testimonial-rebecca-ba.jpg" alt="Rebecca H. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy">
+        </picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I almost closed the tab. After ten years of courses and readings that all said the same thing in slightly different words, I expected more of the same. It was not. The Wealth Block Luna named was the exact reason I had spent fifteen years quoting low and apologizing for my prices. Two weeks later a client asked for a full brand kit. Normally I would have said fifteen hundred and felt guilty. I sat with what the reading showed me and sent the quote for four thousand. She replied 'that sounds fair' and paid the deposit that afternoon. I am not saying the cards did it. I am saying they finally let me see the wall I had been pricing myself behind."</p>
+      <p class="testi-body">"I undercharged for years and never understood why. The reading named the belief behind it. A month later I raised my rates for the first time in three years, and took on a $1,400 client I would normally have talked myself out of."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Rebecca H.</span>
+        <span class="testi-meta">44 &middot; Leeds, UK</span>
+      </div>
     </div>
-    <p style="text-align:center; max-width:580px; margin:16px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
+    <p style="text-align:center; max-width:580px; margin:16px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. Images are dramatizations. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
   </div>
 </section>
 
@@ -796,7 +828,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         <span class="price-currency">$</span><span class="price-new">37</span>
       </div>
     </div>
-    <p class="price-note">One-time payment &middot; Delivered within 12 to 24 hours</p>
+    <p class="price-note">One-time payment. No subscription, no rebill, nothing recurring. Delivered within 12 to 24 hours.</p>
 
     <ul class="vip-list" style="max-width:440px;">
       <li><span>Your personalised Soul Mirror Reading. <em>$197 value</em></span></li>
@@ -812,7 +844,12 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <div class="pricing-inline-guarantee">
       <img loading="lazy" src="https://soulmirrorreading.com/cards/guarantee-badge.webp" alt="90-Day Guarantee">
-      <div><strong>90-Day Money-Back Guarantee.</strong><br>Read your full reading. If it is not worth far more than $37 to you, for any reason, reply and I refund every penny.</div>
+      <div><strong>Your 90-Day, Keep-Everything Guarantee.</strong><br>Read your full reading and sit with it for up to 90 days. If it is not worth far more than $37 to you, for any reason at all or for no reason, reply to your delivery email and I refund every penny. You keep the reading. You keep all four bonuses. No forms, no questions. In nineteen years, I have almost never been asked.</div>
+    </div>
+
+    <div style="max-width:520px; margin:22px auto 0; padding:18px 22px; border-radius:12px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); text-align:left;">
+      <p style="margin:0 0 8px; font-family:'Cormorant Garamond',serif; font-size:21px; color:var(--gold-light);">If $37 feels like too much right now</p>
+      <p style="margin:0; font-size:14px; line-height:1.7; color:rgba(255,255,255,0.82);">I want to be honest with you, because you have been told enough things that were not true. You do not really risk this $37. You read your full reading, you sit with it, and if it is not worth far more than $37 to you, for any reason or no reason, you reply to the email it arrived in and I send back every penny. You keep the reading. You keep all four bonuses. You are out nothing. That same ceiling has already cost you far more than $37, again and again, in what slipped away. This is the one look you can take back if it does not serve you.</p>
     </div>
 
     <div class="trust-badge-row">
@@ -831,45 +868,47 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <h2>What 4,800 Readings <em>Have Looked Like</em></h2>
 
     <div class="testi-card">
-      <div class="testi-avatar-row">
-        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-diane-r.png" alt="Diane R." width="56" height="56" decoding="async" loading="lazy"></picture>
-        <div>
-          <div class="testi-name">Diane R.</div>
-          <div class="testi-meta">54 &middot; Retired teacher</div>
-        </div>
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-diane-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-diane-ba.jpg" alt="Diane R. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      
-
-<p class="testi-body">"I have had tarot readings for twenty years and always felt something was missing. This one gave me the piece. The Wealth Block Luna named was the same reason I had been undercharging in my last three jobs. One belief. Three rooms of my life. Six weeks later I raised my rates for the first time in four years, and the first client I sent the new number to said yes without blinking. The extra has been quietly adding up every month since."</p>
-
-
+      <p class="testi-body">"Money came in and slipped straight back out, every time. Seeing the block written plainly made it click. I finally asked for the raise I had been avoiding, about $300 more a month, and this time I actually kept it."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Diane R.</span>
+        <span class="testi-meta">51 &middot; Ohio, US</span>
+      </div>
     </div>
 
     <div class="testi-card">
-      <div class="testi-avatar-row">
-        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-james-h.png" alt="James H." width="56" height="56" decoding="async" loading="lazy"></picture>
-        <div>
-          <div class="testi-name">James H.</div>
-          <div class="testi-meta">48 &middot; Business owner</div>
-        </div>
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-james-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-james-ba.jpg" alt="James H. before and after his Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"I was skeptical. I'm a practical person. I just wanted to see what the cards said. But the Wealth Block explanation stopped me cold. It named the exact thing I do every time money gets close, I quietly talk the number down. I held my price on the very next deal instead of discounting it like I always had. That one change paid for this many times over."</p>
+      <p class="testi-body">"I kept sabotaging my own good months without seeing it. The reading showed me the pattern underneath. I stopped, and I just had my steadiest quarter in years, one that did not disappear the way they always used to."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">James H.</span>
+        <span class="testi-meta">47 &middot; Manchester, UK</span>
+      </div>
     </div>
 
     <div class="testi-card">
-      <div class="testi-avatar-row">
-        <picture><source type="image/webp" srcset="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.webp"><img class="testi-avatar" src="https://soulmirrorreading.com/frontend/images/frontend/testimonial-carolyn-m.png" alt="Carolyn M." width="56" height="56" decoding="async" loading="lazy"></picture>
-        <div>
-          <div class="testi-name">Carolyn M.</div>
-          <div class="testi-meta">61 &middot; Holistic practitioner</div>
-        </div>
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-carolyn-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-carolyn-ba.jpg" alt="Carolyn M. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
       </div>
       <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-      <p class="testi-body">"Three cards. One pattern. I have spent years in therapy trying to understand why the same things kept happening in love, at work, with money. This report showed me in 20 minutes. The clearing practice alone is worth ten times what I paid."</p>
+      <p class="testi-body">"I used to say no to money without realizing I was doing it. Once the block was named, I stopped. Nothing dramatic, just a few hundred more each month that finally stays instead of slipping away."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Carolyn M.</span>
+        <span class="testi-meta">39 &middot; Queensland, AU</span>
+      </div>
     </div>
-    <p style="text-align:center; max-width:580px; margin:22px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
+    <p style="text-align:center; max-width:580px; margin:22px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. Images are dramatizations. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
 
     <!-- CTA after testimonials cluster -->
     <div style="text-align:center; margin-top:40px;">
@@ -974,7 +1013,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     </div>
 
     <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
-    <p style="margin-top:18px; font-size:13px; color:rgba(255,255,255,0.6);">Instant access &middot; 90-day guarantee &middot; Secure checkout</p>
+    <p style="margin-top:18px; font-size:13px; color:rgba(255,255,255,0.6);">One-time $37. No subscription, no rebill, ever. 90-day full refund. Secure checkout.</p>
   </div>
 </section>
 
