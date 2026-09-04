@@ -675,8 +675,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
       </div>
-      <p style="max-width:500px; margin:12px auto 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,0.62);"><span style="color:var(--gold-light);">&#127769; 90-day promise.</span> Read your full reading. If it is not worth far more than $37 to you, for any reason, reply and I refund every penny.</p>
-      <p style="max-width:460px; margin:18px auto 0; font-size:13px; font-style:italic; line-height:1.6; color:rgba(255,255,255,0.6);">&ldquo;It named the exact belief that had quietly kept me at the same number for years. Once I could finally see it, I stopped quietly talking myself out of asking for what my work is worth.&rdquo; <span style="color:var(--gold-light); font-style:normal;">Hannah T., 44</span></p>
+      <p style="max-width:460px; margin:18px auto 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,0.7);"><span style="color:var(--gold-light);">Your full reading is a one-time $37</span>, fully refundable for 90 days. Never a subscription.</p>
     </div>
   </div>
 </section>
