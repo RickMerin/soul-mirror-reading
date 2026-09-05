@@ -665,14 +665,13 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <!-- CTA after diagnostic proof -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Clear My Wealth Block &rarr;</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
       <p style="max-width:480px; margin:14px auto 0; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.72);">Your free cards named the block. Your full reading reads all three together and shows you <strong style="color:var(--gold-light);">exactly how it works</strong>, where it took root, and the practice that clears it. Hand-written for your cards, in your inbox within 24 hours.</p>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
       </div>
-      <p style="max-width:500px; margin:12px auto 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,0.62);"><span style="color:var(--gold-light);">&#127769; 90-day promise.</span> Read your full reading. If it is not worth far more than $37 to you, for any reason, reply and I refund every penny.</p>
-      <p style="max-width:460px; margin:18px auto 0; font-size:13px; font-style:italic; line-height:1.6; color:rgba(255,255,255,0.6);">&ldquo;It named the exact belief that had quietly kept me at the same number for years. Once I could finally see it, I stopped quietly talking myself out of asking for what my work is worth.&rdquo; <span style="color:var(--gold-light); font-style:normal;">Hannah T., 44</span></p>
+      <p style="max-width:460px; margin:18px auto 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,0.7);"><span style="color:var(--gold-light);">Your full reading is a one-time $37</span>, fully refundable for 90 days. Never a subscription.</p>
     </div>
   </div>
 </section>
@@ -723,7 +722,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
       <!-- CTA inside the VIP box -->
       <div style="text-align:center; margin-top:32px;">
-        <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Clear My Wealth Block &rarr;</a>
+        <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
         <div class="cta-trust-row" style="margin-top:14px;">
           <span>&#128274; Secure Checkout</span>
           <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -796,7 +795,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <p style="max-width:560px; margin:0 auto 24px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna's private readings run <strong style="color:var(--gold-light); text-decoration:line-through; text-decoration-color: rgba(212,175,55,0.5);">$395</strong>.<br>Today, the complete package with all 4 bonuses is just <strong style="color:var(--gold-light); font-size:18px;">$37</strong>.</p>
 
     <div style="text-align:center; margin-top:24px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#127769; 90-Day Money-Back Guarantee</span>
         <span>&#9889; Delivered Within 24 Hours</span>
@@ -824,7 +823,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
         <span class="price-currency">$</span><span class="price-new">37</span>
       </div>
     </div>
-    <p class="price-note">One-time payment &middot; Delivered within 12 to 24 hours</p>
+    <p class="price-note">One-time payment. No subscription, no rebill, nothing recurring. Delivered within 12 to 24 hours.</p>
 
     <ul class="vip-list" style="max-width:440px;">
       <li><span>Your personalised Soul Mirror Reading. <em>$197 value</em></span></li>
@@ -836,11 +835,16 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <li><span><strong>Bonus 4.</strong> Clarity Meditation ($37)</span></li>
     </ul>
 
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
 
     <div class="pricing-inline-guarantee">
       <img loading="lazy" src="https://soulmirrorreading.com/cards/guarantee-badge.webp" alt="90-Day Guarantee">
-      <div><strong>90-Day Money-Back Guarantee.</strong><br>Read your full reading. If it is not worth far more than $37 to you, for any reason, reply and I refund every penny.</div>
+      <div><strong>Your 90-Day, Keep-Everything Guarantee.</strong><br>Read your full reading and sit with it for up to 90 days. If it is not worth far more than $37 to you, for any reason at all or for no reason, reply to your delivery email and I refund every penny. You keep the reading. You keep all four bonuses. No forms, no questions. In nineteen years, I have almost never been asked.</div>
+    </div>
+
+    <div style="max-width:520px; margin:22px auto 0; padding:18px 22px; border-radius:12px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); text-align:left;">
+      <p style="margin:0 0 8px; font-family:'Cormorant Garamond',serif; font-size:21px; color:var(--gold-light);">If $37 feels like too much right now</p>
+      <p style="margin:0; font-size:14px; line-height:1.7; color:rgba(255,255,255,0.82);">I want to be honest with you, because you have been told enough things that were not true. You do not really risk this $37. You read your full reading, you sit with it, and if it is not worth far more than $37 to you, for any reason or no reason, you reply to the email it arrived in and I send back every penny. You keep the reading. You keep all four bonuses. You are out nothing. That same ceiling has already cost you far more than $37, again and again, in what slipped away. This is the one look you can take back if it does not serve you.</p>
     </div>
 
     <div class="trust-badge-row">
@@ -903,7 +907,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <!-- CTA after testimonials cluster -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -938,7 +942,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     
 
 <div style="text-align:center; margin-top:40px;">
-      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Take Path A &middot; Get My Full Reading &middot; $37 &rarr;</a>
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -1003,8 +1007,8 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <div style="font-family:'Cormorant Garamond',serif; font-size:48px; color:var(--gold-light); font-weight:600;">$37</div>
     </div>
 
-    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
-    <p style="margin-top:18px; font-size:13px; color:rgba(255,255,255,0.6);">Instant access &middot; 90-day guarantee &middot; Secure checkout</p>
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
+    <p style="margin-top:18px; font-size:13px; color:rgba(255,255,255,0.6);">One-time $37. No subscription, no rebill, ever. 90-day full refund. Secure checkout.</p>
   </div>
 </section>
 
