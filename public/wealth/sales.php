@@ -456,7 +456,6 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
 <div class="topnotice" style="background:#9b1c1c;color:#fff;border-bottom:1px solid #c0392b;">
   <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Read This First, It Changes What You Do With It</strong>
-  <div style="font-size:12px; font-weight:400; margin-top:5px; color:#fde4dd;">Your full reading is a one-time $37, fully refundable for 90 days. Never a subscription.</div>
 </div>
 
 
