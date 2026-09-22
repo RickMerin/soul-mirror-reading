@@ -1,0 +1,1041 @@
+<?php
+declare(strict_types=1);
+$cssPath = __DIR__ . "/../assets/sales-v2-bundle.min.css";
+$cssVer = is_file($cssPath) ? filemtime($cssPath) : time();
+$jsPath = __DIR__ . "/../assets/sales-v2.min.js";
+$jsVer = is_file($jsPath) ? filemtime($jsPath) : time();
+$checkoutUrl = "https://rebornf.pay.clickbank.net/?cbitems=smr-1-wtsl&template=order-4&cbfid=63520&exitoffer=exit-3&vtid=[cmc_vid]";
+?>
+<!-- wealth-v2 sales.php update 2026-06-13: Gilded Spread card showcase, de-duplicated sales letter, removed value-stack + duplicate combo, tightened Diagnosis copy, re-angled CTAs (Clear My Wealth Block / Get My Full Reading), card section shown on load (entrance reveal removed). Test cohort start 2026-06-13. -->
+<!DOCTYPE html>
+<html lang="en" data-funnel-base="wealth-v2/">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="See the one core belief, your Wealth Block, behind your Love, Life, and Wealth cards. Deep card work, clearing practice, and 90-day prompts delivered with your Soul Mirror Reading.">
+  <title>Your Soul Mirror Reading. What the Cards Are Really Saying</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/sales-v2-bundle.min.css?v=<?= htmlspecialchars((string) $cssVer, ENT_QUOTES) ?>">
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wq82rtc2gf");
+  </script>
+<style id="tsl-style">
+.tslwrap{max-width:600px;margin:24px auto 0;text-align:left;}
+.tsl{font-family:'Inter',system-ui,sans-serif;font-size:18px;line-height:1.65;color:#e9e2f2;margin-bottom:15px;}
+.vsl-sub,.testi-body,.faq-a,.card-mirror p{font-size:18px !important;line-height:1.72 !important;}
+.vip-list li,.vip-list li span,.price-note{font-size:18px !important;line-height:1.6 !important;}
+.tslbold{color:#fff;font-weight:600;}
+.pcard{color:#E8C97A;font-style:italic;font-weight:600;}
+.pdate{color:#E8C97A;font-style:italic;}
+.tslpull{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#E8C97A;border-left:3px solid #C9A14A;padding:16px 22px;margin:26px 0;background:rgba(201,161,74,.08);border-radius:0 8px 8px 0;line-height:1.5;}
+.tslbridge{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cbb88a;margin:8px 0 0;}
+body{background:#0b0718 !important;}
+/* before/after testimonial images */
+.ba-wrap{position:relative;max-width:60%;border-radius:12px;overflow:hidden;margin:0 auto 18px;border:1px solid rgba(212,175,55,.2);line-height:0;}
+.ba-img{width:100%;height:auto;display:block;}
+.ba-wrap::after{content:"";position:absolute;top:8%;bottom:8%;left:50%;width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-.5px);}
+.ba-label{position:absolute;top:12px;font-family:'Cinzel',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:20px;font-weight:600;z-index:2;}
+.ba-before{left:12px;background:rgba(14,8,32,.62);color:#e9e4f5;border:1px solid rgba(255,255,255,.18);}
+.ba-after{right:12px;background:rgba(212,175,55,.92);color:#231343;border:1px solid rgba(255,255,255,.25);}
+.testi-attrib{display:flex;flex-direction:column;gap:3px;}
+@media(min-width:700px){.ba-wrap{max-width:86%;}}
+.dream-bg{filter:brightness(0.5) saturate(1.05) !important;}
+.luna-hero{display:block;width:62%;max-width:320px;margin:6px auto 14px;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 16px 44px rgba(0,0,0,.55);overflow:hidden;background:#160c34;}
+.luna-cap{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:0 0 24px;}
+.vsl-headline{font-size:clamp(25px,6vw,36px) !important;line-height:1.07 !important;margin-bottom:14px !important;letter-spacing:0 !important;}
+.vsl-headline em{font-size:0.93em;}
+body,p,li,.tsl,.vsl-sub,.testi-body,.testi-name,.faq-q,.faq-a,.card-mirror p,.card-name-label,.vip-list,.vip-list li,.vip-list li span,.price-note,.luna-cap,.cta,.cta-trust-row,.cta-trust-row span,.topnotice,.topnotice strong,[style*="Cinzel"],[style*="Crimson"]{font-family:'Inter',system-ui,sans-serif !important;}
+h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Garamond',Georgia,serif !important;}
+.tsl,.vsl-sub,.testi-body,.faq-a,.vip-list li{letter-spacing:-0.003em;}
+.tslfig{margin:30px 0;}
+.tslmid{display:block;width:100%;border-radius:14px;border:1px solid rgba(212,175,55,.5);box-shadow:0 16px 44px rgba(0,0,0,.5);overflow:hidden;background:#160c34;}
+.tslfigcap{text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:18px;color:#cdb98c;letter-spacing:.02em;margin:10px 0 0;}
+
+/* ============================================================
+   THE GILDED SPREAD, MIRROR-CROWNED
+   Drop-in redesign for the "These Are the Cards You Chose Today"
+   section. Scoped with the .gs- prefix so it overrides the old
+   .three-cards / .card-mirror tile look WITHOUT touching the JS
+   injection contract (data-card-image / data-card-name / has-card / visible).
+   ============================================================ */
+
+.gs-subhead{
+  text-align:center;
+  max-width:560px;
+  margin:0 auto 6px;
+  color:var(--text);
+}
+
+/* opening divider under the subhead */
+.gs-divider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  max-width:300px;
+  margin:16px auto 34px;
+}
+.gs-divider span{
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#d4af3766,transparent);
+}
+.gs-divider i{
+  color:var(--gold);
+  font-style:normal;
+  font-size:14px;
+  opacity:.85;
+}
+
+/* the three-card spread row, with a warm altar light pool behind it */
+.gs-spread{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+  margin:0 auto;
+  max-width:760px;
+  align-items:start;
+  position:relative;
+}
+.gs-spread::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:46%;
+  transform:translate(-50%,-50%);
+  width:84%;
+  height:74%;
+  pointer-events:none;
+  z-index:0;
+  border-radius:50%;
+  background:radial-gradient(60% 60% at 50% 50%,rgba(212,175,55,.13),rgba(212,175,55,0) 70%);
+  filter:blur(6px);
+}
+
+/* each hero frame (glass card matching the system) */
+.gs-frame{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  background:linear-gradient(180deg,#2d1b6980,#1e0d40d9);
+  border:1px solid #d4af3759;
+  border-radius:16px;
+  padding:20px 16px 22px;
+  -webkit-backdrop-filter:blur(4px);
+  backdrop-filter:blur(4px);
+}
+
+/* the ornate themed mirror, shown INTACT as a crowning emblem */
+.gs-emblem{
+  width:88px;
+  height:104px;
+  margin:0 auto 4px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+.gs-emblem img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 5px 14px rgba(0,0,0,.45));
+}
+/* themed colored glow per area (rose / blue / gold) */
+.gs-frame-love   .gs-emblem img{ filter:drop-shadow(0 5px 14px rgba(0,0,0,.45)) drop-shadow(0 0 12px rgba(224,138,154,.42)); }
+.gs-frame-life   .gs-emblem img{ filter:drop-shadow(0 5px 14px rgba(0,0,0,.45)) drop-shadow(0 0 12px rgba(127,160,224,.42)); }
+.gs-frame-wealth .gs-emblem img{ filter:drop-shadow(0 5px 14px rgba(0,0,0,.45)) drop-shadow(0 0 12px rgba(232,201,122,.50)); }
+
+.gs-kicker{
+  font-family:'Cinzel',serif;
+  font-size:10px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--gold);
+  opacity:.85;
+  margin-bottom:14px;
+}
+
+/* stage holds the framed card window */
+.gs-stage{
+  position:relative;
+  max-width:200px;
+  margin:0 auto 16px;
+}
+/* thin gold frame just outside the window edge */
+.gs-stage::before{
+  content:"";
+  position:absolute;
+  inset:-7px;
+  border:1px solid #d4af3766;
+  border-radius:13px;
+  pointer-events:none;
+  z-index:2;
+}
+/* themed glow color fed to the window box-shadow */
+.gs-frame-love   .gs-stage{ --gs-glow:rgba(224,138,154,.30); }
+.gs-frame-life   .gs-stage{ --gs-glow:rgba(127,160,224,.30); }
+.gs-frame-wealth .gs-stage{ --gs-glow:rgba(232,201,122,.34); }
+
+/* THE INJECTION TARGET. Stays a DIV + keeps .card-wireframe.
+   Portrait ratio locked in BOTH states so nothing reflows. */
+.gs-window{
+  position:relative;
+  aspect-ratio:1/1.6;
+  width:100%;
+  max-width:200px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  border:2px dashed #d4af3766;
+  border-radius:9px;
+  background-color:#ffffff08;
+  background-position:50% 50%;
+  background-size:cover;
+  background-repeat:no-repeat;
+  color:#d4af378c;
+  overflow:hidden;
+  box-shadow:inset 0 0 24px #1e0d4080, 0 0 26px var(--gs-glow,transparent);
+}
+
+/* faint numeral watermark behind the empty placeholder */
+.gs-numeral{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Cinzel',serif;
+  font-size:88px;
+  font-weight:700;
+  color:#d4af3712;
+  z-index:0;
+  pointer-events:none;
+  line-height:1;
+  user-select:none;
+}
+
+/* FILLED STATE. JS adds .has-card after setting the inline
+   background-image; we only restyle border / shadow, never the
+   background shorthand, so the injected card survives at cover. */
+.gs-window.has-card,
+.card-wireframe.gs-window.has-card{
+  border:1px solid #d4af37;
+  background-color:transparent;
+  box-shadow:0 8px 26px #00000059, 0 0 0 1px #d4af3733, 0 0 30px var(--gs-glow,transparent);
+}
+.gs-window.has-card .gs-numeral{ display:none; }
+.gs-window.has-card .wf-content,
+.card-wireframe.gs-window.has-card .wf-content{ display:none; }
+
+/* EMPTY-STATE placeholder content */
+.gs-window .wf-content{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  line-height:1.3;
+}
+.gs-window .wf-icon{
+  font-size:30px;
+  color:#d4af3773;
+  margin-bottom:7px;
+  line-height:1;
+}
+.gs-window .wf-label{
+  font-family:'Cinzel',serif;
+  font-size:9px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#d4af378c;
+}
+
+/* alive gold sheen on the EMPTY placeholder only (killed once filled) */
+.gs-window::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  border-radius:9px;
+  opacity:0;
+  background:linear-gradient(115deg,transparent 38%,rgba(232,201,122,.22) 50%,transparent 62%);
+  background-size:220% 100%;
+}
+.gs-window.has-card::after{ display:none; }
+
+/* labels under each frame */
+.gs-area{
+  font-family:'Cinzel',serif;
+  font-size:13px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:4px;
+}
+/* drawn card NAME. Forced to Cormorant to beat the global Inter
+   override; stays hidden until JS adds .visible (display untouched). */
+.gs-cardname{
+  font-family:'Cormorant Garamond',serif !important;
+  font-style:italic;
+  font-size:18px;
+  line-height:1.25;
+  color:var(--gold-light);
+  margin:0 0 10px;
+}
+.gs-cardname.visible{
+  display:block;
+  animation:gsNameIn .6s ease both;
+}
+@keyframes gsNameIn{
+  from{ opacity:0; transform:translateY(4px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+.gs-frame p{
+  margin:0;
+  font-size:15px;
+  line-height:1.55;
+  color:var(--text);
+}
+
+/* connector: the trio resolves down into the Wealth Block */
+.gs-connector{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  margin:34px auto 0;
+}
+.gs-connector-line{
+  width:1px;
+  height:34px;
+  background:linear-gradient(180deg,transparent,#d4af3799);
+}
+.gs-connector-label{
+  font-family:'Cinzel',serif;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold);
+  opacity:1;
+}
+.gs-connector-arrow{
+  color:var(--gold);
+  font-size:18px;
+  line-height:.6;
+  opacity:.85;
+}
+
+/* featured Wealth Block payoff panel */
+.gs-featured{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  max-width:620px;
+  margin:18px auto 0;
+  padding:26px 30px;
+  text-align:left;
+  border:1px solid var(--gold-light);
+  border-radius:16px;
+  background:linear-gradient(180deg,#2d1b69,#1e0d40);
+  box-shadow:0 8px 32px #d4af3733, inset 0 0 40px #d4af370d;
+}
+.gs-featured-emblem{
+  flex-shrink:0;
+  width:104px;
+  height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.gs-featured-emblem img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.55)) drop-shadow(0 0 14px rgba(212,175,55,.20));
+}
+.gs-featured-body h4{
+  font-family:'Cinzel',serif;
+  font-size:14px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+  line-height:1.5;
+  margin:0 0 10px;
+}
+.gs-featured-body p{
+  margin:0;
+  font-size:15px;
+  line-height:1.6;
+  color:var(--text);
+}
+
+/* alive empty-state sheen, only when motion is allowed */
+@media (prefers-reduced-motion:no-preference){
+  .gs-window:not(.has-card)::after{
+    animation:gsSheen 5.5s ease-in-out infinite;
+  }
+  @keyframes gsSheen{
+    0%{ opacity:0; background-position:160% 0; }
+    18%{ opacity:.5; }
+    40%{ opacity:0; background-position:-60% 0; }
+    100%{ opacity:0; background-position:-60% 0; }
+  }
+}
+
+/* ---------- mobile: premium single-column stack ---------- */
+@media (max-width:720px){
+  .gs-spread{
+    grid-template-columns:1fr;
+    gap:30px;
+    max-width:340px;
+  }
+  .gs-spread::before{ display:none; }
+  .gs-stage{ max-width:150px; }
+  .gs-window{ max-width:150px; }
+  .gs-cardname{ font-size:18px; }
+  .gs-featured{
+    flex-direction:column;
+    text-align:center;
+    gap:16px;
+    padding:26px 22px;
+  }
+  .gs-featured-body h4{ letter-spacing:.14em; }
+}
+
+/* ---------- small phones ---------- */
+@media (max-width:400px){
+  .gs-spread{ max-width:300px; }
+  .gs-emblem{ width:78px; height:92px; }
+}
+
+/* ---------- respect reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  .gs-cardname.visible{ animation:none; }
+  .gs-window:not(.has-card)::after{ animation:none; opacity:0; }
+}
+</style><script>
+    window.clickmagick_cmc = {
+        uid: '92654',
+        hid: '1214314307',
+        cmc_project: 'Soul Mirror Reading',
+        cmc_goal: 'a',
+        vid_info: 'on',
+    }
+</script>
+<script src='//cdn.clkmc.com/cmc.js'></script>
+</head>
+
+<body>
+
+
+  <div class="dream-bg" aria-hidden="true">
+    <div class="dream-veil"></div>
+    <div class="milky-way"></div>
+    <div class="dream-orb one"></div>
+    <div class="dream-orb two"></div>
+    <div class="dream-orb three"></div>
+    <div class="dream-shooting" id="dreamShooting"></div>
+    <div class="dream-sparkles" id="dreamSparkles"></div>
+  </div>
+
+  <main id="main-content">
+<!-- TOP NOTICE BAR -->
+
+
+<div class="topnotice" style="background:#9b1c1c;color:#fff;border-bottom:1px solid #c0392b;">
+  <strong><span class="firstname">Friend</span>, Your Free Reading Is On Its Way</strong><span class="notice-dot" style="color:#f3b0a0;">&middot;</span><strong>Read This First, It Changes What You Do With It</strong>
+</div>
+
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     HERO + VSL
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section class="vsl-section">
+  <div class="wrap">
+    
+
+<h1 class="vsl-headline"><span class="firstname">Friend</span>, The Reason Money Keeps Slipping Away Was Never Willpower. <span style="color:var(--gold-light);">It's One Hidden Pattern.</span></h1>
+
+
+    
+
+<p class="vsl-sub">Your three cards have warned you about this for years. Ignored long enough, it quietly turns <span style="color:var(--gold-light);text-decoration:underline;text-decoration-color:rgba(212,175,55,0.6);text-decoration-thickness:2px;text-underline-offset:4px;">deadly</span>.</p>
+<div class="tslwrap">
+<video class="luna-hero" autoplay loop muted playsinline preload="auto" poster="../assets/luna-portrait.jpg" aria-label="Luna Ross, your reader">
+<source src="../assets/luna-motion.mp4?v=3" type="video/mp4">
+<img src="../assets/luna-portrait.jpg" alt="Luna Ross, your reader">
+</video>
+<p class="luna-cap">Luna Ross, your reader</p>
+<p class="tsl"><span class="firstname">Friend</span>, here on <span class="pdate">today</span>, I have all three of your cards in front of me.</p>
+<p class="tsl cards-line" style="display:none"><span class="pcard" data-card="wealth">your Wealth card</span> in your Wealth house. <span class="pcard" data-card="love">your Love card</span> in your Love. <span class="pcard" data-card="life">your Life card</span> in your Life.</p>
+<p class="tsl">The moment I laid them out, one pattern stepped forward.</p>
+<p class="tsl">There is a number your money keeps returning to.</p>
+<p class="tsl">No matter how hard you work, how much you learn, or how much you pray on it, you land back at the same figure.</p>
+<p class="tsl">More comes close. A windfall, an unexpected opening, a yes you can almost taste.</p>
+<p class="tsl">Then something unseen pulls it back, and the door quietly closes again.</p>
+<p class="tsl"><span class="pcard" data-card="wealth">your Wealth card</span> landing in your Wealth house is where I see it most clearly.</p>
+<p class="tsl">You have tried the things that were supposed to fix this. Therapy. Manifesting. The courses.</p>
+<p class="tsl">Each one worked for a while. Then the same ceiling came back.</p>
+<p class="tsl">That is not a willpower problem, <span class="firstname">Friend</span>. And it was never your fault.</p>
+<p class="tsl">They all aimed at the symptom. None of them touched the root.</p>
+<p class="tsl">It is a single belief you formed before you had words for it. Usually in childhood. About what is safe to have, and what it quietly costs you to keep it.</p>
+<p class="tsl">It runs underneath your money, your love, and your sense of purpose, all at the same time.</p>
+<p class="tsl">It is the same quiet pull that has you bracing right when love starts to feel safe, the small voice that says do not get too comfortable.</p>
+<p class="tsl">It is why the work you know you were meant to do still feels one step away, always almost, never quite yet.</p>
+<p class="tsl">This is your <span class="tslbold">Wealth Block</span>. And your three cards have been pointing straight at it.</p>
+<figure class="tslfig"><video class="tslmid" autoplay loop muted playsinline preload="auto" poster="../assets/luna-hands-cards.jpg" aria-label="Luna reading your three cards"><source src="../assets/luna-hands-motion.mp4?v=1" type="video/mp4"><img class="tslmid" src="../assets/luna-hands-cards.jpg" alt="Luna reading your three cards"></video><figcaption class="tslfigcap">The three cards you drew, as I read them.</figcaption></figure>
+<p class="tsl">It speaks loudest in money, because money keeps the most precise record.</p>
+<p class="tsl">Every time something in you whispers "not yet, not for me," you are following an instruction you did not knowingly write.</p>
+<p class="tsl">Here is what it is doing right now.</p>
+<p class="tsl">It is holding your income exactly where you have learned to expect it. And it is patient.</p>
+<p class="tsl">It does not need a bad month to win. It only needs you to keep deciding you are not ready.</p>
+<p class="tsl">Picture six months from now. The same ceiling. The same quiet math where you settle for less and call it realistic.</p>
+<p class="tsl">A year from now, the loss has compounded. In money, and in the part of you that has stopped expecting more.</p>
+<div class="tslpull">The block does not fight you. It waits you out. Left unnamed, it always wins, because you cannot clear what you cannot see.</div>
+<p class="tsl">The free preview on its way to your inbox will confirm your Wealth Block is there, <span class="firstname">Friend</span>. It can show you its shape.</p>
+<p class="tsl">What it cannot do is read <span class="pcard" data-card="wealth">your Wealth card</span>, <span class="pcard" data-card="love">your Love card</span>, and <span class="pcard" data-card="life">your Life card</span> together.</p>
+<p class="tsl">That is your Soul Mirror Reading.</p>
+<p class="tsl">I read all three by hand, <span class="firstname">Friend</span>, and show you the precise belief setting your ceiling, the exact moves it has been making behind your back, and the one practice that interrupts it where it actually lives.</p>
+<p class="tsl">Hand-written for your cards. In your inbox within 24 hours.</p>
+<p class="tsl">Your cards have already shown me what it is doing. The reading is how you finally see it, and begin to clear it.</p>
+</div>
+
+
+    
+
+
+
+
+
+    </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     CTA #1, RIGHT AFTER VSL (NEW)
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     3-CARD BREAKDOWN (existing, now personalized + headline updated)
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section class="section">
+  <div class="wrap">
+    <h2><span class="firstname">Friend</span>, These Are the Cards<br><em>You Chose Today</em></h2>
+    <p class="gs-subhead">Three cards. Three mirrors. One hidden belief running all of them. This is what your reading has been pointing to.</p>
+
+    <div class="gs-divider" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
+
+    <div class="gs-spread">
+
+      <div class="gs-frame gs-frame-love" data-card-slot="love">
+        <div class="gs-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-love.webp" alt="Love Mirror"></div>
+        <div class="gs-kicker">Mirror One</div>
+        <div class="gs-stage">
+          <div class="gs-window card-wireframe" data-card-image="love">
+            <span class="gs-numeral" aria-hidden="true">I</span>
+            <div class="wf-content">
+              <div class="wf-icon">&#10022;</div>
+              <div class="wf-label">Your Card</div>
+            </div>
+          </div>
+        </div>
+        <div class="gs-area">Love</div>
+        <div class="gs-cardname card-name-label" data-card-name="love"></div>
+        <p>Where you pull back right before connection becomes real. The pattern that keeps love feeling just slightly out of reach.</p>
+      </div>
+
+      <div class="gs-frame gs-frame-life" data-card-slot="life">
+        <div class="gs-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-life.webp" alt="Life Mirror"></div>
+        <div class="gs-kicker">Mirror Two</div>
+        <div class="gs-stage">
+          <div class="gs-window card-wireframe" data-card-image="life">
+            <span class="gs-numeral" aria-hidden="true">II</span>
+            <div class="wf-content">
+              <div class="wf-icon">&#10022;</div>
+              <div class="wf-label">Your Card</div>
+            </div>
+          </div>
+        </div>
+        <div class="gs-area">Life</div>
+        <div class="gs-cardname card-name-label" data-card-name="life"></div>
+        <p>Where your energy leaks and your choices keep looping. The place you feel most stuck, showing you the exact map you have been following.</p>
+      </div>
+
+      <div class="gs-frame gs-frame-wealth" data-card-slot="wealth">
+        <div class="gs-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-wealth.webp" alt="Wealth Mirror"></div>
+        <div class="gs-kicker">Mirror Three</div>
+        <div class="gs-stage">
+          <div class="gs-window card-wireframe" data-card-image="wealth">
+            <span class="gs-numeral" aria-hidden="true">III</span>
+            <div class="wf-content">
+              <div class="wf-icon">&#10022;</div>
+              <div class="wf-label">Your Card</div>
+            </div>
+          </div>
+        </div>
+        <div class="gs-area">Wealth</div>
+        <div class="gs-cardname card-name-label" data-card-name="wealth"></div>
+        <p>What you believe you are allowed to have. The inherited story about deserving that has been setting your ceiling without your knowledge.</p>
+      </div>
+
+    </div>
+
+    <div class="gs-connector" aria-hidden="true">
+      <span class="gs-connector-line"></span>
+      <span class="gs-connector-label">Three Cards, One Root</span>
+      <span class="gs-connector-arrow">&#9662;</span>
+    </div>
+
+    <div class="gs-featured">
+      <div class="gs-featured-emblem"><img loading="lazy" src="https://soulmirrorreading.com/cards/mirror-block.webp" alt="Wealth Block"></div>
+      <div class="gs-featured-body">
+        <h4>The Hidden Layer.<br>This Is Your Wealth Block.</h4>
+        <p>The one belief running all three. Until it is named clearly, every reading you ever get will point to the same wall.</p>
+      </div>
+    </div>
+
+    
+  </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     DIAGNOSTIC PROOF (NEW v2)
+     "This Is a Diagnosis. Not a Prediction."
+     Diagnosis framing: three cards read as one connected system
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section class="section" style="position:relative;">
+  <div class="wrap">
+    <h2>Three Symptoms. One <em>Diagnosis.</em> It Has a Name.</h2>
+
+    
+
+<p style="text-align:center; max-width:600px; margin:0 auto 18px;">Apart, each card is just interesting. Together, they name the one belief blocking your money, your love, and your purpose. Name it once, and all three move.</p>
+
+    <p style="text-align:center; max-width:600px; margin:0 auto 36px;">Not a horoscope. It reads the <strong style="color:var(--gold-light);">three cards you drew</strong> as one connected system: the exact pattern you keep living. Never a script.</p>
+
+
+
+    <!-- Down arrow / decoding indicator -->
+    <div style="text-align:center; margin:24px auto 8px;">
+      <div class="gs-connector-label" style="margin-bottom:8px;">Now It Has a Name</div>
+      <div style="color:var(--gold); font-size:24px; line-height:1;">&darr;</div>
+    </div>
+
+    <!-- Diagnosis card (always visible, no tap gate) -->
+    <div style="max-width:560px; margin:16px auto 0;">
+      <div style="background: linear-gradient(180deg, rgba(45,27,105,0.65), rgba(30,13,64,0.92)); border: 1px solid var(--gold); border-radius: 14px; padding: 32px 28px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); text-align: center;">
+        
+        <h4 data-mirror-block-name style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; font-weight:600; margin-bottom:14px; line-height:1.25;">Your Wealth Is Blocked</h4>
+        <p data-mirror-block-summary style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0 0 20px; font-style:italic;">Money comes in, then quietly slips out. The same ceiling, year after year. It was never the effort. It is this.</p>
+        <div style="border-top:1px solid rgba(212,175,55,0.25); padding-top:18px; font-size:18px; color:rgba(255,255,255,0.78); line-height:1.6;">Your reading shows you <strong style="color:var(--gold-light);">exactly how</strong> your Wealth Block works, and the one practice that clears it. Not more effort. Not another course. One quiet shift, and what comes in <strong style="color:var(--gold-light);">finally stays</strong>.</div>
+      </div>
+    </div>
+
+    
+
+    <!-- Results (future-pace) -->
+    <div style="max-width:520px; margin:26px auto 0; text-align:center;">
+      <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:13px;">Once the Block Is Named</div>
+      <div style="display:grid; gap:9px; justify-items:center;">
+        <p style="margin:0; font-size:16px; color:rgba(255,255,255,0.9); line-height:1.5;"><span style="color:var(--gold-light); font-weight:700;">&#10003;</span> The ceiling that held for years starts to give.</p>
+        <p style="margin:0; font-size:16px; color:rgba(255,255,255,0.9); line-height:1.5;"><span style="color:var(--gold-light); font-weight:700;">&#10003;</span> Money that slipped away finds a reason to stay.</p>
+        <p style="margin:0; font-size:16px; color:rgba(255,255,255,0.9); line-height:1.5;"><span style="color:var(--gold-light); font-weight:700;">&#10003;</span> The old tension around money begins to ease.</p>
+      </div>
+      <p style="font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; margin:11px auto 0; max-width:420px;">Results vary from person to person.</p>
+    </div>
+
+    <!-- Scarcity -->
+    <div style="max-width:540px; margin:22px auto 0; text-align:center; display:grid; gap:6px;">
+      <p style="margin:0; font-size:13.5px; font-weight:600; color:var(--gold-light); line-height:1.55;">&#9888;&#65039; Luna reads each spread by hand and takes only a limited number a day.</p>
+      <p style="margin:0; font-size:13.5px; font-weight:600; color:var(--gold-light); line-height:1.55;">Leave this page and your three cards reset. This exact spread is only here now.</p>
+    </div>
+
+    <!-- CTA after diagnostic proof -->
+    <div style="text-align:center; margin-top:40px;">
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
+      <p style="max-width:480px; margin:14px auto 0; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.72);">Your free cards named the block. Your full reading reads all three together and shows you <strong style="color:var(--gold-light);">exactly how it works</strong>, where it took root, and the practice that clears it. Hand-written for your cards, in your inbox within 24 hours.</p>
+      <div class="cta-trust-row" style="margin-top:16px;">
+        <span>&#128274; Secure Checkout</span>
+        <span>&#9889; Delivered in 12-24 Hrs</span>
+      </div>
+      <p style="max-width:460px; margin:18px auto 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,0.7);"><span style="color:var(--gold-light);">Your full reading is a one-time $37</span>, fully refundable for 90 days. Never a subscription.</p>
+    </div>
+  </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     REBECCA TESTIMONIAL (PLANNED ABOVE INSIDE)
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section style="padding: 0 0 20px;">
+  <div class="wrap">
+    <div class="testi-card">
+      <div class="ba-wrap">
+        <picture>
+          <source type="image/webp" srcset="/frontend/images/sales/testimonial-rebecca-ba.webp">
+          <img class="ba-img" src="/frontend/images/sales/testimonial-rebecca-ba.jpg" alt="Rebecca H. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy">
+        </picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
+      </div>
+      <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+      <p class="testi-body">"I undercharged for years and never understood why. The reading named the belief behind it. A month later I raised my rates for the first time in three years, and took on a $1,400 client I would normally have talked myself out of."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Rebecca H.</span>
+        <span class="testi-meta">44 &middot; Leeds, UK</span>
+      </div>
+    </div>
+    <p style="text-align:center; max-width:580px; margin:16px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. Images are dramatizations. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
+  </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     INSIDE YOUR SOUL MIRROR READING
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section class="section">
+  <div class="wrap">
+    <div class="vip-box">
+      <h2>Inside Your <em>Soul Mirror Reading</em></h2>
+      <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/soul-mirror-reading.webp" alt="Soul Mirror Reading" class="vip-mockup">
+      <div class="vip-valued">Valued at <span class="amount">$197</span></div>
+      <ul class="vip-list">
+        <li><span><strong>Your Wealth Block Identified.</strong> The one core belief running Love, Life, and Wealth at the same time.</span></li>
+        <li><span><strong>Love Mirror Deep-Dive.</strong> What your Love card means in context of all three cards.</span></li>
+        <li><span><strong>Life Mirror Deep-Dive.</strong> Where your energy is leaking and what it would take to shift it.</span></li>
+        <li><span><strong>Wealth Mirror Deep-Dive.</strong> The inherited story about deserving that has been setting your ceiling.</span></li>
+        <li><span><strong>Mirror Block Clearing Practice.</strong> Seven questions, ten minutes, designed to begin the release.</span></li>
+        <li><span><strong>Reversed Card Companion.</strong> Nuanced interpretation if any of your cards appeared reversed.</span></li>
+        <li><span><strong>90-Day Mirror Check-In Prompts.</strong> Twelve weekly questions to keep the clarity working.</span></li>
+      </ul>
+
+      <!-- CTA inside the VIP box -->
+      <div style="text-align:center; margin-top:32px;">
+        <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
+        <div class="cta-trust-row" style="margin-top:14px;">
+          <span>&#128274; Secure Checkout</span>
+          <span>&#9889; Delivered in 12-24 Hrs</span>
+          <span>&#127769; 90-Day Guarantee</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     BONUSES (COMPRESSED GRID, NEW)
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section class="section" style="position:relative;">
+  <div class="wrap">
+    <h2>4 Bonuses Included <em>Free</em></h2>
+    <p style="text-align:center; max-width:520px; margin:0 auto 8px;">Available only on this page, when you claim your Soul Mirror Reading now.</p>
+
+    <div class="bonus-grid">
+      <div class="bonus-card-compact">
+        <span class="free-badge">FREE</span>
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/mirror-block-companion-guide.webp" alt="Companion Guide">
+        <div class="bonus-num">Bonus 1</div>
+        <h4>Mirror Block Companion Guide</h4>
+        <div class="value">Valued at $67</div>
+      </div>
+      <div class="bonus-card-compact">
+        <span class="free-badge">FREE</span>
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/21-days-shift-tracker.webp" alt="Shift Tracker">
+        <div class="bonus-num">Bonus 2</div>
+        <h4>21-Day Shift Tracker</h4>
+        <div class="value">Valued at $47</div>
+      </div>
+      <div class="bonus-card-compact">
+        <span class="free-badge">FREE</span>
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/root-cause-reading-guide.webp" alt="Root Cause Guide">
+        <div class="bonus-num">Bonus 3</div>
+        <h4>Root Cause Reading Guide</h4>
+        <div class="value">Valued at $47</div>
+      </div>
+      <div class="bonus-card-compact">
+        <span class="free-badge">FREE</span>
+        <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/mirror-clarity-meditation.webp" alt="Clarity Meditation">
+        <div class="bonus-num">Bonus 4</div>
+        <h4>Mirror Clarity Meditation</h4>
+        <div class="value">Valued at $37</div>
+      </div>
+    </div>
+
+    <div class="bonus-total">
+      <div class="label">Total Bonus Value</div>
+      <div class="amount">$198 Yours Free Today</div>
+    </div>
+  </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     CONSOLIDATED SCARCITY + COUNTDOWN + PRICE ANCHOR (ALS-style)
+     Replaces: Daily Cap + Objection Killer + standalone Countdown
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section style="padding: 60px 24px 40px; text-align:center; position:relative;">
+  <div class="wrap">
+    <h2 style="margin-bottom:18px;"><span class="firstname">Friend</span>, Your Soul Mirror Reading<br>Is Written by Hand.<br><em>Order Today, It Lands Within 24 Hours.</em></h2>
+
+    <p style="max-width:560px; margin:0 auto 14px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna writes every reading by hand from your specific 3-card combination. Order now and yours goes into today's writing queue, delivered straight to your inbox within 24 hours.</p>
+
+    <p style="max-width:560px; margin:0 auto 32px; color:rgba(255,255,255,0.7); font-style:italic;">The exact combination you drew today is what makes the diagnosis precise. Come back in a week and the cards, and the reading, will be different.</p>
+
+
+    <p style="max-width:560px; margin:0 auto 24px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna's private readings run <strong style="color:var(--gold-light); text-decoration:line-through; text-decoration-color: rgba(212,175,55,0.5);">$395</strong>.<br>Today, the complete package with all 4 bonuses is just <strong style="color:var(--gold-light); font-size:18px;">$37</strong>.</p>
+
+    <div style="text-align:center; margin-top:24px;">
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
+      <div class="cta-trust-row" style="margin-top:16px;">
+        <span>&#127769; 90-Day Money-Back Guarantee</span>
+        <span>&#9889; Delivered Within 24 Hours</span>
+        <span>&#128274; Secure Checkout</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     PRICING BLOCK WITH INLINE GUARANTEE (NEW)
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section style="padding: 0 24px 60px; position:relative;">
+  <div class="pricing-block">
+    <h2>Everything Below.</h2>
+
+    <div style="margin: 24px 0 12px; text-align:center;">
+      <div style="font-family:'Cinzel',sans-serif; font-size:13px; letter-spacing:0.2em; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-bottom:4px;">
+        Usual Price: <span style="text-decoration:line-through; text-decoration-color:var(--gold); color:rgba(255,255,255,0.5);">$395</span>
+      </div>
+      <div style="font-family:'Cinzel',sans-serif; font-size:13px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:14px;">
+        Today Only:
+      </div>
+      <div style="line-height:1;">
+        <span class="price-currency">$</span><span class="price-new">37</span>
+      </div>
+    </div>
+    <p class="price-note">One-time payment. No subscription, no rebill, nothing recurring. Delivered within 12 to 24 hours.</p>
+
+    <ul class="vip-list" style="max-width:440px;">
+      <li><span>Your personalised Soul Mirror Reading. <em>$197 value</em></span></li>
+      <li><span>Mirror Block identification + all 3 deep-dives</span></li>
+      <li><span>Mirror Block Clearing Practice + 90-day prompts</span></li>
+      <li><span><strong>Bonus 1.</strong> Companion Guide ($67)</span></li>
+      <li><span><strong>Bonus 2.</strong> 21-Day Shift Tracker ($47)</span></li>
+      <li><span><strong>Bonus 3.</strong> Root Cause Guide ($47)</span></li>
+      <li><span><strong>Bonus 4.</strong> Clarity Meditation ($37)</span></li>
+    </ul>
+
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
+
+    <div class="pricing-inline-guarantee">
+      <img loading="lazy" src="https://soulmirrorreading.com/cards/guarantee-badge.webp" alt="90-Day Guarantee">
+      <div><strong>Your 90-Day, Keep-Everything Guarantee.</strong><br>Read your full reading and sit with it for up to 90 days. If it is not worth far more than $37 to you, for any reason at all or for no reason, reply to your delivery email and I refund every penny. You keep the reading. You keep all four bonuses. No forms, no questions. In nineteen years, I have almost never been asked.</div>
+    </div>
+
+    <div style="max-width:520px; margin:22px auto 0; padding:18px 22px; border-radius:12px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); text-align:left;">
+      <p style="margin:0 0 8px; font-family:'Cormorant Garamond',serif; font-size:21px; color:var(--gold-light);">If $37 feels like too much right now</p>
+      <p style="margin:0; font-size:14px; line-height:1.7; color:rgba(255,255,255,0.82);">I want to be honest with you, because you have been told enough things that were not true. You do not really risk this $37. You read your full reading, you sit with it, and if it is not worth far more than $37 to you, for any reason or no reason, you reply to the email it arrived in and I send back every penny. You keep the reading. You keep all four bonuses. You are out nothing. That same ceiling has already cost you far more than $37, again and again, in what slipped away. This is the one look you can take back if it does not serve you.</p>
+    </div>
+
+    <div class="trust-badge-row">
+      <span>&#128274; Secure Checkout</span>
+      <span>&#9889; Delivered in 12-24 Hrs</span>
+      <span>&#9733;&#9733;&#9733;&#9733;&#9733; 4,800+ Readings</span>
+    </div>
+  </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     TESTIMONIALS CLUSTER
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section class="section">
+  <div class="wrap">
+    <h2>What 4,800 Readings <em>Have Looked Like</em></h2>
+
+    <div class="testi-card">
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-diane-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-diane-ba.jpg" alt="Diane R. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
+      </div>
+      <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+      <p class="testi-body">"Money came in and slipped straight back out, every time. Seeing the block written plainly made it click. I finally asked for the raise I had been avoiding, about $300 more a month, and this time I actually kept it."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Diane R.</span>
+        <span class="testi-meta">51 &middot; Ohio, US</span>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-james-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-james-ba.jpg" alt="James H. before and after his Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
+      </div>
+      <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+      <p class="testi-body">"I kept sabotaging my own good months without seeing it. The reading showed me the pattern underneath. I stopped, and I just had my steadiest quarter in years, one that did not disappear the way they always used to."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">James H.</span>
+        <span class="testi-meta">47 &middot; Manchester, UK</span>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="ba-wrap">
+        <picture><source type="image/webp" srcset="/frontend/images/sales/testimonial-carolyn-ba.webp"><img class="ba-img" src="/frontend/images/sales/testimonial-carolyn-ba.jpg" alt="Carolyn M. before and after her Soul Mirror Reading" width="1000" height="1000" decoding="async" loading="lazy"></picture>
+        <span class="ba-label ba-before">Before</span>
+        <span class="ba-label ba-after">After</span>
+      </div>
+      <div class="testi-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+      <p class="testi-body">"I used to say no to money without realizing I was doing it. Once the block was named, I stopped. Nothing dramatic, just a few hundred more each month that finally stays instead of slipping away."</p>
+      <div class="testi-attrib">
+        <span class="testi-name">Carolyn M.</span>
+        <span class="testi-meta">39 &middot; Queensland, AU</span>
+      </div>
+    </div>
+    <p style="text-align:center; max-width:580px; margin:22px auto 0; font-size:11.5px; color:rgba(255,255,255,0.45); font-style:italic; line-height:1.6;">Individual results vary and are not typical. Images are dramatizations. A Soul Mirror Reading is for insight and self-reflection. It is not financial advice and does not guarantee income or any specific outcome.</p>
+
+    <!-- CTA after testimonials cluster -->
+    <div style="text-align:center; margin-top:40px;">
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
+      <div class="cta-trust-row" style="margin-top:16px;">
+        <span>&#128274; Secure Checkout</span>
+        <span>&#9889; Delivered in 12-24 Hrs</span>
+        <span>&#127769; 90-Day Guarantee</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     TWO PATHS FROM HERE (NEW)
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section class="section" style="position:relative;">
+  <div class="wrap">
+    <h2>Two Paths <em>From Here</em></h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:32px;">
+      <!-- Path A -->
+      <div style="background: linear-gradient(180deg, rgba(45,27,105,0.6), rgba(30,13,64,0.85)); border: 1px solid rgba(212,175,55,0.45); border-radius: 14px; padding: 28px 22px; backdrop-filter: blur(4px);">
+        <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:14px;">Path A</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#fff; font-weight:600; line-height:1.3; margin-bottom:14px;">You <em style="color:var(--gold-light); font-style:italic;">See It Clearly</em></h3>
+        <p style="font-size:18px; color:rgba(255,255,255,0.85); line-height:1.7; margin:0;">Within 24 hours, your Soul Mirror Reading lands in your inbox. You read it once on your couch. The next morning you read it again, slower. You see the single belief that has been running underneath every choice in love, money, and purpose. The work begins from there. Most people tell me it takes 21 days before they notice they have stopped doing the thing they have been doing for years.</p>
+      </div>
+      <!-- Path B -->
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 28px 22px; backdrop-filter: blur(4px);">
+        <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.22em; color:rgba(255,255,255,0.5); text-transform:uppercase; margin-bottom:14px;">Path B</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:22px; color:rgba(255,255,255,0.7); font-weight:600; line-height:1.3; margin-bottom:14px;">You <em style="color:rgba(255,255,255,0.55); font-style:italic;">Don't.</em></h3>
+        <p style="font-size:18px; color:rgba(255,255,255,0.6); line-height:1.7; margin:0;">You close this page. You finish your tea. The pattern keeps running. Six months from now, you are back here. Or somewhere else, looking at the same wall in different paint. The cards you chose minutes ago will not carry the same precision a week from now. The window narrows quietly.</p>
+      </div>
+    </div>
+
+    
+
+<div style="text-align:center; margin-top:40px;">
+      <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
+      <div class="cta-trust-row" style="margin-top:16px;">
+        <span>&#128274; Secure Checkout</span>
+        <span>&#9889; Delivered in 12-24 Hrs</span>
+        <span>&#127769; 90-Day Guarantee</span>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     FAQ (PROCESS FOLDED IN)
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section class="faq-section">
+  <div class="wrap">
+    <h2>The <em>Honest</em> Answers</h2>
+
+    <div class="faq" style="margin-top:32px;">
+      <details>
+        <summary>What is a Wealth Block exactly?</summary>
+        <p class="faq-a">A Wealth Block is a core belief, usually formed early in life and often inherited from someone else, that shows up identically across your love life, your daily experience, and your relationship with money and abundance. It is not a flaw and it is not permanent. But it is specific, and once you can see it clearly, it loses most of its power.</p>
+      </details>
+      <details>
+        <summary>How is this different from the reading I will receive in my email?</summary>
+        
+
+<p class="faq-a">The email reading shows you what each card says in isolation. The Soul Mirror Reading decodes what your three cards mean together. The pattern running underneath them, the single belief connecting them, and the Clearing Practice to begin loosening it. One card is information. Three cards read as a system is a diagnosis.</p>
+
+
+      </details>
+      <details>
+        <summary>What happens after I order?</summary>
+        <p class="faq-a">Your reading takes 12 to 24 hours to complete, hand-written by Luna for your specific card combination. You will receive it as a PDF in your inbox. Use the Clearing Practice once. Seven questions, ten minutes. The shift begins there.</p>
+      </details>
+      <details>
+        <summary>What if I am not satisfied?</summary>
+        <p class="faq-a">You are covered by a 90-day money-back guarantee. Read your full reading. If it is not worth far more than $37 to you, for any reason, reply to the delivery email and I refund every penny. In nineteen years, that has almost never happened.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     FINAL CTA
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section style="padding: 0 24px 60px;">
+  <div class="final-cta">
+    <h2><span class="firstname">Friend</span>, Your Cards Are Drawn.<br><em>Your Wealth Block Is Waiting to Be Cleared.</em></h2>
+    
+
+<p style="max-width:560px; margin:18px auto 24px; color:rgba(255,255,255,0.85);">The pattern is already there. It has been running quietly for years, draining your wealth, your love, and your sense of purpose. The only question is whether you let another year pass without seeing it clearly.</p>
+
+
+
+    <div style="margin:28px auto 12px;">
+      <img loading="lazy" src="https://soulmirrorreading.com/frontend/images/sales/bundle-product-image.webp" alt="Soul Mirror Reading complete bundle" style="max-width:420px; width:100%; height:auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));">
+    </div>
+
+    <div style="margin:24px 0;">
+      <div style="font-family:'Cinzel',sans-serif; font-size:11px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:6px;">Total Value $395 &middot; Today</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:48px; color:var(--gold-light); font-weight:600;">$37</div>
+    </div>
+
+    <a href="<?= htmlspecialchars((string) $checkoutUrl, ENT_QUOTES) ?>" class="cta">Get My Full Reading &rarr;</a>
+    <p style="margin-top:18px; font-size:13px; color:rgba(255,255,255,0.6);">One-time $37. No subscription, no rebill, ever. 90-day full refund. Secure checkout.</p>
+  </div>
+</section>
+
+  </main>
+
+  <!-- &#9552;&#9552; FOOTER &#9552;&#9552; -->
+  <footer class="site-footer js-reveal">
+    <div class="footer-legal-copy">
+      <p>ClickBank is the retailer of products on this site. CLICKBANK&reg; is a registered trademark of Click Sales, Inc.,
+        a Delaware corporation located at 1444 S. Entertainment Ave., Suite 410 Boise, ID 83709, USA and used by
+        permission. ClickBank's role as retailer does not constitute an endorsement, approval or review of these
+        products or any claim, statement or opinion used in promotion of these products.</p>
+      <p>For Product Support, please contact the vendor: <a href="mailto:support@soulmirrorreading.com">HERE</a></p>
+      <p>For Order Support, please contact ClickBank: <a href="https://www.clkbank.com/" target="_blank" rel="noopener">HERE</a> or 1-800-390-6035</p>
+      <p class="footer-links">
+        <a href="/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp;
+        <a href="/terms-conditions">Terms &amp; Conditions</a> &nbsp;&middot;&nbsp;
+        <a href="mailto:support@soulmirrorreading.com">Contact Us</a> &nbsp;&middot;&nbsp;
+        <a href="/refund-return-policy">Refund &amp; Return Policy</a>
+      </p>
+      <p>Copyright &copy; 2026 Soul Mirror Reading. All Right Reserved.</p>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="../assets/sales-v2.min.js?v=<?= htmlspecialchars((string) $jsVer, ENT_QUOTES) ?>"></script>
+<script>(function(){function go(){try{var d=new Date();var t=d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});var pd=document.querySelectorAll('.pdate');for(var i=0;i<pd.length;i++){pd[i].textContent=t;}}catch(e){}try{var any=false;var L=document.querySelectorAll('[data-card-name]');for(var j=0;j<L.length;j++){var k=L[j].getAttribute('data-card-name');var tx=(L[j].textContent||'').trim();if(tx){any=true;var pc=document.querySelectorAll('.pcard');for(var m=0;m<pc.length;m++){if(pc[m].getAttribute('data-card')===k){pc[m].textContent=tx;}}}}if(any){var cl=document.querySelectorAll('.cards-line');for(var n=0;n<cl.length;n++){cl[n].style.display='';}}}catch(e){}}document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);var c=0,iv=setInterval(function(){go();if(++c>10){clearInterval(iv);}},250);})();</script></body>
+
+</html>
