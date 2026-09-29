@@ -1148,7 +1148,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <!-- CTA after diagnostic proof -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=order-4&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Clear My Wealth Block &rarr;</a>
+      <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=OF4_V2&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Clear My Wealth Block &rarr;</a>
       <p style="max-width:480px; margin:14px auto 0; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.72);">Your free cards named the block. Your full reading reads all three together and shows you <strong style="color:var(--gold-light);">exactly how it works</strong>, where it took root, and the practice that clears it. Hand-written for your cards, in your inbox within 24 hours.</p>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
@@ -1440,7 +1440,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
       <!-- CTA below the offer box (kept outside the case-file frame) -->
       <div style="text-align:center; margin-top:36px;">
-        <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=order-4&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Clear My Wealth Block &rarr;</a>
+        <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=OF4_V2&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Clear My Wealth Block &rarr;</a>
         <div class="cta-trust-row" style="margin-top:14px;">
           <span>&#128274; Secure Checkout</span>
           <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -1527,7 +1527,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     <p style="max-width:560px; margin:0 auto 24px; color:rgba(255,255,255,0.85); line-height:1.7;">Luna's private readings run <strong style="color:var(--gold-light); text-decoration:line-through; text-decoration-color: rgba(212,175,55,0.5);">$395</strong>.<br>Today, the complete package with all 4 bonuses is just <strong style="color:var(--gold-light); font-size:18px;">$37</strong>.</p>
 
     <div style="text-align:center; margin-top:24px;">
-      <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=order-4&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
+      <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=OF4_V2&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#127769; 90-Day Money-Back Guarantee</span>
         <span>&#9889; Delivered Within 24 Hours</span>
@@ -1614,7 +1614,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
         <!-- CTA inside the frame -->
         <div style="text-align:center; margin-top:26px;">
-          <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=order-4&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
+          <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=OF4_V2&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
         </div>
 
         <div class="charges-signature">
@@ -1688,7 +1688,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
 
     <!-- CTA after testimonials cluster -->
     <div style="text-align:center; margin-top:40px;">
-      <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=order-4&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
+      <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=OF4_V2&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -1732,7 +1732,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
     
 
 <div style="text-align:center; margin-top:40px;">
-      <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=order-4&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Take Path A &middot; Get My Full Reading &middot; $37 &rarr;</a>
+      <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=OF4_V2&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Take Path A &middot; Get My Full Reading &middot; $37 &rarr;</a>
       <div class="cta-trust-row" style="margin-top:16px;">
         <span>&#128274; Secure Checkout</span>
         <span>&#9889; Delivered in 12-24 Hrs</span>
@@ -1797,7 +1797,7 @@ h1,h2,h3,h4,h5,.vsl-headline,.vsl-headline em,.tslpull{font-family:'Cormorant Ga
       <div style="font-family:'Cormorant Garamond',serif; font-size:48px; color:var(--gold-light); font-weight:600;">$37</div>
     </div>
 
-    <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=order-4&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
+    <a href="https://rebornf.pay.clickbank.net/?cbitems=smr-1&amp;template=OF4_V2&amp;cbfid=63520&amp;exitoffer=exit-1&amp;vtid=[cmc_vid]" class="cta">Get My Full Reading &middot; $37 &rarr;</a>
     <p style="margin-top:18px; font-size:13px; color:rgba(255,255,255,0.6);">Instant access &middot; 90-day guarantee &middot; Secure checkout</p>
   </div>
 </section>
